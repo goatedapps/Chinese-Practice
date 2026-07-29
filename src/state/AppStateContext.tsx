@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, type ReactNode, type Dispatch } from "react";
-import type { QuestionGroup, GroupResult } from "../data/types";
+import type { QuestionGroup, GroupResult, GroupResultItem } from "../data/types";
 
 export type Screen =
   | "home"
@@ -41,6 +41,7 @@ export type AppAction =
   | { type: "SELECT_SUBJECT"; subject: string }
   | { type: "TOGGLE_CATEGORY"; key: string }
   | { type: "SUBMIT_GROUP"; record: GroupResult }
+  | { type: "UPDATE_ITEM_RESULT"; groupIndex: number; qNo: string; patch: Partial<GroupResultItem> }
   | { type: "NEXT_GROUP" }
   | { type: "RESET_TO_HOME" };
 
@@ -69,6 +70,20 @@ function reducer(state: AppState, action: AppAction): AppState {
     }
     case "SUBMIT_GROUP":
       return { ...state, results: [...state.results, action.record], submitted: true };
+    // Self-check questions (Long-Answer/Writing-Constrained) are only known
+    // correct/incorrect after the student clicks a self-check button, which
+    // happens after SUBMIT_GROUP already pushed the record -- this patches
+    // that one item in place.
+    case "UPDATE_ITEM_RESULT": {
+      const results = state.results.map((r, idx) => {
+        if (idx !== action.groupIndex) return r;
+        return {
+          ...r,
+          items: r.items.map((it) => (it.qNo === action.qNo ? { ...it, ...action.patch } : it))
+        };
+      });
+      return { ...state, results };
+    }
     case "NEXT_GROUP": {
       const groupIndex = state.groupIndex + 1;
       return {

@@ -5,6 +5,7 @@ import { Sound } from "./lib/sound";
 import { Home } from "./components/Home/Home";
 import { LessonPicker } from "./components/LessonPicker/LessonPicker";
 import { TypePicker } from "./components/TypePicker/TypePicker";
+import { Quiz } from "./components/Quiz/Quiz";
 
 function ScreenRouter() {
   const state = useAppState();
@@ -20,8 +21,10 @@ function ScreenRouter() {
       return <LessonPicker />;
     case "typePicker":
       return <TypePicker />;
+    case "quiz":
+      return <Quiz />;
     default:
-      // Quiz/Result/Owl/Shop/Auth land here until their own components exist.
+      // Result/Owl/Shop/Auth land here until their own components exist.
       return (
         <div className="screen">
           <p>敬请期待 Coming soon...</p>
