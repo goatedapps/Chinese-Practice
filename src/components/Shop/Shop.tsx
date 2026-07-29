@@ -12,7 +12,7 @@ export function Shop() {
         ← 返回 Back
       </button>
       <h1>商店 Shop</h1>
-      <p className="subtitle">💡 可用 BP: {pet.bp}</p>
+      <p className="subtitle">💡 可用 BP: {pet.bp}　·　购买后道具会放入道具袋 Purchases go into your Bag</p>
       <div className="shop-grid">
         {SHOP_ITEMS.map((item) => {
           const affordable = pet.bp >= item.cost;

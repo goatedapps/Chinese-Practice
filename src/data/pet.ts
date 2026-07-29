@@ -35,8 +35,9 @@ export const BP_AWARD: Record<string, number> = {
   "Writing-Constrained": 2
 };
 
-// Shop catalogue: buying an item immediately feeds/plays with the owl
-// (no separate "inventory" step) -- cost in BP, growth/mood granted.
+// Shop catalogue: buying an item puts it in the Bag (PetState.inventory);
+// the growth/mood effect only applies once the student gives it to the owl
+// from the Bag screen -- cost in BP, growth/mood granted on give.
 export const SHOP_ITEMS: ShopItem[] = [
   { id: "seed",   label: "🌾 谷粒 Seeds",       type: "food", cost: 3,  growth: 4,  mood: 10 },
   { id: "worm",   label: "🐛 虫子 Worm",        type: "food", cost: 8,  growth: 8,  mood: 20 },
@@ -52,7 +53,8 @@ export const PET_DEFAULT_STATE: PetState = {
   growth: 0,
   moodAtCheckpoint: 100,
   lastFedAt: Date.now(),
-  purchaseHistory: []
+  purchaseHistory: [],
+  inventory: {}
 };
 
 // e.g. owlSpritePath("baby", "happy") -> "/owl/owl-baby-happy.png"

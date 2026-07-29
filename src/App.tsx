@@ -9,6 +9,7 @@ import { Quiz } from "./components/Quiz/Quiz";
 import { Result } from "./components/Result/Result";
 import { Owl } from "./components/Owl/Owl";
 import { Shop } from "./components/Shop/Shop";
+import { Bag } from "./components/Bag/Bag";
 
 function ScreenRouter() {
   const state = useAppState();
@@ -32,6 +33,8 @@ function ScreenRouter() {
       return <Owl />;
     case "shop":
       return <Shop />;
+    case "bag":
+      return <Bag />;
     default:
       // Auth lands here until its own component exists.
       return (

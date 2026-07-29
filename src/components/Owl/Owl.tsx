@@ -17,6 +17,7 @@ export function Owl() {
   const next = nextStage(pet.growth);
   const bucket = moodBucket(mood);
   const pct = next ? Math.round(((pet.growth - stage.minGrowth) / (next.minGrowth - stage.minGrowth)) * 100) : 100;
+  const bagCount = Object.values(pet.inventory).reduce((sum, n) => sum + n, 0);
 
   return (
     <div className="screen owl-screen">
@@ -41,6 +42,9 @@ export function Owl() {
       <div className="action-row">
         <button className="primary-btn" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "shop" })}>
           🛍 商店 Shop
+        </button>
+        <button className="secondary-btn" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "bag" })}>
+          🎒 道具袋 Bag{bagCount ? ` (${bagCount})` : ""}
         </button>
       </div>
     </div>

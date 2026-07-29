@@ -75,6 +75,7 @@ export interface GroupResult {
 }
 
 export interface HistoryEntry {
+  id: string;
   date: number;
   modeLabel: string;
   totalItems: number;
@@ -110,6 +111,9 @@ export interface PetState {
   moodAtCheckpoint: number;
   lastFedAt: number;
   purchaseHistory: PurchaseHistoryEntry[];
+  // Items bought in the Shop land here first, keyed by ShopItem id; the
+  // student opens the Bag and chooses when to give each one to the owl.
+  inventory: Record<string, number>;
 }
 
 export type MoodBucket = "sad" | "neutral" | "happy" | "very_happy";

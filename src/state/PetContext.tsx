@@ -50,6 +50,7 @@ interface PetContextValue {
   pet: PetState;
   awardBP: (amount: number) => void;
   buyItem: (item: ShopItem) => void;
+  giveItem: (item: ShopItem) => void;
 }
 
 const PetCtx = createContext<PetContextValue | null>(null);
@@ -65,17 +66,15 @@ export function PetProvider({ children }: { children: ReactNode }) {
     });
   }
 
-  // Buying immediately feeds/plays with the owl -- no separate "inventory" step.
+  // Buying only puts the item in the Bag -- its growth/mood effect is
+  // applied later, when the student gives it to the owl (see giveItem).
   function buyItem(item: ShopItem) {
     setPet((prev) => {
       if (prev.bp < item.cost) return prev;
-      const currentMood = computeCurrentMood(prev);
       const next: PetState = {
         ...prev,
         bp: prev.bp - item.cost,
-        moodAtCheckpoint: Math.min(100, currentMood + item.mood),
-        lastFedAt: Date.now(),
-        growth: prev.growth + item.growth,
+        inventory: { ...prev.inventory, [item.id]: (prev.inventory[item.id] ?? 0) + 1 },
         purchaseHistory: [
           { itemId: item.id, cost: item.cost, ts: Date.now() },
           ...prev.purchaseHistory
@@ -86,7 +85,27 @@ export function PetProvider({ children }: { children: ReactNode }) {
     });
   }
 
-  return <PetCtx.Provider value={{ pet, awardBP, buyItem }}>{children}</PetCtx.Provider>;
+  // Applies a bagged item's growth/mood effect to the owl and removes it
+  // from the Bag. Called once the item's throw animation lands (see
+  // components/Bag/Bag.tsx), not immediately when the student clicks Give.
+  function giveItem(item: ShopItem) {
+    setPet((prev) => {
+      const have = prev.inventory[item.id] ?? 0;
+      if (have <= 0) return prev;
+      const currentMood = computeCurrentMood(prev);
+      const next: PetState = {
+        ...prev,
+        inventory: { ...prev.inventory, [item.id]: have - 1 },
+        moodAtCheckpoint: Math.min(100, currentMood + item.mood),
+        lastFedAt: Date.now(),
+        growth: prev.growth + item.growth
+      };
+      savePetState(next);
+      return next;
+    });
+  }
+
+  return <PetCtx.Provider value={{ pet, awardBP, buyItem, giveItem }}>{children}</PetCtx.Provider>;
 }
 
 export function usePet(): PetContextValue {

@@ -9,6 +9,7 @@ export type Screen =
   | "result"
   | "owl"
   | "shop"
+  | "bag"
   | "auth";
 
 export interface AppState {

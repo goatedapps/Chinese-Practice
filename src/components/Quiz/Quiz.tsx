@@ -4,6 +4,7 @@ import { usePet } from "../../state/PetContext";
 import { BP_AWARD } from "../../data/pet";
 import { RichText } from "../../lib/richText";
 import { Sound } from "../../lib/sound";
+import { speakText } from "../../lib/speech";
 import { ConfirmModal } from "../common/Modal";
 import { gradeGroup, correctOptionFor } from "../../lib/grading";
 import type { AnswerMap } from "../../lib/grading";
@@ -159,6 +160,9 @@ function QuestionCard({ q, idx, group, answer, onAnswerChange, item, onSelfCheck
       <div className="question-head">
         {q.qNo}
         <span className="marks-badge">{`${q.marks} 分`}</span>
+        <button type="button" className="dictation-btn" title="朗读题目 Read aloud" onClick={() => speakText(q.text)}>
+          🔊 听写 Dictation
+        </button>
       </div>
       <div className="question-text">
         <RichText text={q.text} />
