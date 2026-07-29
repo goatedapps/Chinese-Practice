@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAppState, useAppDispatch } from "../../state/AppStateContext";
 import { saveHistory } from "../../state/history";
+import { Sound } from "../../lib/sound";
 
 export function Result() {
   const state = useAppState();
@@ -17,15 +18,19 @@ export function Result() {
     })
   );
 
+  const pct = totalItems ? Math.round((correctItems / totalItems) * 100) : 0;
+
   // Runs once when the result screen is first shown for this session, same
   // as the old renderResult()'s saveHistory() call.
   useEffect(() => {
     saveHistory({ date: Date.now(), modeLabel: state.modeLabel || "", totalItems, correctItems, skippedItems });
+    if (totalItems > 0) {
+      if (pct === 100) Sound.applause();
+      else Sound.encourage();
+    }
     // Intentionally empty deps: save the session exactly once, not on every re-render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const pct = totalItems ? Math.round((correctItems / totalItems) * 100) : 0;
 
   return (
     <div className="screen result">

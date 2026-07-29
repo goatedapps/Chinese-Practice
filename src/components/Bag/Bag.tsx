@@ -3,7 +3,7 @@ import { useAppDispatch } from "../../state/AppStateContext";
 import { usePet, computeCurrentMood, moodBucket, getStage } from "../../state/PetContext";
 import { SHOP_ITEMS } from "../../data/pet";
 import { Sound } from "../../lib/sound";
-import { throwToOwl } from "../../lib/throwAnimation";
+import { flyItemTo } from "../../lib/throwAnimation";
 import { OwlArt } from "../common/OwlArt";
 import type { ShopItem } from "../../data/types";
 
@@ -56,7 +56,7 @@ function BagItemCard({ item, qty, owlRef, onGive }: BagItemCardProps) {
   function handleClick() {
     if (giving || !cardRef.current || !owlRef.current) return;
     setGiving(true);
-    throwToOwl(cardRef.current, owlRef.current, emoji, () => {
+    flyItemTo(cardRef.current, owlRef.current, emoji, () => {
       onGive(item);
       Sound.gift();
       setGiving(false);

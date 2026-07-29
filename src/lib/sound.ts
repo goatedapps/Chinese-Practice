@@ -124,6 +124,37 @@ function sparkleGlide(startTime: number): void {
   osc.stop(t0 + 0.32);
 }
 
+// Irregular noise-burst "claps" for a perfect score -- reuses the same
+// noise buffer as tap() but with randomized timing/pitch/gain per burst,
+// and a taper toward the end, so it doesn't sound like a mechanical repeat.
+function clapBurst(startTime: number): void {
+  const c = ensureCtx();
+  if (!c) return;
+  const clapCount = 14;
+  let t = startTime;
+  for (let i = 0; i < clapCount; i++) {
+    const t0 = c.currentTime + t;
+    const src = c.createBufferSource();
+    src.buffer = getNoiseBuffer(c);
+    const bandpass = c.createBiquadFilter();
+    bandpass.type = "bandpass";
+    bandpass.frequency.value = 1500 + Math.random() * 1500;
+    bandpass.Q.value = 0.6;
+    const gain = c.createGain();
+    const taper = 1 - i / (clapCount + 4);
+    const peak = (0.08 + Math.random() * 0.06) * taper;
+    gain.gain.setValueAtTime(0, t0);
+    gain.gain.linearRampToValueAtTime(peak, t0 + 0.003);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.06);
+    src.connect(bandpass);
+    bandpass.connect(gain);
+    gain.connect(c.destination);
+    src.start(t0);
+    src.stop(t0 + 0.07);
+    t += 0.07 + Math.random() * 0.07;
+  }
+}
+
 export const Sound = {
   click(): void {
     try {
@@ -151,6 +182,24 @@ export const Sound = {
   gift(): void {
     try {
       sparkleGlide(0);
+    } catch {
+      // ignore
+    }
+  },
+  applause(): void {
+    try {
+      clapBurst(0);
+    } catch {
+      // ignore
+    }
+  },
+  // Gentle two-note descending chime for a sub-100% score -- reuses the
+  // warm bell timbre from ding() (still encouraging, not a "wrong answer"
+  // buzzer) but descending and softer.
+  encourage(): void {
+    try {
+      chime(659.25, 0, 0.3, 0.08); // E5
+      chime(523.25, 0.18, 0.42, 0.09); // C5
     } catch {
       // ignore
     }

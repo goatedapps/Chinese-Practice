@@ -77,7 +77,7 @@ export function Quiz() {
       autoAdvanceTimerRef.current = setTimeout(() => {
         autoAdvanceTimerRef.current = null;
         dispatch({ type: "NEXT_GROUP" });
-      }, 1100);
+      }, 800);
     }
   }
 

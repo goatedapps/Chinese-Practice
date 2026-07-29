@@ -38,10 +38,8 @@ export function Owl() {
       <button className="back-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>
         ← 返回 Back
       </button>
-      <h1>我的猫头鹰 My Owl</h1>
-
       {editingName ? (
-        <div className="owl-name-row">
+        <div className="owl-name-row owl-name-editing">
           <input
             className="owl-name-input"
             value={nameInput}
@@ -61,12 +59,12 @@ export function Owl() {
           </button>
         </div>
       ) : (
-        <div className="owl-name-row">
-          <span className="owl-name-label">{pet.name || "为它取个名字吧 Give it a name"}</span>
+        <h1 className="owl-name-row owl-name-heading">
+          {pet.name || "为它取个名字吧 Give it a name"}
           <button className="owl-name-edit" title="改名 Rename" onClick={startEditingName}>
             ✏️
           </button>
-        </div>
+        </h1>
       )}
 
       <OwlArt stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" playSound />

@@ -63,12 +63,12 @@ export function owlSpritePath(stageKey: string, mood: MoodBucket): string {
   return `/owl/owl-${stageKey}-${mood}.png`;
 }
 
-// Stage x mood combos that have a hand-animated video (+ matching sound
-// effect) instead of just a static PNG. Only "egg-very_happy" exists so
-// far -- a proof of concept before animating the rest of the 24 combos.
-// Source art is authored as GIF but shipped as MP4 (H.264) -- far smaller
-// than GIF at the same visual quality, and plays natively via <video
-// autoPlay loop muted playsInline> in every browser this app targets.
+// Stage x mood combos that have a hand-animated video (with its sound
+// effect muxed in as the video's own audio track) instead of just a static
+// PNG. Only "egg-very_happy" exists so far -- a proof of concept before
+// animating the rest of the 24 combos. Source art is authored as GIF but
+// shipped as MP4 (H.264+AAC) -- far smaller than GIF at the same visual
+// quality, and plays natively via <video playsInline> (see OwlArt.tsx).
 const ANIMATED_OWL_VARIANTS = new Set<string>(["egg-very_happy"]);
 
 export function hasOwlAnimation(stageKey: string, mood: MoodBucket): boolean {
@@ -77,8 +77,4 @@ export function hasOwlAnimation(stageKey: string, mood: MoodBucket): boolean {
 
 export function owlAnimatedSpritePath(stageKey: string, mood: MoodBucket): string {
   return `/owl/owl-${stageKey}-${mood}.mp4`;
-}
-
-export function owlAnimatedSoundPath(stageKey: string, mood: MoodBucket): string {
-  return `/owl/owl-${stageKey}-${mood}.mp3`;
 }

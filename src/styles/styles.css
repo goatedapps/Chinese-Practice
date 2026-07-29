@@ -395,7 +395,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 .owl-art img, .owl-art video { width: 100%; height: 100%; display: block; object-fit: contain; }
 .owl-thumb { width: 64px; height: 64px; }
-.owl-large { width: 180px; height: 180px; margin: 8px auto 4px; box-shadow: var(--shadow-2); }
+.owl-large { width: min(260px, 70vw); height: min(260px, 70vw); margin: 8px auto 4px; box-shadow: var(--shadow-2); }
 
 .pet-status-strip {
   display: flex; align-items: center; gap: 14px;
@@ -428,9 +428,12 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .owl-screen { text-align: center; }
 .owl-name-row {
   display: flex; align-items: center; justify-content: center; gap: 8px;
-  margin-bottom: 4px;
 }
-.owl-name-label { font-size: 16px; color: var(--ink-soft); }
+/* Applied alongside the h1 tag selector -- this just adds the flex
+   layout for the name + edit-pencil pair; typography comes from `h1`. */
+.owl-name-heading { margin: 4px 0 6px; }
+.owl-name-heading .owl-name-edit { font-size: 20px; }
+.owl-name-editing { margin: 4px 0 10px; }
 .owl-name-edit, .owl-name-save, .owl-name-cancel {
   background: none; border: none; cursor: pointer; font-size: 15px; padding: 2px 4px; line-height: 1;
   color: var(--ink-soft);
@@ -439,7 +442,8 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .owl-name-save { color: var(--correct); }
 .owl-name-cancel { color: var(--incorrect); }
 .owl-name-input {
-  font-size: 16px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
+  font-size: 22px; font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px;
   background: var(--card-bg); color: var(--ink); text-align: center;
   box-shadow: inset 0 1px 3px rgba(var(--ink-rgb), .08);
 }
@@ -479,6 +483,10 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .shop-item-label { font-size: 17px; margin-bottom: 6px; }
 .shop-item-stats { font-size: 13px; color: var(--ink-soft); margin-bottom: 10px; }
 .shop-item-buy:disabled { cursor: not-allowed; opacity: .6; filter: none; box-shadow: none; }
+.shop-bag-indicator {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-weight: 700; color: var(--ink);
+}
 
 .bag-screen { text-align: center; }
 .bag-grid {

@@ -1,8 +1,9 @@
-// Animates a clone of an emoji flying from a Bag item card to the owl art,
+// Animates a clone of an emoji flying from one element to another (a Shop
+// item card into the bag indicator, or a Bag item card onto the owl art),
 // then invokes onArrive once it lands. The flying element lives outside
 // React's tree (appended straight to document.body) so a re-render
 // triggered by onArrive can't interrupt it mid-flight.
-export function throwToOwl(sourceEl: HTMLElement, targetEl: HTMLElement, emoji: string, onArrive: () => void): void {
+export function flyItemTo(sourceEl: HTMLElement, targetEl: HTMLElement, emoji: string, onArrive: () => void): void {
   const sourceRect = sourceEl.getBoundingClientRect();
   const targetRect = targetEl.getBoundingClientRect();
   const startX = sourceRect.left + sourceRect.width / 2;
