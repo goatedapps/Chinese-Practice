@@ -1,9 +1,10 @@
 import { useRef, useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { usePet, computeCurrentMood, moodBucket, getStage } from "../../state/PetContext";
-import { owlSpritePath, SHOP_ITEMS } from "../../data/pet";
+import { SHOP_ITEMS } from "../../data/pet";
 import { Sound } from "../../lib/sound";
 import { throwToOwl } from "../../lib/throwAnimation";
+import { OwlArt } from "../common/OwlArt";
 import type { ShopItem } from "../../data/types";
 
 export function Bag() {
@@ -22,9 +23,7 @@ export function Bag() {
         ← 返回 Back
       </button>
       <h1>道具袋 My Bag</h1>
-      <div ref={owlRef} className={`owl-art owl-stage-${stage.key} owl-large`}>
-        <img src={owlSpritePath(stage.key, bucket)} alt={stage.label} />
-      </div>
+      <OwlArt ref={owlRef} stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" />
 
       {entries.length === 0 ? (
         <p className="subtitle">道具袋是空的，去商店买些东西吧！Your bag is empty — visit the Shop first.</p>
@@ -59,7 +58,7 @@ function BagItemCard({ item, qty, owlRef, onGive }: BagItemCardProps) {
     setGiving(true);
     throwToOwl(cardRef.current, owlRef.current, emoji, () => {
       onGive(item);
-      Sound.ding(0);
+      Sound.gift();
       setGiving(false);
     });
   }

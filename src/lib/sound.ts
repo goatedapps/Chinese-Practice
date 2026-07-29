@@ -77,6 +77,53 @@ function chime(freq: number, startTime: number, duration: number, peakGain: numb
   osc2.stop(t0 + duration + 0.05);
 }
 
+// Two-tone metallic "coin" clink for Shop purchases -- square-wave blips
+// through a highpass filter, deliberately harder-edged than the warm bell
+// chime used for correct quiz answers, so the two never get confused.
+function coin(startTime: number): void {
+  const c = ensureCtx();
+  if (!c) return;
+  [1567.98, 2093.0].forEach((freq, i) => {
+    const t0 = c.currentTime + startTime + i * 0.055;
+    const osc = c.createOscillator();
+    osc.type = "square";
+    osc.frequency.setValueAtTime(freq, t0);
+    const filter = c.createBiquadFilter();
+    filter.type = "highpass";
+    filter.frequency.value = 900;
+    const gain = c.createGain();
+    gain.gain.setValueAtTime(0, t0);
+    gain.gain.linearRampToValueAtTime(0.09, t0 + 0.005);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.1);
+    osc.connect(filter);
+    filter.connect(gain);
+    gain.connect(c.destination);
+    osc.start(t0);
+    osc.stop(t0 + 0.13);
+  });
+}
+
+// Rising "sparkle" glide for giving a bagged item to the owl -- a single
+// triangle-wave glissando, distinct in shape (not a multi-note chime) from
+// both the quiz ding and the shop coin sound.
+function sparkleGlide(startTime: number): void {
+  const c = ensureCtx();
+  if (!c) return;
+  const t0 = c.currentTime + startTime;
+  const osc = c.createOscillator();
+  osc.type = "triangle";
+  osc.frequency.setValueAtTime(520, t0);
+  osc.frequency.exponentialRampToValueAtTime(1600, t0 + 0.22);
+  const gain = c.createGain();
+  gain.gain.setValueAtTime(0, t0);
+  gain.gain.linearRampToValueAtTime(0.14, t0 + 0.02);
+  gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.28);
+  osc.connect(gain);
+  gain.connect(c.destination);
+  osc.start(t0);
+  osc.stop(t0 + 0.32);
+}
+
 export const Sound = {
   click(): void {
     try {
@@ -90,6 +137,20 @@ export const Sound = {
       chime(783.99, delay, 0.32, 0.12); // G5
       chime(1046.5, delay + 0.07, 0.38, 0.1); // C6
       chime(1567.98, delay + 0.15, 0.5, 0.07); // G6 -- bright top note
+    } catch {
+      // ignore
+    }
+  },
+  purchase(): void {
+    try {
+      coin(0);
+    } catch {
+      // ignore
+    }
+  },
+  gift(): void {
+    try {
+      sparkleGlide(0);
     } catch {
       // ignore
     }

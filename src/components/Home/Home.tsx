@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { usePet, computeCurrentMood, moodBucket, getStage } from "../../state/PetContext";
-import { owlSpritePath } from "../../data/pet";
 import { loadHistory, clearAllHistory, deleteHistoryEntry } from "../../state/history";
 import { ConfirmModal } from "../common/Modal";
+import { OwlArt } from "../common/OwlArt";
 
 const MOOD_LABELS: Record<string, string> = {
   sad: "心情低落 Sad",
@@ -37,11 +37,9 @@ export function Home() {
       <p className="subtitle">选择一种练习方式 Choose how you'd like to practice</p>
 
       <button className="pet-status-strip" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "owl" })}>
-        <div className={`owl-art owl-stage-${stage.key} owl-thumb`}>
-          <img src={owlSpritePath(stage.key, bucket)} alt="" />
-        </div>
+        <OwlArt stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-thumb" />
         <div className="pet-status-text">
-          <div className="pet-status-stage">{stage.label}</div>
+          <div className="pet-status-stage">{pet.name ? `${pet.name} · ${stage.label}` : stage.label}</div>
           <div className="pet-status-mood">{MOOD_LABELS[bucket]}</div>
         </div>
         <div className="pet-status-bp">💡 {pet.bp} BP</div>

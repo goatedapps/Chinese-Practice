@@ -51,6 +51,7 @@ interface PetContextValue {
   awardBP: (amount: number) => void;
   buyItem: (item: ShopItem) => void;
   giveItem: (item: ShopItem) => void;
+  renameOwl: (name: string) => void;
 }
 
 const PetCtx = createContext<PetContextValue | null>(null);
@@ -105,7 +106,16 @@ export function PetProvider({ children }: { children: ReactNode }) {
     });
   }
 
-  return <PetCtx.Provider value={{ pet, awardBP, buyItem, giveItem }}>{children}</PetCtx.Provider>;
+  function renameOwl(name: string) {
+    const trimmed = name.trim().slice(0, 12);
+    setPet((prev) => {
+      const next = { ...prev, name: trimmed };
+      savePetState(next);
+      return next;
+    });
+  }
+
+  return <PetCtx.Provider value={{ pet, awardBP, buyItem, giveItem, renameOwl }}>{children}</PetCtx.Provider>;
 }
 
 export function usePet(): PetContextValue {

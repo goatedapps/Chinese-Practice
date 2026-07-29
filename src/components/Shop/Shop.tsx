@@ -1,6 +1,7 @@
 import { useAppDispatch } from "../../state/AppStateContext";
 import { usePet } from "../../state/PetContext";
 import { SHOP_ITEMS } from "../../data/pet";
+import { Sound } from "../../lib/sound";
 
 export function Shop() {
   const dispatch = useAppDispatch();
@@ -24,7 +25,9 @@ export function Shop() {
                 className="secondary-btn shop-item-buy"
                 disabled={!affordable}
                 onClick={() => {
-                  if (affordable) buyItem(item);
+                  if (!affordable) return;
+                  buyItem(item);
+                  Sound.purchase();
                 }}
               >
                 💡 {item.cost} BP

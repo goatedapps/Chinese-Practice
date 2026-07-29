@@ -105,6 +105,7 @@ export interface PurchaseHistoryEntry {
 }
 
 export interface PetState {
+  name: string;
   bp: number;
   bpLifetime: number;
   growth: number;

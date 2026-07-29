@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAppState, useAppDispatch } from "../../state/AppStateContext";
 import { usePet } from "../../state/PetContext";
 import { BP_AWARD } from "../../data/pet";
@@ -16,13 +16,28 @@ export function Quiz() {
   const { pet, awardBP } = usePet();
   const [answers, setAnswers] = useState<AnswerMap>({});
   const [showHomeConfirm, setShowHomeConfirm] = useState(false);
+  const [autoAdvancing, setAutoAdvancing] = useState(false);
+  const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const group = state.groups[state.groupIndex];
+
+  function clearAutoAdvance() {
+    if (autoAdvanceTimerRef.current) {
+      clearTimeout(autoAdvanceTimerRef.current);
+      autoAdvanceTimerRef.current = null;
+    }
+    setAutoAdvancing(false);
+  }
 
   // Fresh answers for each new group -- avoids answers bleeding across groups.
   useEffect(() => {
     setAnswers({});
+    clearAutoAdvance();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.groupIndex]);
+
+  // Cancel any pending auto-advance if the student navigates away mid-timer.
+  useEffect(() => clearAutoAdvance, []);
 
   // Defensive fallback matching the old renderQuiz()'s `if (!group) return renderResult()`.
   useEffect(() => {
@@ -37,6 +52,11 @@ export function Quiz() {
     setAnswers((prev) => ({ ...prev, [qNo]: value }));
   }
 
+  function goNext() {
+    clearAutoAdvance();
+    dispatch({ type: "NEXT_GROUP" });
+  }
+
   function handleSubmit() {
     const items = gradeGroup(group, answers);
     let dingCount = 0;
@@ -48,6 +68,17 @@ export function Quiz() {
       }
     });
     dispatch({ type: "SUBMIT_GROUP", record: { groupId: group.groupId, items } });
+
+    // Only skip the manual click when every item graded correct outright --
+    // anything wrong/skipped, or a self-check item (correct: null until the
+    // student clicks a self-check button), needs their eyes on it first.
+    if (items.every((it) => it.correct === true)) {
+      setAutoAdvancing(true);
+      autoAdvanceTimerRef.current = setTimeout(() => {
+        autoAdvanceTimerRef.current = null;
+        dispatch({ type: "NEXT_GROUP" });
+      }, 1100);
+    }
   }
 
   function handleSelfCheck(qNo: string, format: string, correct: boolean) {
@@ -121,8 +152,12 @@ export function Quiz() {
             提交本组 Submit This Set
           </button>
         ) : (
-          <button className="secondary-btn" onClick={() => dispatch({ type: "NEXT_GROUP" })}>
-            {state.groupIndex + 1 < state.groups.length ? "下一组 Next Set" : "查看结果 See Results"}
+          <button className="secondary-btn" onClick={goNext}>
+            {autoAdvancing
+              ? "✓ 全部正确，自动进入下一组... All correct — moving on..."
+              : state.groupIndex + 1 < state.groups.length
+                ? "下一组 Next Set"
+                : "查看结果 See Results"}
           </button>
         )}
       </div>

@@ -48,6 +48,7 @@ export const SHOP_ITEMS: ShopItem[] = [
 ];
 
 export const PET_DEFAULT_STATE: PetState = {
+  name: "",
   bp: 0,
   bpLifetime: 0,
   growth: 0,
@@ -60,4 +61,24 @@ export const PET_DEFAULT_STATE: PetState = {
 // e.g. owlSpritePath("baby", "happy") -> "/owl/owl-baby-happy.png"
 export function owlSpritePath(stageKey: string, mood: MoodBucket): string {
   return `/owl/owl-${stageKey}-${mood}.png`;
+}
+
+// Stage x mood combos that have a hand-animated video (+ matching sound
+// effect) instead of just a static PNG. Only "egg-very_happy" exists so
+// far -- a proof of concept before animating the rest of the 24 combos.
+// Source art is authored as GIF but shipped as MP4 (H.264) -- far smaller
+// than GIF at the same visual quality, and plays natively via <video
+// autoPlay loop muted playsInline> in every browser this app targets.
+const ANIMATED_OWL_VARIANTS = new Set<string>(["egg-very_happy"]);
+
+export function hasOwlAnimation(stageKey: string, mood: MoodBucket): boolean {
+  return ANIMATED_OWL_VARIANTS.has(`${stageKey}-${mood}`);
+}
+
+export function owlAnimatedSpritePath(stageKey: string, mood: MoodBucket): string {
+  return `/owl/owl-${stageKey}-${mood}.mp4`;
+}
+
+export function owlAnimatedSoundPath(stageKey: string, mood: MoodBucket): string {
+  return `/owl/owl-${stageKey}-${mood}.mp3`;
 }
