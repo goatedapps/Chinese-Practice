@@ -4,11 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static, no-build-tools, no-dependencies web app for practicing Chinese-language exam questions (Primary school Chinese / Higher Chinese, Singapore-style "语文应用", cloze, error correction, reading comprehension, dialogue completion). Three files make up the entire app:
+A static, no-build-tools, no-dependencies web app for practicing Chinese-language exam questions (Primary school Chinese / Higher Chinese, Singapore-style "语文应用", cloze, error correction, reading comprehension, dialogue completion), with a Tamagotchi-style gamification layer (earn BP for correct answers, grow a pet owl). The app is:
 
-- `index.html` — loads `data/questions.js` then `app.js`, mounts into `#app`.
+- `index.html` — loads `data/questions.js`, `data/pet.js`, then `app.js`, mounts into `#app`.
 - `data/questions.js` — the question "database" (plain JS globals, no JSON/build step).
-- `app.js` — all rendering, state, grading, and history logic (vanilla JS, no framework).
+- `data/pet.js` — pet/BP config: growth stages, shop items, mood decay rate, owl SVG art (plain JS globals, no build step).
+- `app.js` — all rendering, state, grading, history, and pet/BP logic (vanilla JS, no framework).
 - `styles.css` — all styling.
 
 ## Running / testing
@@ -47,6 +48,15 @@ Single-file, no-framework render loop:
 - `saveHistory` / `loadHistory` persist the last 50 session summaries to `localStorage` under `HISTORY_KEY` (bump this key if the stored shape changes, to avoid crashing on old data).
 - `Sound` is a small Web Audio synth (click + correct-answer ding) — no audio assets.
 - Leaving a quiz mid-session goes through `hasQuizProgress()` + `showConfirmModal()` (a custom in-page modal, not `window.confirm`) to avoid silently discarding progress.
+
+### Pet / BP layer (`data/pet.js` + `app.js`)
+Persists separately from quiz history, under its own localStorage key (`PET_KEY`, next to `HISTORY_KEY`):
+
+- `data/pet.js` holds tunable config: `PET_STAGES` (growth thresholds for egg/baby/toddler/adult), `MOOD_DECAY_PER_HOUR`, `BP_AWARD` (per question format), `SHOP_ITEMS` (cost/growth/mood per item), `PET_DEFAULT_STATE`, and the owl art (`OWL_BODY_SVG`/`OWL_FACE_SVG` — one SVG per growth stage body, one per mood-bucket face overlay, composed together via `renderOwlArt()` so 4 stages + 4 moods only need 8 assets, not a 16-way cross-product).
+- Mood is **derived, not stored as a live value**: `petState` keeps a `moodAtCheckpoint` + `lastFedAt` pair, and `computeCurrentMood()` decays from that pair on demand (called at render time only) — this is what makes neglect (time-based mood decay) work without a server, and avoids compounding drift from repeatedly decaying an already-decayed number. `growth` is monotonic and never affected by decay.
+- BP is awarded per correct answer, hooked directly into `gradeGroup()` (MCQ/Fill-in, immediately) and into the Long-Answer self-check "✓ 我答对了" button handler (guarded by a `bpAwarded` flag so re-toggling doesn't double-pay).
+- Buying a shop item (`buyItem()`) applies its growth/mood effect immediately — there's no separate "unused inventory" state.
+- Cross-device sync (accounts, Supabase) is an intentionally separate, not-yet-built later phase — `petState`'s flat, serializable shape is designed so a future sync layer can push/pull it without a local data-model rewrite.
 
 ### Adding new practice content
 To add a new paper/lesson's worth of questions: append new group objects to `QUESTION_GROUPS` in `data/questions.js` following the existing shape (copy a similar group as a template — e.g. an MCQ-only lesson group like `CH-Q1`, or a passage+Long-Answer group like `HC-G3`). Bump `LESSON_COUNT` if introducing a new lesson number, and add new keys to `CATEGORIES` if introducing a new question type.

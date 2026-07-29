@@ -238,6 +238,66 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .self-btn.self-right.self-chosen { background: var(--correct); border-color: var(--correct); color: #fff; }
 .self-btn.self-wrong.self-chosen { background: var(--incorrect); border-color: var(--incorrect); color: #fff; }
 
+/* ---------- Pet / BP ---------- */
+.owl-art { position: relative; flex-shrink: 0; }
+.owl-body, .owl-face { position: absolute; inset: 0; }
+.owl-body svg, .owl-face svg { width: 100%; height: 100%; display: block; }
+.owl-face { pointer-events: none; }
+.owl-thumb { width: 64px; height: 64px; }
+.owl-large { width: 180px; height: 180px; margin: 8px auto 4px; }
+
+.pet-status-strip {
+  display: flex; align-items: center; gap: 14px;
+  width: 100%; background: var(--card-bg); border: 2px solid var(--border);
+  border-radius: 14px; padding: 12px 16px; margin-bottom: 22px;
+  cursor: pointer; text-align: left; font-family: inherit;
+  transition: border-color .15s, transform .15s;
+}
+.pet-status-strip:hover { border-color: var(--primary); transform: translateY(-2px); }
+.pet-status-text { flex: 1; }
+.pet-status-stage { font-size: 16px; font-weight: 700; }
+.pet-status-mood { font-size: 14px; color: #8a7f6f; }
+.pet-status-bp { font-size: 15px; font-weight: 700; color: #8a5a1f; white-space: nowrap; }
+
+.quiz-bp-badge {
+  font-size: 14px; font-weight: 700; color: #8a5a1f;
+  background: #fbe9d0; border-radius: 12px; padding: 6px 12px; white-space: nowrap;
+}
+
+.bp-pop {
+  display: inline-block; margin-left: 10px; color: #8a5a1f; font-weight: 700;
+  animation: bp-pop-float 1.1s ease-out forwards;
+}
+@keyframes bp-pop-float {
+  0%   { opacity: 0; transform: translateY(4px); }
+  15%  { opacity: 1; transform: translateY(0); }
+  75%  { opacity: 1; transform: translateY(-6px); }
+  100% { opacity: 0; transform: translateY(-14px); }
+}
+
+.owl-screen { text-align: center; }
+.owl-info { max-width: 320px; margin: 0 auto; }
+.owl-stage-label { font-size: 20px; font-weight: 700; }
+.owl-mood-label { font-size: 15px; color: #8a7f6f; margin-bottom: 14px; }
+.growth-bar { background: #f3efe6; border: 2px solid var(--border); border-radius: 10px; height: 16px; overflow: hidden; }
+.growth-bar-fill { height: 100%; background: var(--primary); transition: width .3s; }
+.growth-caption { font-size: 14px; color: #8a7f6f; margin: 8px 0; }
+.owl-bp-label { font-size: 16px; font-weight: 700; color: #8a5a1f; margin-top: 6px; }
+.owl-screen .action-row { justify-content: center; }
+
+.shop-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px; margin-top: 16px;
+}
+.shop-item-card {
+  background: var(--card-bg); border: 2px solid var(--border); border-radius: 12px;
+  padding: 14px; text-align: center;
+}
+.shop-item-disabled { opacity: .5; }
+.shop-item-label { font-size: 17px; margin-bottom: 6px; }
+.shop-item-stats { font-size: 13px; color: #8a7f6f; margin-bottom: 10px; }
+.shop-item-buy:disabled { cursor: not-allowed; opacity: .6; }
+
 /* ---------- Result ---------- */
 .result { text-align: center; }
 .score-circle {

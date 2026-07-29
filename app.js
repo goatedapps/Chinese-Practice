@@ -5,9 +5,10 @@
    ========================================================= */
 
 const HISTORY_KEY = "hanyuPracticeHistory_v2";
+const PET_KEY = "hanyuPracticePet_v1";
 
 const state = {
-  screen: "home",       // home | lessonPicker | typePicker | quiz | result
+  screen: "home",       // home | lessonPicker | typePicker | quiz | result | owl | shop
   mode: null,            // "lesson" | "type"
   groups: [],            // selected groups for this session (in play order)
   groupIndex: 0,
@@ -129,6 +130,91 @@ function loadHistory() {
   try { return JSON.parse(localStorage.getItem(HISTORY_KEY)) || []; } catch (e) { return []; }
 }
 
+/* ---------------------------------------------------------
+   Pet (BP + Owl) state — persisted separately from quiz
+   history under its own localStorage key. Mood is stored as a
+   checkpoint value + timestamp and always decayed on demand
+   (computeCurrentMood), never overwritten by a decay tick, so
+   repeated reads never compound rounding error. Growth is
+   monotonic and fully decoupled from mood/decay.
+   --------------------------------------------------------- */
+function loadPetState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(PET_KEY));
+    if (saved) return Object.assign({}, PET_DEFAULT_STATE, saved);
+  } catch (e) { /* ignore */ }
+  return Object.assign({}, PET_DEFAULT_STATE, { lastFedAt: Date.now() });
+}
+
+function savePetState() {
+  localStorage.setItem(PET_KEY, JSON.stringify(petState));
+}
+
+let petState = loadPetState();
+
+function computeCurrentMood(pet, now) {
+  now = now || Date.now();
+  const hoursElapsed = Math.max(0, (now - pet.lastFedAt) / 3600000);
+  return Math.max(0, Math.min(100, pet.moodAtCheckpoint - MOOD_DECAY_PER_HOUR * hoursElapsed));
+}
+
+function moodBucket(mood) {
+  if (mood < 25) return "sad";
+  if (mood < 50) return "neutral";
+  if (mood < 75) return "content";
+  return "happy";
+}
+
+function getStage(growth) {
+  let current = PET_STAGES[0];
+  for (const stage of PET_STAGES) {
+    if (growth >= stage.minGrowth) current = stage;
+  }
+  return current;
+}
+
+function nextStage(growth) {
+  return PET_STAGES.find(s => s.minGrowth > growth) || null;
+}
+
+function awardBP(feedbackEl, amount) {
+  petState.bp += amount;
+  petState.bpLifetime += amount;
+  savePetState();
+  if (feedbackEl) feedbackEl.appendChild(el("span", { class: "bp-pop" }, [`+${amount} BP`]));
+  refreshQuizTopbarBP();
+}
+
+function refreshQuizTopbarBP() {
+  const badge = document.querySelector(".quiz-bp-badge");
+  if (badge) badge.textContent = `💡 ${petState.bp} BP`;
+}
+
+function buyItem(item) {
+  if (petState.bp < item.cost) return;
+  const current = computeCurrentMood(petState);
+  petState.bp -= item.cost;
+  petState.moodAtCheckpoint = Math.min(100, current + item.mood);
+  petState.lastFedAt = Date.now();
+  petState.growth += item.growth;
+  petState.purchaseHistory.unshift({ itemId: item.id, cost: item.cost, ts: Date.now() });
+  petState.purchaseHistory = petState.purchaseHistory.slice(0, 50);
+  savePetState();
+  render();
+}
+
+function goToScreen(name) {
+  state.screen = name;
+  render();
+}
+
+function renderOwlArt(stage, bucket, sizeClass) {
+  return el("div", { class: `owl-art owl-stage-${stage.key} ${sizeClass}` }, [
+    el("div", { class: "owl-body", html: OWL_BODY_SVG[stage.key] }),
+    bucket ? el("div", { class: "owl-face", html: OWL_FACE_SVG[bucket] }) : null
+  ]);
+}
+
 // Lightweight in-page confirm dialog (native confirm() is avoided so the
 // app's own styling/testing stays consistent).
 function showConfirmModal(messageLines, onConfirm) {
@@ -177,7 +263,27 @@ function render() {
   else if (state.screen === "typePicker") root.appendChild(renderTypePicker());
   else if (state.screen === "quiz") root.appendChild(renderQuiz());
   else if (state.screen === "result") root.appendChild(renderResult());
+  else if (state.screen === "owl") root.appendChild(renderOwl());
+  else if (state.screen === "shop") root.appendChild(renderShop());
   window.scrollTo(0, 0);
+}
+
+function moodLabelText(bucket) {
+  return { sad: "心情低落 Sad", neutral: "心情平静 Neutral", content: "心情满足 Content", happy: "心情开心 Happy" }[bucket];
+}
+
+function renderPetStatusStrip() {
+  const mood = computeCurrentMood(petState);
+  const stage = getStage(petState.growth);
+  const bucket = stage.key === "egg" ? null : moodBucket(mood);
+  return el("button", { class: "pet-status-strip", onclick: () => goToScreen("owl") }, [
+    renderOwlArt(stage, bucket, "owl-thumb"),
+    el("div", { class: "pet-status-text" }, [
+      el("div", { class: "pet-status-stage" }, [stage.label]),
+      el("div", { class: "pet-status-mood" }, [stage.key === "egg" ? "孵化中 Incubating..." : moodLabelText(bucket)])
+    ]),
+    el("div", { class: "pet-status-bp" }, [`💡 ${petState.bp} BP`])
+  ]);
 }
 
 /* ---------------------------------------------------------
@@ -188,6 +294,7 @@ function renderHome() {
   const wrap = el("div", { class: "screen home" }, [
     el("h1", {}, ["华文练习 Chinese Practice"]),
     el("p", { class: "subtitle" }, ["选择一种练习方式 Choose how you'd like to practice"]),
+    renderPetStatusStrip(),
     el("div", { class: "mode-cards" }, [
       el("button", { class: "mode-card", onclick: () => { state.screen = "lessonPicker"; render(); } }, [
         el("div", { class: "mode-card-title" }, ["📘 按课文练习"]),
@@ -334,6 +441,7 @@ function renderQuiz() {
       `第 ${state.groupIndex + 1} / ${state.groups.length} 组`,
       el("span", { class: "quiz-mode-label" }, [state.modeLabel || ""])
     ]),
+    el("div", { class: "quiz-bp-badge" }, [`💡 ${petState.bp} BP`]),
     el("button", { class: "home-btn", onclick: () => goHomeWithConfirm() }, ["🏠 返回主页 Home"])
   ]));
 
@@ -437,7 +545,7 @@ function gradeGroup(group, itemRefs) {
       feedback.textContent = chosen
         ? (correct ? "✓ 正确 Correct" : `✗ 正确答案 Correct answer: ${correctOpt.key}. ${correctOpt.text}`)
         : `未作答。正确答案 Not answered. Correct answer: ${correctOpt.key}. ${correctOpt.text}`;
-      if (correct) Sound.ding(dingCount++ * 0.14);
+      if (correct) { Sound.ding(dingCount++ * 0.14); awardBP(feedback, BP_AWARD.MCQ); }
       record.items.push({ qNo: q.qNo, marks: q.marks, correct, skipped: !chosen });
     } else if (q.format === "Fill-in") {
       const val = normalize(input.value);
@@ -446,7 +554,7 @@ function gradeGroup(group, itemRefs) {
       feedback.textContent = val
         ? (correct ? "✓ 正确 Correct" : `✗ 参考答案 Suggested answer: ${q.displayAnswer}`)
         : `未作答。参考答案 Not answered. Suggested answer: ${q.displayAnswer}`;
-      if (correct) Sound.ding(dingCount++ * 0.14);
+      if (correct) { Sound.ding(dingCount++ * 0.14); awardBP(feedback, BP_AWARD["Fill-in"]); }
       record.items.push({ qNo: q.qNo, marks: q.marks, correct, skipped: !val });
     } else {
       // Long-Answer / Writing-Constrained -> self-check
@@ -458,13 +566,14 @@ function gradeGroup(group, itemRefs) {
       const btnRow = el("div", { class: "self-check-row" });
       const rightBtn = el("button", { class: "self-btn self-right" }, ["✓ 我答对了 Got it right"]);
       const wrongBtn = el("button", { class: "self-btn self-wrong" }, ["✗ 还需加强 Need more practice"]);
-      const rec = { qNo: q.qNo, marks: q.marks, correct: null, skipped: true };
+      const rec = { qNo: q.qNo, marks: q.marks, correct: null, skipped: true, bpAwarded: false };
       record.items.push(rec);
       rightBtn.addEventListener("click", () => {
         rec.correct = true; rec.skipped = false;
         rightBtn.classList.add("self-chosen");
         wrongBtn.classList.remove("self-chosen");
         Sound.ding(0);
+        if (!rec.bpAwarded) { rec.bpAwarded = true; awardBP(feedback, BP_AWARD["Long-Answer"]); }
       });
       wrongBtn.addEventListener("click", () => {
         rec.correct = false; rec.skipped = false;
@@ -479,6 +588,57 @@ function gradeGroup(group, itemRefs) {
   });
 
   state.results.push(record);
+}
+
+/* ---------------------------------------------------------
+   Owl screen — view pet stage/mood/growth, entry to Shop.
+   --------------------------------------------------------- */
+function renderOwl() {
+  const mood = computeCurrentMood(petState);
+  const stage = getStage(petState.growth);
+  const next = nextStage(petState.growth);
+  const bucket = stage.key === "egg" ? null : moodBucket(mood);
+  const pct = next ? Math.round(((petState.growth - stage.minGrowth) / (next.minGrowth - stage.minGrowth)) * 100) : 100;
+
+  return el("div", { class: "screen owl-screen" }, [
+    backButton(),
+    el("h1", {}, ["我的猫头鹰 My Owl"]),
+    renderOwlArt(stage, bucket, "owl-large"),
+    el("div", { class: "owl-info" }, [
+      el("div", { class: "owl-stage-label" }, [stage.label]),
+      el("div", { class: "owl-mood-label" }, [stage.key === "egg" ? "孵化中，快去攒 BP 孵蛋吧！Incubating..." : moodLabelText(bucket)]),
+      el("div", { class: "growth-bar" }, [el("div", { class: "growth-bar-fill", style: `width:${pct}%` })]),
+      el("div", { class: "growth-caption" }, [
+        next ? `距离 ${next.label} 还需 ${next.minGrowth - petState.growth} 成长值` : "已完全长大 Fully grown!"
+      ]),
+      el("div", { class: "owl-bp-label" }, [`💡 可用 BP: ${petState.bp}`])
+    ]),
+    el("div", { class: "action-row" }, [
+      el("button", { class: "primary-btn", onclick: () => goToScreen("shop") }, ["🛍 商店 Shop"])
+    ])
+  ]);
+}
+
+/* ---------------------------------------------------------
+   Shop screen — spend BP on food/toys; buying immediately
+   feeds/plays with the owl (no separate inventory step).
+   --------------------------------------------------------- */
+function renderShop() {
+  return el("div", { class: "screen shop-screen" }, [
+    el("button", { class: "back-btn", onclick: () => goToScreen("owl") }, ["← 返回 Back"]),
+    el("h1", {}, ["商店 Shop"]),
+    el("p", { class: "subtitle" }, [`💡 可用 BP: ${petState.bp}`]),
+    el("div", { class: "shop-grid" }, SHOP_ITEMS.map(item => {
+      const affordable = petState.bp >= item.cost;
+      const btnAttrs = { class: "secondary-btn shop-item-buy", onclick: () => { if (affordable) buyItem(item); } };
+      if (!affordable) btnAttrs.disabled = "disabled";
+      return el("div", { class: "shop-item-card" + (affordable ? "" : " shop-item-disabled") }, [
+        el("div", { class: "shop-item-label" }, [item.label]),
+        el("div", { class: "shop-item-stats" }, [`成长 +${item.growth}　心情 +${item.mood}`]),
+        el("button", btnAttrs, [`💡 ${item.cost} BP`])
+      ]);
+    }))
+  ]);
 }
 
 /* ---------------------------------------------------------
