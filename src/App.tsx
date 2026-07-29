@@ -6,6 +6,9 @@ import { Home } from "./components/Home/Home";
 import { LessonPicker } from "./components/LessonPicker/LessonPicker";
 import { TypePicker } from "./components/TypePicker/TypePicker";
 import { Quiz } from "./components/Quiz/Quiz";
+import { Result } from "./components/Result/Result";
+import { Owl } from "./components/Owl/Owl";
+import { Shop } from "./components/Shop/Shop";
 
 function ScreenRouter() {
   const state = useAppState();
@@ -23,8 +26,14 @@ function ScreenRouter() {
       return <TypePicker />;
     case "quiz":
       return <Quiz />;
+    case "result":
+      return <Result />;
+    case "owl":
+      return <Owl />;
+    case "shop":
+      return <Shop />;
     default:
-      // Result/Owl/Shop/Auth land here until their own components exist.
+      // Auth lands here until its own component exists.
       return (
         <div className="screen">
           <p>敬请期待 Coming soon...</p>
