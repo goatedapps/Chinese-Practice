@@ -54,6 +54,13 @@ export default function App() {
     function handleClick(e: MouseEvent) {
       const target = e.target as HTMLElement;
       if (target.closest("button, .option-label, .tingxie-flip-card")) Sound.click();
+      // Browsers only allow unmuted audio to autoplay after a genuine user
+      // gesture, so the looping background track can't just start on mount.
+      // startBackgroundMusic() is idempotent (no-ops once actually playing),
+      // so it's safe to call on every click for the whole page session --
+      // this is what lets it recover if the very first click's gesture
+      // wasn't accepted for some reason.
+      Sound.startBackgroundMusic();
     }
     document.addEventListener("click", handleClick, true);
     return () => document.removeEventListener("click", handleClick, true);

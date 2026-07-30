@@ -50,6 +50,10 @@ export function Home() {
         <div className="section-eyebrow">下一步 Next up</div>
         <h2 className="section-heading">继续学习 Continue Learning</h2>
         <div className="mode-cards">
+          <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}>
+            <div className="mode-card-title">🔊 听写练习</div>
+            <div className="mode-card-sub">Dictation Practice</div>
+          </button>
           <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "lessonPicker" })}>
             <div className="mode-card-title">📘 按课文练习</div>
             <div className="mode-card-sub">Practice by Lesson</div>
@@ -57,10 +61,6 @@ export function Home() {
           <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "typePicker" })}>
             <div className="mode-card-title">🧩 按题型练习</div>
             <div className="mode-card-sub">Practice by Question Type</div>
-          </button>
-          <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}>
-            <div className="mode-card-title">🔊 听写练习</div>
-            <div className="mode-card-sub">Dictation Practice</div>
           </button>
         </div>
       </div>

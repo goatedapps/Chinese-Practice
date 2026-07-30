@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
-import { usePet, computeCurrentMood, moodBucket, getStage, nextStage } from "../../state/PetContext";
+import { usePet, computeCurrentMood, moodBucket, getStage } from "../../state/PetContext";
 import { OwlArt } from "../common/OwlArt";
+import { PetStatBars } from "../common/PetStatBars";
+import { Sound } from "../../lib/sound";
 
 const MOOD_LABELS: Record<string, string> = {
   sad: "心情低落 Sad",
@@ -15,9 +17,7 @@ export function Owl() {
   const { pet, renameOwl } = usePet();
   const mood = computeCurrentMood(pet);
   const stage = getStage(pet.growth);
-  const next = nextStage(pet.growth);
   const bucket = moodBucket(mood);
-  const pct = next ? Math.round(((pet.growth - stage.minGrowth) / (next.minGrowth - stage.minGrowth)) * 100) : 100;
   const bagCount = Object.values(pet.inventory).reduce((sum, n) => sum + n, 0);
 
   const [editingName, setEditingName] = useState(false);
@@ -71,17 +71,26 @@ export function Owl() {
       <div className="owl-info">
         <div className="owl-stage-label">{stage.label}</div>
         <div className="owl-mood-label">{MOOD_LABELS[bucket]}</div>
-        <div className="growth-bar">
-          <div className="growth-bar-fill" style={{ width: `${pct}%` }} />
-        </div>
-        <div className="growth-caption">{next ? `${pet.growth}/${next.minGrowth}` : "已完全长大 Fully grown!"}</div>
+        <PetStatBars pet={pet} />
         <div className="owl-bp-label">💡 可用 BP: {pet.bp}</div>
       </div>
       <div className="action-row">
-        <button className="primary-btn" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "shop" })}>
+        <button
+          className="primary-btn"
+          onClick={() => {
+            Sound.enterShop();
+            dispatch({ type: "GO_TO_SCREEN", screen: "shop" });
+          }}
+        >
           🛍 商店 Shop
         </button>
-        <button className="secondary-btn" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "bag" })}>
+        <button
+          className="secondary-btn"
+          onClick={() => {
+            Sound.bagOpen();
+            dispatch({ type: "GO_TO_SCREEN", screen: "bag" });
+          }}
+        >
           🍚 喂食 Feed{bagCount ? ` (${bagCount})` : ""}
         </button>
       </div>

@@ -5,6 +5,7 @@ import { SHOP_ITEMS } from "../../data/pet";
 import { Sound } from "../../lib/sound";
 import { flyItemTo } from "../../lib/throwAnimation";
 import { OwlArt } from "../common/OwlArt";
+import { PetStatBars } from "../common/PetStatBars";
 import type { ShopItem } from "../../data/types";
 
 export function Bag() {
@@ -24,6 +25,7 @@ export function Bag() {
       </button>
       <h1>{`喂食 Feed ${pet.name || "它"}`}</h1>
       <OwlArt ref={owlRef} stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" playSound />
+      <PetStatBars pet={pet} />
       <h2>道具袋 My Bag</h2>
 
       {entries.length === 0 ? (
@@ -31,7 +33,13 @@ export function Bag() {
           <p className="subtitle">道具袋是空的 Your bag is empty</p>
           <div className="owl-bp-label">💡 可用 BP: {pet.bp}</div>
           <div className="action-row">
-            <button className="primary-btn" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "shop" })}>
+            <button
+              className="primary-btn"
+              onClick={() => {
+                Sound.enterShop();
+                dispatch({ type: "GO_TO_SCREEN", screen: "shop" });
+              }}
+            >
               🛍 前往商店 Visit Shop
             </button>
           </div>

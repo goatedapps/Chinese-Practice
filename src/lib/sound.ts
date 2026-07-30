@@ -1,14 +1,11 @@
 // Most effects are synthesized with the Web Audio API, so the app needs no
-// external sound files for them -- click()/encourage()/gift() stay pure
-// code-generated waveforms. A handful of effects instead play real MP3
-// files dropped into public/sounds/ (see SOUND_FILES below) -- correct/wrong
-// answers, a good session score, shop purchases, and owl level-ups, i.e. the
-// moments a human-recorded/produced sound adds more character than a
-// synthesized one. click() is a filtered-noise "tap" (not a square-wave
-// beep); encourage() is a short detuned-oscillator bell arpeggio with a
-// filter sweep, aiming for something warmer than a flat MIDI blip.
+// external sound files for them -- gift() stays a pure code-generated
+// waveform. Everything else plays real MP3 files dropped into public/sounds/
+// (see SOUND_FILES below) -- button presses, correct/wrong answers, a
+// good/sub-par session score, shop/bag entry, shop purchases, and owl
+// level-ups, i.e. the moments a human-recorded/produced sound adds more
+// character than a synthesized one.
 let ctx: AudioContext | null = null;
-let noiseBuffer: AudioBuffer | null = null;
 
 function ensureCtx(): AudioContext | null {
   if (!ctx) {
@@ -18,68 +15,6 @@ function ensureCtx(): AudioContext | null {
   }
   if (ctx.state === "suspended") ctx.resume();
   return ctx;
-}
-
-function getNoiseBuffer(c: AudioContext): AudioBuffer {
-  if (noiseBuffer) return noiseBuffer;
-  const len = Math.floor(c.sampleRate * 0.08);
-  noiseBuffer = c.createBuffer(1, len, c.sampleRate);
-  const data = noiseBuffer.getChannelData(0);
-  for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
-  return noiseBuffer;
-}
-
-// Soft filtered-noise tap, used for generic UI clicks.
-function tap(startTime: number, peakGain: number): void {
-  const c = ensureCtx();
-  if (!c) return;
-  const t0 = c.currentTime + startTime;
-  const src = c.createBufferSource();
-  src.buffer = getNoiseBuffer(c);
-  const bandpass = c.createBiquadFilter();
-  bandpass.type = "bandpass";
-  bandpass.frequency.setValueAtTime(2400, t0);
-  bandpass.Q.value = 0.9;
-  const gain = c.createGain();
-  gain.gain.setValueAtTime(0, t0);
-  gain.gain.linearRampToValueAtTime(peakGain, t0 + 0.004);
-  gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.045);
-  src.connect(bandpass);
-  bandpass.connect(gain);
-  gain.connect(c.destination);
-  src.start(t0);
-  src.stop(t0 + 0.06);
-}
-
-// Warm bell-like chime: two slightly-detuned oscillators through a lowpass
-// filter whose cutoff sweeps down as the note decays. Still used by
-// encourage() (sub-90% score).
-function chime(freq: number, startTime: number, duration: number, peakGain: number): void {
-  const c = ensureCtx();
-  if (!c) return;
-  const t0 = c.currentTime + startTime;
-  const osc1 = c.createOscillator();
-  const osc2 = c.createOscillator();
-  osc1.type = "sine";
-  osc2.type = "triangle";
-  osc1.frequency.setValueAtTime(freq, t0);
-  osc2.frequency.setValueAtTime(freq * 1.004, t0);
-  const filter = c.createBiquadFilter();
-  filter.type = "lowpass";
-  filter.frequency.setValueAtTime(freq * 5, t0);
-  filter.frequency.exponentialRampToValueAtTime(Math.max(freq * 1.2, 200), t0 + duration);
-  const gain = c.createGain();
-  gain.gain.setValueAtTime(0, t0);
-  gain.gain.linearRampToValueAtTime(peakGain, t0 + 0.025);
-  gain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
-  osc1.connect(filter);
-  osc2.connect(filter);
-  filter.connect(gain);
-  gain.connect(c.destination);
-  osc1.start(t0);
-  osc2.start(t0);
-  osc1.stop(t0 + duration + 0.05);
-  osc2.stop(t0 + duration + 0.05);
 }
 
 // Rising "sparkle" glide for giving a bagged item to the owl -- a single
@@ -107,12 +42,24 @@ function sparkleGlide(startTime: number): void {
 // MP3 files live in public/sounds/ -- drop replacements in with these exact
 // filenames and they're picked up automatically, no code change needed.
 const SOUND_FILES = {
+  button: "/sounds/button.mp3", // any button press, app-wide (see App.tsx's global click listener)
   correct: "/sounds/correct.mp3", // a correct answer (Quiz MCQ/Fill-in/self-check, Tingxie self-grade/sentence-order)
-  wrong: "/sounds/wrong-answer.mp3", // a wrong self-graded answer (Tingxie only -- Quiz stays silent on wrong by design)
-  goodResult: "/sounds/good-result.mp3", // a quiz session scoring 90% or higher
+  wrong: "/sounds/wrong-answer.mp3", // a wrong answer (Quiz MCQ/Fill-in/self-check, Tingxie self-grade/sentence-order)
+  goodResult: "/sounds/good-result.mp3", // a quiz/practice session scoring 90% or higher
+  needImprovement: "/sounds/need-improvement.mp3", // a quiz/practice session scoring below 90%
   purchase: "/sounds/purchase.mp3", // buying an item in the Shop
-  levelUp: "/sounds/level-up.mp3" // the owl evolves to a new growth stage
+  levelUp: "/sounds/level-up.mp3", // the owl evolves to a new growth stage
+  enterShop: "/sounds/enter-shop.mp3", // opening the Shop screen
+  bagOpen: "/sounds/bag-open.mp3", // opening the Bag/Feed screen
+  background: "/sounds/background.mp3" // looping background music, started once on the app's first click
 };
+
+// Computed once per page load, appended to every sound file URL as a query
+// param. Without this, a browser that already cached a stale response for a
+// given filename (e.g. the pre-launch 404, or a since-replaced MP3) keeps
+// serving that stale response even after the file on disk changes, since the
+// URL itself never changes -- a fresh page load always busts it.
+const CACHE_BUST = Date.now();
 
 // Plays an MP3 from public/sounds/. Each call creates a fresh <audio>
 // element (rather than reusing one) so overlapping/rapid re-triggers -- e.g.
@@ -121,7 +68,7 @@ const SOUND_FILES = {
 function playFile(path: string, delaySec: number = 0): void {
   const fire = () => {
     try {
-      const audio = new Audio(path);
+      const audio = new Audio(`${path}?v=${CACHE_BUST}`);
       audio.play().catch(() => {
         // Autoplay can be blocked before the student has interacted with the
         // page at all; sound is a nice-to-have, never block on it.
@@ -134,13 +81,36 @@ function playFile(path: string, delaySec: number = 0): void {
   else fire();
 }
 
-export const Sound = {
-  click(): void {
-    try {
-      tap(0, 0.14);
-    } catch {
-      // ignore -- sound is a nice-to-have, never block interaction on it
+// Background music is a single persistent <audio> element at module scope
+// (not a fresh one per call like playFile()'s fire-and-forget effects) --
+// created once and left playing/looping for the rest of the page session, so
+// it survives every screen navigation (React unmounting/remounting
+// components never touches this module-level reference) and is never
+// restarted from the beginning by a later call.
+let bgMusic: HTMLAudioElement | null = null;
+
+function playBackgroundMusic(): void {
+  try {
+    if (!bgMusic) {
+      bgMusic = new Audio(`${SOUND_FILES.background}?v=${CACHE_BUST}`);
+      bgMusic.loop = true;
+      bgMusic.volume = 0.35;
     }
+    if (bgMusic.paused) {
+      bgMusic.play().catch(() => {
+        // Still blocked (e.g. this "first interaction" wasn't a real user
+        // gesture) -- the next click retries via the same App.tsx listener.
+      });
+    }
+  } catch {
+    // ignore -- e.g. Audio() unavailable in some embedded/test environments
+  }
+}
+
+export const Sound = {
+  // Any button press, app-wide (see App.tsx's global click listener).
+  click(): void {
+    playFile(SOUND_FILES.button);
   },
   ding(delay: number = 0): void {
     playFile(SOUND_FILES.correct, delay);
@@ -155,19 +125,14 @@ export const Sound = {
       // ignore
     }
   },
-  // Quiz session scored 90% or higher (see Result.tsx).
+  // Quiz/practice session scored 90% or higher (see Result.tsx).
   applause(): void {
     playFile(SOUND_FILES.goodResult);
   },
-  // Gentle two-note descending chime for a sub-90% score -- still
-  // encouraging, not a "wrong answer" buzzer, just descending and softer.
+  // Quiz/practice session scored below 90% -- still encouraging, not a
+  // "wrong answer" buzzer.
   encourage(): void {
-    try {
-      chime(659.25, 0, 0.3, 0.08); // E5
-      chime(523.25, 0.18, 0.42, 0.09); // C5
-    } catch {
-      // ignore
-    }
+    playFile(SOUND_FILES.needImprovement);
   },
   miss(): void {
     playFile(SOUND_FILES.wrong);
@@ -176,5 +141,20 @@ export const Sound = {
   // PetContext.tsx's giveItem() return value and Bag.tsx's handleClick().
   levelUp(): void {
     playFile(SOUND_FILES.levelUp);
+  },
+  // Opening the Shop screen (see Owl.tsx/Bag.tsx's Shop buttons).
+  enterShop(): void {
+    playFile(SOUND_FILES.enterShop);
+  },
+  // Opening the Bag/Feed screen (see Owl.tsx's Feed button).
+  bagOpen(): void {
+    playFile(SOUND_FILES.bagOpen);
+  },
+  // Starts the looping background track on the app's first click (see
+  // App.tsx) and is a no-op on every call after that -- idempotent, so it's
+  // safe to call from a listener that fires on every click for the entire
+  // page session, not just the first.
+  startBackgroundMusic(): void {
+    playBackgroundMusic();
   }
 };

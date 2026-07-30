@@ -76,9 +76,15 @@ export function Quiz() {
     let dingCount = 0;
     items.forEach((item, idx) => {
       const q = group.questions[idx];
-      if ((q.format === "MCQ" || q.format === "Fill-in") && item.correct) {
-        Sound.ding(dingCount++ * 0.14);
-        awardBP(BP_AWARD[q.format]);
+      if (q.format === "MCQ" || q.format === "Fill-in") {
+        if (item.correct) {
+          Sound.ding(dingCount++ * 0.14);
+          awardBP(BP_AWARD[q.format]);
+        } else if (!item.skipped) {
+          // Silent on a skipped/unanswered question -- only a genuine wrong
+          // answer gets the miss sound.
+          Sound.miss();
+        }
       }
     });
     dispatch({ type: "SUBMIT_GROUP", record: { groupId: group.groupId, items } });
@@ -102,6 +108,8 @@ export function Quiz() {
       patch.bpAwarded = true;
       awardBP(BP_AWARD[format] ?? 2);
       Sound.ding(0);
+    } else if (!correct) {
+      Sound.miss();
     }
     dispatch({ type: "UPDATE_ITEM_RESULT", groupIndex: state.groupIndex, qNo, patch });
   }
