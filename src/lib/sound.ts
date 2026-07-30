@@ -1,8 +1,12 @@
-// Synthesized with the Web Audio API so the app needs no external sound
-// files -- keeps it deployable as a static bundle with zero asset weight.
-// click() is a filtered-noise "tap" (not a square-wave beep); ding() is a
-// short detuned-oscillator bell arpeggio with a filter sweep, aiming for
-// something warmer than a flat MIDI blip.
+// Most effects are synthesized with the Web Audio API, so the app needs no
+// external sound files for them -- click()/encourage()/gift() stay pure
+// code-generated waveforms. A handful of effects instead play real MP3
+// files dropped into public/sounds/ (see SOUND_FILES below) -- correct/wrong
+// answers, a good session score, shop purchases, and owl level-ups, i.e. the
+// moments a human-recorded/produced sound adds more character than a
+// synthesized one. click() is a filtered-noise "tap" (not a square-wave
+// beep); encourage() is a short detuned-oscillator bell arpeggio with a
+// filter sweep, aiming for something warmer than a flat MIDI blip.
 let ctx: AudioContext | null = null;
 let noiseBuffer: AudioBuffer | null = null;
 
@@ -48,7 +52,8 @@ function tap(startTime: number, peakGain: number): void {
 }
 
 // Warm bell-like chime: two slightly-detuned oscillators through a lowpass
-// filter whose cutoff sweeps down as the note decays.
+// filter whose cutoff sweeps down as the note decays. Still used by
+// encourage() (sub-90% score).
 function chime(freq: number, startTime: number, duration: number, peakGain: number): void {
   const c = ensureCtx();
   if (!c) return;
@@ -77,35 +82,10 @@ function chime(freq: number, startTime: number, duration: number, peakGain: numb
   osc2.stop(t0 + duration + 0.05);
 }
 
-// Two-tone metallic "coin" clink for Shop purchases -- square-wave blips
-// through a highpass filter, deliberately harder-edged than the warm bell
-// chime used for correct quiz answers, so the two never get confused.
-function coin(startTime: number): void {
-  const c = ensureCtx();
-  if (!c) return;
-  [1567.98, 2093.0].forEach((freq, i) => {
-    const t0 = c.currentTime + startTime + i * 0.055;
-    const osc = c.createOscillator();
-    osc.type = "square";
-    osc.frequency.setValueAtTime(freq, t0);
-    const filter = c.createBiquadFilter();
-    filter.type = "highpass";
-    filter.frequency.value = 900;
-    const gain = c.createGain();
-    gain.gain.setValueAtTime(0, t0);
-    gain.gain.linearRampToValueAtTime(0.09, t0 + 0.005);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.1);
-    osc.connect(filter);
-    filter.connect(gain);
-    gain.connect(c.destination);
-    osc.start(t0);
-    osc.stop(t0 + 0.13);
-  });
-}
-
 // Rising "sparkle" glide for giving a bagged item to the owl -- a single
-// triangle-wave glissando, distinct in shape (not a multi-note chime) from
-// both the quiz ding and the shop coin sound.
+// triangle-wave glissando. Only plays when giveItem() *doesn't* trigger a
+// stage evolution -- that bigger moment gets levelUp()'s MP3 instead (see
+// Bag.tsx), not both layered together.
 function sparkleGlide(startTime: number): void {
   const c = ensureCtx();
   if (!c) return;
@@ -124,64 +104,34 @@ function sparkleGlide(startTime: number): void {
   osc.stop(t0 + 0.32);
 }
 
-// Irregular noise-burst "claps" for a perfect score -- reuses the same
-// noise buffer as tap() but with randomized timing/pitch/gain per burst,
-// and a taper toward the end, so it doesn't sound like a mechanical repeat.
-function clapBurst(startTime: number): void {
-  const c = ensureCtx();
-  if (!c) return;
-  const clapCount = 14;
-  let t = startTime;
-  for (let i = 0; i < clapCount; i++) {
-    const t0 = c.currentTime + t;
-    const src = c.createBufferSource();
-    src.buffer = getNoiseBuffer(c);
-    const bandpass = c.createBiquadFilter();
-    bandpass.type = "bandpass";
-    bandpass.frequency.value = 1500 + Math.random() * 1500;
-    bandpass.Q.value = 0.6;
-    const gain = c.createGain();
-    const taper = 1 - i / (clapCount + 4);
-    const peak = (0.08 + Math.random() * 0.06) * taper;
-    gain.gain.setValueAtTime(0, t0);
-    gain.gain.linearRampToValueAtTime(peak, t0 + 0.003);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.06);
-    src.connect(bandpass);
-    bandpass.connect(gain);
-    gain.connect(c.destination);
-    src.start(t0);
-    src.stop(t0 + 0.07);
-    t += 0.07 + Math.random() * 0.07;
-  }
-}
+// MP3 files live in public/sounds/ -- drop replacements in with these exact
+// filenames and they're picked up automatically, no code change needed.
+const SOUND_FILES = {
+  correct: "/sounds/correct.mp3", // a correct answer (Quiz MCQ/Fill-in/self-check, Tingxie self-grade/sentence-order)
+  wrong: "/sounds/wrong-answer.mp3", // a wrong self-graded answer (Tingxie only -- Quiz stays silent on wrong by design)
+  goodResult: "/sounds/good-result.mp3", // a quiz session scoring 90% or higher
+  purchase: "/sounds/purchase.mp3", // buying an item in the Shop
+  levelUp: "/sounds/level-up.mp3" // the owl evolves to a new growth stage
+};
 
-// Soft, low descending tone for a self-graded "wrong"/"missed" moment --
-// this app never needed a wrong-answer sound before Tingxie (Quiz.tsx is
-// silent on incorrect answers). Deliberately gentle: a single lowpass-
-// filtered triangle wave gliding down, quiet peak gain, quick decay -- a
-// soft "oh well" thud, not a harsh buzzer, matching the app's non-punishing
-// tone (encourage() sets this precedent for sub-100% feedback; miss() is
-// its single-note, slightly darker sibling for one wrong item).
-function softThud(startTime: number): void {
-  const c = ensureCtx();
-  if (!c) return;
-  const t0 = c.currentTime + startTime;
-  const osc = c.createOscillator();
-  osc.type = "triangle";
-  osc.frequency.setValueAtTime(300, t0);
-  osc.frequency.exponentialRampToValueAtTime(140, t0 + 0.22);
-  const filter = c.createBiquadFilter();
-  filter.type = "lowpass";
-  filter.frequency.setValueAtTime(900, t0);
-  const gain = c.createGain();
-  gain.gain.setValueAtTime(0, t0);
-  gain.gain.linearRampToValueAtTime(0.09, t0 + 0.015);
-  gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.26);
-  osc.connect(filter);
-  filter.connect(gain);
-  gain.connect(c.destination);
-  osc.start(t0);
-  osc.stop(t0 + 0.3);
+// Plays an MP3 from public/sounds/. Each call creates a fresh <audio>
+// element (rather than reusing one) so overlapping/rapid re-triggers -- e.g.
+// several correct() dings staggered via `delaySec` when a group has
+// multiple right answers -- don't cut each other off.
+function playFile(path: string, delaySec: number = 0): void {
+  const fire = () => {
+    try {
+      const audio = new Audio(path);
+      audio.play().catch(() => {
+        // Autoplay can be blocked before the student has interacted with the
+        // page at all; sound is a nice-to-have, never block on it.
+      });
+    } catch {
+      // ignore -- e.g. Audio() unavailable in some embedded/test environments
+    }
+  };
+  if (delaySec > 0) setTimeout(fire, delaySec * 1000);
+  else fire();
 }
 
 export const Sound = {
@@ -193,20 +143,10 @@ export const Sound = {
     }
   },
   ding(delay: number = 0): void {
-    try {
-      chime(783.99, delay, 0.32, 0.12); // G5
-      chime(1046.5, delay + 0.07, 0.38, 0.1); // C6
-      chime(1567.98, delay + 0.15, 0.5, 0.07); // G6 -- bright top note
-    } catch {
-      // ignore
-    }
+    playFile(SOUND_FILES.correct, delay);
   },
   purchase(): void {
-    try {
-      coin(0);
-    } catch {
-      // ignore
-    }
+    playFile(SOUND_FILES.purchase);
   },
   gift(): void {
     try {
@@ -215,16 +155,12 @@ export const Sound = {
       // ignore
     }
   },
+  // Quiz session scored 90% or higher (see Result.tsx).
   applause(): void {
-    try {
-      clapBurst(0);
-    } catch {
-      // ignore
-    }
+    playFile(SOUND_FILES.goodResult);
   },
-  // Gentle two-note descending chime for a sub-100% score -- reuses the
-  // warm bell timbre from ding() (still encouraging, not a "wrong answer"
-  // buzzer) but descending and softer.
+  // Gentle two-note descending chime for a sub-90% score -- still
+  // encouraging, not a "wrong answer" buzzer, just descending and softer.
   encourage(): void {
     try {
       chime(659.25, 0, 0.3, 0.08); // E5
@@ -234,10 +170,11 @@ export const Sound = {
     }
   },
   miss(): void {
-    try {
-      softThud(0);
-    } catch {
-      // ignore
-    }
+    playFile(SOUND_FILES.wrong);
+  },
+  // The owl evolves to a new growth stage (e.g. egg -> baby) -- see
+  // PetContext.tsx's giveItem() return value and Bag.tsx's handleClick().
+  levelUp(): void {
+    playFile(SOUND_FILES.levelUp);
   }
 };

@@ -51,7 +51,9 @@ interface PetContextValue {
   pet: PetState;
   awardBP: (amount: number) => void;
   buyItem: (item: ShopItem) => void;
-  giveItem: (item: ShopItem) => void;
+  // Returns whether this give triggered a stage evolution, so callers (see
+  // Bag.tsx) can play the level-up sound instead of the routine gift sound.
+  giveItem: (item: ShopItem) => boolean;
   renameOwl: (name: string) => void;
   recordQuestionsCompleted: (n: number) => void;
 }
@@ -91,9 +93,9 @@ export function PetProvider({ children }: { children: ReactNode }) {
   // Applies a bagged item's growth/mood effect to the owl and removes it
   // from the Bag. Called once the item's throw animation lands (see
   // components/Bag/Bag.tsx), not immediately when the student clicks Give.
-  function giveItem(item: ShopItem) {
+  function giveItem(item: ShopItem): boolean {
     const have = pet.inventory[item.id] ?? 0;
-    if (have <= 0) return;
+    if (have <= 0) return false;
 
     // Achievement logging reads `pet` (component scope, not the `prev`
     // inside the updater below) so it isn't tied to the updater's
@@ -101,8 +103,9 @@ export function PetProvider({ children }: { children: ReactNode }) {
     // genuine click, same as any other event handler.
     const prevStage = getStage(pet.growth);
     const nextStageAfter = getStage(pet.growth + item.growth);
+    const evolved = nextStageAfter.key !== prevStage.key;
     logAchievement({ type: "fed", detail: item.id });
-    if (nextStageAfter.key !== prevStage.key) {
+    if (evolved) {
       logAchievement({ type: "evolved", detail: nextStageAfter.key });
     }
 
@@ -120,6 +123,8 @@ export function PetProvider({ children }: { children: ReactNode }) {
       savePetState(next);
       return next;
     });
+
+    return evolved;
   }
 
   function renameOwl(name: string) {

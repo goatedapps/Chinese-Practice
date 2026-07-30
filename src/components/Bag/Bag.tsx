@@ -53,7 +53,7 @@ interface BagItemCardProps {
   item: ShopItem;
   qty: number;
   owlRef: React.RefObject<HTMLDivElement | null>;
-  onGive: (item: ShopItem) => void;
+  onGive: (item: ShopItem) => boolean;
 }
 
 function BagItemCard({ item, qty, owlRef, onGive }: BagItemCardProps) {
@@ -66,8 +66,9 @@ function BagItemCard({ item, qty, owlRef, onGive }: BagItemCardProps) {
     if (giving || !cardRef.current || !owlRef.current) return;
     setGiving(true);
     flyItemTo(cardRef.current, owlRef.current, emoji, () => {
-      onGive(item);
-      Sound.gift();
+      const evolved = onGive(item);
+      if (evolved) Sound.levelUp();
+      else Sound.gift();
       setGiving(false);
     });
   }

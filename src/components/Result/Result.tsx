@@ -53,7 +53,7 @@ export function Result() {
       categoryCounts
     });
     if (totalItems > 0) {
-      if (pct === 100) Sound.applause();
+      if (pct >= 90) Sound.applause();
       else Sound.encourage();
     }
 
