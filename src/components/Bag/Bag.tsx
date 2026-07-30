@@ -23,7 +23,7 @@ export function Bag() {
         ← 返回 Back
       </button>
       <h1>{`喂食 Feed ${pet.name || "它"}`}</h1>
-      <OwlArt ref={owlRef} stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" />
+      <OwlArt ref={owlRef} stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" playSound />
       <h2>道具袋 My Bag</h2>
 
       {entries.length === 0 ? (

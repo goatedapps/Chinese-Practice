@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import type { PetState, MoodBucket, ShopItem } from "../data/types";
 import { PET_DEFAULT_STATE, PET_STAGES, MOOD_DECAY_PER_HOUR } from "../data/pet";
+import { logAchievement } from "./achievements";
 
 const PET_KEY = "hanyuPracticePet_v1";
 
@@ -52,6 +53,7 @@ interface PetContextValue {
   buyItem: (item: ShopItem) => void;
   giveItem: (item: ShopItem) => void;
   renameOwl: (name: string) => void;
+  recordQuestionsCompleted: (n: number) => void;
 }
 
 const PetCtx = createContext<PetContextValue | null>(null);
@@ -90,13 +92,27 @@ export function PetProvider({ children }: { children: ReactNode }) {
   // from the Bag. Called once the item's throw animation lands (see
   // components/Bag/Bag.tsx), not immediately when the student clicks Give.
   function giveItem(item: ShopItem) {
+    const have = pet.inventory[item.id] ?? 0;
+    if (have <= 0) return;
+
+    // Achievement logging reads `pet` (component scope, not the `prev`
+    // inside the updater below) so it isn't tied to the updater's
+    // once-or-twice-in-StrictMode internals -- it runs exactly once per
+    // genuine click, same as any other event handler.
+    const prevStage = getStage(pet.growth);
+    const nextStageAfter = getStage(pet.growth + item.growth);
+    logAchievement({ type: "fed", detail: item.id });
+    if (nextStageAfter.key !== prevStage.key) {
+      logAchievement({ type: "evolved", detail: nextStageAfter.key });
+    }
+
     setPet((prev) => {
-      const have = prev.inventory[item.id] ?? 0;
-      if (have <= 0) return prev;
+      const have2 = prev.inventory[item.id] ?? 0;
+      if (have2 <= 0) return prev;
       const currentMood = computeCurrentMood(prev);
       const next: PetState = {
         ...prev,
-        inventory: { ...prev.inventory, [item.id]: have - 1 },
+        inventory: { ...prev.inventory, [item.id]: have2 - 1 },
         moodAtCheckpoint: Math.min(100, currentMood + item.mood),
         lastFedAt: Date.now(),
         growth: prev.growth + item.growth
@@ -115,7 +131,23 @@ export function PetProvider({ children }: { children: ReactNode }) {
     });
   }
 
-  return <PetCtx.Provider value={{ pet, awardBP, buyItem, giveItem, renameOwl }}>{children}</PetCtx.Provider>;
+  // Pure increment/persist -- no achievement logic here (that lives in
+  // Result.tsx, computed arithmetically from the *pre*-call value, to avoid
+  // reading a stale/batched value back out of context immediately after).
+  function recordQuestionsCompleted(n: number) {
+    if (n <= 0) return;
+    setPet((prev) => {
+      const next = { ...prev, questionsLifetime: prev.questionsLifetime + n };
+      savePetState(next);
+      return next;
+    });
+  }
+
+  return (
+    <PetCtx.Provider value={{ pet, awardBP, buyItem, giveItem, renameOwl, recordQuestionsCompleted }}>
+      {children}
+    </PetCtx.Provider>
+  );
 }
 
 export function usePet(): PetContextValue {

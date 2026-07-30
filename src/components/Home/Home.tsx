@@ -4,7 +4,9 @@ import { loadHistory, clearAllHistory, deleteHistoryEntry } from "../../state/hi
 import { getTodayStats } from "../../lib/stats";
 import { ConfirmModal } from "../common/Modal";
 import { PetHeroCard } from "./PetHeroCard";
+import { TodayMission } from "./TodayMission";
 import { ProgressSummary } from "./ProgressSummary";
+import { RecentAchievements } from "./RecentAchievements";
 
 type PendingHistoryAction = { type: "clear" } | { type: "delete"; id: string };
 
@@ -42,6 +44,8 @@ export function Home() {
 
       <PetHeroCard />
 
+      <TodayMission hist={hist} />
+
       <div className="dash-card continue-section">
         <div className="section-eyebrow">下一步 Next up</div>
         <h2 className="section-heading">继续学习 Continue Learning</h2>
@@ -61,6 +65,8 @@ export function Home() {
       </div>
 
       <ProgressSummary hist={hist} />
+
+      <RecentAchievements />
 
       {hist.length > 0 && (
         <div className="dash-card history-card">

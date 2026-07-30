@@ -127,8 +127,12 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 /* -- hero pet card -- */
 .pet-hero-card {
   display: flex; flex-wrap: wrap; gap: 22px;
-  padding: 22px;
+  padding: 22px; width: 100%;
+  cursor: pointer; text-align: left; font-family: inherit; color: inherit;
+  transition: transform .15s ease, box-shadow .15s ease;
 }
+.pet-hero-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+.pet-hero-card:active { transform: translateY(0); box-shadow: var(--shadow-press); }
 .pet-hero-art-col {
   flex: 0 0 auto;
   display: flex; flex-direction: column; align-items: center; gap: 12px;
@@ -161,15 +165,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   border-left: 1px solid var(--border); border-top: 1px solid var(--border);
 }
 .pet-hero-info-col { flex: 1 1 260px; min-width: 240px; display: flex; flex-direction: column; }
-.pet-hero-identity {
-  display: flex; align-items: center; gap: 12px;
-  background: none; border: none; padding: 6px; margin: -6px -6px 14px;
-  border-radius: 12px;
-  cursor: pointer; text-align: left; font-family: inherit; color: inherit;
-  transition: transform .15s ease, box-shadow .15s ease;
-}
-.pet-hero-identity:hover { transform: translateY(-2px); box-shadow: var(--shadow-1); }
-.pet-hero-identity:active { transform: translateY(0); box-shadow: var(--shadow-press); }
+.pet-hero-identity { margin-bottom: 14px; }
 .pet-hero-name { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 22px; font-weight: 700; }
 .pet-hero-stage-badge { margin-top: 6px; }
 .pet-hero-bars { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
@@ -188,8 +184,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   background: linear-gradient(180deg, var(--gold-hi), var(--gold));
   transition: width .3s;
 }
-.pet-hero-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; flex-wrap: wrap; }
-.pet-hero-feed-btn { display: inline-flex; align-items: center; gap: 6px; }
+.pet-hero-footer { display: flex; align-items: center; justify-content: flex-start; gap: 12px; margin-top: auto; flex-wrap: wrap; }
 
 /* -- continue learning -- */
 .continue-section { padding: 22px; }
@@ -200,6 +195,37 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .continue-cta .arrow { display: inline-block; transition: transform .15s ease; }
 .continue-cta:hover .arrow { transform: translateX(3px); }
 .continue-section .mode-cards { margin-bottom: 0; }
+
+/* -- today's mission -- */
+.today-mission { padding: 22px; }
+.mission-list { display: flex; flex-direction: column; gap: 12px; }
+.mission-row {
+  display: flex; align-items: center; gap: 14px;
+  width: 100%;
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 14px 16px; cursor: pointer; text-align: left; font-family: inherit; color: inherit;
+  box-shadow: var(--shadow-1);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.mission-row:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+.mission-row:active { transform: translateY(0); box-shadow: var(--shadow-press); }
+.mission-icon { font-size: 24px; flex: 0 0 auto; }
+.mission-info { flex: 1; }
+.mission-label { font-weight: 700; font-size: 15px; display: block; }
+.mission-label .en { display: block; font-size: 12px; color: var(--ink-soft); font-weight: 400; }
+.mission-status { font-size: 13px; color: var(--ink-soft); white-space: nowrap; }
+.mission-row-done .mission-status { color: var(--correct); font-weight: 700; }
+
+/* -- recent achievements -- */
+.recent-achievements { padding: 22px; }
+.achievement-list { display: flex; flex-direction: column; gap: 10px; }
+.achievement-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.achievement-row:last-child { border-bottom: none; }
+.achievement-icon { font-size: 20px; flex: 0 0 auto; }
+.achievement-text { flex: 1; font-size: 14px; }
+.achievement-text .en { display: block; font-size: 11.5px; color: var(--ink-soft); }
+.achievement-date { font-size: 12px; color: var(--ink-soft); white-space: nowrap; }
 
 /* -- progress summary -- */
 .progress-summary { padding: 22px; }
@@ -230,9 +256,11 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   }
   .home-dashboard .home-welcome { animation-delay: .02s; }
   .home-dashboard .pet-hero-card { animation-delay: .08s; }
-  .home-dashboard .continue-section { animation-delay: .16s; }
-  .home-dashboard .progress-summary { animation-delay: .24s; }
-  .home-dashboard .history-card { animation-delay: .32s; }
+  .home-dashboard .today-mission { animation-delay: .14s; }
+  .home-dashboard .continue-section { animation-delay: .20s; }
+  .home-dashboard .progress-summary { animation-delay: .26s; }
+  .home-dashboard .recent-achievements { animation-delay: .32s; }
+  .home-dashboard .history-card { animation-delay: .38s; }
 }
 @keyframes dash-card-in {
   from { opacity: 0; transform: translateY(12px); }

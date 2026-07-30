@@ -11,9 +11,9 @@ const SPEECH_LINES: Record<MoodBucket, string> = {
   very_happy: "谢谢你照顾我！Thanks for taking care of me!"
 };
 
-// .pet-hero-card is a plain <div>, not a button: it holds two independent
-// buttons (identity + feed) side by side, and a <button> nested inside a
-// <button> is invalid HTML that browsers reparent unpredictably.
+// The whole card is one <button> navigating to the Owl screen (which has
+// its own Feed button routing to Bag/Shop based on inventory) -- no nested
+// buttons, so no HTML-validity constraint to work around here.
 export function PetHeroCard() {
   const dispatch = useAppDispatch();
   const { pet } = usePet();
@@ -27,24 +27,21 @@ export function PetHeroCard() {
     ? Math.round(((pet.growth - stage.minGrowth) / (next.minGrowth - stage.minGrowth)) * 100)
     : 100;
   const hunger = Math.round(100 - mood);
-  const hasItems = Object.values(pet.inventory).some((n) => n > 0);
 
   return (
-    <div className="dash-card pet-hero-card">
+    <button className="dash-card pet-hero-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "owl" })}>
       <div className="pet-hero-art-col">
-        <OwlArt stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-hero" />
+        <OwlArt stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-hero" playSound />
         <div className="pet-hero-speech">{SPEECH_LINES[bucket]}</div>
       </div>
 
       <div className="pet-hero-info-col">
-        <button className="pet-hero-identity" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "owl" })}>
-          <div>
-            <div className="pet-hero-name">{pet.name || "为它取个名字吧 Name your pet"}</div>
-            <div className="pet-hero-stage-badge">
-              {stage.label} · 第 {stageNum}／{PET_STAGES.length} 阶段
-            </div>
+        <div className="pet-hero-identity">
+          <div className="pet-hero-name">{pet.name || "为它取个名字吧 Name your pet"}</div>
+          <div className="pet-hero-stage-badge">
+            {stage.label} · 第 {stageNum}／{PET_STAGES.length} 阶段
           </div>
-        </button>
+        </div>
 
         <div className="pet-hero-bars">
           <div className="pet-hero-bar-row">
@@ -69,14 +66,8 @@ export function PetHeroCard() {
 
         <div className="pet-hero-footer">
           <div className="pet-status-bp">💡 {pet.bp} BP</div>
-          <button
-            className="primary-btn pet-hero-feed-btn"
-            onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: hasItems ? "bag" : "shop" })}
-          >
-            🍚 喂食 Feed {pet.name || "它"}
-          </button>
         </div>
       </div>
-    </div>
+    </button>
   );
 }

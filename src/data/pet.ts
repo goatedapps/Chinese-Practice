@@ -55,7 +55,8 @@ export const PET_DEFAULT_STATE: PetState = {
   moodAtCheckpoint: 100,
   lastFedAt: Date.now(),
   purchaseHistory: [],
-  inventory: {}
+  inventory: {},
+  questionsLifetime: 0
 };
 
 // e.g. owlSpritePath("baby", "happy") -> "/owl/owl-baby-happy.png"

@@ -81,6 +81,15 @@ export interface HistoryEntry {
   totalItems: number;
   correctItems: number;
   skippedItems: number;
+  // Which practice mode this session was -- mirrors AppState.mode. Needed to
+  // detect the "revise a lesson" mission (any lesson-mode session today,
+  // regardless of which lesson number). Optional/absent on pre-Phase-2
+  // entries, same forward-compat story as categoryCounts below.
+  mode?: "lesson" | "type";
+  // Groups completed this session, keyed by QuestionGroup.category. Optional
+  // and absent on any entry saved before this change -- every reader treats
+  // a missing value as "no data" via `?? {}`, never crashes.
+  categoryCounts?: Record<string, number>;
 }
 
 export interface PetStage {
@@ -115,6 +124,20 @@ export interface PetState {
   // Items bought in the Shop land here first, keyed by ShopItem id; the
   // student opens the Bag and chooses when to give each one to the owl.
   inventory: Record<string, number>;
+  // Lifetime count of individual questions answered/skipped across all
+  // sessions (not groups) -- drives the "every 100 questions" achievement.
+  questionsLifetime: number;
 }
 
 export type MoodBucket = "sad" | "neutral" | "happy" | "very_happy";
+
+export type AchievementType = "fed" | "evolved" | "missionComplete" | "questionsMilestone";
+
+export interface Achievement {
+  id: string;
+  type: AchievementType;
+  date: number;
+  // fed -> ShopItem id; evolved -> new PetStage key; questionsMilestone ->
+  // the milestone number as a string (e.g. "300"); missionComplete -> unused.
+  detail?: string;
+}

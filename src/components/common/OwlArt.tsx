@@ -7,10 +7,10 @@ interface OwlArtProps {
   mood: MoodBucket;
   label: string;
   sizeClass: "owl-thumb" | "owl-hero" | "owl-large";
-  // Unmute this variant's embedded audio track when it plays. Only set on
-  // the one screen the student deliberately visits to check on their pet --
-  // elsewhere the video still animates, just muted, so it doesn't blast
-  // sound on every trip back to the home screen.
+  // Unmute this variant's embedded audio track when it plays. Set on the
+  // Home hero card, the Owl detail screen, and the Bag/"Feed" screen --
+  // i.e. everywhere the pet is a primary focus of the screen, not just
+  // incidentally rendered.
   playSound?: boolean;
 }
 
