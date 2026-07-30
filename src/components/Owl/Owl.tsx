@@ -74,9 +74,7 @@ export function Owl() {
         <div className="growth-bar">
           <div className="growth-bar-fill" style={{ width: `${pct}%` }} />
         </div>
-        <div className="growth-caption">
-          {next ? `距离 ${next.label} 还需 ${next.minGrowth - pet.growth} 成长值` : "已完全长大 Fully grown!"}
-        </div>
+        <div className="growth-caption">{next ? `${pet.growth}/${next.minGrowth}` : "已完全长大 Fully grown!"}</div>
         <div className="owl-bp-label">💡 可用 BP: {pet.bp}</div>
       </div>
       <div className="action-row">
@@ -84,7 +82,7 @@ export function Owl() {
           🛍 商店 Shop
         </button>
         <button className="secondary-btn" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "bag" })}>
-          🎒 道具袋 Bag{bagCount ? ` (${bagCount})` : ""}
+          🍚 喂食 Feed{bagCount ? ` (${bagCount})` : ""}
         </button>
       </div>
     </div>

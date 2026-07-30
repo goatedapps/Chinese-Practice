@@ -50,7 +50,7 @@ export function PetHeroCard() {
           <div className="pet-hero-bar-row">
             <div className="pet-hero-bar-label">
               <span>成长 Growth</span>
-              <b>{next ? `距离${next.label}还需 ${next.minGrowth - pet.growth}` : "已完全长大 Fully grown"}</b>
+              <b>{next ? `${pet.growth}/${next.minGrowth}` : "已完全长大 Fully grown"}</b>
             </div>
             <div className="growth-bar">
               <div className="growth-bar-fill" style={{ width: `${growthPct}%` }} />

@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppState } from "../../state/AppStateContext";
 import { CATEGORIES, SUBJECTS, QUESTION_GROUPS } from "../../data/questions";
-import { shuffle } from "../../lib/shuffle";
+import { selectTypeSessionGroups } from "../../lib/typeSession";
 
 export function TypePicker() {
   const dispatch = useAppDispatch();
@@ -24,7 +24,7 @@ export function TypePicker() {
       type: "START_QUIZ",
       mode: "type",
       modeLabel: "按题型 " + Array.from(state.selectedCategories).map((k) => CATEGORIES[k].label).join("、"),
-      groups: shuffle(groups)
+      groups: selectTypeSessionGroups(groups)
     });
   }
 

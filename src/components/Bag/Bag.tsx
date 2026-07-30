@@ -26,7 +26,15 @@ export function Bag() {
       <OwlArt ref={owlRef} stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" />
 
       {entries.length === 0 ? (
-        <p className="subtitle">道具袋是空的，去商店买些东西吧！Your bag is empty — visit the Shop first.</p>
+        <div className="bag-empty">
+          <p className="subtitle">道具袋是空的 Your bag is empty</p>
+          <div className="owl-bp-label">💡 可用 BP: {pet.bp}</div>
+          <div className="action-row">
+            <button className="primary-btn" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "shop" })}>
+              🛍 前往商店 Visit Shop
+            </button>
+          </div>
+        </div>
       ) : (
         <div className="bag-grid">
           {entries.map(([itemId, qty]) => {

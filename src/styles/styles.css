@@ -102,8 +102,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .mode-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-2); }
 .mode-card:active { transform: translateY(0); box-shadow: var(--shadow-press); }
 .mode-card-title { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-.mode-card-sub { font-size: 14px; color: var(--ink-soft); margin-bottom: 10px; }
-.mode-card-desc { font-size: 15px; color: var(--ink); opacity: .85; }
+.mode-card-sub { font-size: 14px; color: var(--ink-soft); margin-bottom: 0; }
 
 /* ---------- Home dashboard (pet-centric redesign) ---------- */
 .dash-card {

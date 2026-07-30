@@ -47,6 +47,9 @@ export function Quiz() {
   if (!group) return null;
 
   const currentRecord = state.submitted ? state.results[state.groupIndex] : null;
+  const priorQuestionCount = state.groups
+    .slice(0, state.groupIndex)
+    .reduce((sum, g) => sum + g.questions.length, 0);
 
   function setAnswer(qNo: string, value: string) {
     setAnswers((prev) => ({ ...prev, [qNo]: value }));
@@ -138,6 +141,10 @@ export function Quiz() {
           key={q.qNo}
           q={q}
           idx={idx}
+          // Position in the whole session, not the question's own qNo (e.g.
+          // "Q16") -- that raw number depends on which paper it came from
+          // and is meaningless to the student once groups are shuffled.
+          displayNo={priorQuestionCount + idx + 1}
           group={group}
           answer={answers[q.qNo]}
           onAnswerChange={(v) => setAnswer(q.qNo, v)}
@@ -182,6 +189,7 @@ export function Quiz() {
 interface QuestionCardProps {
   q: Question;
   idx: number;
+  displayNo: number;
   group: QuestionGroup;
   answer: string | undefined;
   onAnswerChange: (v: string) => void;
@@ -189,14 +197,20 @@ interface QuestionCardProps {
   onSelfCheck: (correct: boolean) => void;
 }
 
-function QuestionCard({ q, idx, group, answer, onAnswerChange, item, onSelfCheck }: QuestionCardProps) {
+function QuestionCard({ q, idx, displayNo, group, answer, onAnswerChange, item, onSelfCheck }: QuestionCardProps) {
   return (
     <div className="question-box" id={`q-${idx}`}>
       <div className="question-head">
-        {q.qNo}
+        {`Q${displayNo}`}
         <span className="marks-badge">{`${q.marks} 分`}</span>
-        <button type="button" className="dictation-btn" title="朗读题目 Read aloud" onClick={() => speakText(q.text)}>
-          🔊 听写 Dictation
+        <button
+          type="button"
+          className="dictation-btn"
+          title="朗读题目 Read aloud"
+          aria-label="朗读题目 Read aloud"
+          onClick={() => speakText(q.text)}
+        >
+          🔊
         </button>
       </div>
       <div className="question-text">

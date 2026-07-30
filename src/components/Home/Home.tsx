@@ -52,12 +52,10 @@ export function Home() {
           <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "lessonPicker" })}>
             <div className="mode-card-title">📘 按课文练习</div>
             <div className="mode-card-sub">Practice by Lesson</div>
-            <div className="mode-card-desc">选择正在学习的课，练习该课的语文应用题目。</div>
           </button>
           <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "typePicker" })}>
             <div className="mode-card-title">🧩 按题型练习</div>
             <div className="mode-card-sub">Practice by Question Type</div>
-            <div className="mode-card-desc">选择题型，如完形填空、阅读理解、汉语拼音等，不分课别。</div>
           </button>
         </div>
       </div>
