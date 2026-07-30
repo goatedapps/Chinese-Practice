@@ -6,7 +6,7 @@ interface OwlArtProps {
   stageKey: string;
   mood: MoodBucket;
   label: string;
-  sizeClass: "owl-thumb" | "owl-large";
+  sizeClass: "owl-thumb" | "owl-hero" | "owl-large";
   // Unmute this variant's embedded audio track when it plays. Only set on
   // the one screen the student deliberately visits to check on their pet --
   // elsewhere the video still animates, just muted, so it doesn't blast

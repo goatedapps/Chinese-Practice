@@ -1,27 +1,25 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
-import { usePet, computeCurrentMood, moodBucket, getStage } from "../../state/PetContext";
 import { loadHistory, clearAllHistory, deleteHistoryEntry } from "../../state/history";
+import { getTodayStats } from "../../lib/stats";
 import { ConfirmModal } from "../common/Modal";
-import { OwlArt } from "../common/OwlArt";
-
-const MOOD_LABELS: Record<string, string> = {
-  sad: "心情低落 Sad",
-  neutral: "心情平静 Neutral",
-  happy: "心情满足 Happy",
-  very_happy: "心情开心 Very Happy"
-};
+import { PetHeroCard } from "./PetHeroCard";
+import { ProgressSummary } from "./ProgressSummary";
 
 type PendingHistoryAction = { type: "clear" } | { type: "delete"; id: string };
 
+function greeting(): string {
+  const hour = new Date().getHours();
+  if (hour < 12) return "早上好 Good morning";
+  if (hour < 18) return "下午好 Good afternoon";
+  return "晚上好 Good evening";
+}
+
 export function Home() {
   const dispatch = useAppDispatch();
-  const { pet } = usePet();
   const [hist, setHist] = useState(() => loadHistory());
   const [pending, setPending] = useState<PendingHistoryAction | null>(null);
-  const mood = computeCurrentMood(pet);
-  const stage = getStage(pet.growth);
-  const bucket = moodBucket(mood);
+  const { questions } = getTodayStats(hist);
 
   function handleConfirm() {
     if (!pending) return;
@@ -32,34 +30,42 @@ export function Home() {
   }
 
   return (
-    <div className="screen home">
-      <h1>华文练习 Chinese Practice</h1>
-      <p className="subtitle">选择一种练习方式 Choose how you'd like to practice</p>
-
-      <button className="pet-status-strip" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "owl" })}>
-        <OwlArt stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-thumb" />
-        <div className="pet-status-text">
-          <div className="pet-status-stage">{pet.name ? `${pet.name} · ${stage.label}` : stage.label}</div>
-          <div className="pet-status-mood">{MOOD_LABELS[bucket]}</div>
-        </div>
-        <div className="pet-status-bp">💡 {pet.bp} BP</div>
-      </button>
-
-      <div className="mode-cards">
-        <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "lessonPicker" })}>
-          <div className="mode-card-title">📘 按课文练习</div>
-          <div className="mode-card-sub">Practice by Lesson</div>
-          <div className="mode-card-desc">选择正在学习的课，练习该课的语文应用题目。</div>
-        </button>
-        <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "typePicker" })}>
-          <div className="mode-card-title">🧩 按题型练习</div>
-          <div className="mode-card-sub">Practice by Question Type</div>
-          <div className="mode-card-desc">选择题型，如完形填空、阅读理解、汉语拼音等，不分课别。</div>
-        </button>
+    <div className="screen home home-dashboard">
+      <div className="home-welcome">
+        <h1 className="home-greeting">{greeting()} 👋</h1>
+        <p className="home-subgreeting">
+          {questions > 0
+            ? `你今天已经完成 ${questions} 题，继续保持！You've done ${questions} questions today — keep it up!`
+            : "今天还没开始练习，快来陪陪你的小伙伴吧！No practice yet today — let's get started with your buddy!"}
+        </p>
       </div>
 
+      <PetHeroCard />
+
+      <div className="dash-card continue-section">
+        <div className="section-eyebrow">下一步 Next up</div>
+        <h2 className="section-heading">继续学习 Continue Learning</h2>
+        <button className="primary-btn continue-cta" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "typePicker" })}>
+          继续练习 Continue Practicing <span className="arrow">→</span>
+        </button>
+        <div className="mode-cards">
+          <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "lessonPicker" })}>
+            <div className="mode-card-title">📘 按课文练习</div>
+            <div className="mode-card-sub">Practice by Lesson</div>
+            <div className="mode-card-desc">选择正在学习的课，练习该课的语文应用题目。</div>
+          </button>
+          <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "typePicker" })}>
+            <div className="mode-card-title">🧩 按题型练习</div>
+            <div className="mode-card-sub">Practice by Question Type</div>
+            <div className="mode-card-desc">选择题型，如完形填空、阅读理解、汉语拼音等，不分课别。</div>
+          </button>
+        </div>
+      </div>
+
+      <ProgressSummary hist={hist} />
+
       {hist.length > 0 && (
-        <div className="history">
+        <div className="dash-card history-card">
           <div className="history-head">
             <h2>最近记录 Recent Sessions</h2>
             <button className="history-clear-btn" onClick={() => setPending({ type: "clear" })}>
@@ -80,7 +86,7 @@ export function Home() {
                 <tr key={h.id}>
                   <td>{new Date(h.date).toLocaleString()}</td>
                   <td>{h.modeLabel}</td>
-                  <td>
+                  <td className="score">
                     {h.correctItems}/{h.totalItems}
                   </td>
                   <td>

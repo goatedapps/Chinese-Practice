@@ -105,6 +105,141 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .mode-card-sub { font-size: 14px; color: var(--ink-soft); margin-bottom: 10px; }
 .mode-card-desc { font-size: 15px; color: var(--ink); opacity: .85; }
 
+/* ---------- Home dashboard (pet-centric redesign) ---------- */
+.dash-card {
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border: 1px solid var(--border);
+  border-top-color: var(--hi-edge);
+  border-radius: 16px;
+  box-shadow: var(--shadow-1);
+  margin-bottom: 18px;
+}
+
+.home-welcome { margin-bottom: 18px; }
+.home-greeting { font-size: 27px; margin-bottom: 5px; }
+.home-subgreeting { color: var(--ink-soft); font-size: 15.5px; margin: 0; }
+
+.section-eyebrow {
+  font-size: 12.5px; font-weight: 700; letter-spacing: .04em; color: var(--gold-deep);
+  text-transform: uppercase;
+}
+.section-heading { margin: 4px 0 14px; }
+
+/* -- hero pet card -- */
+.pet-hero-card {
+  display: flex; flex-wrap: wrap; gap: 22px;
+  padding: 22px;
+}
+.pet-hero-art-col {
+  flex: 0 0 auto;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  width: min(200px, 100%);
+  margin: 0 auto;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .owl-hero { animation: owl-hero-breathe 3.2s ease-in-out infinite; }
+}
+@keyframes owl-hero-breathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-5px) scale(1.015); }
+}
+.pet-hero-speech {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 9px 13px;
+  font-size: 13.5px;
+  text-align: center;
+  max-width: 190px;
+  box-shadow: var(--shadow-1);
+}
+.pet-hero-speech::after {
+  content: "";
+  position: absolute; left: 50%; top: -7px; transform: translateX(-50%) rotate(45deg);
+  width: 12px; height: 12px;
+  background: var(--card-bg);
+  border-left: 1px solid var(--border); border-top: 1px solid var(--border);
+}
+.pet-hero-info-col { flex: 1 1 260px; min-width: 240px; display: flex; flex-direction: column; }
+.pet-hero-identity {
+  display: flex; align-items: center; gap: 12px;
+  background: none; border: none; padding: 6px; margin: -6px -6px 14px;
+  border-radius: 12px;
+  cursor: pointer; text-align: left; font-family: inherit; color: inherit;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.pet-hero-identity:hover { transform: translateY(-2px); box-shadow: var(--shadow-1); }
+.pet-hero-identity:active { transform: translateY(0); box-shadow: var(--shadow-press); }
+.pet-hero-name { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 22px; font-weight: 700; }
+.pet-hero-stage-badge { margin-top: 6px; }
+.pet-hero-bars { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+.pet-hero-bar-label {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 13px; color: var(--ink-soft); margin-bottom: 5px;
+}
+.pet-hero-bar-label b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+.hunger-bar {
+  background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px;
+  height: 14px; overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(var(--ink-rgb), .12);
+}
+.hunger-bar-fill {
+  height: 100%;
+  background: linear-gradient(180deg, var(--gold-hi), var(--gold));
+  transition: width .3s;
+}
+.pet-hero-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; flex-wrap: wrap; }
+.pet-hero-feed-btn { display: inline-flex; align-items: center; gap: 6px; }
+
+/* -- continue learning -- */
+.continue-section { padding: 22px; }
+.continue-cta {
+  width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 15px 22px; font-size: 17px; margin-bottom: 16px;
+}
+.continue-cta .arrow { display: inline-block; transition: transform .15s ease; }
+.continue-cta:hover .arrow { transform: translateX(3px); }
+.continue-section .mode-cards { margin-bottom: 0; }
+
+/* -- progress summary -- */
+.progress-summary { padding: 22px; }
+.stat-tile-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px;
+}
+.stat-tile {
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border: 1px solid var(--border); border-radius: 14px;
+  padding: 16px 14px; text-align: center;
+  box-shadow: var(--shadow-1);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.stat-tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-2); }
+.stat-tile-badge { min-width: 54px; justify-content: center; font-size: 17px; margin-bottom: 9px; }
+.stat-tile-label { font-size: 12.5px; color: var(--ink-soft); line-height: 1.4; }
+.stat-tile-label .en { display: block; font-size: 11px; opacity: .8; }
+
+/* -- history card -- */
+.history-card { padding: 22px 22px 10px; }
+.history-card .history-head h2 { margin: 0 0 10px; }
+.history-table td.score { font-variant-numeric: tabular-nums; font-weight: 700; }
+
+/* -- dashboard entrance animation -- */
+@media (prefers-reduced-motion: no-preference) {
+  .home-dashboard .dash-card, .home-dashboard .home-welcome {
+    opacity: 0; animation: dash-card-in .45s cubic-bezier(.2,.7,.3,1) forwards;
+  }
+  .home-dashboard .home-welcome { animation-delay: .02s; }
+  .home-dashboard .pet-hero-card { animation-delay: .08s; }
+  .home-dashboard .continue-section { animation-delay: .16s; }
+  .home-dashboard .progress-summary { animation-delay: .24s; }
+  .home-dashboard .history-card { animation-delay: .32s; }
+}
+@keyframes dash-card-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .history-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 .history-head h2 { margin: 24px 0 10px; }
 .history-clear-btn {
@@ -301,7 +436,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 /* Seal-stamp badges -- the signature element. A carved/pressed look
    (inner bevel + fine inset border) rather than a flat pill, used
    anywhere a small value is "certified": marks per question, BP counts. */
-.marks-badge, .quiz-bp-badge, .pet-status-bp {
+.marks-badge, .quiz-bp-badge, .pet-status-bp, .pet-hero-stage-badge, .stat-tile-badge {
   position: relative;
   display: inline-flex; align-items: center; gap: 4px;
   font-size: 13px; font-weight: 700; color: #fff8ee;
@@ -316,16 +451,17 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
     0 3px 2px rgba(var(--ink-rgb), .10),
     0 8px 14px -6px rgba(var(--ink-rgb), .45);
 }
-.marks-badge::after, .quiz-bp-badge::after, .pet-status-bp::after {
+.marks-badge::after, .quiz-bp-badge::after, .pet-status-bp::after,
+.pet-hero-stage-badge::after, .stat-tile-badge::after {
   content: ""; position: absolute; inset: 2px;
   border: 1px solid rgba(255,255,255,.30);
   border-radius: 4px;
   pointer-events: none;
 }
-.marks-badge {
+.marks-badge, .pet-hero-stage-badge, .stat-tile-badge.tone-primary {
   background: linear-gradient(155deg, var(--primary-hi), var(--primary) 55%, var(--primary-dark));
 }
-.quiz-bp-badge, .pet-status-bp {
+.quiz-bp-badge, .pet-status-bp, .stat-tile-badge.tone-gold {
   background: linear-gradient(155deg, var(--gold-hi), var(--gold) 55%, var(--gold-deep));
   transform: rotate(-2deg);
 }
@@ -395,24 +531,8 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 .owl-art img, .owl-art video { width: 100%; height: 100%; display: block; object-fit: contain; }
 .owl-thumb { width: 64px; height: 64px; }
+.owl-hero { width: min(180px, 40vw); height: min(180px, 40vw); box-shadow: var(--shadow-2); }
 .owl-large { width: min(260px, 70vw); height: min(260px, 70vw); margin: 8px auto 4px; box-shadow: var(--shadow-2); }
-
-.pet-status-strip {
-  display: flex; align-items: center; gap: 14px;
-  width: 100%;
-  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
-  border: 1px solid var(--border);
-  border-top-color: var(--hi-edge);
-  border-radius: 14px; padding: 12px 16px; margin-bottom: 22px;
-  cursor: pointer; text-align: left; font-family: inherit;
-  box-shadow: var(--shadow-1);
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-.pet-status-strip:hover { transform: translateY(-3px); box-shadow: var(--shadow-2); }
-.pet-status-strip:active { transform: translateY(0); box-shadow: var(--shadow-press); }
-.pet-status-text { flex: 1; }
-.pet-status-stage { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 16px; font-weight: 700; }
-.pet-status-mood { font-size: 14px; color: var(--ink-soft); }
 
 .bp-pop {
   display: inline-block; margin-left: 10px; color: var(--gold-deep); font-weight: 700;
