@@ -685,4 +685,165 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
     var(--shadow-2);
 }
 .score-detail { font-size: 18px; }
+
+/* generic disabled-button dimming -- used by Tingxie's picker Start buttons,
+   reusable anywhere else a primary/secondary button needs a disabled state */
+.primary-btn:disabled, .secondary-btn:disabled {
+  opacity: .5; cursor: not-allowed; filter: none; transform: none; box-shadow: none;
+}
+
+/* ---------- Tingxie (听写) dictation practice ---------- */
+.tingxie-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 6px;
+}
+.tingxie-topbar .back-btn { margin-bottom: 0; flex: 0 0 auto; }
+.tingxie-topbar-title {
+  flex: 1; text-align: center; font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  font-size: 17px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.tingxie-topbar-bp { flex: 0 0 auto; font-weight: 700; color: var(--gold-deep); font-size: 14px; white-space: nowrap; }
+
+.tingxie-tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+.tingxie-tab {
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 8px 14px; font-size: 14px; font-weight: 600; color: var(--ink-soft); cursor: pointer;
+  box-shadow: var(--shadow-1);
+  transition: border-color .15s, color .15s, transform .1s;
+}
+.tingxie-tab:hover { transform: translateY(-2px); }
+.tingxie-tab-active {
+  background: linear-gradient(180deg, var(--primary-hi), var(--primary));
+  border-color: var(--primary-dark); color: #fff8ee;
+}
+
+.tingxie-select, .tingxie-picker { text-align: left; }
+.tingxie-review-btn { margin-top: 18px; }
+.tingxie-loading, .tingxie-empty { color: var(--ink-soft); font-size: 15px; margin: 24px 0; text-align: center; }
+.tingxie-error, .tingxie-error-inline { color: var(--incorrect); margin: 14px 0; }
+.tingxie-error button { margin-top: 8px; }
+
+.tingxie-picker-all-btn { margin-bottom: 14px; }
+.tingxie-picker-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.tingxie-picker-row {
+  display: flex; align-items: center; gap: 10px;
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px 14px; cursor: pointer; font-size: 15px;
+  box-shadow: var(--shadow-1);
+  transition: border-color .15s, transform .1s;
+}
+.tingxie-picker-row:hover { transform: translateY(-2px); }
+.tingxie-picker-row-checked { border-color: var(--primary); background: linear-gradient(180deg, var(--card-hi), #fbeee9); font-weight: 700; }
+.tingxie-picker-row input { width: 18px; height: 18px; accent-color: var(--primary); }
+.tingxie-picker-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.tingxie-learn { text-align: center; }
+.tingxie-subtabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 18px; }
+.tingxie-subtab {
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 9px 18px; font-size: 15px; font-weight: 600; color: var(--ink-soft); cursor: pointer;
+  box-shadow: var(--shadow-1);
+}
+.tingxie-subtab-active { border-color: var(--primary); color: var(--primary); background: linear-gradient(180deg, var(--card-hi), #fbeee9); }
+
+.tingxie-carousel, .tingxie-sentence-game { text-align: center; }
+.tingxie-progress { color: var(--ink-soft); font-size: 14px; margin-bottom: 12px; }
+
+/* -- 3D flip card shell (Learn/vocab, Apply, Practice) -- */
+.tingxie-flip-outer { perspective: 1200px; }
+.tingxie-flip-card {
+  width: 100%; aspect-ratio: 4 / 5; max-width: 380px; margin: 0 auto;
+  position: relative; cursor: pointer;
+}
+.tingxie-flip-card:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 28px; }
+.tingxie-flip-inner {
+  position: relative; width: 100%; height: 100%;
+  transition: transform .5s; transform-style: preserve-3d;
+}
+.tingxie-flip-inner.flipped { transform: rotateY(180deg); }
+.tingxie-flip-face {
+  position: absolute; inset: 0; backface-visibility: hidden;
+  border-radius: 28px; border: 1px solid var(--border);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; padding: 32px; box-shadow: var(--shadow-2); text-align: center;
+}
+.tingxie-flip-front { background: linear-gradient(180deg, var(--card-hi), var(--card-bg)); }
+.tingxie-flip-back {
+  transform: rotateY(180deg); color: #fff8ee; border: none;
+  background: linear-gradient(155deg, var(--primary-hi), var(--primary) 55%, var(--primary-dark));
+}
+.tingxie-flip-hint { color: var(--ink-soft); font-size: 14px; margin-top: 14px; }
+
+.tingxie-vocab-word { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 44px; font-weight: 700; }
+.tingxie-vocab-pinyin { font-size: 20px; opacity: .92; }
+.tingxie-vocab-meaning { font-size: 22px; font-weight: 700; }
+.tingxie-vocab-example { font-size: 15px; opacity: .85; line-height: 1.5; }
+.tingxie-speak-btn { margin-top: 6px; padding: 7px 16px; font-size: 14px; }
+.tingxie-flip-back .tingxie-speak-btn {
+  background: rgba(255,255,255,.15); color: #fff8ee; border-color: rgba(255,255,255,.5);
+}
+
+.tingxie-nav-row { display: flex; justify-content: center; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+
+.tingxie-complete-banner {
+  margin-top: 18px; padding: 14px 18px; border-radius: 12px;
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border: 1px solid var(--gold); color: var(--gold-deep); font-weight: 700;
+}
+.tingxie-complete-screen { text-align: center; padding: 40px 0; }
+.tingxie-complete-emoji { font-size: 48px; margin-bottom: 8px; }
+.tingxie-complete-screen .bp-pop { font-size: 22px; animation: none; opacity: 1; }
+
+/* -- sentence-builder game -- */
+.tingxie-scenario {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-size: 17px; margin-bottom: 16px;
+}
+.tingxie-scenario-icon { font-size: 26px; }
+.tingxie-scenario-card { flex-direction: column; gap: 14px; }
+.tingxie-scenario-card .tingxie-scenario-icon { font-size: 40px; }
+
+.tingxie-tray {
+  min-height: 90px; border: 3px dashed var(--gold); border-radius: 20px;
+  background: var(--card-bg); display: flex; flex-wrap: wrap; gap: 8px;
+  align-items: center; justify-content: center; padding: 16px; margin-bottom: 16px;
+  transition: border-color .2s;
+}
+.tingxie-tray.result-correct { border-color: var(--correct); border-style: solid; }
+.tingxie-tray.result-incorrect { border-color: var(--incorrect); border-style: solid; }
+.tingxie-tray-hint { color: var(--ink-soft); font-size: 14px; }
+.tingxie-tray-chip {
+  border: none; border-radius: 14px; padding: 10px 16px; font-weight: 700;
+  font-size: 18px; color: #fff8ee;
+  background: linear-gradient(180deg, var(--primary-hi), var(--primary));
+}
+.tingxie-tray.result-correct .tingxie-tray-chip { background: var(--correct); }
+.tingxie-tray.result-incorrect .tingxie-tray-chip { background: var(--incorrect); }
+
+.tingxie-chip-bag { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 16px; }
+.tingxie-chip {
+  border: 1px solid var(--border); background: var(--card-bg);
+  border-radius: 14px; padding: 10px 16px; font-weight: 700;
+  font-size: 18px; cursor: pointer; box-shadow: var(--shadow-1);
+  transition: transform .1s ease, box-shadow .1s ease;
+}
+.tingxie-chip:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+.tingxie-chip:active { transform: translateY(0); box-shadow: var(--shadow-press); }
+
+.tingxie-sentence-feedback { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 14px; }
+.tingxie-feedback-correct { color: var(--correct); font-weight: 700; }
+.tingxie-feedback-incorrect { color: var(--incorrect); font-weight: 700; }
+.tingxie-full-sentence { font-size: 18px; font-weight: 700; color: var(--ink); display: flex; flex-direction: column; align-items: center; gap: 8px; }
+
+/* -- Apply / Practice cards -- */
+.tingxie-apply-sentence { font-size: 22px; font-weight: 700; line-height: 1.5; }
+.tingxie-apply-english { font-size: 15px; opacity: .85; }
+.tingxie-apply-answer { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 40px; font-weight: 700; }
+.tingxie-practice-front { display: flex; flex-direction: column; gap: 10px; }
+.tingxie-practice-sentence-back { font-size: 18px; font-weight: 700; line-height: 1.5; }
+
+.tingxie-self-check { justify-content: center; margin-top: 18px; }
 .result .action-row { justify-content: center; }

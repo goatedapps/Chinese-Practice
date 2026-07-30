@@ -155,6 +155,35 @@ function clapBurst(startTime: number): void {
   }
 }
 
+// Soft, low descending tone for a self-graded "wrong"/"missed" moment --
+// this app never needed a wrong-answer sound before Tingxie (Quiz.tsx is
+// silent on incorrect answers). Deliberately gentle: a single lowpass-
+// filtered triangle wave gliding down, quiet peak gain, quick decay -- a
+// soft "oh well" thud, not a harsh buzzer, matching the app's non-punishing
+// tone (encourage() sets this precedent for sub-100% feedback; miss() is
+// its single-note, slightly darker sibling for one wrong item).
+function softThud(startTime: number): void {
+  const c = ensureCtx();
+  if (!c) return;
+  const t0 = c.currentTime + startTime;
+  const osc = c.createOscillator();
+  osc.type = "triangle";
+  osc.frequency.setValueAtTime(300, t0);
+  osc.frequency.exponentialRampToValueAtTime(140, t0 + 0.22);
+  const filter = c.createBiquadFilter();
+  filter.type = "lowpass";
+  filter.frequency.setValueAtTime(900, t0);
+  const gain = c.createGain();
+  gain.gain.setValueAtTime(0, t0);
+  gain.gain.linearRampToValueAtTime(0.09, t0 + 0.015);
+  gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.26);
+  osc.connect(filter);
+  filter.connect(gain);
+  gain.connect(c.destination);
+  osc.start(t0);
+  osc.stop(t0 + 0.3);
+}
+
 export const Sound = {
   click(): void {
     try {
@@ -200,6 +229,13 @@ export const Sound = {
     try {
       chime(659.25, 0, 0.3, 0.08); // E5
       chime(523.25, 0.18, 0.42, 0.09); // C5
+    } catch {
+      // ignore
+    }
+  },
+  miss(): void {
+    try {
+      softThud(0);
     } catch {
       // ignore
     }

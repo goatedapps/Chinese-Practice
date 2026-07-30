@@ -141,3 +141,38 @@ export interface Achievement {
   // the milestone number as a string (e.g. "300"); missionComplete -> unused.
   detail?: string;
 }
+
+// ---- Tingxie (听写) dictation-practice mode -- shared JSON-shape interfaces
+// matching public/tingxie-lessons/<id>.json 1:1. See CLAUDE.md's Tingxie
+// section for how these are used.
+export interface TingxieVocabItem {
+  word: string;
+  pinyin: string;
+  meaning: string;
+  example: string;
+}
+
+export interface TingxieSentence {
+  text: string;
+  segments: string[];
+  icon: string; // Lucide icon name -- mapped to an emoji via tingxieIconEmoji()
+  color: string; // Tailwind text-color class from the source data -- intentionally never read
+  description: string;
+}
+
+export interface TingxieSentenceBankEntry {
+  zh: string;
+  en: string;
+}
+
+export interface TingxieLesson {
+  title: string;
+  vocab: TingxieVocabItem[];
+  sentences: TingxieSentence[];
+  sentenceBank: Record<string, TingxieSentenceBankEntry[]>;
+}
+
+export interface TingxieLessonIndexEntry {
+  id: number;
+  title: string;
+}

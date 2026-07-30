@@ -35,6 +35,17 @@ export const BP_AWARD: Record<string, number> = {
   "Writing-Constrained": 2
 };
 
+// Tingxie-mode BP awards -- carried over 1:1 from the source app's point
+// values. Larger than the per-question BP_AWARD above because each of these
+// covers completing a whole lesson-scale activity (~15-20 vocab words or
+// 5+ sentences), not a single question. Tunable, not gospel.
+export const TINGXIE_BP_AWARD = {
+  VOCAB_LEARN: 10, // 学习(学词语) -- every vocab card flipped at least once, this visit
+  SENTENCE_LEARN: 10, // 学习(学默写) -- every sentence solved correctly, this visit
+  APPLY: 10, // 词语应用 -- whole apply queue (incl. requeued misses) completed
+  PRACTICE: 20 // 听写练习 -- BOTH phases (tingxie + moxie) completed
+};
+
 // Shop catalogue: buying an item puts it in the Bag (PetState.inventory);
 // the growth/mood effect only applies once the student gives it to the owl
 // from the Bag screen -- cost in BP, growth/mood granted on give.
@@ -66,11 +77,14 @@ export function owlSpritePath(stageKey: string, mood: MoodBucket): string {
 
 // Stage x mood combos that have a hand-animated video (with its sound
 // effect muxed in as the video's own audio track) instead of just a static
-// PNG -- "egg-very_happy" and "baby-very_happy" so far, with more of the 24
-// combos to follow. Source art is authored as GIF but shipped as MP4
-// (H.264+AAC) -- far smaller than GIF at the same visual quality, and plays
-// natively via <video playsInline> (see OwlArt.tsx).
-const ANIMATED_OWL_VARIANTS = new Set<string>(["egg-very_happy", "baby-very_happy"]);
+// PNG -- "egg-very_happy", "baby-very_happy", "egg-sad", and "egg-neutral"
+// so far, with more of the 24 combos to follow. Source art is authored as
+// GIF but shipped as MP4 (H.264+AAC) -- far smaller than GIF at the same
+// visual quality, and plays natively via <video playsInline> (see
+// OwlArt.tsx). Note "egg-sad"/"egg-neutral" have no PNG fallback anymore
+// (the source PNGs were removed when the video replaced them) -- unlike
+// "egg-very_happy"/"baby-very_happy", which still keep their PNG around.
+const ANIMATED_OWL_VARIANTS = new Set<string>(["egg-very_happy", "baby-very_happy", "egg-sad", "egg-neutral"]);
 
 export function hasOwlAnimation(stageKey: string, mood: MoodBucket): boolean {
   return ANIMATED_OWL_VARIANTS.has(`${stageKey}-${mood}`);

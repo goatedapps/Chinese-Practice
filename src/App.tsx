@@ -10,6 +10,7 @@ import { Result } from "./components/Result/Result";
 import { Owl } from "./components/Owl/Owl";
 import { Shop } from "./components/Shop/Shop";
 import { Bag } from "./components/Bag/Bag";
+import { Tingxie } from "./components/Tingxie/Tingxie";
 
 function ScreenRouter() {
   const state = useAppState();
@@ -35,6 +36,8 @@ function ScreenRouter() {
       return <Shop />;
     case "bag":
       return <Bag />;
+    case "tingxie":
+      return <Tingxie />;
     default:
       // Auth lands here until its own component exists.
       return (
@@ -50,7 +53,7 @@ export default function App() {
     // Play a click sound for any button-like element pressed anywhere in the app.
     function handleClick(e: MouseEvent) {
       const target = e.target as HTMLElement;
-      if (target.closest("button, .option-label")) Sound.click();
+      if (target.closest("button, .option-label, .tingxie-flip-card")) Sound.click();
     }
     document.addEventListener("click", handleClick, true);
     return () => document.removeEventListener("click", handleClick, true);

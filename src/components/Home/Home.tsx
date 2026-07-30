@@ -61,6 +61,10 @@ export function Home() {
             <div className="mode-card-title">🧩 按题型练习</div>
             <div className="mode-card-sub">Practice by Question Type</div>
           </button>
+          <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}>
+            <div className="mode-card-title">🔊 听写练习</div>
+            <div className="mode-card-sub">Dictation Practice</div>
+          </button>
         </div>
       </div>
 
