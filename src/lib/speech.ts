@@ -12,3 +12,11 @@ export function speakText(text: string): void {
   utter.rate = 0.82;
   window.speechSynthesis.speak(utter);
 }
+
+// Stops any in-progress/queued read-aloud immediately -- called whenever the
+// student moves on (submitting, advancing to the next question/group,
+// leaving the screen) so a reading started via the 🔊 button doesn't keep
+// playing over a question the student has already left.
+export function stopSpeaking(): void {
+  window.speechSynthesis?.cancel();
+}

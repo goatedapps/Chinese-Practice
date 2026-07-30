@@ -188,12 +188,6 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 
 /* -- continue learning -- */
 .continue-section { padding: 22px; }
-.continue-cta {
-  width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 15px 22px; font-size: 17px; margin-bottom: 16px;
-}
-.continue-cta .arrow { display: inline-block; transition: transform .15s ease; }
-.continue-cta:hover .arrow { transform: translateX(3px); }
 .continue-section .mode-cards { margin-bottom: 0; }
 
 /* -- today's mission -- */
@@ -216,6 +210,11 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .mission-label .en { display: block; font-size: 12px; color: var(--ink-soft); font-weight: 400; }
 .mission-status { font-size: 13px; color: var(--ink-soft); white-space: nowrap; }
 .mission-row-done .mission-status { color: var(--correct); font-weight: 700; }
+.mission-bonus-banner {
+  margin-top: 14px; padding: 14px 18px; border-radius: 12px;
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border: 1px solid var(--gold); color: var(--gold-deep); font-weight: 700; text-align: center;
+}
 
 /* -- recent achievements -- */
 .recent-achievements { padding: 22px; }

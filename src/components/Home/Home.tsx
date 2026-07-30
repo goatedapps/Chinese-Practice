@@ -49,9 +49,6 @@ export function Home() {
       <div className="dash-card continue-section">
         <div className="section-eyebrow">下一步 Next up</div>
         <h2 className="section-heading">继续学习 Continue Learning</h2>
-        <button className="primary-btn continue-cta" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "typePicker" })}>
-          继续练习 Continue Practicing <span className="arrow">→</span>
-        </button>
         <div className="mode-cards">
           <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "lessonPicker" })}>
             <div className="mode-card-title">📘 按课文练习</div>

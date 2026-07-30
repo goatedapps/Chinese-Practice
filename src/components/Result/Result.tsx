@@ -2,14 +2,13 @@ import { useEffect, useRef } from "react";
 import { useAppState, useAppDispatch } from "../../state/AppStateContext";
 import { usePet } from "../../state/PetContext";
 import { saveHistory, loadHistory } from "../../state/history";
-import { logAchievement } from "../../state/achievements";
-import { areAllMissionsComplete } from "../../lib/stats";
+import { logAchievement, checkAndAwardMissionBonus } from "../../state/achievements";
 import { Sound } from "../../lib/sound";
 
 export function Result() {
   const state = useAppState();
   const dispatch = useAppDispatch();
-  const { pet, recordQuestionsCompleted } = usePet();
+  const { pet, recordQuestionsCompleted, awardBP } = usePet();
   // Read before recordQuestionsCompleted runs below -- avoids reading a
   // stale/batched value back out of context in the same effect.
   const beforeQuestions = pet.questionsLifetime;
@@ -64,9 +63,7 @@ export function Result() {
       logAchievement({ type: "questionsMilestone", detail: String(m * 100) });
     }
 
-    if (areAllMissionsComplete(loadHistory())) {
-      logAchievement({ type: "missionComplete" });
-    }
+    checkAndAwardMissionBonus(loadHistory(), awardBP);
     // Intentionally empty deps: save the session exactly once, not on every re-render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

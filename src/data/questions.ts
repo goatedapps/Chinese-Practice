@@ -563,7 +563,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "NH-Q1", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [2], passage: null,
     questions: [{ qNo: "Q1", marks: 2, format: "MCQ",
-        text: "他穿了一件白色的 衬衫 去工作。（选出画线词语的汉语拼音）",
+        text: "他穿了一件白色的__衬衫__去工作。（选出画线词语的汉语拼音）",
         options: [{ key: "1", text: "chèn sān" }, { key: "2", text: "chèn shān" }, { key: "3", text: "chèng sān" }, { key: "4", text: "chèng shān" }],
         correctKey: "2",
         answerSource: "official"
@@ -572,7 +572,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "NH-Q2", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [2], passage: null,
     questions: [{ qNo: "Q2", marks: 2, format: "MCQ",
-        text: "妈妈在碗里打了两个鸡蛋，加入调味料后开始 搅拌 。（选出画线词语的汉语拼音）",
+        text: "妈妈在碗里打了两个鸡蛋，加入调味料后开始__搅拌__。（选出画线词语的汉语拼音）",
         options: [{ key: "1", text: "jué pàn" }, { key: "2", text: "jué bàn" }, { key: "3", text: "jiǎo pàn" }, { key: "4", text: "jiǎo bàn" }],
         correctKey: "4",
         answerSource: "official"
@@ -1077,7 +1077,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "ACSJ-Q1", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [3], passage: null,
     questions: [{ qNo: "Q1", marks: 2, format: "MCQ",
-        text: "这个杯子的 形状 很特别，吸引了我的目光。 (选出画线词语的汉语拼音)",
+        text: "这个杯子的__形状__很特别，吸引了我的目光。 (选出画线词语的汉语拼音)",
         options: [{ key: "1", text: "xín zhuàn" }, { key: "2", text: "xín zhuàng" }, { key: "3", text: "xíng zhuàn" }, { key: "4", text: "xíng zhuàng" }],
         correctKey: "4",
         answerSource: "official"
@@ -1086,7 +1086,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "ACSJ-Q2", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [3], passage: null,
     questions: [{ qNo: "Q2", marks: 2, format: "MCQ",
-        text: "他为人 慷慨 ，常常出钱请朋友们吃饭。 (选出画线词语的汉语拼音)",
+        text: "他为人__慷慨__，常常出钱请朋友们吃饭。 (选出画线词语的汉语拼音)",
         options: [{ key: "1", text: "kān kǎi" }, { key: "2", text: "kān gài" }, { key: "3", text: "kāng kǎi" }, { key: "4", text: "kāng gài" }],
         correctKey: "3",
         answerSource: "official"
@@ -1416,7 +1416,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "HP-Q1", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [4], passage: null,
     questions: [{ qNo: "Q1", marks: 2, format: "MCQ",
-        text: "学校 禁止 学生在课室里用手机。 (选出画线词语的汉语拼音)",
+        text: "学校__禁止__学生在课室里用手机。 (选出画线词语的汉语拼音)",
         options: [{ key: "1", text: "jìn zǐ" }, { key: "2", text: "jìn zhǐ" }, { key: "3", text: "jìng zǐ" }, { key: "4", text: "jìng zhǐ" }],
         correctKey: "2",
         answerSource: "official"
@@ -1425,7 +1425,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "HP-Q2", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [4], passage: null,
     questions: [{ qNo: "Q2", marks: 2, format: "MCQ",
-        text: "小明喜欢在课间休息时和同学们 闲聊 。 (选出画线词语的汉语拼音)",
+        text: "小明喜欢在课间休息时和同学们__闲聊__。 (选出画线词语的汉语拼音)",
         options: [{ key: "1", text: "xián liáo" }, { key: "2", text: "xián liǎo" }, { key: "3", text: "xiǎn liáo" }, { key: "4", text: "xiǎn liǎo" }],
         correctKey: "1",
         answerSource: "official"
@@ -1755,7 +1755,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "MB-Q1", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [5], passage: null,
     questions: [{ qNo: "Q1", marks: 2, format: "MCQ",
-        text: "陈阿姨很 善良 ，总是帮助身边的人。 (选出画线词语的汉语拼音)",
+        text: "陈阿姨很__善良__，总是帮助身边的人。 (选出画线词语的汉语拼音)",
         options: [{ key: "1", text: "shàn liáng" }, { key: "2", text: "shàn liǎng" }, { key: "3", text: "shàng liáng" }, { key: "4", text: "shàng liǎng" }],
         correctKey: "1",
         answerSource: "official"
@@ -1764,7 +1764,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "MB-Q2", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [5], passage: null,
     questions: [{ qNo: "Q2", marks: 2, format: "MCQ",
-        text: "小月经常生病，而且身体也很 瘦弱 。 (选出画线词语的汉语拼音)",
+        text: "小月经常生病，而且身体也很__瘦弱__。 (选出画线词语的汉语拼音)",
         options: [{ key: "1", text: "shōu luò" }, { key: "2", text: "shòu luò" }, { key: "3", text: "shōu ruò" }, { key: "4", text: "shòu ruò" }],
         correctKey: "4",
         answerSource: "official"
@@ -2094,7 +2094,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "NY-Q1", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [6], passage: null,
     questions: [{ qNo: "Q1", marks: 2, format: "MCQ",
-        text: "哥哥穿着新买的 衬衫 ，看起来很神气。 (选出画线词语的汉语拼音)",
+        text: "哥哥穿着新买的__衬衫__，看起来很神气。 (选出画线词语的汉语拼音)",
         options: [{ key: "1", text: "chén sān" }, { key: "2", text: "chèn shān" }, { key: "3", text: "chéng sān" }, { key: "4", text: "chèng shān" }],
         correctKey: "2",
         answerSource: "official"
@@ -2103,7 +2103,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "NY-Q2", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [6], passage: null,
     questions: [{ qNo: "Q2", marks: 2, format: "MCQ",
-        text: "如果你找到小狗，请尽快 联系 我。 (选出画线词语的汉语拼音)",
+        text: "如果你找到小狗，请尽快__联系__我。 (选出画线词语的汉语拼音)",
         options: [{ key: "1", text: "nián xí" }, { key: "2", text: "nián xì" }, { key: "3", text: "lián xí" }, { key: "4", text: "lián xì" }],
         correctKey: "4",
         answerSource: "official"
@@ -2439,7 +2439,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "RG-Q1", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [7], passage: null,
     questions: [{ qNo: "Q1", marks: 2, format: "MCQ",
-        text: "丽丽戴了一整天的 隐形 眼镜，眼睛又累又干。 (选出画线词语的汉语拼音)",
+        text: "丽丽戴了一整天的__隐形__眼镜，眼睛又累又干。 (选出画线词语的汉语拼音)",
         options: [{ key: "1", text: "yǐn xīng" }, { key: "2", text: "yǐn xíng" }, { key: "3", text: "yǐng xīng" }, { key: "4", text: "yǐng xíng" }],
         correctKey: "2",
         answerSource: "official"
@@ -2448,7 +2448,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "RG-Q2", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [7], passage: null,
     questions: [{ qNo: "Q2", marks: 2, format: "MCQ",
-        text: "我今天忘了带伞，结果被雨淋得全身都 湿透 了。 (选出画线词语的汉语拼音)",
+        text: "我今天忘了带伞，结果被雨淋得全身都__湿透__了。 (选出画线词语的汉语拼音)",
         options: [{ key: "1", text: "sī tòu" }, { key: "2", text: "sī tuò" }, { key: "3", text: "shī tòu" }, { key: "4", text: "shī tuò" }],
         correctKey: "3",
         answerSource: "official"
@@ -2778,7 +2778,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "RS-Q1", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [8], passage: null,
     questions: [{ qNo: "Q1", marks: 2, format: "MCQ",
-        text: "今年来新加坡旅游的人数打破了历史 记录 。 (选出画线词语的汉语拼音)",
+        text: "今年来新加坡旅游的人数打破了历史__记录__。 (选出画线词语的汉语拼音)",
         options: [{ key: "1", text: "lí sǐ" }, { key: "2", text: "lì shǐ" }, { key: "3", text: "ní sǐ" }, { key: "4", text: "nì shǐ" }],
         correctKey: "2",
         answerSource: "official"
@@ -2787,7 +2787,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "RS-Q2", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [8], passage: null,
     questions: [{ qNo: "Q2", marks: 2, format: "MCQ",
-        text: "工人们在后院挖出了一颗 炮弹 ，惊动了警方。 (选出画线词语的汉语拼音)",
+        text: "工人们在后院挖出了一颗__炮弹__，惊动了警方。 (选出画线词语的汉语拼音)",
         options: [{ key: "1", text: "bào dàn" }, { key: "2", text: "bào tàn" }, { key: "3", text: "pào dàn" }, { key: "4", text: "pào tàn" }],
         correctKey: "3",
         answerSource: "official"
@@ -3118,7 +3118,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "RO-Q1", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [9], passage: null,
     questions: [{ qNo: "Q1", marks: 2, format: "MCQ",
-        text: "我们要了解国家的 历史 。 (选出画线词语的汉语拼音)",
+        text: "我们要了解国家的__历史__。 (选出画线词语的汉语拼音)",
         options: [{ key: "1", text: "lǐ sī" }, { key: "2", text: "lǐ sì" }, { key: "3", text: "lì shī" }, { key: "4", text: "lì shǐ" }],
         correctKey: "4",
         answerSource: "official"
@@ -3127,7 +3127,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "RO-Q2", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
     lessonEligible: true, lessonIds: [9], passage: null,
     questions: [{ qNo: "Q2", marks: 2, format: "MCQ",
-        text: "放在桌子上的水果已经 腐烂 了。 (选出画线词语的汉语拼音)",
+        text: "放在桌子上的水果已经__腐烂__了。 (选出画线词语的汉语拼音)",
         options: [{ key: "1", text: "fú lán" }, { key: "2", text: "fǔ làn" }, { key: "3", text: "fú làng" }, { key: "4", text: "fǔ láng" }],
         correctKey: "2",
         answerSource: "official"

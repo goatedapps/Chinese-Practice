@@ -46,6 +46,12 @@ export const TINGXIE_BP_AWARD = {
   PRACTICE: 20 // 听写练习 -- BOTH phases (tingxie + moxie) completed
 };
 
+// One-time-per-day bonus awarded the moment all 3 Today's Mission entries
+// (lesson, reading, dictation) are complete -- on top of each mission's own
+// normal BP. Deliberately smaller than a full Tingxie activity award since
+// it's a top-up, not a fourth activity's worth of reward.
+export const MISSION_COMPLETE_BONUS_BP = 15;
+
 // Shop catalogue: buying an item puts it in the Bag (PetState.inventory);
 // the growth/mood effect only applies once the student gives it to the owl
 // from the Bag screen -- cost in BP, growth/mood granted on give.

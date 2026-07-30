@@ -1,14 +1,17 @@
 import { useAppDispatch } from "../../state/AppStateContext";
 import { QUESTION_GROUPS, CATEGORIES } from "../../data/questions";
+import { MISSION_COMPLETE_BONUS_BP } from "../../data/pet";
 import { selectTypeSessionGroups } from "../../lib/typeSession";
 import { shuffle } from "../../lib/shuffle";
-import { isLessonMissionComplete, getReadingMissionCount, READING_MISSION_CATEGORIES } from "../../lib/stats";
+import { isLessonMissionComplete, getReadingMissionCount, isTingxieMissionComplete, READING_MISSION_CATEGORIES } from "../../lib/stats";
 import type { HistoryEntry } from "../../data/types";
 
 export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
   const dispatch = useAppDispatch();
   const lessonDone = isLessonMissionComplete(hist);
   const readingDone = getReadingMissionCount(hist) >= 1;
+  const dictationDone = isTingxieMissionComplete();
+  const allDone = lessonDone && readingDone && dictationDone;
 
   function startReadingMission() {
     const chosen = shuffle(READING_MISSION_CATEGORIES).slice(0, 2);
@@ -54,7 +57,26 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
           </span>
           <span className="mission-status">{readingDone ? "✓ 今日已完成 Done today" : "点击开始 Tap to start"}</span>
         </button>
+        <button
+          className={"mission-row" + (dictationDone ? " mission-row-done" : "")}
+          onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}
+        >
+          <span className="mission-icon">🔊</span>
+          <span className="mission-info">
+            <span className="mission-label">
+              听写练习
+              <span className="en">Dictation Lesson</span>
+            </span>
+          </span>
+          <span className="mission-status">{dictationDone ? "✓ 今日已完成 Done today" : "点击开始 Tap to start"}</span>
+        </button>
       </div>
+
+      {allDone && (
+        <div className="mission-bonus-banner">
+          🎉 三项任务全部完成！All 3 missions done today! <span className="bp-pop">+{MISSION_COMPLETE_BONUS_BP} BP</span>
+        </div>
+      )}
     </div>
   );
 }

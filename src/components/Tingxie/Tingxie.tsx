@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { usePet } from "../../state/PetContext";
+import { stopSpeaking } from "../../lib/speech";
 import { TingxieProvider, useTingxieState, useTingxieDispatch } from "./tingxieState";
 import { LessonSelect } from "./LessonSelect";
 import { TingxiePicker } from "./TingxiePicker";
@@ -15,6 +17,15 @@ function TingxieShell() {
 
   const inActivity = state.view === "learn" || state.view === "apply" || state.view === "practice";
   const showTabs = inActivity && state.activeContent !== null;
+
+  // Stop any in-progress "🔊 朗读 Listen" reading whenever the student
+  // switches view/tab/lesson, or leaves Tingxie mode entirely (unmount) --
+  // same lingering-speech bug as Quiz.tsx's dictation button, fixed the
+  // same way here for every one of Tingxie's speakText() call sites at once.
+  useEffect(() => {
+    stopSpeaking();
+    return stopSpeaking;
+  }, [state.view, state.subTab, state.activeContent]);
 
   function handleBack() {
     if (inActivity) dispatch({ type: "GO_SELECT" });

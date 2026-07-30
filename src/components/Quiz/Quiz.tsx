@@ -4,7 +4,7 @@ import { usePet } from "../../state/PetContext";
 import { BP_AWARD } from "../../data/pet";
 import { RichText } from "../../lib/richText";
 import { Sound } from "../../lib/sound";
-import { speakText } from "../../lib/speech";
+import { speakText, stopSpeaking } from "../../lib/speech";
 import { ConfirmModal } from "../common/Modal";
 import { gradeGroup, correctOptionFor } from "../../lib/grading";
 import type { AnswerMap } from "../../lib/grading";
@@ -39,6 +39,16 @@ export function Quiz() {
   // Cancel any pending auto-advance if the student navigates away mid-timer.
   useEffect(() => clearAutoAdvance, []);
 
+  // Stop any in-progress read-aloud the moment the student leaves this group
+  // (submitting moves them from question to feedback; NEXT_GROUP moves them
+  // to a new question entirely) -- otherwise a reading started via the 🔊
+  // button keeps playing over content the student has already moved past.
+  // Also stops it if the student leaves Quiz entirely (unmount).
+  useEffect(() => {
+    stopSpeaking();
+    return stopSpeaking;
+  }, [state.groupIndex]);
+
   // Defensive fallback matching the old renderQuiz()'s `if (!group) return renderResult()`.
   useEffect(() => {
     if (!group) dispatch({ type: "GO_TO_SCREEN", screen: "result" });
@@ -61,6 +71,7 @@ export function Quiz() {
   }
 
   function handleSubmit() {
+    stopSpeaking();
     const items = gradeGroup(group, answers);
     let dingCount = 0;
     items.forEach((item, idx) => {

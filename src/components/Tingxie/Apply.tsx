@@ -4,6 +4,9 @@ import { TINGXIE_BP_AWARD } from "../../data/pet";
 import { buildTingxieApplyQueue } from "../../data/tingxie";
 import { speakText } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
+import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
+import { checkAndAwardMissionBonus } from "../../state/achievements";
+import { loadHistory } from "../../state/history";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 import { TingxieFlipCard } from "./TingxieFlipCard";
 
@@ -28,6 +31,8 @@ export function Apply() {
       awardedRef.current = true;
       awardBP(TINGXIE_BP_AWARD.APPLY);
       Sound.gift();
+      recordTingxieActivityCompleted();
+      checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
   }, [state.applyComplete, hasBankEntries, awardBP]);
 

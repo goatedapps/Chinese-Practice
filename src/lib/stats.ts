@@ -1,4 +1,5 @@
 import type { HistoryEntry } from "../data/types";
+import { getTingxieLastCompletedAt } from "../state/tingxieProgress";
 
 // Local-calendar-day key (not raw ms division, which breaks around DST) --
 // used to bucket HistoryEntry.date (a local-clock Date.now() timestamp,
@@ -60,8 +61,13 @@ export function getReadingMissionCount(hist: HistoryEntry[]): number {
   return count;
 }
 
+export function isTingxieMissionComplete(): boolean {
+  const last = getTingxieLastCompletedAt();
+  return last !== null && dateKey(last) === dateKey(Date.now());
+}
+
 export function areAllMissionsComplete(hist: HistoryEntry[]): boolean {
-  return isLessonMissionComplete(hist) && getReadingMissionCount(hist) >= 1;
+  return isLessonMissionComplete(hist) && getReadingMissionCount(hist) >= 1 && isTingxieMissionComplete();
 }
 
 // Short bilingual "time ago" for the achievements feed (e.g. "2小时前 2h ago").
