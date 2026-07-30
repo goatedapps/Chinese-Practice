@@ -22,8 +22,9 @@ export function Bag() {
       <button className="back-btn" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "owl" })}>
         ← 返回 Back
       </button>
-      <h1>道具袋 My Bag</h1>
+      <h1>{`喂食 Feed ${pet.name || "它"}`}</h1>
       <OwlArt ref={owlRef} stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" />
+      <h2>道具袋 My Bag</h2>
 
       {entries.length === 0 ? (
         <div className="bag-empty">

@@ -10,7 +10,8 @@ export function Shop() {
   const dispatch = useAppDispatch();
   const { pet } = usePet();
   const bagIconRef = useRef<HTMLSpanElement>(null);
-  const bagCount = Object.values(pet.inventory).reduce((sum, n) => sum + n, 0);
+  const bagEntries = Object.entries(pet.inventory).filter(([, qty]) => qty > 0);
+  const bagCount = bagEntries.reduce((sum, [, qty]) => sum + qty, 0);
 
   return (
     <div className="screen shop-screen">
@@ -24,6 +25,29 @@ export function Shop() {
           🎒 {bagCount}
         </span>
       </p>
+
+      {bagEntries.length > 0 && (
+        <>
+          <h2>道具袋 My Bag</h2>
+          <div className="bag-grid">
+            {bagEntries.map(([itemId, qty]) => {
+              const item = SHOP_ITEMS.find((i) => i.id === itemId);
+              if (!item) return null;
+              const emoji = item.label.split(" ")[0];
+              const label = item.label.slice(emoji.length).trim();
+              return (
+                <div key={itemId} className="bag-item-card">
+                  <div className="bag-item-emoji">{emoji}</div>
+                  <div className="bag-item-label">{label}</div>
+                  <div className="bag-item-qty">x{qty}</div>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
+
+      <h2>购买道具 Items for Sale</h2>
       <div className="shop-grid">
         {SHOP_ITEMS.map((item) => (
           <ShopItemCard key={item.id} item={item} bagIconRef={bagIconRef} />

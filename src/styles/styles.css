@@ -608,6 +608,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 
 .bag-screen { text-align: center; }
+.bag-screen .action-row { justify-content: center; }
 .bag-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 14px; margin-top: 20px; text-align: center;
