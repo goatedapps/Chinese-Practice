@@ -617,7 +617,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "NH-Q7", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [2], passage: null,
     questions: [{ qNo: "Q7", marks: 2, format: "MCQ",
-        text: "他把事情的经过说得很 详细 。（选出与画线词语意思最接近的选项）",
+        text: "他把事情的经过说得很__详细__。（选出与画线词语意思最接近的选项）",
         options: [{ key: "1", text: "十分清楚" }, { key: "2", text: "内容正确" }, { key: "3", text: "非常细心" }, { key: "4", text: "说话温柔" }],
         correctKey: "1",
         answerSource: "official"
@@ -626,7 +626,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "NH-Q8", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [2], passage: null,
     questions: [{ qNo: "Q8", marks: 2, format: "MCQ",
-        text: "文康突然生病了，欢欢 代替 他参加比赛。（选出与画线词语意思最接近的选项）",
+        text: "文康突然生病了，欢欢__代替__他参加比赛。（选出与画线词语意思最接近的选项）",
         options: [{ key: "1", text: "做原本另一个人要做的事" }, { key: "2", text: "和另一个人一起做一件事" }, { key: "3", text: "把事情交给另一个人去做" }, { key: "4", text: "请另一个人帮忙自己做事" }],
         correctKey: "1",
         answerSource: "official"
@@ -1131,7 +1131,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "ACSJ-Q7", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [3], passage: null,
     questions: [{ qNo: "Q7", marks: 2, format: "MCQ",
-        text: "轮到妹妹表演了，她 胸有成竹 地走上了舞台。 (选出与画线词语意思最接近的选项)",
+        text: "轮到妹妹表演了，她__胸有成竹__地走上了舞台。 (选出与画线词语意思最接近的选项)",
         options: [{ key: "1", text: "非常自信" }, { key: "2", text: "十分自豪" }, { key: "3", text: "无比激动" }, { key: "4", text: "特别开心" }],
         correctKey: "1",
         answerSource: "official"
@@ -1140,7 +1140,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "ACSJ-Q8", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [3], passage: null,
     questions: [{ qNo: "Q8", marks: 2, format: "MCQ",
-        text: "哥哥最近 沉迷 于电脑游戏，常常不做功课。 (选出与画线词语意思最接近的选项)",
+        text: "哥哥最近__沉迷__于电脑游戏，常常不做功课。 (选出与画线词语意思最接近的选项)",
         options: [{ key: "1", text: "舍不得离开" }, { key: "2", text: "认真地完成" }, { key: "3", text: "非常用心做" }, { key: "4", text: "对事物上瘾" }],
         correctKey: "4",
         answerSource: "official"
@@ -1470,7 +1470,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "HP-Q7", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [4], passage: null,
     questions: [{ qNo: "Q7", marks: 2, format: "MCQ",
-        text: "运动对我们的健康有很大的 作用 。 (选出与画线词语意思最接近的选项)",
+        text: "运动对我们的健康有很大的__作用__。 (选出与画线词语意思最接近的选项)",
         options: [{ key: "1", text: "对人或事物产生影响" }, { key: "2", text: "事件发生的最后结果" }, { key: "3", text: "整件事情是如何发生" }, { key: "4", text: "让每个人有不同看法" }],
         correctKey: "1",
         answerSource: "official"
@@ -1479,7 +1479,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "HP-Q8", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [4], passage: null,
     questions: [{ qNo: "Q8", marks: 2, format: "MCQ",
-        text: "明华 积极 参加学校举办的各种活动。 (选出与画线词语意思最接近的选项)",
+        text: "明华__积极__参加学校举办的各种活动。 (选出与画线词语意思最接近的选项)",
         options: [{ key: "1", text: "心中有着非常强烈的感觉" }, { key: "2", text: "自己相信自己能够做得到" }, { key: "3", text: "表现出热心和努力的行为" }, { key: "4", text: "做事只顾自己而不顾别人" }],
         correctKey: "3",
         answerSource: "official"
@@ -1809,7 +1809,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "MB-Q7", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [5], passage: null,
     questions: [{ qNo: "Q7", marks: 2, format: "MCQ",
-        text: "有了家人们的鼓励，小丽很快就 恢复 了自信。 (选出与画线词语意思最接近的选项)",
+        text: "有了家人们的鼓励，小丽很快就__恢复__了自信。 (选出与画线词语意思最接近的选项)",
         options: [{ key: "1", text: "变成原来的样子" }, { key: "2", text: "变成更好的样子" }, { key: "3", text: "变成更差的样子" }, { key: "4", text: "变成以后的样子" }],
         correctKey: "1",
         answerSource: "official"
@@ -1818,7 +1818,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "MB-Q8", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [5], passage: null,
     questions: [{ qNo: "Q8", marks: 2, format: "MCQ",
-        text: "战斗机从空中飞过， 一眨眼 就不见了。 (选出与画线词语意思最接近的选项)",
+        text: "战斗机从空中飞过，__一眨眼__就不见了。 (选出与画线词语意思最接近的选项)",
         options: [{ key: "1", text: "动作迅速" }, { key: "2", text: "睁大眼睛" }, { key: "3", text: "感到惊讶" }, { key: "4", text: "时间很短" }],
         correctKey: "4",
         answerSource: "official"
@@ -2148,7 +2148,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "NY-Q7", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [6], passage: null,
     questions: [{ qNo: "Q7", marks: 2, format: "MCQ",
-        text: "如果你们在 宽阔 的操场上踢球，就不会发生意外了。 (选出与画线词语意思最接近的选项)",
+        text: "如果你们在__宽阔__的操场上踢球，就不会发生意外了。 (选出与画线词语意思最接近的选项)",
         options: [{ key: "1", text: "空间很大" }, { key: "2", text: "数量变多" }, { key: "3", text: "连续不断" }, { key: "4", text: "没有限制" }],
         correctKey: "1",
         answerSource: "official"
@@ -2157,7 +2157,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "NY-Q8", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [6], passage: null,
     questions: [{ qNo: "Q8", marks: 2, format: "MCQ",
-        text: "为了参加全国讲故事比赛，同学们都 积极 训练。 (选出与画线词语意思最接近的选项)",
+        text: "为了参加全国讲故事比赛，同学们都__积极__训练。 (选出与画线词语意思最接近的选项)",
         options: [{ key: "1", text: "快速地解决问题" }, { key: "2", text: "耐心地完成任务" }, { key: "3", text: "努力把事情做好" }, { key: "4", text: "认真考取好成绩" }],
         correctKey: "3",
         answerSource: "official"
@@ -2493,7 +2493,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "RG-Q7", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [7], passage: null,
     questions: [{ qNo: "Q7", marks: 2, format: "MCQ",
-        text: "能和同学一起参加比赛，真是个 宝贵 的机会！ (选出与画线词语意思最接近的选项)",
+        text: "能和同学一起参加比赛，真是个__宝贵__的机会！ (选出与画线词语意思最接近的选项)",
         options: [{ key: "1", text: "非常精彩，大家都爱看" }, { key: "2", text: "非常美丽，有很多颜色" }, { key: "3", text: "非常充足，完全没缺少" }, { key: "4", text: "非常重要，不容易得到" }],
         correctKey: "4",
         answerSource: "official"
@@ -2502,7 +2502,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "RG-Q8", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [7], passage: null,
     questions: [{ qNo: "Q8", marks: 2, format: "MCQ",
-        text: "妈妈每天在我耳边 唠叨 ，要我早点儿上床睡觉。 (选出与画线词语意思最接近的选项)",
+        text: "妈妈每天在我耳边__唠叨__，要我早点儿上床睡觉。 (选出与画线词语意思最接近的选项)",
         options: [{ key: "1", text: "只说不重要的话" }, { key: "2", text: "说话慢又很小声" }, { key: "3", text: "一直说同样的话" }, { key: "4", text: "喜欢说很多谎话" }],
         correctKey: "3",
         answerSource: "official"
@@ -2832,7 +2832,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "RS-Q7", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [8], passage: null,
     questions: [{ qNo: "Q7", marks: 2, format: "MCQ",
-        text: "大概 二十分钟，我就能做完功课。 (选出与画线词语意思最接近的选项)",
+        text: "__大概__二十分钟，我就能做完功课。 (选出与画线词语意思最接近的选项)",
         options: [{ key: "1", text: "只要" }, { key: "2", text: "超过" }, { key: "3", text: "不多过" }, { key: "4", text: "差不多" }],
         correctKey: "4",
         answerSource: "official"
@@ -2841,7 +2841,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "RS-Q8", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [8], passage: null,
     questions: [{ qNo: "Q8", marks: 2, format: "MCQ",
-        text: "虽然她的生活过得并不好，但对朋友却总是很 慷慨 。 (选出与画线词语意思最接近的选项)",
+        text: "虽然她的生活过得并不好，但对朋友却总是很__慷慨__。 (选出与画线词语意思最接近的选项)",
         options: [{ key: "1", text: "幽默有趣" }, { key: "2", text: "温柔善良" }, { key: "3", text: "诚实友善" }, { key: "4", text: "乐于分享" }],
         correctKey: "4",
         answerSource: "official"
@@ -3172,7 +3172,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "RO-Q7", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [9], passage: null,
     questions: [{ qNo: "Q7", marks: 2, format: "MCQ",
-        text: "我 阻拦 他把水瓶丢下楼，因为这样做不安全。 (选出与画线词语意思最接近的选项)",
+        text: "我__阻拦__他把水瓶丢下楼，因为这样做不安全。 (选出与画线词语意思最接近的选项)",
         options: [{ key: "1", text: "帮助别人做事情" }, { key: "2", text: "勇敢地面对问题" }, { key: "3", text: "不让一些事情发生" }, { key: "4", text: "让人感到不好意思" }],
         correctKey: "3",
         answerSource: "official"
@@ -3181,7 +3181,7 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
   { groupId: "RO-Q8", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
     lessonEligible: true, lessonIds: [9], passage: null,
     questions: [{ qNo: "Q8", marks: 2, format: "MCQ",
-        text: "弟弟刚开始学踢足球，他只会一些 基本 知识。 (选出与画线词语意思最接近的选项)",
+        text: "弟弟刚开始学踢足球，他只会一些__基本__知识。 (选出与画线词语意思最接近的选项)",
         options: [{ key: "1", text: "简单的" }, { key: "2", text: "专心的" }, { key: "3", text: "好玩的" }, { key: "4", text: "认真的" }],
         correctKey: "1",
         answerSource: "official"
