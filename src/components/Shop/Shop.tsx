@@ -80,7 +80,7 @@ function ShopItemCard({ item, bagIconRef }: ShopItemCardProps) {
   return (
     <div ref={cardRef} className={"shop-item-card" + (affordable ? "" : " shop-item-disabled")}>
       <div className="shop-item-label">{item.label}</div>
-      <div className="shop-item-stats">{`成长 +${item.growth}　心情 +${item.mood}`}</div>
+      <div className="shop-item-stats">{`🌱 成长 +${item.growth}　🍚 饱食度 +${item.mood}`}</div>
       <button className="secondary-btn shop-item-buy" disabled={!affordable} onClick={handleBuy}>
         💡 {item.cost} BP
       </button>

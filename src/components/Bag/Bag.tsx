@@ -86,6 +86,7 @@ function BagItemCard({ item, qty, owlRef, onGive }: BagItemCardProps) {
       <div className="bag-item-emoji">{emoji}</div>
       <div className="bag-item-label">{label}</div>
       <div className="bag-item-qty">x{qty}</div>
+      <div className="shop-item-stats">{`🌱 成长 +${item.growth}　🍚 饱食度 +${item.mood}`}</div>
       <button className="secondary-btn bag-item-give" disabled={giving} onClick={handleClick}>
         🎁 送给它 Give
       </button>

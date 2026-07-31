@@ -153,8 +153,21 @@ export const Sound = {
   // Starts the looping background track on the app's first click (see
   // App.tsx) and is a no-op on every call after that -- idempotent, so it's
   // safe to call from a listener that fires on every click for the entire
-  // page session, not just the first.
+  // page session, not just the first. Also used to resume playback after a
+  // pauseBackgroundMusic() call (e.g. the tab becoming visible again) --
+  // resuming an <audio> element that already played once doesn't need a
+  // fresh user gesture, so this just works.
   startBackgroundMusic(): void {
     playBackgroundMusic();
+  },
+  // Pauses the background track without resetting its position, e.g. when
+  // the tab is hidden/backgrounded (see App.tsx's visibilitychange
+  // listener) -- startBackgroundMusic() resumes from the same spot.
+  pauseBackgroundMusic(): void {
+    try {
+      bgMusic?.pause();
+    } catch {
+      // ignore
+    }
   }
 };

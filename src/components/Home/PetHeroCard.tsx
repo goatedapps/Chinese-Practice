@@ -26,7 +26,9 @@ export function PetHeroCard() {
   const growthPct = next
     ? Math.round(((pet.growth - stage.minGrowth) / (next.minGrowth - stage.minGrowth)) * 100)
     : 100;
-  const hunger = Math.round(100 - mood);
+  // Matches the Owl/Bag screens' hunger bar (PetStatBars): the bar fills as
+  // the pet gets *more* satiated, same as mood itself -- not inverted.
+  const hunger = Math.round(mood);
 
   return (
     <button className="dash-card pet-hero-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "owl" })}>
@@ -55,11 +57,11 @@ export function PetHeroCard() {
           </div>
           <div className="pet-hero-bar-row">
             <div className="pet-hero-bar-label">
-              <span>饥饿 Hunger</span>
-              <b>{hunger}%</b>
+              <span>🍚 饱食度 Hunger</span>
+              <b>{hunger}/100</b>
             </div>
-            <div className="hunger-bar">
-              <div className="hunger-bar-fill" style={{ width: `${hunger}%` }} />
+            <div className="mood-bar">
+              <div className="mood-bar-fill" style={{ width: `${hunger}%` }} />
             </div>
           </div>
         </div>

@@ -66,6 +66,19 @@ export default function App() {
     return () => document.removeEventListener("click", handleClick, true);
   }, []);
 
+  useEffect(() => {
+    // Pause the background track while the tab is hidden/backgrounded (tab
+    // switch, minimize, switching to another app) and resume it when the
+    // student comes back -- otherwise it keeps looping in a tab nobody's
+    // looking at.
+    function handleVisibilityChange() {
+      if (document.hidden) Sound.pauseBackgroundMusic();
+      else Sound.startBackgroundMusic();
+    }
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, []);
+
   return (
     <AppStateProvider>
       <PetProvider>
