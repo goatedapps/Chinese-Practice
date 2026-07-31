@@ -12,7 +12,7 @@
    ========================================================= */
 import type { Category, MCQOption, QuestionGroup } from "./types";
 
-export const LESSON_COUNT: number = 9;
+export const LESSON_COUNT: number = 12;
 
 // Coarse categories used for the "practice by type" picker.
 // lessonMode:true  -> single-sentence items, eligible for "practice by lesson"
@@ -3816,6 +3816,1375 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
         answerSource: "official",
         notes: "前半部分（道理）为短文中可归纳的固定要点，后半部分（生活例子）为学生个人开放式作答，本答案仅为示例。"
       }
+    ]
+  },
+
+/* =========================================================
+   TAO NAN SCHOOL -- Chinese (华文), Paper 2 (学校数据 / school data)
+   ========================================================= */
+
+  { groupId: "TN-Q1", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q1", marks: 2, format: "MCQ",
+      text: "书法课程的报名__截止__日期快到了，妈妈要我赶快报名。（选出画线词语的汉语拼音）",
+      options: [{key:"1",text:"jiē zì"},{key:"2",text:"jié zhǐ"},{key:"3",text:"qiē zì"},{key:"4",text:"qié zhǐ"}],
+      correctKey: "2", answerSource: "official" }] },
+
+  { groupId: "TN-Q2", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q2", marks: 2, format: "MCQ",
+      text: "鱼尾狮公园是新加坡__著名__的景点之一。（选出画线词语的汉语拼音）",
+      options: [{key:"1",text:"chù mín"},{key:"2",text:"chù míng"},{key:"3",text:"zhù mín"},{key:"4",text:"zhù míng"}],
+      correctKey: "4", answerSource: "official" }] },
+
+  { groupId: "TN-Q3", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "vocab",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q3", marks: 2, format: "MCQ", text: "同学们纷纷举手，表 ___ 要去老人院做义工。",
+      options: [{key:"1",text:"事"},{key:"2",text:"视"},{key:"3",text:"示"},{key:"4",text:"市"}],
+      correctKey: "3", answerSource: "official" }] },
+
+  { groupId: "TN-Q4", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "vocab",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q4", marks: 2, format: "MCQ", text: "这道菜需要用大火快速 ___ 熟，才会更美味。",
+      options: [{key:"1",text:"抄"},{key:"2",text:"吵"},{key:"3",text:"钞"},{key:"4",text:"炒"}],
+      correctKey: "4", answerSource: "official" }] },
+
+  { groupId: "TN-Q5", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "vocab",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q5", marks: 2, format: "MCQ", text: "同学们听到老师宣布的好消息，___ 地欢呼起来。",
+      options: [{key:"1",text:"幸福"},{key:"2",text:"温柔"},{key:"3",text:"激动"},{key:"4",text:"惊奇"}],
+      correctKey: "3", answerSource: "official" }] },
+
+  { groupId: "TN-Q6", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "vocab",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q6", marks: 2, format: "MCQ", text: "知道小丽这次考试没考好，我立刻上前 ___ 她。",
+      options: [{key:"1",text:"谈论"},{key:"2",text:"爱惜"},{key:"3",text:"认识"},{key:"4",text:"安慰"}],
+      correctKey: "4", answerSource: "official" }] },
+
+  { groupId: "TN-Q7", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q7", marks: 2, format: "MCQ",
+      text: "爬山队__大概__还需要一天的时间才能登上山顶。（选出与画线词语意思最接近的选项）",
+      options: [{key:"1",text:"差不多"},{key:"2",text:"不太可能"},{key:"3",text:"完全一样"},{key:"4",text:"比想象的多"}],
+      correctKey: "1", answerSource: "official" }] },
+
+  { groupId: "TN-Q8", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q8", marks: 2, format: "MCQ",
+      text: "海洋馆里的导览员向大家__详细__地介绍了各种鲸鱼的特点。（选出与画线词语意思最接近的选项）",
+      options: [{key:"1",text:"简单、容易"},{key:"2",text:"完整、清楚"},{key:"3",text:"认真、专心"},{key:"4",text:"热情、积极"}],
+      correctKey: "2", answerSource: "official" }] },
+
+  { groupId: "TN-Q9", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "conjunction",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q9", marks: 2, format: "MCQ", text: "大家齐心协力，___ 能顺利完成任务。",
+      options: [{key:"1",text:"只要……就……"},{key:"2",text:"不仅……也……"},{key:"3",text:"凡是……都……"},{key:"4",text:"尽管……还……"}],
+      correctKey: "1", answerSource: "official" }] },
+
+  { groupId: "TN-Q10", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "conjunction",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q10", marks: 2, format: "MCQ", text: "这本书 ___ 内容丰富，___ 图案漂亮，适合学生们阅读。",
+      options: [{key:"1",text:"由于……因此……"},{key:"2",text:"不但……而且……"},{key:"3",text:"因为……所以……"},{key:"4",text:"虽然……但是……"}],
+      correctKey: "2", answerSource: "official" }] },
+
+  { groupId: "TN-Q11", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "sentence",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q11", marks: 2, format: "MCQ", text: "___________ ，身体比较瘦弱。",
+      options: [{key:"1",text:"他长期缺少营养"},{key:"2",text:"他每天早睡早起"},{key:"3",text:"他平时工作轻松"},{key:"4",text:"他经常练习游泳"}],
+      correctKey: "1", answerSource: "official" }] },
+
+  { groupId: "TN-Q12", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "sentence",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q12", marks: 2, format: "MCQ", text: "班长发现自己做错了事，___________ 。",
+      options: [{key:"1",text:"感动得说不出话来"},{key:"2",text:"勇敢地向老师道歉"},{key:"3",text:"心中感到无比骄傲"},{key:"4",text:"赢得了大家的掌声"}],
+      correctKey: "2", answerSource: "official" }] },
+
+  { groupId: "TN-Q13", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "usage",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q13", marks: 2, format: "MCQ", text: "以下哪一个句子是正确的？（词语：烦恼）",
+      options: [
+        {key:"1",text:"小文的脸上长了几颗青春痘，令她十分烦恼。"},
+        {key:"2",text:"弟弟总是自己的事情自己做，不喜欢烦恼别人。"},
+        {key:"3",text:"烦恼你再多等一下，我保证很快完成这项工作。"},
+        {key:"4",text:"阴沉沉的天气让他心情烦恼，整个人无精打采的。"}],
+      correctKey: "1", answerSource: "official" }] },
+
+  { groupId: "TN-Q14", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "usage",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q14", marks: 2, format: "MCQ", text: "以下哪一个句子是正确的？（词语：恢复）",
+      options: [
+        {key:"1",text:"华文测验快到了，我每天都恢复到半夜。"},
+        {key:"2",text:"我一收到林老师的邮件，就赶紧恢复她。"},
+        {key:"3",text:"经过半年的努力，哥哥终于恢复了自信。"},
+        {key:"4",text:"我改掉了坏习惯，不再恢复同样的行为。"}],
+      correctKey: "3", answerSource: "official" }] },
+
+  { groupId: "TN-Q15", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "usage",
+    lessonEligible: true, lessonIds: [10], passage: null,
+    questions: [{ qNo: "Q15", marks: 2, format: "MCQ", text: "以下哪一个句子是正确的？（词语：保持）",
+      options: [
+        {key:"1",text:"爸爸保持我参加比赛，我决定不让他失望。"},
+        {key:"2",text:"管理员提醒我，在图书馆里必须保持安静。"},
+        {key:"3",text:"老师指定我做班长，负责保持班上的秩序。"},
+        {key:"4",text:"哥哥每天保持写作，作文成绩进步了许多。"}],
+      correctKey: "2", answerSource: "official" }] },
+
+  {
+    groupId: "TN-G1", subject: "Chinese", paper: "Paper 2", section: "二 短文填空",
+    category: "cloze", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "外婆的红烧排骨", source: "Tao Nan School, 2025 P5 EOY",
+      text: "今天是个特别的日子，因为住在马来西亚的外婆要来我家！一想到又能吃外婆做的红烧排骨，我的心里感到很 [Q16]___。\n\n"
+        + "记得去年假期，妈妈带着我去外婆家玩。刚进门，我就闻到一阵香味。我 [Q17]___ 地跑到厨房，看见外婆正在做饭。外婆看见我，"
+        + "微笑着对我说：“饿了吧？马上就能吃饭了。”我站在一旁，看外婆翻着锅里的排骨。突然，热油喷到了她的手上，她却一点也不在意，"
+        + "[Q18]___ 做饭。“外婆，疼不疼？”我担心地问。“没事没事，”外婆摇摇头，“你爱吃就行。”终于，红烧排骨出锅了！外婆把排骨夹"
+        + "到我的碗里。我立刻 [Q19]___ 地吃了起来，这是世界上最好吃的味道！\n\n"
+        + "现在，每当吃红烧排骨时，我的脑海里就会 [Q20]___ 外婆在厨房忙着做饭的身影。我想对外婆说：“谢谢您，您辛苦了！”"
+    },
+    questions: [
+      { qNo: "Q16", marks: 2, format: "MCQ", text: "一想到又能吃外婆做的红烧排骨，我的心里感到很 ___ 。",
+        options: [{key:"1",text:"充实"},{key:"2",text:"新鲜"},{key:"3",text:"精彩"},{key:"4",text:"温暖"}],
+        correctKey: "4", answerSource: "official" },
+      { qNo: "Q17", marks: 2, format: "MCQ", text: "刚进门，我就闻到一阵香味。我 ___ 地跑到厨房。",
+        options: [{key:"1",text:"一眨眼"},{key:"2",text:"转眼间"},{key:"3",text:"恨不得"},{key:"4",text:"一溜烟"}],
+        correctKey: "4", answerSource: "official" },
+      { qNo: "Q18", marks: 2, format: "MCQ", text: "热油喷到了她的手上，她却一点也不在意，___ 做饭。",
+        options: [{key:"1",text:"连忙"},{key:"2",text:"继续"},{key:"3",text:"开始"},{key:"4",text:"尽早"}],
+        correctKey: "2", answerSource: "official" },
+      { qNo: "Q19", marks: 2, format: "MCQ", text: "我立刻 ___ 地吃了起来，这是世界上最好吃的味道！",
+        options: [{key:"1",text:"七嘴八舌"},{key:"2",text:"不约而同"},{key:"3",text:"狼吞虎咽"},{key:"4",text:"争先恐后"}],
+        correctKey: "3", answerSource: "official" },
+      { qNo: "Q20", marks: 2, format: "MCQ", text: "我的脑海里就会 ___ 外婆在厨房忙着做饭的身影。",
+        options: [{key:"1",text:"排列"},{key:"2",text:"浮现"},{key:"3",text:"构成"},{key:"4",text:"产生"}],
+        correctKey: "2", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "TN-G2", subject: "Chinese", paper: "Paper 2", section: "三 阅读理解一",
+    category: "comprehension", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "乐乐的孝心", source: "Tao Nan School, 2025 P5 EOY",
+      text: "小猴子乐乐和它的家人住在森林里。乐乐很好动，喜欢在树上跳来跳去。一有时间，它就会约朋友们到处去玩耍。猴妈妈年纪大了，"
+        + "动作不像以前那么快，但她还是会每天去找最甜的果子给乐乐吃。\n\n"
+        + "一天，森林里刮起了大风，许多树木被吹倒了。猴妈妈摘果子时，不小心摔伤了脚，走不动了。乐乐知道后，心里很难过，决定要为"
+        + "妈妈做点什么。\n\n"
+        + "为了让妈妈有充足的休息，乐乐开始每天早起，独自去树林深处找又大又甜的果子带回家。此外，它也开始学做家务，把家里收拾得"
+        + "整整齐齐，希望让妈妈安心休养。\n\n"
+        + "一天，乐乐出门时，正好遇见小鹿来约它去河边玩，但是乐乐拒绝了。小鹿好奇地问：“乐乐，你最近怎么都不和我们一起玩耍了？”\n\n"
+        + "乐乐停下脚步，解释道：“我妈妈的脚受伤了，我得照顾她。”小鹿听了，说：“乐乐，你真有孝心啊！”这时，在一旁休息的猴妈妈听"
+        + "见了，脸上露出了笑容。\n\n"
+        + "在乐乐细心的照顾下，猴妈妈的脚渐渐好了。她看着懂事的孩子，心里既开心又感动，说：“乐乐，你长大了，我为你感到自豪！”\n\n"
+        + "乐乐明白了：真正的爱，不只是说出来。他学会了用行动去关爱家人。"
+    },
+    questions: [
+      { qNo: "Q21", marks: 2, format: "MCQ", text: "猴妈妈是怎么受伤的？",
+        options: [{key:"1",text:"她在树上跳来跳去。"},{key:"2",text:"她摘果子时弄伤了脚。"},{key:"3",text:"她被大风吹倒摔在地上。"},{key:"4",text:"她不小心在河边跌倒了。"}],
+        correctKey: "2", answerSource: "official" },
+      { qNo: "Q22", marks: 2, format: "MCQ", text: "知道妈妈受伤后，乐乐决定怎么做？",
+        options: [{key:"1",text:"拒绝小鹿来家里玩。"},{key:"2",text:"让自己有充足的休息。"},{key:"3",text:"学习做家务和找食物。"},{key:"4",text:"和朋友们一起出去玩耍。"}],
+        correctKey: "3", answerSource: "official" },
+      { qNo: "Q23", marks: 2, format: "MCQ", text: "小鹿知道了乐乐的情况后，有什么反应？",
+        options: [{key:"1",text:"觉得很好奇。"},{key:"2",text:"夸乐乐有孝心。"},{key:"3",text:"脸上露出了笑容。"},{key:"4",text:"约乐乐去森林里玩。"}],
+        correctKey: "2", answerSource: "official" },
+      { qNo: "Q24", marks: 2, format: "MCQ", text: "猴妈妈既开心又感动的原因是",
+        options: [{key:"1",text:"乐乐变得懂事了。"},{key:"2",text:"乐乐为她感到自豪。"},{key:"3",text:"小鹿把家收拾得很整齐。"},{key:"4",text:"小鹿要她在家里安心休养。"}],
+        correctKey: "1", answerSource: "official" },
+      { qNo: "Q25", marks: 2, format: "MCQ", text: "这个故事告诉我们什么道理？",
+        options: [{key:"1",text:"要学会分工合作。"},{key:"2",text:"出门时要注意安全。"},{key:"3",text:"要通过行动关爱家人。"},{key:"4",text:"朋友之间要互相尊重。"}],
+        correctKey: "3", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "TN-G3", subject: "Chinese", paper: "Paper 2", section: "四 完成对话",
+    category: "dialogue", lessonEligible: false, lessonIds: [],
+    optionBank: [
+      {key:"1",text:"这真是个好主意"},
+      {key:"2",text:"我不会骑脚踏车"},
+      {key:"3",text:"你有什么好建议吗"},
+      {key:"4",text:"你为什么喜欢户外活动"},
+      {key:"5",text:"我们在海边欣赏优美的景色"},
+      {key:"6",text:"我们还会进行有趣的户外活动"},
+      {key:"7",text:"我会跟家人一起去东海岸公园野餐"},
+      {key:"8",text:"还可以让我和家人的感情越来越好"}
+    ],
+    passage: {
+      title: "假期计划", source: "Tao Nan School, 2025 P5 EOY",
+      text: "美美：小明，下周一是公共假期，你想去哪里玩？\n小明：[Q26]___。\n美美：你怎么会想去那儿呢？\n"
+        + "小明：我们好久没去海边了。在海边除了野餐，[Q27]___，比如骑脚踏车、放风筝和堆沙堡等。\n"
+        + "美美：哇！你的活动排得满满的，我却不知道怎么安排那天的时间！[Q28]___？\n"
+        + "小明：听说你买了一辆新的脚踏车，不如你也来和我们一起骑脚踏车吧！\n"
+        + "美美：[Q29]___。到时我去哪里找你们呢？\n小明：下周一下午两点，我在快餐店门口等你，好吗？\n美美：好的，到时候见！"
+    },
+    questions: [
+      { qNo: "Q26", marks: 2, format: "MCQ", text: "小明：___ 。",
+        correctKey: "7", answerSource: "official" },
+      { qNo: "Q27", marks: 2, format: "MCQ", text: "在海边除了野餐，___ ，比如骑脚踏车、放风筝和堆沙堡等。",
+        correctKey: "6", answerSource: "official" },
+      { qNo: "Q28", marks: 2, format: "MCQ", text: "我却不知道怎么安排那天的时间！___ ？",
+        correctKey: "3", answerSource: "official" },
+      { qNo: "Q29", marks: 2, format: "MCQ", text: "美美：___ 。到时我去哪里找你们呢？",
+        correctKey: "1", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "TN-G4", subject: "Chinese", paper: "Paper 2", section: "五 阅读理解二 A组",
+    category: "practical", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "美术周乐趣多", source: "Tao Nan School, 2025 P5 EOY — 应用文/通告",
+      text: "为了让学生们对艺术更有兴趣，欢乐小学将于10月18日至10月22日举办美术周活动！休息时，同学们可以去学校的不同角落参加"
+        + "活动，到时家长也会在场帮助学生制作美术作品。\n\n"
+        + "与往年不同的是，为了鼓励同学们爱护环境，今年所使用的材料都是生活中可回收的物品。每个活动都要自己准备材料。各年级学"
+        + "生的优秀作品会在礼堂展出。希望同学们别错过这个机会，享受艺术带来的乐趣。\n\n"
+        + "活动详情：\n活动一：“欢乐灯笼”—— 用红包袋制作灯笼（地点：食堂 / 文具：胶水）\n"
+        + "活动二：“欢乐水墨画”—— 在旧纸板上画水墨画（地点：图书馆 / 文具：毛笔）\n活动三：“欢乐剪纸”—— 把废纸剪成图案（地点：讲堂 / 文具：剪刀）\n\n"
+        + "学生每参加一个活动，就能得到一张美术周纪念贴纸。获得三张贴纸后，还能换取环保小礼品。小礼品先到先得，送完为止。\n\n"
+        + "想知道更多详情，请上网 www.huanlexiaoxue@school.com 或发电邮给负责人李老师 (lilaoshi@school.com)。"
+    },
+    questions: [
+      { qNo: "Q30", marks: 2, format: "MCQ", text: "学校举办“美术周”活动的目的是什么？",
+        options: [{key:"1",text:"教学生们学习如何画画。"},{key:"2",text:"培养学生们对艺术的兴趣。"},{key:"3",text:"选出学校最优秀的美术作品。"},{key:"4",text:"让学生们用可回收物品制作灯笼。"}],
+        correctKey: "2", answerSource: "official" },
+      { qNo: "Q31", marks: 2, format: "MCQ", text: "参加活动的学生要怎样才能得到纪念贴纸？",
+        options: [{key:"1",text:"获得三个礼品。"},{key:"2",text:"发电邮给李老师。"},{key:"3",text:"完成的作品在礼堂展出。"},{key:"4",text:"参加美术周其中一项活动。"}],
+        correctKey: "4", answerSource: "official" },
+      { qNo: "Q32", marks: 2, format: "MCQ", text: "以下哪一个句子是不正确的？",
+        options: [{key:"1",text:"环保小礼物的数量有限。"},{key:"2",text:"所有的活动都会在讲堂进行。"},{key:"3",text:"“美术周”活动在10月22日结束。"},{key:"4",text:"家长会在现场帮助学生制作美术作品。"}],
+        correctKey: "2", answerSource: "official" },
+      { qNo: "Q33", marks: 4, format: "Writing-Constrained",
+        text: "如果你是五年级学生文华，请你写一张便条给好友思杰，告诉他今年的美术周活动和往年有什么不一样，并约他参加“欢乐剪纸”这个活动，以及提醒他需要准备什么材料。",
+        displayAnswer: "思杰：学校将要举办美术周活动。今年的活动和往年不一样的地方是，今年所使用的材料都是生活中可回收的物品。我想约你参加“欢乐剪纸”这个活动，活动当天，我们必须自己准备废纸。希望你到时可以和我一起去参加这个活动。文华 10月18日下午三点",
+        answerSource: "official",
+        notes: "本题为约束式应用文写作，官方示范答案只是其中一种合理写法，评分以内容要点+表达是否通顺为准，并非唯一标准答案。" }
+    ]
+  },
+
+  {
+    groupId: "TN-G5", subject: "Chinese", paper: "Paper 2", section: "五 阅读理解二 B组",
+    category: "comprehension", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "荧光笔风波", source: "Tao Nan School, 2025 P5 EOY",
+      text: "伟明和小华是同班同学，也是好朋友。他们经常讨论功课，还一起参加课外活动。可是，最近他们却为了一件小事而闹得不愉快。\n\n"
+        + "一天，在数学课上，小华发现新买的荧光笔不见了，那可是他求了很久，爸爸才给他买的。要是爸爸知道荧光笔被弄丢了，一定会"
+        + "很生气。\n\n"
+        + "正当他急得团团转时，突然发现伟明手里握着一支同样的荧光笔。小华气得脸色通红，心想：伟明之前向我借荧光笔，我不愿意。"
+        + "现在他竟然没有得到我的同意就拿走，真是太过分了！\n\n"
+        + "下课后，小华怒气冲冲地找到伟明，大声喊道：“小偷！你还不把笔还给我？”伟明听了，大吃一惊，连忙解释说：“这这不是你的"
+        + "笔，是我昨天刚买的。”小华不相信，一把抢过荧光笔，转身就走。伟明呆住了，一时不知如何是好。\n\n"
+        + "不一会儿，级任老师走进课室，来到了小华身边，说：“小华，昨天你把这支笔留在了电脑室。我当时要叫你回来，但是你已经跑"
+        + "远了。你以后要好好保管自己的东西。”说完，老师把手中的荧光笔递给小华。\n\n"
+        + "小华低头看看手中从伟明那儿抢来的笔，又看看老师刚交还给他的那支，顿时恍然大悟。望着一脸伤心的伟明，他感到十分惭愧，"
+        + "默默地做了一个决定。\n\n"
+        + "放学后，小华马上去找伟明，真诚地对他说：“对不起，是我一时粗心，又太冲动，没弄清楚就怪你偷了我的笔。”伟明听了，说："
+        + "“我早上是真的有点生气，但你肯承认错误，我们就忘了这件事吧！”\n\n"
+        + "从那天起，小华和伟明更加珍惜彼此之间的友情了。"
+    },
+    questions: [
+      { qNo: "Q34", marks: 2, format: "Fill-in", text: "文中形容“表示出乎意料”的词语是：___ 。",
+        accepted: ["竟然"], displayAnswer: "竟然", answerSource: "official" },
+      { qNo: "Q35", marks: 2, format: "Fill-in", text: "文中形容“因对不起别人而内心不安”的词语是：___ 。",
+        accepted: ["惭愧"], displayAnswer: "惭愧", answerSource: "official" },
+      { qNo: "Q36", marks: 3, format: "Long-Answer", text: "为什么小华发现荧光笔不见了后感到很着急？",
+        displayAnswer: "荧光笔是新买的，也是他求了很久，爸爸才给他买的。要是爸爸知道荧光笔被弄丢了，一定会很生气。",
+        answerSource: "official" },
+      { qNo: "Q37", marks: 3, format: "Long-Answer", text: "当小华看到伟明握着一支同样的荧光笔时，他有什么反应？",
+        displayAnswer: "小华气得脸色通红，想到伟明之前向他借荧光笔，他不愿意。现在伟明竟然没有得到他的同意就拿走荧光笔，这样做太过分了。",
+        answerSource: "official" },
+      { qNo: "Q38", marks: 4, format: "Long-Answer", text: "伟明有没有拿小华的荧光笔？从哪里可以看出？",
+        displayAnswer: "伟明没有拿走小华的荧光笔。伟明说荧光笔是自己买的。班主任老师告诉小华他昨天把荧光笔留在电脑室，然后把荧光笔递给小华。",
+        answerSource: "official" },
+      { qNo: "Q39", marks: 4, format: "Long-Answer", text: "文中的小华“默默地做了一个决定”指的是什么？他为什么会做出这个决定？",
+        displayAnswer: "它指的是小华要向伟明道歉，承认自己的错误。小华看到伟明一脸伤心，感到很惭愧，觉得是自己太过冲动，没弄清楚就怪伟明偷了他的笔。",
+        answerSource: "official" },
+      { qNo: "Q40", marks: 4, format: "Long-Answer", text: "如果你是伟明，你会继续跟小华做朋友吗？为什么？",
+        displayAnswer: "如果我是伟明，我会继续跟小华做朋友。小华只是一时冲动，错怪我偷了他的荧光笔，但是他已经向我道歉，并承认了错误。每个人都会犯错，只要知错能改，就值得被原谅。我们是好朋友，友谊比一时的误会更重要，我们不应该为了一件小事而闹得不愉快。",
+        answerSource: "official" }
+    ]
+  },
+
+/* =========================================================
+   RULANG PRIMARY SCHOOL -- Chinese (华文), Paper 2 (学校数据 / school data)
+   ========================================================= */
+
+  { groupId: "RL-Q1", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q1", marks: 2, format: "MCQ",
+      text: "他做事__缺少__耐心。（选出画线词语的汉语拼音）",
+      options: [{key:"1",text:"qiē shǎo"},{key:"2",text:"quē shǎo"},{key:"3",text:"qiē shǎo"},{key:"4",text:"quē shǎo"}],
+      correctKey: "4", answerSource: "official",
+      notes: "原始试卷选项(1)与(3)、(2)与(4)的拼音标注完全相同，怀疑为原始文件/OCR重复错误，暂按官方公布答案(4) quē shǎo 处理，建议对照原始试卷确认四个选项内容。" }] },
+
+  { groupId: "RL-Q2", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q2", marks: 2, format: "MCQ",
+      text: "同学们把桌椅__排列__得整整齐齐。（选出画线词语的汉语拼音）",
+      options: [{key:"1",text:"bái liè"},{key:"2",text:"bài lèi"},{key:"3",text:"pái liè"},{key:"4",text:"pài lèi"}],
+      correctKey: "3", answerSource: "official" }] },
+
+  { groupId: "RL-Q3", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "vocab",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q3", marks: 2, format: "MCQ", text: "这是阿姨旅游时买的 ___ 念品。",
+      options: [{key:"1",text:"纪"},{key:"2",text:"记"},{key:"3",text:"级"},{key:"4",text:"计"}],
+      correctKey: "1", answerSource: "official" }] },
+
+  { groupId: "RL-Q4", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "vocab",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q4", marks: 2, format: "MCQ", text: "今天上课时，老师让同学们做一份小 ___ 试。",
+      options: [{key:"1",text:"则"},{key:"2",text:"厕"},{key:"3",text:"测"},{key:"4",text:"侧"}],
+      correctKey: "3", answerSource: "official" }] },
+
+  { groupId: "RL-Q5", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "vocab",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q5", marks: 2, format: "MCQ", text: "听到这个好消息，姐姐 ___ 得跳了起来。",
+      options: [{key:"1",text:"骄傲"},{key:"2",text:"激动"},{key:"3",text:"满意"},{key:"4",text:"欢呼"}],
+      correctKey: "2", answerSource: "official" }] },
+
+  { groupId: "RL-Q6", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "vocab",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q6", marks: 2, format: "MCQ", text: "林叔叔很 ___ ，常常捐钱给穷苦的人。",
+      options: [{key:"1",text:"幽默"},{key:"2",text:"慷慨"},{key:"3",text:"孝顺"},{key:"4",text:"诚实"}],
+      correctKey: "2", answerSource: "official" }] },
+
+  { groupId: "RL-Q7", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q7", marks: 2, format: "MCQ",
+      text: "__凡是__甜食，妹妹都很喜欢吃。（选出与画线词语意思最接近的选项）",
+      options: [{key:"1",text:"所有；全部"},{key:"2",text:"许多；不少"},{key:"3",text:"大概；大约"},{key:"4",text:"拥有；具有"}],
+      correctKey: "1", answerSource: "official" }] },
+
+  { groupId: "RL-Q8", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q8", marks: 2, format: "MCQ",
+      text: "哥哥正要出门时，__偏偏__下起了大雨。（选出与画线词语意思最接近的选项）",
+      options: [{key:"1",text:"完全没想到的事"},{key:"2",text:"对事情感到惊讶"},{key:"3",text:"事实跟愿望相反"},{key:"4",text:"想不到任何办法"}],
+      correctKey: "3", answerSource: "official" }] },
+
+  { groupId: "RL-Q9", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "conjunction",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q9", marks: 2, format: "MCQ", text: "行人不遵守交通规则，交通 ___ 会受到影响。",
+      options: [{key:"1",text:"假如……就……"},{key:"2",text:"除了……也……"},{key:"3",text:"尽管……还……"},{key:"4",text:"不但……还……"}],
+      correctKey: "1", answerSource: "official" }] },
+
+  { groupId: "RL-Q10", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "conjunction",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q10", marks: 2, format: "MCQ", text: "奶奶问妹妹 ___ 把功课做完了。",
+      options: [{key:"1",text:"是否"},{key:"2",text:"如果"},{key:"3",text:"已经"},{key:"4",text:"只好"}],
+      correctKey: "1", answerSource: "official" }] },
+
+  { groupId: "RL-Q11", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "sentence",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q11", marks: 2, format: "MCQ", text: "___________ ，大家齐心协力地完成任务。",
+      options: [{key:"1",text:"今天天气恶劣"},{key:"2",text:"在野外露营时"},{key:"3",text:"经过这次比赛"},{key:"4",text:"报名截止之前"}],
+      correctKey: "2", answerSource: "official" }] },
+
+  { groupId: "RL-Q12", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "sentence",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q12", marks: 2, format: "MCQ", text: "弟弟知道自己犯了错，___________ 。",
+      options: [{key:"1",text:"不知为什么而生气"},{key:"2",text:"不顾一切地冲过去"},{key:"3",text:"不好意思地低下头"},{key:"4",text:"不管怎么做都不对"}],
+      correctKey: "3", answerSource: "official" }] },
+
+  { groupId: "RL-Q13", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "usage",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q13", marks: 2, format: "MCQ", text: "以下哪一个句子是正确的？（词语：联系）",
+      options: [
+        {key:"1",text:"妈妈一直和她以前的同学保持联系。"},
+        {key:"2",text:"我用绳子把所有的珠子联系在一起。"},
+        {key:"3",text:"他们前几天吵架，联系越来越差了。"},
+        {key:"4",text:"朋友之间好好联系，共同解决问题。"}],
+      correctKey: "1", answerSource: "official" }] },
+
+  { groupId: "RL-Q14", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "usage",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q14", marks: 2, format: "MCQ", text: "以下哪一个句子是正确的？（词语：到底）",
+      options: [
+        {key:"1",text:"他学习很努力，成绩到底很优秀。"},
+        {key:"2",text:"平板电脑很贵，到底是非常好用。"},
+        {key:"3",text:"天气太热了，到底树下阴凉许多。"},
+        {key:"4",text:"没有人知道天上到底有多少星星。"}],
+      correctKey: "4", answerSource: "official" }] },
+
+  { groupId: "RL-Q15", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "usage",
+    lessonEligible: true, lessonIds: [11], passage: null,
+    questions: [{ qNo: "Q15", marks: 2, format: "MCQ", text: "以下哪一个句子是正确的？（词语：七嘴八舌）",
+      options: [
+        {key:"1",text:"分好组后，我们七嘴八舌地开始讨论。"},
+        {key:"2",text:"放学后，我和姐姐七嘴八舌地走回家。"},
+        {key:"3",text:"小丽在演讲时，同学们七嘴八舌地听。"},
+        {key:"4",text:"升旗礼时，同学们七嘴八舌地唱国歌。"}],
+      correctKey: "1", answerSource: "official" }] },
+
+  {
+    groupId: "RL-G1", subject: "Chinese", paper: "Paper 2", section: "二 短文填空",
+    category: "cloze", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "课程辅助活动", source: "Rulang Primary School, 2025 P5 EOY",
+      text: "在学校里，除了上课，同学们还会参加课程辅助活动。这些活动让校园生活变得更 [Q16]___。\n\n"
+        + "参加课程辅助活动，可以让同学们学到很多课本上学不到的东西。喜欢运动的同学，可以加入足球队、篮球队或羽毛球队，在比赛中"
+        + "学会团队合作。喜欢艺术的同学，可以参加合唱团、舞蹈团或美术小组，展示自己的才华。同学们要养成 [Q17]___ 参加训练的好习"
+        + "惯，并在活动中互相帮忙，坚持到最后才会有进步。\n\n"
+        + "[Q18]___，课程辅助活动还让我们有机会认识与自己兴趣和爱好一样的新朋友，和朋友们一起参加活动，既 [Q19]___ 又开心。\n\n"
+        + "课程辅助活动不只是玩乐，它能帮助我们成长。每一位同学都应该 [Q20]___ 参加，从中学习新知识，找到自己的兴趣，让自己变得"
+        + "更棒。"
+    },
+    questions: [
+      { qNo: "Q16", marks: 2, format: "MCQ", text: "这些活动让校园生活变得更 ___ 。",
+        options: [{key:"1",text:"充足"},{key:"2",text:"丰富"},{key:"3",text:"可贵"},{key:"4",text:"有效"}],
+        correctKey: "2", answerSource: "official" },
+      { qNo: "Q17", marks: 2, format: "MCQ", text: "同学们要养成 ___ 参加训练的好习惯。",
+        options: [{key:"1",text:"仔细"},{key:"2",text:"笔直"},{key:"3",text:"准时"},{key:"4",text:"安静"}],
+        correctKey: "3", answerSource: "official" },
+      { qNo: "Q18", marks: 2, format: "MCQ", text: "___ ，课程辅助活动还让我们有机会认识新朋友。",
+        options: [{key:"1",text:"因此"},{key:"2",text:"从此"},{key:"3",text:"此后"},{key:"4",text:"此外"}],
+        correctKey: "4", answerSource: "official" },
+      { qNo: "Q19", marks: 2, format: "MCQ", text: "和朋友们一起参加活动，既 ___ 又开心。",
+        options: [{key:"1",text:"愉快"},{key:"2",text:"顺利"},{key:"3",text:"感恩"},{key:"4",text:"自豪"}],
+        correctKey: "1", answerSource: "official" },
+      { qNo: "Q20", marks: 2, format: "MCQ", text: "每一位同学都应该 ___ 参加，从中学习新知识。",
+        options: [{key:"1",text:"拼命"},{key:"2",text:"故意"},{key:"3",text:"积极"},{key:"4",text:"勇敢"}],
+        correctKey: "3", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "RL-G2", subject: "Chinese", paper: "Paper 2", section: "三 阅读理解一",
+    category: "comprehension", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "孔子教学生", source: "Rulang Primary School, 2025 P5 EOY",
+      text: "孔子是古时候有名的老师，他会根据每个学生的特点，用不同的方法教学生。\n\n"
+        + "有一天，有一个叫子路的学生走到孔子面前，问道：“老师，如果要做好事，比如帮助别人，我是不是应该马上去做，不必多想？”"
+        + "孔子看着子路，点点头说：“当然要马上去做。一个人如果总是思前想后，机会就会溜走。你要立刻行动！”子路听了，眼睛一亮，"
+        + "点了点头。\n\n"
+        + "没过多久，另一个叫然由的学生也来问孔子同样的问题：“老师，如果我要做一件好事，是不是应该马上去做？”孔子却摇摇头，说："
+        + "“你应该先想一想，确保自己不会后悔再去做。”然由听了，认真地点了点头。\n\n"
+        + "孔子身旁的学生好奇地问：“老师，子路和然由问的明明是同一个问题，为什么您的回答不一样呢？”\n\n"
+        + "孔子笑了笑，说：“因为子路做事总是拿不定主意，所以我要鼓励他；然由总是没有想清楚就去做事，所以我要提醒他先想再做。"
+        + "教不同的学生要用不同的方法，这样他们才能各自进步。”学生听了，恍然大悟。"
+    },
+    questions: [
+      { qNo: "Q21", marks: 2, format: "MCQ", text: "子路问孔子什么问题？",
+        options: [{key:"1",text:"应不应该马上帮助别人"},{key:"2",text:"怎样才能不让机会溜走"},{key:"3",text:"如何才能一直被人称赞"},{key:"4",text:"怎样确保自己不会后悔"}],
+        correctKey: "1", answerSource: "official" },
+      { qNo: "Q22", marks: 2, format: "MCQ", text: "文中的子路是一个 ___ 的人",
+        options: [{key:"1",text:"很胆小怕事"},{key:"2",text:"拿不定主意"},{key:"3",text:"喜欢问问题"},{key:"4",text:"要求很严格"}],
+        correctKey: "2", answerSource: "official" },
+      { qNo: "Q23", marks: 2, format: "MCQ", text: "孔子让然由怎么做？",
+        options: [{key:"1",text:"马上去做"},{key:"2",text:"想想再做"},{key:"3",text:"让别人做"},{key:"4",text:"不要去做"}],
+        correctKey: "2", answerSource: "official" },
+      { qNo: "Q24", marks: 2, format: "MCQ", text: "为什么孔子对两个学生的问题回答不一样？",
+        options: [{key:"1",text:"因为他想考一考学生"},{key:"2",text:"因为两个问题不一样"},{key:"3",text:"因为学生的特点不同"},{key:"4",text:"因为他记不清楚答案"}],
+        correctKey: "3", answerSource: "official" },
+      { qNo: "Q25", marks: 2, format: "MCQ", text: "这个故事主要说明了什么道理？",
+        options: [{key:"1",text:"要学会分工合作"},{key:"2",text:"学生要听老师的话"},{key:"3",text:"提问之前要先思考"},{key:"4",text:"根据特点来教学生"}],
+        correctKey: "4", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "RL-G3", subject: "Chinese", paper: "Paper 2", section: "四 完成对话",
+    category: "dialogue", lessonEligible: false, lessonIds: [],
+    optionBank: [
+      {key:"1",text:"坚持是最重要的"},
+      {key:"2",text:"我上了华文补习班"},
+      {key:"3",text:"我每天都会读华文故事书"},
+      {key:"4",text:"听写就是要花很多时间学"},
+      {key:"5",text:"多读故事书就能学到新词语"},
+      {key:"6",text:"故事书上有很多字我都不认识"},
+      {key:"7",text:"我会把好词好句抄在笔记本上"},
+      {key:"8",text:"原来学习华文有这么多方法啊"}
+    ],
+    passage: {
+      title: "学习华文的方法", source: "Rulang Primary School, 2025 P5 EOY",
+      text: "志明：立伟，你的华文成绩越来越好了，你是怎么学华文的？\n立伟：我的方法很简单，[Q26]___。\n"
+        + "志明：读故事书真的有用吗？\n立伟：有用啊！[Q27]___。\n志明：那写作文呢？我常常写不出好词好句。\n"
+        + "立伟：[Q28]___，写作文的时候就可以用上。\n志明：除了作文，我最怕的就是听写和默写。\n"
+        + "立伟：你要多复习。我会把词语写在卡片上，每天睡前都会看一看。\n志明：我明白了，不管用什么方法，[Q29]___！\n"
+        + "立伟：你说得对，只要坚持下去，每天学一点，华文一定会进步的。加油！"
+    },
+    questions: [
+      { qNo: "Q26", marks: 2, format: "MCQ", text: "立伟：我的方法很简单，___ 。",
+        correctKey: "3", answerSource: "official" },
+      { qNo: "Q27", marks: 2, format: "MCQ", text: "立伟：有用啊！___ 。",
+        correctKey: "5", answerSource: "official" },
+      { qNo: "Q28", marks: 2, format: "MCQ", text: "立伟：___ ，写作文的时候就可以用上。",
+        correctKey: "7", answerSource: "official" },
+      { qNo: "Q29", marks: 2, format: "MCQ", text: "志明：我明白了，不管用什么方法，___ ！",
+        correctKey: "1", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "RL-G4", subject: "Chinese", paper: "Paper 2", section: "五 阅读理解二 A组",
+    category: "practical", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "欢乐小学母语双周活动", source: "Rulang Primary School, 2025 P5 EOY — 应用文/通告",
+      text: "为了提高同学们学习母语的兴趣，欢乐小学将于2025年11月10日至11月21日举办母语双周活动。母语部老师们为同学们准备了一"
+        + "系列有趣的活动：\n\n"
+        + "11月10日｜舞台剧欣赏｜龙宫借宝\n11月12日｜母语文化营｜学习表演《聪明的杨修》、《花木兰》等课文\n"
+        + "11月14日｜手工活动｜制作红包灯笼、剪窗花等\n11月19日｜牛车水游学｜一起参观牛车水，学习华族传统文化\n"
+        + "每天的休息时间｜传统游戏玩一玩｜去礼堂猜字谜、下象棋、跳飞机和玩五石子\n\n"
+        + "母语部也将在11月17日的周会时举办“母语歌曲大家唱”团体歌唱比赛，每组至少由两人组成。想要报名的同学请到学校办公室"
+        + "填写报名表格。报名截止日期：11月9日。\n"
+        + "想要知道更多详情的同学，请发电邮到hlpri@moe.edu.sg询问。\n\n欢乐小学母语部\n2025年10月15日"
+    },
+    questions: [
+      { qNo: "Q30", marks: 2, format: "MCQ", text: "欢乐小学举办母语双周活动的目的是什么？",
+        options: [{key:"1",text:"鼓励学生制作手工。"},{key:"2",text:"提高学习母语兴趣。"},{key:"3",text:"邀请学生观看表演。"},{key:"4",text:"教导学生传统文化。"}],
+        correctKey: "2", answerSource: "official" },
+      { qNo: "Q31", marks: 2, format: "MCQ", text: "以下哪一项传统游戏不是在休息时间进行的？",
+        options: [{key:"1",text:"猜字谜。"},{key:"2",text:"五石子。"},{key:"3",text:"跳飞机。"},{key:"4",text:"剪窗花。"}],
+        correctKey: "4", answerSource: "official" },
+      { qNo: "Q32", marks: 2, format: "MCQ", text: "想报名参加歌唱比赛的同学应该怎么做？",
+        options: [{key:"1",text:"向华文老师询问详情。"},{key:"2",text:"去办公室填写报名表。"},{key:"3",text:"发电邮给学校办公室。"},{key:"4",text:"在11月9日后报名。"}],
+        correctKey: "2", answerSource: "official" },
+      { qNo: "Q33", marks: 4, format: "Writing-Constrained",
+        text: "如果你是文心，看了海报后，想和好朋友乐天一起去参加歌唱比赛。请你发短信给乐天，邀请他和你一起去报名参加，告诉他你邀请他的原因与报名方法。",
+        displayAnswer: "乐天，我们学校将在母语双周期间举办“母语歌曲大家唱”比赛。我想邀请你一起报名参加，我邀请你是为了提高你对母语的兴趣。如果你有兴趣，我们可以到学校办公室填写报名表格。我必须在报名截止日期前，11月9日报名。我希望你会和我一起报名。",
+        answerSource: "official",
+        notes: "本题为约束式应用文写作，官方示范答案只是其中一种合理写法，评分以内容要点+表达是否通顺为准，并非唯一标准答案。" }
+    ]
+  },
+
+  {
+    groupId: "RL-G5", subject: "Chinese", paper: "Paper 2", section: "五 阅读理解二 B组",
+    category: "comprehension", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "错怪好友", source: "Rulang Primary School, 2025 P5 EOY",
+      text: "一天上午，我正准备写作业，忽然发现自己最喜欢的笔不见了。我把书包翻了个遍，还是找不到。\n\n"
+        + "这时，我无意间看见同桌小丽的书包口袋里露出了一支和我的一样的笔。小丽曾经说过我的笔既漂亮又好用，一定是她偷偷拿了我"
+        + "的笔！想到这里，一股怒气冲上了我的脑袋。可是，小丽是我最好的朋友，我们总是互相分享彼此喜欢的东西，她怎么会偷我的笔"
+        + "呢？真的是她偷的吗？我不敢去问小丽。\n\n"
+        + "接下来的华文课上，我闷闷不乐，眼睛盯着白板，老师说的话一句也听不进去。小丽悄悄地碰了碰我，小声地问：“你怎么了？身"
+        + "体不舒服吗？”我冷冷地看了她一眼，完全不想理睬她。\n\n"
+        + "下课前，老师把改好的本子发给我们。我一翻开就呆住了——我的笔竟然在作业本里！原来，昨天交作业时，我粗心大意，不小心"
+        + "把笔夹在作业本里一起交给了老师。我的脸一下子红了，回想起自己刚才对小丽的态度，我恨不得挖个地洞钻进去。\n\n"
+        + "放学后，我鼓起勇气走到小丽的面前，低声对她说：“小丽，对不起，是我错怪了你，以为你偷走了我的笔。”\n\n"
+        + "小丽先是瞪大了眼睛，然后露出了笑容。她拍拍我的肩膀，说：“没关系，我们还是好朋友。”那一刻，我心里的大石头落了地，"
+        + "眼睛也有些湿湿的……"
+    },
+    questions: [
+      { qNo: "Q34", marks: 2, format: "Fill-in", text: "文中表示“从前有过那种情况”的词语是：___ 。",
+        accepted: ["曾经"], displayAnswer: "曾经", answerSource: "official" },
+      { qNo: "Q35", marks: 2, format: "Fill-in", text: "文中形容“没想到，出乎意料”的词语是：___ 。",
+        accepted: ["竟然"], displayAnswer: "竟然", answerSource: "official" },
+      { qNo: "Q36", marks: 3, format: "Long-Answer", text: "为什么会一股怒气冲上了“我”的脑袋？",
+        displayAnswer: "因为“我”的最喜欢的笔不见了，“我”看到同桌小丽的书包口袋里露出一支和“我”一样的笔，“我”以为是小丽偷偷拿了“我”的笔，因为小丽曾经说过“我”的笔既漂亮又好用。",
+        answerSource: "official" },
+      { qNo: "Q37", marks: 3, format: "Long-Answer", text: "作者认为是小丽偷了自己的笔，为什么不敢去问她？",
+        displayAnswer: "因为小丽是作者最好的朋友，她们总是互相分享彼此喜欢的东西，作者不相信是小丽偷了她的笔，也不确定是不是小丽偷了她的笔。",
+        answerSource: "official" },
+      { qNo: "Q38", marks: 4, format: "Long-Answer", text: "当作者找到笔时，心里有什么感受？为什么？",
+        displayAnswer: "当作者找到笔时，她的脸一下红了感到不好意思。因为作者以为是她最好的朋友偷了她的笔，而是作者粗心大意，不小心把笔夹在作业本里。作者感到很惊讶和惭愧，因为自己的粗心大意，把笔夹在作业本里交给老师，却怀疑小丽偷了她的笔，对小丽态度不好。",
+        answerSource: "official" },
+      { qNo: "Q39", marks: 4, format: "Long-Answer", text: "文中“我心里的大石头落了地”指的是什么？为什么作者的眼睛湿湿的？",
+        displayAnswer: "它指的是作者放心了，因为小丽原谅了作者。作者错怪小丽偷她的笔，可是小丽还是原谅作者和她做朋友，她感到很感动。",
+        answerSource: "official" },
+      { qNo: "Q40", marks: 4, format: "Long-Answer", text: "小丽还愿意和作者做朋友，你同意她的做法吗？为什么？",
+        displayAnswer: "我同意小丽的做法。因为作者丢了她最喜欢的笔，刚巧小丽有一支和她一样的笔，所以作者误会了。后来，作者意识到自己的错误，主动和小丽道歉，朋友之间不应该因为小事而争吵，应该对彼此宽容理解对方。每个人都会犯错，我们应该给同学一个改过的机会。",
+        answerSource: "official" }
+    ]
+  },
+
+/* =========================================================
+   ST HILDA'S PRIMARY SCHOOL -- Chinese (华文), Paper 2 (学校数据 / school data)
+   ========================================================= */
+
+  { groupId: "SH-Q1", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q1", marks: 2, format: "MCQ",
+      text: "书法是一门__艺术__。（选出画线词语的汉语拼音）",
+      options: [{key:"1",text:"yì běn"},{key:"2",text:"yí běn"},{key:"3",text:"yì shù"},{key:"4",text:"yí shù"}],
+      correctKey: "3", answerSource: "official" }] },
+
+  { groupId: "SH-Q2", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "pinyin",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q2", marks: 2, format: "MCQ",
+      text: "木兰一个女生竟能代替父亲去__打仗__。（选出画线词语的汉语拼音）",
+      options: [{key:"1",text:"dǎ zāng"},{key:"2",text:"dǎ zàng"},{key:"3",text:"dǎ zhāng"},{key:"4",text:"dǎ zhàng"}],
+      correctKey: "4", answerSource: "official" }] },
+
+  { groupId: "SH-Q3", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "vocab",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q3", marks: 2, format: "MCQ", text: "伟文跌倒了，不小心弄伤了 ___ 膀。",
+      options: [{key:"1",text:"腿"},{key:"2",text:"背"},{key:"3",text:"前"},{key:"4",text:"肩"}],
+      correctKey: "4", answerSource: "official" }] },
+
+  { groupId: "SH-Q4", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "vocab",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q4", marks: 2, format: "MCQ", text: "弟弟 ___ 成爸爸的样子骂小狗。",
+      options: [{key:"1",text:"分"},{key:"2",text:"扮"},{key:"3",text:"纷"},{key:"4",text:"份"}],
+      correctKey: "2", answerSource: "official" }] },
+
+  { groupId: "SH-Q5", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "vocab",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q5", marks: 2, format: "MCQ", text: "当我 ___ 不开心的事，都会告诉妈妈。",
+      options: [{key:"1",text:"遇到"},{key:"2",text:"收到"},{key:"3",text:"找到"},{key:"4",text:"赶到"}],
+      correctKey: "1", answerSource: "official" }] },
+
+  { groupId: "SH-Q6", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "vocab",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q6", marks: 2, format: "MCQ", text: "妈妈常教导我们要做 ___ 的人，多帮助别人。",
+      options: [{key:"1",text:"自豪"},{key:"2",text:"认真"},{key:"3",text:"善良"},{key:"4",text:"公平"}],
+      correctKey: "3", answerSource: "official" }] },
+
+  { groupId: "SH-Q7", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q7", marks: 2, format: "MCQ",
+      text: "我们家门前有一条__宽阔__的街道。（选出与画线词语意思最接近的选项）",
+      options: [{key:"1",text:"宽度不大"},{key:"2",text:"盖住或关闭"},{key:"3",text:"曲折；不直"},{key:"4",text:"面积大；不拥挤"}],
+      correctKey: "4", answerSource: "official" }] },
+
+  { groupId: "SH-Q8", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "phrase",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q8", marks: 2, format: "MCQ",
+      text: "这段相声__风趣幽默__，逗得大家哈哈大笑。（选出与画线词语意思最接近的选项）",
+      options: [{key:"1",text:"形容言行有趣或可笑而意味深长"},{key:"2",text:"表示藏起来使不露出的思想情感"},{key:"3",text:"没有声音或存在感非常低的声音"},{key:"4",text:"不用言语表示而内心同意或承认"}],
+      correctKey: "1", answerSource: "official" }] },
+
+  { groupId: "SH-Q9", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "conjunction",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q9", marks: 2, format: "MCQ", text: "他的成绩 ___ 进步很大了，你还批评他。",
+      options: [{key:"1",text:"还没"},{key:"2",text:"不管"},{key:"3",text:"已经"},{key:"4",text:"自从"}],
+      correctKey: "3", answerSource: "official" }] },
+
+  { groupId: "SH-Q10", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "conjunction",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q10", marks: 2, format: "MCQ", text: "___ 一连几天都没下雨，花草容易干枯。",
+      options: [{key:"1",text:"假如……就……"},{key:"2",text:"不但……还……"},{key:"3",text:"即使……也……"},{key:"4",text:"尽管……但……"}],
+      correctKey: "1", answerSource: "official" }] },
+
+  { groupId: "SH-Q11", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "sentence",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q11", marks: 2, format: "MCQ", text: "文文知道自己被选为班长时，___________ 。",
+      options: [{key:"1",text:"生气地看着她"},{key:"2",text:"我感到非常惊喜"},{key:"3",text:"对他感到非常失望"},{key:"4",text:"脸上露出了惊奇的表情"}],
+      correctKey: "4", answerSource: "official" }] },
+
+  { groupId: "SH-Q12", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "sentence",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q12", marks: 2, format: "MCQ", text: "___________ ，我相信她不会动手打人。",
+      options: [{key:"1",text:"因为丽丽经常发脾气"},{key:"2",text:"丽丽平时对人很温柔"},{key:"3",text:"她常对父母表达孝心"},{key:"4",text:"她是个很顽皮的孩子"}],
+      correctKey: "2", answerSource: "official" }] },
+
+  { groupId: "SH-Q13", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "usage",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q13", marks: 2, format: "MCQ", text: "以下哪个句子是正确的？（词语：积极）",
+      options: [
+        {key:"1",text:"我积极帮助妈妈做家务，不需要她提醒。"},
+        {key:"2",text:"表演结束后，舞台下不时传出积极的掌声。"},
+        {key:"3",text:"看到收拾好的房间又乱了，妈妈顿时积极了。"},
+        {key:"4",text:"她对这份工作充满了积极，是她一直以来的梦想。"}],
+      correctKey: "1", answerSource: "official" }] },
+
+  { groupId: "SH-Q14", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "usage",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q14", marks: 2, format: "MCQ", text: "以下哪个句子是正确的？（词语：怀疑）",
+      options: [
+        {key:"1",text:"他的举止很怀疑，我们应该多加注意。"},
+        {key:"2",text:"这礼物真的是送给你的，你不必怀疑。"},
+        {key:"3",text:"请怀疑我，我一定会尽力完成这项任务。"},
+        {key:"4",text:"针对这起意外，警察查问了三个怀疑的人。"}],
+      correctKey: "2", answerSource: "official" }] },
+
+  { groupId: "SH-Q15", subject: "Chinese", paper: "Paper 2", section: "一 语文应用", category: "usage",
+    lessonEligible: true, lessonIds: [12], passage: null,
+    questions: [{ qNo: "Q15", marks: 2, format: "MCQ", text: "以下哪个句子是正确的？（词语：恍然大悟）",
+      options: [
+        {key:"1",text:"听到爆炸声，人群顿时恍然大悟，开始逃跑。"},
+        {key:"2",text:"听了我的解释，他才恍然大悟，知道错怪妹妹了。"},
+        {key:"3",text:"这道数学题的解法，我恍然大悟，决定去请教老师。"},
+        {key:"4",text:"穿过那条小路后，眼前恍然大悟，一片大海在我面前。"}],
+      correctKey: "2", answerSource: "official" }] },
+
+  {
+    groupId: "SH-G1", subject: "Chinese", paper: "Paper 2", section: "二 短文填空",
+    category: "cloze", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "伟明的演讲", source: "St Hilda's Primary School, 2025 P5 EOY",
+      text: "有一次，伟明在准备上台演讲之前，[Q16]___ 坐在一边自言自语。他觉得很紧张，还想象自己会在台上说错话。这时候，他的朋"
+        + "友小丽走过来对他说：“不要担心，你已经准备好了，只要尽力就可以。”听了朋友的话，伟明心里觉得舒服多了。\n\n"
+        + "在演讲的时候，伟明开始觉得自己记的内容有点 [Q17]___，怕自己会说错话。但是他告诉自己要勇敢，慢慢说出来。终于，他 "
+        + "[Q18]___ 完成了演讲，还得到了老师和同学们的掌声。\n\n"
+        + "回到家，伟明觉得很开心。他想：如果没有丽丽的 [Q19]___，我不可能完成演讲。明天我一定要去给丽丽写张感谢卡，表达我的"
+        + "心意！\n\n"
+        + "从这件事中，伟明学会了 [Q20]___ 和坚持。"
+    },
+    questions: [
+      { qNo: "Q16", marks: 2, format: "MCQ", text: "伟明在准备上台演讲之前，___ 坐在一边自言自语。",
+        options: [{key:"1",text:"陪伴"},{key:"2",text:"共同"},{key:"3",text:"简单"},{key:"4",text:"单独"}],
+        correctKey: "4", answerSource: "official" },
+      { qNo: "Q17", marks: 2, format: "MCQ", text: "伟明开始觉得自己记的内容有点 ___ ，怕自己会说错话。",
+        options: [{key:"1",text:"明白"},{key:"2",text:"模糊"},{key:"3",text:"忘记"},{key:"4",text:"清楚"}],
+        correctKey: "2", answerSource: "official" },
+      { qNo: "Q18", marks: 2, format: "MCQ", text: "终于，他 ___ 完成了演讲，还得到了老师和同学们的掌声。",
+        options: [{key:"1",text:"拒绝"},{key:"2",text:"放弃"},{key:"3",text:"顺利"},{key:"4",text:"困难"}],
+        correctKey: "3", answerSource: "official" },
+      { qNo: "Q19", marks: 2, format: "MCQ", text: "如果没有丽丽的 ___ ，我不可能完成演讲。",
+        options: [{key:"1",text:"劝告"},{key:"2",text:"建议"},{key:"3",text:"鼓励"},{key:"4",text:"提醒"}],
+        correctKey: "3", answerSource: "official" },
+      { qNo: "Q20", marks: 2, format: "MCQ", text: "从这件事中，伟明学会了 ___ 和坚持。",
+        options: [{key:"1",text:"感恩"},{key:"2",text:"尊重"},{key:"3",text:"团结"},{key:"4",text:"原谅"}],
+        correctKey: "1", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "SH-G2", subject: "Chinese", paper: "Paper 2", section: "三 阅读理解一",
+    category: "comprehension", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "运动会上的坚持", source: "St Hilda's Primary School, 2025 P5 EOY",
+      text: "今天是学校运动会，小明胸有成竹地站在跑道上开始热身。他的心里既兴奋又紧张。作为班级的短跑选手，他希望为班级赢得冠"
+        + "军。\n\n"
+        + "比赛开始了！小明像箭一样扑了出去，领先其他选手。可是，就在快到终点时，他不小心跌倒了！腿上露出一道伤口，疼得他哭"
+        + "了出来。\n\n"
+        + "“别放弃！”王老师跑过来对他说。小明好不容易站起来，完成了比赛，但其他选手已经超越他了。老师马上检查了他的伤口，还使"
+        + "用药箱帮他处理伤口。这时，同学们也围过来，有的递水，有的安慰他：“小明，你已经很棒了！”\n\n"
+        + "下午的接力赛，小明原本可以休息，但他坚持要上场。“我肯定能赢！”他咬着牙说。比赛时，他忍住疼痛，稳稳地接住接力棒，"
+        + "奋力冲向终点。这一次，他没有摔倒，还帮助班级拿到了第三名！\n\n"
+        + "运动会结束后，小明珍惜地摸着奖杯，心里暖暖的。他明白：只要不怕困难，肯努力，就一定能超越自己。晚上，小明在日记本"
+        + "上认真写道：“今天的运动会让我懂得，比成绩更重要的是永不服输的精神……”"
+    },
+    questions: [
+      { qNo: "Q21", marks: 2, format: "MCQ", text: "从哪里可以看出小明已经为比赛做好准备？",
+        options: [{key:"1",text:"他是班上的短跑选手。"},{key:"2",text:"他像箭一样飞扑了出去。"},{key:"3",text:"他的心里感到既兴奋又紧张。"},{key:"4",text:"他胸有成竹地站在跑道上热身。"}],
+        correctKey: "4", answerSource: "official" },
+      { qNo: "Q22", marks: 2, format: "MCQ", text: "为什么小明会哭了出来？",
+        options: [{key:"1",text:"他的腿很疼。"},{key:"2",text:"他输了比赛。"},{key:"3",text:"他的老师骂了他。"},{key:"4",text:"他快到终点时跌倒了。"}],
+        correctKey: "1", answerSource: "official" },
+      { qNo: "Q23", marks: 2, format: "MCQ", text: "同学们怎么关心小明？",
+        options: [{key:"1",text:"有些同学扶他起来。"},{key:"2",text:"他们给他的伤口上药。"},{key:"3",text:"同学给他喝水和安慰他。"},{key:"4",text:"同学代替他完成接力赛。"}],
+        correctKey: "3", answerSource: "official" },
+      { qNo: "Q24", marks: 2, format: "MCQ", text: "小明受伤参加接力赛，有什么结果？",
+        options: [{key:"1",text:"他又摔到了。"},{key:"2",text:"他没冲过终点。"},{key:"3",text:"他没稳稳地接住接力棒。"},{key:"4",text:"他帮助班级得到了第三名。"}],
+        correctKey: "4", answerSource: "official" },
+      { qNo: "Q25", marks: 2, format: "MCQ", text: "这个故事让你明白了什么道理？",
+        options: [{key:"1",text:"忍住疼痛很重要。"},{key:"2",text:"成绩比过程更重要。"},{key:"3",text:"坚持能让我们超越自己。"},{key:"4",text:"我们要努力超越其他选手。"}],
+        correctKey: "3", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "SH-G3", subject: "Chinese", paper: "Paper 2", section: "四 完成对话",
+    category: "dialogue", lessonEligible: false, lessonIds: [],
+    optionBank: [
+      {key:"1",text:"别着急"},
+      {key:"2",text:"我可急死了"},
+      {key:"3",text:"应该在书包里"},
+      {key:"4",text:"我不想让她担心"},
+      {key:"5",text:"真的太粗心大意了"},
+      {key:"6",text:"连文件夹都翻遍了"},
+      {key:"7",text:"难道已经交给老师了"},
+      {key:"8",text:"告诉她不就马上被骂吗"}
+    ],
+    passage: {
+      title: "找不到的作业", source: "St Hilda's Primary School, 2025 P5 EOY",
+      text: "弟弟：姐姐，你怎么一回家就在找东西？\n姐姐：我的华文作业不见了，明天就要交给老师，[Q26]___！\n"
+        + "弟弟：冷静点，你检查过书包所有口袋了吗？\n姐姐：都找过了，[Q27]___，还是没有看到。\n"
+        + "弟弟：要不要告诉妈妈，问她有没有看到呢？\n姐姐：不要，妈妈在准备晚餐，[Q28]___。\n"
+        + "弟弟：说的也是。[Q29]___，我帮你一起找吧！\n姐姐：太好了！谢谢你，你真是我的好弟弟！"
+    },
+    questions: [
+      { qNo: "Q26", marks: 2, format: "MCQ", text: "姐姐：我的华文作业不见了，明天就要交给老师，___ ！",
+        correctKey: "2", answerSource: "official" },
+      { qNo: "Q27", marks: 2, format: "MCQ", text: "姐姐：都找过了，___ ，还是没有看到。",
+        correctKey: "6", answerSource: "official" },
+      { qNo: "Q28", marks: 2, format: "MCQ", text: "姐姐：不要，妈妈在准备晚餐，___ 。",
+        correctKey: "4", answerSource: "official" },
+      { qNo: "Q29", marks: 2, format: "MCQ", text: "弟弟：说的也是。___ ，我帮你一起找吧！",
+        correctKey: "1", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "SH-G4", subject: "Chinese", paper: "Paper 2", section: "五 阅读理解二 A组",
+    category: "practical", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "常青公园 中秋节之夜", source: "St Hilda's Primary School, 2025 P5 EOY — 应用文/通告",
+      text: "为了庆祝一年一度的中秋节，常青公园将会在10月6日傍晚6点举办中秋节庆祝活动。敬请大家出席。\n\n"
+        + "活动介绍：\n步行大道：设有多个小吃摊位。欢迎大家来品尝。\n儿童游乐园：设置了儿童游乐园。为孩子们提供玩乐的地方。\n"
+        + "欢乐广场（西门）：灯笼展示区。展出乐龄人士精心打造的20个巨型灯笼。赏灯的同时，大家还可以猜灯谜、赢奖品。\n"
+        + "月饼制作摊位（东门）：设有月饼制作摊位。义工会为大家准备月饼制作课。时间：晚上6点半。\n"
+        + "露天舞台：欢乐中学的华乐团和舞蹈团将在这里为大家呈现精彩的华乐和歌舞表演。\n"
+        + "演出时间：第一场（晚上6点），第二场（晚上7点半）"
+    },
+    questions: [
+      { qNo: "Q30", marks: 2, format: "MCQ", text: "常青公园制作这张海报的目的是什么？",
+        options: [{key:"1",text:"鼓励大家报名中秋节的演出。"},{key:"2",text:"吸引民众参加中秋节的活动。"},{key:"3",text:"帮助大家了解中秋节的习俗。"},{key:"4",text:"介绍常青公园里的各个角落。"}],
+        correctKey: "2", answerSource: "official" },
+      { qNo: "Q31", marks: 2, format: "MCQ", text: "人们参加欢乐广场的活动会有什么收获？",
+        options: [{key:"1",text:"猜灯谜赢奖品。"},{key:"2",text:"品尝美味的小吃。"},{key:"3",text:"和孩子一起玩游戏。"},{key:"4",text:"学习月饼的制作方法。"}],
+        correctKey: "1", answerSource: "official" },
+      { qNo: "Q32", marks: 2, format: "MCQ", text: "想要观看最后一场歌舞表演的人应该怎么做？",
+        options: [{key:"1",text:"6点之前到达西门。"},{key:"2",text:"7点半之前到达东门。"},{key:"3",text:"6点半前到达欢乐广场。"},{key:"4",text:"7点半前到达露天舞台。"}],
+        correctKey: "4", answerSource: "official" },
+      { qNo: "Q33", marks: 4, format: "Writing-Constrained",
+        text: "如果你是小华，你知道你的邻居李阿姨对制作糕点很有兴趣。请你写一则手机短信给她，建议她参加中秋节的其中一个活动，并告诉她活动的地点和时间。",
+        displayAnswer: "李阿姨，我知道您一向对制作糕点很有兴趣。我今天看到常青公园中秋节的活动海报，建议您参加他们的月饼制作课。您可以晚上6点半之前到东门去上课。",
+        answerSource: "official",
+        notes: "本题为约束式应用文写作，官方示范答案只是其中一种合理写法，评分以内容要点+表达是否通顺为准，并非唯一标准答案。" }
+    ]
+  },
+
+  {
+    groupId: "SH-G5", subject: "Chinese", paper: "Paper 2", section: "五 阅读理解二 B组",
+    category: "comprehension", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "五块钱的品格", source: "St Hilda's Primary School, 2025 P5 EOY",
+      text: "星期六，爸爸带小杰去附近的图书馆。他们借完书正好是中午。天气非常炎热，他们走了一会儿，就已经满头大汗了。爸爸见路"
+        + "边有个饮料摊，便买了一瓶汽水给小杰解渴。\n\n"
+        + "回到家后，爸爸收拾东西时突然皱起了眉头。“小杰，钱包里怎么多了五块钱？”爸爸不解地说，“我记得很清楚，出门前数目并"
+        + "没有错。”小杰一下呆住了，随即反应过来：“是不是卖汽水的老伯多找的钱？”\n\n"
+        + "爸爸点点头表示同意：“嗯……今天我只在饮料摊花过钱。应该是他不小心找错了。我们得还给他。”\n\n"
+        + "“才五块钱。天气这么热，回去太麻烦了……”小杰不同意爸爸的做法。\n\n"
+        + "“这五块钱虽然不多，但……”爸爸话还没说完，小杰打断了他：“反正他也不一定会记得找错了钱给我们。”\n\n"
+        + "爸爸沉默了一会儿，语重心长地说：“小杰，有时候，一个小小的决定，反映的是一个人的品格。不属于我们的东西我们不能"
+        + "要，我们不能因为这五块钱，丢了更重要的东西。”\n\n"
+        + "这句话像一记重拳打在小杰的胸口。他感到脸上一热，惭愧地低下了头，连忙跟着爸爸出门去了。"
+    },
+    questions: [
+      { qNo: "Q34", marks: 2, format: "Fill-in", text: "文中形容“不说话”的词语是：___ 。",
+        accepted: ["沉默"], displayAnswer: "沉默", answerSource: "official" },
+      { qNo: "Q35", marks: 2, format: "Fill-in", text: "文中形容“做错了事而感到不安”的词语是：___ 。",
+        accepted: ["惭愧"], displayAnswer: "惭愧", answerSource: "official" },
+      { qNo: "Q36", marks: 3, format: "Long-Answer", text: "爸爸为什么买汽水给小杰？",
+        displayAnswer: "因为那天天气非常炎热，他们走了一会儿，就已经满头大汗了，汽水可以让小杰解渴。",
+        answerSource: "official" },
+      { qNo: "Q37", marks: 3, format: "Long-Answer", text: "爸爸认为多出来的五块钱是怎么来的？(1分) 他是怎么知道的？(2分)",
+        displayAnswer: "爸爸认为多出来的五块钱是卖汽水的老伯多找的钱。因为他记得很清楚出门前钱包里的数目并没错，而且当天他只在饮料摊花过钱。",
+        answerSource: "official" },
+      { qNo: "Q38", marks: 4, format: "Long-Answer", text: "爸爸和小杰各认为应该怎样处理那五块钱？(1分) 小杰为什么不同意爸爸的做法？(3分)",
+        displayAnswer: "爸爸认为应该把钱还给老伯，小杰则认为不用还钱。因为小杰认为五块钱不算多，而且天气很热，还钱太麻烦，况且老伯不一定会记得找错了钱给他们。",
+        answerSource: "official" },
+      { qNo: "Q39", marks: 4, format: "Long-Answer", text: "爸爸说的“更重要的东西”指的是什么？(1分) 小杰听到后为什么会脸上发热？(3分)",
+        displayAnswer: "“更重要的东西”指的是诚实（或良好的品格）。因为小杰本来不想还钱给老伯，爸爸的话让他明白了自己的不诚实，不应该拿不属于自己的东西，所以他感到很惭愧。",
+        answerSource: "official" },
+      { qNo: "Q40", marks: 4, format: "Long-Answer", text: "读了这篇文章，你学到了什么道理？试举例说明你会如何把它应用在日常生活中。",
+        displayAnswer: "我学到了做人要诚实，不能拿不属于自己的东西。例如：如果在学校看到老师改错试卷多给了分数，我会主动向老师说明并扣回分数。虽然分数少了，但我做到了诚实。",
+        answerSource: "official" }
+    ]
+  },
+
+/* =========================================================
+   HENRY PARK PRIMARY SCHOOL -- Higher Chinese (高级华文), Paper 2
+   (学校数据 / school data)
+   ========================================================= */
+
+  {
+    groupId: "HP-HC-G1", subject: "Higher Chinese", paper: "Paper 2", section: "一 语文应用 A组",
+    category: "cloze", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "熊哥哥的安慰", source: "Henry Park Primary School, 2025 P5 Higher Chinese EOY",
+      text: "一天，小熊回到家后，看着天空发呆。看到平时爱说话的小熊突然沉默起来，熊哥哥感到 [Q1]___，便走到小熊身边想关心它。"
+        + "熊哥哥轻轻伸出手 [Q2]___ 地摸了摸小熊的头，问它怎么了。\n\n"
+        + "小熊说老师要大家下星期上台进行舞蹈 [Q3]___。听到这儿，哥哥马上明白小熊的烦恼是什么了，因为它知道小熊一向都害怕上"
+        + "台。于是，熊哥哥便 [Q4]___ 小熊说：“大家常称赞你的舞跳得很棒。你们这次的演出一定没问题的！”听了哥哥的话，小熊才 "
+        + "[Q5]___ 了，松了一口气，脸上终于露出了笑容。\n\n"
+        + "词语库：1劝告 2温柔 3担忧 4放心 5庆典 6表演 7温和 8安慰"
+    },
+    questions: [
+      { qNo: "Q1", marks: 2, format: "Fill-in", text: "熊哥哥感到 ___ ，便走到小熊身边想关心它。",
+        accepted: ["3", "担忧", "3担忧", "3 担忧"], displayAnswer: "3 担忧", answerSource: "official" },
+      { qNo: "Q2", marks: 2, format: "Fill-in", text: "熊哥哥轻轻伸出手 ___ 地摸了摸小熊的头。",
+        accepted: ["2", "温柔", "2温柔", "2 温柔"], displayAnswer: "2 温柔", answerSource: "official" },
+      { qNo: "Q3", marks: 2, format: "Fill-in", text: "小熊说老师要大家下星期上台进行舞蹈 ___ 。",
+        accepted: ["6", "表演", "6表演", "6 表演"], displayAnswer: "6 表演", answerSource: "official" },
+      { qNo: "Q4", marks: 2, format: "Fill-in", text: "熊哥哥便 ___ 小熊说：“大家常称赞你的舞跳得很棒……”",
+        accepted: ["8", "安慰", "8安慰", "8 安慰"], displayAnswer: "8 安慰", answerSource: "official" },
+      { qNo: "Q5", marks: 2, format: "Fill-in", text: "听了哥哥的话，小熊才 ___ 了，松了一口气。",
+        accepted: ["4", "放心", "4放心", "4 放心"], displayAnswer: "4 放心", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "HP-HC-G2", subject: "Higher Chinese", paper: "Paper 2", section: "一 语文应用 B组",
+    category: "errorcorrect", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "姐姐和她的好朋友们", source: "Henry Park Primary School, 2025 P5 Higher Chinese EOY",
+      text: "我的姐姐愿意和我分享她生活中的一切，包 [Q6](舌) 她和三个好朋友——诗乐、紫英和雪丽的生活趣事。\n\n"
+        + "这三个好友是姐姐读大学时认识的。大家离开学校后，还一直 [Q7]保护 联系。\n\n"
+        + "她们常常通过手机发信息，每个月还会安排一次 [Q8]会议。她们特别喜欢一起逛街、喝茶和看电影。除此之外，她们也常常喜欢"
+        + "帮助有需要的人、一起做义工，还会慷 [Q9](开) 地捐钱给老人院。\n\n"
+        + "姐姐和三个好朋友之间的友情让我十分向往。我从中也学会了要好好珍惜和朋友之间们的友情。我迫不及 [Q10](带) 地要长大，"
+        + "遇到自己的好朋友。"
+    },
+    questions: [
+      { qNo: "Q6", marks: 2, format: "Fill-in",
+        text: "包 (舌) 她和三个好朋友——诗乐、紫英和雪丽的生活趣事。 —— 括号里的字是写错的字，请改正。",
+        accepted: ["括"], displayAnswer: "括 (包括)", answerSource: "official" },
+      { qNo: "Q7", marks: 2, format: "Fill-in",
+        text: "大家离开学校后，还一直__保护__联系。 —— 画线词语中有一个字用得不恰当，请改正。",
+        accepted: ["保持"], displayAnswer: "保持", answerSource: "official" },
+      { qNo: "Q8", marks: 2, format: "Fill-in",
+        text: "每个月还会安排一次__会议__。 —— 画线词语中有一个字用得不恰当，请改正。",
+        accepted: ["聚会"], displayAnswer: "聚会", answerSource: "official" },
+      { qNo: "Q9", marks: 2, format: "Fill-in",
+        text: "还会慷 (开) 地捐钱给老人院。 —— 括号里的字是写错的字，请改正。",
+        accepted: ["慨"], displayAnswer: "慨 (慷慨)", answerSource: "official",
+        notes: "官方打字答案键原文印刷为“概”，但根据上下文（“慷___地捐钱”）判断正确答案应为“慨”（构成“慷慨”）；“概”（木部）与“慨”（忄部）字形相近，怀疑原答案key排版/辨识时误植，已按语意订正——本卷库中TN-HC-G2/SH-HC-G2出现过同一类型的错误，建议人工核对原始PDF确认。" },
+      { qNo: "Q10", marks: 2, format: "Fill-in",
+        text: "我迫不及 (带) 地要长大，遇到自己的好朋友。 —— 括号里的字是写错的字，请改正。",
+        accepted: ["待"], displayAnswer: "待 (迫不及待)", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "HP-HC-G3", subject: "Higher Chinese", paper: "Paper 2", section: "二 阅读理解（一）",
+    category: "comprehension", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "爷爷奶奶的智慧", source: "Henry Park Primary School, 2025 P5 Higher Chinese EOY",
+      text: "“反正我永远不够好！我不要留在篮球训练队了！”卫国一上爷爷的车，便开始抱怨，因为他又没被选上篮球校队。奶奶想劝卫国"
+        + "不要轻易放弃，爷爷却示意她别说话，奶奶明白再劝也没用，便不说了。\n\n"
+        + "爷爷笑着对卫国说：“好，我们支持你！”\n\n"
+        + "回到家后，卫国怒气冲冲地去冲凉。之后，他们吃饭时，爷爷说：“这五香肉卷比一开始好吃多了！”看着吃得狼吞虎咽的卫国，"
+        + "奶奶笑着说，她开始学做这道菜时总是做不好，肉卷皮总是破掉。卫国一脸吃惊地问：“奶奶，您可是家里的厨神，怎么会煮不"
+        + "好呢？”\n\n"
+        + "奶奶笑了笑，说：“刚开始做五香肉卷时，不是皮爆开就是炸得焦黑。我也想过放弃，但爷爷说多试几次一定会成功。现在你才"
+        + "能吃到这道好菜呀！我想成功是靠日积月累的尝试和努力，没人一出生就什么都会。”\n\n"
+        + "听着听着，卫国也吃完饭了。他想起教练曾经说过，篮球明星迈克乔丹每天都坚持练习1000次基本投篮，才能成为顶尖球员。"
+        + "他反思自己平时投不到50下就喊累，不禁感到惭愧。这时，爷爷故意说：“过一会儿，我让你爸爸通知学校，说你以后都不去"
+        + "篮球训练了。”\n\n"
+        + "卫国连忙摆手，说：“不用了……我决定留在篮球训练队继续努力，我相信我一定会成功的！”爷爷和奶奶相视而笑，饭桌上的气"
+        + "氛又轻松了起来。"
+    },
+    questions: [
+      { qNo: "Q11", marks: 2, format: "Fill-in", text: "找出与“诉苦”意思相近或相同的词语。",
+        accepted: ["抱怨"], displayAnswer: "抱怨", answerSource: "official" },
+      { qNo: "Q12", marks: 2, format: "Fill-in", text: "找出与“以前”意思相近或相同的词语。",
+        accepted: ["曾经"], displayAnswer: "曾经", answerSource: "official" },
+      { qNo: "Q13", marks: 2, format: "Long-Answer", text: "吃饭前，卫国的心情是怎样的？他对是否继续留在篮球训练队有什么想法？",
+        displayAnswer: "心情：生气\n想法：不要留在篮球队，认为自己永远不够好", answerSource: "official" },
+      { qNo: "Q14", marks: 2, format: "Long-Answer", text: "吃饭后，卫国的心情是怎样的？他对是否继续留在篮球训练队有什么想法？",
+        displayAnswer: "心情：忏悔\n想法：认为教练说的话是对的，相信一定会成功的", answerSource: "official" },
+      { qNo: "Q15", marks: 4, format: "Long-Answer", text: "卫国觉得奶奶煮的食物好吃吗？从哪里可以看出？",
+        displayAnswer: "卫国觉得奶奶煮的食物好吃。从卫国吃得很香就知道，奶奶笑着说，她开始学做这道菜时总是做不好，肉卷皮总是破掉。卫国一脸吃惊地问：“奶奶可是家里的厨神，怎么会煮不好呢？”可以看出。",
+        answerSource: "official" },
+      { qNo: "Q16", marks: 4, format: "Long-Answer",
+        text: "试从所提供的两个选项中，选一个最适合的作为这篇短文的题目，然后举例说明做出这个选择的理由。(1) 卫国的篮球梦 (2) 聪明的爷爷奶奶",
+        displayAnswer: "(2) 聪明的爷爷奶奶。我觉得《聪明的爷爷奶奶》最适合作为这篇短文的题目。因为奶奶听到卫国说他不要待在篮球训练队了，经过劝说，他还是不听，就没有一直劝，而是聪明地通过煮肉卷的例子，说她曾想过要放弃，但爷爷说多试几次，一定会煮成功，来让卫国明白成功是靠日积月累的尝试和努力，没有人一出生就会的道理，去改变了卫国的想法，让他决定留在篮球训练继续努力。",
+        answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "HP-HC-G4", subject: "Higher Chinese", paper: "Paper 2", section: "三 阅读理解（二）",
+    category: "comprehension", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "月美的成长", source: "Henry Park Primary School, 2025 P5 Higher Chinese EOY",
+      text: "“把臭袜子放进洗衣篮，不要又乱放！”妈妈有些生气地说。\n\n"
+        + "“我去冲凉！”月美丢下一句话，快速地进了厕所。妈妈在外头叫她：“快点冲！不要浪费水！”月美立刻关上门，故意把水龙头开"
+        + "到最大，让水声盖过外头的声音，然后才开始冲凉。\n\n"
+        + "过了好一会儿，月美才冲好凉，到厨房拿饼干。经过客厅时，她捡起书包，却对一旁的臭袜子视而不见。月美匆匆走进房间，一"
+        + "边吃饼干，一边做功课。不一会儿，她赶完了功课，看着满桌的饼干碎片，随手一扫，有些碎片掉在地上，她一点儿也不在意。\n\n"
+        + "接着，月美发一则信息给好友李林，说最近有个音乐舞蹈短片很受欢迎，她让李林也一起学，好在教师节时上台表演。\n\n"
+        + "于是，她把短片转发给李林，并请李林马上去观看。李林回复：“今天的作业那么多，我都还没做完，还要温习之前的功课呢！"
+        + "而且，我还得收拾房间和洗袜子，真的没有时间！”月美回了句：“功课可以随便做，能交给老师就好了！”\n\n"
+        + "见李林迟迟没回应，心急的月美忍不住打电话给李林：“你要认真读书就算了，为什么还要收拾房间和洗袜子呢？你妈妈不会处"
+        + "理这些事吗？我们的表演更重要吧！”\n\n"
+        + "李林冷静地回答：“自己的事应该自己做。房间和袜子是我的，怎么能让妈妈收拾呢？”听了李林的话，月美的脸红了起来。"
+    },
+    questions: [
+      { qNo: "Q17", marks: 2, format: "Long-Answer", text: "试解释短语在文中的意思：“让水声盖过外头的声音”（第二段）",
+        displayAnswer: "因为月美不想听妈妈的唠叨，故意将水龙头开到最大，让水的声音大过妈妈的声音，她可以不用听到妈妈的唠叨。",
+        answerSource: "official" },
+      { qNo: "Q18", marks: 2, format: "Long-Answer", text: "试解释短语在文中的意思：“视而不见”（第三段）",
+        displayAnswer: "月美对臭袜子假装没有看见，直接走进房间。", answerSource: "official" },
+      { qNo: "Q19", marks: 4, format: "Long-Answer", text: "月美和李林对学习的态度有什么不同？请举例说明。",
+        displayAnswer: "月美觉得功课可以随便做，能交给老师就好了。李林对待功课很认真。当月美让李林去看短片时，李林觉得那天的作业那么多，还没做完，还要温习之前的功课，没有时间看短片。",
+        answerSource: "official" },
+      { qNo: "Q20", marks: 4, format: "Long-Answer", text: "请用不超过15个字，写出文中第四段的大意。",
+        context: "字数限制：≤15字",
+        displayAnswer: "月美发信息给李林，让她学短片。", answerSource: "official" },
+      { qNo: "Q21", marks: 4, format: "Long-Answer", text: "你认为月美是个懂事的孩子吗？试举例说明。",
+        displayAnswer: "我不认为月美是个懂事的孩子。月美既没有自己的事情自己做，对于功课学业也是马虎敷衍。从月美没有把臭袜子放进洗衣篮，对臭袜子视而不见；为了不听妈妈唠叨，她故意把水龙头开到最大；月美看着满桌的饼干碎片，随便手一扫，有些碎片掉在地上，她一点儿也不在意。随便完成功课，却去看短片。所以我不认为月美是个懂事的孩子。",
+        answerSource: "official" },
+      { qNo: "Q22", marks: 4, format: "Long-Answer", text: "你认为月美的脸为什么会红了起来？",
+        displayAnswer: "因为月美听到李林说自己的事应该自己做，房间与袜子是她的，不应该让妈妈收拾。月美不仅对臭袜子视而不见，而且吃饼干碎片在地上也是随便手一扫。将全部自己的事情留给妈妈处理，月美觉得很惭愧，所以脸红了。",
+        answerSource: "official" },
+      { qNo: "Q23", marks: 4, format: "Long-Answer", text: "你从这篇短文里学到了什么道理？试举生活中的例子加以说明。",
+        displayAnswer: "我从这篇短文里学到，自己的事情应该自己做，不应该依赖家长。例如我们自己的书包及房间应该自己整理和打扫，而不是让家长代劳。学习也是我们自己的事情，应该认真对待。",
+        answerSource: "official" }
+    ]
+  },
+
+/* =========================================================
+   MAHA BODHI SCHOOL -- Higher Chinese (高级华文), Paper 2
+   (学校数据 / school data)
+   ========================================================= */
+
+  {
+    groupId: "MB-HC-G1", subject: "Higher Chinese", paper: "Paper 2", section: "一 语文应用 A组",
+    category: "cloze", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "小安的道歉", source: "Maha Bodhi School, 2025 P5 Higher Chinese EOY",
+      text: "放学了，小安一个人慢慢走在回家的路上，心里很难过。\n\n"
+        + "今天在学校，老师安排他和明华一起完成小组活动，他却 [Q1]___，结果被老师批评。原因是上课前他和明华吵了一架。他以为"
+        + "明华把自己的秘密告诉了别人。他很生气，不想和明华合作。\n\n"
+        + "小安越想越委屈，心里想：[Q2]___ 不是我的错，我才不管别人怎么想。走着走着，他忽然想起老师说的那句话：要 [Q3]___ "
+        + "与朋友之间的友情。他想起自己和明华曾经拥有的快乐时光！小安开始觉得后悔，也明白了自己不应该 [Q4]___ 明华。\n\n"
+        + "第二天，小安找到明华，问清楚了事情的经过，知道自己误会了他，就向明华道歉。老师看到这一幕，微笑着说：“你做了 "
+        + "[Q5]___ 的决定，是个好孩子！”\n\n"
+        + "词语库：1抱怨 2拒绝 3珍惜 4反正 5正确 6似乎 7怀疑 8凡是"
+    },
+    questions: [
+      { qNo: "Q1", marks: 2, format: "Fill-in", text: "老师安排他和明华一起完成小组活动，他却 ___ ，结果被老师批评。",
+        accepted: ["2", "拒绝", "2拒绝", "2 拒绝"], displayAnswer: "2 拒绝", answerSource: "official" },
+      { qNo: "Q2", marks: 2, format: "Fill-in", text: "小安越想越委屈，心里想：___ 不是我的错，我才不管别人怎么想。",
+        accepted: ["4", "反正", "4反正", "4 反正"], displayAnswer: "4 反正", answerSource: "official" },
+      { qNo: "Q3", marks: 2, format: "Fill-in", text: "他忽然想起老师说的那句话：要 ___ 与朋友之间的友情。",
+        accepted: ["3", "珍惜", "3珍惜", "3 珍惜"], displayAnswer: "3 珍惜", answerSource: "official" },
+      { qNo: "Q4", marks: 2, format: "Fill-in", text: "小安开始觉得后悔，也明白了自己不应该 ___ 明华。",
+        accepted: ["7", "怀疑", "7怀疑", "7 怀疑"], displayAnswer: "7 怀疑", answerSource: "official" },
+      { qNo: "Q5", marks: 2, format: "Fill-in", text: "老师看到这一幕，微笑着说：“你做了 ___ 的决定，是个好孩子！”",
+        accepted: ["5", "正确", "5正确", "5 正确"], displayAnswer: "5 正确", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "MB-HC-G2", subject: "Higher Chinese", paper: "Paper 2", section: "一 语文应用 B组",
+    category: "errorcorrect", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "跳到月亮上的男孩", source: "Maha Bodhi School, 2025 P5 Higher Chinese EOY",
+      text: "一天晚上，母亲正在厨房里洗碗，她的小儿子在后院玩。母亲不断听到儿子蹦蹦跳跳的声音，感到很 [Q6]奇妙 ，便问他在干什"
+        + "么。儿子大声回答：“妈妈，我想跳到月亮上去。”母亲听了，笑了笑，[Q7]温情 地说：“真的吗？那你别忘了从月亮上跳回来，"
+        + "我们还没有吃晚饭呢！”\n\n"
+        + "又有一天傍晚，这个小男孩爬到了高高的房顶上。邻居看到这一幕，[Q8]小心 极了，立刻通知了小男孩的母亲。母亲急忙跑过"
+        + "去，冲着他喊：“你爬到房顶上做什么？快下来！”儿子下来后，严肃地对妈妈说：“我要到月亮上去！”妈妈听了，哭笑不得地"
+        + "说：“真的吗？可是你没有带 [Q9](将) 落伞，到月亮上怎么下来呢？带上它再去吧！”\n\n"
+        + "谁能想到，这个小男孩长大后真的“跳”到月亮上了！他就是人类历史上第一个 [Q10](灯) 上月球的人——阿姆斯特朗。"
+    },
+    questions: [
+      { qNo: "Q6", marks: 2, format: "Fill-in", text: "母亲不断听到儿子蹦蹦跳跳的声音，感到很__奇妙__，便问他在干什么。 —— 画线词语中有一个字用得不恰当，请改正。",
+        accepted: ["奇怪", "好奇"], displayAnswer: "奇怪 / 好奇", answerSource: "official" },
+      { qNo: "Q7", marks: 2, format: "Fill-in", text: "母亲听了，笑了笑，__温情__地说：“真的吗？……” —— 画线词语中有一个字用得不恰当，请改正。",
+        accepted: ["温柔", "温和"], displayAnswer: "温柔 / 温和", answerSource: "official" },
+      { qNo: "Q8", marks: 2, format: "Fill-in", text: "邻居看到这一幕，__小心__极了，立刻通知了小男孩的母亲。 —— 画线词语中有一个字用得不恰当，请改正。",
+        accepted: ["担心"], displayAnswer: "担心", answerSource: "official" },
+      { qNo: "Q9", marks: 2, format: "Fill-in", text: "可是你没有带 (将) 落伞，到月亮上怎么下来呢？ —— 括号里的字是写错的字，请改正。",
+        accepted: ["降"], displayAnswer: "降 (降落伞)", answerSource: "official" },
+      { qNo: "Q10", marks: 2, format: "Fill-in", text: "他就是人类历史上第一个 (灯) 上月球的人——阿姆斯特朗。 —— 括号里的字是写错的字，请改正。",
+        accepted: ["登"], displayAnswer: "登 (登上)", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "MB-HC-G3", subject: "Higher Chinese", paper: "Paper 2", section: "二 阅读理解（一）",
+    category: "comprehension", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "大信封里的善意", source: "Maha Bodhi School, 2025 P5 Higher Chinese EOY",
+      text: "在五乙班，有一个总是坐在角落里的男孩——文光。文光的学习中等，穿着旧校服，经常被同学看不起。班上的同学们几乎把他"
+        + "当成了“透明人”，没有人愿意主动和他说话，也没有人关心他的感受。虽然文光从不说什么，但心里其实很难受。\n\n"
+        + "一天早上，罗老师带着一个大信封来到教室，神秘地笑着说：“从今天开始，请大家每天写下一件看到的好事，放进这个信封"
+        + "里。每周五我们一起读出来。”起初，大家觉得无聊，但还是参与了。\n\n"
+        + "一天放学后，小明不小心打翻水，书包和书全湿了。听到同学的嘲笑声，小明急得快哭了。这时，文光刚巧经过，便走过去，"
+        + "不但帮他擦桌子，而且把弄湿的书拿去晒干。\n\n"
+        + "第二天，信封里多了一张纸条。罗老师把纸条读了出来：“文光帮了我，谢谢你。”大家都知道这是谁写的。文光注意到周围同"
+        + "学向他投来异样的目光，心里涌起从未有过的暖流。\n\n"
+        + "从那天起，同学们看文光的眼神变了，主动接近他。他虽然不多话，却总在别人需要时帮忙。\n\n"
+        + "几周后，黄老师在班上说：“你们发现班上变得不一样吗？这是因为大家开始彼此关心、彼此帮助。”小明也勇敢承认：“我以前"
+        + "看不起文光，现在我知道他才是最值得我学习的人。”小明惭愧地走向文光，并低声道歉，文光点点头，心中的难过也随之消"
+        + "散。文光明白，只要心存善良，总会有人看见和回应。\n\n"
+        + "大信封继续留在教室里，它就像一股无形的鼓励，让整个班级的气氛变得更和谐了。"
+    },
+    questions: [
+      { qNo: "Q11", marks: 2, format: "Fill-in", text: "找出与“正好”意思相近或相同的词语。",
+        accepted: ["刚巧"], displayAnswer: "刚巧", answerSource: "official" },
+      { qNo: "Q12", marks: 2, format: "Fill-in", text: "找出与“友好”意思相近或相同的词语。",
+        accepted: ["和谐"], displayAnswer: "和谐", answerSource: "official" },
+      { qNo: "Q13", marks: 2, format: "Long-Answer", text: "帮助小明之前，同学对待文光的态度是怎样的？原因是什么？",
+        displayAnswer: "态度：看不起他\n原因：学习中等，穿着旧校服", answerSource: "official" },
+      { qNo: "Q14", marks: 2, format: "Long-Answer", text: "帮助小明之后，同学对待文光的态度是怎样的？原因是什么？",
+        displayAnswer: "态度：看文光的眼神变了，主动接近他；认为他乐于助人\n原因：文光在小明打翻水时主动帮他擦桌子并晒干弄湿的书",
+        answerSource: "official" },
+      { qNo: "Q15", marks: 4, format: "Long-Answer", text: "文中“文光心里涌起从未有过的暖流”，这句话指的是什么？",
+        displayAnswer: "这句话指的是文光之前总是被别人看不起，他没有想到会有人写纸条感谢他。看到小明写的纸条，他心里很开心、感动，同学们也向他投来异样的目光。",
+        answerSource: "official" },
+      { qNo: "Q16", marks: 4, format: "Long-Answer",
+        text: "试从以下的两个选项中，选一个最适合的作为这篇短文的题目，然后举例说明做出这个选择的理由。(1) 善良的力量 (2) 聪明的老师",
+        displayAnswer: "(1) 善良的力量。我认为《善良的力量》适合作为短文的题目。在文中，文光常被同学看不起，但是当小明需要帮助时，却只有他一个人主动上前伸出援手。同学们因为这个举动而对他的态度转变。大家开始懂得彼此关心、彼此帮助。这都是因为“善良”带来的变化。",
+        answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "MB-HC-G4", subject: "Higher Chinese", paper: "Paper 2", section: "三 阅读理解（二）",
+    category: "comprehension", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "丽亚的花店", source: "Maha Bodhi School, 2025 P5 Higher Chinese EOY",
+      text: "在一座美丽的古城里，住着一个可爱的女孩，名叫丽亚。\n\n"
+        + "不幸的是，她的父母很早就去世了。她也因为生病而双目失明。不过，丽亚从来没有因生活的艰难而放弃。她靠卖花为生，每"
+        + "天风里来雨里去，即使遇到恶劣的天气，她也风雨无阻。\n\n"
+        + "有一阵子，古城里举办活动，原本熟悉的街道突然被围了起来。对丽亚来说，环境的改变是个大麻烦。有一次，她走错了路，"
+        + "花篮也掉在地上。她蹲下身，一边捡花，一边对自己说：“没关系，从哪里跌倒就从哪里爬起来！”之后，她更认真地记周围的"
+        + "环境，比如哪边有水声、哪家店放音乐、哪里有面包香……\n\n"
+        + "有时候，也会有人可怜她。一次，有位游客把钱放在了丽亚的手里，却没有拿花。就在游客刚想要离开时，丽亚叫住了他，笑"
+        + "着说：“虽然我看不见，但我靠自己的双手工作，跟大家一样，是在为生活努力的人。”\n\n"
+        + "几年后，丽亚渐渐长大了，她的心里也悄悄种下了一个愿望：开一间自己的花店。身边的人知道后，完全不听丽亚的想法，并"
+        + "皱着眉头劝她不要尝试。大家都觉得这对双目失明的人来说，是一件非常困难的事。\n\n"
+        + "经过一段时间的努力，丽亚真的开了一家小小的花店。当大家走进这间花店，看到花店里的员工既有像丽亚一样的失明人士，"
+        + "还有一些失聪人员时，脸上都浮现出惊讶的表情，被丽亚的坚持而感动。大家也恍然大悟，明白了丽亚想要开花店的原因：她"
+        + "想用自己的努力，去帮助像她一样的人。\n\n"
+        + "一位失聪的店员对丽亚说：“谢谢你，让我觉得自己也是有用的人。”丽亚轻轻地回答：“我也曾害怕过，但我没有放弃。我相"
+        + "信你也可以做到！”在丽亚的鼓励下，她变得越来越自信，开始主动与顾客交流，做出的花束也越来越漂亮。\n\n"
+        + "从那以后，古城里的人只要一提到丽亚就会说：“她的花特别美，她的心更美。”"
+    },
+    questions: [
+      { qNo: "Q17", marks: 2, format: "Long-Answer", text: "试解释短语在文中的意思：“风雨无阻”（第二段）",
+        displayAnswer: "即使天气恶劣，丽亚还是出去卖花。", answerSource: "official" },
+      { qNo: "Q18", marks: 2, format: "Long-Answer", text: "试解释短语在文中的意思：“环境的改变是个大麻烦”（第三段）",
+        displayAnswer: "原本熟悉的街道被围起来了，这对失明的丽亚来说很不方便。", answerSource: "official" },
+      { qNo: "Q19", marks: 3, format: "Long-Answer", text: "丽亚住在哪里？（1分）她遇到了什么不幸的事情？（2分）",
+        displayAnswer: "丽亚住在一个美丽的古城里。她的父母很早就去世了；她也因为生病而双目失明。", answerSource: "official" },
+      { qNo: "Q20", marks: 4, format: "Long-Answer", text: "大家得知丽亚开花店之前和之后，各有什么反应？（2分）为什么他们会有这样的反应？（2分）",
+        displayAnswer: "大家得知丽亚开花店之前的反应是完全不听丽亚的想法，并皱着眉头劝她不要尝试。因为大家都觉得这对双目失明的人来说，是一件非常困难的事。大家得知丽亚开花店之后的反应是脸上都浮现出惊讶的表情，被丽亚的坚持而感动。因为大家不相信丽亚真的开了一间花店，发现了花店里的员工既有像丽亚一样的失明人士，还有一些失聪人员，明白了丽亚开花店的原因是她想用自己的努力，去帮助像她一样的人。",
+        answerSource: "official" },
+      { qNo: "Q21", marks: 4, format: "Long-Answer", text: "请用不超过15个字，写出短文中第四段的段落大意。",
+        context: "字数限制：≤15字",
+        displayAnswer: "丽亚告诉游客她在卖花，不需要可怜。（或：丽亚靠卖花为生，拒绝了游客的帮助。）", answerSource: "official" },
+      { qNo: "Q22", marks: 4, format: "Long-Answer", text: "丽亚的做法给她的店员带来了什么影响？",
+        displayAnswer: "丽亚的做法让她的店员不再认为自己是个没用的人，相信自己还是一个有用的人，变得越来越自信，开始主动与顾客交流，做出的花束也越来越漂亮。",
+        answerSource: "official" },
+      { qNo: "Q23", marks: 5, format: "Long-Answer", text: "你从丽亚身上学到了什么？（2分）试举生活中的例子加以说明。（3分）",
+        displayAnswer: "我从丽亚的身上学到了无论遇到什么困难，只要不放弃，就一定可以成功。例如我天生个子矮小，每次体育达标测试不及格，但是我每次都能积极准备。虽然我体育考试不达标，但是我能在篮球比赛中发挥自己个子矮小的优势，灵活、快速，和大家一起合作，每次都能赢得比赛，我也变得自信。",
+        answerSource: "official" }
+    ]
+  },
+
+/* =========================================================
+   NANYANG PRIMARY SCHOOL -- Higher Chinese (高级华文), Paper 2
+   (2025 P5 End-of-Year Examination)
+   ========================================================= */
+
+  {
+    groupId: "NY-HC-G1", subject: "Higher Chinese", paper: "Paper 2", section: "一 语文应用 A组",
+    category: "cloze", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "林肯爱读书", source: "Nanyang Primary School, 2025 P5 Higher Chinese EOY",
+      text: "美国第16任总统林肯小时候家里很穷，连买书的钱都没有，但他非常爱护书籍，即使是借来的书也会好好保管。\n\n"
+        + "有一次，他向邻居借了一本书，[Q1]___ 地带回家。然而，一场突如其来的大雨，把书淋得又湿又破。林肯一时不知 [Q2]___ 是好，不知道该怎么向邻居交代。最终，他决定主动承认错误。邻居被他的诚实感动了，[Q3]___ 原谅了他，还愿意继续借书给他。\n\n"
+        + "林肯阅读时也总会思考书中的 [Q4]___。他的父亲曾经语重心长地对他说：“知识能改变命运，你要加倍努力。”林肯牢记这句话，每天晚上都在 [Q5]___ 的烛光下努力学习。\n\n"
+        + "林肯的勤奋和坚持，让他从一个贫穷的农家少年，成长为伟大的总统。他的经历告诉我们，只要肯付出，就能改变自己的人生。\n\n"
+        + "词语库：1情况 2昏暗 3不仅 4小心翼翼 5不禁 6道理 7如何 8陆陆续续"
+    },
+    questions: [
+      { qNo: "Q1", marks: 2, format: "Fill-in", text: "他向邻居借了一本书，___ 地带回家。",
+        accepted: ["4", "小心翼翼", "4小心翼翼", "4 小心翼翼"], displayAnswer: "4 小心翼翼", answerSource: "official" },
+      { qNo: "Q2", marks: 2, format: "Fill-in", text: "林肯一时不知 ___ 是好，不知道该怎么向邻居交代。",
+        accepted: ["7", "如何", "7如何", "7 如何"], displayAnswer: "7 如何", answerSource: "official" },
+      { qNo: "Q3", marks: 2, format: "Fill-in", text: "邻居被他的诚实感动了，___ 原谅了他，还愿意继续借书给他。",
+        accepted: ["3", "不仅", "3不仅", "3 不仅"], displayAnswer: "3 不仅", answerSource: "official" },
+      { qNo: "Q4", marks: 2, format: "Fill-in", text: "林肯阅读时也总会思考书中的 ___ 。",
+        accepted: ["6", "道理", "6道理", "6 道理"], displayAnswer: "6 道理", answerSource: "official" },
+      { qNo: "Q5", marks: 2, format: "Fill-in", text: "每天晚上都在 ___ 的烛光下努力学习。",
+        accepted: ["2", "昏暗", "2昏暗", "2 昏暗"], displayAnswer: "2 昏暗", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "NY-HC-G2", subject: "Higher Chinese", paper: "Paper 2", section: "一 语文应用 B组",
+    category: "errorcorrect", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "明华打乒乓球", source: "Nanyang Primary School, 2025 P5 Higher Chinese EOY",
+      text: "有一天，明华在一场乒乓球赛中输给了对手。比赛结束后，好胜心强的他很不服气，把球拍摔在了地上。他想通过这样的方式表达自己的委 [Q6](区)。\n\n"
+        + "明华哭着向教练说道：“我努力训练了这么久，为什么还是输给了对手？我真 [Q7]可疑 自己是不是选错了课外活动？我不想再打乒乓了。”教练捡起地上的球拍，对他说：“发脾气是不能解决问题的，每一个人都会有遇到失 [Q8](贩) 的时候，我们能做的是勇敢、积极地面对困难，而不是逃 [Q9](闭)。这样，我们才能离成功越来越近。”听了教练的话，明华惭愧地低下了头。\n\n"
+        + "从那以后，明华非常 [Q10]珍贵 训练时的每一分，每一秒，无论训练有多辛苦，他都会尽力完成。经过半年的刻苦训练，明华最终得了冠军。他明白了只有勇敢地面对困难，才有战胜它的可能。"
+    },
+    questions: [
+      { qNo: "Q6", marks: 2, format: "Fill-in",
+        text: "表达自己的委 (区)。 —— 括号里的字是写错的字，请改正。",
+        accepted: ["屈"], displayAnswer: "屈 (委屈)", answerSource: "official" },
+      { qNo: "Q7", marks: 2, format: "Fill-in",
+        text: "我真__可疑__自己是不是选错了课外活动？ —— 画线词语中有一个字用得不恰当，请改正。",
+        accepted: ["怀疑"], displayAnswer: "怀疑", answerSource: "official" },
+      { qNo: "Q8", marks: 2, format: "Fill-in",
+        text: "每一个人都会有遇到失 (贩) 的时候 —— 括号里的字是写错的字，请改正。",
+        accepted: ["败"], displayAnswer: "败 (失败)", answerSource: "official",
+        notes: "官方答案键手写打印误写为“贼”，根据语境“遇到失___的时候”订正为“败”（失败）。" },
+      { qNo: "Q9", marks: 2, format: "Fill-in",
+        text: "而不是逃 (闭)。 —— 括号里的字是写错的字，请改正。",
+        accepted: ["避"], displayAnswer: "避 (逃避)", answerSource: "official" },
+      { qNo: "Q10", marks: 2, format: "Fill-in",
+        text: "明华非常__珍贵__训练时的每一分，每一秒 —— 画线词语中有一个字用得不恰当，请改正。",
+        accepted: ["珍惜"], displayAnswer: "珍惜", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "NY-HC-G3", subject: "Higher Chinese", paper: "Paper 2", section: "二 阅读理解（一）",
+    category: "comprehension", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "美云的舞蹈演出", source: "Nanyang Primary School, 2025 P5 Higher Chinese EOY",
+      text: "美云是一名舞蹈员，两个星期前她在排练时不小心跌倒，划伤了脸，留下了一道伤口。美云看着镜子里的自己，越想越伤心。她感到绝望，决定再也不跳舞了。\n\n"
+        + "一天中午，李教练找美云谈话。李教练关心地问道：“美云，你最近怎么没来排练了？别忘了年底你要上台表演一个节目！”美云小声回答：“我想我以后都不会上台表演了。”李教练说：“是因为脸上的伤口吗？”美云低下了头，沉默不语。李教练觉察到了美云已经对自己失去了信心，温柔地说：“你是一位出色的舞蹈员，怎么能轻易放弃？我们应该专注于自己的优点，脸上的伤口一定会慢慢地好起来的，不会影响你的表演！我有一个方法，可以让你的伤口变成舞台上的亮点！”听了教练的一番话，美云点了点头，但心里仍然有些不安。\n\n"
+        + "到了表演当天，美云感到有些担心，不知道同学会不会嘲笑她的脸。这时，李教练拿出了一些颜料开始在美云脸上涂抹。不一会儿，她脸上那块暗红的伤口竟然变成了一朵鲜艳的花。李教练拿过镜子，摆在美云面前。美云看着镜子里的自己，立刻呆住了。她觉得自己从来没有这么好看过！\n\n"
+        + "演出开始了，美云自信地跳起舞来，跳出了自己最优美的一支舞蹈！表演结束后，台下响起热烈的掌声，美云感动地流下了眼泪……她像一朵盛开的花朵，美丽又迷人，和自己脸上的那朵花一样，在灯光照射下，闪闪发亮。"
+    },
+    questions: [
+      { qNo: "Q11", marks: 2, format: "Fill-in", text: "哥哥是一位优秀的运动员，家中摆满了奖杯。 —— 找出与画线词语意思相近或相同的词语。",
+        accepted: ["出色"], displayAnswer: "出色", answerSource: "official" },
+      { qNo: "Q12", marks: 2, format: "Fill-in", text: "尽管明华今天生病了，他还是决定来上学。 —— 找出与画线词语意思相近或相同的词语。",
+        accepted: ["仍然"], displayAnswer: "仍然", answerSource: "official" },
+      { qNo: "Q13", marks: 2, format: "Long-Answer", text: "对于美云参加舞蹈演出这件事，试说明演出开始前美云的感受和原因。",
+        displayAnswer: "感受：感到担心/不安\n原因：不知道同学会不会嘲笑她的脸", answerSource: "official" },
+      { qNo: "Q14", marks: 2, format: "Long-Answer", text: "对于美云参加舞蹈演出这件事，试说明演出结束后美云的感受和原因。",
+        displayAnswer: "感受：感到（很/非常）感动\n原因：跳出了自己最优美的一支舞蹈，台下响起了热烈的掌声", answerSource: "official" },
+      { qNo: "Q15", marks: 4, format: "Long-Answer", text: "当美云在演出前看到镜子里的自己时，她有什么反应？为什么她会有这样的反应？",
+        displayAnswer: "当美云在演出前看到镜子里的自己时，她立刻呆住了。因为她脸上那块暗红的伤口竟变成了一朵鲜艳的花，觉得/认为自己从来没有这么好看过，所以她会有这样的反应。",
+        answerSource: "official" },
+      { qNo: "Q16", marks: 4, format: "Long-Answer",
+        text: "试从所提供的两个选项中，选一个最适合的作为这篇短文的题目：(1) 两朵美丽迷人的花儿 (2) 喜欢画画的李教练，然后举例说明做出这个选择的理由。",
+        displayAnswer: "(1) 两朵美丽迷人的花儿。我觉得《两朵美丽迷人的花儿》最适合作为题目。因为短文中李教练在美云脸上涂抹颜料，使她脸上的伤口变成了一朵鲜艳的花；而在演出成功后，美云也像一朵盛开的花朵一样美丽迷人。这两朵花都象征着美云重新找回自信、闪闪发亮的过程，非常贴切短文的主旨。",
+        answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "NY-HC-G4", subject: "Higher Chinese", paper: "Paper 2", section: "三 阅读理解（二）",
+    category: "comprehension", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "与众不同的于老师", source: "Nanyang Primary School, 2025 P5 Higher Chinese EOY",
+      text: "于老师第一次出现在我们班时，课室里吵闹声一片，有人在聊天，有人在吵架，还有人在丢纸飞机。过了一会儿，不知道是谁发现课室里忽然多了一个人，大家互相提醒着老师已经来了，教室里的声音就这样渐渐落了下去。没有大声责骂，于老师的这一招以静制动马上起了作用。\n\n"
+        + "“自我介绍一下，我是你们今年的级任老师。我姓于，教你们数学，以后上课时，你们可以叫我于哥，把我当作你们的哥哥。”这与众不同的开场白，让讲台下的我们觉得有些意外。说实话，我们师生首次见面有些特别，他没有点名，更没有让我们一一上前作自我介绍。\n\n"
+        + "我们班一向是别人眼中的“问题班”。接下来的计分测试，没人看好我们班，包括我们自己，所以大家也没什么心情复习，上课依然吵吵闹闹。卷子发回来后，我们班的成绩果然也是在意料之中。于老师并没有生气，只是简单地说了一句，有时候，不要因为别人的评语就让你对自己有错误的认识，没试过，你怎么知道自己不行？\n\n"
+        + "听了这番话，同学们开始积极地采取行动。每天下课后、休息时间、放学后，能利用的时间都跑去向各科老师问问题。当然，我们也是于老师办公室的常客。渐渐的，大家上课时都专心听课了，功课也准时交了。年中考试时，我们班的总成绩提高了很多。\n\n"
+        + "有同学问于老师，如果我们成绩没有进步的话该怎么办。于老师回答：“其实不论成绩有没有进步，你们只要努力学了，最终都会有收获，不是吗？”"
+    },
+    questions: [
+      { qNo: "Q17", marks: 2, format: "Long-Answer", text: "试解释短语在文中的意思：“渐渐落了下去”（第一段）",
+        displayAnswer: "这个短语在文中的意思是教室里原本很吵闹，后来发现老师来了，慢慢安静下来。", answerSource: "official" },
+      { qNo: "Q18", marks: 2, format: "Long-Answer", text: "试解释短语在文中的意思：“对自己有错误的认识”（第三段）",
+        displayAnswer: "这个短语在文中的意思是于老师教我们不要因为别人不看好自己/别人的评语，而认为自己一定不行/学不好。", answerSource: "official" },
+      { qNo: "Q19", marks: 3, format: "Long-Answer", text: "于老师第一次走进课室时，他看到了怎样的情景？",
+        displayAnswer: "于老师第一次走进课室时，他看到课室里吵闹声一片，有人在聊天，有人在吵架，还有人在丢纸飞机。", answerSource: "official" },
+      { qNo: "Q20", marks: 4, format: "Long-Answer", text: "从哪里可以看出于老师和其他老师不一样？",
+        displayAnswer: "于老师第一次和学生见面时，让学生们叫他“于哥”，把我当作哥哥，这样的开场白与众不同。他没有点名，也没有让学生一一上前作自我介绍，从这里可以看出于老师和其他老师不一样。", answerSource: "official" },
+      { qNo: "Q21", marks: 4, format: "Long-Answer", text: "请用不超过20个字，写出短文中第五段的段落大意。",
+        context: "字数限制：≤20字",
+        displayAnswer: "于老师说只要大家努力了就会有收获。", answerSource: "official" },
+      { qNo: "Q22", marks: 4, format: "Long-Answer", text: "计分测试过后，我们班的学习态度有什么变化？",
+        displayAnswer: "计分测试之前同学们上课很吵，没心情复习。计分测试过后，同学们开始积极地采取行动，每天下课后、休息时间、放学后，能利用的时间都跑去向各科老师问问题。上课时都在专心听课，功课也准时交了。", answerSource: "official" },
+      { qNo: "Q23", marks: 5, format: "Long-Answer", text: "“没试过，你怎么知道自己不行”，这句话是什么意思？试举生活中的例子加以说明。",
+        displayAnswer: "这句话的意思是不要在没有尝试之前就否定自己/对自己没有信心/觉得自己做不到。（或者：只有亲自去尝试/很多事情只有勇敢去做，才能知道自己是否能做到/有能力做到。）\n例如有一次，我因自己没做过/自我否定不敢参加学校运动会，但后来我勇敢报名并努力训练，最后取得了不错的成绩，证明了自己的能力。", answerSource: "official" }
+    ]
+  },
+
+/* =========================================================
+   RAFFLES GIRLS' PRIMARY SCHOOL -- Higher Chinese (高级华文), Paper 2
+   (2025 P5 End-of-Year Examination)
+   ========================================================= */
+
+  {
+    groupId: "RG-HC-G1", subject: "Higher Chinese", paper: "Paper 2", section: "一 语文应用 A组",
+    category: "cloze", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "画画比赛与乐于助人的班长", source: "Raffles Girls' Primary School, 2025 P5 Higher Chinese EOY",
+      text: "今天有画画比赛，来参加比赛的子文紧握着画笔，不敢走进美术室。他在美术教室外面 [Q1]___ 时，看到墙上的画，心想：要是我也能画得那么漂亮就好了！\n\n"
+        + "这时，子文看到班长把画画材料借给了旁边的同学，还轻声安慰他。他十分 [Q2]___ 班长，觉得他愿意帮助别人，令人尊敬。\n\n"
+        + "几分钟后，老师神情 [Q3]___ 地提醒大家：“比赛马上开始了！”子文听了，赶紧走进教室。他开始画画，幸好能在比赛结束前交上作品。\n\n"
+        + "比赛结束后，子文肚子饿了，便跑去食堂买吃的。他一坐下，就 [Q4]___ 地吃起饭来。这时，子文又看到班长把自己的面包分一半给忘了带钱的同学。他心想：班长乐于助人的精神真 [Q5]___。\n\n"
+        + "词语库：1徘徊 2贵重 3赞许 4依依不舍 5严肃 6可贵 7佩服 8狼吞虎咽"
+    },
+    questions: [
+      { qNo: "Q1", marks: 2, format: "Fill-in", text: "他在美术教室外面 ___ 时，看到墙上的画……",
+        accepted: ["1", "徘徊", "1徘徊", "1 徘徊"], displayAnswer: "1 徘徊", answerSource: "official" },
+      { qNo: "Q2", marks: 2, format: "Fill-in", text: "他十分 ___ 班长，觉得他愿意帮助别人，令人尊敬。",
+        accepted: ["7", "佩服", "7佩服", "7 佩服"], displayAnswer: "7 佩服", answerSource: "official" },
+      { qNo: "Q3", marks: 2, format: "Fill-in", text: "几分钟后，老师神情 ___ 地提醒大家：“比赛马上开始了！”",
+        accepted: ["5", "严肃", "5严肃", "5 严肃"], displayAnswer: "5 严肃", answerSource: "official" },
+      { qNo: "Q4", marks: 2, format: "Fill-in", text: "他一坐下，就 ___ 地吃起饭来。",
+        accepted: ["8", "狼吞虎咽", "8狼吞虎咽", "8 狼吞虎咽"], displayAnswer: "8 狼吞虎咽", answerSource: "official" },
+      { qNo: "Q5", marks: 2, format: "Fill-in", text: "他心想：班长乐于助人的精神真 ___ 。",
+        accepted: ["6", "可贵", "6可贵", "6 可贵"], displayAnswer: "6 可贵", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "RG-HC-G2", subject: "Higher Chinese", paper: "Paper 2", section: "一 语文应用 B组",
+    category: "errorcorrect", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "保护花园与和谐社区", source: "Raffles Girls' Primary School, 2025 P5 Higher Chinese EOY",
+      text: "最近，我搬进了一个新的组屋区。刚开始，我对周围的一切很陌生，但日子久了，我就对这里感到熟 [Q6](惜) 了。每天早晨，邻居们都会在花园里聊天，气 [Q7](纷) 十分和谐。\n\n"
+        + "有一天，我发现草地上的花儿枯了。原来是小朋友踢球时，把花儿踩坏了。为了让花园恢复原来的样子，居民决定 [Q8]加速 努力来保护环境。他们设下新的规则，也花时间带领小朋友种花。\n\n"
+        + "这件事让我明白，要拥有一个美丽的生活环境，不能只靠 [Q9]计时，还需要大家合作。美好的生活不会自己降 [Q10](林) 在我们身上，而是需要大家一起努力。"
+    },
+    questions: [
+      { qNo: "Q6", marks: 2, format: "Fill-in",
+        text: "我就对这里感到熟 (惜) 了。 —— 括号里的字是写错的字，请改正。",
+        accepted: ["悉"], displayAnswer: "悉 (熟悉)", answerSource: "official" },
+      { qNo: "Q7", marks: 2, format: "Fill-in",
+        text: "气 (纷) 十分和谐。 —— 括号里的字是写错的字，请改正。",
+        accepted: ["氛"], displayAnswer: "氛 (气氛)", answerSource: "official" },
+      { qNo: "Q8", marks: 2, format: "Fill-in",
+        text: "居民决定__加速__努力来保护环境。 —— 画线词语中有一个字用得不恰当，请改正。",
+        accepted: ["加倍"], displayAnswer: "加倍", answerSource: "official" },
+      { qNo: "Q9", marks: 2, format: "Fill-in",
+        text: "不能只靠__计时__，还需要大家合作。 —— 画线词语中有一个字用得不恰当，请改正。",
+        accepted: ["计划"], displayAnswer: "计划", answerSource: "official" },
+      { qNo: "Q10", marks: 2, format: "Fill-in",
+        text: "美好的生活不会自己降 (林) 在我们身上 —— 括号里的字是写错的字，请改正。",
+        accepted: ["临"], displayAnswer: "临 (降临)", answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "RG-HC-G3", subject: "Higher Chinese", paper: "Paper 2", section: "二 阅读理解（一）",
+    category: "comprehension", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "林伟的兴趣大发现", source: "Raffles Girls' Primary School, 2025 P5 Higher Chinese EOY",
+      text: "林伟一直觉得自己是个“无聊”的人。看到同学们在兴趣班里都很积极，他却对什么都不感兴趣。妈妈鼓励他说：“多参加不同的活动，你就会知道自己喜欢什么！”于是，林伟开始了他的“兴趣大发现”。\n\n"
+        + "第一站——武术班。林伟准备要“飞踢”，结果脚还没抬起来，就踏到裤脚摔倒了！林伟发现自己并不喜欢又累又痛的感觉，只好放弃。\n\n"
+        + "第二站——羽毛球班。林伟以为打羽毛球很容易，可是球飞过来时，他总是接不到。几次都接不到后，他觉得自己不太适合，就放弃了。\n\n"
+        + "第三站——合唱团。林伟觉得唱歌应该比较容易。他唱了几句，声音高得连老师都皱眉。他不觉得有趣，就不再参加活动了。\n\n"
+        + "林伟开始怀疑自己是不是对什么都不感兴趣。直到有一天，老师邀请他在全校面前分享他在兴趣班的故事。林伟有点儿紧张，但他还是站在台上，讲起那些让他难为情却有趣的事。没想到，台下的同学哈哈大笑，还不停地拍手。\n\n"
+        + "讲完故事后，林伟不那么紧张了，心里还有点儿兴奋。原来把自己故事讲出来会这么好玩！这时，他感到十分自豪。\n\n"
+        + "回到家，林伟对妈妈说：“我喜欢讲故事！讲故事真的很有趣！”妈妈笑着说：“你看，我之前跟你说的没错吧。你不尝试怎么知道自己对什么感兴趣呢？”"
+    },
+    questions: [
+      { qNo: "Q11", marks: 2, format: "Fill-in", text: "他总是主动地帮助同学，解决他们的问题。 —— 找出与画线词语意思相近或相同的词语。",
+        accepted: ["积极"], displayAnswer: "积极", answerSource: "official" },
+      { qNo: "Q12", marks: 2, format: "Fill-in", text: "他顺利找出数学题的答案，感到十分骄傲。 —— 找出与画线词语意思相近或相同的词语。",
+        accepted: ["自豪"], displayAnswer: "自豪", answerSource: "official" },
+      { qNo: "Q13", marks: 2, format: "Long-Answer", text: "试说明林伟在参加武术班时的行为和发现。",
+        displayAnswer: "行为：准备要“飞踢”，结果脚还没有抬起来就踩到裤脚摔倒了\n发现：自己并不喜欢又累又痛的感觉", answerSource: "official" },
+      { qNo: "Q14", marks: 2, format: "Long-Answer", text: "试说明林伟在分享故事时的行为和发现。",
+        displayAnswer: "行为：站在台上，讲起那些让他难为情却有趣的事\n发现：原来把自己的故事讲出来会那么好玩", answerSource: "official" },
+      { qNo: "Q15", marks: 4, format: "Long-Answer", text: "一开始，林伟对自己有什么看法？妈妈怎么鼓励林伟做出改变？",
+        displayAnswer: "一开始林伟觉得自己是个“无聊”的人，看到同学们在兴趣班里都很积极，他却对什么都不感兴趣。妈妈鼓励林伟多参加不同的活动，才会知道自己喜欢什么。",
+        answerSource: "official" },
+      { qNo: "Q16", marks: 4, format: "Long-Answer",
+        text: "试从所提供的两个选项中，选一个最适合的作为这篇短文的题目：(1) 参加不同的兴趣班 (2) 从尝试中发现兴趣，然后举例说明做出这个选择的理由。",
+        displayAnswer: "(2) 从尝试中发现兴趣。我认为《从尝试中发现兴趣》是最适合的题目。因为当林伟开始对什么都不感兴趣，但在妈妈鼓励下，他尝试参加了不同的活动，最后林伟在台上讲故事，才发现自己喜欢讲故事。",
+        answerSource: "official" }
+    ]
+  },
+
+  {
+    groupId: "RG-HC-G4", subject: "Higher Chinese", paper: "Paper 2", section: "三 阅读理解（二）",
+    category: "comprehension", lessonEligible: false, lessonIds: [],
+    passage: {
+      title: "误会与和好", source: "Raffles Girls' Primary School, 2025 P5 Higher Chinese EOY",
+      text: "今天上午，我和好朋友明恩为了一件小事大吵了一架。\n\n"
+        + "英文老师让我们分组活动。一向和我同组的明恩，竟然想要和其他同学一组！我呆住了，委屈和愤怒涌上心头，心想：他是不是不把我当朋友了？\n\n"
+        + "下课后，我忍不住问明恩：“为什么不和我一组？”明恩说：“我想和其他同学一组。”他的话让我更生气了。“好啊，那以后别做朋友了！”我转身就跑，眼泪差点儿掉下来。\n\n"
+        + "接下来的几天，我们没有再说话。每次看到他和其他同学有说有笑，我的心里都很难受。我很想和他说话，但又拉不下面子。\n\n"
+        + "直到星期五，级任老师把我和明恩叫到办公室。“你们两个最近都不跟对方说话，怎么了？”老师温和地问。我生气地说：“他不愿意和我一组。”明恩听了，叹了口气说：“那天我只是想帮学习比较吃力的同学，没想到你会生气……”\n\n"
+        + "我这才恍然大悟，原来明恩不是不想和我一组，而是为了帮助同学才做了那个决定。想到这里，我红着脸，小声地说：“对不起，我不该对你发脾气。”明恩回答：“我也有错，应该先把话说清楚。”老师见我们和好了，便拍拍我们的肩膀，说：“朋友之间应该互相了解，这样的友情才能长久！现在雨过天晴，你们回班上课吧。”"
+    },
+    questions: [
+      { qNo: "Q17", marks: 2, format: "Long-Answer", text: "试解释短语在文中的意思：“拉不下面子”（第四段）",
+        displayAnswer: "这个短语在文中的意思是作者因为害怕丢脸，所以不去跟明恩说话/道歉。", answerSource: "official" },
+      { qNo: "Q18", marks: 2, format: "Long-Answer", text: "试解释短语在文中的意思：“恍然大悟”（第六段）",
+        displayAnswer: "这个短语在文中的意思是作者忽然明白明恩不是不要跟他一组，而是想帮学习比较吃力的同学。", answerSource: "official" },
+      { qNo: "Q19", marks: 3, format: "Long-Answer", text: "上课时，明恩选择跟其他同学一组，作者有什么反应？为什么？",
+        displayAnswer: "作者呆住了，委屈和愤怒涌上心头，心想明恩是不是不把他当朋友了。因为明恩和作者一向同组，作者没想到明恩竟然想和其他同学一组。", answerSource: "official" },
+      { qNo: "Q20", marks: 4, format: "Long-Answer", text: "作者听了明恩的解释后，心情如何？为什么？",
+        displayAnswer: "心情：作者感到十分惭愧，脸红着。\n原因：因为作者明白明恩不是不想和作者同组，而是想去帮助学习吃力的同学，作者错怪了明恩，还生他的气。", answerSource: "official" },
+      { qNo: "Q21", marks: 4, format: "Long-Answer", text: "请用不超过18个字，写出短文中第五段的段落大意。",
+        context: "字数限制：≤18字",
+        displayAnswer: "“我”和明恩告诉老师“我们”不说话的原因。", answerSource: "official" },
+      { qNo: "Q22", marks: 4, format: "Long-Answer", text: "短文中的级任老师是个怎样的人？从哪一件事可以看出来？",
+        displayAnswer: "我认为级任老师是个细心的人。级任老师把作者和明恩叫到办公室，然后温和地问为什么他们俩最近都不跟对方说话，从这里可以看出级任老师是个细心的人。", answerSource: "official" },
+      { qNo: "Q23", marks: 5, format: "Long-Answer", text: "作者和明恩最后是怎么和好的？你从这件事中学到什么道理？试举生活中的例子加以说明。",
+        displayAnswer: "他们互相道歉，就和好了。我学到朋友之间要互相了解，这样友情才能长久。例如我的朋友因为没考好，心情不好，突然不理我，我没有马上生气，而是问她原因。我们把话说清楚，避免发生误会。", answerSource: "official" }
     ]
   },
 ];
