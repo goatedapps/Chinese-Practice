@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { usePet } from "../../state/PetContext";
 import { TINGXIE_BP_AWARD } from "../../data/pet";
 import { buildTingxieApplyQueue } from "../../data/tingxie";
-import { speakText } from "../../lib/speech";
+import { speakText, stopSpeaking } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
 import { checkAndAwardMissionBonus } from "../../state/achievements";
@@ -37,6 +37,13 @@ export function Apply() {
   }, [state.applyComplete, hasBankEntries, awardBP]);
 
   const current = state.applyQueue[0];
+
+  // Stop any in-progress dictation read-aloud the moment the card is flipped
+  // -- otherwise a reading started via the front's 🔊 button keeps playing
+  // after the student has already moved on to the answer.
+  useEffect(() => {
+    if (state.applyFlipped) stopSpeaking();
+  }, [state.applyFlipped]);
 
   function correct() {
     Sound.ding();

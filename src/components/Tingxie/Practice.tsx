@@ -108,6 +108,16 @@ export function Practice() {
             <div className="tingxie-scenario tingxie-scenario-card">
               <span className="tingxie-scenario-icon">{tingxieIconEmoji(current.item.icon)}</span>
               <span className="tingxie-scenario-desc">{current.item.description}</span>
+              <button
+                type="button"
+                className="secondary-btn tingxie-speak-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  speakText(current.item.text);
+                }}
+              >
+                🔊 朗读 Listen
+              </button>
             </div>
           }
           back={

@@ -148,6 +148,22 @@ function SentenceBuilderGame() {
           <button className="secondary-btn" onClick={() => dispatch({ type: "SENTENCE_RESET" })}>
             🔄 重来 Reset
           </button>
+          {!state.sentenceRevealed ? (
+            <button className="secondary-btn" onClick={() => dispatch({ type: "SENTENCE_REVEAL" })}>
+              查看答案 Reveal answer
+            </button>
+          ) : (
+            <div className="tingxie-full-sentence">
+              {current.text}
+              <button
+                type="button"
+                className="secondary-btn tingxie-speak-btn"
+                onClick={() => speakText(current.text)}
+              >
+                🔊 朗读 Listen
+              </button>
+            </div>
+          )}
         </div>
       )}
 

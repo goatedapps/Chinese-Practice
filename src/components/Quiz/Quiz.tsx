@@ -6,7 +6,7 @@ import { RichText } from "../../lib/richText";
 import { Sound } from "../../lib/sound";
 import { speakText, stopSpeaking } from "../../lib/speech";
 import { ConfirmModal } from "../common/Modal";
-import { gradeGroup, correctOptionFor } from "../../lib/grading";
+import { gradeGroup, correctOptionFor, isSelfCheckFormat } from "../../lib/grading";
 import type { AnswerMap } from "../../lib/grading";
 import type { Question, QuestionGroup, GroupResultItem } from "../../data/types";
 
@@ -221,7 +221,9 @@ function QuestionCard({ q, idx, displayNo, group, answer, onAnswerChange, item, 
     <div className="question-box" id={`q-${idx}`}>
       <div className="question-head">
         {`Q${displayNo}`}
-        <span className="marks-badge">{`${q.marks} 分`}</span>
+        {group.category === "comprehension" && isSelfCheckFormat(q.format) && (
+          <span className="marks-badge">{`${q.marks} 分`}</span>
+        )}
         <button
           type="button"
           className="dictation-btn"
