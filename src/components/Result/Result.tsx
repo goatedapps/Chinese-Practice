@@ -4,6 +4,7 @@ import { usePet } from "../../state/PetContext";
 import { saveHistory, loadHistory } from "../../state/history";
 import { logAchievement, checkAndAwardMissionBonus } from "../../state/achievements";
 import { Sound } from "../../lib/sound";
+import { exportSessionToPdf } from "../../lib/exportPdf";
 
 export function Result() {
   const state = useAppState();
@@ -76,6 +77,22 @@ export function Result() {
         {`答对 ${correctItems} / ${totalItems} 题${skippedItems ? `（${skippedItems} 题未作答或未自评）` : ""}`}
       </p>
       <div className="action-row">
+        {state.mode === "type" && (
+          <button
+            className="secondary-btn"
+            onClick={() =>
+              exportSessionToPdf(state.groups, state.results, {
+                modeLabel: state.modeLabel,
+                pct,
+                correctItems,
+                totalItems,
+                skippedItems
+              })
+            }
+          >
+            📄 下载 PDF Download PDF
+          </button>
+        )}
         <button className="primary-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>
           返回主页 Back to Home
         </button>

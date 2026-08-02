@@ -20,14 +20,14 @@ export function gradeQuestion(question: Question, answer: string | undefined): G
   if (question.format === "MCQ") {
     const chosen = answer || null;
     const correct = chosen === question.correctKey;
-    return { qNo: question.qNo, marks: question.marks, correct, skipped: !chosen };
+    return { qNo: question.qNo, marks: question.marks, correct, skipped: !chosen, answer };
   }
   if (question.format === "Fill-in") {
     const val = normalize(answer);
     const correct = question.accepted.some((a) => normalize(a) === val);
-    return { qNo: question.qNo, marks: question.marks, correct, skipped: !val };
+    return { qNo: question.qNo, marks: question.marks, correct, skipped: !val, answer };
   }
-  return { qNo: question.qNo, marks: question.marks, correct: null, skipped: true, bpAwarded: false };
+  return { qNo: question.qNo, marks: question.marks, correct: null, skipped: true, bpAwarded: false, answer };
 }
 
 export function gradeGroup(group: QuestionGroup, answers: AnswerMap): GroupResultItem[] {

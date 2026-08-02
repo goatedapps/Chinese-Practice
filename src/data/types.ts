@@ -67,6 +67,10 @@ export interface GroupResultItem {
   correct: boolean | null;
   skipped: boolean;
   bpAwarded?: boolean;
+  // The student's raw answer -- MCQ option key, typed Fill-in text, or typed
+  // Long-Answer/Writing-Constrained text. Kept (not discarded after grading)
+  // so the PDF export in lib/exportPdf.ts can show what was actually typed.
+  answer?: string;
 }
 
 export interface GroupResult {
