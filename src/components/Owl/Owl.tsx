@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
-import { usePet, computeCurrentMood, moodBucket, getStage } from "../../state/PetContext";
+import { usePet, computeCurrentMood, moodBucket, getAge, getStage } from "../../state/PetContext";
 import { OwlArt } from "../common/OwlArt";
 import { PetStatBars } from "../common/PetStatBars";
 import { Sound } from "../../lib/sound";
@@ -16,6 +16,7 @@ export function Owl() {
   const dispatch = useAppDispatch();
   const { pet, renameOwl } = usePet();
   const mood = computeCurrentMood(pet);
+  const age = getAge(pet.growth);
   const stage = getStage(pet.growth);
   const bucket = moodBucket(mood);
   const bagCount = Object.values(pet.inventory).reduce((sum, n) => sum + n, 0);
@@ -69,7 +70,7 @@ export function Owl() {
 
       <OwlArt stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" playSound />
       <div className="owl-info">
-        <div className="owl-stage-label">{stage.label}</div>
+        <div className="owl-stage-label">{stage.label} · 🎂 {age}岁 {age} yrs old</div>
         <div className="owl-mood-label">{MOOD_LABELS[bucket]}</div>
         <PetStatBars pet={pet} />
         <div className="owl-bp-label">💡 可用 BP: {pet.bp}</div>

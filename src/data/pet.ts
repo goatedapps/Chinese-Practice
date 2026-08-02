@@ -15,13 +15,20 @@
    ========================================================= */
 import type { PetState, PetStage, ShopItem, MoodBucket } from "./types";
 
+// Growth points (earned only by feeding -- see giveItem() in PetContext.tsx,
+// unchanged) needed for the pet to age by 1 year. Age is purely derived
+// (Math.floor(growth / GROWTH_PER_AGE_YEAR)), never stored -- same pattern
+// as computeCurrentMood() deriving mood from a checkpoint pair rather than
+// storing an already-decayed value.
+export const GROWTH_PER_AGE_YEAR: number = 100;
+
 export const PET_STAGES: PetStage[] = [
-  { key: "egg",      label: "蛋 Egg",                minGrowth: 0   },
-  { key: "baby",     label: "雏鸟 Baby Owl",         minGrowth: 20  },
-  { key: "toddler",  label: "幼鸟 Toddler Owl",      minGrowth: 50  },
-  { key: "young",    label: "少年鸟 Young Owl",      minGrowth: 90  },
-  { key: "teenager", label: "青年鸟 Teenager Owl",   minGrowth: 140 },
-  { key: "adult",    label: "成鸟 Adult Owl",        minGrowth: 200 }
+  { key: "egg",      label: "蛋 Egg",                minAgeYears: 0  },
+  { key: "baby",     label: "雏鸟 Baby Owl",         minAgeYears: 3  },
+  { key: "toddler",  label: "幼鸟 Toddler Owl",      minAgeYears: 7  },
+  { key: "young",    label: "少年鸟 Young Owl",      minAgeYears: 11 },
+  { key: "teenager", label: "青年鸟 Teenager Owl",   minAgeYears: 16 },
+  { key: "adult",    label: "成鸟 Adult Owl",        minAgeYears: 21 }
 ];
 
 // How fast neglect sets in: mood points lost per hour since last feed/play.
@@ -56,12 +63,12 @@ export const MISSION_COMPLETE_BONUS_BP = 15;
 // the growth/mood effect only applies once the student gives it to the owl
 // from the Bag screen -- cost in BP, growth/mood granted on give.
 export const SHOP_ITEMS: ShopItem[] = [
-  { id: "seed",   label: "🌾 谷粒 Seeds",       type: "food", cost: 3,  growth: 4,  mood: 10 },
-  { id: "worm",   label: "🐛 虫子 Worm",        type: "food", cost: 8,  growth: 8,  mood: 20 },
-  { id: "fish",   label: "🐟 小鱼干 Dried Fish", type: "food", cost: 15, growth: 15, mood: 30 },
-  { id: "ball",   label: "⚽ 小球 Play Ball",    type: "toy",  cost: 5,  growth: 2,  mood: 25 },
-  { id: "kite",   label: "🪁 风筝 Kite",         type: "toy",  cost: 12, growth: 5,  mood: 35 },
-  { id: "puzzle", label: "🧩 拼图 Puzzle Toy",   type: "toy",  cost: 20, growth: 10, mood: 45 }
+  { id: "seed",   label: "🌾 谷粒 Seeds",       type: "food", cost: 25,  growth: 2,  mood: 30 },
+  { id: "worm",   label: "🐛 虫子 Worm",        type: "food", cost: 48,  growth: 4,  mood: 60 },
+  { id: "fish",   label: "🐟 小鱼干 Dried Fish", type: "food", cost: 80, growth: 8, mood: 90 },
+  { id: "ball",   label: "⚽ 小球 Play Ball",    type: "toy",  cost: 10,  growth: 0,  mood: 30 },
+  { id: "kite",   label: "🪁 风筝 Kite",         type: "toy",  cost: 18, growth: 0,  mood: 55 },
+  { id: "puzzle", label: "🧩 拼图 Puzzle Toy",   type: "toy",  cost: 25, growth: 0, mood: 80 }
 ];
 
 export const PET_DEFAULT_STATE: PetState = {

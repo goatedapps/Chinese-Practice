@@ -1,6 +1,6 @@
 import { useAppDispatch } from "../../state/AppStateContext";
-import { usePet, computeCurrentMood, moodBucket, getStage, nextStage } from "../../state/PetContext";
-import { PET_STAGES } from "../../data/pet";
+import { usePet, computeCurrentMood, moodBucket, getAge, getStage } from "../../state/PetContext";
+import { PET_STAGES, GROWTH_PER_AGE_YEAR } from "../../data/pet";
 import { OwlArt } from "../common/OwlArt";
 import type { MoodBucket } from "../../data/types";
 
@@ -18,14 +18,15 @@ export function PetHeroCard() {
   const dispatch = useAppDispatch();
   const { pet } = usePet();
   const mood = computeCurrentMood(pet);
+  const age = getAge(pet.growth);
   const stage = getStage(pet.growth);
-  const next = nextStage(pet.growth);
   const bucket = moodBucket(mood);
 
   const stageNum = PET_STAGES.findIndex((s) => s.key === stage.key) + 1;
-  const growthPct = next
-    ? Math.round(((pet.growth - stage.minGrowth) / (next.minGrowth - stage.minGrowth)) * 100)
-    : 100;
+  // Always progress within the current age year, not toward the next
+  // evolution stage -- see PetStatBars.tsx for why (kept a surprise).
+  const yearProgress = pet.growth % GROWTH_PER_AGE_YEAR;
+  const growthPct = Math.round((yearProgress / GROWTH_PER_AGE_YEAR) * 100);
   // Matches the Owl/Bag screens' hunger bar (PetStatBars): the bar fills as
   // the pet gets *more* satiated, same as mood itself -- not inverted.
   const hunger = Math.round(mood);
@@ -41,7 +42,7 @@ export function PetHeroCard() {
         <div className="pet-hero-identity">
           <div className="pet-hero-name">{pet.name || "为它取个名字吧 Name your pet"}</div>
           <div className="pet-hero-stage-badge">
-            {stage.label} · 第 {stageNum}／{PET_STAGES.length} 阶段
+            {stage.label} · 🎂 {age}岁 · 第 {stageNum}／{PET_STAGES.length} 阶段
           </div>
         </div>
 
@@ -49,7 +50,7 @@ export function PetHeroCard() {
           <div className="pet-hero-bar-row">
             <div className="pet-hero-bar-label">
               <span>成长 Growth</span>
-              <b>{next ? `${pet.growth}/${next.minGrowth}` : "已完全长大 Fully grown"}</b>
+              <b>{yearProgress}/{GROWTH_PER_AGE_YEAR}</b>
             </div>
             <div className="growth-bar">
               <div className="growth-bar-fill" style={{ width: `${growthPct}%` }} />

@@ -538,6 +538,27 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   100% { opacity: 0; transform: translateY(-14px); }
 }
 
+/* Celebratory banner shown when the pet crosses an age-year boundary (every
+   100 growth) -- stays on screen for as long as the student is on Bag.tsx
+   (cleared on unmount, not a timer), so this only pops in once and holds --
+   it must never animate back out on its own. */
+.age-up-banner {
+  max-width: 320px; margin: 6px auto 0; padding: 10px 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, var(--gold-hi), var(--gold));
+  color: var(--ink); font-weight: 700; text-align: center;
+  box-shadow: var(--shadow-1);
+  font-size: 14px; line-height: 1.4;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .age-up-banner { animation: age-up-pop .6s ease-out; }
+}
+@keyframes age-up-pop {
+  0%   { opacity: 0; transform: scale(.7) translateY(6px); }
+  70%  { opacity: 1; transform: scale(1.08) translateY(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
 .owl-screen { text-align: center; }
 .owl-name-row {
   display: flex; align-items: center; justify-content: center; gap: 8px;

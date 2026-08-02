@@ -12,6 +12,9 @@ export function Bag() {
   const dispatch = useAppDispatch();
   const { pet, giveItem } = usePet();
   const owlRef = useRef<HTMLDivElement>(null);
+  // Stays visible for as long as the student is on this screen -- cleared
+  // only by navigating away (component unmount), not on a timer.
+  const [ageUpAge, setAgeUpAge] = useState<number | null>(null);
 
   const mood = computeCurrentMood(pet);
   const stage = getStage(pet.growth);
@@ -25,6 +28,13 @@ export function Bag() {
       </button>
       <h1>{`喂食 Feed ${pet.name || "它"}`}</h1>
       <OwlArt ref={owlRef} stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" playSound />
+      {ageUpAge !== null && (
+        <div className="age-up-banner" role="status">
+          🎉 {pet.name || "它"}长大了一岁，现在是 {ageUpAge} 岁了！
+          <br />
+          Your pet has grown wiser — now {ageUpAge} years old!
+        </div>
+      )}
       <PetStatBars pet={pet} />
       <h2>道具袋 My Bag</h2>
 
@@ -49,7 +59,16 @@ export function Bag() {
           {entries.map(([itemId, qty]) => {
             const item = SHOP_ITEMS.find((i) => i.id === itemId);
             if (!item) return null;
-            return <BagItemCard key={itemId} item={item} qty={qty} owlRef={owlRef} onGive={giveItem} />;
+            return (
+              <BagItemCard
+                key={itemId}
+                item={item}
+                qty={qty}
+                owlRef={owlRef}
+                onGive={giveItem}
+                onAgedUp={setAgeUpAge}
+              />
+            );
           })}
         </div>
       )}
@@ -61,10 +80,11 @@ interface BagItemCardProps {
   item: ShopItem;
   qty: number;
   owlRef: React.RefObject<HTMLDivElement | null>;
-  onGive: (item: ShopItem) => boolean;
+  onGive: (item: ShopItem) => { agedUp: boolean; age: number };
+  onAgedUp: (age: number) => void;
 }
 
-function BagItemCard({ item, qty, owlRef, onGive }: BagItemCardProps) {
+function BagItemCard({ item, qty, owlRef, onGive, onAgedUp }: BagItemCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [giving, setGiving] = useState(false);
   const emoji = item.label.split(" ")[0];
@@ -74,9 +94,13 @@ function BagItemCard({ item, qty, owlRef, onGive }: BagItemCardProps) {
     if (giving || !cardRef.current || !owlRef.current) return;
     setGiving(true);
     flyItemTo(cardRef.current, owlRef.current, emoji, () => {
-      const evolved = onGive(item);
-      if (evolved) Sound.levelUp();
-      else Sound.gift();
+      const result = onGive(item);
+      if (result.agedUp) {
+        Sound.levelUp();
+        onAgedUp(result.age);
+      } else {
+        Sound.gift();
+      }
       setGiving(false);
     });
   }

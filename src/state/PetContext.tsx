@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import type { PetState, MoodBucket, ShopItem } from "../data/types";
-import { PET_DEFAULT_STATE, PET_STAGES, MOOD_DECAY_PER_HOUR } from "../data/pet";
+import { PET_DEFAULT_STATE, PET_STAGES, MOOD_DECAY_PER_HOUR, GROWTH_PER_AGE_YEAR } from "../data/pet";
 import { logAchievement } from "./achievements";
 
 const PET_KEY = "hanyuPracticePet_v1";
@@ -35,25 +35,39 @@ export function moodBucket(mood: number): MoodBucket {
   return "very_happy";
 }
 
+// Age in years -- purely derived from raw growth points, same as
+// computeCurrentMood() deriving mood fresh from a checkpoint rather than
+// storing an already-decayed value. 100 growth (default GROWTH_PER_AGE_YEAR)
+// = 1 year.
+export function getAge(growth: number): number {
+  return Math.floor(growth / GROWTH_PER_AGE_YEAR);
+}
+
 export function getStage(growth: number) {
+  const age = getAge(growth);
   let current = PET_STAGES[0];
   for (const stage of PET_STAGES) {
-    if (growth >= stage.minGrowth) current = stage;
+    if (age >= stage.minAgeYears) current = stage;
   }
   return current;
 }
 
 export function nextStage(growth: number) {
-  return PET_STAGES.find((s) => s.minGrowth > growth) ?? null;
+  const age = getAge(growth);
+  return PET_STAGES.find((s) => s.minAgeYears > age) ?? null;
 }
 
 interface PetContextValue {
   pet: PetState;
   awardBP: (amount: number) => void;
   buyItem: (item: ShopItem) => void;
-  // Returns whether this give triggered a stage evolution, so callers (see
-  // Bag.tsx) can play the level-up sound instead of the routine gift sound.
-  giveItem: (item: ShopItem) => boolean;
+  // Returns whether this give crossed an age-year boundary (every 100
+  // growth -- see GROWTH_PER_AGE_YEAR), so callers (see Bag.tsx) know to
+  // play the level-up sound + show the "grew a year" celebration instead of
+  // the routine gift sound. A stage evolution is always also an age-up (each
+  // PET_STAGES.minAgeYears is itself a specific age), so `agedUp` alone is
+  // sufficient -- callers don't need a separate "evolved" signal.
+  giveItem: (item: ShopItem) => { agedUp: boolean; age: number };
   renameOwl: (name: string) => void;
   recordQuestionsCompleted: (n: number) => void;
 }
@@ -93,17 +107,20 @@ export function PetProvider({ children }: { children: ReactNode }) {
   // Applies a bagged item's growth/mood effect to the owl and removes it
   // from the Bag. Called once the item's throw animation lands (see
   // components/Bag/Bag.tsx), not immediately when the student clicks Give.
-  function giveItem(item: ShopItem): boolean {
+  function giveItem(item: ShopItem): { agedUp: boolean; age: number } {
     const have = pet.inventory[item.id] ?? 0;
-    if (have <= 0) return false;
+    if (have <= 0) return { agedUp: false, age: getAge(pet.growth) };
 
     // Achievement logging reads `pet` (component scope, not the `prev`
     // inside the updater below) so it isn't tied to the updater's
     // once-or-twice-in-StrictMode internals -- it runs exactly once per
     // genuine click, same as any other event handler.
+    const newGrowth = pet.growth + item.growth;
     const prevStage = getStage(pet.growth);
-    const nextStageAfter = getStage(pet.growth + item.growth);
+    const nextStageAfter = getStage(newGrowth);
     const evolved = nextStageAfter.key !== prevStage.key;
+    const newAge = getAge(newGrowth);
+    const agedUp = newAge > getAge(pet.growth);
     logAchievement({ type: "fed", detail: item.id });
     if (evolved) {
       logAchievement({ type: "evolved", detail: nextStageAfter.key });
@@ -124,7 +141,7 @@ export function PetProvider({ children }: { children: ReactNode }) {
       return next;
     });
 
-    return evolved;
+    return { agedUp, age: newAge };
   }
 
   function renameOwl(name: string) {

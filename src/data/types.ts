@@ -98,7 +98,10 @@ export interface HistoryEntry {
 export interface PetStage {
   key: string;
   label: string;
-  minGrowth: number;
+  // Age (in years -- see GROWTH_PER_AGE_YEAR in data/pet.ts) at which the
+  // pet evolves into this stage. Age itself is derived from raw `growth`
+  // points (earned by feeding, unchanged), never stored directly.
+  minAgeYears: number;
 }
 
 export interface ShopItem {
