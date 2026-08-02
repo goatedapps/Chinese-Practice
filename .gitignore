@@ -27,3 +27,6 @@ dist-ssr
 
 # Python
 scripts/__pycache__/
+
+# Personal Claude Code hooks (see .claude/settings.local.json)
+.claude/hooks/
