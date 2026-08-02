@@ -13,7 +13,6 @@ interface QuestionBase {
   marks: number;
   text: string;
   context?: string;
-  answerSource?: string;
   notes?: string;
 }
 
