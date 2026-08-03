@@ -54,6 +54,45 @@ body {
   padding: 28px 20px 40px;
 }
 
+/* ---------- Top nav ---------- */
+/* Sticky across every screen except Quiz/Result (App.tsx decides not to
+   render it there -- see TopNav.tsx). Sits above the current screen's own
+   card, offset by #root's top padding until the page scrolls past it. */
+.top-nav {
+  position: sticky;
+  top: 12px;
+  z-index: 20;
+  display: flex;
+  gap: 8px;
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border-radius: 999px;
+  padding: 8px;
+  box-shadow: var(--shadow-2);
+  margin-bottom: 20px;
+}
+.top-nav-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 999px;
+  padding: 11px 4px;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease, color .12s ease;
+}
+.top-nav-item:hover { transform: translateY(-1px); color: var(--ink); }
+.top-nav-item:active { transform: scale(.95); }
+.top-nav-item-active {
+  background: linear-gradient(180deg, var(--primary-hi), var(--primary));
+  color: #fff8ee;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.25), var(--shadow-1);
+}
+.top-nav-item-active:hover { color: #fff8ee; }
+.top-nav-label { font-size: 14px; font-weight: 600; text-align: center; }
+
 h1, h2 {
   font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
 }
@@ -96,31 +135,73 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   margin-bottom: 18px;
 }
 
-.home-welcome { margin-bottom: 18px; }
-.home-greeting { font-size: 27px; margin-bottom: 5px; }
-.home-subgreeting { color: var(--ink-soft); font-size: 15.5px; margin: 0; }
-
 .section-eyebrow {
   font-size: 12.5px; font-weight: 700; letter-spacing: .04em; color: var(--gold-deep);
   text-transform: uppercase;
 }
 .section-heading { margin: 4px 0 14px; }
 
-/* -- hero pet card -- */
+/* -- hero pet section: the pet is the centerpiece, not a card -- deliberately
+   NOT a .dash-card: no boxed background/shadow of its own, it just sits
+   directly on .home's own gradient wash. What used to be Home's separate
+   greeting section is merged into this card's left column (greeting on top,
+   pet identity/bars below it) so the greeting and the pet read as one unit;
+   the right column is the BP badge above the art. Individual pieces inside
+   (the stage badge pill, the speech bubble) keep their own light styling --
+   only the single outer "everything in one box" card chrome is gone. */
 .pet-hero-card {
-  display: flex; flex-wrap: wrap; gap: 22px;
-  padding: 22px; width: 100%;
+  display: flex; flex-direction: column;
+  padding: 6px 4px 22px; width: 100%;
+  background: none; border: none; box-shadow: none;
   cursor: pointer; text-align: left; font-family: inherit; color: inherit;
-  transition: transform .15s ease, box-shadow .15s ease;
+  transition: transform .15s ease, opacity .15s ease;
 }
-.pet-hero-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
-.pet-hero-card:active { transform: translateY(0); box-shadow: var(--shadow-press); }
+.pet-hero-card:hover { transform: scale(1.008); }
+.pet-hero-card:active { transform: scale(.99); opacity: .92; }
+/* Two columns, both sharing the same flex-basis/max-width so they grow
+   together and land at roughly equal widths, rather than staying pinned to
+   small fixed/viewport-relative sizes with a big empty gap between them on
+   wider screens -- any leftover space past both caps just trails after the
+   right column instead of stranding itself mid-row. flex-start (not
+   center) since the left column (greeting + identity + bars) runs taller
+   than the right (BP badge + art), so they should top-align, not center. */
+.pet-hero-row { display: flex; align-items: flex-start; gap: 20px; }
+.pet-hero-left {
+  flex: 1 1 200px; max-width: 300px; min-width: 140px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.pet-hero-welcome { display: flex; flex-direction: column; gap: 4px; }
+.pet-hero-greeting { font-size: 20px; margin: 0; line-height: 1.3; }
+.pet-hero-subgreeting { color: var(--ink-soft); font-size: 13px; margin: 0; line-height: 1.45; }
+.pet-hero-identity { display: flex; flex-direction: column; gap: 6px; }
+.pet-hero-right {
+  position: relative;
+  flex: 1 1 200px;
+  max-width: 300px;
+  min-width: 0;
+  /* Once both sides hit their max-width, any leftover row space collects
+     here instead of trailing uselessly after the art on the right --
+     pushes this column flush against the card's right edge. */
+  margin-left: auto;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+}
 .pet-hero-art-col {
-  flex: 0 0 auto;
-  display: flex; flex-direction: column; align-items: center; gap: 12px;
-  width: min(200px, 100%);
-  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
 }
+/* Soft spotlight glow behind the art -- static (no drift), a hero backdrop
+   rather than an ambient page-level effect. */
+.pet-hero-art-col::before {
+  content: "";
+  position: absolute;
+  top: -6px; left: 50%;
+  transform: translateX(-50%);
+  width: 128%; aspect-ratio: 1; max-width: 420px;
+  background: radial-gradient(circle, rgba(255, 171, 143, .5), rgba(255, 171, 143, 0) 70%);
+  z-index: 0;
+}
+.pet-hero-art-col > * { position: relative; z-index: 1; }
 @media (prefers-reduced-motion: no-preference) {
   .owl-hero { animation: owl-hero-breathe 3.2s ease-in-out infinite; }
 }
@@ -136,7 +217,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   padding: 9px 13px;
   font-size: 13.5px;
   text-align: center;
-  max-width: 190px;
+  max-width: min(240px, 90%);
   box-shadow: var(--shadow-1);
 }
 .pet-hero-speech::after {
@@ -146,17 +227,17 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   background: var(--card-bg);
   border-left: 1px solid var(--border); border-top: 1px solid var(--border);
 }
-.pet-hero-info-col { flex: 1 1 260px; min-width: 240px; display: flex; flex-direction: column; }
-.pet-hero-identity { margin-bottom: 14px; }
 .pet-hero-name { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 22px; font-weight: 700; }
-.pet-hero-stage-badge { margin-top: 6px; }
-.pet-hero-bars { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+/* No flex-basis/max-width here anymore -- .pet-hero-bars is stacked inside
+   the .pet-hero-left column now (not a row item beside the art), so its
+   width already comes from that parent; flex/max-width here would target
+   the column's vertical main axis instead and force unwanted stretching. */
+.pet-hero-bars { display: flex; flex-direction: column; gap: 14px; }
 .pet-hero-bar-label {
-  display: flex; justify-content: space-between; align-items: baseline;
-  font-size: 13px; color: var(--ink-soft); margin-bottom: 5px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  font-size: 12.5px; color: var(--ink-soft); margin-bottom: 5px;
 }
 .pet-hero-bar-label b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
-.pet-hero-footer { display: flex; align-items: center; justify-content: flex-start; gap: 12px; margin-top: auto; flex-wrap: wrap; }
 
 /* -- continue learning -- */
 .continue-section { padding: 22px; }
@@ -231,11 +312,10 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 
 /* -- dashboard entrance animation -- */
 @media (prefers-reduced-motion: no-preference) {
-  .home-dashboard .dash-card, .home-dashboard .home-welcome {
+  .home-dashboard .dash-card, .home-dashboard .pet-hero-card {
     opacity: 0; animation: dash-card-in .45s cubic-bezier(.2,.7,.3,1) forwards;
   }
-  .home-dashboard .home-welcome { animation-delay: .02s; }
-  .home-dashboard .pet-hero-card { animation-delay: .08s; }
+  .home-dashboard .pet-hero-card { animation-delay: .02s; }
   .home-dashboard .today-mission { animation-delay: .14s; }
   .home-dashboard .continue-section { animation-delay: .20s; }
   .home-dashboard .progress-summary { animation-delay: .26s; }
@@ -288,8 +368,11 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .lesson-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: var(--shadow-2); }
 .lesson-btn:active { transform: scale(.96); box-shadow: var(--shadow-press); }
 .lesson-btn.disabled { opacity: .45; cursor: not-allowed; box-shadow: none; transform: none; }
+.lesson-btn-active { background: linear-gradient(180deg, var(--card-hi), #fff0e5); border: 2px solid var(--primary); font-weight: 700; }
 .lesson-btn-num { font-size: 18px; font-weight: 700; }
 .lesson-btn-count { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+.lesson-grid-disabled { opacity: .55; }
+.picker-hint { font-size: 13px; font-weight: 400; color: var(--ink-soft); }
 
 .subject-row { display: flex; align-items: center; gap: 8px; margin: 10px 0 18px; flex-wrap: wrap; }
 .field-label { font-size: 15px; color: var(--ink-soft); margin-right: 4px; }
@@ -468,6 +551,12 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .quiz-bp-badge, .pet-status-bp, .stat-tile-badge.tone-gold {
   background: linear-gradient(155deg, var(--gold-hi), var(--gold) 55%, var(--gold-deep));
 }
+/* Unlike the other badges sharing this rule group, the stage badge's text
+   ("蛋 Egg · 🎂 0岁 · 第 1／6 阶段") is long relative to .pet-hero-left's
+   narrow column, and this card is otherwise .dash-card-free -- nothing
+   would clip an overflowing nowrap pill, it would just silently paint
+   underneath the art column instead. Let it wrap. */
+.pet-hero-stage-badge { white-space: normal; text-align: left; }
 
 .question-text { font-size: 19px; margin-bottom: 10px; line-height: 1.7; }
 .question-context { font-size: 16px; color: var(--ink-soft); background: var(--card-bg); border: 2px solid var(--border); border-radius: 14px; padding: 10px 12px; margin-bottom: 10px; white-space: pre-wrap; }
@@ -535,7 +624,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 .owl-art img, .owl-art video { width: 100%; height: 100%; display: block; object-fit: contain; }
 .owl-thumb { width: 64px; height: 64px; }
-.owl-hero { width: min(180px, 40vw); height: min(180px, 40vw); box-shadow: var(--shadow-2); }
+.owl-hero { width: 100%; max-width: 300px; aspect-ratio: 1; height: auto; box-shadow: var(--shadow-2); }
 .owl-large { width: min(260px, 70vw); height: min(260px, 70vw); margin: 8px auto 4px; box-shadow: var(--shadow-2); }
 
 .bp-pop {
@@ -865,44 +954,26 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .tingxie-self-check { justify-content: center; margin-top: 18px; }
 
 /* =========================================================
-   CLAYMORPHISM -- app-wide, plus Home's own extra flourish
+   CLAYMORPHISM -- app-wide
    ---------------------------------------------------------
    The candy palette, puffy double-shadow shape language, and squish
    interactions were previewed on Home first, approved, then promoted
    into the shared tokens/classes above (:root, .screen, .dash-card,
    .mode-card, buttons, badges, bars, and every screen's card-like
-   classes) so the whole app now shares one look. The only thing left
-   scoped to ".home" is its drifting background blobs -- the one
-   signature flourish that stays Home-only rather than spreading
-   everywhere, per "spend your boldness in one place."
+   classes) so the whole app now shares one look.
    ========================================================= */
 .home {
-  isolation: isolate;
-  overflow: hidden;
-}
-.home::before, .home::after {
-  content: ""; position: absolute; z-index: -1;
-  border-radius: 50%; filter: blur(2px); opacity: .5;
-}
-.home::before {
-  width: 220px; height: 220px; top: -70px; right: -60px;
-  background: radial-gradient(circle at 30% 30%, var(--gold-hi), var(--primary) 70%);
-}
-.home::after {
-  width: 260px; height: 260px; bottom: -90px; left: -80px;
-  background: radial-gradient(circle at 30% 30%, #c9eeff, var(--correct) 75%);
-}
-@media (prefers-reduced-motion: no-preference) {
-  .home::before { animation: clay-drift-1 9s ease-in-out infinite; }
-  .home::after { animation: clay-drift-2 11s ease-in-out infinite; }
-}
-@keyframes clay-drift-1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-14px, 16px) scale(1.06); }
-}
-@keyframes clay-drift-2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(16px, -14px) scale(1.08); }
+  /* Overrides .screen's own boxed gradient panel -- Home deliberately has
+     no single outer "everything card" wrapping its sections; each section
+     (Today's Mission, Continue Learning, Progress Summary, ...) is its own
+     .dash-card floating directly on the page background instead. Home used
+     to also have two blurred drifting gradient "blobs" peeking from behind
+     that panel's rounded corners -- removed along with the panel itself,
+     since without a rounded/overflow-hidden panel to soften and clip them,
+     they read as a hard-edged shape/border of their own, the opposite of
+     what removing the panel was for. */
+  background: none;
+  border-radius: 0;
 }
 
 .result .action-row { justify-content: center; }

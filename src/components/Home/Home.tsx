@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { loadHistory, clearAllHistory, deleteHistoryEntry } from "../../state/history";
-import { getTodayStats } from "../../lib/stats";
 import { ConfirmModal } from "../common/Modal";
 import { PetHeroCard } from "./PetHeroCard";
 import { TodayMission } from "./TodayMission";
@@ -10,18 +9,10 @@ import { RecentAchievements } from "./RecentAchievements";
 
 type PendingHistoryAction = { type: "clear" } | { type: "delete"; id: string };
 
-function greeting(): string {
-  const hour = new Date().getHours();
-  if (hour < 12) return "早上好 Good morning";
-  if (hour < 18) return "下午好 Good afternoon";
-  return "晚上好 Good evening";
-}
-
 export function Home() {
   const dispatch = useAppDispatch();
   const [hist, setHist] = useState(() => loadHistory());
   const [pending, setPending] = useState<PendingHistoryAction | null>(null);
-  const { questions } = getTodayStats(hist);
 
   function handleConfirm() {
     if (!pending) return;
@@ -33,16 +24,7 @@ export function Home() {
 
   return (
     <div className="screen home home-dashboard">
-      <div className="home-welcome">
-        <h1 className="home-greeting">{greeting()} 👋</h1>
-        <p className="home-subgreeting">
-          {questions > 0
-            ? `你今天已经完成 ${questions} 题，继续保持！You've done ${questions} questions today — keep it up!`
-            : "今天还没开始练习，快来陪陪你的小伙伴吧！No practice yet today — let's get started with your buddy!"}
-        </p>
-      </div>
-
-      <PetHeroCard />
+      <PetHeroCard hist={hist} />
 
       <TodayMission hist={hist} />
 
@@ -54,13 +36,9 @@ export function Home() {
             <div className="mode-card-title">🔊 听写练习</div>
             <div className="mode-card-sub">Dictation Practice</div>
           </button>
-          <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "lessonPicker" })}>
-            <div className="mode-card-title">📘 按课文练习</div>
-            <div className="mode-card-sub">Practice by Lesson</div>
-          </button>
-          <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "typePicker" })}>
-            <div className="mode-card-title">🧩 按题型练习</div>
-            <div className="mode-card-sub">Practice by Question Type</div>
+          <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "practice" })}>
+            <div className="mode-card-title">📘 练习</div>
+            <div className="mode-card-sub">Practice</div>
           </button>
         </div>
       </div>

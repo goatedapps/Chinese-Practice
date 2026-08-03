@@ -1,16 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 import { AppStateProvider, useAppState } from "./state/AppStateContext";
 import { PetProvider } from "./state/PetContext";
 import { Sound } from "./lib/sound";
 import { Home } from "./components/Home/Home";
-import { LessonPicker } from "./components/LessonPicker/LessonPicker";
-import { TypePicker } from "./components/TypePicker/TypePicker";
+import { Practice } from "./components/Practice/Practice";
 import { Quiz } from "./components/Quiz/Quiz";
 import { Result } from "./components/Result/Result";
 import { Owl } from "./components/Owl/Owl";
 import { Shop } from "./components/Shop/Shop";
 import { Bag } from "./components/Bag/Bag";
 import { Tingxie } from "./components/Tingxie/Tingxie";
+import { TopNav } from "./components/common/TopNav";
 
 function ScreenRouter() {
   const state = useAppState();
@@ -19,33 +19,52 @@ function ScreenRouter() {
     window.scrollTo(0, 0);
   }, [state.screen]);
 
+  // Hidden mid-quiz/on the result screen -- Quiz already has its own Home
+  // button with a "leave without saving?" confirmation, and a second
+  // always-visible way out would either bypass that or duplicate it.
+  const showTopNav = state.screen !== "quiz" && state.screen !== "result";
+
+  let screen: ReactNode;
   switch (state.screen) {
     case "home":
-      return <Home />;
-    case "lessonPicker":
-      return <LessonPicker />;
-    case "typePicker":
-      return <TypePicker />;
+      screen = <Home />;
+      break;
+    case "practice":
+      screen = <Practice />;
+      break;
     case "quiz":
-      return <Quiz />;
+      screen = <Quiz />;
+      break;
     case "result":
-      return <Result />;
+      screen = <Result />;
+      break;
     case "owl":
-      return <Owl />;
+      screen = <Owl />;
+      break;
     case "shop":
-      return <Shop />;
+      screen = <Shop />;
+      break;
     case "bag":
-      return <Bag />;
+      screen = <Bag />;
+      break;
     case "tingxie":
-      return <Tingxie />;
+      screen = <Tingxie />;
+      break;
     default:
       // Auth lands here until its own component exists.
-      return (
+      screen = (
         <div className="screen">
           <p>敬请期待 Coming soon...</p>
         </div>
       );
   }
+
+  return (
+    <>
+      {showTopNav && <TopNav />}
+      {screen}
+    </>
+  );
 }
 
 export default function App() {

@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../../state/AppStateContext";
-import { QUESTION_GROUPS, CATEGORIES } from "../../data/questions";
+import { QUESTION_GROUPS, CATEGORIES, VOCABULARY_CATEGORY_KEYS } from "../../data/questions";
 import { MISSION_COMPLETE_BONUS_BP } from "../../data/pet";
 import { selectTypeSessionGroups } from "../../lib/typeSession";
 import { shuffle } from "../../lib/shuffle";
@@ -12,6 +12,18 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
   const readingDone = getReadingMissionCount(hist) >= 1;
   const dictationDone = isTingxieMissionComplete();
   const allDone = lessonDone && readingDone && dictationDone;
+
+  // Jumps to the Practice screen pre-set for a lesson revision: subject
+  // reset to "All" (Vocabulary only exists under Chinese, so a stale
+  // "Higher Chinese" subject would leave it greyed out right after this),
+  // categories replaced with just Vocabulary, and lessons reset to the "all
+  // lessons" default so the student picks which lesson(s) themselves.
+  function startLessonMission() {
+    dispatch({ type: "SELECT_SUBJECT", subject: "All" });
+    dispatch({ type: "SET_CATEGORIES", keys: VOCABULARY_CATEGORY_KEYS });
+    dispatch({ type: "SELECT_ALL_LESSONS" });
+    dispatch({ type: "GO_TO_SCREEN", screen: "practice" });
+  }
 
   function startReadingMission() {
     const chosen = shuffle(READING_MISSION_CATEGORIES).slice(0, 2);
@@ -33,7 +45,7 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
       <div className="mission-list">
         <button
           className={"mission-row" + (lessonDone ? " mission-row-done" : "")}
-          onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "lessonPicker" })}
+          onClick={startLessonMission}
         >
           <span className="mission-icon">📘</span>
           <span className="mission-info">

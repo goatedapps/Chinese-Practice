@@ -1,11 +1,10 @@
 import { createContext, useContext, useReducer, type ReactNode, type Dispatch } from "react";
 import type { QuestionGroup, GroupResult, GroupResultItem } from "../data/types";
-import { CATEGORY_SUBJECTS } from "../data/questions";
+import { CATEGORY_SUBJECTS, VOCABULARY_CATEGORY_KEYS } from "../data/questions";
 
 export type Screen =
   | "home"
-  | "lessonPicker"
-  | "typePicker"
+  | "practice"
   | "quiz"
   | "result"
   | "owl"
@@ -24,6 +23,11 @@ export interface AppState {
   submitted: boolean;
   selectedSubject: string;
   selectedCategories: Set<string>;
+  // Which lessons to restrict the Vocabulary category to on the Practice
+  // screen -- empty means "all lessons" (the default/no filter). Only
+  // meaningful while Vocabulary's 4 categories are all selected; cleared
+  // automatically whenever they're not (see vocabRetained() below).
+  selectedLessons: Set<number>;
 }
 
 const initialState: AppState = {
@@ -35,7 +39,8 @@ const initialState: AppState = {
   results: [],
   submitted: false,
   selectedSubject: "All",
-  selectedCategories: new Set()
+  selectedCategories: new Set(),
+  selectedLessons: new Set()
 };
 
 export type AppAction =
@@ -44,10 +49,21 @@ export type AppAction =
   | { type: "SELECT_SUBJECT"; subject: string }
   | { type: "TOGGLE_CATEGORY"; key: string }
   | { type: "TOGGLE_CATEGORY_GROUP"; keys: string[] }
+  | { type: "SET_CATEGORIES"; keys: string[] }
+  | { type: "TOGGLE_LESSON"; lessonNum: number }
+  | { type: "SELECT_ALL_LESSONS" }
   | { type: "SUBMIT_GROUP"; record: GroupResult }
   | { type: "UPDATE_ITEM_RESULT"; groupIndex: number; qNo: string; patch: Partial<GroupResultItem> }
   | { type: "NEXT_GROUP" }
   | { type: "RESET_TO_HOME" };
+
+// Whether every one of Vocabulary's 4 underlying categories is still in a
+// candidate selectedCategories set -- used to decide whether selectedLessons
+// should survive a categories change, since a lesson filter is meaningless
+// (and would sit there stale) once Vocabulary itself isn't selected.
+function vocabRetained(categories: Set<string>): boolean {
+  return VOCABULARY_CATEGORY_KEYS.every((k) => categories.has(k));
+}
 
 function reducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
@@ -67,20 +83,25 @@ function reducer(state: AppState, action: AppAction): AppState {
     case "SELECT_SUBJECT": {
       // Drop any currently-selected category that doesn't exist for the
       // newly-picked subject (e.g. switching to Higher Chinese while
-      // Vocabulary is selected) -- TypePicker greys those buttons out and
+      // Vocabulary is selected) -- Practice greys those buttons out and
       // makes them unclickable, so a stale selection could otherwise sit
       // there invisibly still counting toward the session.
       const next =
         action.subject === "All"
           ? state.selectedCategories
           : new Set([...state.selectedCategories].filter((k) => CATEGORY_SUBJECTS[k]?.has(action.subject)));
-      return { ...state, selectedSubject: action.subject, selectedCategories: next };
+      return {
+        ...state,
+        selectedSubject: action.subject,
+        selectedCategories: next,
+        selectedLessons: vocabRetained(next) ? state.selectedLessons : new Set()
+      };
     }
     case "TOGGLE_CATEGORY": {
       const next = new Set(state.selectedCategories);
       if (next.has(action.key)) next.delete(action.key);
       else next.add(action.key);
-      return { ...state, selectedCategories: next };
+      return { ...state, selectedCategories: next, selectedLessons: vocabRetained(next) ? state.selectedLessons : new Set() };
     }
     case "TOGGLE_CATEGORY_GROUP": {
       const next = new Set(state.selectedCategories);
@@ -89,8 +110,20 @@ function reducer(state: AppState, action: AppAction): AppState {
         if (allSelected) next.delete(k);
         else next.add(k);
       }
-      return { ...state, selectedCategories: next };
+      return { ...state, selectedCategories: next, selectedLessons: vocabRetained(next) ? state.selectedLessons : new Set() };
     }
+    case "SET_CATEGORIES": {
+      const next = new Set(action.keys);
+      return { ...state, selectedCategories: next, selectedLessons: vocabRetained(next) ? state.selectedLessons : new Set() };
+    }
+    case "TOGGLE_LESSON": {
+      const next = new Set(state.selectedLessons);
+      if (next.has(action.lessonNum)) next.delete(action.lessonNum);
+      else next.add(action.lessonNum);
+      return { ...state, selectedLessons: next };
+    }
+    case "SELECT_ALL_LESSONS":
+      return { ...state, selectedLessons: new Set() };
     case "SUBMIT_GROUP":
       return { ...state, results: [...state.results, action.record], submitted: true };
     // Self-check questions (Long-Answer/Writing-Constrained) are only known
@@ -117,12 +150,14 @@ function reducer(state: AppState, action: AppAction): AppState {
       };
     }
     // Mirrors the old app's resetToHome(): clears the in-session quiz state
-    // but deliberately keeps selectedSubject/selectedCategories, same as before.
+    // but deliberately keeps selectedSubject/selectedCategories/selectedLessons,
+    // same as before.
     case "RESET_TO_HOME":
       return {
         ...initialState,
         selectedSubject: state.selectedSubject,
-        selectedCategories: state.selectedCategories
+        selectedCategories: state.selectedCategories,
+        selectedLessons: state.selectedLessons
       };
     default:
       return state;

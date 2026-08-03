@@ -31,6 +31,14 @@ export const CATEGORIES: Record<string, Category> = {
   practical:     { label: "应用文阅读 Practical Text / Notice",  lessonMode: false }
 };
 
+// The 4 categories the Practice screen combines into one "词语运用 Vocabulary"
+// button (see Practice.tsx's TYPE_PICKER_GROUPS) -- also exactly the set of
+// categories whose lessonIds were actually verified against a real per-lesson
+// vocab list (see the lessonIds note below), which is why lesson-filtering on
+// the Practice screen only ever applies to these four, never to
+// conjunction/sentence.
+export const VOCABULARY_CATEGORY_KEYS: string[] = ["pinyin", "vocab", "phrase", "usage"];
+
 export const SUBJECTS: string[] = ["Chinese", "Higher Chinese"];
 
 /* ---------------------------------------------------------
