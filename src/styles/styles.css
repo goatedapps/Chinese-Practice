@@ -320,6 +320,10 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 .category-btn:hover { transform: translateY(-2px) scale(1.015); box-shadow: var(--shadow-2); }
 .category-active { background: linear-gradient(180deg, var(--card-hi), #fff0e5); border-color: var(--primary); font-weight: 700; }
+.category-disabled {
+  opacity: .45; cursor: not-allowed; box-shadow: none; color: var(--ink-soft);
+}
+.category-disabled:hover { transform: none; box-shadow: none; }
 
 .primary-btn {
   background: linear-gradient(180deg, var(--primary-hi), var(--primary) 60%, var(--primary-dark));
@@ -405,6 +409,8 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   margin-bottom: 22px;
   box-shadow: var(--shadow-1);
 }
+.passage-head { display: flex; align-items: flex-start; gap: 10px; }
+.passage-heading { flex: 1; min-width: 0; }
 .passage-title { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
 .passage-source { font-size: 14px; color: var(--ink-soft); margin-bottom: 14px; }
 .passage-text {
@@ -435,6 +441,11 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   transition: border-color .15s, color .15s, transform .1s ease;
 }
 .dictation-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
+.dictation-btn-active {
+  background: linear-gradient(180deg, var(--primary-hi), var(--primary));
+  border-color: var(--primary-dark); color: #fff8ee;
+}
+.dictation-btn-active:hover { border-color: var(--primary-dark); color: #fff8ee; }
 
 /* Puffy pill badges -- the signature element. Anywhere a small value is
    "certified": marks per question, BP counts, growth stage, streaks. */
@@ -785,10 +796,11 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .tingxie-vocab-word { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 44px; font-weight: 700; }
 .tingxie-vocab-pinyin { font-size: 20px; opacity: .92; }
 .tingxie-vocab-meaning { font-size: 22px; font-weight: 700; }
-.tingxie-vocab-example { font-size: 15px; opacity: .85; line-height: 1.5; }
+.tingxie-vocab-example { font-size: 20px; opacity: .85; line-height: 1.5; }
 .tingxie-speak-btn { margin-top: 6px; padding: 7px 16px; font-size: 14px; }
 .tingxie-flip-back .tingxie-speak-btn {
   background: rgba(255,255,255,.15); color: #fff8ee; border-color: rgba(255,255,255,.5);
+  margin-top: 24px;
 }
 
 .tingxie-nav-row { display: flex; justify-content: center; gap: 12px; margin-top: 18px; flex-wrap: wrap; }

@@ -89,13 +89,44 @@ function playFile(path: string, delaySec: number = 0): void {
 // restarted from the beginning by a later call.
 let bgMusic: HTMLAudioElement | null = null;
 
+// True only while we've deliberately paused the track ourselves (tab
+// hidden -- see pauseBackgroundMusic()). Guards the self-heal listener
+// below from fighting that intentional pause.
+let bgMusicExplicitlyPaused = false;
+
+function newBgMusicElement(): HTMLAudioElement {
+  const el = new Audio(`${SOUND_FILES.background}?v=${CACHE_BUST}`);
+  el.loop = true;
+  el.volume = 0.35;
+  // Something outside our control can pause this element without ever
+  // calling pauseBackgroundMusic() -- e.g. on Windows, speechSynthesis
+  // (used heavily by Dictation Practice's/Quiz's 🔊 Listen buttons) shares
+  // the OS audio session and can steal focus, silently pausing other
+  // playing audio. Self-heal: if a pause happens while the tab is visible
+  // and we didn't ask for it, resume right away instead of waiting for the
+  // student's next click.
+  el.addEventListener("pause", () => {
+    if (bgMusic === el && !bgMusicExplicitlyPaused && !document.hidden) {
+      el.play().catch(() => {
+        // Next click's startBackgroundMusic() call will retry.
+      });
+    }
+  });
+  // A genuine playback failure (dropped network request, decode error --
+  // not just an autoplay-policy rejection) leaves the element permanently
+  // broken; every future .play() on it keeps failing, which is what made
+  // this look "stuck off" even after a later click. Drop the reference so
+  // the next start attempt builds a fresh element instead of retrying a
+  // dead one.
+  el.addEventListener("error", () => {
+    if (bgMusic === el) bgMusic = null;
+  });
+  return el;
+}
+
 function playBackgroundMusic(): void {
   try {
-    if (!bgMusic) {
-      bgMusic = new Audio(`${SOUND_FILES.background}?v=${CACHE_BUST}`);
-      bgMusic.loop = true;
-      bgMusic.volume = 0.35;
-    }
+    if (!bgMusic) bgMusic = newBgMusicElement();
     if (bgMusic.paused) {
       bgMusic.play().catch(() => {
         // Still blocked (e.g. this "first interaction" wasn't a real user
@@ -158,12 +189,14 @@ export const Sound = {
   // resuming an <audio> element that already played once doesn't need a
   // fresh user gesture, so this just works.
   startBackgroundMusic(): void {
+    bgMusicExplicitlyPaused = false;
     playBackgroundMusic();
   },
   // Pauses the background track without resetting its position, e.g. when
   // the tab is hidden/backgrounded (see App.tsx's visibilitychange
   // listener) -- startBackgroundMusic() resumes from the same spot.
   pauseBackgroundMusic(): void {
+    bgMusicExplicitlyPaused = true;
     try {
       bgMusic?.pause();
     } catch {

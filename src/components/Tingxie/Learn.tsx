@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { usePet } from "../../state/PetContext";
 import { TINGXIE_BP_AWARD } from "../../data/pet";
 import { tingxieIconEmoji, tingxieSentenceWords } from "../../data/tingxie";
-import { speakText } from "../../lib/speech";
+import { speakText, speakWordThenSentence, stopSpeaking } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
 import { checkAndAwardMissionBonus } from "../../state/achievements";
@@ -23,6 +23,13 @@ function VocabFlipCard() {
   const vocab = state.activeContent!.vocab;
   const current = vocab[state.vocabIndex];
   const allFlipped = vocab.length > 0 && state.vocabFlippedIndices.length === vocab.length;
+
+  // Stop any in-progress dictation read-aloud whenever the student moves on
+  // (flips back, moves to the next/prev card) so a reading never bleeds into
+  // a card the student has already left.
+  useEffect(() => {
+    stopSpeaking();
+  }, [state.vocabIndex, state.vocabFlipped]);
 
   useEffect(() => {
     if (allFlipped && !awardedRef.current) {
@@ -56,7 +63,7 @@ function VocabFlipCard() {
               className="secondary-btn tingxie-speak-btn"
               onClick={(e) => {
                 e.stopPropagation();
-                speakText(current.word);
+                speakWordThenSentence(current.word, current.example);
               }}
             >
               🔊 朗读 Listen
@@ -97,6 +104,13 @@ function SentenceBuilderGame() {
     if (state.sentenceResult === "correct") Sound.ding();
     else if (state.sentenceResult === "incorrect") Sound.miss();
   }, [state.sentenceResult]);
+
+  // Stop any in-progress dictation read-aloud whenever the student moves on
+  // (next/prev sentence, reset, reveal) so a reading never bleeds into a
+  // sentence the student has already left.
+  useEffect(() => {
+    stopSpeaking();
+  }, [state.sentenceIndex, state.sentenceResult, state.sentenceRevealed]);
 
   useEffect(() => {
     if (allSolved && !awardedRef.current) {
@@ -145,9 +159,6 @@ function SentenceBuilderGame() {
       {state.sentenceResult === "incorrect" && (
         <div className="tingxie-sentence-feedback tingxie-feedback-incorrect">
           <span>顺序不对，再试一次！Not quite -- try again.</span>
-          <button className="secondary-btn" onClick={() => dispatch({ type: "SENTENCE_RESET" })}>
-            🔄 重来 Reset
-          </button>
           {!state.sentenceRevealed ? (
             <button className="secondary-btn" onClick={() => dispatch({ type: "SENTENCE_REVEAL" })}>
               查看答案 Reveal answer

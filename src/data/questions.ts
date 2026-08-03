@@ -5979,3 +5979,16 @@ export const QUESTION_GROUPS: QuestionGroup[] = [
     ]
   },
 ];
+
+// Which subjects actually have at least one group of a given category --
+// derived from QUESTION_GROUPS itself (not hand-maintained) so it can never
+// drift out of sync with the real data. Used by TypePicker to grey out
+// question types that don't exist for the selected subject (e.g. Higher
+// Chinese has no pinyin/vocab/phrase/usage/conjunction/sentence/dialogue/
+// practical groups -- only cloze/errorcorrect/comprehension).
+export const CATEGORY_SUBJECTS: Record<string, Set<string>> = (() => {
+  const map: Record<string, Set<string>> = {};
+  for (const key of Object.keys(CATEGORIES)) map[key] = new Set();
+  for (const g of QUESTION_GROUPS) map[g.category]?.add(g.subject);
+  return map;
+})();

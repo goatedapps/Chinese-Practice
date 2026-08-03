@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer, type ReactNode, type Dispatch } from "react";
 import type { QuestionGroup, GroupResult, GroupResultItem } from "../data/types";
+import { CATEGORY_SUBJECTS } from "../data/questions";
 
 export type Screen =
   | "home"
@@ -42,6 +43,7 @@ export type AppAction =
   | { type: "START_QUIZ"; mode: "lesson" | "type"; modeLabel: string; groups: QuestionGroup[] }
   | { type: "SELECT_SUBJECT"; subject: string }
   | { type: "TOGGLE_CATEGORY"; key: string }
+  | { type: "TOGGLE_CATEGORY_GROUP"; keys: string[] }
   | { type: "SUBMIT_GROUP"; record: GroupResult }
   | { type: "UPDATE_ITEM_RESULT"; groupIndex: number; qNo: string; patch: Partial<GroupResultItem> }
   | { type: "NEXT_GROUP" }
@@ -62,12 +64,31 @@ function reducer(state: AppState, action: AppAction): AppState {
         submitted: false,
         screen: "quiz"
       };
-    case "SELECT_SUBJECT":
-      return { ...state, selectedSubject: action.subject };
+    case "SELECT_SUBJECT": {
+      // Drop any currently-selected category that doesn't exist for the
+      // newly-picked subject (e.g. switching to Higher Chinese while
+      // Vocabulary is selected) -- TypePicker greys those buttons out and
+      // makes them unclickable, so a stale selection could otherwise sit
+      // there invisibly still counting toward the session.
+      const next =
+        action.subject === "All"
+          ? state.selectedCategories
+          : new Set([...state.selectedCategories].filter((k) => CATEGORY_SUBJECTS[k]?.has(action.subject)));
+      return { ...state, selectedSubject: action.subject, selectedCategories: next };
+    }
     case "TOGGLE_CATEGORY": {
       const next = new Set(state.selectedCategories);
       if (next.has(action.key)) next.delete(action.key);
       else next.add(action.key);
+      return { ...state, selectedCategories: next };
+    }
+    case "TOGGLE_CATEGORY_GROUP": {
+      const next = new Set(state.selectedCategories);
+      const allSelected = action.keys.every((k) => next.has(k));
+      for (const k of action.keys) {
+        if (allSelected) next.delete(k);
+        else next.add(k);
+      }
       return { ...state, selectedCategories: next };
     }
     case "SUBMIT_GROUP":

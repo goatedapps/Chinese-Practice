@@ -8,7 +8,7 @@ import { speakText, stopSpeaking } from "../../lib/speech";
 import { ConfirmModal } from "../common/Modal";
 import { gradeGroup, correctOptionFor, isSelfCheckFormat } from "../../lib/grading";
 import type { AnswerMap } from "../../lib/grading";
-import type { Question, QuestionGroup, GroupResultItem } from "../../data/types";
+import type { Question, QuestionGroup, GroupResultItem, Passage } from "../../data/types";
 
 export function Quiz() {
   const state = useAppState();
@@ -136,13 +136,7 @@ export function Quiz() {
         </button>
       </div>
 
-      {group.passage && (
-        <div className="passage-box">
-          <div className="passage-title">{group.passage.title}</div>
-          {group.passage.source && <div className="passage-source">{group.passage.source}</div>}
-          <div className="passage-text">{group.passage.text}</div>
-        </div>
-      )}
+      {group.passage && <PassageBox key={group.groupId} passage={group.passage} />}
 
       {group.optionBank && (
         <div className="option-bank-box">
@@ -201,6 +195,50 @@ export function Quiz() {
           onCancel={() => setShowHomeConfirm(false)}
         />
       )}
+    </div>
+  );
+}
+
+// Passages can run long, so unlike a question's dictation button (which just
+// fires and forgets), this one toggles into a "⏹ Stop" button while reading
+// so the student can cut it off mid-passage. `key={group.groupId}` on the
+// call site remounts this fresh per group, so `speaking` never needs a
+// manual reset when the student moves to a new passage.
+function PassageBox({ passage }: { passage: Passage }) {
+  const [speaking, setSpeaking] = useState(false);
+
+  function toggle() {
+    if (speaking) {
+      stopSpeaking();
+      setSpeaking(false);
+    } else {
+      setSpeaking(true);
+      // onDone fires whether the reading finishes on its own or gets
+      // interrupted (stopSpeaking() above, Quiz's own stopSpeaking() on
+      // submit/group-change, a question's dictation button starting a new
+      // reading) -- either way this button's state stays in sync.
+      speakText(passage.text, () => setSpeaking(false));
+    }
+  }
+
+  return (
+    <div className="passage-box">
+      <div className="passage-head">
+        <div className="passage-heading">
+          <div className="passage-title">{passage.title}</div>
+          {passage.source && <div className="passage-source">{passage.source}</div>}
+        </div>
+        <button
+          type="button"
+          className={"dictation-btn" + (speaking ? " dictation-btn-active" : "")}
+          title={speaking ? "停止朗读 Stop reading" : "朗读全文 Read aloud"}
+          aria-label={speaking ? "停止朗读 Stop reading" : "朗读全文 Read aloud"}
+          onClick={toggle}
+        >
+          {speaking ? "⏹ 停止 Stop" : "🔊"}
+        </button>
+      </div>
+      <div className="passage-text">{passage.text}</div>
     </div>
   );
 }
