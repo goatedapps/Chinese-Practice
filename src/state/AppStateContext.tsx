@@ -12,6 +12,7 @@ export type Screen =
   | "bag"
   | "play"
   | "tingxie"
+  | "story"
   | "auth";
 
 export interface AppState {

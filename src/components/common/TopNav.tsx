@@ -9,9 +9,10 @@ const NAV_ITEMS: { key: string; label: string; screens: Screen[] }[] = [
   { key: "home", label: "主页", screens: ["home"] },
   { key: "tingxie", label: "听写练习", screens: ["tingxie"] },
   { key: "practice", label: "练习", screens: ["practice"] },
-  // Shop/Bag are reached from the Owl screen and conceptually part of the
-  // same "pet" flow, so this stays highlighted on all three.
-  { key: "owl", label: "宠物", screens: ["owl", "shop", "bag"] }
+  { key: "story", label: "读故事", screens: ["story"] },
+  // Shop/Bag/Play are reached from the Owl screen and conceptually part of
+  // the same "pet" flow, so this stays highlighted on all four.
+  { key: "owl", label: "宠物", screens: ["owl", "shop", "bag", "play"] }
 ];
 
 export function TopNav() {

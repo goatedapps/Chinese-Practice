@@ -11,6 +11,7 @@ import { Shop } from "./components/Shop/Shop";
 import { Bag } from "./components/Bag/Bag";
 import { PlayGame } from "./components/Play/PlayGame";
 import { Tingxie } from "./components/Tingxie/Tingxie";
+import { Story } from "./components/Story/Story";
 import { TopNav } from "./components/common/TopNav";
 
 function ScreenRouter() {
@@ -53,6 +54,9 @@ function ScreenRouter() {
       break;
     case "tingxie":
       screen = <Tingxie />;
+      break;
+    case "story":
+      screen = <Story />;
       break;
     default:
       // Auth lands here until its own component exists.

@@ -43,6 +43,10 @@ export function Home() {
             <div className="mode-card-title">📘 练习</div>
             <div className="mode-card-sub">Practice</div>
           </button>
+          <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "story" })}>
+            <div className="mode-card-title">📖 读故事</div>
+            <div className="mode-card-sub">Read a Story</div>
+          </button>
         </div>
       </div>
 

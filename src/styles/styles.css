@@ -104,7 +104,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 /* ---------- Home ---------- */
 .mode-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 16px;
   margin-bottom: 32px;
 }
@@ -507,6 +507,70 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   border-color: var(--primary-dark); color: #fff8ee;
 }
 .dictation-btn-active:hover { border-color: var(--primary-dark); color: #fff8ee; }
+
+/* ---------- Read a Story ---------- */
+.story-screen { text-align: center; }
+.story-page-indicator { font-weight: 700; color: var(--ink-soft); margin-bottom: 14px; }
+/* Perspective lives on the wrapper, not .story-page itself, so the flipping
+   page rotates convincingly in 3D space rather than just squashing flat. */
+.story-page-flipper { perspective: 1400px; margin-bottom: 18px; }
+.story-page {
+  position: relative;
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border: none; border-radius: 24px;
+  padding: 20px 24px 44px; /* extra bottom padding clears the corner curls */
+  box-shadow: var(--shadow-1);
+  text-align: left;
+  backface-visibility: hidden;
+}
+.story-page-head { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+.story-text {
+  font-size: 20px; line-height: 1.95; letter-spacing: .3px;
+  font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+}
+.story-paragraph { margin: 0 0 14px; }
+.story-paragraph:last-child { margin-bottom: 0; }
+/* Each sentence is its own <button> (tap to hear just that sentence) but
+   reads inline as part of the paragraph, not as a list of separate chunks --
+   full button-chrome reset plus `display: inline` keeps text flowing/
+   wrapping normally across sentence boundaries. */
+.story-sentence {
+  background: none; border: none; padding: 0; margin: 0;
+  font: inherit; color: inherit; cursor: pointer; display: inline; text-align: left;
+  border-radius: 4px;
+}
+.story-sentence:hover, .story-sentence:focus-visible { background: rgba(var(--ink-rgb), .08); }
+
+/* Book-style "page turn" affordance -- a small curled paper corner instead
+   of a plain Next/Prev button. Bottom-right (default) flips forward;
+   .story-page-curl-prev mirrors it to the bottom-left via scaleX(-1) rather
+   than a separate clip-path/gradient, so the fold always reads the same
+   whichever corner it's in. animation duration is supplied inline from
+   Story.tsx's FLIP_MS so the JS timer driving the actual page change and the
+   CSS animation showing it never drift apart. */
+.story-page-curl {
+  position: absolute; bottom: 0; right: 0;
+  width: 36px; height: 36px;
+  border: none; padding: 0; cursor: pointer;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  background: linear-gradient(135deg, transparent 45%, rgba(var(--ink-rgb), .14) 45%, rgba(var(--ink-rgb), .14) 50%, var(--card-hi) 50%);
+  box-shadow: -2px -2px 5px rgba(var(--ink-rgb), .14);
+  transition: width .15s ease, height .15s ease;
+}
+.story-page-curl:hover { width: 48px; height: 48px; }
+.story-page-curl:disabled { cursor: default; opacity: .4; width: 36px; height: 36px; }
+.story-page-curl-prev { right: auto; left: 0; transform: scaleX(-1); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .story-page-flip-next-out { animation-name: page-flip-out-next; animation-timing-function: ease-in; animation-fill-mode: forwards; transform-origin: right center; }
+  .story-page-flip-next-in  { animation-name: page-flip-in-next;  animation-timing-function: ease-out; animation-fill-mode: forwards; transform-origin: right center; }
+  .story-page-flip-prev-out { animation-name: page-flip-out-prev; animation-timing-function: ease-in; animation-fill-mode: forwards; transform-origin: left center; }
+  .story-page-flip-prev-in  { animation-name: page-flip-in-prev;  animation-timing-function: ease-out; animation-fill-mode: forwards; transform-origin: left center; }
+}
+@keyframes page-flip-out-next { from { transform: rotateY(0deg); opacity: 1; } to { transform: rotateY(-100deg); opacity: 0; } }
+@keyframes page-flip-in-next  { from { transform: rotateY(100deg); opacity: 0; } to { transform: rotateY(0deg); opacity: 1; } }
+@keyframes page-flip-out-prev { from { transform: rotateY(0deg); opacity: 1; } to { transform: rotateY(100deg); opacity: 0; } }
+@keyframes page-flip-in-prev  { from { transform: rotateY(-100deg); opacity: 0; } to { transform: rotateY(0deg); opacity: 1; } }
 
 /* Puffy pill badges -- the signature element. Anywhere a small value is
    "certified": marks per question, BP counts, growth stage, streaks. */
