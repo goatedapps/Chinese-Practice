@@ -51,12 +51,11 @@ export function Home() {
           <div className="section-eyebrow">今日总结 Today</div>
           <h2 className="section-heading">今日学习总结 Today's Session Summary</h2>
           <p className="picker-hint">
-            包含今天完成的练习题目、你的答案和正确答案，以及听写练习中需要加强的词语/句子。
             <br />
-            <span className="en">Includes today's practice questions with your answers and the correct answers, plus any dictation items marked "wrong."</span>
+            <span className="en">Print this to show your parents what you have learnt today!</span>
           </p>
           <button className="secondary-btn" onClick={() => exportTodaySummaryToPdf(hist)}>
-            🖨️ 打印 / 存为 PDF Print / Save as PDF
+            🖨️ Print as PDF
           </button>
         </div>
       )}

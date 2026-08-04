@@ -94,7 +94,7 @@ export function Result() {
               })
             }
           >
-            🖨️ 打印 / 存为 PDF Print / Save as PDF
+            🖨️ 存为 PDF Print as PDF
           </button>
         )}
         <button className="primary-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>

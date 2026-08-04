@@ -9,6 +9,7 @@ import { Result } from "./components/Result/Result";
 import { Owl } from "./components/Owl/Owl";
 import { Shop } from "./components/Shop/Shop";
 import { Bag } from "./components/Bag/Bag";
+import { PlayGame } from "./components/Play/PlayGame";
 import { Tingxie } from "./components/Tingxie/Tingxie";
 import { TopNav } from "./components/common/TopNav";
 
@@ -46,6 +47,9 @@ function ScreenRouter() {
       break;
     case "bag":
       screen = <Bag />;
+      break;
+    case "play":
+      screen = <PlayGame />;
       break;
     case "tingxie":
       screen = <Tingxie />;

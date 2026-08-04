@@ -67,6 +67,14 @@ interface PetContextValue {
   // PET_STAGES.minAgeYears is itself a specific age), so `agedUp` alone is
   // sufficient -- callers don't need a separate "evolved" signal.
   giveItem: (item: ShopItem) => { agedUp: boolean; age: number };
+  // Play flow (see components/Play/): starting a toy's minigame removes it
+  // from the Bag immediately (consumeItem), same "irreversible once started"
+  // rule as feeding -- abandoning the game mid-play still costs the item.
+  // The mood reward is only granted separately, once the game actually
+  // reports a completion (applyPlayReward) -- so leaving early forfeits the
+  // reward without needing any extra "was it abandoned" state.
+  consumeItem: (item: ShopItem) => void;
+  applyPlayReward: (item: ShopItem, moodReward: number) => { agedUp: boolean; age: number };
   renameOwl: (name: string) => void;
   recordQuestionsCompleted: (n: number) => void;
 }
@@ -103,6 +111,32 @@ export function PetProvider({ children }: { children: ReactNode }) {
     });
   }
 
+  // Shared by giveItem (food/instant-give) and applyPlayReward (toys, after
+  // a minigame reports a score): applies growth + a given mood amount to the
+  // pet. Does NOT touch inventory -- giveItem decrements it here since food
+  // is consumed and applied in one step, but applyPlayReward's item was
+  // already decremented earlier by consumeItem (see the Play flow note on
+  // PetContextValue above), so it must not double-decrement.
+  function applyGrowthAndMood(moodAmount: number, growthAmount: number): { agedUp: boolean; age: number } {
+    const newGrowth = pet.growth + growthAmount;
+    const newAge = getAge(newGrowth);
+    const agedUp = newAge > getAge(pet.growth);
+
+    setPet((prev) => {
+      const currentMood = computeCurrentMood(prev);
+      const next: PetState = {
+        ...prev,
+        moodAtCheckpoint: Math.min(100, currentMood + moodAmount),
+        lastFedAt: Date.now(),
+        growth: prev.growth + growthAmount
+      };
+      savePetState(next);
+      return next;
+    });
+
+    return { agedUp, age: newAge };
+  }
+
   // Applies a bagged item's growth/mood effect to the owl and removes it
   // from the Bag. Called once the item's throw animation lands (see
   // components/Bag/Bag.tsx), not immediately when the student clicks Give.
@@ -110,26 +144,34 @@ export function PetProvider({ children }: { children: ReactNode }) {
     const have = pet.inventory[item.id] ?? 0;
     if (have <= 0) return { agedUp: false, age: getAge(pet.growth) };
 
-    const newGrowth = pet.growth + item.growth;
-    const newAge = getAge(newGrowth);
-    const agedUp = newAge > getAge(pet.growth);
-
     setPet((prev) => {
       const have2 = prev.inventory[item.id] ?? 0;
       if (have2 <= 0) return prev;
-      const currentMood = computeCurrentMood(prev);
-      const next: PetState = {
-        ...prev,
-        inventory: { ...prev.inventory, [item.id]: have2 - 1 },
-        moodAtCheckpoint: Math.min(100, currentMood + item.mood),
-        lastFedAt: Date.now(),
-        growth: prev.growth + item.growth
-      };
+      return { ...prev, inventory: { ...prev.inventory, [item.id]: have2 - 1 } };
+    });
+
+    return applyGrowthAndMood(item.mood, item.growth);
+  }
+
+  // Removes one of `item` from the Bag with no growth/mood effect -- used to
+  // consume a toy the moment its minigame starts (see the Play flow note on
+  // PetContextValue above).
+  function consumeItem(item: ShopItem): void {
+    setPet((prev) => {
+      const have = prev.inventory[item.id] ?? 0;
+      if (have <= 0) return prev;
+      const next: PetState = { ...prev, inventory: { ...prev.inventory, [item.id]: have - 1 } };
       savePetState(next);
       return next;
     });
+  }
 
-    return { agedUp, age: newAge };
+  // Grants a minigame's earned mood reward once it reports a completed
+  // score -- item.growth is applied too (0 for every toy today, but future
+  // toys could carry growth same as food). Inventory was already decremented
+  // by consumeItem when the game started, so this never touches it.
+  function applyPlayReward(item: ShopItem, moodReward: number): { agedUp: boolean; age: number } {
+    return applyGrowthAndMood(moodReward, item.growth);
   }
 
   function renameOwl(name: string) {
@@ -154,7 +196,9 @@ export function PetProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <PetCtx.Provider value={{ pet, awardBP, buyItem, giveItem, renameOwl, recordQuestionsCompleted }}>
+    <PetCtx.Provider
+      value={{ pet, awardBP, buyItem, giveItem, consumeItem, applyPlayReward, renameOwl, recordQuestionsCompleted }}
+    >
       {children}
     </PetCtx.Provider>
   );

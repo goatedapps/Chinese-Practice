@@ -59,17 +59,77 @@ export const TINGXIE_BP_AWARD = {
 // it's a top-up, not a fourth activity's worth of reward.
 export const MISSION_COMPLETE_BONUS_BP = 15;
 
-// Shop catalogue: buying an item puts it in the Bag (PetState.inventory);
-// the growth/mood effect only applies once the student gives it to the owl
-// from the Bag screen -- cost in BP, growth/mood granted on give.
+// Shop catalogue: buying an item puts it in the Bag (PetState.inventory).
+// Food's growth/mood effect applies immediately when given to the owl from
+// the Bag screen (see giveItem() in PetContext.tsx). Toys instead launch a
+// minigame from the Bag (see TOY_GAMES below and components/Play/) -- a
+// toy's `mood` here is its *maximum* possible payout (flat + bonus, see
+// TOY_GAMES), shown in the Shop/Bag as "up to" a stat, not a guaranteed one.
 export const SHOP_ITEMS: ShopItem[] = [
   { id: "seed",   label: "🌾 谷粒 Seeds",       type: "food", cost: 25,  growth: 2,  mood: 30 },
   { id: "worm",   label: "🐛 虫子 Worm",        type: "food", cost: 48,  growth: 4,  mood: 60 },
   { id: "fish",   label: "🐟 小鱼干 Dried Fish", type: "food", cost: 80, growth: 8, mood: 90 },
   { id: "ball",   label: "⚽ 小球 Play Ball",    type: "toy",  cost: 10,  growth: 0,  mood: 30 },
   { id: "kite",   label: "🪁 风筝 Kite",         type: "toy",  cost: 18, growth: 0,  mood: 55 },
-  { id: "puzzle", label: "🧩 拼图 Puzzle Toy",   type: "toy",  cost: 25, growth: 0, mood: 80 }
+  { id: "puzzle", label: "🃏 记忆卡牌 Memory Cards", type: "toy", cost: 25, growth: 0, mood: 80 }
 ];
+
+// One minigame per toy ShopItem (keyed by ShopItem.id, `id` kept as "puzzle"
+// even after the game itself changed from a leaf-picking guess to a memory
+// match, so existing bagged/purchased inventory keys don't break), rendered
+// from the Play screen (components/Play/PlayGame.tsx) when the student taps
+// that toy in the Bag. flatMood + bonusMood always equals the toy's
+// ShopItem.mood (its "max" stat shown in the Shop/Bag), so buying/feeding
+// math doesn't need rebalancing when a game's reward mechanic changes.
+//
+// Two shapes of game, distinguished by `game`:
+// - "catch"/"feather" (round-based -- CatchGame/FeatherGame): `attempts` is
+//   the number of rounds the game reports back; `bonusThreshold` is the
+//   hits-out-of-attempts needed for the bonus.
+// - "memory" (MemoryGame, a 12-card/6-pair match game): `pairCount` is how
+//   many pairs to lay out; `bonusTimeSeconds` is the completion time (from
+//   first card flip to the last match) needed for the bonus -- there's no
+//   "fail" state, the flat reward always applies once every pair is found.
+// Fields are optional here (rather than a discriminated union) so one flat
+// Record type covers both shapes; each game component only ever reads the
+// fields that apply to its own `game` id -- see components/Play/.
+export interface ToyGameConfig {
+  game: "catch" | "feather" | "memory";
+  flatMood: number;
+  bonusMood: number;
+  bonusLabel: string;
+  attempts?: number;
+  bonusThreshold?: number;
+  pairCount?: number;
+  bonusTimeSeconds?: number;
+}
+
+export const TOY_GAMES: Record<string, ToyGameConfig> = {
+  ball: {
+    game: "catch",
+    attempts: 5,
+    bonusThreshold: 5,
+    flatMood: 18,
+    bonusMood: 12,
+    bonusLabel: "5/5 全部命中！Perfect run!"
+  },
+  kite: {
+    game: "feather",
+    attempts: 8,
+    bonusThreshold: 7,
+    flatMood: 35,
+    bonusMood: 20,
+    bonusLabel: "接住 7 个以上！Near-perfect catch!"
+  },
+  puzzle: {
+    game: "memory",
+    pairCount: 6,
+    bonusTimeSeconds: 20,
+    flatMood: 55,
+    bonusMood: 25,
+    bonusLabel: "20 秒内配对成功！Matched within 20 seconds!"
+  }
+};
 
 export const PET_DEFAULT_STATE: PetState = {
   name: "",

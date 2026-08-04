@@ -14,9 +14,9 @@ const SPEECH_LINES: Record<MoodBucket, string> = {
 
 function greeting(): string {
   const hour = new Date().getHours();
-  if (hour < 12) return "早上好 Good morning";
-  if (hour < 18) return "下午好 Good afternoon";
-  return "晚上好 Good evening";
+  if (hour < 12) return "早上好";
+  if (hour < 18) return "下午好";
+  return "晚上好";
 }
 
 // The whole card is one <button> navigating to the Owl screen (which has
@@ -52,8 +52,8 @@ export function PetHeroCard({ hist }: { hist: HistoryEntry[] }) {
             <h1 className="pet-hero-greeting">{greeting()} 👋</h1>
             <p className="pet-hero-subgreeting">
               {questions > 0
-                ? `你今天已经完成 ${questions} 题，继续保持！You've done ${questions} questions today — keep it up!`
-                : "今天还没开始练习，快来陪陪你的小伙伴吧！No practice yet today — let's get started with your buddy!"}
+                ? `你今天已经完成 ${questions} 题，继续保持！`
+                : "今天还没开始练习，快来陪陪你的小伙伴吧！"}
             </p>
           </div>
 

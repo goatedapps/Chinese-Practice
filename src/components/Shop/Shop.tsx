@@ -34,12 +34,16 @@ export function Shop() {
               const item = SHOP_ITEMS.find((i) => i.id === itemId);
               if (!item) return null;
               const emoji = item.label.split(" ")[0];
-              const label = item.label.slice(emoji.length).trim();
+              const name = item.label.split(" ")[1] ?? item.label;
               return (
                 <div key={itemId} className="bag-item-card">
-                  <div className="bag-item-emoji">{emoji}</div>
-                  <div className="bag-item-label">{label}</div>
-                  <div className="bag-item-qty">x{qty}</div>
+                  <div className="bag-item-emoji">
+                    {emoji}
+                    {qty > 1 && <span className="bag-item-qty-badge">×{qty}</span>}
+                  </div>
+                  <div className="bag-item-info">
+                    <div className="bag-item-label">{name}</div>
+                  </div>
                 </div>
               );
             })}
@@ -67,6 +71,7 @@ function ShopItemCard({ item, bagIconRef }: ShopItemCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const affordable = pet.bp >= item.cost;
   const emoji = item.label.split(" ")[0];
+  const name = item.label.split(" ")[1] ?? item.label;
 
   function handleBuy() {
     if (!affordable) return;
@@ -79,8 +84,17 @@ function ShopItemCard({ item, bagIconRef }: ShopItemCardProps) {
 
   return (
     <div ref={cardRef} className={"shop-item-card" + (affordable ? "" : " shop-item-disabled")}>
-      <div className="shop-item-label">{item.label}</div>
-      <div className="shop-item-stats">{`🌱 成长 +${item.growth}　🍚 饱食度 +${item.mood}`}</div>
+      <div className="bag-item-row">
+        <div className="bag-item-emoji">{emoji}</div>
+        <div className="bag-item-info">
+          <div className="bag-item-label">{name}</div>
+          <div className="bag-item-stat">
+            {item.type === "toy"
+              ? `🍚 饱食度最高 +${item.mood}`
+              : `🌱 成长 +${item.growth}　🍚 饱食度 +${item.mood}`}
+          </div>
+        </div>
+      </div>
       <button className="secondary-btn shop-item-buy" disabled={!affordable} onClick={handleBuy}>
         💡 {item.cost} BP
       </button>

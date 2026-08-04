@@ -35,7 +35,6 @@ export function LessonSelect() {
   return (
     <div className="tingxie-select">
       <h1>听写练习 Dictation Practice</h1>
-      <p className="subtitle">选择一课，练习生词与句子 Choose a lesson to practice vocab and sentences</p>
 
       {state.loadingIndex && <p className="tingxie-loading">加载中... Loading...</p>}
 
@@ -57,7 +56,6 @@ export function LessonSelect() {
             {state.lessonIndex.map((entry) => (
               <button key={entry.id} className="lesson-btn" onClick={() => selectLesson(entry.id, entry.title)}>
                 <div className="lesson-btn-num">{`第 ${entry.id} 课`}</div>
-                <div className="lesson-btn-count">{entry.title}</div>
               </button>
             ))}
           </div>

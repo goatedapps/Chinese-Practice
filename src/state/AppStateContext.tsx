@@ -10,6 +10,7 @@ export type Screen =
   | "owl"
   | "shop"
   | "bag"
+  | "play"
   | "tingxie"
   | "auth";
 
@@ -28,6 +29,10 @@ export interface AppState {
   // meaningful while Vocabulary's 4 categories are all selected; cleared
   // automatically whenever they're not (see vocabRetained() below).
   selectedLessons: Set<number>;
+  // Which toy (ShopItem.id) is being played on the "play" screen -- set by
+  // START_PLAY, read by components/Play/PlayGame.tsx. Left stale after
+  // leaving "play" (harmless, only ever read while screen === "play").
+  playingItemId: string | null;
 }
 
 const initialState: AppState = {
@@ -40,7 +45,8 @@ const initialState: AppState = {
   submitted: false,
   selectedSubject: "All",
   selectedCategories: new Set(),
-  selectedLessons: new Set()
+  selectedLessons: new Set(),
+  playingItemId: null
 };
 
 export type AppAction =
@@ -55,7 +61,8 @@ export type AppAction =
   | { type: "SUBMIT_GROUP"; record: GroupResult }
   | { type: "UPDATE_ITEM_RESULT"; groupIndex: number; qNo: string; patch: Partial<GroupResultItem> }
   | { type: "NEXT_GROUP" }
-  | { type: "RESET_TO_HOME" };
+  | { type: "RESET_TO_HOME" }
+  | { type: "START_PLAY"; itemId: string };
 
 // Whether every one of Vocabulary's 4 underlying categories is still in a
 // candidate selectedCategories set -- used to decide whether selectedLessons
@@ -159,6 +166,8 @@ function reducer(state: AppState, action: AppAction): AppState {
         selectedCategories: state.selectedCategories,
         selectedLessons: state.selectedLessons
       };
+    case "START_PLAY":
+      return { ...state, screen: "play", playingItemId: action.itemId };
     default:
       return state;
   }

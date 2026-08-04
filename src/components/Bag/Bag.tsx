@@ -10,7 +10,7 @@ import type { ShopItem } from "../../data/types";
 
 export function Bag() {
   const dispatch = useAppDispatch();
-  const { pet, giveItem } = usePet();
+  const { pet, giveItem, consumeItem } = usePet();
   const owlRef = useRef<HTMLDivElement>(null);
   // Stays visible for as long as the student is on this screen -- cleared
   // only by navigating away (component unmount), not on a timer.
@@ -26,7 +26,7 @@ export function Bag() {
       <button className="back-btn" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "owl" })}>
         ← 返回 Back
       </button>
-      <h1>{`喂食 Feed ${pet.name || "它"}`}</h1>
+      <h1>{`喂食／玩耍 Feed / Play with ${pet.name || "它"}`}</h1>
       <OwlArt ref={owlRef} stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" playSound />
       {ageUpAge !== null && (
         <div className="age-up-banner" role="status">
@@ -67,6 +67,10 @@ export function Bag() {
                 owlRef={owlRef}
                 onGive={giveItem}
                 onAgedUp={setAgeUpAge}
+                onPlay={(toy) => {
+                  consumeItem(toy);
+                  dispatch({ type: "START_PLAY", itemId: toy.id });
+                }}
               />
             );
           })}
@@ -82,15 +86,29 @@ interface BagItemCardProps {
   owlRef: React.RefObject<HTMLDivElement | null>;
   onGive: (item: ShopItem) => { agedUp: boolean; age: number };
   onAgedUp: (age: number) => void;
+  onPlay: (item: ShopItem) => void;
 }
 
-function BagItemCard({ item, qty, owlRef, onGive, onAgedUp }: BagItemCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
+// The card itself is the tap target (no separate "Give"/"Play" button inside
+// it) -- tapping anywhere on a food card throws it at the owl and feeds it;
+// tapping a toy card starts its minigame immediately. Kept deliberately
+// terse: image + Chinese name + one stat line, no English text and no
+// "tap to ..." hint -- the tap affordance comes from the card itself being a
+// button (cursor/press states via .bag-item-card-tappable), not a label.
+function BagItemCard({ item, qty, owlRef, onGive, onAgedUp, onPlay }: BagItemCardProps) {
+  const cardRef = useRef<HTMLButtonElement>(null);
   const [giving, setGiving] = useState(false);
   const emoji = item.label.split(" ")[0];
-  const label = item.label.slice(emoji.length).trim();
+  // item.label is "<emoji> <Chinese name> <English words...>" -- the Chinese
+  // name is always exactly one space-delimited token (no internal spaces).
+  const name = item.label.split(" ")[1] ?? item.label;
+  const isToy = item.type === "toy";
 
   function handleClick() {
+    if (isToy) {
+      onPlay(item);
+      return;
+    }
     if (giving || !cardRef.current || !owlRef.current) return;
     setGiving(true);
     flyItemTo(cardRef.current, owlRef.current, emoji, () => {
@@ -106,14 +124,22 @@ function BagItemCard({ item, qty, owlRef, onGive, onAgedUp }: BagItemCardProps) 
   }
 
   return (
-    <div className="bag-item-card" ref={cardRef}>
-      <div className="bag-item-emoji">{emoji}</div>
-      <div className="bag-item-label">{label}</div>
-      <div className="bag-item-qty">x{qty}</div>
-      <div className="shop-item-stats">{`🌱 成长 +${item.growth}　🍚 饱食度 +${item.mood}`}</div>
-      <button className="secondary-btn bag-item-give" disabled={giving} onClick={handleClick}>
-        🎁 送给它 Give
-      </button>
-    </div>
+    <button
+      className="bag-item-card bag-item-card-tappable"
+      ref={cardRef}
+      disabled={!isToy && giving}
+      onClick={handleClick}
+    >
+      <div className="bag-item-emoji">
+        {emoji}
+        {qty > 1 && <span className="bag-item-qty-badge">×{qty}</span>}
+      </div>
+      <div className="bag-item-info">
+        <div className="bag-item-label">{name}</div>
+        <div className="bag-item-stat">
+          {isToy ? `🍚 饱食度最高 +${item.mood}` : `🌱 成长 +${item.growth}　🍚 饱食度 +${item.mood}`}
+        </div>
+      </div>
+    </button>
   );
 }

@@ -92,7 +92,7 @@ export function Owl() {
             dispatch({ type: "GO_TO_SCREEN", screen: "bag" });
           }}
         >
-          🍚 喂食 Feed{bagCount ? ` (${bagCount})` : ""}
+          🍚 喂食／玩耍 Feed / Play{bagCount ? ` (${bagCount})` : ""}
         </button>
       </div>
     </div>

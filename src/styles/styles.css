@@ -693,22 +693,25 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .owl-screen .action-row { justify-content: center; }
 
 .shop-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 14px; margin-top: 16px;
 }
+/* Items-for-Sale cards share the same "icon + name/stat row" look as
+   Bag.tsx's cards (.bag-item-row below) -- the only structural difference is
+   the Buy button stacked underneath, since purchasing needs its own distinct
+   action + cost display that a bare tap can't express. */
 .shop-item-card {
   background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
   border: none;
   border-radius: 22px;
-  padding: 14px; text-align: center;
+  padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 10px;
   box-shadow: var(--shadow-1);
   transition: transform .18s ease, box-shadow .18s ease;
 }
 .shop-item-card:hover { transform: translateY(-3px) scale(1.02); box-shadow: var(--shadow-2); }
 .shop-item-disabled { opacity: .5; }
 .shop-item-disabled:hover { transform: none; box-shadow: var(--shadow-1); }
-.shop-item-label { font-size: 17px; margin-bottom: 6px; }
-.shop-item-stats { font-size: 13px; color: var(--ink-soft); margin-bottom: 10px; }
 .shop-item-buy:disabled { cursor: not-allowed; opacity: .6; filter: none; box-shadow: none; }
 .shop-bag-indicator {
   display: inline-flex; align-items: center; gap: 4px;
@@ -718,22 +721,47 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .bag-screen { text-align: center; }
 .bag-screen .action-row { justify-content: center; }
 .bag-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 14px; margin-top: 20px; text-align: center;
+}
+/* Shared "icon + name/stat" row: image next to the name (not stacked above
+   it), stat line underneath the name. Bag.tsx's tappable card *is* this row
+   (no other content); Shop.tsx's "Items for Sale" card nests it above its
+   own Buy button (.shop-item-card above); Shop's read-only "My Bag" preview
+   also uses .bag-item-card directly, just without a .bag-item-stat line. */
+.bag-item-card, .bag-item-row {
+  display: flex; flex-direction: row; align-items: center; gap: 12px; text-align: left;
 }
 .bag-item-card {
   background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
   border: none;
   border-radius: 22px;
-  padding: 16px 12px; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 14px 16px;
   box-shadow: var(--shadow-1);
   transition: transform .15s ease, box-shadow .15s ease;
 }
 .bag-item-card:hover { transform: translateY(-3px) scale(1.02); box-shadow: var(--shadow-2); }
-.bag-item-emoji { font-size: 32px; }
-.bag-item-label { font-size: 14px; color: var(--ink); }
-.bag-item-qty { font-size: 13px; color: var(--ink-soft); margin-bottom: 6px; }
-.bag-item-give:disabled { cursor: not-allowed; opacity: .6; filter: none; box-shadow: none; }
+/* Bag.tsx's card is a real <button> (the whole card is the tap target --
+   tap to feed/play, no separate "Give"/"Play" button inside it); Shop.tsx
+   reuses .bag-item-card for its own read-only bag preview as a plain <div>,
+   so the button-only resets/affordance live in this modifier instead of the
+   shared base class. */
+.bag-item-card-tappable {
+  width: 100%; cursor: pointer; font-family: inherit; color: inherit;
+}
+.bag-item-card-tappable:active { transform: scale(.97); box-shadow: var(--shadow-press); }
+.bag-item-card-tappable:disabled { cursor: not-allowed; opacity: .6; filter: none; box-shadow: none; transform: none; }
+.bag-item-emoji { position: relative; flex: 0 0 auto; font-size: 32px; }
+.bag-item-qty-badge {
+  position: absolute; top: -6px; right: -12px;
+  background: var(--primary); color: #fff8ee;
+  font-size: 11px; font-weight: 700; line-height: 1;
+  padding: 3px 6px; border-radius: 999px;
+  box-shadow: var(--shadow-1);
+}
+.bag-item-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 auto; }
+.bag-item-label { font-size: 14px; font-weight: 700; color: var(--ink); }
+.bag-item-stat { font-size: 12.5px; color: var(--ink-soft); }
 
 /* Flying item thrown from the Bag to the owl -- position is set inline
    per-throw (left/top = start point, --dx/--dy = distance to the owl). */
@@ -749,6 +777,113 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   0%   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
   55%  { transform: translate(calc(-50% + var(--dx) * 0.55), calc(-50% + var(--dy) * 0.55 - 70px)) scale(1.3); opacity: 1; }
   100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.3); opacity: 0; }
+}
+
+/* ---------- Play (toy minigames) ---------- */
+.play-screen { text-align: center; }
+.play-screen .picker-hint { max-width: 380px; margin: 0 auto 10px; }
+
+/* Shared by every round-based minigame (CatchGame, FeatherGame, ...) --
+   progress counter, hit/miss feedback line, and the running hit tally. */
+.play-round-progress { font-weight: 700; color: var(--ink-soft); margin: 10px 0; }
+.play-round-feedback-slot { min-height: 26px; margin-bottom: 4px; }
+.play-round-feedback { font-weight: 700; }
+.play-round-feedback-hit { color: var(--correct); }
+.play-round-feedback-miss { color: var(--incorrect); }
+.play-round-hits { font-size: 14px; color: var(--ink-soft); margin-top: 10px; }
+
+.catch-track {
+  position: relative; max-width: 420px; height: 46px; margin: 10px auto;
+  background: var(--card-bg); border-radius: 999px;
+  box-shadow: var(--shadow-press);
+}
+.catch-zone {
+  position: absolute; top: 0; bottom: 0;
+  background: linear-gradient(180deg, var(--gold-hi), var(--gold));
+  border-radius: 999px; opacity: .65;
+}
+.catch-marker {
+  position: absolute; top: 50%; left: 4%; font-size: 26px;
+  transform: translate(-50%, -50%);
+  animation-name: catch-sweep;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes catch-sweep {
+  0%   { left: 4%; }
+  50%  { left: 96%; }
+  100% { left: 4%; }
+}
+.catch-tap-btn:disabled { cursor: not-allowed; opacity: .6; filter: none; box-shadow: none; }
+
+/* Feather sky: feathers fall top-to-bottom, tapped directly (the feather
+   itself is the tap target, no separate "Catch!" button) rather than timed
+   against a moving zone like the ball game. */
+.feather-sky {
+  position: relative; max-width: 420px; height: 220px; margin: 10px auto;
+  background: linear-gradient(180deg, #eaf6ff, var(--card-bg));
+  border-radius: 22px; overflow: hidden;
+  box-shadow: var(--shadow-press);
+}
+.feather-target {
+  position: absolute; top: -12%; font-size: 30px;
+  background: none; border: none; padding: 6px; cursor: pointer;
+  transform: translateX(-50%);
+  animation-name: feather-fall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+.feather-target:disabled { cursor: default; }
+@keyframes feather-fall {
+  0%   { top: -12%; transform: translateX(-50%) rotate(-8deg); }
+  100% { top: 92%; transform: translateX(-50%) rotate(8deg); }
+}
+.feather-ground {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 14px;
+  background: linear-gradient(180deg, var(--gold-hi), var(--gold));
+}
+
+/* Memory Cards: 12 cards (6 pairs) in a 4x3 grid, flipped via a 3D
+   perspective/rotateY flip (same technique as Tingxie's flip cards) rather
+   than a swap of emoji content, so the flip itself reads as a physical card
+   turning over. */
+.memory-timer { font-weight: 700; color: var(--gold-deep); font-size: 16px; margin: 8px 0; }
+.memory-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+  max-width: 420px; margin: 10px auto;
+}
+.memory-card {
+  position: relative; aspect-ratio: 1; border: none; border-radius: 14px;
+  background: none; padding: 0; cursor: pointer; perspective: 600px;
+}
+.memory-card:disabled { cursor: not-allowed; }
+.memory-card-face {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 26px; border-radius: 14px; backface-visibility: hidden;
+  box-shadow: var(--shadow-1);
+  transition: transform .3s;
+}
+.memory-card-front { background: linear-gradient(180deg, var(--primary-hi), var(--primary)); transform: rotateY(0deg); }
+.memory-card-back { background: linear-gradient(180deg, var(--card-hi), var(--card-bg)); transform: rotateY(180deg); }
+.memory-card-flipped .memory-card-front { transform: rotateY(-180deg); }
+.memory-card-flipped .memory-card-back { transform: rotateY(0deg); }
+.memory-card-matched .memory-card-back { background: linear-gradient(180deg, var(--gold-hi), var(--gold)); opacity: .85; }
+
+.play-placeholder-emoji { font-size: 48px; margin: 18px 0 4px; }
+
+.play-result-card {
+  max-width: 340px; margin: 16px auto; padding: 20px;
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border-radius: 22px; box-shadow: var(--shadow-1);
+}
+.play-result-emoji { font-size: 44px; }
+.play-result-score { font-weight: 700; font-size: 16px; margin: 6px 0; }
+.play-result-bonus { color: var(--gold-deep); font-weight: 700; }
+.play-result-mood { color: var(--ink-soft); }
+.play-result-agedup {
+  margin-top: 10px; padding: 10px 14px; border-radius: 16px;
+  background: linear-gradient(180deg, var(--gold-hi), var(--gold));
+  color: var(--ink); font-weight: 700; font-size: 13px; line-height: 1.4;
 }
 
 /* ---------- Result ---------- */
