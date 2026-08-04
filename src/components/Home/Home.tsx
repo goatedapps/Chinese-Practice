@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { loadHistory, clearAllHistory, deleteHistoryEntry } from "../../state/history";
+import { getTodayStats, isTingxieMissionComplete } from "../../lib/stats";
+import { exportTodaySummaryToPdf } from "../../lib/exportPdf";
 import { ConfirmModal } from "../common/Modal";
 import { PetHeroCard } from "./PetHeroCard";
 import { TodayMission } from "./TodayMission";
-import { ProgressSummary } from "./ProgressSummary";
 import { RecentAchievements } from "./RecentAchievements";
 
 type PendingHistoryAction = { type: "clear" } | { type: "delete"; id: string };
@@ -13,6 +14,8 @@ export function Home() {
   const dispatch = useAppDispatch();
   const [hist, setHist] = useState(() => loadHistory());
   const [pending, setPending] = useState<PendingHistoryAction | null>(null);
+  const todayStats = getTodayStats(hist);
+  const showTodaySummary = todayStats.questions > 0 || isTingxieMissionComplete();
 
   function handleConfirm() {
     if (!pending) return;
@@ -43,50 +46,26 @@ export function Home() {
         </div>
       </div>
 
-      <ProgressSummary hist={hist} />
-
-      <RecentAchievements />
-
-      {hist.length > 0 && (
-        <div className="dash-card history-card">
-          <div className="history-head">
-            <h2>最近记录 Recent Sessions</h2>
-            <button className="history-clear-btn" onClick={() => setPending({ type: "clear" })}>
-              🗑 清除全部 Clear All
-            </button>
-          </div>
-          <table className="history-table">
-            <thead>
-              <tr>
-                <th>日期 Date</th>
-                <th>模式 Mode</th>
-                <th>得分 Score</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {hist.slice(0, 8).map((h) => (
-                <tr key={h.id}>
-                  <td>{new Date(h.date).toLocaleString()}</td>
-                  <td>{h.modeLabel}</td>
-                  <td className="score">
-                    {h.correctItems}/{h.totalItems}
-                  </td>
-                  <td>
-                    <button
-                      className="history-row-delete"
-                      title="删除 Delete"
-                      onClick={() => setPending({ type: "delete", id: h.id })}
-                    >
-                      ✕
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {showTodaySummary && (
+        <div className="dash-card today-summary-card">
+          <div className="section-eyebrow">今日总结 Today</div>
+          <h2 className="section-heading">今日学习总结 Today's Session Summary</h2>
+          <p className="picker-hint">
+            包含今天完成的练习题目、你的答案和正确答案，以及听写练习中需要加强的词语/句子。
+            <br />
+            <span className="en">Includes today's practice questions with your answers and the correct answers, plus any dictation items marked "wrong."</span>
+          </p>
+          <button className="secondary-btn" onClick={() => exportTodaySummaryToPdf(hist)}>
+            🖨️ 打印 / 存为 PDF Print / Save as PDF
+          </button>
         </div>
       )}
+
+      <RecentAchievements
+        hist={hist}
+        onDeleteRow={(id) => setPending({ type: "delete", id })}
+        onClearAll={() => setPending({ type: "clear" })}
+      />
 
       {pending && (
         <ConfirmModal

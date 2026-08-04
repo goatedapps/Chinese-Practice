@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import type { PetState, MoodBucket, ShopItem } from "../data/types";
 import { PET_DEFAULT_STATE, PET_STAGES, MOOD_DECAY_PER_HOUR, GROWTH_PER_AGE_YEAR } from "../data/pet";
-import { logAchievement } from "./achievements";
 
 const PET_KEY = "hanyuPracticePet_v1";
 
@@ -111,20 +110,9 @@ export function PetProvider({ children }: { children: ReactNode }) {
     const have = pet.inventory[item.id] ?? 0;
     if (have <= 0) return { agedUp: false, age: getAge(pet.growth) };
 
-    // Achievement logging reads `pet` (component scope, not the `prev`
-    // inside the updater below) so it isn't tied to the updater's
-    // once-or-twice-in-StrictMode internals -- it runs exactly once per
-    // genuine click, same as any other event handler.
     const newGrowth = pet.growth + item.growth;
-    const prevStage = getStage(pet.growth);
-    const nextStageAfter = getStage(newGrowth);
-    const evolved = nextStageAfter.key !== prevStage.key;
     const newAge = getAge(newGrowth);
     const agedUp = newAge > getAge(pet.growth);
-    logAchievement({ type: "fed", detail: item.id });
-    if (evolved) {
-      logAchievement({ type: "evolved", detail: nextStageAfter.key });
-    }
 
     setPet((prev) => {
       const have2 = prev.inventory[item.id] ?? 0;

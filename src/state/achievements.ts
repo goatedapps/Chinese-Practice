@@ -17,19 +17,18 @@ export function loadAchievements(): Achievement[] {
   }
 }
 
-// Dedup rules (see the "fed" branch is deliberately never deduped -- every
-// genuine feed logs its own entry):
+// Dedup rules:
 //  - "missionComplete" recurs once per calendar day.
-//  - "questionsMilestone"/"evolved" can each only genuinely be earned once
-//    ever (questionsLifetime/growth are both monotonic), so dedup by the
-//    milestone number / stage key forever, not just today.
+//  - "questionsMilestone" can only genuinely be earned once ever
+//    (questionsLifetime is monotonic), so dedup by the milestone number
+//    forever, not just today.
 export function logAchievement(entry: Omit<Achievement, "id" | "date"> & { date?: number }): void {
   const list = loadAchievements();
   const date = entry.date ?? Date.now();
   const isDuplicate = list.some((a) => {
     if (a.type !== entry.type) return false;
     if (entry.type === "missionComplete") return dateKey(a.date) === dateKey(date);
-    if (entry.type === "questionsMilestone" || entry.type === "evolved") return a.detail === entry.detail;
+    if (entry.type === "questionsMilestone") return a.detail === entry.detail;
     return false;
   });
   if (isDuplicate) return;

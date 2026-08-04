@@ -6,6 +6,7 @@ import { speakText } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
 import { checkAndAwardMissionBonus } from "../../state/achievements";
+import { recordTingxieWrong } from "../../state/todaySummary";
 import { loadHistory } from "../../state/history";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 import { TingxieFlipCard } from "./TingxieFlipCard";
@@ -57,6 +58,23 @@ export function Practice() {
 
   function missed() {
     Sound.miss();
+    if (current?.kind === "vocab") {
+      recordTingxieWrong({
+        activity: "practice",
+        kind: "vocab",
+        lessonTitle: state.activeContent!.title,
+        prompt: `${current.item.pinyin} · ${current.item.meaning}`,
+        answer: current.item.word
+      });
+    } else if (current?.kind === "sentence") {
+      recordTingxieWrong({
+        activity: "practice",
+        kind: "sentence",
+        lessonTitle: state.activeContent!.title,
+        prompt: current.item.description,
+        answer: current.item.text
+      });
+    }
     dispatch({ type: "PRACTICE_MISSED" });
   }
 

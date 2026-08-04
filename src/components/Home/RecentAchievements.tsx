@@ -1,28 +1,15 @@
 import { useState } from "react";
 import { loadAchievements } from "../../state/achievements";
 import { formatRelativeTime } from "../../lib/stats";
-import { SHOP_ITEMS, PET_STAGES } from "../../data/pet";
-import type { Achievement } from "../../data/types";
+import type { Achievement, HistoryEntry } from "../../data/types";
 
 const TYPE_ICON: Record<Achievement["type"], string> = {
-  fed: "🍚",
-  evolved: "✨",
   missionComplete: "🎯",
   questionsMilestone: "🏆"
 };
 
 function describe(a: Achievement): { text: string; en?: string } {
   switch (a.type) {
-    case "fed": {
-      const item = SHOP_ITEMS.find((i) => i.id === a.detail);
-      const emoji = item?.label.split(" ")[0] ?? "";
-      const name = item ? item.label.slice(emoji.length).trim() : "宠物 the pet";
-      return { text: `喂食了 ${name}` };
-    }
-    case "evolved": {
-      const stage = PET_STAGES.find((s) => s.key === a.detail);
-      return { text: `宠物进化为 ${stage?.label ?? a.detail}` };
-    }
     case "missionComplete":
       return { text: "今日任务全部完成", en: "All missions complete today" };
     case "questionsMilestone":
@@ -32,28 +19,86 @@ function describe(a: Achievement): { text: string; en?: string } {
   }
 }
 
-export function RecentAchievements() {
+type FeedRow =
+  | { kind: "achievement"; id: string; date: number; icon: string; text: string; en?: string }
+  | { kind: "session"; id: string; date: number; modeLabel: string; correctItems: number; totalItems: number };
+
+const MAX_ROWS = 8;
+
+export function RecentAchievements({
+  hist,
+  onDeleteRow,
+  onClearAll
+}: {
+  hist: HistoryEntry[];
+  onDeleteRow: (id: string) => void;
+  onClearAll: () => void;
+}) {
   const [achievements] = useState(() => loadAchievements());
-  if (achievements.length === 0) return null;
+
+  const achievementRows: FeedRow[] = achievements
+    // Defensive filter: pre-existing "fed"/"evolved" entries from before
+    // pet-interaction achievements stopped being tracked can still be
+    // sitting in a student's localStorage -- never surface those.
+    .filter((a) => a.type === "missionComplete" || a.type === "questionsMilestone")
+    .map((a) => {
+      const { text, en } = describe(a);
+      return { kind: "achievement", id: a.id, date: a.date, icon: TYPE_ICON[a.type], text, en };
+    });
+
+  const sessionRows: FeedRow[] = hist.map((h) => ({
+    kind: "session",
+    id: h.id,
+    date: h.date,
+    modeLabel: h.modeLabel,
+    correctItems: h.correctItems,
+    totalItems: h.totalItems
+  }));
+
+  const rows = [...achievementRows, ...sessionRows].sort((a, b) => b.date - a.date).slice(0, MAX_ROWS);
+
+  if (rows.length === 0) return null;
 
   return (
     <div className="dash-card recent-achievements">
-      <div className="section-eyebrow">最近成就 Recent</div>
-      <h2 className="section-heading">最近成就 Recent Achievements</h2>
+      <div className="history-head">
+        <div>
+          <div className="section-eyebrow">最近成就 Recent</div>
+          <h2 className="section-heading">最近成就 Recent Achievements</h2>
+        </div>
+        {hist.length > 0 && (
+          <button className="history-clear-btn" onClick={onClearAll}>
+            🗑 清除全部 Clear All
+          </button>
+        )}
+      </div>
       <div className="achievement-list">
-        {achievements.slice(0, 5).map((a) => {
-          const { text, en } = describe(a);
-          return (
-            <div className="achievement-row" key={a.id}>
-              <span className="achievement-icon">{TYPE_ICON[a.type]}</span>
+        {rows.map((row) =>
+          row.kind === "achievement" ? (
+            <div className="achievement-row" key={`a-${row.id}`}>
+              <span className="achievement-icon">{row.icon}</span>
               <span className="achievement-text">
-                {text}
-                {en && <span className="en">{en}</span>}
+                {row.text}
+                {row.en && <span className="en">{row.en}</span>}
               </span>
-              <span className="achievement-date">{formatRelativeTime(a.date)}</span>
+              <span className="achievement-date">{formatRelativeTime(row.date)}</span>
             </div>
-          );
-        })}
+          ) : (
+            <div className="achievement-row" key={`s-${row.id}`}>
+              <span className="achievement-icon">📘</span>
+              <span className="achievement-text">
+                {row.modeLabel}
+                <span className="en">
+                  {row.correctItems}/{row.totalItems} correct
+                </span>
+              </span>
+              <span className="achievement-date">{formatRelativeTime(row.date)}</span>
+              <button className="history-row-delete" title="删除 Delete" onClick={() => onDeleteRow(row.id)}>
+                ✕
+              </button>
+            </div>
+          )
+        )}
       </div>
     </div>
   );

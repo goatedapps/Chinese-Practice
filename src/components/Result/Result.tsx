@@ -3,6 +3,7 @@ import { useAppState, useAppDispatch } from "../../state/AppStateContext";
 import { usePet } from "../../state/PetContext";
 import { saveHistory, loadHistory } from "../../state/history";
 import { logAchievement, checkAndAwardMissionBonus } from "../../state/achievements";
+import { recordTodayPracticeSession } from "../../state/todaySummary";
 import { Sound } from "../../lib/sound";
 import { exportSessionToPdf } from "../../lib/exportPdf";
 
@@ -53,6 +54,9 @@ export function Result() {
       skippedItems,
       categoryCounts
     });
+    if (state.groups.length > 0) {
+      recordTodayPracticeSession({ modeLabel: state.modeLabel || "", groups: state.groups, results: state.results });
+    }
     if (totalItems > 0) {
       if (pct >= 90) Sound.applause();
       else Sound.encourage();
@@ -90,7 +94,7 @@ export function Result() {
               })
             }
           >
-            📄 下载 PDF Download PDF
+            🖨️ 打印 / 存为 PDF Print / Save as PDF
           </button>
         )}
         <button className="primary-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>

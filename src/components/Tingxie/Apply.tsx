@@ -6,6 +6,7 @@ import { speakText, stopSpeaking } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
 import { checkAndAwardMissionBonus } from "../../state/achievements";
+import { recordTingxieWrong } from "../../state/todaySummary";
 import { loadHistory } from "../../state/history";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 import { TingxieFlipCard } from "./TingxieFlipCard";
@@ -52,6 +53,13 @@ export function Apply() {
 
   function missed() {
     Sound.miss();
+    recordTingxieWrong({
+      activity: "apply",
+      kind: "vocab",
+      lessonTitle: state.activeContent!.title,
+      prompt: current.blanked,
+      answer: current.word
+    });
     dispatch({ type: "APPLY_MISSED" });
   }
 

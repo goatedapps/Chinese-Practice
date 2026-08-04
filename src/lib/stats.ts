@@ -18,28 +18,6 @@ export function getTodayStats(hist: HistoryEntry[]): { questions: number; accura
   return { questions, accuracy };
 }
 
-// Consecutive local-calendar days (walking backward from today, or from
-// yesterday if nothing's logged yet today -- Duolingo-style grace period)
-// that have at least one history entry.
-// Note: history.ts caps storage at the last 50 entries (not 50 days), so a
-// student doing many sessions/day could in theory evict entries from days
-// further back than the cap covers, undercounting a very long streak --
-// negligible in practice, not worth solving here.
-export function getStreak(hist: HistoryEntry[], now: Date = new Date()): number {
-  const days = new Set(hist.map((h) => dateKey(h.date)));
-  const cursor = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  if (!days.has(dateKey(cursor.getTime()))) {
-    cursor.setDate(cursor.getDate() - 1);
-    if (!days.has(dateKey(cursor.getTime()))) return 0;
-  }
-  let streak = 0;
-  while (days.has(dateKey(cursor.getTime()))) {
-    streak++;
-    cursor.setDate(cursor.getDate() - 1);
-  }
-  return streak;
-}
-
 // The 4 categories that count toward the Reading Practice mission --
 // deliberately excludes "errorcorrect". Exported so TodayMission.tsx can
 // reuse the exact same list when randomly picking 2 for a quick-start quiz.
