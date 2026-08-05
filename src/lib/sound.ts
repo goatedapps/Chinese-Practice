@@ -61,14 +61,48 @@ const SOUND_FILES = {
 // URL itself never changes -- a fresh page load always busts it.
 const CACHE_BUST = Date.now();
 
-// Plays an MP3 from public/sounds/. Each call creates a fresh <audio>
-// element (rather than reusing one) so overlapping/rapid re-triggers -- e.g.
-// several correct() dings staggered via `delaySec` when a group has
-// multiple right answers -- don't cut each other off.
+// Small per-sound pool of reusable <audio> elements, instead of a fresh
+// `new Audio()` on every single play. This used to allocate a brand-new
+// element for every button press app-wide (App.tsx's global click listener
+// fires Sound.click() on essentially every tap), which is cheap on desktop
+// but on mobile Safari/Chrome each transient Audio element holds onto
+// decoded-audio memory longer than it takes for the next one to be created --
+// over a long session this built up enough memory/audio-session pressure to
+// visibly lag the whole app (fixed only by a full reload, which drops the
+// heap). Reusing a small capped pool per sound keeps total live elements
+// bounded regardless of session length, while still letting a few of the
+// same sound overlap (e.g. several correct() dings staggered via `delaySec`
+// when a group has multiple right answers) without cutting each other off.
+const MAX_POOL_PER_SOUND = 4;
+const audioPools = new Map<string, HTMLAudioElement[]>();
+
+function getPooledAudio(path: string): HTMLAudioElement {
+  let pool = audioPools.get(path);
+  if (!pool) {
+    pool = [];
+    audioPools.set(path, pool);
+  }
+  // Reuse whichever pooled element isn't currently mid-playback.
+  const idle = pool.find((a) => a.paused || a.ended);
+  if (idle) return idle;
+  if (pool.length < MAX_POOL_PER_SOUND) {
+    const audio = new Audio(`${path}?v=${CACHE_BUST}`);
+    pool.push(audio);
+    return audio;
+  }
+  // Pool exhausted (this sound is already overlapping itself at the cap) --
+  // restart the oldest instance rather than growing the pool further.
+  return pool[0];
+}
+
+// Plays an MP3 from public/sounds/, reusing a pooled <audio> element for
+// that sound rather than allocating a new one every call (see the pool
+// comment above).
 function playFile(path: string, delaySec: number = 0): void {
   const fire = () => {
     try {
-      const audio = new Audio(`${path}?v=${CACHE_BUST}`);
+      const audio = getPooledAudio(path);
+      audio.currentTime = 0;
       audio.play().catch(() => {
         // Autoplay can be blocked before the student has interacted with the
         // page at all; sound is a nice-to-have, never block on it.

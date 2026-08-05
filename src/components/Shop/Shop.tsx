@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { usePet } from "../../state/PetContext";
-import { SHOP_ITEMS } from "../../data/pet";
+import { SHOP_ITEMS, shopItemName, shopItemIconPath, GROWTH_ICON, HUNGER_ICON } from "../../data/pet";
 import { Sound } from "../../lib/sound";
 import { flyItemTo } from "../../lib/throwAnimation";
 import type { ShopItem } from "../../data/types";
@@ -33,16 +33,14 @@ export function Shop() {
             {bagEntries.map(([itemId, qty]) => {
               const item = SHOP_ITEMS.find((i) => i.id === itemId);
               if (!item) return null;
-              const emoji = item.label.split(" ")[0];
-              const name = item.label.split(" ")[1] ?? item.label;
               return (
                 <div key={itemId} className="bag-item-card">
                   <div className="bag-item-emoji">
-                    {emoji}
+                    <img className="bag-item-icon" src={shopItemIconPath(item)} alt="" />
                     {qty > 1 && <span className="bag-item-qty-badge">×{qty}</span>}
                   </div>
                   <div className="bag-item-info">
-                    <div className="bag-item-label">{name}</div>
+                    <div className="bag-item-label">{shopItemName(item)}</div>
                   </div>
                 </div>
               );
@@ -70,28 +68,39 @@ function ShopItemCard({ item, bagIconRef }: ShopItemCardProps) {
   const { pet, buyItem } = usePet();
   const cardRef = useRef<HTMLDivElement>(null);
   const affordable = pet.bp >= item.cost;
-  const emoji = item.label.split(" ")[0];
-  const name = item.label.split(" ")[1] ?? item.label;
 
   function handleBuy() {
     if (!affordable) return;
     buyItem(item);
     Sound.purchase();
     if (cardRef.current && bagIconRef.current) {
-      flyItemTo(cardRef.current, bagIconRef.current, emoji, () => {});
+      flyItemTo(cardRef.current, bagIconRef.current, shopItemIconPath(item), () => {});
     }
   }
 
   return (
     <div ref={cardRef} className={"shop-item-card" + (affordable ? "" : " shop-item-disabled")}>
       <div className="bag-item-row">
-        <div className="bag-item-emoji">{emoji}</div>
+        <div className="bag-item-emoji">
+          <img className="bag-item-icon" src={shopItemIconPath(item)} alt="" />
+        </div>
         <div className="bag-item-info">
-          <div className="bag-item-label">{name}</div>
+          <div className="bag-item-label">{shopItemName(item)}</div>
           <div className="bag-item-stat">
-            {item.type === "toy"
-              ? `🍚 饱食度最高 +${item.mood}`
-              : `🌱 成长 +${item.growth}　🍚 饱食度 +${item.mood}`}
+            {item.type === "toy" ? (
+              <span className="stat-inline">
+                <img className="stat-inline-icon" src={HUNGER_ICON} alt="" /> 饱食度最高 +{item.mood}
+              </span>
+            ) : (
+              <>
+                <span className="stat-inline">
+                  <img className="stat-inline-icon" src={GROWTH_ICON} alt="" /> 成长 +{item.growth}
+                </span>
+                <span className="stat-inline">
+                  <img className="stat-inline-icon" src={HUNGER_ICON} alt="" /> 饱食度 +{item.mood}
+                </span>
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -40,47 +40,32 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
 
   return (
     <div className="dash-card today-mission">
-      <div className="section-eyebrow">今日任务 Today's Mission</div>
       <h2 className="section-heading">学习任务 Today's Mission</h2>
-      <div className="mission-list">
+      <p className="mission-subhead">完成全部任务可得 {MISSION_COMPLETE_BONUS_BP} BP · Complete all missions to earn {MISSION_COMPLETE_BONUS_BP} BP</p>
+      <div className="mission-grid">
         <button
-          className={"mission-row" + (lessonDone ? " mission-row-done" : "")}
+          className={"mission-card" + (lessonDone ? " mission-card-done" : "")}
           onClick={startLessonMission}
         >
-          <span className="mission-icon">📘</span>
-          <span className="mission-info">
-            <span className="mission-label">
-              复习一课
-              <span className="en">Revise a Lesson</span>
-            </span>
-          </span>
-          <span className="mission-status">{lessonDone ? "✓ 今日已完成 Done today" : "点击开始 Tap to start"}</span>
+          <img className="mission-card-icon" src="/icons/learn.png" alt="" />
+          <span className="mission-card-name">复习一课</span>
+          <span className="mission-card-tick-slot">{lessonDone && <span className="mission-card-tick">✓</span>}</span>
         </button>
         <button
-          className={"mission-row" + (readingDone ? " mission-row-done" : "")}
+          className={"mission-card" + (readingDone ? " mission-card-done" : "")}
           onClick={startReadingMission}
         >
-          <span className="mission-icon">📖</span>
-          <span className="mission-info">
-            <span className="mission-label">
-              阅读练习
-              <span className="en">Reading Practice</span>
-            </span>
-          </span>
-          <span className="mission-status">{readingDone ? "✓ 今日已完成 Done today" : "点击开始 Tap to start"}</span>
+          <span className="mission-card-icon mission-card-icon-emoji">📖</span>
+          <span className="mission-card-name">阅读练习</span>
+          <span className="mission-card-tick-slot">{readingDone && <span className="mission-card-tick">✓</span>}</span>
         </button>
         <button
-          className={"mission-row" + (dictationDone ? " mission-row-done" : "")}
+          className={"mission-card" + (dictationDone ? " mission-card-done" : "")}
           onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}
         >
-          <span className="mission-icon">🔊</span>
-          <span className="mission-info">
-            <span className="mission-label">
-              听写练习
-              <span className="en">Dictation Lesson</span>
-            </span>
-          </span>
-          <span className="mission-status">{dictationDone ? "✓ 今日已完成 Done today" : "点击开始 Tap to start"}</span>
+          <img className="mission-card-icon" src="/icons/dictation.png" alt="" />
+          <span className="mission-card-name">听写练习</span>
+          <span className="mission-card-tick-slot">{dictationDone && <span className="mission-card-tick">✓</span>}</span>
         </button>
       </div>
 

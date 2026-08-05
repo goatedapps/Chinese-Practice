@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { loadAchievements } from "../../state/achievements";
 import { formatRelativeTime } from "../../lib/stats";
 import type { Achievement, HistoryEntry } from "../../data/types";
 
@@ -27,15 +25,15 @@ const MAX_ROWS = 8;
 
 export function RecentAchievements({
   hist,
+  achievements,
   onDeleteRow,
   onClearAll
 }: {
   hist: HistoryEntry[];
+  achievements: Achievement[];
   onDeleteRow: (id: string) => void;
   onClearAll: () => void;
 }) {
-  const [achievements] = useState(() => loadAchievements());
-
   const achievementRows: FeedRow[] = achievements
     // Defensive filter: pre-existing "fed"/"evolved" entries from before
     // pet-interaction achievements stopped being tracked can still be
@@ -62,11 +60,8 @@ export function RecentAchievements({
   return (
     <div className="dash-card recent-achievements">
       <div className="history-head">
-        <div>
-          <div className="section-eyebrow">最近成就 Recent</div>
-          <h2 className="section-heading">最近成就 Recent Achievements</h2>
-        </div>
-        {hist.length > 0 && (
+        <h2 className="section-heading">最近成就 Recent Achievements</h2>
+        {rows.length > 0 && (
           <button className="history-clear-btn" onClick={onClearAll}>
             🗑 清除全部 Clear All
           </button>

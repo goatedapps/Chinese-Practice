@@ -80,6 +80,41 @@ export const SHOP_ITEMS: ShopItem[] = [
   { id: "puzzle", label: "🃏 记忆卡牌 Memory Cards", type: "toy", cost: 25, growth: 0, mood: 80 }
 ];
 
+// Extracts the terse Chinese name out of a SHOP_ITEMS label
+// ("<emoji> <Chinese name> <English words...>") -- every label follows this
+// exact shape, and the Chinese name is always exactly one space-delimited
+// token (no internal spaces). Used anywhere a Shop/Bag card shows just the
+// name rather than the full bilingual label; the leading emoji itself is no
+// longer used for display (see shopItemIconPath() below for the real icon).
+export function shopItemName(item: ShopItem): string {
+  const [, name] = item.label.split(" ");
+  return name ?? item.label;
+}
+
+// public/icons/ file for each SHOP_ITEMS id -- "puzzle"'s icon is
+// "memory.png" (not "puzzle.png") since the toy's game changed to a
+// memory-match but its id stayed "puzzle" for backward-compatible inventory
+// keys (see TOY_GAMES's comment above); every other id matches its filename.
+const SHOP_ITEM_ICON_FILES: Record<string, string> = {
+  seed: "seeds.png",
+  worm: "worm.png",
+  fish: "fish.png",
+  ball: "ball.png",
+  kite: "kite.png",
+  puzzle: "memory.png"
+};
+
+export function shopItemIconPath(item: ShopItem): string {
+  return `/icons/${SHOP_ITEM_ICON_FILES[item.id]}`;
+}
+
+// Icons for the Growth/Hunger pet stats -- shown next to the growth/mood
+// bars on PetHeroCard (Home), PetStatBars (Owl/Bag), and each Shop/Bag food
+// item's stat line, so the same two icons mean "growth"/"hunger" everywhere
+// they appear rather than each screen picking its own emoji.
+export const GROWTH_ICON = "/icons/heart.png";
+export const HUNGER_ICON = "/icons/rice.png";
+
 // One minigame per toy ShopItem (keyed by ShopItem.id, `id` kept as "puzzle"
 // even after the game itself changed from a leaf-picking guess to a memory
 // match, so existing bagged/purchased inventory keys don't break), rendered

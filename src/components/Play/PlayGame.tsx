@@ -24,7 +24,7 @@ interface PlayResult extends GameCompletion {
 export function PlayGame() {
   const state = useAppState();
   const dispatch = useAppDispatch();
-  const { applyPlayReward } = usePet();
+  const { pet, applyPlayReward } = usePet();
   const [result, setResult] = useState<PlayResult | null>(null);
 
   const item = SHOP_ITEMS.find((i) => i.id === state.playingItemId);
@@ -66,7 +66,7 @@ export function PlayGame() {
             <p className="play-result-agedup">
               🎉 长大了一岁，现在是 {result.age} 岁了！
               <br />
-              Grew a year older — now {result.age} years old!
+              Your pet has grown wiser. {pet.name || "Your pet"} is now {result.age} year{result.age === 1 ? "" : "s"} old.
             </p>
           )}
         </div>

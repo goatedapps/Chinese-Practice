@@ -1,16 +1,13 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import type { PetState, MoodBucket, ShopItem } from "../data/types";
 import { PET_DEFAULT_STATE, PET_STAGES, MOOD_DECAY_PER_HOUR, GROWTH_PER_AGE_YEAR } from "../data/pet";
+import { loadJSON } from "../lib/storage";
 
 const PET_KEY = "hanyuPracticePet_v1";
 
 function loadPetState(): PetState {
-  try {
-    const saved = JSON.parse(localStorage.getItem(PET_KEY) || "null");
-    if (saved) return { ...PET_DEFAULT_STATE, ...saved };
-  } catch {
-    // ignore corrupt/missing localStorage value
-  }
+  const saved = loadJSON<Partial<PetState> | null>(PET_KEY, null);
+  if (saved) return { ...PET_DEFAULT_STATE, ...saved };
   return { ...PET_DEFAULT_STATE, lastFedAt: Date.now() };
 }
 

@@ -1,6 +1,6 @@
 import { useAppDispatch } from "../../state/AppStateContext";
 import { usePet, computeCurrentMood, moodBucket, getAge, getStage } from "../../state/PetContext";
-import { PET_STAGES, GROWTH_PER_AGE_YEAR } from "../../data/pet";
+import { PET_STAGES, GROWTH_PER_AGE_YEAR, GROWTH_ICON, HUNGER_ICON } from "../../data/pet";
 import { getTodayStats } from "../../lib/stats";
 import { OwlArt } from "../common/OwlArt";
 import type { MoodBucket, HistoryEntry } from "../../data/types";
@@ -67,7 +67,7 @@ export function PetHeroCard({ hist }: { hist: HistoryEntry[] }) {
           <div className="pet-hero-bars">
             <div className="pet-hero-bar-row">
               <div className="pet-hero-bar-label">
-                <span>成长 Growth</span>
+                <span className="stat-name"><img className="stat-bar-icon" src={GROWTH_ICON} alt="" /> 成长 Growth</span>
                 <b>{yearProgress}/{GROWTH_PER_AGE_YEAR}</b>
               </div>
               <div className="growth-bar">
@@ -76,7 +76,7 @@ export function PetHeroCard({ hist }: { hist: HistoryEntry[] }) {
             </div>
             <div className="pet-hero-bar-row">
               <div className="pet-hero-bar-label">
-                <span>🍚 饱食度 Hunger</span>
+                <span className="stat-name"><img className="stat-bar-icon" src={HUNGER_ICON} alt="" /> 饱食度 Hunger</span>
                 <b>{hunger}/100</b>
               </div>
               <div className="mood-bar">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { loadHistory, clearAllHistory, deleteHistoryEntry } from "../../state/history";
+import { loadAchievements, clearAllAchievements } from "../../state/achievements";
 import { getTodayStats, isTingxieMissionComplete } from "../../lib/stats";
 import { exportTodaySummaryToPdf } from "../../lib/exportPdf";
 import { ConfirmModal } from "../common/Modal";
@@ -13,14 +14,24 @@ type PendingHistoryAction = { type: "clear" } | { type: "delete"; id: string };
 export function Home() {
   const dispatch = useAppDispatch();
   const [hist, setHist] = useState(() => loadHistory());
+  const [achievements, setAchievements] = useState(() => loadAchievements());
   const [pending, setPending] = useState<PendingHistoryAction | null>(null);
   const todayStats = getTodayStats(hist);
   const showTodaySummary = todayStats.questions > 0 || isTingxieMissionComplete();
 
   function handleConfirm() {
     if (!pending) return;
-    if (pending.type === "clear") clearAllHistory();
-    else deleteHistoryEntry(pending.id);
+    if (pending.type === "clear") {
+      // "Clear All" clears the whole merged feed shown by RecentAchievements
+      // (session history + the achievement log), not just history -- clearing
+      // only history used to leave achievement rows (e.g. "All missions
+      // complete today") still visible afterward, which looked broken.
+      clearAllHistory();
+      clearAllAchievements();
+      setAchievements(loadAchievements());
+    } else {
+      deleteHistoryEntry(pending.id);
+    }
     setHist(loadHistory());
     setPending(null);
   }
@@ -32,30 +43,39 @@ export function Home() {
       <TodayMission hist={hist} />
 
       <div className="dash-card continue-section">
-        <div className="section-eyebrow">下一步 Next up</div>
         <h2 className="section-heading">继续学习 Continue Learning</h2>
-        <div className="mode-cards">
-          <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}>
-            <div className="mode-card-title">🔊 听写练习</div>
-            <div className="mode-card-sub">Dictation Practice</div>
+        <div className="mode-rows">
+          <button className="mode-row" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}>
+            <img className="mode-row-icon" src="/icons/dictation.png" alt="" />
+            <span className="mode-row-info">
+              <span className="mode-row-title">听写练习</span>
+              <span className="mode-row-sub">Dictation Practice</span>
+            </span>
+            <span className="mode-row-go">›</span>
           </button>
-          <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "practice" })}>
-            <div className="mode-card-title">📘 练习</div>
-            <div className="mode-card-sub">Practice</div>
+          <button className="mode-row" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "practice" })}>
+            <img className="mode-row-icon" src="/icons/practice.png" alt="" />
+            <span className="mode-row-info">
+              <span className="mode-row-title">练习</span>
+              <span className="mode-row-sub">Practice</span>
+            </span>
+            <span className="mode-row-go">›</span>
           </button>
-          <button className="mode-card" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "story" })}>
-            <div className="mode-card-title">📖 读故事</div>
-            <div className="mode-card-sub">Read a Story</div>
+          <button className="mode-row" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "story" })}>
+            <img className="mode-row-icon" src="/icons/read.png" alt="" />
+            <span className="mode-row-info">
+              <span className="mode-row-title">读故事</span>
+              <span className="mode-row-sub">Read a Story</span>
+            </span>
+            <span className="mode-row-go">›</span>
           </button>
         </div>
       </div>
 
       {showTodaySummary && (
         <div className="dash-card today-summary-card">
-          <div className="section-eyebrow">今日总结 Today</div>
           <h2 className="section-heading">今日学习总结 Today's Session Summary</h2>
           <p className="picker-hint">
-            <br />
             <span className="en">Print this to show your parents what you have learnt today!</span>
           </p>
           <button className="secondary-btn" onClick={() => exportTodaySummaryToPdf(hist)}>
@@ -66,6 +86,7 @@ export function Home() {
 
       <RecentAchievements
         hist={hist}
+        achievements={achievements}
         onDeleteRow={(id) => setPending({ type: "delete", id })}
         onClearAll={() => setPending({ type: "clear" })}
       />
@@ -74,7 +95,7 @@ export function Home() {
         <ConfirmModal
           messageLines={
             pending.type === "clear"
-              ? ["确定要清除全部练习记录吗？此操作无法撤销。", "Clear all practice history? This cannot be undone."]
+              ? ["确定要清除全部练习记录和成就吗？此操作无法撤销。", "Clear all practice history and achievements? This cannot be undone."]
               : ["确定要删除这条记录吗？", "Delete this session record?"]
           }
           onConfirm={handleConfirm}

@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { usePet, computeCurrentMood, moodBucket, getStage } from "../../state/PetContext";
-import { SHOP_ITEMS } from "../../data/pet";
+import { SHOP_ITEMS, shopItemName, shopItemIconPath, GROWTH_ICON, HUNGER_ICON } from "../../data/pet";
 import { Sound } from "../../lib/sound";
 import { flyItemTo } from "../../lib/throwAnimation";
 import { OwlArt } from "../common/OwlArt";
@@ -32,7 +32,7 @@ export function Bag() {
         <div className="age-up-banner" role="status">
           🎉 {pet.name || "它"}长大了一岁，现在是 {ageUpAge} 岁了！
           <br />
-          Your pet has grown wiser — now {ageUpAge} years old!
+          Your pet has grown wiser. {pet.name || "Your pet"} is now {ageUpAge} year{ageUpAge === 1 ? "" : "s"} old.
         </div>
       )}
       <PetStatBars pet={pet} />
@@ -98,10 +98,6 @@ interface BagItemCardProps {
 function BagItemCard({ item, qty, owlRef, onGive, onAgedUp, onPlay }: BagItemCardProps) {
   const cardRef = useRef<HTMLButtonElement>(null);
   const [giving, setGiving] = useState(false);
-  const emoji = item.label.split(" ")[0];
-  // item.label is "<emoji> <Chinese name> <English words...>" -- the Chinese
-  // name is always exactly one space-delimited token (no internal spaces).
-  const name = item.label.split(" ")[1] ?? item.label;
   const isToy = item.type === "toy";
 
   function handleClick() {
@@ -111,7 +107,7 @@ function BagItemCard({ item, qty, owlRef, onGive, onAgedUp, onPlay }: BagItemCar
     }
     if (giving || !cardRef.current || !owlRef.current) return;
     setGiving(true);
-    flyItemTo(cardRef.current, owlRef.current, emoji, () => {
+    flyItemTo(cardRef.current, owlRef.current, shopItemIconPath(item), () => {
       const result = onGive(item);
       if (result.agedUp) {
         Sound.levelUp();
@@ -131,13 +127,26 @@ function BagItemCard({ item, qty, owlRef, onGive, onAgedUp, onPlay }: BagItemCar
       onClick={handleClick}
     >
       <div className="bag-item-emoji">
-        {emoji}
+        <img className="bag-item-icon" src={shopItemIconPath(item)} alt="" />
         {qty > 1 && <span className="bag-item-qty-badge">×{qty}</span>}
       </div>
       <div className="bag-item-info">
-        <div className="bag-item-label">{name}</div>
+        <div className="bag-item-label">{shopItemName(item)}</div>
         <div className="bag-item-stat">
-          {isToy ? `🍚 饱食度最高 +${item.mood}` : `🌱 成长 +${item.growth}　🍚 饱食度 +${item.mood}`}
+          {isToy ? (
+            <span className="stat-inline">
+              <img className="stat-inline-icon" src={HUNGER_ICON} alt="" /> 饱食度最高 +{item.mood}
+            </span>
+          ) : (
+            <>
+              <span className="stat-inline">
+                <img className="stat-inline-icon" src={GROWTH_ICON} alt="" /> 成长 +{item.growth}
+              </span>
+              <span className="stat-inline">
+                <img className="stat-inline-icon" src={HUNGER_ICON} alt="" /> 饱食度 +{item.mood}
+              </span>
+            </>
+          )}
         </div>
       </div>
     </button>

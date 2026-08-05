@@ -1,20 +1,24 @@
 import type { Achievement, AchievementType, HistoryEntry } from "../data/types";
 import { dateKey, areAllMissionsComplete } from "../lib/stats";
 import { MISSION_COMPLETE_BONUS_BP } from "../data/pet";
+import { loadJSON } from "../lib/storage";
+import { makeId } from "../lib/id";
 
 const ACHIEVEMENTS_KEY = "hanyuPracticeAchievements_v1";
 const MAX_ACHIEVEMENTS = 30;
 
-function makeAchievementId(): string {
-  return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+export function loadAchievements(): Achievement[] {
+  return loadJSON<Achievement[]>(ACHIEVEMENTS_KEY, []);
 }
 
-export function loadAchievements(): Achievement[] {
-  try {
-    return JSON.parse(localStorage.getItem(ACHIEVEMENTS_KEY) || "null") ?? [];
-  } catch {
-    return [];
-  }
+// Wipes the achievement log -- paired with history.ts's clearAllHistory() by
+// Home.tsx's "Clear All" button on the merged RecentAchievements feed, since
+// that feed shows both sources merged into one list; clearing only history
+// used to leave achievement rows (e.g. "今日任务全部完成 All missions
+// complete today") still visible afterward, which looked like the button
+// didn't work.
+export function clearAllAchievements(): void {
+  localStorage.removeItem(ACHIEVEMENTS_KEY);
 }
 
 // Dedup rules:
@@ -32,7 +36,7 @@ export function logAchievement(entry: Omit<Achievement, "id" | "date"> & { date?
     return false;
   });
   if (isDuplicate) return;
-  const next = [{ ...entry, id: makeAchievementId(), date }, ...list].slice(0, MAX_ACHIEVEMENTS);
+  const next = [{ ...entry, id: makeId(), date }, ...list].slice(0, MAX_ACHIEVEMENTS);
   localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(next));
 }
 

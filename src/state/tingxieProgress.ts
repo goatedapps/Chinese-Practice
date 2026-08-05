@@ -12,6 +12,8 @@
 // achievements.ts imports lib/stats.ts, so importing achievements.ts from
 // here would create a 3-file import cycle. Callers (Learn/Apply/Practice)
 // call both functions directly instead.
+import { loadJSON } from "../lib/storage";
+
 const TINGXIE_PROGRESS_KEY = "hanyuPracticeTingxieProgress_v1";
 
 export function recordTingxieActivityCompleted(): void {
@@ -19,10 +21,6 @@ export function recordTingxieActivityCompleted(): void {
 }
 
 export function getTingxieLastCompletedAt(): number | null {
-  try {
-    const saved = JSON.parse(localStorage.getItem(TINGXIE_PROGRESS_KEY) || "null");
-    return typeof saved?.lastCompletedAt === "number" ? saved.lastCompletedAt : null;
-  } catch {
-    return null;
-  }
+  const saved = loadJSON<{ lastCompletedAt?: number } | null>(TINGXIE_PROGRESS_KEY, null);
+  return typeof saved?.lastCompletedAt === "number" ? saved.lastCompletedAt : null;
 }

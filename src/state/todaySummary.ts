@@ -8,6 +8,8 @@
 // never grows into a second unbounded, ever-larger copy of practice history.
 import type { QuestionGroup, GroupResult } from "../data/types";
 import { dateKey } from "../lib/stats";
+import { loadJSON } from "../lib/storage";
+import { makeId } from "../lib/id";
 
 const TODAY_SUMMARY_KEY = "hanyuPracticeTodaySummary_v1";
 const MAX_PRACTICE_SESSIONS = 20;
@@ -37,10 +39,6 @@ interface TodaySummaryStore {
   tingxieWrong: TodayTingxieWrong[];
 }
 
-function makeId(): string {
-  return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-}
-
 function emptyStore(): TodaySummaryStore {
   return { dateKey: dateKey(Date.now()), practiceSessions: [], tingxieWrong: [] };
 }
@@ -48,12 +46,8 @@ function emptyStore(): TodaySummaryStore {
 // Discards (and re-persists empty) any stored data from a previous calendar
 // day -- this, not a size cap, is what actually keeps the store bounded.
 function loadStore(): TodaySummaryStore {
-  try {
-    const raw: TodaySummaryStore | null = JSON.parse(localStorage.getItem(TODAY_SUMMARY_KEY) || "null");
-    if (raw && raw.dateKey === dateKey(Date.now())) return raw;
-  } catch {
-    // ignore corrupt/missing localStorage value
-  }
+  const raw = loadJSON<TodaySummaryStore | null>(TODAY_SUMMARY_KEY, null);
+  if (raw && raw.dateKey === dateKey(Date.now())) return raw;
   const fresh = emptyStore();
   localStorage.setItem(TODAY_SUMMARY_KEY, JSON.stringify(fresh));
   return fresh;

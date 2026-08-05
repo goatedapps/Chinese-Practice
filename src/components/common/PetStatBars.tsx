@@ -1,5 +1,5 @@
 import { computeCurrentMood, getAge } from "../../state/PetContext";
-import { GROWTH_PER_AGE_YEAR } from "../../data/pet";
+import { GROWTH_PER_AGE_YEAR, GROWTH_ICON, HUNGER_ICON } from "../../data/pet";
 import type { PetState } from "../../data/types";
 
 // Shared growth + hunger progress bars, used on both the Owl detail screen
@@ -20,14 +20,18 @@ export function PetStatBars({ pet }: { pet: PetState }) {
   return (
     <div className="pet-stat-bars">
       <div>
-        <div className="stat-bar-label">🌱 成长 Growth · 🎂 {age} 岁 {age} yrs</div>
+        <div className="stat-bar-label">
+          <img className="stat-bar-icon" src={GROWTH_ICON} alt="" /> 成长 Growth · 🎂 {age} 岁 {age} yrs
+        </div>
         <div className="growth-bar">
           <div className="growth-bar-fill" style={{ width: `${growthPct}%` }} />
         </div>
         <div className="growth-caption">{yearProgress}/{GROWTH_PER_AGE_YEAR}</div>
       </div>
       <div>
-        <div className="stat-bar-label">🍚 饱食度 Hunger</div>
+        <div className="stat-bar-label">
+          <img className="stat-bar-icon" src={HUNGER_ICON} alt="" /> 饱食度 Hunger
+        </div>
         <div className="mood-bar">
           <div className="mood-bar-fill" style={{ width: `${moodPct}%` }} />
         </div>
