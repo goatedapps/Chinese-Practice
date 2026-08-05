@@ -26,6 +26,10 @@ export function clearAllAchievements(): void {
 //  - "questionsMilestone" can only genuinely be earned once ever
 //    (questionsLifetime is monotonic), so dedup by the milestone number
 //    forever, not just today.
+//  - "storyCompleted" is never deduped -- falls through to the final
+//    `return false`, so re-reading the same (or a different) lesson always
+//    logs a fresh row, same as a quiz session in history.ts always logging
+//    a fresh row rather than collapsing repeats.
 export function logAchievement(entry: Omit<Achievement, "id" | "date"> & { date?: number }): void {
   const list = loadAchievements();
   const date = entry.date ?? Date.now();

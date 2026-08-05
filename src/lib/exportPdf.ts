@@ -226,9 +226,12 @@ function wrongTableHtml(title: string, rows: TodayTingxieWrong[]): string {
 // so this stays consistent with whatever the caller (Home.tsx) already has
 // loaded, same pattern as ProgressSummary/RecentAchievements used to use.
 export function exportTodaySummaryToPdf(hist: HistoryEntry[]): void {
-  const { practiceSessions, tingxieWrong } = getTodaySummary();
+  const { practiceSessions, tingxieWrong, storiesRead } = getTodaySummary();
   const today = getTodayStats(hist);
   const tingxieDone = isTingxieMissionComplete();
+  // Just the lesson numbers, deduped + sorted -- not a full transcript, per
+  // the "just indicate lesson number" scope of this summary line.
+  const storyLessonIds = [...new Set(storiesRead.map((s) => s.lessonId))].sort((a, b) => a - b);
 
   const sessionsHtml = practiceSessions
     .map((s, i) => {
@@ -252,6 +255,7 @@ export function exportTodaySummaryToPdf(hist: HistoryEntry[]): void {
   <div class="summary">
     <div class="summary-line">📘 练习 Practice: ${today.questions} 题，正确率 ${today.accuracy}%（共 ${practiceSessions.length} 次 sessions）</div>
     <div class="summary-line">🔊 听写练习 Dictation Practice: ${tingxieDone ? "已完成 Completed" : "未完成 Not done today"}</div>
+    <div class="summary-line">📖 读故事 Read a Story: ${storyLessonIds.length > 0 ? `第 ${storyLessonIds.join("、")} 课 Lesson${storyLessonIds.length > 1 ? "s" : ""} ${storyLessonIds.join(", ")}` : "今天还没有阅读 Not read today"}</div>
   </div>
   ${sessionsHtml || `<p>今天还没有练习记录。No practice sessions yet today.</p>`}
   ${wrongHtml}

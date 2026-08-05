@@ -137,13 +137,14 @@ export interface PetState {
 
 export type MoodBucket = "sad" | "neutral" | "happy" | "very_happy";
 
-export type AchievementType = "missionComplete" | "questionsMilestone";
+export type AchievementType = "missionComplete" | "questionsMilestone" | "storyCompleted";
 
 export interface Achievement {
   id: string;
   type: AchievementType;
   date: number;
   // questionsMilestone -> the milestone number as a string (e.g. "300");
+  // storyCompleted -> the lesson number as a string (e.g. "5");
   // missionComplete -> unused.
   detail?: string;
 }

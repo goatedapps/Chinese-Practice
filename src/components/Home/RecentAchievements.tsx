@@ -3,7 +3,8 @@ import type { Achievement, HistoryEntry } from "../../data/types";
 
 const TYPE_ICON: Record<Achievement["type"], string> = {
   missionComplete: "🎯",
-  questionsMilestone: "🏆"
+  questionsMilestone: "🏆",
+  storyCompleted: "📖"
 };
 
 function describe(a: Achievement): { text: string; en?: string } {
@@ -12,6 +13,8 @@ function describe(a: Achievement): { text: string; en?: string } {
       return { text: "今日任务全部完成", en: "All missions complete today" };
     case "questionsMilestone":
       return { text: `累计完成 ${a.detail} 题`, en: `${a.detail} questions completed` };
+    case "storyCompleted":
+      return { text: `读完第 ${a.detail} 课的故事`, en: `Finished reading Lesson ${a.detail}'s story` };
     default:
       return { text: "" };
   }
@@ -38,7 +41,7 @@ export function RecentAchievements({
     // Defensive filter: pre-existing "fed"/"evolved" entries from before
     // pet-interaction achievements stopped being tracked can still be
     // sitting in a student's localStorage -- never surface those.
-    .filter((a) => a.type === "missionComplete" || a.type === "questionsMilestone")
+    .filter((a) => a.type === "missionComplete" || a.type === "questionsMilestone" || a.type === "storyCompleted")
     .map((a) => {
       const { text, en } = describe(a);
       return { kind: "achievement", id: a.id, date: a.date, icon: TYPE_ICON[a.type], text, en };

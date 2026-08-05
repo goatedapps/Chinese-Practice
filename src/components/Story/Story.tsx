@@ -7,6 +7,8 @@ import { usePet } from "../../state/PetContext";
 import { STORY_COMPLETE_BP_AWARD } from "../../data/pet";
 import { Sound } from "../../lib/sound";
 import { CompleteScreen } from "../common/CompleteScreen";
+import { logAchievement } from "../../state/achievements";
+import { recordTodayStoryRead } from "../../state/todaySummary";
 
 type StoryView = "picker" | "reading" | "complete";
 
@@ -42,12 +44,18 @@ export function Story() {
     setLessonId(null);
   }
 
-  // Awards BP once per "我读完了 Finish Reading" tap on the story's last page
+  // Fires once per "我读完了 Finish Reading" tap on the story's last page
   // (see StoryReader below) -- Read a Story otherwise stays independent of
-  // the Quiz/achievements pipeline (no history entry, no Today's Mission
-  // credit), this is its only BP hook.
+  // the Quiz/history/Today's Mission pipeline (no HistoryEntry, no mission
+  // credit), but a finish does log a "storyCompleted" achievement (shown in
+  // Home's Recent Achievements) and a same-day record for the "今日学习总结
+  // Today's Session Summary" PDF (see state/todaySummary.ts), on top of its
+  // BP award.
   function finishStory() {
+    if (lessonId === null) return;
     awardBP(STORY_COMPLETE_BP_AWARD);
+    logAchievement({ type: "storyCompleted", detail: String(lessonId) });
+    recordTodayStoryRead(lessonId);
     Sound.applause();
     setView("complete");
   }

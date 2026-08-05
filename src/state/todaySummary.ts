@@ -14,6 +14,7 @@ import { makeId } from "../lib/id";
 const TODAY_SUMMARY_KEY = "hanyuPracticeTodaySummary_v1";
 const MAX_PRACTICE_SESSIONS = 20;
 const MAX_TINGXIE_WRONG = 100;
+const MAX_STORIES_READ = 50;
 
 export interface TodayPracticeSession {
   id: string;
@@ -33,21 +34,32 @@ export interface TodayTingxieWrong {
   answer: string;
 }
 
+export interface TodayStoryRead {
+  id: string;
+  date: number;
+  lessonId: number;
+}
+
 interface TodaySummaryStore {
   dateKey: string;
   practiceSessions: TodayPracticeSession[];
   tingxieWrong: TodayTingxieWrong[];
+  storiesRead: TodayStoryRead[];
 }
 
 function emptyStore(): TodaySummaryStore {
-  return { dateKey: dateKey(Date.now()), practiceSessions: [], tingxieWrong: [] };
+  return { dateKey: dateKey(Date.now()), practiceSessions: [], tingxieWrong: [], storiesRead: [] };
 }
 
 // Discards (and re-persists empty) any stored data from a previous calendar
 // day -- this, not a size cap, is what actually keeps the store bounded.
 function loadStore(): TodaySummaryStore {
   const raw = loadJSON<TodaySummaryStore | null>(TODAY_SUMMARY_KEY, null);
-  if (raw && raw.dateKey === dateKey(Date.now())) return raw;
+  // `storiesRead` defaults to [] for a same-day store saved before that
+  // field existed -- same "missing means no data" backward-compat as
+  // HistoryEntry.categoryCounts, so a stale stored value from earlier today
+  // can't crash the spreads in recordTodayStoryRead() below.
+  if (raw && raw.dateKey === dateKey(Date.now())) return { ...raw, storiesRead: raw.storiesRead ?? [] };
   const fresh = emptyStore();
   localStorage.setItem(TODAY_SUMMARY_KEY, JSON.stringify(fresh));
   return fresh;
@@ -57,9 +69,13 @@ function saveStore(store: TodaySummaryStore): void {
   localStorage.setItem(TODAY_SUMMARY_KEY, JSON.stringify(store));
 }
 
-export function getTodaySummary(): { practiceSessions: TodayPracticeSession[]; tingxieWrong: TodayTingxieWrong[] } {
+export function getTodaySummary(): {
+  practiceSessions: TodayPracticeSession[];
+  tingxieWrong: TodayTingxieWrong[];
+  storiesRead: TodayStoryRead[];
+} {
   const store = loadStore();
-  return { practiceSessions: store.practiceSessions, tingxieWrong: store.tingxieWrong };
+  return { practiceSessions: store.practiceSessions, tingxieWrong: store.tingxieWrong, storiesRead: store.storiesRead };
 }
 
 export function recordTodayPracticeSession(entry: Omit<TodayPracticeSession, "id" | "date">): void {
@@ -78,5 +94,15 @@ export function recordTingxieWrong(entry: Omit<TodayTingxieWrong, "id" | "date">
   const withoutDup = store.tingxieWrong.filter((w) => !(w.kind === entry.kind && w.answer === entry.answer));
   const next: TodayTingxieWrong = { ...entry, id: makeId(), date: Date.now() };
   store.tingxieWrong = [...withoutDup, next].slice(-MAX_TINGXIE_WRONG);
+  saveStore(store);
+}
+
+// Called from Story.tsx's finishStory() -- no dedup, same reasoning as
+// achievements.ts's "storyCompleted" achievement (re-reading a lesson today
+// is a real, repeatable event, not a one-time milestone).
+export function recordTodayStoryRead(lessonId: number): void {
+  const store = loadStore();
+  const next: TodayStoryRead = { id: makeId(), date: Date.now(), lessonId };
+  store.storiesRead = [...store.storiesRead, next].slice(-MAX_STORIES_READ);
   saveStore(store);
 }

@@ -3,6 +3,7 @@ import { useAppDispatch } from "../../state/AppStateContext";
 import { loadHistory, clearAllHistory, deleteHistoryEntry } from "../../state/history";
 import { loadAchievements, clearAllAchievements } from "../../state/achievements";
 import { getTodayStats, isTingxieMissionComplete } from "../../lib/stats";
+import { getTodaySummary } from "../../state/todaySummary";
 import { exportTodaySummaryToPdf } from "../../lib/exportPdf";
 import { ConfirmModal } from "../common/Modal";
 import { PetHeroCard } from "./PetHeroCard";
@@ -17,7 +18,7 @@ export function Home() {
   const [achievements, setAchievements] = useState(() => loadAchievements());
   const [pending, setPending] = useState<PendingHistoryAction | null>(null);
   const todayStats = getTodayStats(hist);
-  const showTodaySummary = todayStats.questions > 0 || isTingxieMissionComplete();
+  const showTodaySummary = todayStats.questions > 0 || isTingxieMissionComplete() || getTodaySummary().storiesRead.length > 0;
 
   function handleConfirm() {
     if (!pending) return;
