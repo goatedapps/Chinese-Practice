@@ -1,9 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAppState, useAppDispatch } from "../../state/AppStateContext";
 import { usePet } from "../../state/PetContext";
 import { saveHistory, loadHistory } from "../../state/history";
 import { logAchievement, checkAndAwardMissionBonus } from "../../state/achievements";
 import { recordTodayPracticeSession } from "../../state/todaySummary";
+import { getTodaySpecialQuest, completeSpecialQuest } from "../../state/specialQuest";
+import { specialQuestConfig } from "../../data/pet";
+import { VOCABULARY_CATEGORY_KEYS } from "../../data/questions";
 import { Sound } from "../../lib/sound";
 import { exportSessionToPdf } from "../../lib/exportPdf";
 
@@ -14,6 +17,7 @@ export function Result() {
   // Read before recordQuestionsCompleted runs below -- avoids reading a
   // stale/batched value back out of context in the same effect.
   const beforeQuestions = pet.questionsLifetime;
+  const [questBonusBP, setQuestBonusBP] = useState<number | null>(null);
 
   let totalItems = 0;
   let correctItems = 0;
@@ -69,6 +73,28 @@ export function Result() {
     }
 
     checkAndAwardMissionBonus(loadHistory(), awardBP);
+
+    // "Get 100% on a Vocab Quiz" / "Complete one Comprehension passage"
+    // Special Quests -- see components/Home/SpecialQuest.tsx. Fires for any
+    // qualifying session finished today, not only one launched via the
+    // quest's own "Do Quest" button -- an organic Practice session that
+    // happens to match satisfies it too. Uses raw correctItems/totalItems,
+    // not the rounded `pct`, so a near-100% session can't false-positive.
+    const quest = getTodaySpecialQuest();
+    const questMatches =
+      state.groups.length > 0 &&
+      ((quest?.questId === "vocab100" &&
+        state.groups.every((g) => VOCABULARY_CATEGORY_KEYS.includes(g.category)) &&
+        correctItems === totalItems) ||
+        (quest?.questId === "comprehension1" && state.groups.every((g) => g.category === "comprehension")));
+    if (quest && questMatches && completeSpecialQuest(quest.questId)) {
+      const questConfig = specialQuestConfig(quest.questId);
+      if (questConfig) {
+        awardBP(questConfig.bonusBP);
+        setQuestBonusBP(questConfig.bonusBP);
+      }
+      logAchievement({ type: "specialQuestComplete", detail: quest.questId });
+    }
     // Intentionally empty deps: save the session exactly once, not on every re-render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -80,6 +106,11 @@ export function Result() {
       <p className="score-detail">
         {`答对 ${correctItems} / ${totalItems} 题${skippedItems ? `（${skippedItems} 题未作答或未自评）` : ""}`}
       </p>
+      {questBonusBP !== null && (
+        <p className="quest-bonus-banner">
+          🎯 特别任务完成！Special Quest complete! <span className="bp-pop">+{questBonusBP} BP</span>
+        </p>
+      )}
       <div className="action-row">
         {state.mode === "type" && (
           <button

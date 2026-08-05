@@ -1,7 +1,9 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import type { PetState, MoodBucket, ShopItem } from "../data/types";
-import { PET_DEFAULT_STATE, PET_STAGES, MOOD_DECAY_PER_HOUR, GROWTH_PER_AGE_YEAR } from "../data/pet";
+import { PET_DEFAULT_STATE, PET_STAGES, MOOD_DECAY_PER_HOUR, GROWTH_PER_AGE_YEAR, specialQuestConfig } from "../data/pet";
 import { loadJSON } from "../lib/storage";
+import { getTodaySpecialQuest, completeSpecialQuest } from "./specialQuest";
+import { logAchievement } from "./achievements";
 
 const PET_KEY = "hanyuPracticePet_v1";
 
@@ -118,6 +120,11 @@ export function PetProvider({ children }: { children: ReactNode }) {
     const newGrowth = pet.growth + growthAmount;
     const newAge = getAge(newGrowth);
     const agedUp = newAge > getAge(pet.growth);
+    // Read from the same outer `pet` closure as newGrowth/agedUp above
+    // (not `prev` inside the setPet updater) -- an existing quirk of this
+    // function, harmless here since this is only used for the >=100 "quest
+    // complete" check below, not persisted.
+    const newMood = Math.min(100, computeCurrentMood(pet) + moodAmount);
 
     setPet((prev) => {
       const currentMood = computeCurrentMood(prev);
@@ -130,6 +137,18 @@ export function PetProvider({ children }: { children: ReactNode }) {
       savePetState(next);
       return next;
     });
+
+    // "Fill your pet's hunger to 100%" Special Quest (see
+    // components/Home/SpecialQuest.tsx) -- reachable via feeding (giveItem)
+    // or a toy's mood reward (applyPlayReward), both of which funnel through
+    // here, so this one check covers both routes. completeSpecialQuest()
+    // itself is the dedup guard (only true once, the first time mood hits
+    // 100 while this quest is pending that day).
+    if (newMood >= 100 && getTodaySpecialQuest()?.questId === "petFull" && completeSpecialQuest("petFull")) {
+      const config = specialQuestConfig("petFull");
+      if (config) awardBP(config.bonusBP);
+      logAchievement({ type: "specialQuestComplete", detail: "petFull" });
+    }
 
     return { agedUp, age: newAge };
   }

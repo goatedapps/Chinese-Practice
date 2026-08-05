@@ -8,6 +8,7 @@ import { exportTodaySummaryToPdf } from "../../lib/exportPdf";
 import { ConfirmModal } from "../common/Modal";
 import { PetHeroCard } from "./PetHeroCard";
 import { TodayMission } from "./TodayMission";
+import { SpecialQuest } from "./SpecialQuest";
 import { RecentAchievements } from "./RecentAchievements";
 
 type PendingHistoryAction = { type: "clear" } | { type: "delete"; id: string };
@@ -40,6 +41,8 @@ export function Home() {
   return (
     <div className="screen home home-dashboard">
       <PetHeroCard hist={hist} />
+
+      <SpecialQuest />
 
       <TodayMission hist={hist} />
 

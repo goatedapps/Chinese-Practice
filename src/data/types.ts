@@ -137,7 +137,7 @@ export interface PetState {
 
 export type MoodBucket = "sad" | "neutral" | "happy" | "very_happy";
 
-export type AchievementType = "missionComplete" | "questionsMilestone" | "storyCompleted";
+export type AchievementType = "missionComplete" | "questionsMilestone" | "storyCompleted" | "specialQuestComplete";
 
 export interface Achievement {
   id: string;
@@ -145,6 +145,7 @@ export interface Achievement {
   date: number;
   // questionsMilestone -> the milestone number as a string (e.g. "300");
   // storyCompleted -> the lesson number as a string (e.g. "5");
+  // specialQuestComplete -> the completed SpecialQuestConfig.id (e.g. "petFull");
   // missionComplete -> unused.
   detail?: string;
 }

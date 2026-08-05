@@ -172,6 +172,33 @@ export const TOY_GAMES: Record<string, ToyGameConfig> = {
   }
 };
 
+// The Home dashboard's "Special Quest" wheel (components/Home/SpecialQuest.tsx):
+// once a day, spinning picks one of these at random; completing it (see the
+// completion hooks in PetContext.tsx/PlayGame.tsx/Result.tsx) pays bonusBP on
+// top of whatever BP the underlying activity already earns. `icon` is either
+// an emoji (vocab100/comprehension1, which have no matching SHOP_ITEMS/stat
+// icon) or an existing /icons/*.png path reused from SHOP_ITEM_ICON_FILES/
+// HUNGER_ICON so the quest card matches the icon already used for that same
+// item/stat elsewhere in the app.
+export interface SpecialQuestConfig {
+  id: string;
+  label: string;
+  icon: string;
+  bonusBP: number;
+}
+
+export const SPECIAL_QUEST_TYPES: SpecialQuestConfig[] = [
+  { id: "vocab100", label: "词语测验满分 Get 100% on a Vocab Quiz", icon: "📚", bonusBP: 50 },
+  { id: "ballPlay", label: "玩一次小球游戏 Play the Ball Game", icon: "/icons/ball.png", bonusBP: 20 },
+  { id: "petFull", label: "把宠物喂到饱食度 100% Fill Your Pet's Hunger to 100%", icon: "/icons/rice.png", bonusBP: 40 },
+  { id: "memoryFast", label: "20 秒内完成记忆卡牌 Beat the Memory Game in 20s", icon: "/icons/memory.png", bonusBP: 20 },
+  { id: "comprehension1", label: "完成一篇阅读理解 Complete One Comprehension Passage", icon: "📖", bonusBP: 100 }
+];
+
+export function specialQuestConfig(id: string): SpecialQuestConfig | undefined {
+  return SPECIAL_QUEST_TYPES.find((q) => q.id === id);
+}
+
 export const PET_DEFAULT_STATE: PetState = {
   name: "",
   bp: 0,
