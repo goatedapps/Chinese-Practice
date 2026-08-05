@@ -21,6 +21,30 @@
   --gold-hi: #ffde85;
   --gold-deep: #d99b1f;
 
+  /* Home-dashboard accent set -- a brighter, more saturated 4-hue palette
+     layered on top of the neutral claymorphism cards, used only within
+     Home.tsx/PetHeroCard.tsx/TodayMission.tsx (via descendant selectors so
+     the shared badge/bar classes stay unchanged everywhere else, e.g. Quiz's
+     BP badge or the Owl/Bag screens' growth/hunger bars). Each hue has a
+     bright mid tone (badges/buttons/bar fills), a "-hi"/"-dark" pair for
+     gradients, a "-bg" pale tint (card/row backgrounds), and green additionally
+     has "-deep" for text, since --correct itself is too light to pass as
+     heading-text contrast on a white card. */
+  --accent-purple: #7b6ef0;
+  --accent-purple-hi: #9c90ff;
+  --accent-purple-dark: #5d4fd1;
+  --accent-purple-bg: #ede9fb;
+  --accent-pink: #f0609e;
+  --accent-pink-hi: #ff85b8;
+  --accent-pink-dark: #d63e7c;
+  --accent-pink-bg: #fde7f0;
+  --accent-orange: #ffa733;
+  --accent-orange-hi: #ffc168;
+  --accent-orange-dark: #e8890f;
+  --accent-orange-bg: #fff3dc;
+  --accent-mint-bg: #e3f7ea;
+  --green-deep: #2e9b57;
+
   --shadow-1: 6px 6px 14px rgba(214, 140, 96, .22), -6px -6px 14px rgba(255, 255, 255, .9);
   --shadow-2: 10px 10px 24px rgba(214, 140, 96, .28), -8px -8px 20px rgba(255, 255, 255, .95);
   --shadow-press: inset 5px 5px 10px rgba(214, 140, 96, .30), inset -5px -5px 10px rgba(255, 255, 255, .75);
@@ -130,7 +154,24 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .mode-row-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
 .mode-row-title { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 16px; font-weight: 700; }
 .mode-row-sub { font-size: 12.5px; color: var(--ink-soft); }
-.mode-row-go { font-size: 22px; color: var(--border); flex: 0 0 auto; }
+/* Home color scheme: each row gets its own pale tint (purple/mint/pink,
+   fixed to position -- always the same 3 modes in the same order) and the
+   trailing "›" becomes a small solid pill in that same row's accent color,
+   rather than a bare border-colored character -- gives the color something
+   to actually read on, matching the reference's colored "continue" button
+   without adding new button copy. */
+.mode-row:nth-of-type(1) { background: linear-gradient(180deg, #fff, var(--accent-purple-bg)); }
+.mode-row:nth-of-type(2) { background: linear-gradient(180deg, #fff, var(--accent-mint-bg)); }
+.mode-row:nth-of-type(3) { background: linear-gradient(180deg, #fff, var(--accent-pink-bg)); }
+.mode-row-go {
+  width: 30px; height: 30px; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700; color: #fff8ee; flex: 0 0 auto;
+  box-shadow: var(--shadow-1);
+}
+.mode-row:nth-of-type(1) .mode-row-go { background: linear-gradient(155deg, var(--accent-purple-hi), var(--accent-purple)); }
+.mode-row:nth-of-type(2) .mode-row-go { background: linear-gradient(155deg, #7ad9a0, var(--correct)); }
+.mode-row:nth-of-type(3) .mode-row-go { background: linear-gradient(155deg, var(--accent-pink-hi), var(--accent-pink)); }
 
 /* ---------- Home dashboard (pet-centric redesign) ---------- */
 .dash-card {
@@ -193,14 +234,16 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   display: flex; flex-direction: column; align-items: center; gap: 14px;
 }
 /* Soft spotlight glow behind the art -- static (no drift), a hero backdrop
-   rather than an ambient page-level effect. */
+   rather than an ambient page-level effect. Purple (accent-purple-hi),
+   echoing the Home color scheme's stage-badge/mission-heading purple,
+   instead of the app-wide coral. */
 .pet-hero-art-col::before {
   content: "";
   position: absolute;
   top: -6px; left: 50%;
   transform: translateX(-50%);
   width: 128%; aspect-ratio: 1; max-width: 420px;
-  background: radial-gradient(circle, rgba(255, 171, 143, .5), rgba(255, 171, 143, 0) 70%);
+  background: radial-gradient(circle, rgba(156, 144, 255, .5), rgba(156, 144, 255, 0) 70%);
   z-index: 0;
 }
 .pet-hero-art-col > * { position: relative; z-index: 1; }
@@ -245,6 +288,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 
 /* -- continue learning -- */
 .continue-section { padding: 22px; }
+.continue-section .section-heading { color: var(--green-deep); }
 .continue-section .mode-rows { margin-bottom: 0; }
 
 /* -- today's mission --
@@ -253,7 +297,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
    slot is always rendered (empty when not done) so all 3 cards stay the
    same height regardless of completion state. */
 .today-mission { padding: 22px; }
-.today-mission .section-heading { margin-bottom: 4px; }
+.today-mission .section-heading { margin-bottom: 4px; color: var(--accent-purple-dark); }
 .mission-subhead { color: var(--ink-soft); font-size: 13px; margin: 0 0 16px; }
 .mission-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .mission-card {
@@ -266,6 +310,14 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 .mission-card:hover { transform: translateY(-2px) scale(1.015); box-shadow: var(--shadow-2); }
 .mission-card:active { transform: scale(.97); box-shadow: var(--shadow-press); }
+/* Home color scheme: each of the 3 missions gets its own pale tint (purple
+   for Revise a Lesson, mint for Reading Practice, peach for Dictation
+   Practice) instead of the neutral card background -- fixed to each
+   mission's position (always the same 3 missions in the same order), not a
+   generic rotating "make it colorful" cycle. */
+.mission-card:nth-of-type(1) { background: linear-gradient(180deg, #fff, var(--accent-purple-bg)); }
+.mission-card:nth-of-type(2) { background: linear-gradient(180deg, #fff, var(--accent-mint-bg)); }
+.mission-card:nth-of-type(3) { background: linear-gradient(180deg, #fff, var(--accent-orange-bg)); }
 .mission-card-done { border-color: var(--correct); }
 .mission-card-icon { width: 38px; height: 38px; object-fit: contain; }
 .mission-card-icon-emoji { font-size: 32px; line-height: 1; display: block; }
@@ -622,6 +674,18 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
    would clip an overflowing nowrap pill, it would just silently paint
    underneath the art column instead. Let it wrap. */
 .pet-hero-stage-badge { white-space: normal; text-align: left; }
+/* Home color scheme: the stage badge goes purple (overriding the shared
+   coral .marks-badge background above) and the BP badge goes white/cream
+   with dark text and a gold star (overriding the shared gold-gradient
+   .quiz-bp-badge background above) -- both classes are Home-only, so this
+   doesn't touch Quiz's BP badge or any other .marks-badge use. */
+.pet-hero-stage-badge {
+  background: linear-gradient(155deg, var(--accent-purple-hi), var(--accent-purple) 55%, var(--accent-purple-dark));
+}
+.pet-status-bp {
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  color: var(--ink);
+}
 
 .question-text { font-size: 19px; margin-bottom: 10px; line-height: 1.7; }
 .question-context { font-size: 16px; color: var(--ink-soft); background: var(--card-bg); border: 2px solid var(--border); border-radius: 14px; padding: 10px 12px; margin-bottom: 10px; white-space: pre-wrap; }
@@ -760,6 +824,12 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 .growth-bar-fill { background: linear-gradient(180deg, var(--primary-hi), var(--primary)); }
 .mood-bar-fill { background: linear-gradient(180deg, var(--gold-hi), var(--gold)); }
+/* Home color scheme: PetHeroCard's own growth/hunger bars go pink/orange
+   (matching the growth heart / hunger icons), scoped to .pet-hero-bars so
+   the Owl/Bag screens' shared PetStatBars bars keep their original colors --
+   this is a Home-only recolor, not an app-wide one. */
+.pet-hero-bars .growth-bar-fill { background: linear-gradient(180deg, var(--accent-pink-hi), var(--accent-pink)); }
+.pet-hero-bars .mood-bar-fill { background: linear-gradient(180deg, var(--accent-orange-hi), var(--accent-orange)); }
 /* slow shine sweep so the bars don't sit dead still */
 .growth-bar-fill::after, .mood-bar-fill::after {
   content: ""; position: absolute; inset: 0;
