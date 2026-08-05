@@ -10,6 +10,7 @@ import { recordTingxieWrong } from "../../state/todaySummary";
 import { loadHistory } from "../../state/history";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 import { TingxieFlipCard } from "./TingxieFlipCard";
+import { CompleteScreen } from "../common/CompleteScreen";
 
 export function Practice() {
   const state = useTingxieState();
@@ -31,7 +32,7 @@ export function Practice() {
     if (state.practiceComplete && hasVocab && !awardedRef.current) {
       awardedRef.current = true;
       awardBP(TINGXIE_BP_AWARD.PRACTICE);
-      Sound.gift();
+      Sound.applause();
       recordTingxieActivityCompleted();
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
@@ -87,13 +88,7 @@ export function Practice() {
   }
 
   if (state.practiceComplete) {
-    return (
-      <div className="tingxie-complete-screen">
-        <div className="tingxie-complete-emoji">🎉</div>
-        <h2>听写练习完成！Practice Complete!</h2>
-        <p className="bp-pop">+{TINGXIE_BP_AWARD.PRACTICE} BP</p>
-      </div>
-    );
+    return <CompleteScreen title="听写练习完成！Practice Complete!" bpAmount={TINGXIE_BP_AWARD.PRACTICE} />;
   }
 
   if (!current) return null;

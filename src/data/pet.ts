@@ -53,6 +53,12 @@ export const TINGXIE_BP_AWARD = {
   PRACTICE: 20 // 听写练习 -- BOTH phases (tingxie + moxie) completed
 };
 
+// Flat BP awarded once per story finished in Read a Story mode (see
+// components/Story/Story.tsx's "完成 Finish" button) -- Read a Story is
+// otherwise still independent of the Quiz/achievements pipeline (no
+// history entry, no Today's Mission credit), this is its only BP hook.
+export const STORY_COMPLETE_BP_AWARD = 10;
+
 // One-time-per-day bonus awarded the moment all 3 Today's Mission entries
 // (lesson, reading, dictation) are complete -- on top of each mission's own
 // normal BP. Deliberately smaller than a full Tingxie activity award since

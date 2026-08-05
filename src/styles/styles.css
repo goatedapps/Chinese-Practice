@@ -59,6 +59,14 @@ body {
    render it there -- see TopNav.tsx). Sits above the current screen's own
    card, offset by #root's top padding until the page scrolls past it. */
 .top-nav {
+  /* iPadOS/older WebKit Safari drops the whole `position` declaration if it
+     doesn't understand the value handed to it -- an unprefixed `sticky` is
+     silently ignored there (falling back to static, i.e. the bar just
+     scrolls away) even though the same rule sticks fine on desktop Chrome.
+     The -webkit- prefixed value must come first so a browser that only
+     understands the prefixed form uses it, while a browser that understands
+     plain `sticky` overrides it with the second line as usual. */
+  position: -webkit-sticky;
   position: sticky;
   top: 12px;
   z-index: 20;
@@ -540,6 +548,8 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   border-radius: 4px;
 }
 .story-sentence:hover, .story-sentence:focus-visible { background: rgba(var(--ink-rgb), .08); }
+
+.story-finish-row { justify-content: center; margin-top: 24px; }
 
 /* Book-style "page turn" affordance -- a small curled paper corner instead
    of a plain Next/Prev button. Bottom-right (default) flips forward;
@@ -1071,14 +1081,13 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 
 .tingxie-nav-row { display: flex; justify-content: center; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
 
-.tingxie-complete-banner {
-  margin-top: 18px; padding: 14px 18px; border-radius: 20px;
-  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
-  border: 2px solid var(--gold); color: var(--gold-deep); font-weight: 700;
-}
-.tingxie-complete-screen { text-align: center; padding: 40px 0; }
-.tingxie-complete-emoji { font-size: 48px; margin-bottom: 8px; }
-.tingxie-complete-screen .bp-pop { font-size: 22px; animation: none; opacity: 1; }
+/* Shared full-page celebratory screen (CompleteScreen.tsx) -- used outside
+   Tingxie too (Read a Story), so these classes are deliberately unprefixed
+   rather than "tingxie-*". */
+.complete-screen { text-align: center; padding: 40px 0; }
+.complete-emoji { font-size: 48px; margin-bottom: 8px; }
+.complete-screen .bp-pop { font-size: 22px; animation: none; opacity: 1; }
+.complete-screen .action-row { justify-content: center; margin-top: 24px; }
 
 /* -- sentence-builder game -- */
 .tingxie-scenario {

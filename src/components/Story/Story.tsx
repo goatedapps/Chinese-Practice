@@ -3,8 +3,12 @@ import { useAppDispatch } from "../../state/AppStateContext";
 import { STORY_LESSONS, segmentSentences } from "../../data/stories";
 import { LESSON_COUNT } from "../../data/questions";
 import { speakText, stopSpeaking } from "../../lib/speech";
+import { usePet } from "../../state/PetContext";
+import { STORY_COMPLETE_BP_AWARD } from "../../data/pet";
+import { Sound } from "../../lib/sound";
+import { CompleteScreen } from "../common/CompleteScreen";
 
-type StoryView = "picker" | "reading";
+type StoryView = "picker" | "reading" | "complete";
 
 const LESSON_IDS = Array.from({ length: LESSON_COUNT }, (_, i) => i + 1);
 
@@ -14,6 +18,7 @@ const LESSON_IDS = Array.from({ length: LESSON_COUNT }, (_, i) => i + 1);
 // activities to coordinate, just "which lesson" and "which page".
 export function Story() {
   const dispatch = useAppDispatch();
+  const { awardBP } = usePet();
   const [view, setView] = useState<StoryView>("picker");
   const [lessonId, setLessonId] = useState<number | null>(null);
   const [segmentIndex, setSegmentIndex] = useState(0);
@@ -37,6 +42,16 @@ export function Story() {
     setLessonId(null);
   }
 
+  // Awards BP once per "我读完了 Finish Reading" tap on the story's last page
+  // (see StoryReader below) -- Read a Story otherwise stays independent of
+  // the Quiz/achievements pipeline (no history entry, no Today's Mission
+  // credit), this is its only BP hook.
+  function finishStory() {
+    awardBP(STORY_COMPLETE_BP_AWARD);
+    Sound.applause();
+    setView("complete");
+  }
+
   if (view === "reading" && lessonId !== null) {
     return (
       <StoryReader
@@ -44,7 +59,22 @@ export function Story() {
         segmentIndex={segmentIndex}
         onSegmentChange={setSegmentIndex}
         onExit={backToPicker}
+        onFinish={finishStory}
       />
+    );
+  }
+
+  if (view === "complete" && lessonId !== null) {
+    return (
+      <div className="screen story-screen">
+        <CompleteScreen title={`《${STORY_LESSONS[lessonId].title}》读完了！Story Complete!`} bpAmount={STORY_COMPLETE_BP_AWARD}>
+          <div className="action-row">
+            <button className="primary-btn" onClick={backToPicker}>
+              ← 返回课文列表 Back to Lessons
+            </button>
+          </div>
+        </CompleteScreen>
+      </div>
     );
   }
 
@@ -77,6 +107,7 @@ interface StoryReaderProps {
   segmentIndex: number;
   onSegmentChange: (index: number) => void;
   onExit: () => void;
+  onFinish: () => void;
 }
 
 // Duration (ms) of each half of the page-flip animation -- kept as one JS
@@ -94,7 +125,7 @@ type FlipState = { direction: "next" | "prev"; phase: "out" | "in" };
 // would give React a new component type every render and force a full
 // remount, wiping segmentSpeaking/flip state each time. Same reasoning as
 // Quiz.tsx's PassageBox being defined outside Quiz().
-function StoryReader({ lessonId, segmentIndex, onSegmentChange, onExit }: StoryReaderProps) {
+function StoryReader({ lessonId, segmentIndex, onSegmentChange, onExit, onFinish }: StoryReaderProps) {
   const lesson = STORY_LESSONS[lessonId];
   const segment = lesson.segments[segmentIndex];
   const [segmentSpeaking, setSegmentSpeaking] = useState(false);
@@ -197,6 +228,18 @@ function StoryReader({ lessonId, segmentIndex, onSegmentChange, onExit }: StoryR
               </p>
             ))}
           </div>
+
+          {/* Real content's last page offers a "Finish Reading" action (BP
+              award, see Story()'s finishStory()) instead of a next-page
+              curl -- a placeholder "coming soon" stub has nothing to
+              actually finish, so it gets neither. */}
+          {isLast && !lesson.placeholder && (
+            <div className="action-row story-finish-row">
+              <button type="button" className="primary-btn" onClick={onFinish}>
+                🎉 我读完了 Finish Reading
+              </button>
+            </div>
+          )}
 
           {/* Book-style page-turn affordance: a curled corner instead of a
               plain "Next"/"Prev" button. Bottom-right flips forward,

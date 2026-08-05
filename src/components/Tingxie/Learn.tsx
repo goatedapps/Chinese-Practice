@@ -9,6 +9,7 @@ import { checkAndAwardMissionBonus } from "../../state/achievements";
 import { loadHistory } from "../../state/history";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 import { TingxieFlipCard } from "./TingxieFlipCard";
+import { CompleteScreen } from "../common/CompleteScreen";
 
 function VocabFlipCard() {
   const state = useTingxieState();
@@ -35,13 +36,21 @@ function VocabFlipCard() {
     if (allFlipped && !awardedRef.current) {
       awardedRef.current = true;
       awardBP(TINGXIE_BP_AWARD.VOCAB_LEARN);
-      Sound.gift();
+      Sound.applause();
       recordTingxieActivityCompleted();
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
   }, [allFlipped, awardBP]);
 
   if (!current) return <p className="tingxie-empty">这一课还没有生词。No vocab in this lesson yet.</p>;
+
+  // Wait for the card to be flipped back to its front (Next/Prev both do
+  // this) before swapping to the complete screen -- otherwise flipping the
+  // very last card would yank its answer away before the student can read
+  // it, since allFlipped goes true the instant that flip happens.
+  if (allFlipped && !state.vocabFlipped) {
+    return <CompleteScreen title="全部生词已学习！All vocab reviewed!" bpAmount={TINGXIE_BP_AWARD.VOCAB_LEARN} />;
+  }
 
   return (
     <div className="tingxie-carousel">
@@ -80,12 +89,6 @@ function VocabFlipCard() {
           下一个 Next →
         </button>
       </div>
-
-      {allFlipped && (
-        <div className="tingxie-complete-banner">
-          🎉 全部生词已学习！All vocab reviewed! <span className="bp-pop">+{TINGXIE_BP_AWARD.VOCAB_LEARN} BP</span>
-        </div>
-      )}
     </div>
   );
 }
@@ -116,13 +119,21 @@ function SentenceBuilderGame() {
     if (allSolved && !awardedRef.current) {
       awardedRef.current = true;
       awardBP(TINGXIE_BP_AWARD.SENTENCE_LEARN);
-      Sound.gift();
+      Sound.applause();
       recordTingxieActivityCompleted();
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
   }, [allSolved, awardBP]);
 
   if (!current) return <p className="tingxie-empty">这一课还没有句子。No sentences in this lesson yet.</p>;
+
+  // Wait for the result banner to clear (Next/Prev/Reset all reset it) before
+  // swapping to the complete screen -- otherwise solving the very last
+  // sentence would yank its "Correct!"/reveal feedback away immediately,
+  // since allSolved goes true the instant that answer is checked.
+  if (allSolved && state.sentenceResult === null) {
+    return <CompleteScreen title="全部句子已完成！All sentences solved!" bpAmount={TINGXIE_BP_AWARD.SENTENCE_LEARN} />;
+  }
 
   const words = tingxieSentenceWords(current);
   const bag = state.chipOrder.filter((i) => !state.placedIndices.includes(i));
@@ -211,12 +222,6 @@ function SentenceBuilderGame() {
           下一句 Next →
         </button>
       </div>
-
-      {allSolved && (
-        <div className="tingxie-complete-banner">
-          🎉 全部句子已完成！All sentences solved! <span className="bp-pop">+{TINGXIE_BP_AWARD.SENTENCE_LEARN} BP</span>
-        </div>
-      )}
     </div>
   );
 }

@@ -6,11 +6,57 @@ import { shuffle } from "./shuffle";
 // shouldn't dump the entire matching pool on the student in one sitting.
 const INDIVIDUAL_QUESTION_COUNT = 10;
 
+// Persisted round-robin queues for passage-based categories (cloze,
+// comprehension, dialogue, errorcorrect, practical) -- see pickRoundRobin()
+// below. Keyed by category; survives across sessions/reloads so a student
+// practicing the same category repeatedly cycles through every available
+// passage before any of them repeats, instead of a plain random pick
+// re-showing the same one or two passages by chance.
+const ROTATION_KEY = "hanyuPracticePassageRotation_v1";
+
+type RotationStore = Record<string, string[]>;
+
+function loadRotation(): RotationStore {
+  try {
+    const raw = localStorage.getItem(ROTATION_KEY);
+    return raw ? (JSON.parse(raw) as RotationStore) : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveRotation(store: RotationStore): void {
+  try {
+    localStorage.setItem(ROTATION_KEY, JSON.stringify(store));
+  } catch {
+    // ignore -- e.g. storage disabled/full; rotation just resets next time
+  }
+}
+
+// Picks the next passage group for a category from a persisted,
+// freshly-shuffled queue of not-yet-served group ids, refilling (and
+// reshuffling) only once every group in the category has been served --
+// this is what minimizes repeats across sessions rather than each session
+// picking independently at random. The queue is filtered down to ids still
+// present in `groups` on every draw, so it stays correct even as the
+// subject filter changes which groups are in play (a stale id from a since
+// hidden subject just gets dropped, not treated as an error).
+function pickRoundRobin(category: string, groups: QuestionGroup[], store: RotationStore): QuestionGroup {
+  const validIds = new Set(groups.map((g) => g.groupId));
+  let queue = (store[category] ?? []).filter((id) => validIds.has(id));
+  if (queue.length === 0) queue = shuffle(groups.map((g) => g.groupId));
+
+  const [nextId, ...rest] = queue;
+  store[category] = rest;
+  return groups.find((g) => g.groupId === nextId)!;
+}
+
 // Builds a "practice by type" session from every group matching the
 // student's chosen subject + categories:
 //  - passage-based categories (cloze, comprehension, dialogue, ...) each
-//    contribute exactly one randomly chosen passage, so e.g. selecting both
-//    "comprehension" and "cloze" yields one of each, not a pile of both.
+//    contribute exactly one passage, drawn round-robin (see pickRoundRobin)
+//    so e.g. selecting both "comprehension" and "cloze" yields one of each,
+//    not a pile of both, and repeats stay minimized across sessions.
 //  - standalone single-question categories (pinyin, vocab, ...) are pooled
 //    together across every selected one and capped at a fixed count.
 export function selectTypeSessionGroups(candidates: QuestionGroup[]): QuestionGroup[] {
@@ -21,15 +67,17 @@ export function selectTypeSessionGroups(candidates: QuestionGroup[]): QuestionGr
     else byCategory.set(g.category, [g]);
   }
 
+  const rotation = loadRotation();
   const selected: QuestionGroup[] = [];
   const individualPool: QuestionGroup[] = [];
-  for (const groups of byCategory.values()) {
+  for (const [category, groups] of byCategory) {
     if (groups[0].passage !== null) {
-      selected.push(shuffle(groups)[0]);
+      selected.push(pickRoundRobin(category, groups, rotation));
     } else {
       individualPool.push(...groups);
     }
   }
+  saveRotation(rotation);
   selected.push(...shuffle(individualPool).slice(0, INDIVIDUAL_QUESTION_COUNT));
 
   return shuffle(selected);
