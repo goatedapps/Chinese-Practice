@@ -1,5 +1,6 @@
 import type { QuestionGroup } from "../data/types";
 import { shuffle } from "./shuffle";
+import { shuffleMcqOptions } from "./mcqShuffle";
 
 // How many standalone single-question groups (pinyin/vocab/phrase/...) to
 // pull into a "practice by type" session -- picking a broad type selection
@@ -80,5 +81,7 @@ export function selectTypeSessionGroups(candidates: QuestionGroup[]): QuestionGr
   saveRotation(rotation);
   selected.push(...shuffle(individualPool).slice(0, INDIVIDUAL_QUESTION_COUNT));
 
-  return shuffle(selected);
+  // Fresh MCQ option order every time a session is actually built (not at
+  // fetch/cache time) -- see lib/mcqShuffle.ts.
+  return shuffle(selected).map(shuffleMcqOptions);
 }
