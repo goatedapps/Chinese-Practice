@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { AppStateProvider, useAppState, useAppDispatch } from "./state/AppStateContext";
 import { PetProvider } from "./state/PetContext";
-import { fetchQuestionMeta, fetchQuestionIndex, computeCategorySubjects } from "./data/questions";
+import { fetchQuestionMeta, fetchQuestionIndex, computeCategorySubjects, prefetchAllQuestionCategories } from "./data/questions";
 import { Sound } from "./lib/sound";
 import { Home } from "./components/Home/Home";
 import { Practice } from "./components/Practice/Practice";
@@ -25,6 +25,11 @@ function ScreenRouter() {
     Promise.all([fetchQuestionMeta(), fetchQuestionIndex()])
       .then(([meta, index]) => {
         dispatch({ type: "SET_QUESTION_INDEX", index, categorySubjects: computeCategorySubjects(index), lessonCount: meta.lessonCount });
+        // Non-blocking: warms every category's full content in the
+        // background so Practice.tsx's "Start Practice" doesn't have to pay
+        // a fresh network round trip per category later, on a real hosted
+        // connection where that's a noticeable delay (unlike localhost).
+        prefetchAllQuestionCategories();
       })
       .catch((err: Error) => setBootError(err.message));
   }

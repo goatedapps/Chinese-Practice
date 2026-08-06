@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { fetchTingxieLessonIndex, fetchTingxieLesson } from "../../data/tingxie";
+import { fetchTingxieLessonIndex, fetchTingxieLesson, prefetchTingxieLessons } from "../../data/tingxie";
 import { isTingxieMissionComplete } from "../../lib/stats";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 
@@ -15,7 +15,10 @@ export function LessonSelect() {
   function loadIndex() {
     dispatch({ type: "LOAD_INDEX_START" });
     fetchTingxieLessonIndex()
-      .then((index) => dispatch({ type: "LOAD_INDEX_SUCCESS", index }))
+      .then((index) => {
+        dispatch({ type: "LOAD_INDEX_SUCCESS", index });
+        prefetchTingxieLessons(index);
+      })
       .catch((err: Error) => dispatch({ type: "LOAD_INDEX_ERROR", error: err.message }));
   }
 

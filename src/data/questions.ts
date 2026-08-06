@@ -101,6 +101,21 @@ export async function fetchQuestionCategory(category: string): Promise<QuestionG
   return data;
 }
 
+// Fire-and-forget warmup, same reasoning/pattern as data/tingxie.ts's
+// prefetchTingxieLessons()/data/stories.ts's prefetchStoryLessons() -- called
+// once from App.tsx right after the bootstrap index lands, so every
+// category's full content is already sitting in categoryCache by the time
+// the student actually picks question types and hits "开始练习 Start
+// Practice". Doesn't change the documented lazy-load contract (the bootstrap
+// fetch itself still only loads the lightweight index, see CLAUDE.md) --
+// this just warms the cache in the background afterward, non-blocking.
+export function prefetchAllQuestionCategories(): void {
+  for (const category of Object.keys(CATEGORIES)) {
+    if (categoryCache.has(category)) continue;
+    fetchQuestionCategory(category).catch(() => {});
+  }
+}
+
 // Which subjects actually have at least one group of a given category --
 // derived from the index (not hand-maintained) so it can never drift out of
 // sync with the real data. Used by Practice.tsx to grey out question types

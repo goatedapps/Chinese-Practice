@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
-import { fetchStoryIndex, fetchStoryLesson, segmentSentences, type StoryIndex, type StoryLesson } from "../../data/stories";
+import { fetchStoryIndex, fetchStoryLesson, prefetchStoryLessons, segmentSentences, type StoryIndex, type StoryLesson } from "../../data/stories";
 import { speakText, stopSpeaking } from "../../lib/speech";
 import { usePet } from "../../state/PetContext";
 import { STORY_COMPLETE_BP_AWARD } from "../../data/pet";
@@ -47,6 +47,7 @@ export function Story() {
       .then((index) => {
         setStoryIndex(index);
         setIndexLoading(false);
+        prefetchStoryLessons(index);
       })
       .catch((err: Error) => {
         setIndexError(err.message);

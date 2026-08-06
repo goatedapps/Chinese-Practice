@@ -39,6 +39,22 @@ export async function fetchTingxieLesson(id: number): Promise<TingxieLesson> {
   return data;
 }
 
+// Fire-and-forget warmup: once the lesson index is on screen, quietly fetch
+// every lesson's content in the background so a real tap on a lesson number
+// resolves from lessonCache instantly instead of waiting on a fresh network
+// round trip. Hosted on a real network (unlike the Vite dev server, where
+// every one of these fetches is sub-10ms on localhost), each lesson fetch
+// can otherwise take a second or more -- this is what closes that gap.
+// Errors are swallowed since a failed prefetch just means the eventual real
+// click falls back to its own fetch/error handling, same as before this
+// existed.
+export function prefetchTingxieLessons(index: TingxieLessonIndexEntry[]): void {
+  for (const entry of index) {
+    if (lessonCache.has(entry.id)) continue;
+    fetchTingxieLesson(entry.id).catch(() => {});
+  }
+}
+
 // Punctuation tokens that show up as their own entries in TingxieSentence.segments
 // -- excluded from the sentence-reordering game's word chips (students order
 // words, not punctuation), matching the source app's behavior.

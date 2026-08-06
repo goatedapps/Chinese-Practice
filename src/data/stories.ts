@@ -121,3 +121,16 @@ export async function fetchStoryLesson(id: number): Promise<StoryLesson> {
   lessonCache.set(id, lesson);
   return lesson;
 }
+
+// Fire-and-forget warmup, same reasoning/pattern as data/tingxie.ts's
+// prefetchTingxieLessons() -- fetches every written lesson's Markdown in the
+// background once the picker's index is up, so a real tap on a lesson number
+// resolves from lessonCache instantly instead of paying a fresh network
+// round trip (which, on a real hosted connection rather than the Vite dev
+// server, is where the noticeable "Loading story..." delay comes from).
+export function prefetchStoryLessons(index: StoryIndex): void {
+  for (const id of index.written) {
+    if (lessonCache.has(id)) continue;
+    fetchStoryLesson(id).catch(() => {});
+  }
+}
