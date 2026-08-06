@@ -4,12 +4,7 @@
 // <TingxieProvider> inside Tingxie.tsx; every Tingxie screen reads/dispatches
 // through useTingxieState()/useTingxieDispatch() instead of prop drilling.
 import { createContext, useContext, useReducer, type ReactNode, type Dispatch } from "react";
-import type {
-  TingxieLessonIndexEntry,
-  TingxieSentence,
-  TingxieVocabItem,
-  TingxieSentenceBankEntry
-} from "../../data/types";
+import type { TingxieLessonIndexEntry, TingxieSentence, TingxieVocabItem } from "../../data/types";
 import { tingxieSentenceWords, buildTingxiePracticeSentenceQueue, type TingxieApplyItem, type TingxiePracticeItem } from "../../data/tingxie";
 import { shuffle } from "../../lib/shuffle";
 
@@ -20,7 +15,11 @@ export interface TingxieActiveContent {
   title: string;
   vocab: TingxieVocabItem[];
   sentences: TingxieSentence[];
-  sentenceBank: Record<string, TingxieSentenceBankEntry[]>;
+  // Uncapped vocab list Apply's queue is built from -- for a single lesson
+  // this is just `lesson.vocab` again; for custom review it's the full pool
+  // across every selected lesson, unlike `vocab` above which is capped for
+  // Learn's flip-card carousel. See data/tingxie.ts's pooledTingxieReview().
+  applyVocab: TingxieVocabItem[];
   isCustomReview: boolean;
 }
 

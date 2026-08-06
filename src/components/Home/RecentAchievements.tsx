@@ -1,12 +1,14 @@
 import { formatRelativeTime } from "../../lib/stats";
 import { specialQuestConfig } from "../../data/pet";
+import { parseTingxieCompletedDetail } from "../../state/achievements";
 import type { Achievement, HistoryEntry } from "../../data/types";
 
 const TYPE_ICON: Record<Achievement["type"], string> = {
   missionComplete: "🎯",
   questionsMilestone: "🏆",
   storyCompleted: "📖",
-  specialQuestComplete: "🎡"
+  specialQuestComplete: "🎡",
+  tingxieCompleted: "🔊"
 };
 
 function describe(a: Achievement): { text: string; en?: string } {
@@ -20,6 +22,10 @@ function describe(a: Achievement): { text: string; en?: string } {
     case "specialQuestComplete": {
       const config = a.detail ? specialQuestConfig(a.detail) : undefined;
       return { text: `完成特别任务：${config?.label.split(" ")[0] ?? ""}`, en: `Special Quest complete (+${config?.bonusBP ?? 0} BP)` };
+    }
+    case "tingxieCompleted": {
+      const { lessonTitle, activityLabel } = parseTingxieCompletedDetail(a.detail);
+      return { text: `完成听写练习：${lessonTitle}（${activityLabel.zh}）`, en: `Dictation: ${lessonTitle} — ${activityLabel.en}` };
     }
     default:
       return { text: "" };
@@ -52,7 +58,8 @@ export function RecentAchievements({
         a.type === "missionComplete" ||
         a.type === "questionsMilestone" ||
         a.type === "storyCompleted" ||
-        a.type === "specialQuestComplete"
+        a.type === "specialQuestComplete" ||
+        a.type === "tingxieCompleted"
     )
     .map((a) => {
       const { text, en } = describe(a);

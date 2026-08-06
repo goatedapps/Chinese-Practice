@@ -1,0 +1,660 @@
+- groupId: CH-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 1
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 表哥因为挑食而营养不良，___________ 。
+      options:
+        - key: "1"
+          text: 因此天天做运动
+        - key: "2"
+          text: 所以经常会生病
+        - key: "3"
+          text: 不然上学会迟到
+        - key: "4"
+          text: 结果把钱都花完
+      correctKey: "2"
+- groupId: CH-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 1
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________ ，终于完成了小组任务。
+      options:
+        - key: "1"
+          text: 同学们齐心协力
+        - key: "2"
+          text: 家长们不约而同
+        - key: "3"
+          text: 老师们胸有成竹
+        - key: "4"
+          text: 朋友们狼吞虎咽
+      correctKey: "1"
+- groupId: NH-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 2
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___，不如留在家里看书吧。
+      options:
+        - key: "1"
+          text: 反正我们都喜欢画画
+        - key: "2"
+          text: 反正外面正在下大雨
+        - key: "3"
+          text: 反正这本书我刚看完
+        - key: "4"
+          text: 反正朋友叫我下楼玩
+      correctKey: "2"
+- groupId: NH-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 2
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 他很自私，___。
+      options:
+        - key: "1"
+          text: 从来不会对别人说真话
+        - key: "2"
+          text: 都会慢慢学会原谅他人
+        - key: "3"
+          text: 总是尽力帮助其他同学
+        - key: "4"
+          text: 邻居们都不想和他来往
+      correctKey: "4"
+- groupId: ACSJ-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 3
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 小明低着头偷看故事书，___________ 。
+      options:
+        - key: "1"
+          text: 视力就下降了许多
+        - key: "2"
+          text: 是大家学习的榜样
+        - key: "3"
+          text: 没发现老师正盯着他
+        - key: "4"
+          text: 不知不觉做完了功课
+      correctKey: "3"
+- groupId: ACSJ-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 3
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________ ，真想找个地洞钻进去。
+      options:
+        - key: "1"
+          text: 黄叔叔发现骂错了人
+        - key: "2"
+          text: 林老师气得火冒三丈
+        - key: "3"
+          text: 他的家被大雨冲倒了
+        - key: "4"
+          text: 小明喜欢阴凉的地方
+      correctKey: "1"
+- groupId: HP-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 4
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 小安被老师狠狠地批评后，___________ 。
+      options:
+        - key: "1"
+          text: 好不容易哇哇大哭
+        - key: "2"
+          text: 便禁不住手舞足蹈
+        - key: "3"
+          text: 一整天都沉默不语
+        - key: "4"
+          text: 依依不舍地离开了
+      correctKey: "3"
+- groupId: HP-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 4
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________ ，是个有孝心的好孩子。
+      options:
+        - key: "1"
+          text: 哥哥常在听写中得到满分
+        - key: "2"
+          text: 明利睡觉前都会读一本书
+        - key: "3"
+          text: 姐姐用存下的钱买礼物给妈妈
+        - key: "4"
+          text: 小乐安静地等着爸爸接她回家
+      correctKey: "3"
+- groupId: MB-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 5
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 哥哥才运动了一会儿，___________ 。
+      options:
+        - key: "1"
+          text: 放松了不少
+        - key: "2"
+          text: 就累得直喘气
+        - key: "3"
+          text: 跑了一圈又一圈
+        - key: "4"
+          text: 身体变得非常健康
+      correctKey: "2"
+- groupId: MB-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 5
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________ ，爷爷的笑脸就浮现在我的脑海里。
+      options:
+        - key: "1"
+          text: 妹妹画了一幅画
+        - key: "2"
+          text: 刚戴上新的眼镜
+        - key: "3"
+          text: 电脑连上网络后
+        - key: "4"
+          text: 一说起这件往事
+      correctKey: "4"
+- groupId: NY-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 6
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 他回到家时全身湿透了，___________ 。
+      options:
+        - key: "1"
+          text: 妈妈一直不停地观察着他
+        - key: "2"
+          text: 实际上刚刚才恢复了健康
+        - key: "3"
+          text: 偏偏今天早上忘记带雨伞
+        - key: "4"
+          text: 不久后额头就微微地发烫
+      correctKey: "4"
+- groupId: NY-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 6
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________ ，我感到无比自豪。
+      options:
+        - key: "1"
+          text: 看到别人需要帮助
+        - key: "2"
+          text: 演讲比赛准时开始了
+        - key: "3"
+          text: 被选中代表全校参与比赛
+        - key: "4"
+          text: 因为得到了偶像的签名照片
+      correctKey: "3"
+- groupId: RG-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 7
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________ ，偏偏就下起了大雨。
+      options:
+        - key: "1"
+          text: 小明今早出门时忘了带作业
+        - key: "2"
+          text: 爸爸刚到操场准备开始跑步
+        - key: "3"
+          text: 阿姨收到的礼物是一把雨伞
+        - key: "4"
+          text: 弟弟准备好下周露营的东西
+      correctKey: "2"
+- groupId: RG-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 7
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 等了好久，巴士终于来了，___________ 。
+      options:
+        - key: "1"
+          text: 很多路人都挤上前来围观
+        - key: "2"
+          text: 车窗外的景色变得模糊了
+        - key: "3"
+          text: 乘客们争先恐后地上了车
+        - key: "4"
+          text: 文华连忙向同学们打招呼
+      correctKey: "3"
+- groupId: RS-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 8
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 在妈妈的细心培育下，___________ 。
+      options:
+        - key: "1"
+          text: 爷爷恢复了健康
+        - key: "2"
+          text: 晚餐很快就做好了
+        - key: "3"
+          text: 花园里的花全都枯了
+        - key: "4"
+          text: 果树结出了甜甜的果子
+      correctKey: "4"
+- groupId: RS-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 8
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________ ，你把它们丢进垃圾桶吧！
+      options:
+        - key: "1"
+          text: 这些早餐很有营养
+        - key: "2"
+          text: 食物都已经腐烂了
+        - key: "3"
+          text: 我们应该废物利用
+        - key: "4"
+          text: 购物时使用环保袋
+      correctKey: "2"
+- groupId: RO-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 9
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 他深深地吸了一口气，___________。
+      options:
+        - key: "1"
+          text: 把想要说的话说出来
+        - key: "2"
+          text: 不小心地摔倒在地上
+        - key: "3"
+          text: 把自己房间收拾干净
+        - key: "4"
+          text: 看到门外有很多叶子
+      correctKey: "1"
+- groupId: RO-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 9
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________，我可能来不及完成这份功课。
+      options:
+        - key: "1"
+          text: 听到了这个坏消息后
+        - key: "2"
+          text: 想到老师生气的样子
+        - key: "3"
+          text: 要是没有哥哥的帮忙
+        - key: "4"
+          text: 平时都没有好好学习
+      correctKey: "3"
+- groupId: TN-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 10
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________ ，身体比较瘦弱。
+      options:
+        - key: "1"
+          text: 他长期缺少营养
+        - key: "2"
+          text: 他每天早睡早起
+        - key: "3"
+          text: 他平时工作轻松
+        - key: "4"
+          text: 他经常练习游泳
+      correctKey: "1"
+- groupId: TN-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 10
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 班长发现自己做错了事，___________ 。
+      options:
+        - key: "1"
+          text: 感动得说不出话来
+        - key: "2"
+          text: 勇敢地向老师道歉
+        - key: "3"
+          text: 心中感到无比骄傲
+        - key: "4"
+          text: 赢得了大家的掌声
+      correctKey: "2"
+- groupId: RL-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 11
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________ ，大家齐心协力地完成任务。
+      options:
+        - key: "1"
+          text: 今天天气恶劣
+        - key: "2"
+          text: 在野外露营时
+        - key: "3"
+          text: 经过这次比赛
+        - key: "4"
+          text: 报名截止之前
+      correctKey: "2"
+- groupId: RL-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 11
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 弟弟知道自己犯了错，___________ 。
+      options:
+        - key: "1"
+          text: 不知为什么而生气
+        - key: "2"
+          text: 不顾一切地冲过去
+        - key: "3"
+          text: 不好意思地低下头
+        - key: "4"
+          text: 不管怎么做都不对
+      correctKey: "3"
+- groupId: SH-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 12
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 文文知道自己被选为班长时，___________ 。
+      options:
+        - key: "1"
+          text: 生气地看着她
+        - key: "2"
+          text: 我感到非常惊喜
+        - key: "3"
+          text: 对他感到非常失望
+        - key: "4"
+          text: 脸上露出了惊奇的表情
+      correctKey: "4"
+- groupId: SH-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 12
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________ ，我相信她不会动手打人。
+      options:
+        - key: "1"
+          text: 因为丽丽经常发脾气
+        - key: "2"
+          text: 丽丽平时对人很温柔
+        - key: "3"
+          text: 她常对父母表达孝心
+        - key: "4"
+          text: 她是个很顽皮的孩子
+      correctKey: "2"
+- groupId: PL-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 13
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 听了妈妈的劝告后，___________ 。
+      options:
+        - key: "1"
+          text: 他和妹妹大吵了起来
+        - key: "2"
+          text: 他做了功课才出门玩
+        - key: "3"
+          text: 他狠狠地瞪了妈妈一眼
+        - key: "4"
+          text: 他生气地把手机丢一旁
+      correctKey: "2"
+- groupId: PL-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 13
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 老师常提醒我们要爱护环境，___________ 。
+      options:
+        - key: "1"
+          text: 帮助身边的人
+        - key: "2"
+          text: 不要乱丢垃圾
+        - key: "3"
+          text: 把玩具捐出去
+        - key: "4"
+          text: 要多出门散步
+      correctKey: "2"
+- groupId: NY24-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 6
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 哥哥下个月要去外国读大学，___________ 。
+      options:
+        - key: "1"
+          text: 妈妈很舍不得他
+        - key: "2"
+          text: 他非常想念家人
+        - key: "3"
+          text: 妹妹伤心地哭起来
+        - key: "4"
+          text: 爸爸把他送上飞机
+      correctKey: "1"
+- groupId: NY24-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 6
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________ ，老师露出满意的笑容。
+      options:
+        - key: "1"
+          text: 看到小明的听写不及格
+        - key: "2"
+          text: 看到美美早餐吃了很多
+        - key: "3"
+          text: 看到伟明在马路边踢球
+        - key: "4"
+          text: 看到明华热心帮助同学
+      correctKey: "4"
+- groupId: NY24EOY-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 6
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 林老师风趣幽默，___________ 。
+      options:
+        - key: "1"
+          text: 难怪大家一直都那么关心他
+        - key: "2"
+          text: 大家上课时都不敢举手发问
+        - key: "3"
+          text: 总是把同学们逗得哈哈大笑
+        - key: "4"
+          text: 经常出一些难题来考同学们
+      correctKey: "3"
+- groupId: HP24EOY-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 4
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________ ，看起来就像一只只小动物。
+      options:
+        - key: "1"
+          text: 动物园管理员打扫园地
+        - key: "2"
+          text: 小华一直在白纸上彩色
+        - key: "3"
+          text: 我昨晚做了一场很奇怪的梦
+        - key: "4"
+          text: 天空中各种各样的云朵形状
+      correctKey: "4"
+- groupId: HP24EOY-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 4
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________ ，无意间打翻了桌上的花瓶。
+      options:
+        - key: "1"
+          text: 李伯伯说话太大声
+        - key: "2"
+          text: 弟弟伸手拿东西时
+        - key: "3"
+          text: 明华傻傻地站在原地
+        - key: "4"
+          text: 他安静地蹲在角落里
+      correctKey: "2"
+- groupId: MB24SA2-Q11
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 5
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 我们要学会控制自己的脾气，___________ 。
+      options:
+        - key: "1"
+          text: 不开心要向老师报告
+        - key: "2"
+          text: 不要因为小事就生气
+        - key: "3"
+          text: 告诉家长写信给校长
+        - key: "4"
+          text: 应该生气地责骂对方
+      correctKey: "2"
+- groupId: MB24SA2-Q12
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 5
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___________ ，依依不舍地和家人说再见。
+      options:
+        - key: "1"
+          text: 文文准备去外国读书那天
+        - key: "2"
+          text: 乐乐终于回到了奶奶的家
+        - key: "3"
+          text: 家明参加校园篮球比赛时
+        - key: "4"
+          text: 英文老师在家长会开始前
+      correctKey: "1"

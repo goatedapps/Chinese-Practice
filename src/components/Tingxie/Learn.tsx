@@ -5,7 +5,7 @@ import { tingxieIconEmoji, tingxieSentenceWords } from "../../data/tingxie";
 import { speakText, speakWordThenSentence, stopSpeaking } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
-import { checkAndAwardMissionBonus } from "../../state/achievements";
+import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { loadHistory } from "../../state/history";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 import { TingxieFlipCard } from "./TingxieFlipCard";
@@ -38,9 +38,10 @@ function VocabFlipCard() {
       awardBP(TINGXIE_BP_AWARD.VOCAB_LEARN);
       Sound.applause();
       recordTingxieActivityCompleted();
+      logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|learnVocab` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
-  }, [allFlipped, awardBP]);
+  }, [allFlipped, awardBP, state.activeContent]);
 
   if (!current) return <p className="tingxie-empty">这一课还没有生词。No vocab in this lesson yet.</p>;
 
@@ -121,9 +122,10 @@ function SentenceBuilderGame() {
       awardBP(TINGXIE_BP_AWARD.SENTENCE_LEARN);
       Sound.applause();
       recordTingxieActivityCompleted();
+      logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|learnSentence` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
-  }, [allSolved, awardBP]);
+  }, [allSolved, awardBP, state.activeContent]);
 
   if (!current) return <p className="tingxie-empty">这一课还没有句子。No sentences in this lesson yet.</p>;
 

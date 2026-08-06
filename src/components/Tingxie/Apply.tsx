@@ -5,7 +5,7 @@ import { buildTingxieApplyQueue } from "../../data/tingxie";
 import { speakText, stopSpeaking } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
-import { checkAndAwardMissionBonus } from "../../state/achievements";
+import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { recordTingxieWrong } from "../../state/todaySummary";
 import { loadHistory } from "../../state/history";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
@@ -20,10 +20,10 @@ export function Apply() {
   // per Apply visit) -- this component remounts fresh each time the student
   // navigates back into the Apply tab, so redoing it re-earns BP.
   const awardedRef = useRef(false);
-  const hasBankEntries = Object.values(state.activeContent!.sentenceBank).some((entries) => entries.length > 0);
+  const hasBankEntries = state.activeContent!.applyVocab.some((v) => v.sentenceBank && v.sentenceBank.length > 0);
 
   useEffect(() => {
-    dispatch({ type: "APPLY_START", queue: buildTingxieApplyQueue(state.activeContent!.sentenceBank) });
+    dispatch({ type: "APPLY_START", queue: buildTingxieApplyQueue(state.activeContent!.applyVocab) });
     // Runs once on mount -- builds a fresh randomized queue each visit.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -34,9 +34,10 @@ export function Apply() {
       awardBP(TINGXIE_BP_AWARD.APPLY);
       Sound.applause();
       recordTingxieActivityCompleted();
+      logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|apply` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
-  }, [state.applyComplete, hasBankEntries, awardBP]);
+  }, [state.applyComplete, hasBankEntries, awardBP, state.activeContent]);
 
   const current = state.applyQueue[0];
 

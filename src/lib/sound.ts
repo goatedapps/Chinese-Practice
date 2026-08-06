@@ -51,6 +51,7 @@ const SOUND_FILES = {
   levelUp: "/sounds/level-up.mp3", // the owl evolves to a new growth stage
   enterShop: "/sounds/enter-shop.mp3", // opening the Shop screen
   bagOpen: "/sounds/bag-open.mp3", // opening the Bag/Feed screen
+  wheelSpin: "/sounds/wheelspin.mp3", // spinning the Home dashboard's Special Quest wheel
   background: "/sounds/background.mp3" // looping background music, started once on the app's first click
 };
 
@@ -214,6 +215,10 @@ export const Sound = {
   // Opening the Bag/Feed screen (see Owl.tsx's Feed button).
   bagOpen(): void {
     playFile(SOUND_FILES.bagOpen);
+  },
+  // Spinning the Home dashboard's Special Quest wheel (see SpecialQuest.tsx's handleSpin()).
+  wheelSpin(): void {
+    playFile(SOUND_FILES.wheelSpin);
   },
   // Starts the looping background track on the app's first click (see
   // App.tsx) and is a no-op on every call after that -- idempotent, so it's

@@ -1,5 +1,5 @@
-import { forwardRef, useEffect, useRef } from "react";
-import { owlSpritePath, hasOwlAnimation, owlAnimatedSpritePath } from "../../data/pet";
+import { forwardRef, useEffect, useRef, useState } from "react";
+import { owlSpritePath, owlAnimatedSpritePath } from "../../data/pet";
 import type { MoodBucket } from "../../data/types";
 
 interface OwlArtProps {
@@ -20,11 +20,21 @@ export const OwlArt = forwardRef<HTMLDivElement, OwlArtProps>(function OwlArt(
   { stageKey, mood, label, sizeClass, playSound = false },
   ref
 ) {
-  const animated = hasOwlAnimation(stageKey, mood);
+  // Every stage/mood combo tries its .mp4 first, falling back to the .png
+  // only once the video genuinely fails to load (404, decode error, ...) --
+  // there's no hardcoded "which combos are animated" list any more (see
+  // data/pet.ts), so this is the only place that decides. Resets whenever
+  // stageKey/mood changes so a fresh variant always gets its own attempt at
+  // the video, instead of staying stuck on a previous variant's fallback.
+  const [videoFailed, setVideoFailed] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (!animated) return;
+    setVideoFailed(false);
+  }, [stageKey, mood]);
+
+  useEffect(() => {
+    if (videoFailed) return;
     const video = videoRef.current;
     if (!video) return;
     // Set imperatively rather than relying solely on the JSX `muted` prop --
@@ -37,17 +47,28 @@ export const OwlArt = forwardRef<HTMLDivElement, OwlArtProps>(function OwlArt(
       // the student has interacted with the page at all; the video still
       // renders its first frame, so it's harmless to skip playback here.
     });
-  }, [stageKey, mood, playSound, animated]);
+  }, [stageKey, mood, playSound, videoFailed]);
 
   return (
     <div ref={ref} className={`owl-art owl-stage-${stageKey} ${sizeClass}`}>
-      {animated ? (
-        // No `controls` -- this is a one-shot sprite animation, not a video
-        // the student plays/pauses. No `loop`: it plays through once and
-        // stops on its last frame. playsInline stops iOS from taking it
-        // fullscreen. Audio is muxed into the file itself (no separate
-        // sound asset) -- muted is set imperatively above.
-        <video ref={videoRef} src={owlAnimatedSpritePath(stageKey, mood)} playsInline aria-label={label} />
+      {!videoFailed ? (
+        // key forces a fresh <video> element per stage/mood variant rather
+        // than reusing one across an unrelated src swap -- avoids browsers
+        // briefly holding onto the previous variant's frame/error state
+        // while the new source loads. No `controls` -- this is a one-shot
+        // sprite animation, not a video the student plays/pauses. No
+        // `loop`: it plays through once and stops on its last frame.
+        // playsInline stops iOS from taking it fullscreen. Audio is muxed
+        // into the file itself (no separate sound asset) -- muted is set
+        // imperatively above.
+        <video
+          key={`${stageKey}-${mood}`}
+          ref={videoRef}
+          src={owlAnimatedSpritePath(stageKey, mood)}
+          playsInline
+          aria-label={label}
+          onError={() => setVideoFailed(true)}
+        />
       ) : (
         <img src={owlSpritePath(stageKey, mood)} alt={label} />
       )}

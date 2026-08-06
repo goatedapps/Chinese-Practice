@@ -1,4 +1,4 @@
-import type { Achievement, AchievementType, HistoryEntry } from "../data/types";
+import type { Achievement, AchievementType, HistoryEntry, TingxieCompletedActivity } from "../data/types";
 import { dateKey, areAllMissionsComplete } from "../lib/stats";
 import { MISSION_COMPLETE_BONUS_BP } from "../data/pet";
 import { loadJSON } from "../lib/storage";
@@ -6,6 +6,29 @@ import { makeId } from "../lib/id";
 
 const ACHIEVEMENTS_KEY = "hanyuPracticeAchievements_v1";
 const MAX_ACHIEVEMENTS = 30;
+
+// Friendly bilingual labels for a "tingxieCompleted" achievement's activity
+// code -- shared by RecentAchievements.tsx (Home dashboard feed) and
+// lib/exportPdf.ts (Today's Session Summary PDF) so both read the same
+// `detail` encoding the same way. See logAchievement() call sites in
+// components/Tingxie/{Learn,Apply,Practice}.tsx.
+const TINGXIE_ACTIVITY_LABEL: Record<TingxieCompletedActivity, { zh: string; en: string }> = {
+  learnVocab: { zh: "学词语", en: "Learn (Vocab)" },
+  learnSentence: { zh: "学默写", en: "Learn (Sentences)" },
+  apply: { zh: "词语应用", en: "Apply" },
+  test: { zh: "听写测试", en: "Test" }
+};
+
+// Splits a "tingxieCompleted" achievement's `detail` (`${lessonTitle}|${activity}`)
+// back into its parts, with a friendly label for the activity code.
+export function parseTingxieCompletedDetail(detail: string | undefined): {
+  lessonTitle: string;
+  activityLabel: { zh: string; en: string };
+} {
+  const [lessonTitle, activity] = (detail ?? "").split("|");
+  const activityLabel = TINGXIE_ACTIVITY_LABEL[activity as TingxieCompletedActivity] ?? { zh: activity ?? "", en: activity ?? "" };
+  return { lessonTitle: lessonTitle ?? "", activityLabel };
+}
 
 export function loadAchievements(): Achievement[] {
   return loadJSON<Achievement[]>(ACHIEVEMENTS_KEY, []);

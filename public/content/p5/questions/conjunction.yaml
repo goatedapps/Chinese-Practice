@@ -1,0 +1,660 @@
+- groupId: CH-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 1
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 你不要穿这些旧衣服，___ 把它们捐给老人院吧。
+      options:
+        - key: "1"
+          text: 要是……就
+        - key: "2"
+          text: 不管……都
+        - key: "3"
+          text: 虽然……但
+        - key: "4"
+          text: 不仅……也
+      correctKey: "1"
+- groupId: CH-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 1
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 这家餐馆卖的螃蟹 ___ 好吃，___ 一点也不贵。
+      options:
+        - key: "1"
+          text: 不是……而是
+        - key: "2"
+          text: 因为……所以
+        - key: "3"
+          text: 不但……而且
+        - key: "4"
+          text: 反正……不如
+      correctKey: "3"
+- groupId: NH-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 2
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 他 ___ 会主动帮助邻居，___ 还会到老人院陪伴老人家。
+      options:
+        - key: "1"
+          text: 不是……而是
+        - key: "2"
+          text: 不但……而且
+        - key: "3"
+          text: 因为……所以
+        - key: "4"
+          text: 虽然……但是
+      correctKey: "2"
+- groupId: NH-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 2
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 我常常说谎，这次 ___ 我怎么解释，他 ___ 不再相信我了。
+      options:
+        - key: "1"
+          text: 不管……都
+        - key: "2"
+          text: 不仅……还
+        - key: "3"
+          text: 假如……就
+        - key: "4"
+          text: 只有……才
+      correctKey: "1"
+- groupId: ACSJ-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 3
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 我推开家门，我的小狗 ___ 会飞快地向我跑来。
+      options:
+        - key: "1"
+          text: 自从……就
+        - key: "2"
+          text: 每当……都
+        - key: "3"
+          text: 就算……也
+        - key: "4"
+          text: 已经……还
+      correctKey: "2"
+- groupId: ACSJ-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 3
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 你要去图书馆，___ 顺便帮我还书吧。
+      options:
+        - key: "1"
+          text: 不管……仍然
+        - key: "2"
+          text: 由于……因此
+        - key: "3"
+          text: 反正……不如
+        - key: "4"
+          text: 不但……而且
+      correctKey: "3"
+- groupId: HP-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 4
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 我已经完成作业，可以陪你去看电影。
+      options:
+        - key: "1"
+          text: 如果
+        - key: "2"
+          text: 即使
+        - key: "3"
+          text: 为了
+        - key: "4"
+          text: 反正
+      correctKey: "4"
+- groupId: HP-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 4
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 明天的天气好，我们就去海边玩耍。
+      options:
+        - key: "1"
+          text: 除了
+        - key: "2"
+          text: 要是
+        - key: "3"
+          text: 因为
+        - key: "4"
+          text: 尽管
+      correctKey: "2"
+- groupId: MB-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 5
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 这位作家写的书，我都看过。
+      options:
+        - key: "1"
+          text: 为了
+        - key: "2"
+          text: 假如
+        - key: "3"
+          text: 凡是
+        - key: "4"
+          text: 尽管
+      correctKey: "3"
+- groupId: MB-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 5
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 打乒乓球 ___ 好玩，___ 能让身体更强壮。
+      options:
+        - key: "1"
+          text: 如果……就
+        - key: "2"
+          text: 不仅……还
+        - key: "3"
+          text: 虽然……但
+        - key: "4"
+          text: 不管……都
+      correctKey: "2"
+- groupId: NY-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 6
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 他 ___ 随便作答，___ 仔细地读每一道题目。
+      options:
+        - key: "1"
+          text: 就算……还是
+        - key: "2"
+          text: 不是……而是
+        - key: "3"
+          text: 因为……所以
+        - key: "4"
+          text: 不仅……而且
+      correctKey: "2"
+- groupId: NY-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 6
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 五岁以下的孩童，___ 可以免费入场。
+      options:
+        - key: "1"
+          text: 既然……就
+        - key: "2"
+          text: 除了……还
+        - key: "3"
+          text: 虽然……却
+        - key: "4"
+          text: 凡是……都
+      correctKey: "4"
+- groupId: RG-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 7
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 有好吃的东西，姐姐 ___ 会留给我。
+      options:
+        - key: "1"
+          text: 凡是……就
+        - key: "2"
+          text: 不管……都
+        - key: "3"
+          text: 虽然……却
+        - key: "4"
+          text: 除了……还
+      correctKey: "1"
+- groupId: RG-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 7
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 哥哥 ___ 学业成绩好，___ 喜欢帮助别人。
+      options:
+        - key: "1"
+          text: 一边……一边
+        - key: "2"
+          text: 不是……而是
+        - key: "3"
+          text: 因为……所以
+        - key: "4"
+          text: 不仅……而且
+      correctKey: "4"
+- groupId: RS-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 8
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 老师给的任务，我 ___ 会努力完成。
+      options:
+        - key: "1"
+          text: 凡是……都
+        - key: "2"
+          text: 为了……才
+        - key: "3"
+          text: 除了……还
+        - key: "4"
+          text: 如果……就
+      correctKey: "1"
+- groupId: RS-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 8
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 这条路 ___ 很远，___ 难走。
+      options:
+        - key: "1"
+          text: 不是……就是
+        - key: "2"
+          text: 虽然……但是
+        - key: "3"
+          text: 不仅……而且
+        - key: "4"
+          text: 因为……所以
+      correctKey: "3"
+- groupId: RO-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 9
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 他___不要浪费食物，___把剩下的食物都吃完。
+      options:
+        - key: "1"
+          text: 除了……还有
+        - key: "2"
+          text: 反正……不如
+        - key: "3"
+          text: 为了……只好
+        - key: "4"
+          text: 不是……而是
+      correctKey: "3"
+- groupId: RO-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 9
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 小华___长大了，妈妈___叫他"宝宝"。
+      options:
+        - key: "1"
+          text: 已经……还
+        - key: "2"
+          text: 不但……还
+        - key: "3"
+          text: 如果……就
+        - key: "4"
+          text: 自从……就
+      correctKey: "1"
+- groupId: TN-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 10
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 大家齐心协力，___ 能顺利完成任务。
+      options:
+        - key: "1"
+          text: 只要……就……
+        - key: "2"
+          text: 不仅……也……
+        - key: "3"
+          text: 凡是……都……
+        - key: "4"
+          text: 尽管……还……
+      correctKey: "1"
+- groupId: TN-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 10
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 这本书 ___ 内容丰富，___ 图案漂亮，适合学生们阅读。
+      options:
+        - key: "1"
+          text: 由于……因此……
+        - key: "2"
+          text: 不但……而且……
+        - key: "3"
+          text: 因为……所以……
+        - key: "4"
+          text: 虽然……但是……
+      correctKey: "2"
+- groupId: RL-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 11
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 行人不遵守交通规则，交通 ___ 会受到影响。
+      options:
+        - key: "1"
+          text: 假如……就……
+        - key: "2"
+          text: 除了……也……
+        - key: "3"
+          text: 尽管……还……
+        - key: "4"
+          text: 不但……还……
+      correctKey: "1"
+- groupId: RL-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 11
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 奶奶问妹妹 ___ 把功课做完了。
+      options:
+        - key: "1"
+          text: 是否
+        - key: "2"
+          text: 如果
+        - key: "3"
+          text: 已经
+        - key: "4"
+          text: 只好
+      correctKey: "1"
+- groupId: SH-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 12
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 他的成绩 ___ 进步很大了，你还批评他。
+      options:
+        - key: "1"
+          text: 还没
+        - key: "2"
+          text: 不管
+        - key: "3"
+          text: 已经
+        - key: "4"
+          text: 自从
+      correctKey: "3"
+- groupId: SH-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 12
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 一连几天都没下雨，花草___ 容易干枯。
+      options:
+        - key: "1"
+          text: 假如……就……
+        - key: "2"
+          text: 不但……还……
+        - key: "3"
+          text: 即使……也……
+        - key: "4"
+          text: 尽管……但……
+      correctKey: "1"
+- groupId: PL-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 13
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 她平时不认真学习，但在这次的听写中 ___ 得了满分。
+      options:
+        - key: "1"
+          text: 不然
+        - key: "2"
+          text: 由于
+        - key: "3"
+          text: 竟然
+        - key: "4"
+          text: 因为
+      correctKey: "3"
+- groupId: NY24-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 6
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 这部电影 ___ 精彩， ___ 十分感人。
+      options:
+        - key: "1"
+          text: 不但……而且
+        - key: "2"
+          text: 无论……都是
+        - key: "3"
+          text: 不是……就是
+        - key: "4"
+          text: 由于……所以
+      correctKey: "1"
+- groupId: NY24-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 6
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 你身体不舒服，今天 ___ 别去练球了。
+      options:
+        - key: "1"
+          text: 不管……都
+        - key: "2"
+          text: 就算……也
+        - key: "3"
+          text: 要是……就
+        - key: "4"
+          text: 只有……才
+      correctKey: "3"
+- groupId: NY24EOY-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 6
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 进入决赛的参赛者，___ 要参加这次的彩排。
+      options:
+        - key: "1"
+          text: 如果……就……
+        - key: "2"
+          text: 凡是……都……
+        - key: "3"
+          text: 除了……还……
+        - key: "4"
+          text: 无论……也……
+      correctKey: "2"
+- groupId: NY24EOY-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 6
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 弟弟不专心学习，哥哥 ___ 耐心地教导他。
+      options:
+        - key: "1"
+          text: 虽然……但是……
+        - key: "2"
+          text: 因为……所以……
+        - key: "3"
+          text: 尽管……还是……
+        - key: "4"
+          text: 反正……不如……
+      correctKey: "3"
+- groupId: HP24EOY-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 4
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 今天天气真好，我们 ___ 去公园野餐吧！
+      options:
+        - key: "1"
+          text: 到底
+        - key: "2"
+          text: 因为
+        - key: "3"
+          text: 只好
+        - key: "4"
+          text: 不如
+      correctKey: "4"
+- groupId: HP24EOY-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 4
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 这本故事书很有趣， ___ 里面有很多美丽的图案。
+      options:
+        - key: "1"
+          text: 所以
+        - key: "2"
+          text: 或者
+        - key: "3"
+          text: 而且
+        - key: "4"
+          text: 但是
+      correctKey: "3"
+- groupId: MB24SA2-Q9
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 5
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 天气多么恶劣，救护人员都坚持前往救援。
+      options:
+        - key: "1"
+          text: 虽然
+        - key: "2"
+          text: 除非
+        - key: "3"
+          text: 即使
+        - key: "4"
+          text: 不管
+      correctKey: "4"
+- groupId: MB24SA2-Q10
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 5
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 小明 ___ 聪明，___ 学习非常努力。
+      options:
+        - key: "1"
+          text: 因为……所以……
+        - key: "2"
+          text: 不仅……而且……
+        - key: "3"
+          text: 虽然……但是……
+        - key: "4"
+          text: 与其……不如……
+      correctKey: "2"

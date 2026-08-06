@@ -28,7 +28,7 @@ export function TingxiePicker() {
         dispatch({
           type: "CUSTOM_REVIEW_SUCCESS",
           target,
-          content: { title: "自由复习 Custom Review", vocab: pooled.vocab, sentences: pooled.sentences, sentenceBank: pooled.sentenceBank, isCustomReview: true }
+          content: { title: "自由复习 Custom Review", vocab: pooled.vocab, sentences: pooled.sentences, applyVocab: pooled.applyVocab, isCustomReview: true }
         });
       })
       .catch((err: Error) => dispatch({ type: "CUSTOM_REVIEW_ERROR", error: err.message }));
@@ -67,7 +67,7 @@ export function TingxiePicker() {
               ✏️ 词语应用 Start Apply
             </button>
             <button className="primary-btn" disabled={state.pickerSelectedIds.length === 0 || state.loadingReview} onClick={() => startReview("practice")}>
-              🔊 听写练习 Start Practice
+              🔊 听写测试 Start Test
             </button>
           </div>
         </>

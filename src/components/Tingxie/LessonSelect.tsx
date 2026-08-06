@@ -1,10 +1,16 @@
 import { useEffect } from "react";
 import { fetchTingxieLessonIndex, fetchTingxieLesson } from "../../data/tingxie";
+import { isTingxieMissionComplete } from "../../lib/stats";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 
 export function LessonSelect() {
   const state = useTingxieState();
   const dispatch = useTingxieDispatch();
+  // Reads localStorage directly (no hist needed, unlike the lesson-revision
+  // mission) -- see lib/stats.ts's isTingxieMissionComplete(). Self-hides
+  // once today's "听写练习" mission is done, same reasoning as Practice.tsx's
+  // hint box.
+  const dictationMissionDone = isTingxieMissionComplete();
 
   function loadIndex() {
     dispatch({ type: "LOAD_INDEX_START" });
@@ -26,7 +32,7 @@ export function LessonSelect() {
       .then((lesson) => {
         dispatch({
           type: "SELECT_LESSON_SUCCESS",
-          content: { title: title || lesson.title, vocab: lesson.vocab, sentences: lesson.sentences, sentenceBank: lesson.sentenceBank, isCustomReview: false }
+          content: { title: title || lesson.title, vocab: lesson.vocab, sentences: lesson.sentences, applyVocab: lesson.vocab, isCustomReview: false }
         });
       })
       .catch((err: Error) => dispatch({ type: "SELECT_LESSON_ERROR", error: err.message }));
@@ -35,6 +41,13 @@ export function LessonSelect() {
   return (
     <div className="tingxie-select">
       <h1>听写练习 Dictation Practice</h1>
+
+      {!dictationMissionDone && (
+        <div className="mission-hint-box">
+          <span className="mission-hint-icon">💡</span>
+          <span>To complete today's "Dictation Lesson" mission: pick any lesson and finish one activity (Learn / Apply / Test).</span>
+        </div>
+      )}
 
       {state.loadingIndex && <p className="tingxie-loading">加载中... Loading...</p>}
 

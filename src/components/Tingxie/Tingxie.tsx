@@ -53,7 +53,7 @@ function TingxieShell() {
             ✏️ 词语应用 Apply
           </button>
           <button className={"tingxie-tab" + (state.view === "practice" ? " tingxie-tab-active" : "")} onClick={() => dispatch({ type: "SET_VIEW", view: "practice" })}>
-            🔊 听写练习 Practice
+            🔊 听写测试 Test
           </button>
         </div>
       )}

@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { usePet } from "../../state/PetContext";
 import { SPECIAL_QUEST_TYPES } from "../../data/pet";
-import { QUESTION_GROUPS, VOCABULARY_CATEGORY_KEYS } from "../../data/questions";
+import { VOCABULARY_CATEGORY_KEYS, fetchQuestionCategory } from "../../data/questions";
 import { selectTypeSessionGroups } from "../../lib/typeSession";
 import { getTodaySpecialQuest, spinSpecialQuest } from "../../state/specialQuest";
+import { Sound } from "../../lib/sound";
 
 // How long the wheel's CSS spin transition runs (see .quest-wheel-dial in
 // styles.css) -- the "spinning" UI stays up for exactly this long before
@@ -37,6 +38,7 @@ export function SpecialQuest() {
   const [quest, setQuest] = useState(() => getTodaySpecialQuest());
   const [spinning, setSpinning] = useState(false);
   const [dialRotation, setDialRotation] = useState(0);
+  const [starting, setStarting] = useState(false);
 
   function handleSpin() {
     if (spinning || quest) return;
@@ -55,24 +57,34 @@ export function SpecialQuest() {
     const targetMiddle = idx * SEGMENT_DEG + SEGMENT_DEG / 2;
     setDialRotation(spins * 360 + (360 - targetMiddle));
     setSpinning(true);
+    Sound.wheelSpin();
     window.setTimeout(() => {
       setSpinning(false);
       setQuest({ questId, status: "pending" });
     }, SPIN_MS);
   }
 
-  function doQuest() {
-    if (!quest) return;
-    if (quest.questId === "vocab100") {
-      const candidates = QUESTION_GROUPS.filter((g) => VOCABULARY_CATEGORY_KEYS.includes(g.category));
-      const groups = selectTypeSessionGroups(candidates);
-      if (groups.length === 0) return;
-      dispatch({ type: "START_QUIZ", mode: "type", modeLabel: "特别任务 词语运用 Vocabulary", groups });
-    } else if (quest.questId === "comprehension1") {
-      const candidates = QUESTION_GROUPS.filter((g) => g.category === "comprehension");
-      const groups = selectTypeSessionGroups(candidates);
-      if (groups.length === 0) return;
-      dispatch({ type: "START_QUIZ", mode: "type", modeLabel: "特别任务 阅读理解 Reading Comprehension", groups });
+  async function doQuest() {
+    if (!quest || starting) return;
+    if (quest.questId === "vocab100" || quest.questId === "comprehension1") {
+      setStarting(true);
+      try {
+        const groups =
+          quest.questId === "vocab100"
+            ? selectTypeSessionGroups((await Promise.all(VOCABULARY_CATEGORY_KEYS.map((c) => fetchQuestionCategory(c)))).flat())
+            : selectTypeSessionGroups(await fetchQuestionCategory("comprehension"));
+        if (groups.length === 0) return;
+        dispatch({
+          type: "START_QUIZ",
+          mode: "type",
+          modeLabel: quest.questId === "vocab100" ? "特别任务 词语运用 Vocabulary" : "特别任务 阅读理解 Reading Comprehension",
+          groups
+        });
+      } catch {
+        alert("加载题目失败，请重试。Failed to load questions, please try again.");
+      } finally {
+        setStarting(false);
+      }
     } else if (quest.questId === "ballPlay") {
       dispatch({ type: "GO_TO_SCREEN", screen: (pet.inventory["ball"] ?? 0) > 0 ? "bag" : "shop" });
     } else if (quest.questId === "memoryFast") {
@@ -89,11 +101,7 @@ export function SpecialQuest() {
   return (
     <div className="dash-card special-quest">
       <h2 className="section-heading">🎡 特别任务 Special Quest</h2>
-      <p className="mission-subhead">
-        每天转动一次转盘，完成任务额外获得奖励 BP！
-        <br />
-        Spin the wheel once a day for a bonus-BP quest!
-      </p>
+      <p className="mission-subhead">Spin the wheel once a day for a bonus-BP quest!</p>
 
       {!quest ? (
         <div className="quest-wheel-wrap">
@@ -109,7 +117,7 @@ export function SpecialQuest() {
                   <div
                     key={q.id}
                     className="quest-wheel-slot"
-                    style={{ transform: `translate(-50%, -50%) rotate(${angle}deg) translate(0, -92px)` }}
+                    style={{ transform: `translate(-50%, -50%) rotate(${angle}deg) translate(0, -120px)` }}
                   >
                     <QuestIcon icon={q.icon} className="quest-wheel-icon" />
                   </div>
@@ -135,8 +143,8 @@ export function SpecialQuest() {
           <QuestIcon icon={config.icon} className="quest-assigned-icon" />
           <p className="quest-assigned-label">{config.label}</p>
           <p className="quest-assigned-bonus">完成可得 +{config.bonusBP} BP</p>
-          <button className="primary-btn" onClick={doQuest}>
-            去完成任务 Do Quest
+          <button className="primary-btn" disabled={starting} onClick={doQuest}>
+            {starting ? "加载中... Loading..." : "去完成任务 Do Quest"}
           </button>
         </div>
       ) : null}

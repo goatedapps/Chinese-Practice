@@ -85,7 +85,7 @@ export function PetProvider({ children }: { children: ReactNode }) {
 
   function awardBP(amount: number) {
     setPet((prev) => {
-      const next = { ...prev, bp: prev.bp + amount, bpLifetime: prev.bpLifetime + amount };
+      const next = { ...prev, bp: prev.bp + amount };
       savePetState(next);
       return next;
     });
@@ -99,11 +99,7 @@ export function PetProvider({ children }: { children: ReactNode }) {
       const next: PetState = {
         ...prev,
         bp: prev.bp - item.cost,
-        inventory: { ...prev.inventory, [item.id]: (prev.inventory[item.id] ?? 0) + 1 },
-        purchaseHistory: [
-          { itemId: item.id, cost: item.cost, ts: Date.now() },
-          ...prev.purchaseHistory
-        ].slice(0, 50)
+        inventory: { ...prev.inventory, [item.id]: (prev.inventory[item.id] ?? 0) + 1 }
       };
       savePetState(next);
       return next;

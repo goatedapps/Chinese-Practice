@@ -5,7 +5,7 @@ import { buildTingxiePracticeVocabQueue, tingxieIconEmoji } from "../../data/tin
 import { speakText } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
-import { checkAndAwardMissionBonus } from "../../state/achievements";
+import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { recordTingxieWrong } from "../../state/todaySummary";
 import { loadHistory } from "../../state/history";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
@@ -34,9 +34,10 @@ export function Practice() {
       awardBP(TINGXIE_BP_AWARD.PRACTICE);
       Sound.applause();
       recordTingxieActivityCompleted();
+      logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|test` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
-  }, [state.practiceComplete, hasVocab, awardBP]);
+  }, [state.practiceComplete, hasVocab, awardBP, state.activeContent]);
 
   const current = state.practiceQueue[0];
 
@@ -80,15 +81,15 @@ export function Practice() {
   }
 
   if (!hasVocab) {
-    return <p className="tingxie-empty">这一课没有可用的听写练习。No practice content available for this lesson.</p>;
+    return <p className="tingxie-empty">这一课没有可用的听写测试。No test content available for this lesson.</p>;
   }
 
   if (state.practiceQueue.length === 0 && !state.practiceComplete) {
-    return <p className="tingxie-loading">准备练习中... Preparing...</p>;
+    return <p className="tingxie-loading">准备测试中... Preparing...</p>;
   }
 
   if (state.practiceComplete) {
-    return <CompleteScreen title="听写练习完成！Practice Complete!" bpAmount={TINGXIE_BP_AWARD.PRACTICE} />;
+    return <CompleteScreen title="听写测试完成！Test Complete!" bpAmount={TINGXIE_BP_AWARD.PRACTICE} />;
   }
 
   if (!current) return null;

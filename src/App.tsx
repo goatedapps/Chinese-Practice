@@ -1,6 +1,7 @@
-import { useEffect, type ReactNode } from "react";
-import { AppStateProvider, useAppState } from "./state/AppStateContext";
+import { useEffect, useState, type ReactNode } from "react";
+import { AppStateProvider, useAppState, useAppDispatch } from "./state/AppStateContext";
 import { PetProvider } from "./state/PetContext";
+import { fetchQuestionMeta, fetchQuestionIndex, computeCategorySubjects } from "./data/questions";
 import { Sound } from "./lib/sound";
 import { Home } from "./components/Home/Home";
 import { Practice } from "./components/Practice/Practice";
@@ -16,10 +17,49 @@ import { TopNav } from "./components/common/TopNav";
 
 function ScreenRouter() {
   const state = useAppState();
+  const dispatch = useAppDispatch();
+  const [bootError, setBootError] = useState<string | null>(null);
+
+  function loadQuestionIndex() {
+    setBootError(null);
+    Promise.all([fetchQuestionMeta(), fetchQuestionIndex()])
+      .then(([meta, index]) => {
+        dispatch({ type: "SET_QUESTION_INDEX", index, categorySubjects: computeCategorySubjects(index), lessonCount: meta.lessonCount });
+      })
+      .catch((err: Error) => setBootError(err.message));
+  }
+
+  // Runs once at app start (RESET_TO_HOME preserves questionIndexLoaded, so
+  // this never refires just from navigating home) -- gates the whole screen
+  // render below until the question-bank index is in state, since
+  // AppStateContext's SELECT_SUBJECT reducer case needs categorySubjects
+  // synchronously and reducers can't await a fetch themselves.
+  useEffect(() => {
+    if (state.questionIndexLoaded) return;
+    loadQuestionIndex();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.questionIndexLoaded]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [state.screen]);
+
+  if (!state.questionIndexLoaded) {
+    return (
+      <div className="screen">
+        {bootError ? (
+          <div className="tingxie-error">
+            <p>{bootError}</p>
+            <button className="secondary-btn" onClick={loadQuestionIndex}>
+              重试 Retry
+            </button>
+          </div>
+        ) : (
+          <p className="tingxie-loading">加载中... Loading...</p>
+        )}
+      </div>
+    );
+  }
 
   // Hidden mid-quiz/on the result screen -- Quiz already has its own Home
   // button with a "leave without saving?" confirmation, and a second

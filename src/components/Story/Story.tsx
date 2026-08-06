@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
-import { STORY_LESSONS, segmentSentences } from "../../data/stories";
-import { LESSON_COUNT } from "../../data/questions";
+import { fetchStoryIndex, fetchStoryLesson, segmentSentences, type StoryIndex, type StoryLesson } from "../../data/stories";
 import { speakText, stopSpeaking } from "../../lib/speech";
 import { usePet } from "../../state/PetContext";
 import { STORY_COMPLETE_BP_AWARD } from "../../data/pet";
@@ -12,18 +11,26 @@ import { recordTodayStoryRead } from "../../state/todaySummary";
 
 type StoryView = "picker" | "reading" | "complete";
 
-const LESSON_IDS = Array.from({ length: LESSON_COUNT }, (_, i) => i + 1);
-
 // "Read a Story" mode: pick a lesson, then flip through its passage one
 // page at a time. Deliberately simple local state (plain useState, no
 // reducer/Context) -- unlike Tingxie, there's no queue mechanic or multiple
-// activities to coordinate, just "which lesson" and "which page".
+// activities to coordinate, just "which lesson" and "which page". Lesson
+// content is fetched at runtime (data/stories.ts) rather than a static
+// import, so the picker/reader both need a loading state -- same
+// dispatch-a-fetch-on-mount idiom as Tingxie's LessonSelect.tsx.
 export function Story() {
   const dispatch = useAppDispatch();
   const { awardBP } = usePet();
   const [view, setView] = useState<StoryView>("picker");
-  const [lessonId, setLessonId] = useState<number | null>(null);
   const [segmentIndex, setSegmentIndex] = useState(0);
+
+  const [storyIndex, setStoryIndex] = useState<StoryIndex | null>(null);
+  const [indexLoading, setIndexLoading] = useState(false);
+  const [indexError, setIndexError] = useState<string | null>(null);
+
+  const [lesson, setLesson] = useState<StoryLesson | null>(null);
+  const [lessonLoading, setLessonLoading] = useState(false);
+  const [lessonError, setLessonError] = useState<string | null>(null);
 
   // Stop any in-progress read-aloud whenever the student changes lesson,
   // segment, or leaves this screen entirely -- same lingering-speech fix as
@@ -31,17 +38,48 @@ export function Story() {
   useEffect(() => {
     stopSpeaking();
     return stopSpeaking;
-  }, [view, lessonId, segmentIndex]);
+  }, [view, lesson, segmentIndex]);
+
+  function loadIndex() {
+    setIndexLoading(true);
+    setIndexError(null);
+    fetchStoryIndex()
+      .then((index) => {
+        setStoryIndex(index);
+        setIndexLoading(false);
+      })
+      .catch((err: Error) => {
+        setIndexError(err.message);
+        setIndexLoading(false);
+      });
+  }
+
+  useEffect(() => {
+    if (storyIndex) return;
+    loadIndex();
+    // Runs once on mount; retry button below re-fetches explicitly on click.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function openLesson(id: number) {
-    setLessonId(id);
     setSegmentIndex(0);
-    setView("reading");
+    setLessonError(null);
+    setLessonLoading(true);
+    fetchStoryLesson(id)
+      .then((l) => {
+        setLesson(l);
+        setLessonLoading(false);
+        setView("reading");
+      })
+      .catch((err: Error) => {
+        setLessonError(err.message);
+        setLessonLoading(false);
+      });
   }
 
   function backToPicker() {
     setView("picker");
-    setLessonId(null);
+    setLesson(null);
   }
 
   // Fires once per "我读完了 Finish Reading" tap on the story's last page
@@ -52,18 +90,18 @@ export function Story() {
   // Today's Session Summary" PDF (see state/todaySummary.ts), on top of its
   // BP award.
   function finishStory() {
-    if (lessonId === null) return;
+    if (lesson === null) return;
     awardBP(STORY_COMPLETE_BP_AWARD);
-    logAchievement({ type: "storyCompleted", detail: String(lessonId) });
-    recordTodayStoryRead(lessonId);
+    logAchievement({ type: "storyCompleted", detail: String(lesson.id) });
+    recordTodayStoryRead(lesson.id);
     Sound.applause();
     setView("complete");
   }
 
-  if (view === "reading" && lessonId !== null) {
+  if (view === "reading" && lesson !== null) {
     return (
       <StoryReader
-        lessonId={lessonId}
+        lesson={lesson}
         segmentIndex={segmentIndex}
         onSegmentChange={setSegmentIndex}
         onExit={backToPicker}
@@ -72,10 +110,10 @@ export function Story() {
     );
   }
 
-  if (view === "complete" && lessonId !== null) {
+  if (view === "complete" && lesson !== null) {
     return (
       <div className="screen story-screen">
-        <CompleteScreen title={`《${STORY_LESSONS[lessonId].title}》读完了！Story Complete!`} bpAmount={STORY_COMPLETE_BP_AWARD}>
+        <CompleteScreen title={`《${lesson.title}》读完了！Story Complete!`} bpAmount={STORY_COMPLETE_BP_AWARD}>
           <div className="action-row">
             <button className="primary-btn" onClick={backToPicker}>
               ← 返回课文列表 Back to Lessons
@@ -95,23 +133,38 @@ export function Story() {
       <p className="picker-hint">
         <span className="en">Choose a lesson to read its story.</span>
       </p>
-      <div className="lesson-grid">
-        {LESSON_IDS.map((id) => {
-          const lesson = STORY_LESSONS[id];
-          return (
-            <button key={id} className="lesson-btn" onClick={() => openLesson(id)}>
-              <div className="lesson-btn-num">{`第 ${id} 课`}</div>
-              {lesson.placeholder && <div className="lesson-btn-count">敬请期待 Coming soon</div>}
-            </button>
-          );
-        })}
-      </div>
+
+      {indexLoading && <p className="tingxie-loading">加载中... Loading...</p>}
+      {indexError && (
+        <div className="tingxie-error">
+          <p>{indexError}</p>
+          <button className="secondary-btn" onClick={loadIndex}>
+            重试 Retry
+          </button>
+        </div>
+      )}
+      {lessonError && <p className="tingxie-error-inline">{lessonError}</p>}
+      {lessonLoading && <p className="tingxie-loading">加载课文中... Loading story...</p>}
+
+      {storyIndex && (
+        <div className="lesson-grid">
+          {Array.from({ length: storyIndex.lessonCount }, (_, i) => i + 1).map((id) => {
+            const isPlaceholder = !storyIndex.written.includes(id);
+            return (
+              <button key={id} className="lesson-btn" disabled={lessonLoading} onClick={() => openLesson(id)}>
+                <div className="lesson-btn-num">{`第 ${id} 课`}</div>
+                {isPlaceholder && <div className="lesson-btn-count">敬请期待 Coming soon</div>}
+              </button>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
 
 interface StoryReaderProps {
-  lessonId: number;
+  lesson: StoryLesson;
   segmentIndex: number;
   onSegmentChange: (index: number) => void;
   onExit: () => void;
@@ -133,8 +186,7 @@ type FlipState = { direction: "next" | "prev"; phase: "out" | "in" };
 // would give React a new component type every render and force a full
 // remount, wiping segmentSpeaking/flip state each time. Same reasoning as
 // Quiz.tsx's PassageBox being defined outside Quiz().
-function StoryReader({ lessonId, segmentIndex, onSegmentChange, onExit, onFinish }: StoryReaderProps) {
-  const lesson = STORY_LESSONS[lessonId];
+function StoryReader({ lesson, segmentIndex, onSegmentChange, onExit, onFinish }: StoryReaderProps) {
   const segment = lesson.segments[segmentIndex];
   const [segmentSpeaking, setSegmentSpeaking] = useState(false);
   const [flip, setFlip] = useState<FlipState | null>(null);

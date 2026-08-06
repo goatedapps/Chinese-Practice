@@ -48,9 +48,12 @@ export interface Passage {
 export interface QuestionGroup {
   groupId: string;
   subject: string;
-  paper: string;
-  section: string;
   category: string;
+  // Computed by data/questions.ts's loader as `lessonIds.length > 0` -- not
+  // an authored field in the source YAML, since it's fully redundant with
+  // lessonIds (verified against all 357 groups before dropping it from the
+  // schema). Kept here so every existing lessonEligible call site (e.g.
+  // Practice.tsx) reads unchanged.
   lessonEligible: boolean;
   lessonIds: number[];
   passage: Passage | null;
@@ -58,6 +61,19 @@ export interface QuestionGroup {
   // reference option keys instead of repeating them via their own `options`.
   optionBank?: MCQOption[];
   questions: Question[];
+}
+
+// Lightweight per-group metadata from public/content/<level>/questions/index.yaml
+// -- everything the Practice/Today's Mission/Special Quest pickers need to
+// compute lesson counts and category/subject availability, without fetching
+// every category's full passage/question/answer content up front. See
+// data/questions.ts's fetchQuestionIndex()/fetchQuestionCategory().
+export interface QuestionIndexEntry {
+  groupId: string;
+  subject: string;
+  category: string;
+  lessonIds: number[];
+  questionCount: number;
 }
 
 export interface GroupResultItem {
@@ -113,20 +129,12 @@ export interface ShopItem {
   mood: number;
 }
 
-export interface PurchaseHistoryEntry {
-  itemId: string;
-  cost: number;
-  ts: number;
-}
-
 export interface PetState {
   name: string;
   bp: number;
-  bpLifetime: number;
   growth: number;
   moodAtCheckpoint: number;
   lastFedAt: number;
-  purchaseHistory: PurchaseHistoryEntry[];
   // Items bought in the Shop land here first, keyed by ShopItem id; the
   // student opens the Bag and chooses when to give each one to the owl.
   inventory: Record<string, number>;
@@ -137,7 +145,12 @@ export interface PetState {
 
 export type MoodBucket = "sad" | "neutral" | "happy" | "very_happy";
 
-export type AchievementType = "missionComplete" | "questionsMilestone" | "storyCompleted" | "specialQuestComplete";
+export type AchievementType = "missionComplete" | "questionsMilestone" | "storyCompleted" | "specialQuestComplete" | "tingxieCompleted";
+
+// Tingxie's 4 award sites (Learn's two sub-activities are awarded/logged
+// separately -- see CLAUDE.md's Tingxie BP bullet), matching
+// TingxieActiveContent.title + which one just finished.
+export type TingxieCompletedActivity = "learnVocab" | "learnSentence" | "apply" | "test";
 
 export interface Achievement {
   id: string;
@@ -146,38 +159,43 @@ export interface Achievement {
   // questionsMilestone -> the milestone number as a string (e.g. "300");
   // storyCompleted -> the lesson number as a string (e.g. "5");
   // specialQuestComplete -> the completed SpecialQuestConfig.id (e.g. "petFull");
+  // tingxieCompleted -> `${lessonTitle}|${TingxieCompletedActivity}`, e.g.
+  //   "第一课 (Lesson 1)|apply" -- see RecentAchievements.tsx's describe().
   // missionComplete -> unused.
   detail?: string;
 }
 
-// ---- Tingxie (听写) dictation-practice mode -- shared JSON-shape interfaces
-// matching public/tingxie-lessons/<id>.json 1:1. See CLAUDE.md's Tingxie
-// section for how these are used.
+// ---- Tingxie (听写) dictation-practice mode -- shared shape interfaces
+// matching public/content/<level>/tingxie/<id>.yaml 1:1. See CLAUDE.md's
+// Tingxie section for how these are used.
+export interface TingxieSentenceBankEntry {
+  zh: string;
+  en: string;
+}
+
 export interface TingxieVocabItem {
   word: string;
   pinyin: string;
   meaning: string;
   example: string;
+  // Extra example sentences used by the Apply activity's blank-fill exercise
+  // -- absent for a word with none. Nested here (rather than a separate
+  // top-level sentenceBank map keyed by word) since every word's bank
+  // entries only ever apply to that same word -- see CLAUDE.md.
+  sentenceBank?: TingxieSentenceBankEntry[];
 }
 
 export interface TingxieSentence {
   text: string;
   segments: string[];
   icon: string; // Lucide icon name -- mapped to an emoji via tingxieIconEmoji()
-  color: string; // Tailwind text-color class from the source data -- intentionally never read
   description: string;
-}
-
-export interface TingxieSentenceBankEntry {
-  zh: string;
-  en: string;
 }
 
 export interface TingxieLesson {
   title: string;
   vocab: TingxieVocabItem[];
   sentences: TingxieSentence[];
-  sentenceBank: Record<string, TingxieSentenceBankEntry[]>;
 }
 
 export interface TingxieLessonIndexEntry {

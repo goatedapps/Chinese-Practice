@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, type ReactNode, type Dispatch } from "react";
-import type { QuestionGroup, GroupResult, GroupResultItem } from "../data/types";
-import { CATEGORY_SUBJECTS, VOCABULARY_CATEGORY_KEYS } from "../data/questions";
+import type { QuestionGroup, GroupResult, GroupResultItem, QuestionIndexEntry } from "../data/types";
+import { VOCABULARY_CATEGORY_KEYS } from "../data/questions";
 
 export type Screen =
   | "home"
@@ -34,6 +34,17 @@ export interface AppState {
   // START_PLAY, read by components/Play/PlayGame.tsx. Left stale after
   // leaving "play" (harmless, only ever read while screen === "play").
   playingItemId: string | null;
+  // Question-bank metadata, fetched once at app bootstrap (see App.tsx's
+  // ScreenRouter) and never refetched -- lives here rather than a separate
+  // Context because SELECT_SUBJECT below needs categorySubjects
+  // *synchronously inside the reducer*, which only has access to this state,
+  // not React Context. questionIndexLoaded gates ScreenRouter's render until
+  // the fetch resolves; RESET_TO_HOME preserves all four so navigating home
+  // doesn't re-trigger the bootstrap fetch.
+  questionIndex: QuestionIndexEntry[];
+  categorySubjects: Record<string, Set<string>>;
+  lessonCount: number;
+  questionIndexLoaded: boolean;
 }
 
 const initialState: AppState = {
@@ -47,13 +58,18 @@ const initialState: AppState = {
   selectedSubject: "All",
   selectedCategories: new Set(),
   selectedLessons: new Set(),
-  playingItemId: null
+  playingItemId: null,
+  questionIndex: [],
+  categorySubjects: {},
+  lessonCount: 0,
+  questionIndexLoaded: false
 };
 
 export type AppAction =
   | { type: "GO_TO_SCREEN"; screen: Screen }
   | { type: "START_QUIZ"; mode: "lesson" | "type"; modeLabel: string; groups: QuestionGroup[] }
   | { type: "SELECT_SUBJECT"; subject: string }
+  | { type: "SET_QUESTION_INDEX"; index: QuestionIndexEntry[]; categorySubjects: Record<string, Set<string>>; lessonCount: number }
   | { type: "TOGGLE_CATEGORY"; key: string }
   | { type: "TOGGLE_CATEGORY_GROUP"; keys: string[] }
   | { type: "SET_CATEGORIES"; keys: string[] }
@@ -97,7 +113,7 @@ function reducer(state: AppState, action: AppAction): AppState {
       const next =
         action.subject === "All"
           ? state.selectedCategories
-          : new Set([...state.selectedCategories].filter((k) => CATEGORY_SUBJECTS[k]?.has(action.subject)));
+          : new Set([...state.selectedCategories].filter((k) => state.categorySubjects[k]?.has(action.subject)));
       return {
         ...state,
         selectedSubject: action.subject,
@@ -105,6 +121,14 @@ function reducer(state: AppState, action: AppAction): AppState {
         selectedLessons: vocabRetained(next) ? state.selectedLessons : new Set()
       };
     }
+    case "SET_QUESTION_INDEX":
+      return {
+        ...state,
+        questionIndex: action.index,
+        categorySubjects: action.categorySubjects,
+        lessonCount: action.lessonCount,
+        questionIndexLoaded: true
+      };
     case "TOGGLE_CATEGORY": {
       const next = new Set(state.selectedCategories);
       if (next.has(action.key)) next.delete(action.key);
@@ -165,7 +189,14 @@ function reducer(state: AppState, action: AppAction): AppState {
         ...initialState,
         selectedSubject: state.selectedSubject,
         selectedCategories: state.selectedCategories,
-        selectedLessons: state.selectedLessons
+        selectedLessons: state.selectedLessons,
+        // Bootstrap-loaded question-bank metadata survives a reset too --
+        // otherwise every "back to home" click would wipe it and re-trigger
+        // App.tsx's bootstrap fetch (and its loading flash) needlessly.
+        questionIndex: state.questionIndex,
+        categorySubjects: state.categorySubjects,
+        lessonCount: state.lessonCount,
+        questionIndexLoaded: state.questionIndexLoaded
       };
     case "START_PLAY":
       return { ...state, screen: "play", playingItemId: action.itemId };

@@ -202,11 +202,9 @@ export function specialQuestConfig(id: string): SpecialQuestConfig | undefined {
 export const PET_DEFAULT_STATE: PetState = {
   name: "",
   bp: 0,
-  bpLifetime: 0,
   growth: 0,
   moodAtCheckpoint: 100,
   lastFedAt: Date.now(),
-  purchaseHistory: [],
   inventory: {},
   questionsLifetime: 0
 };
@@ -216,21 +214,16 @@ export function owlSpritePath(stageKey: string, mood: MoodBucket): string {
   return `/owl/owl-${stageKey}-${mood}.png`;
 }
 
-// Stage x mood combos that have a hand-animated video (with its sound
-// effect muxed in as the video's own audio track) instead of just a static
-// PNG -- "egg-very_happy", "baby-very_happy", "egg-sad", and "egg-neutral"
-// so far, with more of the 24 combos to follow. Source art is authored as
-// GIF but shipped as MP4 (H.264+AAC) -- far smaller than GIF at the same
-// visual quality, and plays natively via <video playsInline> (see
-// OwlArt.tsx). Note "egg-sad"/"egg-neutral" have no PNG fallback anymore
-// (the source PNGs were removed when the video replaced them) -- unlike
-// "egg-very_happy"/"baby-very_happy", which still keep their PNG around.
-const ANIMATED_OWL_VARIANTS = new Set<string>(["egg-very_happy", "baby-very_happy", "egg-sad", "egg-neutral"]);
-
-export function hasOwlAnimation(stageKey: string, mood: MoodBucket): boolean {
-  return ANIMATED_OWL_VARIANTS.has(`${stageKey}-${mood}`);
-}
-
+// Some stage x mood combos have a hand-animated video (with its sound effect
+// muxed in as the video's own audio track) instead of just a static PNG --
+// which combos do isn't tracked here as a hardcoded list any more. OwlArt.tsx
+// always tries the .mp4 first and falls back to the .png only if the video
+// fails to load (404/decode error) -- see that component. Source art is
+// authored as GIF but shipped as MP4 (H.264+AAC) -- far smaller than GIF at
+// the same visual quality, and plays natively via <video playsInline>. A
+// variant with only a video and no PNG fallback (its source PNG removed when
+// the video replaced it) works fine too, since the fallback `<img>` is only
+// ever rendered after a genuine video load failure.
 export function owlAnimatedSpritePath(stageKey: string, mood: MoodBucket): string {
   return `/owl/owl-${stageKey}-${mood}.mp4`;
 }

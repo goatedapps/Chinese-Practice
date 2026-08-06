@@ -1,7 +1,8 @@
 import type { QuestionGroup, GroupResult, Question, GroupResultItem, HistoryEntry } from "../data/types";
 import { correctOptionFor } from "./grading";
 import { getTodaySummary, type TodayTingxieWrong } from "../state/todaySummary";
-import { getTodayStats, isTingxieMissionComplete } from "./stats";
+import { getTodayStats, isTingxieMissionComplete, dateKey } from "./stats";
+import { loadAchievements, parseTingxieCompletedDetail } from "../state/achievements";
 
 function escapeHtml(s: string): string {
   return s
@@ -201,18 +202,55 @@ export function exportSessionToPdf(groups: QuestionGroup[], results: GroupResult
   openPrintWindow(html);
 }
 
+// Today's Tingxie completions (lesson + which activity -- Learn/Apply/Test),
+// sourced from the same "tingxieCompleted" achievements RecentAchievements.tsx
+// reads on the Home dashboard (state/achievements.ts), filtered to today and
+// sorted oldest-first to read as a log of the day's activity. Kept separate
+// from wrongTableHtml() below, which continues to list only the self-graded
+// misses (state/todaySummary.ts) -- completions and mistakes are two
+// different stores, both still surfaced in this PDF.
+function tingxieCompletionsTableHtml(): string {
+  const today = dateKey(Date.now());
+  const rows = loadAchievements()
+    .filter((a) => a.type === "tingxieCompleted" && dateKey(a.date) === today)
+    .sort((a, b) => a.date - b.date);
+  if (rows.length === 0) return "";
+  const body = rows
+    .map((a) => {
+      const { lessonTitle, activityLabel } = parseTingxieCompletedDetail(a.detail);
+      const time = new Date(a.date).toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit" });
+      return `<tr><td>${escapeHtml(lessonTitle)}</td><td>${escapeHtml(activityLabel.zh)} ${escapeHtml(activityLabel.en)}</td><td>${time}</td></tr>`;
+    })
+    .join("");
+  return `
+    <table class="wrong-table">
+      <caption style="text-align:left; font-size:13px; font-weight:bold; margin-bottom:6px;">听写练习 - 已完成 Dictation - Completed</caption>
+      <thead><tr><th>课文 Lesson</th><th>活动 Activity</th><th>时间 Time</th></tr></thead>
+      <tbody>${body}</tbody>
+    </table>
+  `;
+}
+
+// TodayTingxieWrong.activity's stored codes ("apply"/"practice" -- the
+// latter predates the Tingxie tab's "Test" rename, see CLAUDE.md's Tingxie
+// section) mapped to the label actually shown in the app today.
+const WRONG_ACTIVITY_LABEL: Record<TodayTingxieWrong["activity"], string> = {
+  apply: "词语应用 Apply",
+  practice: "听写测试 Test"
+};
+
 function wrongTableHtml(title: string, rows: TodayTingxieWrong[]): string {
   if (rows.length === 0) return "";
   const body = rows
     .map(
       (w) =>
-        `<tr><td>${escapeHtml(w.lessonTitle)}</td><td>${escapeHtml(w.prompt)}</td><td>${escapeHtml(w.answer)}</td></tr>`
+        `<tr><td>${escapeHtml(w.lessonTitle)}</td><td>${escapeHtml(WRONG_ACTIVITY_LABEL[w.activity])}</td><td>${escapeHtml(w.prompt)}</td><td>${escapeHtml(w.answer)}</td></tr>`
     )
     .join("");
   return `
     <table class="wrong-table">
       <caption style="text-align:left; font-size:13px; font-weight:bold; margin-bottom:6px;">${escapeHtml(title)}</caption>
-      <thead><tr><th>课文 Lesson</th><th>题目 Prompt</th><th>正确答案 Answer</th></tr></thead>
+      <thead><tr><th>课文 Lesson</th><th>活动 Activity</th><th>题目 Prompt</th><th>正确答案 Answer</th></tr></thead>
       <tbody>${body}</tbody>
     </table>
   `;
@@ -220,15 +258,20 @@ function wrongTableHtml(title: string, rows: TodayTingxieWrong[]): string {
 
 // Aggregates everything the student did today -- across every Practice
 // session (full question/answer detail, same rendering as a single session's
-// export) plus every Tingxie word/sentence self-graded "wrong" today (prompt
-// + correct answer only, not a full transcript -- see state/todaySummary.ts)
-// -- into one print/Save-as-PDF page. hist is passed in (not read internally)
-// so this stays consistent with whatever the caller (Home.tsx) already has
-// loaded, same pattern as ProgressSummary/RecentAchievements used to use.
+// export), every Tingxie lesson+activity completed today (lesson + which of
+// Learn/Apply/Test, same "tingxieCompleted" achievements RecentAchievements.tsx
+// shows on the Home dashboard), and every Tingxie word/sentence self-graded
+// "wrong" today (prompt + correct answer only, not a full transcript -- see
+// state/todaySummary.ts) -- into one print/Save-as-PDF page. hist is passed
+// in (not read internally) so this stays consistent with whatever the caller
+// (Home.tsx) already has loaded, same pattern as ProgressSummary/
+// RecentAchievements used to use.
 export function exportTodaySummaryToPdf(hist: HistoryEntry[]): void {
   const { practiceSessions, tingxieWrong, storiesRead } = getTodaySummary();
   const today = getTodayStats(hist);
   const tingxieDone = isTingxieMissionComplete();
+  const todayKey = dateKey(Date.now());
+  const tingxieCompletedTodayCount = loadAchievements().filter((a) => a.type === "tingxieCompleted" && dateKey(a.date) === todayKey).length;
   // Just the lesson numbers, deduped + sorted -- not a full transcript, per
   // the "just indicate lesson number" scope of this summary line.
   const storyLessonIds = [...new Set(storiesRead.map((s) => s.lessonId))].sort((a, b) => a - b);
@@ -240,6 +283,7 @@ export function exportTodaySummaryToPdf(hist: HistoryEntry[]): void {
     })
     .join("");
 
+  const completionsHtml = tingxieCompletionsTableHtml();
   const wrongHtml = wrongTableHtml("听写练习 - 需要加强 Tingxie - Needs Improvement", tingxieWrong);
 
   const html = `<!doctype html>
@@ -254,10 +298,11 @@ export function exportTodaySummaryToPdf(hist: HistoryEntry[]): void {
   <div class="meta">${escapeHtml(new Date().toLocaleDateString("zh-CN"))}</div>
   <div class="summary">
     <div class="summary-line">📘 练习 Practice: ${today.questions} 题，正确率 ${today.accuracy}%（共 ${practiceSessions.length} 次 sessions）</div>
-    <div class="summary-line">🔊 听写练习 Dictation Practice: ${tingxieDone ? "已完成 Completed" : "未完成 Not done today"}</div>
+    <div class="summary-line">🔊 听写练习 Dictation Practice: ${tingxieDone ? `已完成 Completed（共 ${tingxieCompletedTodayCount} 项活动 ${tingxieCompletedTodayCount} activities）` : "未完成 Not done today"}</div>
     <div class="summary-line">📖 读故事 Read a Story: ${storyLessonIds.length > 0 ? `第 ${storyLessonIds.join("、")} 课 Lesson${storyLessonIds.length > 1 ? "s" : ""} ${storyLessonIds.join(", ")}` : "今天还没有阅读 Not read today"}</div>
   </div>
   ${sessionsHtml || `<p>今天还没有练习记录。No practice sessions yet today.</p>`}
+  ${completionsHtml}
   ${wrongHtml}
 </body>
 </html>`;

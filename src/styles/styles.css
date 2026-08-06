@@ -300,46 +300,55 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .today-mission .section-heading { margin-bottom: 4px; color: var(--accent-purple-dark); }
 .mission-subhead { color: var(--ink-soft); font-size: 13px; margin: 0 0 16px; }
 .mission-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+/* Each card is two stacked containers: .mission-card-top (icon over its own
+   background image -- dictation-bg.png/read-bg.png/practice-bg.png, see
+   TodayMission.tsx) and .mission-card-bottom (the text label). Replaced an
+   earlier one-container layout (icon, label, and a tick all stacked with
+   uniform padding, no per-mission background image, tick anchored at the
+   bottom) -- don't reintroduce that shape. */
 .mission-card {
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  display: flex; flex-direction: column;
   background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
   border: 2px solid transparent; border-radius: 20px;
-  padding: 16px 8px 12px; cursor: pointer; text-align: center; font-family: inherit; color: inherit;
+  padding: 0; cursor: pointer; text-align: center; font-family: inherit; color: inherit;
   box-shadow: var(--shadow-1);
+  overflow: hidden; /* clips mission-card-top's background image to the rounded corners */
   transition: transform .15s ease, box-shadow .15s ease;
 }
 .mission-card:hover { transform: translateY(-2px) scale(1.015); box-shadow: var(--shadow-2); }
 .mission-card:active { transform: scale(.97); box-shadow: var(--shadow-press); }
-/* Home color scheme: each of the 3 missions gets its own pale tint (purple
-   for Revise a Lesson, mint for Reading Practice, peach for Dictation
-   Practice) instead of the neutral card background -- fixed to each
-   mission's position (always the same 3 missions in the same order), not a
-   generic rotating "make it colorful" cycle. */
-.mission-card:nth-of-type(1) { background: linear-gradient(180deg, #fff, var(--accent-purple-bg)); }
-.mission-card:nth-of-type(2) { background: linear-gradient(180deg, #fff, var(--accent-mint-bg)); }
-.mission-card:nth-of-type(3) { background: linear-gradient(180deg, #fff, var(--accent-orange-bg)); }
 .mission-card-done { border-color: var(--correct); }
-.mission-card-icon { width: 38px; height: 38px; object-fit: contain; }
-.mission-card-icon-emoji { font-size: 32px; line-height: 1; display: block; }
-.mission-card-name { font-weight: 700; font-size: 13.5px; line-height: 1.3; }
-.mission-card-tick-slot { height: 20px; display: flex; align-items: center; justify-content: center; }
-.mission-card-tick {
-  width: 18px; height: 18px; border-radius: 999px;
-  background: var(--correct); color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700; box-shadow: var(--shadow-1);
+.mission-card-top {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 4 / 3; padding: 6px;
+  background-size: cover; background-position: center;
 }
+/* Sized relative to .mission-card-top (not a fixed px) so the icon reads as
+   the dominant thing in the container rather than a small badge floating on
+   the background -- object-fit keeps each icon's own aspect ratio intact. */
+.mission-card-icon { width: 78%; height: 78%; object-fit: contain; }
+.mission-card-bottom { padding: 10px 6px 12px; }
+.mission-card-name { font-weight: 700; font-size: 13.5px; line-height: 1.3; }
+/* Top-right status badge -- a green tick once the mission is done today,
+   otherwise a "›" chevron (same "this leads you onward" affordance as
+   Continue Learning's row arrows) inviting the student to start it. */
+.mission-card-badge {
+  position: absolute; top: 8px; right: 8px;
+  width: 22px; height: 22px; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; box-shadow: var(--shadow-1);
+}
+.mission-card-badge-done { background: var(--correct); color: #fff; }
+.mission-card-badge-todo { background: rgba(255,255,255,.92); color: var(--ink-soft); }
 .mission-bonus-banner {
   margin-top: 14px; padding: 14px 18px; border-radius: 20px;
   background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
   border: 2px solid var(--gold); color: var(--gold-deep); font-weight: 700; text-align: center;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .mission-card-icon, .mission-card-icon-emoji { animation: clay-icon-bob 2.4s ease-in-out infinite; }
-  .mission-grid .mission-card:nth-of-type(2) .mission-card-icon,
-  .mission-grid .mission-card:nth-of-type(2) .mission-card-icon-emoji { animation-delay: .3s; }
-  .mission-grid .mission-card:nth-of-type(3) .mission-card-icon,
-  .mission-grid .mission-card:nth-of-type(3) .mission-card-icon-emoji { animation-delay: .6s; }
+  .mission-card-icon { animation: clay-icon-bob 2.4s ease-in-out infinite; }
+  .mission-grid .mission-card:nth-of-type(2) .mission-card-icon { animation-delay: .3s; }
+  .mission-grid .mission-card:nth-of-type(3) .mission-card-icon { animation-delay: .6s; }
 }
 @keyframes clay-icon-bob {
   0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -357,12 +366,12 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .special-quest { padding: 22px; text-align: center; }
 .special-quest .section-heading { color: var(--accent-pink-dark); }
 .quest-wheel-wrap { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-.quest-wheel-frame { position: relative; width: 240px; height: 240px; margin: 4px auto 0; }
+.quest-wheel-frame { position: relative; width: 312px; height: 312px; margin: 4px auto 0; }
 .quest-wheel-pointer {
-  position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+  position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
   width: 0; height: 0; z-index: 2;
-  border-left: 12px solid transparent; border-right: 12px solid transparent;
-  border-top: 20px solid var(--primary-dark);
+  border-left: 16px solid transparent; border-right: 16px solid transparent;
+  border-top: 26px solid var(--primary-dark);
   filter: drop-shadow(0 2px 2px rgba(var(--ink-rgb), .25));
 }
 .quest-wheel-dial {
@@ -382,8 +391,8 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 .quest-wheel-slot { position: absolute; top: 50%; left: 50%; }
 .quest-wheel-icon {
-  display: inline-block; width: 32px; height: 32px; object-fit: contain;
-  font-size: 30px; line-height: 1;
+  display: inline-block; width: 42px; height: 42px; object-fit: contain;
+  font-size: 39px; line-height: 1;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .25));
 }
 /* Sibling of .quest-wheel-dial (not nested inside it) so it stays fixed and
@@ -391,10 +400,10 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .quest-wheel-spin-btn {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
   z-index: 3;
-  width: 76px; height: 76px; border-radius: 50%;
+  width: 99px; height: 99px; border-radius: 50%;
   border: 4px solid var(--card-hi);
   background: linear-gradient(155deg, var(--primary-hi), var(--primary) 60%, var(--primary-dark));
-  color: #fff8ee; font-weight: 700; font-size: 15px; letter-spacing: .02em;
+  color: #fff8ee; font-weight: 700; font-size: 19px; letter-spacing: .02em;
   cursor: pointer;
   box-shadow: var(--shadow-2);
   transition: transform .15s ease, box-shadow .15s ease;
@@ -495,6 +504,18 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .lesson-btn-count { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
 .lesson-grid-disabled { opacity: .55; }
 .picker-hint { font-size: 13px; font-weight: 400; color: var(--ink-soft); }
+
+/* Explains what actually completes a Today's Mission -- shown near the top
+   of the screen a mission's button lands on (Practice.tsx, Tingxie's
+   LessonSelect.tsx), only while that mission isn't done yet today. */
+.mission-hint-box {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border: 2px solid var(--gold); border-radius: 18px;
+  padding: 12px 16px; margin: 0 0 18px;
+  font-size: 15px; color: var(--ink); box-shadow: var(--shadow-1);
+}
+.mission-hint-box .mission-hint-icon { font-size: 20px; line-height: 1; flex-shrink: 0; }
 
 .subject-row { display: flex; align-items: center; gap: 8px; margin: 10px 0 18px; flex-wrap: wrap; }
 .field-label { font-size: 15px; color: var(--ink-soft); margin-right: 4px; }
@@ -1151,6 +1172,17 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   max-width: 340px; margin: 14px auto 0; padding: 10px 16px; border-radius: 16px;
   background: linear-gradient(180deg, var(--accent-pink-hi), var(--accent-pink));
   color: #fff; font-weight: 700; font-size: 14px;
+}
+/* Unlike the Quiz screen's per-question +BP popups (meant to be transient,
+   many appear over a session), these three banners are a one-time "you
+   completed something" confirmation -- the BP earned should stay legible
+   on screen instead of fading to invisible via .bp-pop's default animation
+   after 1.1s, same reasoning as .complete-screen's override below. */
+.quest-bonus-banner .bp-pop,
+.quest-assigned-bonus .bp-pop,
+.mission-bonus-banner .bp-pop {
+  animation: none;
+  opacity: 1;
 }
 .quest-bonus-banner .bp-pop { color: #fff; }
 
