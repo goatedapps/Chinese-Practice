@@ -117,7 +117,7 @@ export function SpecialQuest() {
                   <div
                     key={q.id}
                     className="quest-wheel-slot"
-                    style={{ transform: `translate(-50%, -50%) rotate(${angle}deg) translate(0, -120px)` }}
+                    style={{ transform: `translate(-50%, -50%) rotate(${angle}deg) translate(0, calc(var(--wheel-radius) * -1))` }}
                   >
                     <QuestIcon icon={q.icon} className="quest-wheel-icon" />
                   </div>

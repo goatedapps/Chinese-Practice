@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
-import { loadHistory, clearAllHistory, deleteHistoryEntry } from "../../state/history";
-import { loadAchievements, clearAllAchievements } from "../../state/achievements";
+import { loadHistory, deleteHistoryEntry } from "../../state/history";
+import { loadAchievements } from "../../state/achievements";
 import { getTodayStats, isTingxieMissionComplete } from "../../lib/stats";
 import { getTodaySummary } from "../../state/todaySummary";
 import { exportTodaySummaryToPdf } from "../../lib/exportPdf";
@@ -11,31 +11,19 @@ import { TodayMission } from "./TodayMission";
 import { SpecialQuest } from "./SpecialQuest";
 import { RecentAchievements } from "./RecentAchievements";
 
-type PendingHistoryAction = { type: "clear" } | { type: "delete"; id: string };
-
 export function Home() {
   const dispatch = useAppDispatch();
   const [hist, setHist] = useState(() => loadHistory());
-  const [achievements, setAchievements] = useState(() => loadAchievements());
-  const [pending, setPending] = useState<PendingHistoryAction | null>(null);
+  const [achievements] = useState(() => loadAchievements());
+  const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
   const todayStats = getTodayStats(hist);
   const showTodaySummary = todayStats.questions > 0 || isTingxieMissionComplete() || getTodaySummary().storiesRead.length > 0;
 
   function handleConfirm() {
-    if (!pending) return;
-    if (pending.type === "clear") {
-      // "Clear All" clears the whole merged feed shown by RecentAchievements
-      // (session history + the achievement log), not just history -- clearing
-      // only history used to leave achievement rows (e.g. "All missions
-      // complete today") still visible afterward, which looked broken.
-      clearAllHistory();
-      clearAllAchievements();
-      setAchievements(loadAchievements());
-    } else {
-      deleteHistoryEntry(pending.id);
-    }
+    if (!pendingDeleteId) return;
+    deleteHistoryEntry(pendingDeleteId);
     setHist(loadHistory());
-    setPending(null);
+    setPendingDeleteId(null);
   }
 
   return (
@@ -88,22 +76,13 @@ export function Home() {
         </div>
       )}
 
-      <RecentAchievements
-        hist={hist}
-        achievements={achievements}
-        onDeleteRow={(id) => setPending({ type: "delete", id })}
-        onClearAll={() => setPending({ type: "clear" })}
-      />
+      <RecentAchievements hist={hist} achievements={achievements} onDeleteRow={setPendingDeleteId} />
 
-      {pending && (
+      {pendingDeleteId && (
         <ConfirmModal
-          messageLines={
-            pending.type === "clear"
-              ? ["确定要清除全部练习记录和成就吗？此操作无法撤销。", "Clear all practice history and achievements? This cannot be undone."]
-              : ["确定要删除这条记录吗？", "Delete this session record?"]
-          }
+          messageLines={["确定要删除这条记录吗？", "Delete this session record?"]}
           onConfirm={handleConfirm}
-          onCancel={() => setPending(null)}
+          onCancel={() => setPendingDeleteId(null)}
         />
       )}
     </div>

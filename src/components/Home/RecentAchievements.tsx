@@ -36,18 +36,16 @@ type FeedRow =
   | { kind: "achievement"; id: string; date: number; icon: string; text: string; en?: string }
   | { kind: "session"; id: string; date: number; modeLabel: string; correctItems: number; totalItems: number };
 
-const MAX_ROWS = 8;
+const MAX_ROWS = 5;
 
 export function RecentAchievements({
   hist,
   achievements,
-  onDeleteRow,
-  onClearAll
+  onDeleteRow
 }: {
   hist: HistoryEntry[];
   achievements: Achievement[];
   onDeleteRow: (id: string) => void;
-  onClearAll: () => void;
 }) {
   const achievementRows: FeedRow[] = achievements
     // Defensive filter: pre-existing "fed"/"evolved" entries from before
@@ -83,11 +81,6 @@ export function RecentAchievements({
     <div className="dash-card recent-achievements">
       <div className="history-head">
         <h2 className="section-heading">最近成就 Recent Achievements</h2>
-        {rows.length > 0 && (
-          <button className="history-clear-btn" onClick={onClearAll}>
-            🗑 清除全部 Clear All
-          </button>
-        )}
       </div>
       <div className="achievement-list">
         {rows.map((row) =>

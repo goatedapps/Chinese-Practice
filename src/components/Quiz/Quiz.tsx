@@ -126,10 +126,7 @@ export function Quiz() {
   return (
     <div className="screen quiz">
       <div className="quiz-topbar">
-        <div className="quiz-progress">
-          {`第 ${state.groupIndex + 1} / ${state.groups.length} 组`}
-          <span className="quiz-mode-label">{state.modeLabel}</span>
-        </div>
+        <div className="quiz-progress">{`第 ${state.groupIndex + 1} / ${state.groups.length} 组`}</div>
         <div className="quiz-bp-badge">💡 {pet.bp} BP</div>
         <button className="home-btn" onClick={handleHomeClick}>
           🏠 返回主页 Home

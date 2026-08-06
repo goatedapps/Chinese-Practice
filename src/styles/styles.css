@@ -366,7 +366,16 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .special-quest { padding: 22px; text-align: center; }
 .special-quest .section-heading { color: var(--accent-pink-dark); }
 .quest-wheel-wrap { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-.quest-wheel-frame { position: relative; width: 312px; height: 312px; margin: 4px auto 0; }
+/* --wheel-size caps at 312px but shrinks to the card's actual available
+   width on narrow/mobile screens (min(…, 100%), same pattern as
+   .pet-hero-art-col) -- --wheel-radius drives the icon slots' radial
+   placement (see the inline transform in SpecialQuest.tsx) so they scale
+   down with the dial instead of spilling past its shrunk edge. */
+.quest-wheel-frame {
+  --wheel-size: min(312px, 100%);
+  --wheel-radius: calc(var(--wheel-size) * 0.3846);
+  position: relative; width: var(--wheel-size); aspect-ratio: 1; margin: 4px auto 0;
+}
 .quest-wheel-pointer {
   position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
   width: 0; height: 0; z-index: 2;
@@ -461,13 +470,8 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.history-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.history-head { margin-bottom: 14px; }
 .history-head .section-heading { margin: 0; }
-.history-clear-btn {
-  background: none; border: none; color: var(--skipped); font-size: 14px;
-  cursor: pointer; padding: 4px 0; white-space: nowrap;
-}
-.history-clear-btn:hover { color: var(--incorrect); }
 .history-row-delete {
   background: none; border: none; color: var(--skipped); font-size: 15px;
   cursor: pointer; padding: 2px 6px; border-radius: 6px; line-height: 1;
@@ -581,7 +585,6 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   display: flex; flex-direction: column; gap: 2px;
   font-size: 15px; color: var(--ink-soft);
 }
-.quiz-mode-label { font-style: italic; }
 .home-btn {
   background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
   border: 2px solid var(--border); border-radius: 999px;

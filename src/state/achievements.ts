@@ -34,15 +34,6 @@ export function loadAchievements(): Achievement[] {
   return loadJSON<Achievement[]>(ACHIEVEMENTS_KEY, []);
 }
 
-// Wipes the achievement log -- paired with history.ts's clearAllHistory() by
-// Home.tsx's "Clear All" button on the merged RecentAchievements feed, since
-// that feed shows both sources merged into one list; clearing only history
-// used to leave achievement rows (e.g. "今日任务全部完成 All missions
-// complete today") still visible afterward, which looked like the button
-// didn't work.
-export function clearAllAchievements(): void {
-  localStorage.removeItem(ACHIEVEMENTS_KEY);
-}
 
 // Dedup rules:
 //  - "missionComplete" recurs once per calendar day.
