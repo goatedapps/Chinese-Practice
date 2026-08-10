@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 import { supabase } from "../lib/supabase";
 import { setSyncUser } from "../lib/sync";
 import { normalizeUsername, isValidUsername, usernameToEmail, emailToUsername } from "../lib/username";
+import { loadJSON, saveJSON } from "../lib/storage";
 
 export type AuthStatus = "loading" | "signedOut" | "signedIn";
 
@@ -13,25 +14,33 @@ export interface AuthUser {
 interface AuthContextValue {
   status: AuthStatus;
   user: AuthUser | null;
+  // True once the student has explicitly chosen to skip login (Auth.tsx's
+  // "Continue as Guest") -- persisted so the App.tsx login gate (see below)
+  // never re-nags a device that's already made this choice. Independent of
+  // `status`/sign-out: once set, it stays set for this device.
+  isGuest: boolean;
   signUp: (username: string, password: string) => Promise<{ error?: string }>;
   signIn: (username: string, password: string) => Promise<{ error?: string }>;
   signOut: () => Promise<void>;
+  continueAsGuest: () => void;
 }
 
-const USERNAME_ERROR = "用户名需为 3-20 位英文字母、数字、下划线或短横线 Username must be 3-20 letters, numbers, _ or -";
+const USERNAME_ERROR = "Username must be 3-20 letters, numbers, _ or -";
+const GUEST_MODE_KEY = "hanyuPracticeGuestMode_v1";
 
 const AuthCtx = createContext<AuthContextValue | null>(null);
 
-// Login is entirely optional and resolves in the background -- nothing in
-// App.tsx blocks rendering on `status === "loading"` (unlike the question-
-// index bootstrap gate), since local data already renders instantly
-// regardless of auth state. This context only ever decides whether
-// state/SyncBootstrap.tsx has something to reconcile in the background.
+// Login resolves in the background and never blocks *this* provider's own
+// render -- but App.tsx's ScreenRouter DOES wait for `status` to leave
+// "loading" before deciding whether to show the forced login gate (see
+// App.tsx), so a signed-in student on a fresh page load doesn't flash the
+// login screen before their session is confirmed.
 export function AuthProvider({ children }: { children: ReactNode }) {
   // No Supabase configured (see lib/supabase.ts) -- stay permanently
   // signed-out, never even attempt a session lookup.
   const [status, setStatus] = useState<AuthStatus>(supabase ? "loading" : "signedOut");
   const [user, setUser] = useState<AuthUser | null>(null);
+  const [isGuest, setIsGuest] = useState<boolean>(() => loadJSON(GUEST_MODE_KEY, false));
 
   useEffect(() => {
     if (!supabase) return;
@@ -55,33 +64,43 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   async function signUp(username: string, password: string): Promise<{ error?: string }> {
-    if (!supabase) return { error: "登录暂未配置 Login isn't configured yet" };
+    if (!supabase) return { error: "Login isn't configured yet" };
     const normalized = normalizeUsername(username);
     if (!isValidUsername(normalized)) return { error: USERNAME_ERROR };
     const { error } = await supabase.auth.signUp({ email: usernameToEmail(normalized), password });
     // Supabase's generic "already registered" error text talks about email --
     // reword so it makes sense in a username-only UI.
-    if (error?.message.toLowerCase().includes("already registered")) return { error: "用户名已被使用 Username is already taken" };
+    if (error?.message.toLowerCase().includes("already registered")) return { error: "Username is already taken" };
     return error ? { error: error.message } : {};
   }
 
   async function signIn(username: string, password: string): Promise<{ error?: string }> {
-    if (!supabase) return { error: "登录暂未配置 Login isn't configured yet" };
+    if (!supabase) return { error: "Login isn't configured yet" };
     const normalized = normalizeUsername(username);
     if (!isValidUsername(normalized)) return { error: USERNAME_ERROR };
     const { error } = await supabase.auth.signInWithPassword({ email: usernameToEmail(normalized), password });
-    return error ? { error: "用户名或密码不正确 Incorrect username or password" } : {};
+    return error ? { error: "Incorrect username or password" } : {};
   }
 
   async function signOut(): Promise<void> {
     // Deliberately does not touch localStorage -- signing out only stops
     // future syncing, the device's own local progress stays fully usable
-    // (see CLAUDE.md's Auth / cross-device sync section).
+    // (see CLAUDE.md's Auth / cross-device sync section). Does not clear
+    // isGuest either -- a student who already made the guest-vs-login
+    // decision once shouldn't be forced through the login gate again just
+    // because they signed out of an account.
     if (!supabase) return;
     await supabase.auth.signOut();
   }
 
-  return <AuthCtx.Provider value={{ status, user, signUp, signIn, signOut }}>{children}</AuthCtx.Provider>;
+  function continueAsGuest(): void {
+    setIsGuest(true);
+    saveJSON(GUEST_MODE_KEY, true);
+  }
+
+  return (
+    <AuthCtx.Provider value={{ status, user, isGuest, signUp, signIn, signOut, continueAsGuest }}>{children}</AuthCtx.Provider>
+  );
 }
 
 export function useAuth(): AuthContextValue {

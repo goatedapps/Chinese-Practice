@@ -8,14 +8,17 @@ import { HISTORY_KEY } from "../../state/history";
 import { ACHIEVEMENTS_KEY } from "../../state/achievements";
 import { TINGXIE_PROGRESS_KEY } from "../../state/tingxieProgress";
 
-// The "auth" screen -- entirely optional (see the Back link below), reached
-// via TopNav's account button (signed out) or GO_TO_SCREEN "auth". Login
-// itself does nothing beyond authenticating; state/SyncBootstrap.tsx picks
-// up the resulting signed-in status and reconciles local/remote data in the
-// background once this screen has already navigated away.
-export function Auth() {
+// The "auth" screen -- reached via AccountBar's Login button, GO_TO_SCREEN
+// "auth", or (when `gated`) forced by App.tsx's ScreenRouter for a student
+// who isn't signed in and hasn't chosen guest mode yet. Login itself does
+// nothing beyond authenticating; state/SyncBootstrap.tsx picks up the
+// resulting signed-in status and reconciles local/remote data in the
+// background once this screen has already navigated away. Skipping login
+// (see the Guest section below) is always available, gated or not, so this
+// is never a genuine dead end -- just a required first choice.
+export function Auth({ gated = false }: { gated?: boolean }) {
   const dispatch = useAppDispatch();
-  const { signIn, signUp } = useAuth();
+  const { signIn, signUp, continueAsGuest } = useAuth();
   const { replacePetState } = usePet();
   const [mode, setMode] = useState<"signIn" | "signUp">("signIn");
   const [username, setUsername] = useState("");
@@ -25,6 +28,16 @@ export function Auth() {
 
   function goHome() {
     dispatch({ type: "RESET_TO_HOME" });
+  }
+
+  // continueAsGuest() flips AuthContext's isGuest to true, which is what
+  // actually clears App.tsx's forced login gate -- the RESET_TO_HOME dispatch
+  // here just makes sure a non-gated visit (e.g. a signed-out student who
+  // navigated here manually) also lands back on Home afterward, matching the
+  // sign-in/sign-up success path below.
+  function handleContinueAsGuest() {
+    continueAsGuest();
+    goHome();
   }
 
   // A brand-new account should never inherit whatever's sitting in this
@@ -59,15 +72,17 @@ export function Auth() {
 
   return (
     <div className="screen auth-screen">
-      <button className="back-btn" onClick={goHome}>
-        ← 返回 Back
-      </button>
-      <h1 className="auth-title">{mode === "signIn" ? "登录 Sign In" : "注册 Create Account"}</h1>
-      <p className="auth-subtitle">登录后，你的进度可以在多台设备间同步。 Sign in to sync your progress across devices.</p>
+      {!gated && (
+        <button className="back-btn" onClick={goHome}>
+          ← Back
+        </button>
+      )}
+      <h1 className="auth-title">{mode === "signIn" ? "Sign In" : "Create Account"}</h1>
+      <p className="auth-subtitle">Sign in to sync your progress across devices.</p>
 
       <form className="auth-form" onSubmit={handleSubmit}>
         <label className="auth-field">
-          <span>用户名 Username</span>
+          <span>Username</span>
           <input
             className="auth-input"
             type="text"
@@ -81,7 +96,7 @@ export function Auth() {
           />
         </label>
         <label className="auth-field">
-          <span>密码 Password</span>
+          <span>Password</span>
           <input
             className="auth-input"
             type="password"
@@ -96,7 +111,7 @@ export function Auth() {
         {error && <p className="auth-error">{error}</p>}
 
         <button className="primary-btn auth-submit" type="submit" disabled={submitting}>
-          {submitting ? "请稍候... Please wait..." : mode === "signIn" ? "登录 Sign In" : "注册 Create Account"}
+          {submitting ? "Please wait..." : mode === "signIn" ? "Sign In" : "Create Account"}
         </button>
       </form>
 
@@ -107,8 +122,18 @@ export function Auth() {
           setMode(mode === "signIn" ? "signUp" : "signIn");
         }}
       >
-        {mode === "signIn" ? "还没有账号？注册 No account? Create one" : "已有账号？登录 Have an account? Sign in"}
+        {mode === "signIn" ? "No account? Create one" : "Have an account? Sign in"}
       </button>
+
+      <div className="auth-guest">
+        <p className="auth-guest-text">
+          Or skip login for now and use the app as a guest. In guest mode, your progress is saved only on this
+          device and won't sync across devices.
+        </p>
+        <button className="secondary-btn auth-guest-btn" onClick={handleContinueAsGuest}>
+          Continue as Guest
+        </button>
+      </div>
     </div>
   );
 }

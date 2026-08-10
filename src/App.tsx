@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { AppStateProvider, useAppState, useAppDispatch } from "./state/AppStateContext";
 import { PetProvider } from "./state/PetContext";
-import { AuthProvider } from "./state/AuthContext";
+import { AuthProvider, useAuth } from "./state/AuthContext";
 import { SyncBootstrap } from "./state/SyncBootstrap";
 import { fetchQuestionMeta, fetchQuestionIndex, computeCategorySubjects, prefetchAllQuestionCategories } from "./data/questions";
 import { Sound } from "./lib/sound";
@@ -17,10 +17,12 @@ import { Tingxie } from "./components/Tingxie/Tingxie";
 import { Story } from "./components/Story/Story";
 import { Auth } from "./components/Auth/Auth";
 import { TopNav } from "./components/common/TopNav";
+import { AccountBar } from "./components/common/AccountBar";
 
 function ScreenRouter() {
   const state = useAppState();
   const dispatch = useAppDispatch();
+  const { status, isGuest } = useAuth();
   const [bootError, setBootError] = useState<string | null>(null);
 
   function loadQuestionIndex() {
@@ -52,7 +54,10 @@ function ScreenRouter() {
     window.scrollTo(0, 0);
   }, [state.screen]);
 
-  if (!state.questionIndexLoaded) {
+  // Also waits on auth `status` leaving "loading" (not just the question
+  // index) -- otherwise a signed-in student would flash the forced login
+  // gate below for an instant before their session is confirmed.
+  if (!state.questionIndexLoaded || status === "loading") {
     return (
       <div className="screen">
         {bootError ? (
@@ -69,57 +74,77 @@ function ScreenRouter() {
     );
   }
 
+  // Forced login gate: a student who isn't signed in and hasn't explicitly
+  // chosen to continue as a guest (Auth.tsx's "Continue as Guest", which
+  // persists via AuthContext's isGuest) always lands on the login page
+  // first, instead of state.screen's normal destination. This is a pure
+  // computed check, not a dispatched navigation -- it can't be bypassed by a
+  // stale screen value, and clears itself the instant continueAsGuest()/a
+  // real sign-in resolves with no extra dispatch needed.
+  const needsAuthGate = status !== "signedIn" && !isGuest;
+
   // Hidden mid-quiz/on the result screen -- Quiz already has its own Home
   // button with a "leave without saving?" confirmation, and a second
-  // always-visible way out would either bypass that or duplicate it.
-  const showTopNav = state.screen !== "quiz" && state.screen !== "result";
+  // always-visible way out would either bypass that or duplicate it. Also
+  // hidden while the login gate is forcing the Auth screen, since there's
+  // nowhere else in the app to navigate to yet.
+  const showTopNav = !needsAuthGate && state.screen !== "quiz" && state.screen !== "result";
+  // The Login/Sign out affordance lives here, not as a TopNav item -- paired
+  // with TopNav's own visibility, but also hidden on the Auth screen itself
+  // (no point offering "Login" while already on the login page).
+  const showAccountBar = showTopNav && state.screen !== "auth";
 
   let screen: ReactNode;
-  switch (state.screen) {
-    case "home":
-      screen = <Home />;
-      break;
-    case "practice":
-      screen = <Practice />;
-      break;
-    case "quiz":
-      screen = <Quiz />;
-      break;
-    case "result":
-      screen = <Result />;
-      break;
-    case "owl":
-      screen = <Owl />;
-      break;
-    case "shop":
-      screen = <Shop />;
-      break;
-    case "bag":
-      screen = <Bag />;
-      break;
-    case "play":
-      screen = <PlayGame />;
-      break;
-    case "tingxie":
-      screen = <Tingxie />;
-      break;
-    case "story":
-      screen = <Story />;
-      break;
-    case "auth":
-      screen = <Auth />;
-      break;
-    default:
-      screen = (
-        <div className="screen">
-          <p>敬请期待 Coming soon...</p>
-        </div>
-      );
+  if (needsAuthGate) {
+    screen = <Auth gated />;
+  } else {
+    switch (state.screen) {
+      case "home":
+        screen = <Home />;
+        break;
+      case "practice":
+        screen = <Practice />;
+        break;
+      case "quiz":
+        screen = <Quiz />;
+        break;
+      case "result":
+        screen = <Result />;
+        break;
+      case "owl":
+        screen = <Owl />;
+        break;
+      case "shop":
+        screen = <Shop />;
+        break;
+      case "bag":
+        screen = <Bag />;
+        break;
+      case "play":
+        screen = <PlayGame />;
+        break;
+      case "tingxie":
+        screen = <Tingxie />;
+        break;
+      case "story":
+        screen = <Story />;
+        break;
+      case "auth":
+        screen = <Auth />;
+        break;
+      default:
+        screen = (
+          <div className="screen">
+            <p>敬请期待 Coming soon...</p>
+          </div>
+        );
+    }
   }
 
   return (
     <>
       {showTopNav && <TopNav />}
+      {showAccountBar && <AccountBar />}
       {screen}
     </>
   );

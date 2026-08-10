@@ -130,6 +130,27 @@ body {
 .top-nav-account { flex: 0 0 auto; padding: 11px 14px; }
 .top-nav-account .top-nav-label { white-space: nowrap; }
 
+/* ---------- Account bar (Login/Sign out) ---------- */
+/* A separate bar rendered just below TopNav (see App.tsx), not a TopNav nav
+   item -- Login/Sign out is a state-dependent action, not a fixed screen
+   destination, so it no longer competes for equal width with TopNav's 5
+   items. Pulled up close to TopNav (negative top margin) so it reads as
+   paired with it rather than as its own disconnected section. */
+.account-bar {
+  display: flex; align-items: center; justify-content: flex-end; gap: 10px;
+  margin: -10px 6px 18px;
+}
+.account-bar-status { font-size: 13px; color: var(--ink-soft); }
+.account-bar-btn {
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border: none; border-radius: 999px;
+  padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--ink-soft);
+  cursor: pointer; box-shadow: var(--shadow-1);
+  transition: transform .12s ease, box-shadow .12s ease, color .12s ease;
+}
+.account-bar-btn:hover { transform: translateY(-1px); color: var(--ink); }
+.account-bar-btn:active { transform: scale(.95); box-shadow: var(--shadow-press); }
+
 h1, h2 {
   font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
 }
@@ -1412,6 +1433,12 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .auth-screen { max-width: 420px; margin: 0 auto; text-align: center; }
 .auth-title { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; margin: 4px 0 8px; }
 .auth-subtitle { color: var(--ink-soft); font-size: 14px; margin: 0 0 22px; }
+/* Guest-mode escape hatch -- always available (gated login or not), visually
+   separated from the sign-in/sign-up form above it since it's a distinct
+   choice ("skip this entirely"), not another form field. */
+.auth-guest { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border); }
+.auth-guest-text { color: var(--ink-soft); font-size: 13px; line-height: 1.5; margin: 0 0 12px; }
+.auth-guest-btn { width: 100%; }
 .auth-form { display: flex; flex-direction: column; gap: 16px; text-align: left; }
 .auth-field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
 .auth-input {
