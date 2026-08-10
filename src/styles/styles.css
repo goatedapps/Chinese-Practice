@@ -384,13 +384,18 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
    the wheel -- so a `100%` here previously collapsed every icon toward the
    center instead of pushing it out to the rim. `vw` has no such
    per-element reinterpretation (it's always relative to the viewport), so
-   it resolves the same wherever it's substituted. 84px approximates the
-   card's horizontal padding (#root's 20px+20px plus .special-quest's own
-   22px+22px) -- only matters on narrow phones where this second term is
+   it resolves the same wherever it's substituted. 124px approximates the
+   card's horizontal padding stack -- #root's 20px+20px, PLUS .screen's own
+   20px+20px (Home renders `screen home home-dashboard` together, and .home
+   only overrides .screen's padding-top, not its left/right padding -- easy
+   to forget since .home has no boxed panel of its own), PLUS .special-quest's
+   own 22px+22px -- only matters on narrow phones where this second term is
    actually the smaller of the two and controls the wheel's size; on
-   anything wider it's simply capped at the fixed 312px. */
+   anything wider it's simply capped at the fixed 312px. (This used to say
+   84px, missing the .screen term entirely -- the wheel was computed ~40px
+   too wide on narrow phones and spilled past the card's edge.) */
 .quest-wheel-frame {
-  --wheel-size: min(312px, calc(100vw - 84px));
+  --wheel-size: min(312px, calc(100vw - 124px));
   --wheel-radius: calc(var(--wheel-size) * 0.3846);
   position: relative; width: var(--wheel-size); aspect-ratio: 1; margin: 4px auto 0;
 }
