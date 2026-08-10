@@ -371,13 +371,26 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .special-quest { padding: 22px; text-align: center; }
 .special-quest .section-heading { color: var(--accent-pink-dark); }
 .quest-wheel-wrap { display: flex; flex-direction: column; align-items: center; gap: 18px; }
-/* --wheel-size caps at 312px but shrinks to the card's actual available
-   width on narrow/mobile screens (min(…, 100%), same pattern as
-   .pet-hero-art-col) -- --wheel-radius drives the icon slots' radial
-   placement (see the inline transform in SpecialQuest.tsx) so they scale
-   down with the dial instead of spilling past its shrunk edge. */
+/* --wheel-size caps at 312px but shrinks on narrow/mobile screens --
+   --wheel-radius drives the icon slots' radial placement (see the inline
+   transform in SpecialQuest.tsx) so they scale down with the dial instead
+   of spilling past its shrunk edge. Deliberately `100vw`-based, not `100%`:
+   a percentage embedded in a custom property isn't pre-resolved where the
+   property is declared -- it's re-resolved wherever the var() is actually
+   *used*, against whatever that particular property/element's percentage
+   basis is. --wheel-radius here gets consumed inside .quest-wheel-slot's
+   `transform: translate()`, whose percentage basis is that slot's OWN box
+   (just its ~42px icon, since the slot has no explicit size) rather than
+   the wheel -- so a `100%` here previously collapsed every icon toward the
+   center instead of pushing it out to the rim. `vw` has no such
+   per-element reinterpretation (it's always relative to the viewport), so
+   it resolves the same wherever it's substituted. 84px approximates the
+   card's horizontal padding (#root's 20px+20px plus .special-quest's own
+   22px+22px) -- only matters on narrow phones where this second term is
+   actually the smaller of the two and controls the wheel's size; on
+   anything wider it's simply capped at the fixed 312px. */
 .quest-wheel-frame {
-  --wheel-size: min(312px, 100%);
+  --wheel-size: min(312px, calc(100vw - 84px));
   --wheel-radius: calc(var(--wheel-size) * 0.3846);
   position: relative; width: var(--wheel-size); aspect-ratio: 1; margin: 4px auto 0;
 }
