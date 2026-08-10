@@ -1,6 +1,8 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { AppStateProvider, useAppState, useAppDispatch } from "./state/AppStateContext";
 import { PetProvider } from "./state/PetContext";
+import { AuthProvider } from "./state/AuthContext";
+import { SyncBootstrap } from "./state/SyncBootstrap";
 import { fetchQuestionMeta, fetchQuestionIndex, computeCategorySubjects, prefetchAllQuestionCategories } from "./data/questions";
 import { Sound } from "./lib/sound";
 import { Home } from "./components/Home/Home";
@@ -13,6 +15,7 @@ import { Bag } from "./components/Bag/Bag";
 import { PlayGame } from "./components/Play/PlayGame";
 import { Tingxie } from "./components/Tingxie/Tingxie";
 import { Story } from "./components/Story/Story";
+import { Auth } from "./components/Auth/Auth";
 import { TopNav } from "./components/common/TopNav";
 
 function ScreenRouter() {
@@ -103,8 +106,10 @@ function ScreenRouter() {
     case "story":
       screen = <Story />;
       break;
+    case "auth":
+      screen = <Auth />;
+      break;
     default:
-      // Auth lands here until its own component exists.
       screen = (
         <div className="screen">
           <p>敬请期待 Coming soon...</p>
@@ -152,10 +157,20 @@ export default function App() {
   }, []);
 
   return (
-    <AppStateProvider>
-      <PetProvider>
-        <ScreenRouter />
-      </PetProvider>
-    </AppStateProvider>
+    // AuthProvider sits outermost -- it doesn't depend on AppStateContext or
+    // PetContext, and PetProvider's initial state loads synchronously from
+    // localStorage (see state/PetContext.tsx's loadPetState), so nothing
+    // below it could await a remote pull before first paint anyway. Merge
+    // always happens as a background reconciliation after mount, via
+    // SyncBootstrap, never a render-blocking one -- see
+    // state/SyncBootstrap.tsx.
+    <AuthProvider>
+      <AppStateProvider>
+        <PetProvider>
+          <SyncBootstrap />
+          <ScreenRouter />
+        </PetProvider>
+      </AppStateProvider>
+    </AuthProvider>
   );
 }

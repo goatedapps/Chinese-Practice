@@ -2,10 +2,13 @@ import { createContext, useContext, useState, type ReactNode } from "react";
 import type { PetState, MoodBucket, ShopItem } from "../data/types";
 import { PET_DEFAULT_STATE, PET_STAGES, MOOD_DECAY_PER_HOUR, GROWTH_PER_AGE_YEAR, specialQuestConfig } from "../data/pet";
 import { loadJSON } from "../lib/storage";
+import { saveAndSync } from "../lib/sync";
 import { getTodaySpecialQuest, completeSpecialQuest } from "./specialQuest";
 import { logAchievement } from "./achievements";
 
-const PET_KEY = "hanyuPracticePet_v1";
+// Exported so state/SyncBootstrap.tsx can include this store in the set of
+// keys it reconciles against Supabase after sign-in -- see lib/sync.ts.
+export const PET_KEY = "hanyuPracticePet_v1";
 
 function loadPetState(): PetState {
   const saved = loadJSON<Partial<PetState> | null>(PET_KEY, null);
@@ -14,7 +17,7 @@ function loadPetState(): PetState {
 }
 
 function savePetState(pet: PetState): void {
-  localStorage.setItem(PET_KEY, JSON.stringify(pet));
+  saveAndSync(PET_KEY, pet);
 }
 
 // Mood is derived, never stored as an already-decayed value: pet.moodAtCheckpoint
@@ -76,6 +79,12 @@ interface PetContextValue {
   applyPlayReward: (item: ShopItem, moodReward: number) => { agedUp: boolean; age: number };
   renameOwl: (name: string) => void;
   recordQuestionsCompleted: (n: number) => void;
+  // Merge-pull entry point (see state/SyncBootstrap.tsx) -- overwrites both
+  // the live React state and the local copy with a remote PetState pulled
+  // from Supabase. Unlike every other mutator above, this doesn't apply any
+  // business logic (no growth/mood math, no achievement checks) -- it's a
+  // raw replace, since the remote value already *is* the reconciled result.
+  replacePetState: (pet: PetState) => void;
 }
 
 const PetCtx = createContext<PetContextValue | null>(null);
@@ -207,9 +216,24 @@ export function PetProvider({ children }: { children: ReactNode }) {
     });
   }
 
+  function replacePetState(next: PetState) {
+    setPet(next);
+    savePetState(next);
+  }
+
   return (
     <PetCtx.Provider
-      value={{ pet, awardBP, buyItem, giveItem, consumeItem, applyPlayReward, renameOwl, recordQuestionsCompleted }}
+      value={{
+        pet,
+        awardBP,
+        buyItem,
+        giveItem,
+        consumeItem,
+        applyPlayReward,
+        renameOwl,
+        recordQuestionsCompleted,
+        replacePetState
+      }}
     >
       {children}
     </PetCtx.Provider>

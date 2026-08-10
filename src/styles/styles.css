@@ -124,6 +124,11 @@ body {
 }
 .top-nav-item-active:hover { color: #fff8ee; }
 .top-nav-label { font-size: 14px; font-weight: 600; text-align: center; }
+/* Account affordance -- not sized like the 5 destination items above (each
+   flex:1), since it's a smaller state-dependent action, not a screen
+   destination competing for equal width. */
+.top-nav-account { flex: 0 0 auto; padding: 11px 14px; }
+.top-nav-account .top-nav-label { white-space: nowrap; }
 
 h1, h2 {
   font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
@@ -1380,5 +1385,25 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
      below the nav. Left/right/bottom padding stay as .screen's. */
   padding-top: 6px;
 }
+
+/* ---------- Auth ---------- */
+.auth-screen { max-width: 420px; margin: 0 auto; text-align: center; }
+.auth-title { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; margin: 4px 0 8px; }
+.auth-subtitle { color: var(--ink-soft); font-size: 14px; margin: 0 0 22px; }
+.auth-form { display: flex; flex-direction: column; gap: 16px; text-align: left; }
+.auth-field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+.auth-input {
+  font-size: 16px; padding: 12px 14px; border: 2px solid var(--border); border-radius: 14px;
+  background: var(--card-bg); color: var(--ink);
+  box-shadow: inset 0 1px 3px rgba(var(--ink-rgb), .08);
+}
+.auth-input:focus { outline: none; border-color: var(--primary); }
+.auth-error { color: var(--incorrect); font-size: 14px; margin: 0; }
+.auth-submit { width: 100%; margin-top: 4px; }
+.auth-toggle {
+  background: none; border: none; color: var(--primary); font-size: 14px;
+  cursor: pointer; margin-top: 18px; padding: 4px;
+}
+.auth-toggle:hover { text-decoration: underline; }
 
 .result .action-row { justify-content: center; }

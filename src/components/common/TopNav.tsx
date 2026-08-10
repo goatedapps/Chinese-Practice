@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppState, type Screen } from "../../state/AppStateContext";
+import { useAuth } from "../../state/AuthContext";
 
 // Persistent top nav shown on every screen except Quiz/Result -- an
 // in-progress quiz already has its own Home button with a "leave without
@@ -18,6 +19,7 @@ const NAV_ITEMS: { key: string; label: string; screens: Screen[] }[] = [
 export function TopNav() {
   const state = useAppState();
   const dispatch = useAppDispatch();
+  const { status, user, signOut } = useAuth();
 
   function go(key: string) {
     // Matches every other "go home" affordance in the app (Owl/Practice back
@@ -38,6 +40,19 @@ export function TopNav() {
           <span className="top-nav-label">{item.label}</span>
         </button>
       ))}
+      {/* Account affordance -- not a NAV_ITEMS entry above since it's
+          state-dependent (signed in/out) rather than a fixed screen
+          destination. Signing out never clears local progress, only stops
+          future syncing (see state/AuthContext.tsx's signOut). */}
+      {status === "signedIn" && user ? (
+        <button className="top-nav-item top-nav-account" onClick={() => void signOut()} title={`@${user.username}`}>
+          <span className="top-nav-label">退出 Sign out</span>
+        </button>
+      ) : (
+        <button className="top-nav-item top-nav-account" onClick={() => go("auth")}>
+          <span className="top-nav-label">登录 Login</span>
+        </button>
+      )}
     </nav>
   );
 }

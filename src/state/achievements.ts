@@ -3,8 +3,11 @@ import { dateKey, areAllMissionsComplete } from "../lib/stats";
 import { MISSION_COMPLETE_BONUS_BP } from "../data/pet";
 import { loadJSON } from "../lib/storage";
 import { makeId } from "../lib/id";
+import { saveAndSync } from "../lib/sync";
 
-const ACHIEVEMENTS_KEY = "hanyuPracticeAchievements_v1";
+// Exported so state/SyncBootstrap.tsx can include this store in the set of
+// keys it reconciles against Supabase after sign-in -- see lib/sync.ts.
+export const ACHIEVEMENTS_KEY = "hanyuPracticeAchievements_v1";
 const MAX_ACHIEVEMENTS = 30;
 
 // Friendly bilingual labels for a "tingxieCompleted" achievement's activity
@@ -55,7 +58,7 @@ export function logAchievement(entry: Omit<Achievement, "id" | "date"> & { date?
   });
   if (isDuplicate) return;
   const next = [{ ...entry, id: makeId(), date }, ...list].slice(0, MAX_ACHIEVEMENTS);
-  localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(next));
+  saveAndSync(ACHIEVEMENTS_KEY, next);
 }
 
 // Checked *before* calling logAchievement() to decide whether a one-time-

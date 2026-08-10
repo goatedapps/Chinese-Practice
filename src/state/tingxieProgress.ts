@@ -13,11 +13,14 @@
 // here would create a 3-file import cycle. Callers (Learn/Apply/Practice)
 // call both functions directly instead.
 import { loadJSON } from "../lib/storage";
+import { saveAndSync } from "../lib/sync";
 
-const TINGXIE_PROGRESS_KEY = "hanyuPracticeTingxieProgress_v1";
+// Exported so state/SyncBootstrap.tsx can include this store in the set of
+// keys it reconciles against Supabase after sign-in -- see lib/sync.ts.
+export const TINGXIE_PROGRESS_KEY = "hanyuPracticeTingxieProgress_v1";
 
 export function recordTingxieActivityCompleted(): void {
-  localStorage.setItem(TINGXIE_PROGRESS_KEY, JSON.stringify({ lastCompletedAt: Date.now() }));
+  saveAndSync(TINGXIE_PROGRESS_KEY, { lastCompletedAt: Date.now() });
 }
 
 export function getTingxieLastCompletedAt(): number | null {

@@ -12,3 +12,11 @@ export function loadJSON<T>(key: string, fallback: T): T {
     return fallback;
   }
 }
+
+// Write-side counterpart to loadJSON above -- plain JSON.stringify + setItem,
+// no try/catch (a write failing, e.g. a full/locked-down localStorage, isn't
+// something any caller here can meaningfully recover from). Stores that sync
+// to Supabase (see lib/sync.ts) call saveAndSync() instead, which wraps this.
+export function saveJSON<T>(key: string, value: T): void {
+  localStorage.setItem(key, JSON.stringify(value));
+}
