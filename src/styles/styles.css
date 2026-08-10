@@ -1385,6 +1385,10 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
      below the nav. Left/right/bottom padding stay as .screen's. */
   padding-top: 6px;
 }
+.home-footer {
+  text-align: center; color: var(--ink-soft); font-size: 12px;
+  margin-top: 28px; padding-top: 16px; opacity: .7;
+}
 
 /* ---------- Auth ---------- */
 .auth-screen { max-width: 420px; margin: 0 auto; text-align: center; }

@@ -81,6 +81,18 @@ export function saveAndSync<T>(key: string, value: T): void {
   scheduleSync(key, value);
 }
 
+// Wipes a synced store's local copy entirely -- used only when a brand-new
+// account is created (see components/Auth/Auth.tsx's sign-up success path),
+// so a fresh signup never inherits whatever happened to be sitting in this
+// browser's localStorage (anonymous local play, or a previous account's
+// leftover test data) as if it were this new account's progress. Every
+// store here already treats "key absent" as its empty/default state
+// (loadJSON's fallback), so a plain removal is enough -- no need to write an
+// explicit empty value.
+export function clearLocalStore(key: string): void {
+  localStorage.removeItem(key);
+}
+
 // Pull-side primitive: writes remote data straight to local storage and
 // records the *remote's* updated_at as this key's sync-meta timestamp (not
 // "now") -- deliberately not saveAndSync, so a merge-pull can never schedule

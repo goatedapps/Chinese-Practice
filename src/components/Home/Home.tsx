@@ -85,6 +85,8 @@ export function Home() {
           onCancel={() => setPendingDeleteId(null)}
         />
       )}
+
+      <footer className="home-footer">Created by Yiwen and Claude, Copyright 2026</footer>
     </div>
   );
 }

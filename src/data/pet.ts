@@ -63,7 +63,7 @@ export const STORY_COMPLETE_BP_AWARD = 10;
 // (lesson, reading, dictation) are complete -- on top of each mission's own
 // normal BP. Deliberately smaller than a full Tingxie activity award since
 // it's a top-up, not a fourth activity's worth of reward.
-export const MISSION_COMPLETE_BONUS_BP = 15;
+export const MISSION_COMPLETE_BONUS_BP = 100;
 
 // Shop catalogue: buying an item puts it in the Bag (PetState.inventory).
 // Food's growth/mood effect applies immediately when given to the owl from

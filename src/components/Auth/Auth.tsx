@@ -1,6 +1,12 @@
 import { useState, type FormEvent } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { useAuth } from "../../state/AuthContext";
+import { usePet } from "../../state/PetContext";
+import { PET_DEFAULT_STATE } from "../../data/pet";
+import { clearLocalStore } from "../../lib/sync";
+import { HISTORY_KEY } from "../../state/history";
+import { ACHIEVEMENTS_KEY } from "../../state/achievements";
+import { TINGXIE_PROGRESS_KEY } from "../../state/tingxieProgress";
 
 // The "auth" screen -- entirely optional (see the Back link below), reached
 // via TopNav's account button (signed out) or GO_TO_SCREEN "auth". Login
@@ -10,6 +16,7 @@ import { useAuth } from "../../state/AuthContext";
 export function Auth() {
   const dispatch = useAppDispatch();
   const { signIn, signUp } = useAuth();
+  const { replacePetState } = usePet();
   const [mode, setMode] = useState<"signIn" | "signUp">("signIn");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -20,14 +27,34 @@ export function Auth() {
     dispatch({ type: "RESET_TO_HOME" });
   }
 
+  // A brand-new account should never inherit whatever's sitting in this
+  // browser's localStorage -- device-local play before ever logging in, or
+  // leftover data from a previous account/testing session -- as if it were
+  // this account's progress. Resets every synced store to its default
+  // *before* SyncBootstrap's post-sign-in merge ever runs, so that merge
+  // finds nothing local to (wrongly) upload for this new user. The pet
+  // store needs the live-React-state route (replacePetState, same one
+  // state/SyncBootstrap.tsx uses for a remote pull) since it's held in
+  // PetContext, not just read lazily on mount like the other three.
+  function startFresh() {
+    replacePetState({ ...PET_DEFAULT_STATE, lastFedAt: Date.now() });
+    clearLocalStore(HISTORY_KEY);
+    clearLocalStore(ACHIEVEMENTS_KEY);
+    clearLocalStore(TINGXIE_PROGRESS_KEY);
+  }
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
     setSubmitting(true);
     const result = mode === "signIn" ? await signIn(username, password) : await signUp(username, password);
     setSubmitting(false);
-    if (result.error) setError(result.error);
-    else goHome();
+    if (result.error) {
+      setError(result.error);
+      return;
+    }
+    if (mode === "signUp") startFresh();
+    goHome();
   }
 
   return (
