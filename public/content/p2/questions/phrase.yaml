@@ -1,0 +1,20 @@
+- groupId: P2-PH1
+  subject: Chinese
+  category: phrase
+  lessonIds:
+    - 1
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 「开心」的意思是___。
+      options:
+        - key: "1"
+          text: 难过
+        - key: "2"
+          text: 生气
+        - key: "3"
+          text: 高兴
+        - key: "4"
+          text: 害怕
+      correctKey: "3"

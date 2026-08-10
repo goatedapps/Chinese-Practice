@@ -1,0 +1,44 @@
+- groupId: P2-COMP1
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  passage:
+    title: 小猴子摘香蕉
+    source: 老师自编
+    text: |-
+      森林里住着一只小猴子，名叫皮皮。皮皮最喜欢吃又香又甜的香蕉。
+
+      有一天，皮皮看见树上长满了黄色的香蕉，他非常开心，马上爬到树上去摘。可是，树太高了，皮皮不小心摔了下来，跌得他哇哇大哭。
+
+      这时，一只大猴子走过来，帮皮皮把香蕉摘下来，还教他要小心一点。皮皮谢过大猴子，开开心心地吃起香蕉来。
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 皮皮最喜欢吃什么？
+      options:
+        - key: "1"
+          text: 苹果
+        - key: "2"
+          text: 香蕉
+        - key: "3"
+          text: 西瓜
+        - key: "4"
+          text: 葡萄
+      correctKey: "2"
+    - marks: 2
+      format: MCQ
+      text: 皮皮为什么摔了下来？
+      options:
+        - key: "1"
+          text: 因为树太高了
+        - key: "2"
+          text: 因为下雨了
+        - key: "3"
+          text: 因为他睡着了
+        - key: "4"
+          text: 因为大猴子推了他
+      correctKey: "1"
+    - marks: 4
+      format: Long-Answer
+      text: 大猴子帮了皮皮什么忙？他还对皮皮说了什么？
+      displayAnswer: 大猴子帮皮皮把香蕉摘下来（2分），还教他要小心一点（2分）。

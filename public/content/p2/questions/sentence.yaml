@@ -1,0 +1,40 @@
+- groupId: P2-SEN1
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 1
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 太阳出来了，天气___。
+      options:
+        - key: "1"
+          text: 很冷
+        - key: "2"
+          text: 下雨
+        - key: "3"
+          text: 暖和
+        - key: "4"
+          text: 下雪
+      correctKey: "3"
+- groupId: P2-SEN2
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 3
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 弟弟肚子饿了，他想___。
+      options:
+        - key: "1"
+          text: 睡觉
+        - key: "2"
+          text: 吃饭
+        - key: "3"
+          text: 洗澡
+        - key: "4"
+          text: 看书
+      correctKey: "2"

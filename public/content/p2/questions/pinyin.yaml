@@ -1,0 +1,40 @@
+- groupId: P2-PY1
+  subject: Chinese
+  category: pinyin
+  lessonIds:
+    - 1
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 我喜欢吃__苹果__。（选出画线词语的汉语拼音）
+      options:
+        - key: "1"
+          text: píng guǒ
+        - key: "2"
+          text: píng guó
+        - key: "3"
+          text: pín guǒ
+        - key: "4"
+          text: pín guó
+      correctKey: "1"
+- groupId: P2-PY2
+  subject: Chinese
+  category: pinyin
+  lessonIds:
+    - 2
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 妹妹每天__快乐__地上学去。（选出画线词语的汉语拼音）
+      options:
+        - key: "1"
+          text: kuài lè
+        - key: "2"
+          text: kuài lì
+        - key: "3"
+          text: guài lè
+        - key: "4"
+          text: guài lì
+      correctKey: "1"

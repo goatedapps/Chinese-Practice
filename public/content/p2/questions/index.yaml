@@ -1,0 +1,85 @@
+- groupId: P2-CLZ1
+  subject: Chinese
+  category: cloze
+  lessonIds: []
+  questionCount: 3
+- groupId: P2-COMP1
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 3
+- groupId: P2-CJ1
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: P2-CJ2
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: P2-DLG1
+  subject: Chinese
+  category: dialogue
+  lessonIds: []
+  questionCount: 4
+- groupId: P2-EC1
+  subject: Chinese
+  category: errorcorrect
+  lessonIds: []
+  questionCount: 2
+- groupId: P2-PH1
+  subject: Chinese
+  category: phrase
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: P2-PY1
+  subject: Chinese
+  category: pinyin
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: P2-PY2
+  subject: Chinese
+  category: pinyin
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: P2-PRAC1
+  subject: Chinese
+  category: practical
+  lessonIds: []
+  questionCount: 2
+- groupId: P2-SEN1
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: P2-SEN2
+  subject: Chinese
+  category: sentence
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: P2-USE1
+  subject: Chinese
+  category: usage
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: P2-VOC1
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: P2-VOC2
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1

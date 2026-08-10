@@ -1,0 +1,53 @@
+- groupId: P2-CLZ1
+  subject: Chinese
+  category: cloze
+  lessonIds: []
+  passage:
+    title: 小狗迷路了
+    source: 老师自编
+    text: |-
+      星期六，小明带着小狗到公园散步。小狗看见一只蝴蝶，就 [Q1]___ 地追了过去。
+
+      小明找不到小狗，心里很 [Q2]___。他大声喊小狗的名字，可是没有人回应。
+
+      过了一会儿，小明看见小狗在大树下坐着，他跑过去 [Q3]___ 地抱起了小狗。
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 小狗看见一只蝴蝶，就 ___ 地追了过去。
+      options:
+        - key: "1"
+          text: 慢慢
+        - key: "2"
+          text: 高兴
+        - key: "3"
+          text: 快快
+        - key: "4"
+          text: 安静
+      correctKey: "3"
+    - marks: 2
+      format: MCQ
+      text: 小明找不到小狗，心里很 ___。
+      options:
+        - key: "1"
+          text: 开心
+        - key: "2"
+          text: 着急
+        - key: "3"
+          text: 骄傲
+        - key: "4"
+          text: 轻松
+      correctKey: "2"
+    - marks: 2
+      format: MCQ
+      text: 他跑过去 ___ 地抱起了小狗。
+      options:
+        - key: "1"
+          text: 高兴
+        - key: "2"
+          text: 生气
+        - key: "3"
+          text: 伤心
+        - key: "4"
+          text: 害怕
+      correctKey: "1"

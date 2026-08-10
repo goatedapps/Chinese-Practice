@@ -151,6 +151,14 @@ body {
 .account-bar-btn:hover { transform: translateY(-1px); color: var(--ink); }
 .account-bar-btn:active { transform: scale(.95); box-shadow: var(--shadow-press); }
 
+.level-bar {
+  display: flex; align-items: center; justify-content: flex-end; gap: 8px;
+  margin: -6px 6px 12px; flex-wrap: wrap;
+}
+.level-bar-label { font-size: 13px; color: var(--ink-soft); }
+.level-bar .chip { padding: 4px 12px; font-size: 13px; }
+.level-bar .chip:disabled { cursor: default; }
+
 h1, h2 {
   font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
 }

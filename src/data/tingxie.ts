@@ -13,29 +13,38 @@ import type {
   TingxieVocabItem
 } from "./types";
 import { shuffle } from "../lib/shuffle";
+import { getCurrentLevel } from "./levels";
 
-const LESSONS_BASE = `${import.meta.env.BASE_URL}content/p5/tingxie`;
+function lessonsBase(): string {
+  return `${import.meta.env.BASE_URL}content/${getCurrentLevel()}/tingxie`;
+}
 
-const indexCache = new Map<"index", TingxieLessonIndexEntry[]>();
-const lessonCache = new Map<number, TingxieLesson>();
+// Keyed by level (not just "index"/lesson id) so switching levels via the
+// level switcher never serves a cached lesson from the previously-active
+// level -- see data/levels.ts and data/questions.ts's identical pattern.
+const indexCache = new Map<string, TingxieLessonIndexEntry[]>();
+const lessonCache = new Map<string, TingxieLesson>();
 
 export async function fetchTingxieLessonIndex(): Promise<TingxieLessonIndexEntry[]> {
-  const cached = indexCache.get("index");
+  const level = getCurrentLevel();
+  const cached = indexCache.get(level);
   if (cached) return cached;
-  const res = await fetch(`${LESSONS_BASE}/index.yaml`);
+  const res = await fetch(`${lessonsBase()}/index.yaml`);
   if (!res.ok) throw new Error(`加载课程列表失败 Failed to load lesson index (${res.status})`);
   const data = YAML.parse(await res.text()) as TingxieLessonIndexEntry[];
-  indexCache.set("index", data);
+  indexCache.set(level, data);
   return data;
 }
 
 export async function fetchTingxieLesson(id: number): Promise<TingxieLesson> {
-  const cached = lessonCache.get(id);
+  const level = getCurrentLevel();
+  const cacheKey = `${level}:${id}`;
+  const cached = lessonCache.get(cacheKey);
   if (cached) return cached;
-  const res = await fetch(`${LESSONS_BASE}/${id}.yaml`);
+  const res = await fetch(`${lessonsBase()}/${id}.yaml`);
   if (!res.ok) throw new Error(`加载课程失败 Failed to load lesson ${id} (${res.status})`);
   const data = YAML.parse(await res.text()) as TingxieLesson;
-  lessonCache.set(id, data);
+  lessonCache.set(cacheKey, data);
   return data;
 }
 
@@ -49,8 +58,9 @@ export async function fetchTingxieLesson(id: number): Promise<TingxieLesson> {
 // click falls back to its own fetch/error handling, same as before this
 // existed.
 export function prefetchTingxieLessons(index: TingxieLessonIndexEntry[]): void {
+  const level = getCurrentLevel();
   for (const entry of index) {
-    if (lessonCache.has(entry.id)) continue;
+    if (lessonCache.has(`${level}:${entry.id}`)) continue;
     fetchTingxieLesson(entry.id).catch(() => {});
   }
 }

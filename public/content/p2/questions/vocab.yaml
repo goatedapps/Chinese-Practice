@@ -1,0 +1,40 @@
+- groupId: P2-VOC1
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 妹妹很___，喜欢帮助别人。
+      options:
+        - key: "1"
+          text: 勇敢
+        - key: "2"
+          text: 善良
+        - key: "3"
+          text: 聪明
+        - key: "4"
+          text: 漂亮
+      correctKey: "2"
+- groupId: P2-VOC2
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 弟弟跑得很___，第一个到达终点。
+      options:
+        - key: "1"
+          text: 快
+        - key: "2"
+          text: 慢
+        - key: "3"
+          text: 静
+        - key: "4"
+          text: 香
+      correctKey: "1"

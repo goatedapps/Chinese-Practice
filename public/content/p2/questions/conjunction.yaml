@@ -1,0 +1,40 @@
+- groupId: P2-CJ1
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 1
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: ___ 下雨了，___ 我们不能出去玩。
+      options:
+        - key: "1"
+          text: 因为……所以
+        - key: "2"
+          text: 虽然……但是
+        - key: "3"
+          text: 如果……就
+        - key: "4"
+          text: 不但……而且
+      correctKey: "1"
+- groupId: P2-CJ2
+  subject: Chinese
+  category: conjunction
+  lessonIds:
+    - 2
+  passage: null
+  questions:
+    - marks: 2
+      format: MCQ
+      text: 妹妹 ___ 很小，___ 已经会自己穿鞋子了。
+      options:
+        - key: "1"
+          text: 因为……所以
+        - key: "2"
+          text: 虽然……但是
+        - key: "3"
+          text: 一……就
+        - key: "4"
+          text: 一边……一边
+      correctKey: "2"

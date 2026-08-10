@@ -15,8 +15,7 @@
    ========================================================= */
 import YAML from "yaml";
 import type { Category, QuestionGroup, QuestionIndexEntry } from "./types";
-
-export const LEVEL: string = "p5";
+import { getCurrentLevel } from "./levels";
 
 // Coarse categories used for the "practice by type" picker.
 // lessonMode:true  -> single-sentence items, eligible for "practice by lesson"
@@ -45,24 +44,32 @@ export const VOCABULARY_CATEGORY_KEYS: string[] = ["pinyin", "vocab", "phrase", 
 
 export const SUBJECTS: string[] = ["Chinese", "Higher Chinese"];
 
-const CONTENT_BASE = `${import.meta.env.BASE_URL}content/${LEVEL}`;
+function contentBase(): string {
+  return `${import.meta.env.BASE_URL}content/${getCurrentLevel()}`;
+}
 
 export interface QuestionMeta {
   label: string;
   lessonCount: number;
 }
 
-const metaCache = new Map<"meta", QuestionMeta>();
-const indexCache = new Map<"index", QuestionIndexEntry[]>();
+// Every cache below is keyed by level (not just by category/"index"/"meta")
+// so switching levels via the level switcher (see components/common/
+// LevelBar.tsx) never serves one level's cached content under another --
+// the app is an SPA, so these module-level Maps otherwise outlive a level
+// switch.
+const metaCache = new Map<string, QuestionMeta>();
+const indexCache = new Map<string, QuestionIndexEntry[]>();
 const categoryCache = new Map<string, QuestionGroup[]>();
 
 export async function fetchQuestionMeta(): Promise<QuestionMeta> {
-  const cached = metaCache.get("meta");
+  const level = getCurrentLevel();
+  const cached = metaCache.get(level);
   if (cached) return cached;
-  const res = await fetch(`${CONTENT_BASE}/meta.yaml`);
+  const res = await fetch(`${contentBase()}/meta.yaml`);
   if (!res.ok) throw new Error(`加载课程信息失败 Failed to load level info (${res.status})`);
   const data = YAML.parse(await res.text()) as QuestionMeta;
-  metaCache.set("meta", data);
+  metaCache.set(level, data);
   return data;
 }
 
@@ -71,12 +78,13 @@ export async function fetchQuestionMeta(): Promise<QuestionMeta> {
 // SELECT_SUBJECT category filtering) that need to know what's available
 // without fetching every category's full passage/question/answer content.
 export async function fetchQuestionIndex(): Promise<QuestionIndexEntry[]> {
-  const cached = indexCache.get("index");
+  const level = getCurrentLevel();
+  const cached = indexCache.get(level);
   if (cached) return cached;
-  const res = await fetch(`${CONTENT_BASE}/questions/index.yaml`);
+  const res = await fetch(`${contentBase()}/questions/index.yaml`);
   if (!res.ok) throw new Error(`加载题库索引失败 Failed to load question index (${res.status})`);
   const data = YAML.parse(await res.text()) as QuestionIndexEntry[];
-  indexCache.set("index", data);
+  indexCache.set(level, data);
   return data;
 }
 
@@ -87,9 +95,11 @@ export async function fetchQuestionIndex(): Promise<QuestionIndexEntry[]> {
 // `lessonEligible` is likewise not authored -- it's fully redundant with
 // lessonIds, so it's computed here too.
 export async function fetchQuestionCategory(category: string): Promise<QuestionGroup[]> {
-  const cached = categoryCache.get(category);
+  const level = getCurrentLevel();
+  const cacheKey = `${level}:${category}`;
+  const cached = categoryCache.get(cacheKey);
   if (cached) return cached;
-  const res = await fetch(`${CONTENT_BASE}/questions/${category}.yaml`);
+  const res = await fetch(`${contentBase()}/questions/${category}.yaml`);
   if (!res.ok) throw new Error(`加载题目失败 Failed to load "${category}" questions (${res.status})`);
   const raw = YAML.parse(await res.text()) as Array<Omit<QuestionGroup, "lessonEligible" | "questions"> & { questions: Array<Record<string, unknown>> }>;
   const data: QuestionGroup[] = raw.map((g) => ({
@@ -97,7 +107,7 @@ export async function fetchQuestionCategory(category: string): Promise<QuestionG
     lessonEligible: g.lessonIds.length > 0,
     questions: g.questions.map((q, i) => ({ ...q, qNo: `${g.groupId}-${i}` })) as QuestionGroup["questions"]
   }));
-  categoryCache.set(category, data);
+  categoryCache.set(cacheKey, data);
   return data;
 }
 
@@ -109,9 +119,13 @@ export async function fetchQuestionCategory(category: string): Promise<QuestionG
 // Practice". Doesn't change the documented lazy-load contract (the bootstrap
 // fetch itself still only loads the lightweight index, see CLAUDE.md) --
 // this just warms the cache in the background afterward, non-blocking.
+// Always warms whatever getCurrentLevel() is *right now* -- safe to call
+// again after a level switch, since the cache key above already scopes each
+// fetch to its own level.
 export function prefetchAllQuestionCategories(): void {
+  const level = getCurrentLevel();
   for (const category of Object.keys(CATEGORIES)) {
-    if (categoryCache.has(category)) continue;
+    if (categoryCache.has(`${level}:${category}`)) continue;
     fetchQuestionCategory(category).catch(() => {});
   }
 }

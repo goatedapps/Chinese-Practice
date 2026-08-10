@@ -18,6 +18,7 @@ import { Story } from "./components/Story/Story";
 import { Auth } from "./components/Auth/Auth";
 import { TopNav } from "./components/common/TopNav";
 import { AccountBar } from "./components/common/AccountBar";
+import { LevelBar } from "./components/common/LevelBar";
 
 function ScreenRouter() {
   const state = useAppState();
@@ -145,6 +146,7 @@ function ScreenRouter() {
     <>
       {showTopNav && <TopNav />}
       {showAccountBar && <AccountBar />}
+      {showTopNav && <LevelBar />}
       {screen}
     </>
   );

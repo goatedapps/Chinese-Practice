@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer, type ReactNode, type Dispatch } from "react";
 import type { QuestionGroup, GroupResult, GroupResultItem, QuestionIndexEntry } from "../data/types";
 import { VOCABULARY_CATEGORY_KEYS } from "../data/questions";
+import { DEFAULT_LEVEL } from "../data/levels";
 
 export type Screen =
   | "home"
@@ -17,6 +18,13 @@ export type Screen =
 
 export interface AppState {
   screen: Screen;
+  // Which public/content/<level>/ directory question-bank/Tingxie/Story
+  // content is fetched from -- see data/levels.ts. Changed only via
+  // SET_LEVEL, dispatched by components/common/LevelBar.tsx alongside a
+  // matching data/levels.ts setCurrentLevel() call, so the loaders' module-
+  // level "which level am I fetching" state and this field never drift
+  // apart.
+  level: string;
   mode: "lesson" | "type" | null;
   modeLabel: string;
   groups: QuestionGroup[];
@@ -49,6 +57,7 @@ export interface AppState {
 
 const initialState: AppState = {
   screen: "home",
+  level: DEFAULT_LEVEL,
   mode: null,
   modeLabel: "",
   groups: [],
@@ -67,6 +76,7 @@ const initialState: AppState = {
 
 export type AppAction =
   | { type: "GO_TO_SCREEN"; screen: Screen }
+  | { type: "SET_LEVEL"; level: string }
   | { type: "START_QUIZ"; mode: "lesson" | "type"; modeLabel: string; groups: QuestionGroup[] }
   | { type: "SELECT_SUBJECT"; subject: string }
   | { type: "SET_QUESTION_INDEX"; index: QuestionIndexEntry[]; categorySubjects: Record<string, Set<string>>; lessonCount: number }
@@ -93,6 +103,15 @@ function reducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
     case "GO_TO_SCREEN":
       return { ...state, screen: action.screen };
+    // Switching levels invalidates every bootstrap/session/picker field at
+    // once (a different level's lessons/categories/subjects don't line up
+    // with the previous one's selections) -- resets to initialState wholesale
+    // rather than patching individual fields, same reasoning as a fresh app
+    // load, just with the new level instead of DEFAULT_LEVEL.
+    // questionIndexLoaded lands back at false here, which is what makes
+    // App.tsx's bootstrap effect refire and fetch the new level's meta/index.
+    case "SET_LEVEL":
+      return { ...initialState, level: action.level };
     case "START_QUIZ":
       return {
         ...state,
@@ -187,6 +206,7 @@ function reducer(state: AppState, action: AppAction): AppState {
     case "RESET_TO_HOME":
       return {
         ...initialState,
+        level: state.level,
         selectedSubject: state.selectedSubject,
         selectedCategories: state.selectedCategories,
         selectedLessons: state.selectedLessons,

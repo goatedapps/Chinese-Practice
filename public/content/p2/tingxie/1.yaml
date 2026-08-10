@@ -1,0 +1,59 @@
+title: 第一课 (Lesson 1)
+vocab:
+  - word: 苹果
+    pinyin: píng guǒ
+    meaning: Apple
+    example: 我喜欢吃苹果。
+    sentenceBank:
+      - zh: 妈妈买了一些红苹果。
+        en: Mom bought some red apples.
+      - zh: 这个苹果又大又甜。
+        en: This apple is big and sweet.
+  - word: 快乐
+    pinyin: kuài lè
+    meaning: Happy
+    example: 今天是我快乐的生日。
+    sentenceBank:
+      - zh: 我们在公园玩得很快乐。
+        en: We had a happy time playing at the park.
+      - zh: 祝你生日快乐！
+        en: Happy birthday to you!
+  - word: 朋友
+    pinyin: péng yǒu
+    meaning: Friend
+    example: 他是我的好朋友。
+    sentenceBank:
+      - zh: 我有很多好朋友。
+        en: I have many good friends.
+      - zh: 朋友之间应该互相帮助。
+        en: Friends should help each other.
+  - word: 帮助
+    pinyin: bāng zhù
+    meaning: Help
+    example: 我们要互相帮助。
+    sentenceBank:
+      - zh: 老师帮助我做功课。
+        en: The teacher helped me with my homework.
+      - zh: 谢谢你的帮助。
+        en: Thank you for your help.
+sentences:
+  - text: 小狗很快乐地跑来跑去。
+    segments:
+      - 小狗
+      - 很
+      - 快乐地
+      - 跑来跑去
+      - 。
+    icon: smile
+    description: The little dog happily runs around.
+  - text: 我和朋友一起分享苹果。
+    segments:
+      - 我
+      - 和
+      - 朋友
+      - 一起
+      - 分享
+      - 苹果
+      - 。
+    icon: activity
+    description: Sharing an apple together with a friend.

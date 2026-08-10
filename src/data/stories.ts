@@ -20,8 +20,11 @@
 // generic rule, so each lesson's sentence boundaries are a one-time
 // authorial choice: one sentence per line within a paragraph block.
 import YAML from "yaml";
+import { getCurrentLevel } from "./levels";
 
-const CONTENT_BASE = `${import.meta.env.BASE_URL}content/p5`;
+function contentBase(): string {
+  return `${import.meta.env.BASE_URL}content/${getCurrentLevel()}`;
+}
 
 // A page groups one or more of the original story's paragraphs -- every page
 // should have at least 3 sentences (a short paragraph on its own would make
@@ -91,34 +94,41 @@ function parseStoryMarkdown(id: number, text: string): StoryLesson {
   return { id, title, segments };
 }
 
-const indexCache = new Map<"index", StoryIndex>();
-const lessonCache = new Map<number, StoryLesson>();
+// Keyed by level so switching levels via the level switcher never serves a
+// cached story from the previously-active level -- see data/levels.ts and
+// data/questions.ts's identical pattern.
+const indexCache = new Map<string, StoryIndex>();
+const lessonCache = new Map<string, StoryLesson>();
 
 export async function fetchStoryIndex(): Promise<StoryIndex> {
-  const cached = indexCache.get("index");
+  const level = getCurrentLevel();
+  const cached = indexCache.get(level);
   if (cached) return cached;
-  const [metaRes, writtenRes] = await Promise.all([fetch(`${CONTENT_BASE}/meta.yaml`), fetch(`${CONTENT_BASE}/stories/index.yaml`)]);
+  const base = contentBase();
+  const [metaRes, writtenRes] = await Promise.all([fetch(`${base}/meta.yaml`), fetch(`${base}/stories/index.yaml`)]);
   if (!metaRes.ok || !writtenRes.ok) throw new Error("加载课文列表失败 Failed to load story index");
   const meta = YAML.parse(await metaRes.text()) as { lessonCount: number };
   const written = YAML.parse(await writtenRes.text()) as { written: number[] };
   const data: StoryIndex = { lessonCount: meta.lessonCount, written: written.written };
-  indexCache.set("index", data);
+  indexCache.set(level, data);
   return data;
 }
 
 export async function fetchStoryLesson(id: number): Promise<StoryLesson> {
-  const cached = lessonCache.get(id);
+  const level = getCurrentLevel();
+  const cacheKey = `${level}:${id}`;
+  const cached = lessonCache.get(cacheKey);
   if (cached) return cached;
   const index = await fetchStoryIndex();
   if (!index.written.includes(id)) {
     const lesson = placeholderLesson(id);
-    lessonCache.set(id, lesson);
+    lessonCache.set(cacheKey, lesson);
     return lesson;
   }
-  const res = await fetch(`${CONTENT_BASE}/stories/${id}.md`);
+  const res = await fetch(`${contentBase()}/stories/${id}.md`);
   if (!res.ok) throw new Error(`加载课文失败 Failed to load story ${id} (${res.status})`);
   const lesson = parseStoryMarkdown(id, await res.text());
-  lessonCache.set(id, lesson);
+  lessonCache.set(cacheKey, lesson);
   return lesson;
 }
 
@@ -129,8 +139,9 @@ export async function fetchStoryLesson(id: number): Promise<StoryLesson> {
 // round trip (which, on a real hosted connection rather than the Vite dev
 // server, is where the noticeable "Loading story..." delay comes from).
 export function prefetchStoryLessons(index: StoryIndex): void {
+  const level = getCurrentLevel();
   for (const id of index.written) {
-    if (lessonCache.has(id)) continue;
+    if (lessonCache.has(`${level}:${id}`)) continue;
     fetchStoryLesson(id).catch(() => {});
   }
 }
