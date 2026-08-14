@@ -19,6 +19,7 @@ const TINGXIE_ACTIVITY_LABEL: Record<TingxieCompletedActivity, { zh: string; en:
   learnVocab: { zh: "学词语", en: "Learn (Vocab)" },
   learnSentence: { zh: "学默写", en: "Learn (Sentences)" },
   apply: { zh: "词语应用", en: "Apply" },
+  play: { zh: "词云游戏", en: "Play" },
   test: { zh: "听写测试", en: "Test" }
 };
 

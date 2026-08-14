@@ -1584,6 +1584,54 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 
 .tingxie-self-check { justify-content: center; margin-top: 18px; }
 
+/* -- Play (词云游戏): a timed round of falling word-clouds, see
+   components/Tingxie/Play.tsx -- reuses .tingxie-apply-sentence/-english
+   above for the blanked-sentence prompt so it reads consistently with
+   Apply's own card. */
+.tingxie-play { text-align: center; }
+.tingxie-play .tingxie-apply-sentence { margin: 4px 0 2px; }
+.tingxie-play .tingxie-apply-english { margin-bottom: 14px; }
+.tingxie-play-timer {
+  display: inline-block; font-weight: 700; font-size: 18px; color: var(--gold-deep);
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border-radius: 999px; padding: 6px 18px; margin-bottom: 12px;
+  box-shadow: var(--shadow-1);
+}
+.tingxie-cloud-sky {
+  position: relative; max-width: 640px; height: 320px; margin: 0 auto;
+  background: linear-gradient(180deg, #d6f0ff, var(--card-bg));
+  border-radius: 24px; overflow: hidden;
+  box-shadow: var(--shadow-press);
+}
+/* A soft rounded blob (asymmetric border-radius, not a plain pill) reads as
+   a cloud shape at a glance without needing an actual cloud image asset. */
+.tingxie-cloud {
+  position: absolute; top: -18%;
+  transform: translateX(-50%);
+  background: var(--card-hi);
+  border: none; border-radius: 60% 60% 55% 55% / 70% 70% 50% 50%;
+  padding: 12px 20px;
+  font-weight: 700; font-size: 16px; color: var(--ink);
+  cursor: pointer;
+  box-shadow: var(--shadow-1);
+  animation-name: tingxie-cloud-fall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+.tingxie-cloud:hover { box-shadow: var(--shadow-2); }
+@keyframes tingxie-cloud-fall {
+  0%   { top: -18%; }
+  100% { top: 104%; }
+}
+.tingxie-play-feedback {
+  position: absolute; top: 40%; left: 50%; transform: translateX(-50%);
+  font-size: 28px; font-weight: 700;
+  animation: bp-pop-float 1.1s ease-out forwards;
+  pointer-events: none;
+}
+.tingxie-play-feedback-correct { color: var(--correct); }
+.tingxie-play-feedback-wrong { color: var(--incorrect); }
+
 /* =========================================================
    CLAYMORPHISM -- app-wide
    ---------------------------------------------------------

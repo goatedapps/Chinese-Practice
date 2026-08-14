@@ -147,10 +147,10 @@ export type MoodBucket = "sad" | "neutral" | "happy" | "very_happy";
 
 export type AchievementType = "missionComplete" | "questionsMilestone" | "storyCompleted" | "specialQuestComplete" | "tingxieCompleted";
 
-// Tingxie's 4 award sites (Learn's two sub-activities are awarded/logged
+// Tingxie's 5 award sites (Learn's two sub-activities are awarded/logged
 // separately -- see CLAUDE.md's Tingxie BP bullet), matching
 // TingxieActiveContent.title + which one just finished.
-export type TingxieCompletedActivity = "learnVocab" | "learnSentence" | "apply" | "test";
+export type TingxieCompletedActivity = "learnVocab" | "learnSentence" | "apply" | "play" | "test";
 
 export interface Achievement {
   id: string;

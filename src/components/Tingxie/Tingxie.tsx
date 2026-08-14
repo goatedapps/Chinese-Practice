@@ -7,6 +7,7 @@ import { LessonSelect } from "./LessonSelect";
 import { TingxiePicker } from "./TingxiePicker";
 import { Learn } from "./Learn";
 import { Apply } from "./Apply";
+import { Play } from "./Play";
 import { Practice } from "./Practice";
 
 function TingxieShell() {
@@ -15,7 +16,7 @@ function TingxieShell() {
   const dispatch = useTingxieDispatch();
   const { pet } = usePet();
 
-  const inActivity = state.view === "learn" || state.view === "apply" || state.view === "practice";
+  const inActivity = state.view === "learn" || state.view === "apply" || state.view === "play" || state.view === "practice";
   const showTabs = inActivity && state.activeContent !== null;
 
   // Stop any in-progress "🔊 朗读 Listen" reading whenever the student
@@ -52,6 +53,9 @@ function TingxieShell() {
           <button className={"tingxie-tab" + (state.view === "apply" ? " tingxie-tab-active" : "")} onClick={() => dispatch({ type: "SET_VIEW", view: "apply" })}>
             ✏️ 词语应用 Apply
           </button>
+          <button className={"tingxie-tab" + (state.view === "play" ? " tingxie-tab-active" : "")} onClick={() => dispatch({ type: "SET_VIEW", view: "play" })}>
+            ☁️ 词云游戏 Play
+          </button>
           <button className={"tingxie-tab" + (state.view === "practice" ? " tingxie-tab-active" : "")} onClick={() => dispatch({ type: "SET_VIEW", view: "practice" })}>
             🔊 听写测试 Test
           </button>
@@ -62,6 +66,7 @@ function TingxieShell() {
       {state.view === "picker" && <TingxiePicker />}
       {state.view === "learn" && state.activeContent && <Learn />}
       {state.view === "apply" && state.activeContent && <Apply />}
+      {state.view === "play" && state.activeContent && <Play />}
       {state.view === "practice" && state.activeContent && <Practice />}
     </div>
   );

@@ -19,7 +19,7 @@ export function TingxiePicker() {
   const allIds = state.lessonIndex?.map((e) => e.id) ?? [];
   const allSelected = allIds.length > 0 && allIds.every((id) => state.pickerSelectedIds.includes(id));
 
-  function startReview(target: "apply" | "practice") {
+  function startReview(target: "apply" | "play" | "practice") {
     if (state.pickerSelectedIds.length === 0) return;
     dispatch({ type: "CUSTOM_REVIEW_START" });
     Promise.all(state.pickerSelectedIds.map((id) => fetchTingxieLesson(id)))
@@ -65,6 +65,9 @@ export function TingxiePicker() {
           <div className="tingxie-picker-actions">
             <button className="primary-btn" disabled={state.pickerSelectedIds.length === 0 || state.loadingReview} onClick={() => startReview("apply")}>
               ✏️ 词语应用 Start Apply
+            </button>
+            <button className="primary-btn" disabled={state.pickerSelectedIds.length === 0 || state.loadingReview} onClick={() => startReview("play")}>
+              ☁️ 词云游戏 Start Game
             </button>
             <button className="primary-btn" disabled={state.pickerSelectedIds.length === 0 || state.loadingReview} onClick={() => startReview("practice")}>
               🔊 听写测试 Start Test

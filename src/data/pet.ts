@@ -53,6 +53,23 @@ export const TINGXIE_BP_AWARD = {
   PRACTICE: 20 // 听写练习 -- BOTH phases (tingxie + moxie) completed
 };
 
+// Dictation Practice's "Play" (词云游戏) minigame -- a fixed-length timed
+// round where falling word-clouds must be tapped to fill in a blanked
+// sentence's missing word before time runs out. Unlike every other Tingxie
+// activity's flat TINGXIE_BP_AWARD, this one's payout is earned live
+// (CORRECT_BP/WRONG_BP per tap) and only totalled + awarded once the round
+// ends (see components/Tingxie/Play.tsx) -- clamped to 0 if the round nets
+// negative, never a debit against the pet's existing BP.
+export const TINGXIE_PLAY_CONFIG = {
+  DURATION_SEC: 30,
+  CORRECT_BP: 1,
+  WRONG_BP: -2,
+  SPAWN_INTERVAL_MS: 900,
+  MIN_FALL_SEC: 4.5,
+  MAX_FALL_SEC: 7,
+  MAX_CLOUDS: 8
+};
+
 // Flat BP awarded once per story finished in Read a Story mode (see
 // components/Story/Story.tsx's "完成 Finish" button) -- Read a Story is
 // otherwise still independent of the Quiz/achievements pipeline (no

@@ -52,6 +52,7 @@ const SOUND_FILES = {
   enterShop: "/sounds/enter-shop.mp3", // opening the Shop screen
   bagOpen: "/sounds/bag-open.mp3", // opening the Bag/Feed screen
   wheelSpin: "/sounds/wheelspin.mp3", // spinning the Home dashboard's Special Quest wheel
+  ticker: "/sounds/ticker.mp3", // looping countdown tick during Tingxie's Play round
   background: "/sounds/background.mp3" // looping background music, started once on the app's first click
 };
 
@@ -173,6 +174,22 @@ function playBackgroundMusic(): void {
   }
 }
 
+// Tingxie's Play round's countdown-tick track -- a single persistent
+// <audio> element (same reasoning as bgMusic above: created once, reused
+// across the round), but always restarted from 0 on start rather than
+// resumed, since a fresh round should always begin on the tick's first
+// beat, not wherever a previous round happened to leave off.
+let tickerAudio: HTMLAudioElement | null = null;
+
+function ensureTickerElement(): HTMLAudioElement {
+  if (!tickerAudio) {
+    tickerAudio = new Audio(`${SOUND_FILES.ticker}?v=${CACHE_BUST}`);
+    tickerAudio.loop = true;
+    tickerAudio.volume = 0.5;
+  }
+  return tickerAudio;
+}
+
 export const Sound = {
   // Any button press, app-wide (see App.tsx's global click listener).
   click(): void {
@@ -238,6 +255,30 @@ export const Sound = {
     bgMusicExplicitlyPaused = true;
     try {
       bgMusic?.pause();
+    } catch {
+      // ignore
+    }
+  },
+  // Starts (from the beginning) Tingxie Play's looping countdown-tick track
+  // for the round (see components/Tingxie/Play.tsx) -- a missing/404
+  // ticker.mp3 fails silently like every other sound file here, so Play
+  // works fine before the file is actually dropped into public/sounds/.
+  startTicker(): void {
+    try {
+      const audio = ensureTickerElement();
+      audio.currentTime = 0;
+      audio.play().catch(() => {
+        // Sound is a nice-to-have; a blocked autoplay just means the round
+        // plays silently until the next genuine user gesture.
+      });
+    } catch {
+      // ignore
+    }
+  },
+  stopTicker(): void {
+    try {
+      tickerAudio?.pause();
+      if (tickerAudio) tickerAudio.currentTime = 0;
     } catch {
       // ignore
     }

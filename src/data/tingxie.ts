@@ -48,6 +48,23 @@ export async function fetchTingxieLesson(id: number): Promise<TingxieLesson> {
   return data;
 }
 
+// The Play minigame's distractor pool (see components/Tingxie/Play.tsx) --
+// deliberately every lesson's vocabulary, not just the lesson being played,
+// per the feature request ("different random vocab from any lesson"). Reuses
+// fetchTingxieLesson()'s own cache, so this resolves near-instantly once
+// prefetchTingxieLessons() (or a previous call to this function) has already
+// warmed it -- only a fresh app session with a lesson jumped straight into
+// Play before the background prefetch finishes pays a real network cost.
+export async function fetchAllTingxieVocabWords(): Promise<string[]> {
+  const index = await fetchTingxieLessonIndex();
+  const lessons = await Promise.all(index.map((entry) => fetchTingxieLesson(entry.id)));
+  const words = new Set<string>();
+  for (const lesson of lessons) {
+    for (const v of lesson.vocab) words.add(v.word);
+  }
+  return Array.from(words);
+}
+
 // Fire-and-forget warmup: once the lesson index is on screen, quietly fetch
 // every lesson's content in the background so a real tap on a lesson number
 // resolves from lessonCache instantly instead of waiting on a fresh network

@@ -8,7 +8,7 @@ import type { TingxieLessonIndexEntry, TingxieSentence, TingxieVocabItem } from 
 import { tingxieSentenceWords, buildTingxiePracticeSentenceQueue, type TingxieApplyItem, type TingxiePracticeItem } from "../../data/tingxie";
 import { shuffle } from "../../lib/shuffle";
 
-export type TingxieView = "select" | "picker" | "learn" | "apply" | "practice";
+export type TingxieView = "select" | "picker" | "learn" | "apply" | "play" | "practice";
 export type TingxieSubTab = "vocab" | "sentence";
 
 export interface TingxieActiveContent {
@@ -147,7 +147,7 @@ export type TingxieAction =
   | { type: "TOGGLE_PICKER_LESSON"; id: number }
   | { type: "TOGGLE_PICKER_ALL"; allIds: number[] }
   | { type: "CUSTOM_REVIEW_START" }
-  | { type: "CUSTOM_REVIEW_SUCCESS"; content: TingxieActiveContent; target: "apply" | "practice" }
+  | { type: "CUSTOM_REVIEW_SUCCESS"; content: TingxieActiveContent; target: "apply" | "play" | "practice" }
   | { type: "CUSTOM_REVIEW_ERROR"; error: string };
 
 function reducer(state: TingxieState, action: TingxieAction): TingxieState {
