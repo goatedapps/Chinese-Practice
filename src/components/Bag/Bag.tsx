@@ -27,55 +27,61 @@ export function Bag() {
         ← 返回 Back
       </button>
       <h1>{`喂食／玩耍 Feed / Play with ${pet.name || "它"}`}</h1>
-      <OwlArt ref={owlRef} stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" playSound />
-      {ageUpAge !== null && (
-        <div className="age-up-banner" role="status">
-          🎉 {pet.name || "它"}长大了一岁，现在是 {ageUpAge} 岁了！
-          <br />
-          Your pet has grown wiser. {pet.name || "Your pet"} is now {ageUpAge} year{ageUpAge === 1 ? "" : "s"} old.
+      <div className="pet-layout pet-layout-wide">
+        <div className="pet-layout-art">
+          <OwlArt ref={owlRef} stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" playSound />
+          {ageUpAge !== null && (
+            <div className="age-up-banner" role="status">
+              🎉 {pet.name || "它"}长大了一岁，现在是 {ageUpAge} 岁了！
+              <br />
+              Your pet has grown wiser. {pet.name || "Your pet"} is now {ageUpAge} year{ageUpAge === 1 ? "" : "s"} old.
+            </div>
+          )}
+          <PetStatBars pet={pet} />
         </div>
-      )}
-      <PetStatBars pet={pet} />
-      <h2>道具袋 My Bag</h2>
+        <div className="pet-layout-info pet-layout-info-wide">
+          <h2>道具袋 My Bag</h2>
 
-      {entries.length === 0 ? (
-        <div className="bag-empty">
-          <p className="subtitle">道具袋是空的 Your bag is empty</p>
-          <div className="owl-bp-label">💡 可用 BP: {pet.bp}</div>
-          <div className="action-row">
-            <button
-              className="primary-btn"
-              onClick={() => {
-                Sound.enterShop();
-                dispatch({ type: "GO_TO_SCREEN", screen: "shop" });
-              }}
-            >
-              🛍 前往商店 Visit Shop
-            </button>
-          </div>
+          {entries.length === 0 ? (
+            <div className="bag-empty">
+              <p className="subtitle">道具袋是空的 Your bag is empty</p>
+              <div className="owl-bp-label">💡 可用 BP: {pet.bp}</div>
+              <div className="action-row">
+                <button
+                  className="primary-btn"
+                  onClick={() => {
+                    Sound.enterShop();
+                    dispatch({ type: "GO_TO_SCREEN", screen: "shop" });
+                  }}
+                >
+                  🛍 前往商店 Visit Shop
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="bag-grid">
+              {entries.map(([itemId, qty]) => {
+                const item = SHOP_ITEMS.find((i) => i.id === itemId);
+                if (!item) return null;
+                return (
+                  <BagItemCard
+                    key={itemId}
+                    item={item}
+                    qty={qty}
+                    owlRef={owlRef}
+                    onGive={giveItem}
+                    onAgedUp={setAgeUpAge}
+                    onPlay={(toy) => {
+                      consumeItem(toy);
+                      dispatch({ type: "START_PLAY", itemId: toy.id });
+                    }}
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
-      ) : (
-        <div className="bag-grid">
-          {entries.map(([itemId, qty]) => {
-            const item = SHOP_ITEMS.find((i) => i.id === itemId);
-            if (!item) return null;
-            return (
-              <BagItemCard
-                key={itemId}
-                item={item}
-                qty={qty}
-                owlRef={owlRef}
-                onGive={giveItem}
-                onAgedUp={setAgeUpAge}
-                onPlay={(toy) => {
-                  consumeItem(toy);
-                  dispatch({ type: "START_PLAY", itemId: toy.id });
-                }}
-              />
-            );
-          })}
-        </div>
-      )}
+      </div>
     </div>
   );
 }

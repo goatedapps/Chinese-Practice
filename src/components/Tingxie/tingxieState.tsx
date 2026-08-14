@@ -131,6 +131,7 @@ export type TingxieAction =
   | { type: "VOCAB_NEXT" }
   | { type: "VOCAB_PREV" }
   | { type: "SENTENCE_PICK"; idx: number }
+  | { type: "SENTENCE_UNPICK"; idx: number }
   | { type: "SENTENCE_RESET" }
   | { type: "SENTENCE_NEXT" }
   | { type: "SENTENCE_PREV" }
@@ -232,6 +233,21 @@ function reducer(state: TingxieState, action: TingxieAction): TingxieState {
           correct && !state.sentenceSolvedIndices.includes(state.sentenceIndex)
             ? [...state.sentenceSolvedIndices, state.sentenceIndex]
             : state.sentenceSolvedIndices
+      };
+    }
+    // Removes just one placed chip back into the bag (rather than the full
+    // SENTENCE_RESET) -- also clears a stale "incorrect" result/reveal, since
+    // pulling a wrong chip back out is how a student fixes one block instead
+    // of starting over, and the tray is no longer "full" once this happens.
+    // Left alone once the sentence is already solved ("correct" is final).
+    case "SENTENCE_UNPICK": {
+      if (state.sentenceResult === "correct") return state;
+      if (!state.placedIndices.includes(action.idx)) return state;
+      return {
+        ...state,
+        placedIndices: state.placedIndices.filter((i) => i !== action.idx),
+        sentenceResult: null,
+        sentenceRevealed: false
       };
     }
     case "SENTENCE_RESET": {

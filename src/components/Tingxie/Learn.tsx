@@ -155,9 +155,15 @@ function SentenceBuilderGame() {
       <div className={trayClass}>
         {state.placedIndices.length === 0 && <span className="tingxie-tray-hint">点击下方词语，按顺序拼出句子 Tap the words below in order</span>}
         {state.placedIndices.map((i) => (
-          <span key={i} className="tingxie-tray-chip">
+          <button
+            key={i}
+            type="button"
+            className="tingxie-tray-chip"
+            disabled={state.sentenceResult === "correct"}
+            onClick={() => dispatch({ type: "SENTENCE_UNPICK", idx: i })}
+          >
             {words[i]}
-          </span>
+          </button>
         ))}
       </div>
 

@@ -7,6 +7,30 @@ import { shuffle } from "../../lib/shuffle";
 import { isLessonMissionComplete, getReadingMissionCount, isTingxieMissionComplete, READING_MISSION_CATEGORIES } from "../../lib/stats";
 import type { HistoryEntry } from "../../data/types";
 
+// Interactive half of the "3D carousel" mission cards -- the resting curve
+// (left/right cards angled toward the middle one) is pure CSS (see
+// ".mission-grid .mission-card:nth-of-type(n)" in styles.css); this just
+// layers a live tilt on top while the cursor is over a card, following
+// pointer position the way a carousel card would rock as you look around
+// it. Skipped entirely under prefers-reduced-motion, matching the CSS
+// transition guard on the same elements.
+function tiltMissionCard(e: React.MouseEvent<HTMLButtonElement>) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const el = e.currentTarget;
+  const rect = el.getBoundingClientRect();
+  const px = (e.clientX - rect.left) / rect.width - 0.5;
+  const py = (e.clientY - rect.top) / rect.height - 0.5;
+  el.style.setProperty("--tilt-y", `${px * 20}deg`);
+  el.style.setProperty("--tilt-x", `${py * -16}deg`);
+  el.style.setProperty("--tilt-z", "20px");
+}
+function untiltMissionCard(e: React.MouseEvent<HTMLButtonElement>) {
+  const el = e.currentTarget;
+  el.style.removeProperty("--tilt-y");
+  el.style.removeProperty("--tilt-x");
+  el.style.removeProperty("--tilt-z");
+}
+
 export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
   const dispatch = useAppDispatch();
   const [starting, setStarting] = useState(false);
@@ -56,6 +80,8 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
         <button
           className={"mission-card" + (dictationDone ? " mission-card-done" : "")}
           onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}
+          onMouseMove={tiltMissionCard}
+          onMouseLeave={untiltMissionCard}
         >
           <div className="mission-card-top" style={{ backgroundImage: "url(/icons/dictation-bg.png)" }}>
             <img className="mission-card-icon" src="/icons/dictation.png" alt="" />
@@ -70,6 +96,8 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
         <button
           className={"mission-card" + (lessonDone ? " mission-card-done" : "")}
           onClick={startLessonMission}
+          onMouseMove={tiltMissionCard}
+          onMouseLeave={untiltMissionCard}
         >
           <div className="mission-card-top" style={{ backgroundImage: "url(/icons/read-bg.png)" }}>
             <img className="mission-card-icon" src="/icons/read.png" alt="" />
@@ -85,6 +113,8 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
           className={"mission-card" + (readingDone ? " mission-card-done" : "")}
           disabled={starting}
           onClick={startReadingMission}
+          onMouseMove={tiltMissionCard}
+          onMouseLeave={untiltMissionCard}
         >
           <div className="mission-card-top" style={{ backgroundImage: "url(/icons/practice-bg.png)" }}>
             <img className="mission-card-icon" src="/icons/practice.png" alt="" />

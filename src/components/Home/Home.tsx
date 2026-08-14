@@ -6,10 +6,12 @@ import { getTodayStats, isTingxieMissionComplete } from "../../lib/stats";
 import { getTodaySummary } from "../../state/todaySummary";
 import { exportTodaySummaryToPdf } from "../../lib/exportPdf";
 import { ConfirmModal } from "../common/Modal";
+import { Reveal } from "../common/Reveal";
 import { PetHeroCard } from "./PetHeroCard";
 import { TodayMission } from "./TodayMission";
 import { SpecialQuest } from "./SpecialQuest";
 import { RecentAchievements } from "./RecentAchievements";
+import { ConfettiBackground } from "./ConfettiBackground";
 
 export function Home() {
   const dispatch = useAppDispatch();
@@ -28,65 +30,80 @@ export function Home() {
 
   return (
     <div className="screen home home-dashboard">
-      <PetHeroCard hist={hist} />
+      <ConfettiBackground />
+      <div className="home-content">
+        <Reveal delay={20}>
+          <PetHeroCard hist={hist} />
+        </Reveal>
 
-      <SpecialQuest />
+        <Reveal delay={80}>
+          <SpecialQuest />
+        </Reveal>
 
-      <TodayMission hist={hist} />
+        <Reveal delay={140}>
+          <TodayMission hist={hist} />
+        </Reveal>
 
-      <div className="dash-card continue-section">
-        <h2 className="section-heading">继续学习 Continue Learning</h2>
-        <div className="mode-rows">
-          <button className="mode-row" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}>
-            <img className="mode-row-icon" src="/icons/dictation.png" alt="" />
-            <span className="mode-row-info">
-              <span className="mode-row-title">听写练习</span>
-              <span className="mode-row-sub">Dictation Practice</span>
-            </span>
-            <span className="mode-row-go">›</span>
-          </button>
-          <button className="mode-row" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "practice" })}>
-            <img className="mode-row-icon" src="/icons/practice.png" alt="" />
-            <span className="mode-row-info">
-              <span className="mode-row-title">练习</span>
-              <span className="mode-row-sub">Practice</span>
-            </span>
-            <span className="mode-row-go">›</span>
-          </button>
-          <button className="mode-row" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "story" })}>
-            <img className="mode-row-icon" src="/icons/read.png" alt="" />
-            <span className="mode-row-info">
-              <span className="mode-row-title">读故事</span>
-              <span className="mode-row-sub">Read a Story</span>
-            </span>
-            <span className="mode-row-go">›</span>
-          </button>
-        </div>
+        <Reveal delay={200}>
+          <div className="dash-card continue-section">
+            <h2 className="section-heading">继续学习 Continue Learning</h2>
+            <div className="mode-rows">
+              <button className="mode-row" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}>
+                <img className="mode-row-icon" src="/icons/dictation.png" alt="" />
+                <span className="mode-row-info">
+                  <span className="mode-row-title">听写练习</span>
+                  <span className="mode-row-sub">Dictation Practice</span>
+                </span>
+                <span className="mode-row-go">›</span>
+              </button>
+              <button className="mode-row" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "practice" })}>
+                <img className="mode-row-icon" src="/icons/practice.png" alt="" />
+                <span className="mode-row-info">
+                  <span className="mode-row-title">练习</span>
+                  <span className="mode-row-sub">Practice</span>
+                </span>
+                <span className="mode-row-go">›</span>
+              </button>
+              <button className="mode-row" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "story" })}>
+                <img className="mode-row-icon" src="/icons/read.png" alt="" />
+                <span className="mode-row-info">
+                  <span className="mode-row-title">读故事</span>
+                  <span className="mode-row-sub">Read a Story</span>
+                </span>
+                <span className="mode-row-go">›</span>
+              </button>
+            </div>
+          </div>
+        </Reveal>
+
+        {showTodaySummary && (
+          <Reveal delay={260}>
+            <div className="dash-card today-summary-card">
+              <h2 className="section-heading">今日学习总结 Today's Session Summary</h2>
+              <p className="picker-hint">
+                <span className="en">Print this to show your parents what you have learnt today!</span>
+              </p>
+              <button className="secondary-btn" onClick={() => exportTodaySummaryToPdf(hist)}>
+                🖨️ Print as PDF
+              </button>
+            </div>
+          </Reveal>
+        )}
+
+        <Reveal delay={320}>
+          <RecentAchievements hist={hist} achievements={achievements} onDeleteRow={setPendingDeleteId} />
+        </Reveal>
+
+        {pendingDeleteId && (
+          <ConfirmModal
+            messageLines={["确定要删除这条记录吗？", "Delete this session record?"]}
+            onConfirm={handleConfirm}
+            onCancel={() => setPendingDeleteId(null)}
+          />
+        )}
+
+        <footer className="home-footer">Created by Yiwen and Claude, Copyright 2026</footer>
       </div>
-
-      {showTodaySummary && (
-        <div className="dash-card today-summary-card">
-          <h2 className="section-heading">今日学习总结 Today's Session Summary</h2>
-          <p className="picker-hint">
-            <span className="en">Print this to show your parents what you have learnt today!</span>
-          </p>
-          <button className="secondary-btn" onClick={() => exportTodaySummaryToPdf(hist)}>
-            🖨️ Print as PDF
-          </button>
-        </div>
-      )}
-
-      <RecentAchievements hist={hist} achievements={achievements} onDeleteRow={setPendingDeleteId} />
-
-      {pendingDeleteId && (
-        <ConfirmModal
-          messageLines={["确定要删除这条记录吗？", "Delete this session record?"]}
-          onConfirm={handleConfirm}
-          onCancel={() => setPendingDeleteId(null)}
-        />
-      )}
-
-      <footer className="home-footer">Created by Yiwen and Claude, Copyright 2026</footer>
     </div>
   );
 }

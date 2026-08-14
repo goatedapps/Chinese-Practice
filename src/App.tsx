@@ -19,6 +19,7 @@ import { Auth } from "./components/Auth/Auth";
 import { TopNav } from "./components/common/TopNav";
 import { AccountBar } from "./components/common/AccountBar";
 import { LevelBar } from "./components/common/LevelBar";
+import { CursorGlow } from "./components/common/CursorGlow";
 
 function ScreenRouter() {
   const state = useAppState();
@@ -195,6 +196,7 @@ export default function App() {
       <AppStateProvider>
         <PetProvider>
           <SyncBootstrap />
+          <CursorGlow />
           <ScreenRouter />
         </PetProvider>
       </AppStateProvider>

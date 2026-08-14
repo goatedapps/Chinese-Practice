@@ -1,25 +1,29 @@
-/* Claymorphism palette -- candy pastels + a puffy double-shadow recipe
+/* Claymorphism palette -- vivid candy colors + a puffy double-shadow recipe
    (soft outer lift + inset highlight), consumed by every shared class
    below via these custom properties. Rolled out app-wide from the
-   Home dashboard preview once that direction was approved. */
+   Home dashboard preview once that direction was approved. Brightened
+   (higher-saturation primary/gold/correct/incorrect/accents, punchier
+   screen-panel gradient) from an earlier, more muted pastel version --
+   if retuning again, push saturation on these tokens rather than
+   hand-picking new one-off colors at call sites. */
 :root {
-  --primary: #ff8b6b;
-  --primary-hi: #ffab8f;
-  --primary-dark: #e5623e;
+  --primary: #ff5a36;
+  --primary-hi: #ff8a5c;
+  --primary-dark: #d63b16;
   --ink: #4b3a32;
   --ink-rgb: 75, 58, 50;
   --ink-soft: #8b7565;
-  --bg: #fdf3e7;
-  --card-bg: #fffdfa;
+  --bg: #e6edff;
+  --card-bg: #fdfeff;
   --card-hi: #ffffff;
-  --border: #ffe1c7;
+  --border: #dcd4fb;
   --hi-edge: rgba(255, 255, 255, 0.9);
-  --correct: #4fbe87;
-  --incorrect: #ff6b6b;
+  --correct: #22c55e;
+  --incorrect: #ff3b3b;
   --skipped: #ab9484;
-  --gold: #ffc94a;
-  --gold-hi: #ffde85;
-  --gold-deep: #d99b1f;
+  --gold: #ffb300;
+  --gold-hi: #ffd54f;
+  --gold-deep: #b8790a;
 
   /* Home-dashboard accent set -- a brighter, more saturated 4-hue palette
      layered on top of the neutral claymorphism cards, used only within
@@ -30,24 +34,24 @@
      gradients, a "-bg" pale tint (card/row backgrounds), and green additionally
      has "-deep" for text, since --correct itself is too light to pass as
      heading-text contrast on a white card. */
-  --accent-purple: #7b6ef0;
-  --accent-purple-hi: #9c90ff;
-  --accent-purple-dark: #5d4fd1;
-  --accent-purple-bg: #ede9fb;
-  --accent-pink: #f0609e;
-  --accent-pink-hi: #ff85b8;
-  --accent-pink-dark: #d63e7c;
-  --accent-pink-bg: #fde7f0;
-  --accent-orange: #ffa733;
-  --accent-orange-hi: #ffc168;
-  --accent-orange-dark: #e8890f;
-  --accent-orange-bg: #fff3dc;
-  --accent-mint-bg: #e3f7ea;
-  --green-deep: #2e9b57;
+  --accent-purple: #7c4dff;
+  --accent-purple-hi: #a389ff;
+  --accent-purple-dark: #5b2fd1;
+  --accent-purple-bg: #ede4ff;
+  --accent-pink: #ff2d92;
+  --accent-pink-hi: #ff6bb8;
+  --accent-pink-dark: #d1176c;
+  --accent-pink-bg: #ffe1f0;
+  --accent-orange: #ff9100;
+  --accent-orange-hi: #ffb347;
+  --accent-orange-dark: #cc6f00;
+  --accent-orange-bg: #ffefd6;
+  --accent-mint-bg: #d7f7e4;
+  --green-deep: #15803d;
 
-  --shadow-1: 6px 6px 14px rgba(214, 140, 96, .22), -6px -6px 14px rgba(255, 255, 255, .9);
-  --shadow-2: 10px 10px 24px rgba(214, 140, 96, .28), -8px -8px 20px rgba(255, 255, 255, .95);
-  --shadow-press: inset 5px 5px 10px rgba(214, 140, 96, .30), inset -5px -5px 10px rgba(255, 255, 255, .75);
+  --shadow-1: 6px 6px 14px rgba(214, 90, 55, .24), -6px -6px 14px rgba(255, 255, 255, .9);
+  --shadow-2: 10px 10px 24px rgba(214, 90, 55, .30), -8px -8px 20px rgba(255, 255, 255, .95);
+  --shadow-press: inset 5px 5px 10px rgba(214, 90, 55, .32), inset -5px -5px 10px rgba(255, 255, 255, .75);
 }
 
 * { box-sizing: border-box; }
@@ -62,10 +66,21 @@ body {
   line-height: 1.6;
 }
 
+/* 780px used to be a hard cap regardless of viewport, which left large
+   empty gutters on any desktop-width window -- now it only kicks in on
+   genuinely narrow (phone) viewports; from tablet width up the app grows
+   with the window; grid-based screens (Home/Practice/Shop/Bag/...) reflow
+   into more columns on their own via existing auto-fill grid-template-columns
+   rules. Text-heavy single-column screens (Quiz/Result/Story's reading view)
+   opt back into a comfortable reading width via their own max-width, see
+   ".screen.quiz"/".screen.result"/".story-reading" below. */
 #root {
-  max-width: 780px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 24px 20px 60px;
+}
+@media (min-width: 900px) {
+  #root { padding-left: 40px; padding-right: 40px; }
 }
 
 /* Every screen sits on the same soft pastel wash -- Home additionally
@@ -73,9 +88,19 @@ body {
    the one screen that gets that extra flourish. */
 .screen {
   position: relative;
-  background: linear-gradient(150deg, #ffe3d0 0%, #fff6dc 45%, #dcf3ff 100%);
+  background: linear-gradient(150deg, #bfe0ff 0%, #d9c8ff 45%, #bff5df 100%);
   border-radius: 32px;
   padding: 28px 20px 40px;
+}
+/* Text-heavy single-column screens (a quiz's passage/question text, the
+   result screen, a story's reading view) opt back out of #root's wide
+   desktop max-width -- unlike grid-based screens, more width here just
+   means uncomfortably long lines of Chinese text, not more useful content
+   per row. */
+.screen.quiz, .screen.result, .story-reading {
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ---------- Top nav ---------- */
@@ -204,7 +229,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   box-shadow: var(--shadow-1);
 }
 .mode-row:nth-of-type(1) .mode-row-go { background: linear-gradient(155deg, var(--accent-purple-hi), var(--accent-purple)); }
-.mode-row:nth-of-type(2) .mode-row-go { background: linear-gradient(155deg, #7ad9a0, var(--correct)); }
+.mode-row:nth-of-type(2) .mode-row-go { background: linear-gradient(155deg, #5fe08a, var(--correct)); }
 .mode-row:nth-of-type(3) .mode-row-go { background: linear-gradient(155deg, var(--accent-pink-hi), var(--accent-pink)); }
 
 /* ---------- Home dashboard (pet-centric redesign) ---------- */
@@ -235,16 +260,23 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 .pet-hero-card:hover { transform: scale(1.008); }
 .pet-hero-card:active { transform: scale(.99); opacity: .92; }
-/* Two columns, both sharing the same flex-basis/max-width so they grow
-   together and land at roughly equal widths, rather than staying pinned to
-   small fixed/viewport-relative sizes with a big empty gap between them on
-   wider screens -- any leftover space past both caps just trails after the
-   right column instead of stranding itself mid-row. flex-start (not
-   center) since the left column (greeting + identity + bars) runs taller
-   than the right (BP badge + art), so they should top-align, not center. */
-.pet-hero-row { display: flex; align-items: flex-start; gap: 20px; }
+/* Two columns, both sharing a flex-basis/max-width so they grow together
+   and land at roughly equal widths. On a wide desktop dash-card (the dash
+   card itself now stretches with #root, see the desktop-width change in
+   #root), both columns grow past their old fixed size up to a bigger cap;
+   any width left over *past* both caps is split as symmetric outer margin
+   by centering the row (justify-content: center) rather than being shoved
+   into a gap between the two columns via a margin-left:auto push on the
+   right column -- that auto-margin trick used to be exactly what produced
+   a large empty gap between the left and right halves on wide screens,
+   since it kept forcing .pet-hero-right flush to the card's right edge
+   regardless of how much the left column had already grown. flex-start
+   (not center) on the cross axis since the left column (greeting +
+   identity + bars) runs taller than the right (BP badge + art), so they
+   should top-align. */
+.pet-hero-row { display: flex; align-items: flex-start; justify-content: center; gap: 28px; }
 .pet-hero-left {
-  flex: 1 1 200px; max-width: 300px; min-width: 140px;
+  flex: 1 1 220px; max-width: 380px; min-width: 140px;
   display: flex; flex-direction: column; gap: 16px;
 }
 .pet-hero-welcome { display: flex; flex-direction: column; gap: 4px; }
@@ -254,12 +286,8 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .pet-hero-right {
   position: relative;
   flex: 1 1 200px;
-  max-width: 300px;
+  max-width: 340px;
   min-width: 0;
-  /* Once both sides hit their max-width, any leftover row space collects
-     here instead of trailing uselessly after the art on the right --
-     pushes this column flush against the card's right edge. */
-  margin-left: auto;
   display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
 }
 .pet-hero-art-col {
@@ -277,7 +305,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   top: -6px; left: 50%;
   transform: translateX(-50%);
   width: 128%; aspect-ratio: 1; max-width: 420px;
-  background: radial-gradient(circle, rgba(156, 144, 255, .5), rgba(156, 144, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(163, 137, 255, .55), rgba(163, 137, 255, 0) 70%);
   z-index: 0;
 }
 .pet-hero-art-col > * { position: relative; z-index: 1; }
@@ -333,7 +361,11 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .today-mission { padding: 22px; }
 .today-mission .section-heading { margin-bottom: 4px; color: var(--accent-purple-dark); }
 .mission-subhead { color: var(--ink-soft); font-size: 13px; margin: 0 0 16px; }
-.mission-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+/* Perspective on the grid (not each card) so all 3 cards share one vanishing
+   point, the way a real carousel viewed head-on would -- a per-card
+   perspective would make each card look like its own separate tilted plane
+   instead of pieces of one curved arrangement. */
+.mission-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; perspective: 1100px; }
 /* Each card is two stacked containers: .mission-card-top (icon over its own
    background image -- dictation-bg.png/read-bg.png/practice-bg.png, see
    TodayMission.tsx) and .mission-card-bottom (the text label). Replaced an
@@ -347,10 +379,23 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   padding: 0; cursor: pointer; text-align: center; font-family: inherit; color: inherit;
   box-shadow: var(--shadow-1);
   overflow: hidden; /* clips mission-card-top's background image to the rounded corners */
-  transition: transform .15s ease, box-shadow .15s ease;
+  transform-style: preserve-3d;
+  /* --tilt-y/--tilt-x/--tilt-z default to the flat resting pose; the
+     left/right cards override --tilt-y below for the carousel's resting
+     curve, TodayMission.tsx's tiltMissionCard()/untiltMissionCard() drive
+     all three live while the cursor is over a card (see that file), and
+     :hover/:active nudge --tilt-z on their own so a mouse that never moves
+     (a tap, or keyboard/switch-device activation) still gets some depth
+     feedback instead of only the flat translate/scale this replaced. */
+  transform: perspective(1100px) rotateY(var(--tilt-y, 0deg)) rotateX(var(--tilt-x, 0deg)) translateZ(var(--tilt-z, 0px));
 }
-.mission-card:hover { transform: translateY(-2px) scale(1.015); box-shadow: var(--shadow-2); }
-.mission-card:active { transform: scale(.97); box-shadow: var(--shadow-press); }
+@media (prefers-reduced-motion: no-preference) {
+  .mission-card { transition: transform .3s cubic-bezier(.2, .7, .3, 1), box-shadow .25s ease; }
+}
+.mission-grid .mission-card:nth-of-type(1) { --tilt-y: 10deg; }
+.mission-grid .mission-card:nth-of-type(3) { --tilt-y: -10deg; }
+.mission-card:hover { --tilt-z: 16px; box-shadow: var(--shadow-2); }
+.mission-card:active { --tilt-z: 2px; box-shadow: var(--shadow-press); }
 .mission-card-done { border-color: var(--correct); }
 .mission-card-top {
   position: relative; display: flex; align-items: center; justify-content: center;
@@ -428,11 +473,26 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   --wheel-radius: calc(var(--wheel-size) * 0.3846);
   position: relative; width: var(--wheel-size); aspect-ratio: 1; margin: 4px auto 0;
 }
+/* Desktop gets a noticeably bigger wheel -- the 312px cap above only exists
+   to keep the wheel from spilling off a narrow phone screen (that's what
+   the `calc(100vw - 124px)` term inside min() guards, see the comment
+   above), so raising it here is safe: min() still falls back to the vw
+   term on anything narrower than this breakpoint's own viewport, and the
+   .special-quest dash-card itself is wide enough on desktop (#root's
+   desktop max-width) to fit a bigger wheel without touching the card's
+   edges. Every other wheel element below (spin button, icons, pointer) is
+   sized as a fraction of --wheel-size rather than a fixed px value, so
+   they all scale up together automatically -- this rule is the only place
+   the wheel's overall size is ever set. */
+@media (min-width: 700px) {
+  .quest-wheel-frame { --wheel-size: min(460px, calc(100vw - 124px)); }
+}
 .quest-wheel-pointer {
-  position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+  position: absolute; top: calc(var(--wheel-size) * -0.032); left: 50%; transform: translateX(-50%);
   width: 0; height: 0; z-index: 2;
-  border-left: 16px solid transparent; border-right: 16px solid transparent;
-  border-top: 26px solid var(--primary-dark);
+  border-left: calc(var(--wheel-size) * 0.0513) solid transparent;
+  border-right: calc(var(--wheel-size) * 0.0513) solid transparent;
+  border-top: calc(var(--wheel-size) * 0.0833) solid var(--primary-dark);
   filter: drop-shadow(0 2px 2px rgba(var(--ink-rgb), .25));
 }
 .quest-wheel-dial {
@@ -452,19 +512,23 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 .quest-wheel-slot { position: absolute; top: 50%; left: 50%; }
 .quest-wheel-icon {
-  display: inline-block; width: 42px; height: 42px; object-fit: contain;
-  font-size: 39px; line-height: 1;
+  display: inline-block; width: calc(var(--wheel-size) * 0.1346); height: calc(var(--wheel-size) * 0.1346);
+  object-fit: contain;
+  font-size: calc(var(--wheel-size) * 0.125); line-height: 1;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .25));
 }
 /* Sibling of .quest-wheel-dial (not nested inside it) so it stays fixed and
-   upright at the wheel's center while the dial spins around/behind it. */
+   upright at the wheel's center while the dial spins around/behind it. Sized
+   as a fraction of --wheel-size (not a fixed px value) so it grows in step
+   with the wheel on desktop instead of shrinking to look lost in the middle
+   of a much bigger dial. */
 .quest-wheel-spin-btn {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
   z-index: 3;
-  width: 99px; height: 99px; border-radius: 50%;
+  width: calc(var(--wheel-size) * 0.317); height: calc(var(--wheel-size) * 0.317); border-radius: 50%;
   border: 4px solid var(--card-hi);
   background: linear-gradient(155deg, var(--primary-hi), var(--primary) 60%, var(--primary-dark));
-  color: #fff8ee; font-weight: 700; font-size: 19px; letter-spacing: .02em;
+  color: #fff8ee; font-weight: 700; font-size: calc(var(--wheel-size) * 0.061); letter-spacing: .02em;
   cursor: pointer;
   box-shadow: var(--shadow-2);
   transition: transform .15s ease, box-shadow .15s ease;
@@ -505,21 +569,74 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .achievement-text .en { display: block; font-size: 11.5px; color: var(--ink-soft); }
 .achievement-date { font-size: 12px; color: var(--ink-soft); white-space: nowrap; }
 
-/* -- dashboard entrance animation -- */
-@media (prefers-reduced-motion: no-preference) {
-  .home-dashboard .dash-card, .home-dashboard .pet-hero-card {
-    opacity: 0; animation: dash-card-in .45s cubic-bezier(.2,.7,.3,1) forwards;
-  }
-  .home-dashboard .pet-hero-card { animation-delay: .02s; }
-  .home-dashboard .special-quest { animation-delay: .08s; }
-  .home-dashboard .today-mission { animation-delay: .14s; }
-  .home-dashboard .continue-section { animation-delay: .20s; }
-  .home-dashboard .today-summary-card { animation-delay: .26s; }
-  .home-dashboard .recent-achievements { animation-delay: .32s; }
+/* -- dashboard scroll-reveal --
+   Replaced a load-only fade-in (every card animated once on mount,
+   regardless of scroll position, so anything below the fold had already
+   finished "revealing" itself before the student ever scrolled to it) with
+   a real per-section scroll trigger -- see Reveal.tsx/useScrollReveal.ts.
+   The per-section stagger (delay prop, in ms) is passed from Home.tsx at
+   each <Reveal> call site instead of nth-child CSS, since Home's sections
+   aren't a uniform repeated list -- some are conditionally rendered
+   (today-summary-card only appears some days), which nth-of-type can't
+   account for. */
+.scroll-reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+.scroll-reveal-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal { transition: none; }
 }
-@keyframes dash-card-in {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+
+/* -- confetti background --
+   ConfettiBackground.tsx renders a canvas absolutely filling this stacking
+   context (.screen already sets position:relative); .home-content wraps
+   every real section at z-index:1 so the confetti only ever shows through
+   the gaps around/behind the cards, never on top of them. The canvas has
+   pointer-events:none (see the component) so hover/click always reaches
+   the real content -- mouse position for the repel effect is tracked at
+   the window level instead. */
+.confetti-canvas { position: absolute; inset: 0; z-index: 0; }
+.home-content { position: relative; z-index: 1; }
+
+/* -- cursor glow --
+   A soft purple circle that follows the cursor and radiates outward while
+   hovering any interactive element, app-wide -- see common/CursorGlow.tsx
+   (mounted once in App.tsx, not per screen), which writes --cx/--cy
+   (viewport coordinates) onto this element on every mousemove and toggles
+   .cursor-glow-active accordingly. A single fixed, independently z-indexed
+   element (not a per-button ::after pseudo-element) so it's never subject
+   to any one element's own overflow/stacking-context quirks.
+   position:fixed with left/top (not transform:translate) so the CSS
+   width/height transition below can grow it from its own center via a
+   matching negative margin, without fighting a transform-based position.
+   Tight gradient stops (bright core fading out by 60%, not a wide even
+   wash to 70%) plus a small blur radius so it reads as one concentrated
+   glow instead of a diffuse haze -- an earlier, wider/blurrier version was
+   too spread out to clearly see where it was centered. */
+.cursor-glow {
+  position: fixed;
+  left: var(--cx, 50vw);
+  top: var(--cy, 50vh);
+  width: 35px; height: 35px;
+  margin: -17.5px 0 0 -17.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 77, 255, .85) 0%, rgba(124, 77, 255, .4) 38%, rgba(124, 77, 255, 0) 60%);
+  filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 500;
+  transition: opacity .25s ease, width .3s ease, height .3s ease, margin .3s ease;
+}
+.cursor-glow-active {
+  opacity: 1;
+  width: 160px; height: 160px;
+  margin: -80px 0 0 -80px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cursor-glow-active { animation: cursor-glow-radiate 1.3s ease-out infinite; }
+}
+@keyframes cursor-glow-radiate {
+  0%   { transform: scale(.7); opacity: .8; }
+  70%  { opacity: .3; }
+  100% { transform: scale(1.25); opacity: 0; }
 }
 
 .history-head { margin-bottom: 14px; }
@@ -555,7 +672,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .lesson-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: var(--shadow-2); }
 .lesson-btn:active { transform: scale(.96); box-shadow: var(--shadow-press); }
 .lesson-btn.disabled { opacity: .45; cursor: not-allowed; box-shadow: none; transform: none; }
-.lesson-btn-active { background: linear-gradient(180deg, var(--card-hi), #fff0e5); border: 2px solid var(--primary); font-weight: 700; }
+.lesson-btn-active { background: linear-gradient(180deg, var(--card-hi), #ffe3d1); border: 2px solid var(--primary); font-weight: 700; }
 .lesson-btn-num { font-size: 18px; font-weight: 700; }
 .lesson-btn-count { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
 .lesson-grid-disabled { opacity: .55; }
@@ -601,7 +718,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   transition: transform .12s ease, box-shadow .12s ease;
 }
 .category-btn:hover { transform: translateY(-2px) scale(1.015); box-shadow: var(--shadow-2); }
-.category-active { background: linear-gradient(180deg, var(--card-hi), #fff0e5); border-color: var(--primary); font-weight: 700; }
+.category-active { background: linear-gradient(180deg, var(--card-hi), #ffe3d1); border-color: var(--primary); font-weight: 700; }
 .category-disabled {
   opacity: .45; cursor: not-allowed; box-shadow: none; color: var(--ink-soft);
 }
@@ -907,6 +1024,9 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .owl-thumb { width: 64px; height: 64px; }
 .owl-hero { width: 100%; max-width: 300px; aspect-ratio: 1; height: auto; box-shadow: var(--shadow-2); }
 .owl-large { width: min(260px, 70vw); height: min(260px, 70vw); margin: 8px auto 4px; box-shadow: var(--shadow-2); }
+@media (min-width: 700px) {
+  .owl-large { width: min(360px, 32vw); height: min(360px, 32vw); }
+}
 
 .bp-pop {
   display: inline-block; margin-left: 10px; color: var(--gold-deep); font-weight: 700;
@@ -965,6 +1085,57 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .owl-info { max-width: 320px; margin: 0 auto; }
 .owl-stage-label { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 20px; font-weight: 700; }
 .owl-mood-label { font-size: 15px; color: var(--ink-soft); margin-bottom: 14px; }
+/* Art + info/actions stack in one centered column on mobile (unchanged
+   from before this layout existed as its own wrapper) and sit side by
+   side on desktop, so a wide .screen panel isn't just a big art thumbnail
+   floating alone in a sea of empty space -- same "two columns that grow
+   together" idea as Home's PetHeroCard. Shared by both the Owl screen
+   (art beside stage/mood/stat-bars/BP) and the Bag/Feed-Play screen (art
+   beside the bag-item grid) -- .pet-layout-info-wide is the one thing that
+   differs between them, since Bag's item grid wants more room than Owl's
+   narrow stat block to fit more than one column of cards. */
+.pet-layout { display: flex; flex-direction: column; align-items: center; }
+/* Flex column (not a plain block) so multi-piece art columns -- Bag.tsx
+   stacks the art, an optional age-up banner, and the stat bars here, not
+   just the bare art Owl.tsx has -- stay centered with consistent spacing
+   at any width instead of each block stretching to the column's full
+   flex-basis width. */
+.pet-layout-art { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.pet-layout-info { width: 100%; }
+@media (min-width: 700px) {
+  .pet-layout {
+    flex-direction: row; align-items: flex-start; justify-content: center;
+    gap: 48px; max-width: 760px; margin: 0 auto;
+  }
+  .pet-layout-art, .pet-layout-info { width: auto; flex: 0 1 auto; }
+  .pet-layout-info { flex: 1 1 320px; max-width: 360px; text-align: left; }
+  .pet-layout-info .owl-info { margin: 0; max-width: none; }
+  .pet-layout-info .pet-stat-bars { margin: 0 0 14px; max-width: none; }
+  /* ".pet-layout .pet-layout-info .action-row" (3 class selectors, not 2)
+     so this beats the unconditional ".owl-screen .action-row"/
+     ".bag-screen .action-row" centering rules further down the file --
+     those match at every width including desktop, and being later in the
+     file they'd otherwise win the cascade over an equal-specificity
+     2-selector rule here regardless of this one sitting in a media query,
+     silently re-centering the row (and on Bag's empty-bag state, visibly
+     stranding the "Visit Shop" button in the middle of the wide right
+     column instead of under the text above it). */
+  .pet-layout .pet-layout-info .action-row { justify-content: flex-start; }
+  /* Bag.tsx's stat bars live in the art column (stacked under the
+     sprite), not the info column -- sized to match the art's own
+     min(360px, 32vw) desktop width (see .owl-large) so the two bars read
+     as roughly as wide as the sprite above them instead of staying
+     pinned to their old fixed 320px mobile width. Owl.tsx doesn't put
+     stat bars in its art column, so this only ever applies to Bag. */
+  .pet-layout-art .pet-stat-bars { width: min(360px, 32vw); max-width: none; }
+}
+/* Bag's item grid needs a lot more width than Owl's narrow stat block to
+   show more than one column of cards -- overrides .pet-layout's shared
+   760px cap and .pet-layout-info's 360px column cap just for this screen. */
+@media (min-width: 700px) {
+  .pet-layout-wide { max-width: 1100px; }
+  .pet-layout-info-wide { flex: 1 1 480px; max-width: 640px; }
+}
 .growth-bar, .mood-bar {
   background: var(--card-bg); border: none; border-radius: 999px;
   height: 18px; overflow: hidden;
@@ -1137,7 +1308,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
    against a moving zone like the ball game. */
 .feather-sky {
   position: relative; max-width: 420px; height: 220px; margin: 10px auto;
-  background: linear-gradient(180deg, #eaf6ff, var(--card-bg));
+  background: linear-gradient(180deg, #d6f0ff, var(--card-bg));
   border-radius: 22px; overflow: hidden;
   box-shadow: var(--shadow-press);
 }
@@ -1290,7 +1461,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   transition: border-color .15s, transform .1s;
 }
 .tingxie-picker-row:hover { transform: translateY(-2px) scale(1.01); }
-.tingxie-picker-row-checked { border-color: var(--primary); background: linear-gradient(180deg, var(--card-hi), #fff0e5); font-weight: 700; }
+.tingxie-picker-row-checked { border-color: var(--primary); background: linear-gradient(180deg, var(--card-hi), #ffe3d1); font-weight: 700; }
 .tingxie-picker-row input { width: 18px; height: 18px; accent-color: var(--primary); }
 .tingxie-picker-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
@@ -1304,7 +1475,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   transition: transform .1s ease;
 }
 .tingxie-subtab:hover { transform: translateY(-1px) scale(1.03); }
-.tingxie-subtab-active { border-color: var(--primary); color: var(--primary); background: linear-gradient(180deg, var(--card-hi), #fff0e5); }
+.tingxie-subtab-active { border-color: var(--primary); color: var(--primary); background: linear-gradient(180deg, var(--card-hi), #ffe3d1); }
 
 .tingxie-carousel, .tingxie-sentence-game { text-align: center; }
 .tingxie-progress { color: var(--ink-soft); font-size: 14px; margin-bottom: 12px; }
@@ -1372,11 +1543,20 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .tingxie-tray.result-correct { border-color: var(--correct); border-style: solid; }
 .tingxie-tray.result-incorrect { border-color: var(--incorrect); border-style: solid; }
 .tingxie-tray-hint { color: var(--ink-soft); font-size: 14px; }
+/* A placed chip is itself a button (tap to send it back to the bag below --
+   undoes just that one block instead of the "🔄 重来 Reset" nav button's
+   full reset), so it needs the usual squish hover/press feedback to read as
+   tappable; disabled only once the sentence is already solved correctly,
+   since there's nothing left to fix at that point. */
 .tingxie-tray-chip {
   border: none; border-radius: 14px; padding: 10px 16px; font-weight: 700;
-  font-size: 18px; color: #fff8ee;
+  font-size: 18px; color: #fff8ee; font-family: inherit; cursor: pointer;
   background: linear-gradient(180deg, var(--primary-hi), var(--primary));
+  transition: transform .1s ease, box-shadow .1s ease, opacity .1s ease;
 }
+.tingxie-tray-chip:hover:not(:disabled) { transform: translateY(-2px) scale(1.03); box-shadow: var(--shadow-1); }
+.tingxie-tray-chip:active:not(:disabled) { transform: scale(.95); }
+.tingxie-tray-chip:disabled { cursor: default; }
 .tingxie-tray.result-correct .tingxie-tray-chip { background: var(--correct); }
 .tingxie-tray.result-incorrect .tingxie-tray-chip { background: var(--incorrect); }
 

@@ -68,32 +68,38 @@ export function Owl() {
         </h1>
       )}
 
-      <OwlArt stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" playSound />
-      <div className="owl-info">
-        <div className="owl-stage-label">{stage.label} · 🎂 {age}岁 {age} yrs old</div>
-        <div className="owl-mood-label">{MOOD_LABELS[bucket]}</div>
-        <PetStatBars pet={pet} />
-        <div className="owl-bp-label">💡 可用 BP: {pet.bp}</div>
-      </div>
-      <div className="action-row">
-        <button
-          className="primary-btn"
-          onClick={() => {
-            Sound.enterShop();
-            dispatch({ type: "GO_TO_SCREEN", screen: "shop" });
-          }}
-        >
-          🛍 商店 Shop
-        </button>
-        <button
-          className="secondary-btn"
-          onClick={() => {
-            Sound.bagOpen();
-            dispatch({ type: "GO_TO_SCREEN", screen: "bag" });
-          }}
-        >
-          🍚 喂食／玩耍 Feed / Play{bagCount ? ` (${bagCount})` : ""}
-        </button>
+      <div className="pet-layout">
+        <div className="pet-layout-art">
+          <OwlArt stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" playSound />
+        </div>
+        <div className="pet-layout-info">
+          <div className="owl-info">
+            <div className="owl-stage-label">{stage.label} · 🎂 {age}岁 {age} yrs old</div>
+            <div className="owl-mood-label">{MOOD_LABELS[bucket]}</div>
+            <PetStatBars pet={pet} />
+            <div className="owl-bp-label">💡 可用 BP: {pet.bp}</div>
+          </div>
+          <div className="action-row">
+            <button
+              className="primary-btn"
+              onClick={() => {
+                Sound.enterShop();
+                dispatch({ type: "GO_TO_SCREEN", screen: "shop" });
+              }}
+            >
+              🛍 商店 Shop
+            </button>
+            <button
+              className="secondary-btn"
+              onClick={() => {
+                Sound.bagOpen();
+                dispatch({ type: "GO_TO_SCREEN", screen: "bag" });
+              }}
+            >
+              🍚 喂食／玩耍 Feed / Play{bagCount ? ` (${bagCount})` : ""}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
