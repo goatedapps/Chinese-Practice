@@ -1,20 +1,296 @@
-- questionID: P2-VOC1
+- questionID: CHATGPT-Vocab-1
   lessonIds:
-    - 1
-  question: 妹妹很___，喜欢帮助别人。
+    - 13
+  question: 一听见主人打开猫罐头，那只___就马上喵喵叫起来了。
   options:
-    - 勇敢
-    - 善良
+    - 小猫
+    - 小狗
+    - 小兔
+    - 小鸟
+  correct: 小猫
+
+- questionID: CHATGPT-Vocab-2
+  lessonIds:
+    - 13
+  question: 我非常___家里的小猫，因为它每天都会安静地陪着我。
+  options:
+    - 爱
+    - 恨
+    - 怕
+    - 急
+  correct: 爱
+
+- questionID: CHATGPT-Vocab-3
+  lessonIds:
+    - 13
+  question: 小狗在泥水里跑了很久，回家以后必须马上___才可以进屋。
+  options:
+    - 洗澡
+    - 睡觉
+    - 吃饭
+    - 喝水
+  correct: 洗澡
+
+- questionID: CHATGPT-Vocab-4
+  lessonIds:
+    - 13
+  question: 每天晚上关灯以后，小猫都会回到自己的小床上___。
+  options:
+    - 睡觉
+    - 洗澡
+    - 吃饭
+    - 跑步
+  correct: 睡觉
+
+- questionID: CHATGPT-Vocab-5
+  lessonIds:
+    - 13
+  question: 孔雀开屏的时候，它漂亮的___会吸引很多游客拍照。
+  options:
+    - 羽毛
+    - 皮毛
+    - 头发
+    - 指甲
+  correct: 羽毛
+
+- questionID: CHATGPT-Vocab-6
+  lessonIds:
+    - 13
+  question: 每次主人回家，那只___都会汪汪叫着跑到门口迎接他。
+  options:
+    - 小狗
+    - 小猫
+    - 小兔
+    - 小鸟
+  correct: 小狗
+
+- questionID: CHATGPT-Vocab-7
+  lessonIds:
+    - 13
+  question: 主人说什么它都会听，也从来不会乱跑，这只小狗真的很___。
+  options:
+    - 乖
+    - 怪
+    - 快
+    - 高
+  correct: 乖
+
+- questionID: CHATGPT-Vocab-8
+  lessonIds:
+    - 13
+  question: 这只小狗每天都在门口等主人，从来没有一天例外，它___在那里等着。
+  options:
+    - 总是
+    - 有时
+    - 偶尔
+    - 很少
+  correct: 总是
+
+- questionID: CHATGPT-Vocab-9
+  lessonIds:
+    - 13
+  question: 这只小狗只看了两遍就学会开门，大家都说它特别___。
+  options:
     - 聪明
     - 漂亮
-  correct: 善良
-- questionID: P2-VOC2
+    - 安静
+    - 干净
+  correct: 聪明
+
+- questionID: CHATGPT-Vocab-10
   lessonIds:
-    - 2
-  question: 弟弟跑得很___，第一个到达终点。
+    - 13
+  question: 鱼缸里的___每天都在水里游来游去，金色身体特别漂亮。
   options:
-    - 快
-    - 慢
-    - 静
-    - 香
-  correct: 快
+    - 金鱼
+    - 金鸟
+    - 金猫
+    - 金兔
+  correct: 金鱼
+
+- questionID: CHATGPT-Vocab-11
+  lessonIds:
+    - 13
+  question: 妈妈买了一条颜色鲜艳的新裙子，妹妹觉得它特别___。
+  options:
+    - 漂亮
+    - 聪明
+    - 乖
+    - 安静
+  correct: 漂亮
+
+- questionID: CHATGPT-Vocab-12
+  lessonIds:
+    - 13
+  question: 小狗吃了不干净的食物以后，肚子很难受，开始不停地___。
+  options:
+    - 吐
+    - 咬
+    - 舔
+    - 吞
+  correct: 吐
+
+- questionID: CHATGPT-Vocab-13
+  lessonIds:
+    - 13
+  question: 小猫生病了，爸爸把它带到专门给动物看病的___那里。
+  options:
+    - 兽医
+    - 老师
+    - 厨师
+    - 律师
+  correct: 兽医
+
+- questionID: CHATGPT-Vocab-14
+  lessonIds:
+    - 13
+  question: 很多人喜欢在家里养___，让这些动物陪伴自己的生活。
+  options:
+    - 宠物
+    - 植物
+    - 食物
+    - 礼物
+  correct: 宠物
+
+- questionID: CHATGPT-Vocab-15
+  lessonIds:
+    - 13
+  question: 那座___四面都是大海，只有坐船才能到达那里。
+  options:
+    - 岛
+    - 鸟
+    - 到
+    - 道
+  correct: 岛
+
+- questionID: CHATGPT-Vocab-16
+  lessonIds:
+    - 13
+  question: 小朋友不应该故意打小动物或者___它们，因为动物也会感到害怕。
+  options:
+    - 欺负
+    - 保护
+    - 帮助
+    - 照顾
+  correct: 欺负
+
+- questionID: CHATGPT-Vocab-17
+  lessonIds:
+    - 13
+  question: 这个玩具已经坏了，妈妈让我把它直接___进垃圾桶里面。
+  options:
+    - 丢
+    - 拿
+    - 收
+    - 穿
+  correct: 丢
+
+- questionID: CHATGPT-Vocab-18
+  lessonIds:
+    - 13
+  question: 昨天晚上睡着以后，我___自己住在一个有很多小动物的岛上。
+  options:
+    - 梦见
+    - 看见
+    - 听见
+    - 碰见
+  correct: 梦见
+
+- questionID: CHATGPT-Vocab-19
+  lessonIds:
+    - 13
+  question: 我已经去过那个地方了，你可以把自行车放在___，不用带回来。
+  options:
+    - 那里
+    - 这里
+    - 哪里
+    - 哪儿
+  correct: 那里
+
+- questionID: CHATGPT-Vocab-20
+  lessonIds:
+    - 13
+  question: 小朋友们站在老师的四周，大家一起___着老师听故事。
+  options:
+    - 围
+    - 唯
+    - 为
+    - 喂
+  correct: 围
+
+- questionID: CHATGPT-Vocab-21
+  lessonIds:
+    - 13
+  question: 新同学第一次来到我们的班级，老师笑着___他加入大家一起学习。
+  options:
+    - 欢迎
+    - 欢送
+    - 拒绝
+    - 赶走
+  correct: 欢迎
+
+- questionID: CHATGPT-Vocab-22
+  lessonIds:
+    - 13
+  question: 草地上的___有一身白色的毛和两只长长的耳朵。
+  options:
+    - 小白兔
+    - 小白猫
+    - 小白狗
+    - 小白鸟
+  correct: 小白兔
+
+- questionID: CHATGPT-Vocab-23
+  lessonIds:
+    - 13
+  question: 第一次见到新同学以后，我很快就___了他，并和他成为了朋友。
+  options:
+    - 认识
+    - 忘记
+    - 离开
+    - 失去
+  correct: 认识
+
+- questionID: CHATGPT-Vocab-24
+  lessonIds:
+    - 13
+  question: 小猫睡了一整个下午，听见主人回家以后才慢慢地___。
+  options:
+    - 醒来
+    - 睡着
+    - 坐下
+    - 跑远
+  correct: 醒来
+
+- questionID: CHATGPT-Vocab-25
+  lessonIds:
+    - 13
+  question: 我___从来没有养过宠物，所以这是第一次照顾一只小狗。
+  options:
+    - 以前
+    - 以后
+    - 现在
+    - 将来
+  correct: 以前
+
+- questionID: CHATGPT-Vocab-26
+  lessonIds:
+    - 13
+  question: 太阳已经下山了，今天___回家以后我要先给小狗喂饭。
+  options:
+    - 晚上
+    - 早上
+    - 中午
+    - 上午
+  correct: 晚上
+
+- questionID: CHATGPT-Vocab-27
+  lessonIds:
+    - 13
+  question: 看见这只小猫主动跑过来以后，我___它一定很喜欢和人玩。
+  options:
+    - 觉得
+    - 忘记
+    - 需要
+    - 购买
+  correct: 觉得
