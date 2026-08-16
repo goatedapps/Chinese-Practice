@@ -1,1262 +1,622 @@
-- groupId: CH-Q3
-  subject: Chinese
-  category: vocab
+- questionID: CH-Q3
   lessonIds:
     - 11
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 大家非常痛 ___ 明华伤害小动物的行为。
-      options:
-        - key: "1"
-          text: 很
-        - key: "2"
-          text: 恨
-        - key: "3"
-          text: 狠
-        - key: "4"
-          text: 银
-      correctKey: "2"
-- groupId: CH-Q4
-  subject: Chinese
-  category: vocab
+  question: 大家非常痛 ___ 明华伤害小动物的行为。
+  options:
+    - 很
+    - 恨
+    - 狠
+    - 银
+  correct: 恨
+- questionID: CH-Q4
   lessonIds:
     - 9
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 妹妹喜欢把洋娃娃装 ___ 成公主的样子。
-      options:
-        - key: "1"
-          text: 办
-        - key: "2"
-          text: 般
-        - key: "3"
-          text: 扮
-        - key: "4"
-          text: 板
-      correctKey: "3"
-- groupId: CH-Q5
-  subject: Chinese
-  category: vocab
+  question: 妹妹喜欢把洋娃娃装 ___ 成公主的样子。
+  options:
+    - 办
+    - 般
+    - 扮
+    - 板
+  correct: 扮
+- questionID: CH-Q5
   lessonIds:
     - 10
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 小明玩手机游戏 ___ 了，一直玩到三更半夜也不想睡。
-      options:
-        - key: "1"
-          text: 上瘾
-        - key: "2"
-          text: 控制
-        - key: "3"
-          text: 习惯
-        - key: "4"
-          text: 湿透
-      correctKey: "1"
-- groupId: CH-Q6
-  subject: Chinese
-  category: vocab
+  question: 小明玩手机游戏 ___ 了，一直玩到三更半夜也不想睡。
+  options:
+    - 上瘾
+    - 控制
+    - 习惯
+    - 湿透
+  correct: 上瘾
+- questionID: CH-Q6
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 火药是中国古代的四大 ___ 之一。
-      options:
-        - key: "1"
-          text: 发明
-        - key: "2"
-          text: 发表
-        - key: "3"
-          text: 发现
-        - key: "4"
-          text: 发展
-      correctKey: "1"
-- groupId: NH-Q3
-  subject: Chinese
-  category: vocab
+  question: 火药是中国古代的四大 ___ 之一。
+  options:
+    - 发明
+    - 发表
+    - 发现
+    - 发展
+  correct: 发明
+- questionID: NH-Q3
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 一棵大树倒在路中间，压 ___ 了一辆汽车。
-      options:
-        - key: "1"
-          text: 扁
-        - key: "2"
-          text: 过
-        - key: "3"
-          text: 骗
-        - key: "4"
-          text: 偏
-      correctKey: "1"
-- groupId: NH-Q4
-  subject: Chinese
-  category: vocab
+  question: 一棵大树倒在路中间，压 ___ 了一辆汽车。
+  options:
+    - 扁
+    - 过
+    - 骗
+    - 偏
+  correct: 扁
+- questionID: NH-Q4
   lessonIds:
     - 17
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 从前，人们会用野 ___ 的骨头做成工具来打猎。
-      options:
-        - key: "1"
-          text: 守
-        - key: "2"
-          text: 首
-        - key: "3"
-          text: 受
-        - key: "4"
-          text: 兽
-      correctKey: "4"
-- groupId: NH-Q5
-  subject: Chinese
-  category: vocab
+  question: 从前，人们会用野 ___ 的骨头做成工具来打猎。
+  options:
+    - 守
+    - 首
+    - 受
+    - 兽
+  correct: 兽
+- questionID: NH-Q5
   lessonIds:
     - 2
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 在光线 ___ 的地方看书会对眼睛造成伤害。
-      options:
-        - key: "1"
-          text: 明亮
-        - key: "2"
-          text: 充足
-        - key: "3"
-          text: 昏暗
-        - key: "4"
-          text: 模糊
-      correctKey: "3"
-- groupId: NH-Q6
-  subject: Chinese
-  category: vocab
+  question: 在光线 ___ 的地方看书会对眼睛造成伤害。
+  options:
+    - 明亮
+    - 充足
+    - 昏暗
+    - 模糊
+  correct: 昏暗
+- questionID: NH-Q6
   lessonIds:
     - 1
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 每周的升旗礼，同学们必须在七点半前到礼堂 ___。
-      options:
-        - key: "1"
-          text: 排列
-        - key: "2"
-          text: 欣赏
-        - key: "3"
-          text: 集合
-        - key: "4"
-          text: 围观
-      correctKey: "3"
-- groupId: ACSJ-Q3
-  subject: Chinese
-  category: vocab
+  question: 每周的升旗礼，同学们必须在七点半前到礼堂 ___。
+  options:
+    - 排列
+    - 欣赏
+    - 集合
+    - 围观
+  correct: 集合
+- questionID: ACSJ-Q3
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 爸爸 ___ 种的苹果树结出了许多红红的苹果。
-      options:
-        - key: "1"
-          text: 戴
-        - key: "2"
-          text: 载
-        - key: "3"
-          text: 截
-        - key: "4"
-          text: 栽
-      correctKey: "4"
-- groupId: ACSJ-Q4
-  subject: Chinese
-  category: vocab
+  question: 爸爸 ___ 种的苹果树结出了许多红红的苹果。
+  options:
+    - 戴
+    - 载
+    - 截
+    - 栽
+  correct: 栽
+- questionID: ACSJ-Q4
   lessonIds:
     - 8
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 沙滩上留下了我和弟弟奔跑的足 ___ 。
-      options:
-        - key: "1"
-          text: 季
-        - key: "2"
-          text: 迹
-        - key: "3"
-          text: 寄
-        - key: "4"
-          text: 纪
-      correctKey: "2"
-- groupId: ACSJ-Q5
-  subject: Chinese
-  category: vocab
+  question: 沙滩上留下了我和弟弟奔跑的足 ___ 。
+  options:
+    - 季
+    - 迹
+    - 寄
+    - 纪
+  correct: 迹
+- questionID: ACSJ-Q5
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 长大后，我更加 ___ 和家人在一起的时光。
-      options:
-        - key: "1"
-          text: 珍惜
-        - key: "2"
-          text: 保护
-        - key: "3"
-          text: 爱护
-        - key: "4"
-          text: 爱惜
-      correctKey: "1"
-- groupId: ACSJ-Q6
-  subject: Chinese
-  category: vocab
+  question: 长大后，我更加 ___ 和家人在一起的时光。
+  options:
+    - 珍惜
+    - 保护
+    - 爱护
+    - 爱惜
+  correct: 珍惜
+- questionID: ACSJ-Q6
   lessonIds:
     - 12
     - 15
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 我家门前有一条 ___ 的马路。
-      options:
-        - key: "1"
-          text: 巨大
-        - key: "2"
-          text: 宽阔
-        - key: "3"
-          text: 大型
-        - key: "4"
-          text: 粗壮
-      correctKey: "2"
-- groupId: HP-Q3
-  subject: Chinese
-  category: vocab
+  question: 我家门前有一条 ___ 的马路。
+  options:
+    - 巨大
+    - 宽阔
+    - 大型
+    - 粗壮
+  correct: 宽阔
+- questionID: HP-Q3
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 我常常到附近的小 ___ 中心吃午餐。
-      options:
-        - key: "1"
-          text: 反
-        - key: "2"
-          text: 板
-        - key: "3"
-          text: 贩
-        - key: "4"
-          text: 饭
-      correctKey: "3"
-- groupId: HP-Q4
-  subject: Chinese
-  category: vocab
+  question: 我常常到附近的小 ___ 中心吃午餐。
+  options:
+    - 反
+    - 板
+    - 贩
+    - 饭
+  correct: 贩
+- questionID: HP-Q4
   lessonIds:
     - 5
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 根 ___ 天气预报，明天可能会下雨。
-      options:
-        - key: "1"
-          text: 聚
-        - key: "2"
-          text: 据
-        - key: "3"
-          text: 具
-        - key: "4"
-          text: 距
-      correctKey: "2"
-- groupId: HP-Q5
-  subject: Chinese
-  category: vocab
+  question: 根 ___ 天气预报，明天可能会下雨。
+  options:
+    - 聚
+    - 据
+    - 具
+    - 距
+  correct: 据
+- questionID: HP-Q5
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 为了有 ___ 的睡眠，欢欢每天晚上八点就上床睡觉。
-      options:
-        - key: "1"
-          text: 丰富
-        - key: "2"
-          text: 丰盛
-        - key: "3"
-          text: 充实
-        - key: "4"
-          text: 充足
-      correctKey: "4"
-- groupId: HP-Q6
-  subject: Chinese
-  category: vocab
+  question: 为了有 ___ 的睡眠，欢欢每天晚上八点就上床睡觉。
+  options:
+    - 丰富
+    - 丰盛
+    - 充实
+    - 充足
+  correct: 充足
+- questionID: HP-Q6
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 丽丽每天练习画画，希望能 ___ 美术老师的要求。
-      options:
-        - key: "1"
-          text: 获得
-        - key: "2"
-          text: 拥有
-        - key: "3"
-          text: 遵守
-        - key: "4"
-          text: 达到
-      correctKey: "4"
-- groupId: MB-Q3
-  subject: Chinese
-  category: vocab
+  question: 丽丽每天练习画画，希望能 ___ 美术老师的要求。
+  options:
+    - 获得
+    - 拥有
+    - 遵守
+    - 达到
+  correct: 达到
+- questionID: MB-Q3
   lessonIds:
     - 12
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 那些树枝上有尖尖的 ___ ，妈妈要我小心点儿。
-      options:
-        - key: "1"
-          text: 刺
-        - key: "2"
-          text: 利
-        - key: "3"
-          text: 刷
-        - key: "4"
-          text: 刻
-      correctKey: "1"
-- groupId: MB-Q4
-  subject: Chinese
-  category: vocab
+  question: 那些树枝上有尖尖的 ___ ，妈妈要我小心点儿。
+  options:
+    - 刺
+    - 利
+    - 刷
+    - 刻
+  correct: 刺
+- questionID: MB-Q4
   lessonIds:
     - 3
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 我们在家里举办了一场 ___ 会，请了许多朋友。
-      options:
-        - key: "1"
-          text: 距
-        - key: "2"
-          text: 俱
-        - key: "3"
-          text: 剧
-        - key: "4"
-          text: 聚
-      correctKey: "4"
-- groupId: MB-Q5
-  subject: Chinese
-  category: vocab
+  question: 我们在家里举办了一场 ___ 会，请了许多朋友。
+  options:
+    - 距
+    - 俱
+    - 剧
+    - 聚
+  correct: 聚
+- questionID: MB-Q5
   lessonIds:
     - 15
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 外婆很 ___ ，常常准备好吃的食物和邻居们分享。
-      options:
-        - key: "1"
-          text: 热烈
-        - key: "2"
-          text: 配合
-        - key: "3"
-          text: 慷慨
-        - key: "4"
-          text: 优秀
-      correctKey: "3"
-- groupId: MB-Q6
-  subject: Chinese
-  category: vocab
+  question: 外婆很 ___ ，常常准备好吃的食物和邻居们分享。
+  options:
+    - 热烈
+    - 配合
+    - 慷慨
+    - 优秀
+  correct: 慷慨
+- questionID: MB-Q6
   lessonIds:
     - 11
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 如果你想参加比赛，就要 ___ 告诉老师。
-      options:
-        - key: "1"
-          text: 尽早
-        - key: "2"
-          text: 纷纷
-        - key: "3"
-          text: 大概
-        - key: "4"
-          text: 连声
-      correctKey: "1"
-- groupId: NY-Q3
-  subject: Chinese
-  category: vocab
+  question: 如果你想参加比赛，就要 ___ 告诉老师。
+  options:
+    - 尽早
+    - 纷纷
+    - 大概
+    - 连声
+  correct: 尽早
+- questionID: NY-Q3
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 妈妈劝姐姐要早睡早起，但她 ___ 不听。
-      options:
-        - key: "1"
-          text: 扁
-        - key: "2"
-          text: 偏
-        - key: "3"
-          text: 遍
-        - key: "4"
-          text: 编
-      correctKey: "2"
-- groupId: NY-Q4
-  subject: Chinese
-  category: vocab
+  question: 妈妈劝姐姐要早睡早起，但她 ___ 不听。
+  options:
+    - 扁
+    - 偏
+    - 遍
+    - 编
+  correct: 偏
+- questionID: NY-Q4
   lessonIds:
     - 8
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 我们在沙滩上玩闹，留下了一串串的足 ___ 。
-      options:
-        - key: "1"
-          text: 计
-        - key: "2"
-          text: 基
-        - key: "3"
-          text: 纪
-        - key: "4"
-          text: 迹
-      correctKey: "4"
-- groupId: NY-Q5
-  subject: Chinese
-  category: vocab
+  question: 我们在沙滩上玩闹，留下了一串串的足 ___ 。
+  options:
+    - 计
+    - 基
+    - 纪
+    - 迹
+  correct: 迹
+- questionID: NY-Q5
   lessonIds:
     - 10
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 无论考得多好，你都不应该 ___ 成绩比你差的人。
-      options:
-        - key: "1"
-          text: 担心
-        - key: "2"
-          text: 唠叨
-        - key: "3"
-          text: 嘲笑
-        - key: "4"
-          text: 怀疑
-      correctKey: "3"
-- groupId: NY-Q6
-  subject: Chinese
-  category: vocab
+  question: 无论考得多好，你都不应该 ___ 成绩比你差的人。
+  options:
+    - 担心
+    - 唠叨
+    - 嘲笑
+    - 怀疑
+  correct: 嘲笑
+- questionID: NY-Q6
   lessonIds:
     - 13
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 自从去英国游玩后，表哥就 ___ 了搬到那儿居住的想法。
-      options:
-        - key: "1"
-          text: 增添
-        - key: "2"
-          text: 露出
-        - key: "3"
-          text: 构成
-        - key: "4"
-          text: 产生
-      correctKey: "4"
-- groupId: RG-Q3
-  subject: Chinese
-  category: vocab
+  question: 自从去英国游玩后，表哥就 ___ 了搬到那儿居住的想法。
+  options:
+    - 增添
+    - 露出
+    - 构成
+    - 产生
+  correct: 产生
+- questionID: RG-Q3
   lessonIds:
     - 6
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 我在图书馆的地上捡到了一张 ___ 票。
-      options:
-        - key: "1"
-          text: 秒
-        - key: "2"
-          text: 钞
-        - key: "3"
-          text: 沙
-        - key: "4"
-          text: 炒
-      correctKey: "2"
-- groupId: RG-Q4
-  subject: Chinese
-  category: vocab
+  question: 我在图书馆的地上捡到了一张 ___ 票。
+  options:
+    - 秒
+    - 钞
+    - 沙
+    - 炒
+  correct: 钞
+- questionID: RG-Q4
   lessonIds:
     - 3
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 爸爸说下个周末去爬山，大家都 ___ 口同声地说好。
-      options:
-        - key: "1"
-          text: 意
-        - key: "2"
-          text: 议
-        - key: "3"
-          text: 异
-        - key: "4"
-          text: 亿
-      correctKey: "3"
-- groupId: RG-Q5
-  subject: Chinese
-  category: vocab
+  question: 爸爸说下个周末去爬山，大家都 ___ 口同声地说好。
+  options:
+    - 意
+    - 议
+    - 异
+    - 亿
+  correct: 异
+- questionID: RG-Q5
   lessonIds:
     - 5
     - 14
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 大家 ___ 地捐出食品和钱，希望能帮助到有需要的人。
-      options:
-        - key: "1"
-          text: 积极
-        - key: "2"
-          text: 热烈
-        - key: "3"
-          text: 耐心
-        - key: "4"
-          text: 勇敢
-      correctKey: "1"
-- groupId: RG-Q6
-  subject: Chinese
-  category: vocab
+  question: 大家 ___ 地捐出食品和钱，希望能帮助到有需要的人。
+  options:
+    - 积极
+    - 热烈
+    - 耐心
+    - 勇敢
+  correct: 积极
+- questionID: RG-Q6
   lessonIds:
     - 15
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 妈妈忘记把水果放进冰箱，结果几天后发现水果 ___ 了。
-      options:
-        - key: "1"
-          text: 伤害
-        - key: "2"
-          text: 腐烂
-        - key: "3"
-          text: 变化
-        - key: "4"
-          text: 破坏
-      correctKey: "2"
-- groupId: RS-Q3
-  subject: Chinese
-  category: vocab
+  question: 妈妈忘记把水果放进冰箱，结果几天后发现水果 ___ 了。
+  options:
+    - 伤害
+    - 腐烂
+    - 变化
+    - 破坏
+  correct: 腐烂
+- questionID: RS-Q3
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 他把自己最喜欢的菜 ___ 到了妈妈的碗里。
-      options:
-        - key: "1"
-          text: 夫
-        - key: "2"
-          text: 失
-        - key: "3"
-          text: 夹
-        - key: "4"
-          text: 来
-      correctKey: "3"
-- groupId: RS-Q4
-  subject: Chinese
-  category: vocab
+  question: 他把自己最喜欢的菜 ___ 到了妈妈的碗里。
+  options:
+    - 夫
+    - 失
+    - 夹
+    - 来
+  correct: 夹
+- questionID: RS-Q4
   lessonIds:
     - 11
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 这个活动的报名 ___ 止日期是9月6日。
-      options:
-        - key: "1"
-          text: 戴
-        - key: "2"
-          text: 截
-        - key: "3"
-          text: 载
-        - key: "4"
-          text: 栽
-      correctKey: "2"
-- groupId: RS-Q5
-  subject: Chinese
-  category: vocab
+  question: 这个活动的报名 ___ 止日期是9月6日。
+  options:
+    - 戴
+    - 截
+    - 载
+    - 栽
+  correct: 截
+- questionID: RS-Q5
   lessonIds:
     - 11
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 哥哥上课很认真，课堂笔记写得很 ___ 。
-      options:
-        - key: "1"
-          text: 完好
-        - key: "2"
-          text: 小心
-        - key: "3"
-          text: 详细
-        - key: "4"
-          text: 干净
-      correctKey: "3"
-- groupId: RS-Q6
-  subject: Chinese
-  category: vocab
+  question: 哥哥上课很认真，课堂笔记写得很 ___ 。
+  options:
+    - 完好
+    - 小心
+    - 详细
+    - 干净
+  correct: 详细
+- questionID: RS-Q6
   lessonIds:
     - 7
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 天色暗了，路上的行人 ___ 少了。
-      options:
-        - key: "1"
-          text: 明明
-        - key: "2"
-          text: 渐渐
-        - key: "3"
-          text: 阵阵
-        - key: "4"
-          text: 纷纷
-      correctKey: "2"
-- groupId: RO-Q3
-  subject: Chinese
-  category: vocab
+  question: 天色暗了，路上的行人 ___ 少了。
+  options:
+    - 明明
+    - 渐渐
+    - 阵阵
+    - 纷纷
+  correct: 渐渐
+- questionID: RO-Q3
   lessonIds:
     - 10
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 父母把我们养大，我们要懂得感___。
-      options:
-        - key: "1"
-          text: 思
-        - key: "2"
-          text: 恩
-        - key: "3"
-          text: 意
-        - key: "4"
-          text: 总
-      correctKey: "2"
-- groupId: RO-Q4
-  subject: Chinese
-  category: vocab
+  question: 父母把我们养大，我们要懂得感___。
+  options:
+    - 思
+    - 恩
+    - 意
+    - 总
+  correct: 恩
+- questionID: RO-Q4
   lessonIds:
     - 3
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 如果我们做错了，要承认自己的错___。
-      options:
-        - key: "1"
-          text: 屋
-        - key: "2"
-          text: 物
-        - key: "3"
-          text: 误
-        - key: "4"
-          text: 鸟
-      correctKey: "3"
-- groupId: RO-Q5
-  subject: Chinese
-  category: vocab
+  question: 如果我们做错了，要承认自己的错___。
+  options:
+    - 屋
+    - 物
+    - 误
+    - 鸟
+  correct: 误
+- questionID: RO-Q5
   lessonIds:
     - 2
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 运动能让我们身体健康，也能___心情。
-      options:
-        - key: "1"
-          text: 放松
-        - key: "2"
-          text: 培育
-        - key: "3"
-          text: 进步
-        - key: "4"
-          text: 休息
-      correctKey: "1"
-- groupId: RO-Q6
-  subject: Chinese
-  category: vocab
+  question: 运动能让我们身体健康，也能___心情。
+  options:
+    - 放松
+    - 培育
+    - 进步
+    - 休息
+  correct: 放松
+- questionID: RO-Q6
   lessonIds:
     - 5
     - 12
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 妈妈告诉我考到第一名不能___，要继续努力。
-      options:
-        - key: "1"
-          text: 激动
-        - key: "2"
-          text: 骄傲
-        - key: "3"
-          text: 害羞
-        - key: "4"
-          text: 紧张
-      correctKey: "2"
-- groupId: TN-Q3
-  subject: Chinese
-  category: vocab
+  question: 妈妈告诉我考到第一名不能___，要继续努力。
+  options:
+    - 激动
+    - 骄傲
+    - 害羞
+    - 紧张
+  correct: 骄傲
+- questionID: TN-Q3
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 同学们纷纷举手，表 ___ 要去老人院做义工。
-      options:
-        - key: "1"
-          text: 事
-        - key: "2"
-          text: 视
-        - key: "3"
-          text: 示
-        - key: "4"
-          text: 市
-      correctKey: "3"
-- groupId: TN-Q4
-  subject: Chinese
-  category: vocab
+  question: 同学们纷纷举手，表 ___ 要去老人院做义工。
+  options:
+    - 事
+    - 视
+    - 示
+    - 市
+  correct: 示
+- questionID: TN-Q4
   lessonIds:
     - 3
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 这道菜需要用大火快速 ___ 熟，才会更美味。
-      options:
-        - key: "1"
-          text: 抄
-        - key: "2"
-          text: 吵
-        - key: "3"
-          text: 钞
-        - key: "4"
-          text: 炒
-      correctKey: "4"
-- groupId: TN-Q5
-  subject: Chinese
-  category: vocab
+  question: 这道菜需要用大火快速 ___ 熟，才会更美味。
+  options:
+    - 抄
+    - 吵
+    - 钞
+    - 炒
+  correct: 炒
+- questionID: TN-Q5
   lessonIds:
     - 7
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 同学们听到老师宣布的好消息，___ 地欢呼起来。
-      options:
-        - key: "1"
-          text: 幸福
-        - key: "2"
-          text: 温柔
-        - key: "3"
-          text: 激动
-        - key: "4"
-          text: 惊奇
-      correctKey: "3"
-- groupId: TN-Q6
-  subject: Chinese
-  category: vocab
+  question: 同学们听到老师宣布的好消息，___ 地欢呼起来。
+  options:
+    - 幸福
+    - 温柔
+    - 激动
+    - 惊奇
+  correct: 激动
+- questionID: TN-Q6
   lessonIds:
     - 3
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 知道小丽这次考试没考好，我立刻上前 ___ 她。
-      options:
-        - key: "1"
-          text: 谈论
-        - key: "2"
-          text: 爱惜
-        - key: "3"
-          text: 认识
-        - key: "4"
-          text: 安慰
-      correctKey: "4"
-- groupId: RL-Q3
-  subject: Chinese
-  category: vocab
+  question: 知道小丽这次考试没考好，我立刻上前 ___ 她。
+  options:
+    - 谈论
+    - 爱惜
+    - 认识
+    - 安慰
+  correct: 安慰
+- questionID: RL-Q3
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 这是阿姨旅游时买的 ___ 念品。
-      options:
-        - key: "1"
-          text: 纪
-        - key: "2"
-          text: 记
-        - key: "3"
-          text: 级
-        - key: "4"
-          text: 计
-      correctKey: "1"
-- groupId: RL-Q4
-  subject: Chinese
-  category: vocab
+  question: 这是阿姨旅游时买的 ___ 念品。
+  options:
+    - 纪
+    - 记
+    - 级
+    - 计
+  correct: 纪
+- questionID: RL-Q4
   lessonIds:
     - 2
     - 5
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 今天上课时，老师让同学们做一份小 ___ 试。
-      options:
-        - key: "1"
-          text: 则
-        - key: "2"
-          text: 厕
-        - key: "3"
-          text: 测
-        - key: "4"
-          text: 侧
-      correctKey: "3"
-- groupId: RL-Q5
-  subject: Chinese
-  category: vocab
+  question: 今天上课时，老师让同学们做一份小 ___ 试。
+  options:
+    - 则
+    - 厕
+    - 测
+    - 侧
+  correct: 测
+- questionID: RL-Q5
   lessonIds:
     - 7
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 听到这个好消息，姐姐 ___ 得跳了起来。
-      options:
-        - key: "1"
-          text: 骄傲
-        - key: "2"
-          text: 激动
-        - key: "3"
-          text: 满意
-        - key: "4"
-          text: 欢呼
-      correctKey: "2"
-- groupId: RL-Q6
-  subject: Chinese
-  category: vocab
+  question: 听到这个好消息，姐姐 ___ 得跳了起来。
+  options:
+    - 骄傲
+    - 激动
+    - 满意
+    - 欢呼
+  correct: 激动
+- questionID: RL-Q6
   lessonIds:
     - 15
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 林叔叔很 ___ ，常常捐钱给穷苦的人。
-      options:
-        - key: "1"
-          text: 幽默
-        - key: "2"
-          text: 慷慨
-        - key: "3"
-          text: 孝顺
-        - key: "4"
-          text: 诚实
-      correctKey: "2"
-- groupId: SH-Q3
-  subject: Chinese
-  category: vocab
+  question: 林叔叔很 ___ ，常常捐钱给穷苦的人。
+  options:
+    - 幽默
+    - 慷慨
+    - 孝顺
+    - 诚实
+  correct: 慷慨
+- questionID: SH-Q3
   lessonIds:
     - 11
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 伟文跌倒了，不小心弄伤了 ___ 膀。
-      options:
-        - key: "1"
-          text: 腿
-        - key: "2"
-          text: 背
-        - key: "3"
-          text: 前
-        - key: "4"
-          text: 肩
-      correctKey: "4"
-- groupId: SH-Q4
-  subject: Chinese
-  category: vocab
+  question: 伟文跌倒了，不小心弄伤了 ___ 膀。
+  options:
+    - 腿
+    - 背
+    - 前
+    - 肩
+  correct: 肩
+- questionID: SH-Q4
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 弟弟 ___ 成爸爸的样子骂小狗。
-      options:
-        - key: "1"
-          text: 分
-        - key: "2"
-          text: 扮
-        - key: "3"
-          text: 纷
-        - key: "4"
-          text: 份
-      correctKey: "2"
-- groupId: SH-Q5
-  subject: Chinese
-  category: vocab
+  question: 弟弟 ___ 成爸爸的样子骂小狗。
+  options:
+    - 分
+    - 扮
+    - 纷
+    - 份
+  correct: 扮
+- questionID: SH-Q5
   lessonIds:
     - 5
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 当我 ___ 不开心的事，都会告诉妈妈。
-      options:
-        - key: "1"
-          text: 遇到
-        - key: "2"
-          text: 收到
-        - key: "3"
-          text: 找到
-        - key: "4"
-          text: 赶到
-      correctKey: "1"
-- groupId: SH-Q6
-  subject: Chinese
-  category: vocab
+  question: 当我 ___ 不开心的事，都会告诉妈妈。
+  options:
+    - 遇到
+    - 收到
+    - 找到
+    - 赶到
+  correct: 遇到
+- questionID: SH-Q6
   lessonIds:
     - 6
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 妈妈常教导我们要做 ___ 的人，多帮助别人。
-      options:
-        - key: "1"
-          text: 自豪
-        - key: "2"
-          text: 认真
-        - key: "3"
-          text: 善良
-        - key: "4"
-          text: 公平
-      correctKey: "3"
-- groupId: PL-Q3
-  subject: Chinese
-  category: vocab
+  question: 妈妈常教导我们要做 ___ 的人，多帮助别人。
+  options:
+    - 自豪
+    - 认真
+    - 善良
+    - 公平
+  correct: 善良
+- questionID: PL-Q3
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 看到课室的地上有垃圾，我就应该 ___ 起来丢进垃圾桶里。
-      options:
-        - key: "1"
-          text: 检
-        - key: "2"
-          text: 脸
-        - key: "3"
-          text: 捡
-        - key: "4"
-          text: 验
-      correctKey: "3"
-- groupId: NY24-Q3
-  subject: Chinese
-  category: vocab
+  question: 看到课室的地上有垃圾，我就应该 ___ 起来丢进垃圾桶里。
+  options:
+    - 检
+    - 脸
+    - 捡
+    - 验
+  correct: 捡
+- questionID: NY24-Q3
   lessonIds:
     - 1
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 这 ___ 丰盛的晚餐，都是这两位名厨准备的。
-      options:
-        - key: "1"
-          text: 顶
-        - key: "2"
-          text: 项
-        - key: "3"
-          text: 顿
-        - key: "4"
-          text: 烦
-      correctKey: "3"
-- groupId: NY24-Q4
-  subject: Chinese
-  category: vocab
+  question: 这 ___ 丰盛的晚餐，都是这两位名厨准备的。
+  options:
+    - 顶
+    - 项
+    - 顿
+    - 烦
+  correct: 顿
+- questionID: NY24-Q4
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 学校 ___ 离我家只有几百米远，走路就能到。
-      options:
-        - key: "1"
-          text: 具
-        - key: "2"
-          text: 剧
-        - key: "3"
-          text: 聚
-        - key: "4"
-          text: 距
-      correctKey: "4"
-- groupId: NY24-Q5
-  subject: Chinese
-  category: vocab
+  question: 学校 ___ 离我家只有几百米远，走路就能到。
+  options:
+    - 具
+    - 剧
+    - 聚
+    - 距
+  correct: 距
+- questionID: NY24-Q5
   lessonIds:
     - 2
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 小明来新加坡很多年了，已经 ___ 了本地炎热的天气。
-      options:
-        - key: "1"
-          text: 理解
-        - key: "2"
-          text: 介绍
-        - key: "3"
-          text: 适合
-        - key: "4"
-          text: 习惯
-      correctKey: "4"
-- groupId: NY24-Q6
-  subject: Chinese
-  category: vocab
+  question: 小明来新加坡很多年了，已经 ___ 了本地炎热的天气。
+  options:
+    - 理解
+    - 介绍
+    - 适合
+    - 习惯
+  correct: 习惯
+- questionID: NY24-Q6
   lessonIds:
     - 8
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 这家工厂 ___ 的手表很受大家欢迎。
-      options:
-        - key: "1"
-          text: 制造
-        - key: "2"
-          text: 购买
-        - key: "3"
-          text: 建立
-        - key: "4"
-          text: 安排
-      correctKey: "1"
-- groupId: MB24-Q1
-  subject: Chinese
-  category: vocab
+  question: 这家工厂 ___ 的手表很受大家欢迎。
+  options:
+    - 制造
+    - 购买
+    - 建立
+    - 安排
+  correct: 制造
+- questionID: MB24-Q1
   lessonIds:
     - 8
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 妹妹年 ___ 还小，不能自己出门。
-      options:
-        - key: "1"
-          text: 领
-        - key: "2"
-          text: 零
-        - key: "3"
-          text: 龄
-        - key: "4"
-          text: 邻
-      correctKey: "3"
-- groupId: MB24-Q2
-  subject: Chinese
-  category: vocab
+  question: 妹妹年 ___ 还小，不能自己出门。
+  options:
+    - 领
+    - 零
+    - 龄
+    - 邻
+  correct: 龄
+- questionID: MB24-Q2
   lessonIds:
     - 7
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 我们兄弟俩在泳池里互相 ___ 水，好玩极了！
-      options:
-        - key: "1"
-          text: 涨
-        - key: "2"
-          text: 泼
-        - key: "3"
-          text: 测
-        - key: "4"
-          text: 波
-      correctKey: "2"
-- groupId: NY24EOY-Q3
-  subject: Chinese
-  category: vocab
+  question: 我们兄弟俩在泳池里互相 ___ 水，好玩极了！
+  options:
+    - 涨
+    - 泼
+    - 测
+    - 波
+  correct: 泼
+- questionID: NY24EOY-Q3
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: ___ 说，万里长城是世界上最长的建筑物。
-      options:
-        - key: "1"
-          text: 距
-        - key: "2"
-          text: 拒
-        - key: "3"
-          text: 剧
-        - key: "4"
-          text: 据
-      correctKey: "4"
-- groupId: HP24EOY-Q3
-  subject: Chinese
-  category: vocab
+  question: ___ 说，万里长城是世界上最长的建筑物。
+  options:
+    - 距
+    - 拒
+    - 剧
+    - 据
+  correct: 据
+- questionID: HP24EOY-Q3
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 恐龙已经灭 ___ 了，不可能再看到了。
-      options:
-        - key: "1"
-          text: 绝
-        - key: "2"
-          text: 觉
-        - key: "3"
-          text: 决
-        - key: "4"
-          text: 角
-      correctKey: "1"
-- groupId: HP24EOY-Q4
-  subject: Chinese
-  category: vocab
+  question: 恐龙已经灭 ___ 了，不可能再看到了。
+  options:
+    - 绝
+    - 觉
+    - 决
+    - 角
+  correct: 绝
+- questionID: HP24EOY-Q4
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 老师非常 ___ 赏明华的优秀表现。
-      options:
-        - key: "1"
-          text: 精
-        - key: "2"
-          text: 赞
-        - key: "3"
-          text: 极
-        - key: "4"
-          text: 欣
-      correctKey: "2"
-- groupId: HP24EOY-Q5
-  subject: Chinese
-  category: vocab
+  question: 老师非常 ___ 赏明华的优秀表现。
+  options:
+    - 精
+    - 赞
+    - 极
+    - 欣
+  correct: 赞
+- questionID: HP24EOY-Q5
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 听到好消息，哥哥兴奋得大 ___ 起来。
-      options:
-        - key: "1"
-          text: 叫
-        - key: "2"
-          text: 笑
-        - key: "3"
-          text: 哭
-        - key: "4"
-          text: 喊
-      correctKey: "4"
-- groupId: HP24EOY-Q6
-  subject: Chinese
-  category: vocab
+  question: 听到好消息，哥哥兴奋得大 ___ 起来。
+  options:
+    - 叫
+    - 笑
+    - 哭
+    - 喊
+  correct: 喊
+- questionID: HP24EOY-Q6
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 虽然他犯了错，但大家都 ___ 原谅了他。
-      options:
-        - key: "1"
-          text: 主动
-        - key: "2"
-          text: 同意
-        - key: "3"
-          text: 选择
-        - key: "4"
-          text: 希望
-      correctKey: "3"
-- groupId: MB24SA2-Q3
-  subject: Chinese
-  category: vocab
+  question: 虽然他犯了错，但大家都 ___ 原谅了他。
+  options:
+    - 主动
+    - 同意
+    - 选择
+    - 希望
+  correct: 选择
+- questionID: MB24SA2-Q3
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 为了尽快完成任务，他每天都连 ___ 工作几个小时。
-      options:
-        - key: "1"
-          text: 序
-        - key: "2"
-          text: 续
-        - key: "3"
-          text: 许
-        - key: "4"
-          text: 须
-      correctKey: "2"
-- groupId: MB24SA2-Q4
-  subject: Chinese
-  category: vocab
+  question: 为了尽快完成任务，他每天都连 ___ 工作几个小时。
+  options:
+    - 序
+    - 续
+    - 许
+    - 须
+  correct: 续
+- questionID: MB24SA2-Q4
   lessonIds:
     - 11
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 你们是好朋友，你不应该因为这件小事而 ___ 他。
-      options:
-        - key: "1"
-          text: 恨
-        - key: "2"
-          text: 狠
-        - key: "3"
-          text: 狼
-        - key: "4"
-          text: 跟
-      correctKey: "1"
-- groupId: MB24SA2-Q5
-  subject: Chinese
-  category: vocab
+  question: 你们是好朋友，你不应该因为这件小事而 ___ 他。
+  options:
+    - 恨
+    - 狠
+    - 狼
+    - 跟
+  correct: 恨
+- questionID: MB24SA2-Q5
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 听到自己得奖的消息，他兴奋地 ___ 了起来。
-      options:
-        - key: "1"
-          text: 抖
-        - key: "2"
-          text: 叫
-        - key: "3"
-          text: 跳
-        - key: "4"
-          text: 笑
-      correctKey: "3"
-- groupId: MB24SA2-Q6
-  subject: Chinese
-  category: vocab
+  question: 听到自己得奖的消息，他兴奋地 ___ 了起来。
+  options:
+    - 抖
+    - 叫
+    - 跳
+    - 笑
+  correct: 跳
+- questionID: MB24SA2-Q6
   lessonIds: []
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 你如果不听劝告，将来一定会 ___ 的。
-      options:
-        - key: "1"
-          text: 后悔
-        - key: "2"
-          text: 难过
-        - key: "3"
-          text: 害怕
-        - key: "4"
-          text: 担心
-      correctKey: "1"
+  question: 你如果不听劝告，将来一定会 ___ 的。
+  options:
+    - 后悔
+    - 难过
+    - 害怕
+    - 担心
+  correct: 后悔

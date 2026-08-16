@@ -1,6 +1,5 @@
 - groupId: P2-COMP1
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 小猴子摘香蕉
@@ -12,32 +11,22 @@
 
       这时，一只大猴子走过来，帮皮皮把香蕉摘下来，还教他要小心一点。皮皮谢过大猴子，开开心心地吃起香蕉来。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 皮皮最喜欢吃什么？
       options:
-        - key: "1"
-          text: 苹果
-        - key: "2"
-          text: 香蕉
-        - key: "3"
-          text: 西瓜
-        - key: "4"
-          text: 葡萄
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 苹果
+        - 香蕉
+        - 西瓜
+        - 葡萄
+      correct: 香蕉
+    - format: MCQ
       text: 皮皮为什么摔了下来？
       options:
-        - key: "1"
-          text: 因为树太高了
-        - key: "2"
-          text: 因为下雨了
-        - key: "3"
-          text: 因为他睡着了
-        - key: "4"
-          text: 因为大猴子推了他
-      correctKey: "1"
+        - 因为树太高了
+        - 因为下雨了
+        - 因为他睡着了
+        - 因为大猴子推了他
+      correct: 因为树太高了
     - marks: 4
       format: Long-Answer
       text: 大猴子帮了皮皮什么忙？他还对皮皮说了什么？

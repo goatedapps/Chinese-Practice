@@ -5,6 +5,7 @@
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import YAML from "yaml";
+import { parseQuestionCategoryYaml } from "../src/data/questions";
 
 const YAML_OPTS = { lineWidth: 0 };
 
@@ -19,13 +20,8 @@ function buildQuestionsIndex(dir: string): void {
   const files = readdirSync(dir).filter((f) => f.endsWith(".yaml") && f !== "index.yaml");
   const index: unknown[] = [];
   for (const file of files) {
-    const groups = YAML.parse(readFileSync(join(dir, file), "utf8")) as Array<{
-      groupId: string;
-      subject: string;
-      category: string;
-      lessonIds: number[];
-      questions: unknown[];
-    }>;
+    const category = file.replace(/\.yaml$/, "");
+    const groups = parseQuestionCategoryYaml(category, readFileSync(join(dir, file), "utf8"));
     for (const g of groups) {
       index.push({
         groupId: g.groupId,

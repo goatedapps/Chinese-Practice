@@ -1,6 +1,4 @@
 - groupId: CH-G4
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 中秋节庆祝会
@@ -29,45 +27,30 @@
       欢乐小学
       2025年9月10日
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 学校举办中秋节庆祝会的目的是什么？
       options:
-        - key: "1"
-          text: 鼓励学生们参加灯笼制作比赛。
-        - key: "2"
-          text: 通知学生有小吃摊位售卖美食。
-        - key: "3"
-          text: 让学生对中秋节有更深的认识。
-        - key: "4"
-          text: 邀请学生来中秋庆祝会提灯笼。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 鼓励学生们参加灯笼制作比赛。
+        - 通知学生有小吃摊位售卖美食。
+        - 让学生对中秋节有更深的认识。
+        - 邀请学生来中秋庆祝会提灯笼。
+      correct: 让学生对中秋节有更深的认识。
+    - format: MCQ
       text: 怎样才可以参加灯笼制作比赛？
       options:
-        - key: "1"
-          text: 10月3日傍晚六点到礼堂去。
-        - key: "2"
-          text: 在庆祝会时带自己的灯笼来。
-        - key: "3"
-          text: 拨办公室电话号码找陈小姐。
-        - key: "4"
-          text: 在截止日期前到办公室报名。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 10月3日傍晚六点到礼堂去。
+        - 在庆祝会时带自己的灯笼来。
+        - 拨办公室电话号码找陈小姐。
+        - 在截止日期前到办公室报名。
+      correct: 在截止日期前到办公室报名。
+    - format: MCQ
       text: 以下哪一个句子是不正确的？
       options:
-        - key: "1"
-          text: 学校会提供灯笼制作比赛的材料。
-        - key: "2"
-          text: 参加者可以在照相摊位免费拍照。
-        - key: "3"
-          text: 游戏摊在傍晚六点至七点半开放。
-        - key: "4"
-          text: 庆祝中秋的活动在10月3日举办。
-      correctKey: "2"
+        - 学校会提供灯笼制作比赛的材料。
+        - 参加者可以在照相摊位免费拍照。
+        - 游戏摊在傍晚六点至七点半开放。
+        - 庆祝中秋的活动在10月3日举办。
+      correct: 参加者可以在照相摊位免费拍照。
     - marks: 4
       format: Writing-Constrained
       text: 如果你是国华，你和同学立明约好10月3日中秋节庆祝会当天一起提灯笼游园。于是，你写一则短信给立明，提醒他这个活动的详情。
@@ -76,8 +59,6 @@
         评分标准：内容 /2分，表达 /2分（扣分项：病句、错别字、标点符号错误、词语搭配错误），总分 /4分。
       displayAnswer: 立明，别忘了我们约好10月3日当天一起提灯笼游园。请记得我们傍晚7点半（0.5分）在学校广场集合（0.5分），必须自备灯笼（1分）。
 - groupId: NH-G4
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 户外亲子游
@@ -104,53 +85,36 @@
       2025年11月1日
       欢乐民众俱乐部
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 这则通告的主要目的是什么？
       options:
-        - key: "1"
-          text: 告诉大家新加坡有很多好玩的地方
-        - key: "2"
-          text: 提醒家长要多带孩子进行户外活动
-        - key: "3"
-          text: 鼓励大家报名参加户外亲子游活动
-        - key: "4"
-          text: 希望居民们对新加坡有更深的了解
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 告诉大家新加坡有很多好玩的地方
+        - 提醒家长要多带孩子进行户外活动
+        - 鼓励大家报名参加户外亲子游活动
+        - 希望居民们对新加坡有更深的了解
+      correct: 鼓励大家报名参加户外亲子游活动
+    - format: MCQ
       text: 以下哪一项是动物园步道行的特别之处？
       options:
-        - key: "1"
-          text: 可以呼吸新鲜的空气
-        - key: "2"
-          text: 能看到动物园的动物
-        - key: "3"
-          text: 感受大海的美丽景色
-        - key: "4"
-          text: 了解历史和市区文化
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 可以呼吸新鲜的空气
+        - 能看到动物园的动物
+        - 感受大海的美丽景色
+        - 了解历史和市区文化
+      correct: 能看到动物园的动物
+    - format: MCQ
       text: 以下哪句话是正确的？
       options:
-        - key: "1"
-          text: 参加东海岸骑行的人要自己付钱租车
-        - key: "2"
-          text: 所有小朋友都可以参加爬山乐的活动
-        - key: "3"
-          text: 民众俱乐部会准备防蚊防雨防晒用品
-        - key: "4"
-          text: 只有参加爬山乐才可以看到各种动物
-      correctKey: "1"
+        - 参加东海岸骑行的人要自己付钱租车
+        - 所有小朋友都可以参加爬山乐的活动
+        - 民众俱乐部会准备防蚊防雨防晒用品
+        - 只有参加爬山乐才可以看到各种动物
+      correct: 参加东海岸骑行的人要自己付钱租车
     - marks: 4
       format: Writing-Constrained
       text: 妈妈，我看到欢乐民众俱乐部的通告，他们将举办“户外亲子游”活动，我喜欢看各种建筑物，______
       context: 开头已给出：“妈妈，我看到欢乐民众俱乐部的通告，他们将举办‘户外亲子游’活动，我喜欢看各种建筑物，______”
       displayAnswer: 妈妈，我看到欢乐民众俱乐部的通告，他们将举办“户外亲子游”活动，我喜欢看各种建筑，我想让您带我参加“市中心街道行”。这个活动的日期是12月6日，时间是上午8:30到12:30。请您在11月25日之前到欢乐民众俱乐部报名。
 - groupId: ACSJ-G4
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 假期活动
@@ -168,45 +132,30 @@
 
       除了以上为学生准备的假期活动，本校也鼓励大家捐出旧衣服，帮助有需要的人。捐出的衣物必须清洗干净，放进学校门口的回收箱。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 如果想进一步认识红山组屋区，你应该报名参加哪个活动？
       options:
-        - key: "1"
-          text: 献爱心。
-        - key: "2"
-          text: 走走看看。
-        - key: "3"
-          text: 捐出旧衣服。
-        - key: "4"
-          text: 亲亲大自然。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 献爱心。
+        - 走走看看。
+        - 捐出旧衣服。
+        - 亲亲大自然。
+      correct: 走走看看。
+    - format: MCQ
       text: 以下哪一个说法是不正确的？
       options:
-        - key: "1"
-          text: 学生需要报名参加假期活动。
-        - key: "2"
-          text: 要捐出的旧衣服应该先清洗干净。
-        - key: "3"
-          text: 所有活动都必须家长陪伴才可以参加。
-        - key: "4"
-          text: 这是红山小学第一次举办学校假期活动。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 学生需要报名参加假期活动。
+        - 要捐出的旧衣服应该先清洗干净。
+        - 所有活动都必须家长陪伴才可以参加。
+        - 这是红山小学第一次举办学校假期活动。
+      correct: 所有活动都必须家长陪伴才可以参加。
+    - format: MCQ
       text: 红山小学举办学校假期活动的主要目的是什么？
       options:
-        - key: "1"
-          text: 让学生踏出家门认识朋友。
-        - key: "2"
-          text: 让学生学习怎么上学校网站。
-        - key: "3"
-          text: 让学生能和家长一起参加活动。
-        - key: "4"
-          text: 让学生度过又特别又难忘的假期。
-      correctKey: "4"
+        - 让学生踏出家门认识朋友。
+        - 让学生学习怎么上学校网站。
+        - 让学生能和家长一起参加活动。
+        - 让学生度过又特别又难忘的假期。
+      correct: 让学生度过又特别又难忘的假期。
     - marks: 4
       format: Writing-Constrained
       text: 假如你是康康，看到这个通告时，想起同班同学小乐很关心老人。于是，你写了一个短信给小乐，告诉她哪一个活动适合她，并说明活动当天需要做些什么和注意什么。
@@ -215,8 +164,6 @@
         评分标准：内容 /2分，表达 /2分（扣分项：病句、错别字、标点符号错误、词语搭配错误），总分 /4分。
       displayAnswer: 小乐，我们学校在假期将举办很多活动，我觉得你可以参加“献爱心”的活动。这个活动内容是帮助独居老人打扫除和陪老人聊天。日期和时间是每周星期六早上8点至12点，如果你有兴趣参加，请你父母在11月20日前在学校网站www.chengxinschool.sg为你报名，报名后每周星期六早上7点半到学校礼堂集合。
 - groupId: HP-G4
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 亲子同乐日
@@ -238,45 +185,30 @@
 
       欢乐民众俱乐部
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: “乐享健康・亲子同乐日”的活动目的是什么？
       options:
-        - key: "1"
-          text: 让民众都能收到精美的奖品。
-        - key: "2"
-          text: 让民众享受音乐带来的快乐。
-        - key: "3"
-          text: 让民众有机会和家人一起运动。
-        - key: "4"
-          text: 让民众有机会和家人放松身心。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 让民众都能收到精美的奖品。
+        - 让民众享受音乐带来的快乐。
+        - 让民众有机会和家人一起运动。
+        - 让民众有机会和家人放松身心。
+      correct: 让民众有机会和家人一起运动。
+    - format: MCQ
       text: 下面哪个活动儿童必须要家长陪伴？
       options:
-        - key: "1"
-          text: 舞动亲子情
-        - key: "2"
-          text: 活力健康行
-        - key: "3"
-          text: 欢乐风筝赛
-        - key: "4"
-          text: 所有的活动
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 舞动亲子情
+        - 活力健康行
+        - 欢乐风筝赛
+        - 所有的活动
+      correct: 活力健康行
+    - format: MCQ
       text: 以下哪一句话是不正确的？
       options:
-        - key: "1"
-          text: “舞动亲子情”是室内活动。
-        - key: "2"
-          text: “活力健康行”在上午举行。
-        - key: "3"
-          text: “欢乐风筝赛”只能儿童参加。
-        - key: "4"
-          text: 如果有疑问可以拨打热线电话。
-      correctKey: "3"
+        - “舞动亲子情”是室内活动。
+        - “活力健康行”在上午举行。
+        - “欢乐风筝赛”只能儿童参加。
+        - 如果有疑问可以拨打热线电话。
+      correct: “欢乐风筝赛”只能儿童参加。
     - marks: 4
       format: Writing-Constrained
       text: 你的朋友小安很喜欢和父母一起放风筝。看了这则通告，请发一条短信给他，告诉他可以参加的活动和原因，并告诉他报名的方法和要注意的事。
@@ -285,8 +217,6 @@
         评分标准：内容 /2分，表达 /2分（扣分项：病句、错别字、标点符号错误、词语搭配错误），总分 /4分。
       displayAnswer: 亲爱的小安，我看到一则通告，关于“乐享健康，亲子同乐日”。我觉得你会有兴趣参加，因为你很喜欢和你的爸爸妈妈一起放风筝。活动会在学校的操场进行。你们要带自己的风筝就可以了。记得注意安全，别跑太快，也要留意周围的人。
 - groupId: MB-G4
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 中秋晚会
@@ -302,45 +232,30 @@
 
       中秋晚会的收费是每人5元（儿童和60岁以上的老人免费）。有兴趣者，请到俱乐部的办公室报名。如果要参加设计灯笼的活动，必须在活动当天下午4点前报名。查问详情，请拨打电话66345678或上新华俱乐部的网站www.xinhua.com.sg。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 举办“中秋晚会”的目的是什么？
       options:
-        - key: "1"
-          text: 观看歌舞表演。
-        - key: "2"
-          text: 介绍华族文化。
-        - key: "3"
-          text: 品尝中秋美食。
-        - key: "4"
-          text: 学会制作灯笼。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 观看歌舞表演。
+        - 介绍华族文化。
+        - 品尝中秋美食。
+        - 学会制作灯笼。
+      correct: 介绍华族文化。
+    - format: MCQ
       text: 哪些人参加这个活动不需要付钱？
       options:
-        - key: "1"
-          text: 孩子和老年人。
-        - key: "2"
-          text: 所有报名的人。
-        - key: "3"
-          text: 父母和他们的孩子。
-        - key: "4"
-          text: 俱乐部的所有会员。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 孩子和老年人。
+        - 所有报名的人。
+        - 父母和他们的孩子。
+        - 俱乐部的所有会员。
+      correct: 孩子和老年人。
+    - format: MCQ
       text: 以下哪一项不是通告所提到的？
       options:
-        - key: "1"
-          text: 只要报名就可以参加活动。
-        - key: "2"
-          text: 中秋晚会每年只举行一次。
-        - key: "3"
-          text: 参加中秋晚会有机会获得奖品。
-        - key: "4"
-          text: 报名者可获得一个精美的灯笼。
-      correctKey: "4"
+        - 只要报名就可以参加活动。
+        - 中秋晚会每年只举行一次。
+        - 参加中秋晚会有机会获得奖品。
+        - 报名者可获得一个精美的灯笼。
+      correct: 报名者可获得一个精美的灯笼。
     - marks: 4
       format: Writing-Constrained
       text: 如果你是明华，你知道妈妈很喜欢做手工，试写一则短信给妈妈，向她提议可以参加哪一个活动，并告诉她参加这个活动要注意些什么。
@@ -349,8 +264,6 @@
         评分标准：内容 /2分，表达 /2分（扣分项：病句、错别字、标点符号错误、词语搭配错误），总分 /4分。
       displayAnswer: 妈妈：新华民众俱乐部将举行“中秋晚会”活动，我知道您喜欢做手工，所以我建议您参加设计灯笼这个活动。参加时要注意灯笼的材料费是2元，并且请自备剪刀。另外，记得必须在活动当天下午4点前报名。
 - groupId: NY-G4
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 欢乐阅读周
@@ -368,53 +281,36 @@
       【书中人物服装秀】孙悟空、花木兰、哈利波特、小红帽……你最想扮演哪位书中人物呢？日期：10月6日（星期四）／时间：各年级的周会时间／地点：学校礼堂
       注意事项：有兴趣的同学请在当天装扮成你最喜欢的书中人物，你将有机会上台拍照，并获得一份小礼物！
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 学校举办"欢乐阅读周"的主要目的是什么？
       options:
-        - key: "1"
-          text: 提高学生写华文故事的能力。
-        - key: "2"
-          text: 鼓励学生积极参加各种活动。
-        - key: "3"
-          text: 引起学生阅读华文书的兴趣。
-        - key: "4"
-          text: 介绍新加坡的知名作家阿福。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 提高学生写华文故事的能力。
+        - 鼓励学生积极参加各种活动。
+        - 引起学生阅读华文书的兴趣。
+        - 介绍新加坡的知名作家阿福。
+      correct: 引起学生阅读华文书的兴趣。
+    - format: MCQ
       text: 低年级学生不能参加哪个阅读活动？
       options:
-        - key: "1"
-          text: 绘本读后活动。
-        - key: "2"
-          text: 装扮故事人物。
-        - key: "3"
-          text: 阿福的分享会。
-        - key: "4"
-          text: 听老师讲故事。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 绘本读后活动。
+        - 装扮故事人物。
+        - 阿福的分享会。
+        - 听老师讲故事。
+      correct: 阿福的分享会。
+    - format: MCQ
       text: 以下哪一个句子是正确的？
       options:
-        - key: "1"
-          text: 学生可以装扮成任何书中人物。
-        - key: "2"
-          text: 阅读活动仅有三个有趣的活动。
-        - key: "3"
-          text: 老师们将以各国语言讲绘本故事。
-        - key: "4"
-          text: 所有分享会的报名者都可获得新书。
-      correctKey: "1"
+        - 学生可以装扮成任何书中人物。
+        - 阅读活动仅有三个有趣的活动。
+        - 老师们将以各国语言讲绘本故事。
+        - 所有分享会的报名者都可获得新书。
+      correct: 学生可以装扮成任何书中人物。
     - marks: 4
       format: Writing-Constrained
       text: 看了这则通告后，你想起上六年级的哥哥喜欢看本地作家阿福的书，希望他不会错过阿福的分享会。请写一则短信给哥哥，告诉他参加分享会的一个好处，活动详情和报名方法，并告诉他要尽早报名的原因。
       context: 开头已给出："哥哥，学校将邀请你喜欢的作家阿福来学校进行分享会，……"
       displayAnswer: 哥哥，学校将邀请你喜欢的作家阿福来学校进行分享会，你千万别错过，因为所有参加者将获得一本阿福老师亲笔签名的新书《狮城60载》。分享会将在10月5日（星期三），下午2点半至4点半，在学校图书馆举行。你可以通过电邮linshuxiang@huanlepri.com向林书香老师报名。记得尽早报名，因为这个活动仅限/只有前30名报名的六年级学生参与。
 - groupId: RG-G4
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 动物园游
@@ -436,53 +332,36 @@
       ◆ 为了支持环保，动物园没有卖矿泉水，请自己带水壶。
       ◆ 只要报名参加活动，就有机会赢得大奖。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 举办"假期'趣'动物园"的主要目的是什么？
       options:
-        - key: "1"
-          text: 提醒大家度过充实的假期。
-        - key: "2"
-          text: 鼓励大家到动物园去游玩。
-        - key: "3"
-          text: 告诉大家假期有什么活动。
-        - key: "4"
-          text: 请大家来现场听儿童故事。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 提醒大家度过充实的假期。
+        - 鼓励大家到动物园去游玩。
+        - 告诉大家假期有什么活动。
+        - 请大家来现场听儿童故事。
+      correct: 鼓励大家到动物园去游玩。
+    - format: MCQ
       text: 哪一个活动适合爷爷、小文和弟弟一起参加？
       options:
-        - key: "1"
-          text: 健康步道行。
-        - key: "2"
-          text: 小小管理员。
-        - key: "3"
-          text: 儿童故事时间。
-        - key: "4"
-          text: 动物知识大比拼。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 健康步道行。
+        - 小小管理员。
+        - 儿童故事时间。
+        - 动物知识大比拼。
+      correct: 健康步道行。
+    - format: MCQ
       text: 以下哪一个句子是正确的？
       options:
-        - key: "1"
-          text: 参加所有动物园的活动前，都要先报名。
-        - key: "2"
-          text: 周末早上，小朋友可以一起听儿童故事。
-        - key: "3"
-          text: 只要去动物园，就可能有机会赢得大奖。
-        - key: "4"
-          text: 如果想看小动物，可以参加健康步道行。
-      correctKey: "4"
+        - 参加所有动物园的活动前，都要先报名。
+        - 周末早上，小朋友可以一起听儿童故事。
+        - 只要去动物园，就可能有机会赢得大奖。
+        - 如果想看小动物，可以参加健康步道行。
+      correct: 如果想看小动物，可以参加健康步道行。
     - marks: 4
       format: Writing-Constrained
       text: 假如你是小文，你和妈妈想要参加"动物知识大比拼"。请在活动前一天写一则短信，提醒妈妈参加活动需要注意的事项。
       context: 开头已给出："妈妈，我们明天早上就要去动物园参加'动物知识大比拼'的活动了。活动会在早上9点开始。我想要提醒您，……"
       displayAnswer: 妈妈，我们明天早上就要去动物园参加"动物知识大比拼"的活动了。活动会在早上9点开始。我想要提醒您，活动当天，要在早上8点半前到雨林广场报名，报名费是每组10元。还有，为了支持环保，动物园没有卖矿泉水，所以我们要自己带水壶。
 - groupId: RS-G4
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 年终假日营
@@ -510,53 +389,36 @@
       欢乐民众俱乐部
       2025年10月1日
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 举办"动起来！"年终假日营的主要目的是什么？
       options:
-        - key: "1"
-          text: 帮助孩子们结交新朋友。
-        - key: "2"
-          text: 让孩子们对运动感兴趣。
-        - key: "3"
-          text: 给孩子们学习团队合作。
-        - key: "4"
-          text: 训练孩子的眼力和合作。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 帮助孩子们结交新朋友。
+        - 让孩子们对运动感兴趣。
+        - 给孩子们学习团队合作。
+        - 训练孩子的眼力和合作。
+      correct: 让孩子们对运动感兴趣。
+    - format: MCQ
       text: 欢乐民众俱乐部怎样吸引公众参加全部的活动？
       options:
-        - key: "1"
-          text: 全部活动都安排在早上进行。
-        - key: "2"
-          text: 每一天的运动项目都不一样。
-        - key: "3"
-          text: 参加所有活动的费用更便宜。
-        - key: "4"
-          text: 报名的人都能得到一个水瓶。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 全部活动都安排在早上进行。
+        - 每一天的运动项目都不一样。
+        - 参加所有活动的费用更便宜。
+        - 报名的人都能得到一个水瓶。
+      correct: 参加所有活动的费用更便宜。
+    - format: MCQ
       text: 以下哪一个句子是正确的？
       options:
-        - key: "1"
-          text: 这个活动是由爱慈小学举办的。
-        - key: "2"
-          text: 公众要在11月15日之前报名。
-        - key: "3"
-          text: 报名参加的公众都会更爱运动。
-        - key: "4"
-          text: 公众可以上网报名参加假日营。
-      correctKey: "2"
+        - 这个活动是由爱慈小学举办的。
+        - 公众要在11月15日之前报名。
+        - 报名参加的公众都会更爱运动。
+        - 公众可以上网报名参加假日营。
+      correct: 公众要在11月15日之前报名。
     - marks: 4
       format: Writing-Constrained
       text: 如果你是丽云，你知道文文喜欢打篮球。请你写一则短信，告诉他可以参加假日营的哪一项活动，以及参加那项活动的好处和日期。
       context: 开头已给出："文文，我知道你喜欢打篮球，你可以 ___"
       displayAnswer: 文文，我知道你喜欢打篮球。你可以参加"篮球挑战赛"。那里有专业的教练教你投篮和传球。活动日期是12月3日。希望你能参加！
 - groupId: RO-G4
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 粉红姐姐音乐会
@@ -580,54 +442,37 @@
 
       注意：国家艺术中心禁止观众带食物和饮料。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: '"粉红姐姐"举办音乐会的目的是什么？'
       options:
-        - key: "1"
-          text: 和新加坡朋友一起听歌。
-        - key: "2"
-          text: 感谢大家这十年的支持。
-        - key: "3"
-          text: 让观众有机会买荧光棒。
-        - key: "4"
-          text: 认识更多喜欢她的朋友。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 和新加坡朋友一起听歌。
+        - 感谢大家这十年的支持。
+        - 让观众有机会买荧光棒。
+        - 认识更多喜欢她的朋友。
+      correct: 感谢大家这十年的支持。
+    - format: MCQ
       text: 想要去看演唱会的人可以怎样买票？
       options:
-        - key: "1"
-          text: 上订票网站。
-        - key: "2"
-          text: 打热线电话。
-        - key: "3"
-          text: 到国家艺术中心去。
-        - key: "4"
-          text: 去欢欢民众俱乐部。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 上订票网站。
+        - 打热线电话。
+        - 到国家艺术中心去。
+        - 去欢欢民众俱乐部。
+      correct: 上订票网站。
+    - format: MCQ
       text: 以下哪一个句子是正确的？
       options:
-        - key: "1"
-          text: 凡是买票的观众都能得到一支荧光棒。
-        - key: "2"
-          text: 去听音乐会的人必须穿粉红色的衣服。
-        - key: "3"
-          text: 人们不可以带饮料和食物去听音乐会。
-        - key: "4"
-          text: '"粉红姐姐"会在新加坡有两场音乐会。'
-      correctKey: "3"
+        - 凡是买票的观众都能得到一支荧光棒。
+        - 去听音乐会的人必须穿粉红色的衣服。
+        - 人们不可以带饮料和食物去听音乐会。
+        - '"粉红姐姐"会在新加坡有两场音乐会。'
+      correct: 人们不可以带饮料和食物去听音乐会。
     - marks: 4
       format: Writing-Constrained
       text: 如果你是乐乐，你想去听"粉红姐姐"的音乐会，请你写一张便条，告诉爸爸音乐会的日期和地点，并告诉爸爸音乐会有什么吸引你的地方。
       context: 开头已给出："爸爸：我想去听'粉红姐姐'的音乐会。___"
-      displayAnswer: 爸爸：我想去听"粉红姐姐"的音乐会。音乐会的日期是2023年12月2日，地点在国家艺术中心。音乐会吸引我的地方是穿粉红色衣服的观众，有机会和粉红姐姐握手拍照。
       notes: 官方参考答案按分句给出0.5分的评分细则（日期0.5分/地点0.5分/吸引点的两处填空各0.5分，共2分，其余2分为整体表达/内容分）；答案卷另注明可接受的其他"吸引之处"包括：免费得到的荧光棒、表演多首歌曲。本题为约束式应用文写作，官方示范答案只是其中一种合理写法。
+      displayAnswer: 爸爸：我想去听"粉红姐姐"的音乐会。音乐会的日期是2023年12月2日，地点在国家艺术中心。音乐会吸引我的地方是穿粉红色衣服的观众，有机会和粉红姐姐握手拍照。
 - groupId: TN-G4
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 美术周乐趣多
@@ -646,53 +491,36 @@
 
       想知道更多详情，请上网 www.huanlexiaoxue@school.com 或发电邮给负责人李老师 (lilaoshi@school.com)。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 学校举办“美术周”活动的目的是什么？
       options:
-        - key: "1"
-          text: 教学生们学习如何画画。
-        - key: "2"
-          text: 培养学生们对艺术的兴趣。
-        - key: "3"
-          text: 选出学校最优秀的美术作品。
-        - key: "4"
-          text: 让学生们用可回收物品制作灯笼。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 教学生们学习如何画画。
+        - 培养学生们对艺术的兴趣。
+        - 选出学校最优秀的美术作品。
+        - 让学生们用可回收物品制作灯笼。
+      correct: 培养学生们对艺术的兴趣。
+    - format: MCQ
       text: 参加活动的学生要怎样才能得到纪念贴纸？
       options:
-        - key: "1"
-          text: 获得三个礼品。
-        - key: "2"
-          text: 发电邮给李老师。
-        - key: "3"
-          text: 完成的作品在礼堂展出。
-        - key: "4"
-          text: 参加美术周其中一项活动。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 获得三个礼品。
+        - 发电邮给李老师。
+        - 完成的作品在礼堂展出。
+        - 参加美术周其中一项活动。
+      correct: 参加美术周其中一项活动。
+    - format: MCQ
       text: 以下哪一个句子是不正确的？
       options:
-        - key: "1"
-          text: 环保小礼物的数量有限。
-        - key: "2"
-          text: 所有的活动都会在讲堂进行。
-        - key: "3"
-          text: “美术周”活动在10月22日结束。
-        - key: "4"
-          text: 家长会在现场帮助学生制作美术作品。
-      correctKey: "2"
+        - 环保小礼物的数量有限。
+        - 所有的活动都会在讲堂进行。
+        - “美术周”活动在10月22日结束。
+        - 家长会在现场帮助学生制作美术作品。
+      correct: 所有的活动都会在讲堂进行。
     - marks: 4
       format: Writing-Constrained
       text: 如果你是五年级学生文华，请你写一张便条给好友思杰，告诉他今年的美术周活动和往年有什么不一样，并约他参加“欢乐剪纸”这个活动，以及提醒他需要准备什么材料。
-      displayAnswer: 思杰：学校将要举办美术周活动。今年的活动和往年不一样的地方是，今年所使用的材料都是生活中可回收的物品。我想约你参加“欢乐剪纸”这个活动，活动当天，我们必须自己准备废纸。希望你到时可以和我一起去参加这个活动。文华 10月18日下午三点
       notes: 本题为约束式应用文写作，官方示范答案只是其中一种合理写法，评分以内容要点+表达是否通顺为准，并非唯一标准答案。
+      displayAnswer: 思杰：学校将要举办美术周活动。今年的活动和往年不一样的地方是，今年所使用的材料都是生活中可回收的物品。我想约你参加“欢乐剪纸”这个活动，活动当天，我们必须自己准备废纸。希望你到时可以和我一起去参加这个活动。文华 10月18日下午三点
 - groupId: RL-G4
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 欢乐小学母语双周活动
@@ -712,53 +540,36 @@
       欢乐小学母语部
       2025年10月15日
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 欢乐小学举办母语双周活动的目的是什么？
       options:
-        - key: "1"
-          text: 鼓励学生制作手工。
-        - key: "2"
-          text: 提高学习母语兴趣。
-        - key: "3"
-          text: 邀请学生观看表演。
-        - key: "4"
-          text: 教导学生传统文化。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 鼓励学生制作手工。
+        - 提高学习母语兴趣。
+        - 邀请学生观看表演。
+        - 教导学生传统文化。
+      correct: 提高学习母语兴趣。
+    - format: MCQ
       text: 以下哪一项传统游戏不是在休息时间进行的？
       options:
-        - key: "1"
-          text: 猜字谜。
-        - key: "2"
-          text: 五石子。
-        - key: "3"
-          text: 跳飞机。
-        - key: "4"
-          text: 剪窗花。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 猜字谜。
+        - 五石子。
+        - 跳飞机。
+        - 剪窗花。
+      correct: 剪窗花。
+    - format: MCQ
       text: 想报名参加歌唱比赛的同学应该怎么做？
       options:
-        - key: "1"
-          text: 向华文老师询问详情。
-        - key: "2"
-          text: 去办公室填写报名表。
-        - key: "3"
-          text: 发电邮给学校办公室。
-        - key: "4"
-          text: 在11月9日后报名。
-      correctKey: "2"
+        - 向华文老师询问详情。
+        - 去办公室填写报名表。
+        - 发电邮给学校办公室。
+        - 在11月9日后报名。
+      correct: 去办公室填写报名表。
     - marks: 4
       format: Writing-Constrained
       text: 如果你是文心，看了海报后，想和好朋友乐天一起去参加歌唱比赛。请你发短信给乐天，邀请他和你一起去报名参加，告诉他你邀请他的原因与报名方法。
-      displayAnswer: 乐天，我们学校将在母语双周期间举办“母语歌曲大家唱”比赛。我想邀请你一起报名参加，我邀请你是为了提高你对母语的兴趣。如果你有兴趣，我们可以到学校办公室填写报名表格。我必须在报名截止日期前，11月9日报名。我希望你会和我一起报名。
       notes: 本题为约束式应用文写作，官方示范答案只是其中一种合理写法，评分以内容要点+表达是否通顺为准，并非唯一标准答案。
+      displayAnswer: 乐天，我们学校将在母语双周期间举办“母语歌曲大家唱”比赛。我想邀请你一起报名参加，我邀请你是为了提高你对母语的兴趣。如果你有兴趣，我们可以到学校办公室填写报名表格。我必须在报名截止日期前，11月9日报名。我希望你会和我一起报名。
 - groupId: SH-G4
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 常青公园 中秋节之夜
@@ -774,105 +585,71 @@
       露天舞台：欢乐中学的华乐团和舞蹈团将在这里为大家呈现精彩的华乐和歌舞表演。
       演出时间：第一场（晚上6点），第二场（晚上7点半）
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 常青公园制作这张海报的目的是什么？
       options:
-        - key: "1"
-          text: 鼓励大家报名中秋节的演出。
-        - key: "2"
-          text: 吸引民众参加中秋节的活动。
-        - key: "3"
-          text: 帮助大家了解中秋节的习俗。
-        - key: "4"
-          text: 介绍常青公园里的各个角落。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 鼓励大家报名中秋节的演出。
+        - 吸引民众参加中秋节的活动。
+        - 帮助大家了解中秋节的习俗。
+        - 介绍常青公园里的各个角落。
+      correct: 吸引民众参加中秋节的活动。
+    - format: MCQ
       text: 人们参加欢乐广场的活动会有什么收获？
       options:
-        - key: "1"
-          text: 猜灯谜赢奖品。
-        - key: "2"
-          text: 品尝美味的小吃。
-        - key: "3"
-          text: 和孩子一起玩游戏。
-        - key: "4"
-          text: 学习月饼的制作方法。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 猜灯谜赢奖品。
+        - 品尝美味的小吃。
+        - 和孩子一起玩游戏。
+        - 学习月饼的制作方法。
+      correct: 猜灯谜赢奖品。
+    - format: MCQ
       text: 想要观看最后一场歌舞表演的人应该怎么做？
       options:
-        - key: "1"
-          text: 6点之前到达西门。
-        - key: "2"
-          text: 7点半之前到达东门。
-        - key: "3"
-          text: 6点半前到达欢乐广场。
-        - key: "4"
-          text: 7点半前到达露天舞台。
-      correctKey: "4"
+        - 6点之前到达西门。
+        - 7点半之前到达东门。
+        - 6点半前到达欢乐广场。
+        - 7点半前到达露天舞台。
+      correct: 7点半前到达露天舞台。
     - marks: 4
       format: Writing-Constrained
       text: 如果你是小华，你知道你的邻居李阿姨对制作糕点很有兴趣。请你写一则手机短信给她，建议她参加中秋节的其中一个活动，并告诉她活动的地点和时间。
-      displayAnswer: 李阿姨，我知道您一向对制作糕点很有兴趣。我今天看到常青公园中秋节的活动海报，建议您参加他们的月饼制作课。您可以晚上6点半之前到东门去上课。
       notes: 本题为约束式应用文写作，官方示范答案只是其中一种合理写法，评分以内容要点+表达是否通顺为准，并非唯一标准答案。
+      displayAnswer: 李阿姨，我知道您一向对制作糕点很有兴趣。我今天看到常青公园中秋节的活动海报，建议您参加他们的月饼制作课。您可以晚上6点半之前到东门去上课。
 - groupId: PL-G2
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 儿童歌唱训练班
     source: Paya Lebar Methodist Girls' School (Primary), 2024 P5 WA2
     text: （本题根据相关通告/海报内容作答）
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 举办儿童歌唱训练班的目的是什么？
       options:
-        - key: "1"
-          text: 让学生对音乐更有兴趣。
-        - key: "2"
-          text: 让学生对各国歌手更了解。
-        - key: "3"
-          text: 让学生12月假期有事情做。
-        - key: "4"
-          text: 让学生有机会得到本地歌手签名照片。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 让学生对音乐更有兴趣。
+        - 让学生对各国歌手更了解。
+        - 让学生12月假期有事情做。
+        - 让学生有机会得到本地歌手签名照片。
+      correct: 让学生对音乐更有兴趣。
+    - format: MCQ
       text: 有兴趣参加的同学可以在哪一天报名？
       options:
-        - key: "1"
-          text: 9月1日-9月31日
-        - key: "2"
-          text: 10月1日-10月31日
-        - key: "3"
-          text: 11月1日-11月21日
-        - key: "4"
-          text: 12月1日-12月5日
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 9月1日-9月31日
+        - 10月1日-10月31日
+        - 11月1日-11月21日
+        - 12月1日-12月5日
+      correct: 10月1日-10月31日
+    - format: MCQ
       text: 以下哪一项是正确的？
       options:
-        - key: "1"
-          text: 首两位学生能以半价报名。
-        - key: "2"
-          text: 有兴趣的学生只能上网报名。
-        - key: "3"
-          text: 只要是学生就能参加这个活动。
-        - key: "4"
-          text: 报名的学生都有机会见到林明华。
-      correctKey: "2"
+        - 首两位学生能以半价报名。
+        - 有兴趣的学生只能上网报名。
+        - 只要是学生就能参加这个活动。
+        - 报名的学生都有机会见到林明华。
+      correct: 有兴趣的学生只能上网报名。
     - marks: 4
       format: Writing-Constrained
       text: 假如你是心心，你想邀请小文一起报名参加“儿童歌唱训练班”。请你写一则手机短信给小文，告诉她报名参加歌唱训练班的一个原因，并告诉她课程的详情。
       displayAnswer: 小文，欢乐民众俱乐部将在十二月假期举办“儿童歌唱训练班”，我想请你和我一起报名参加。儿童歌唱训练班能激发我对音乐的兴趣。课程的日期是12月1日至12月5日，上午9点至下午2点在欢乐民众俱乐部2楼音乐室上课。如果你想和我一起去，请尽快回复我！
 - groupId: NY24-G3
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 篮球假期训练营
@@ -900,8 +677,6 @@
       text: 学校假期快到了，你看了这则广告，想和哥哥一起去参加这个活动。请发一则信息给哥哥，告诉他假期训练营的详情，你想参加训练营的一个原因，以及两人一起报名的好处。
       displayAnswer: 哥哥，今天早上我看到了红山民众俱乐部发出的广告，想和你一起去参加篮球假期训练营。假期训练的日期是6月12日到6月15日，时间是早上八点到早上十一点，在红山俱乐部篮球场进行。我想参加假期训练，因为可以让我减轻学习压力。我们俩一起报名，报名费立减50元。请回复我，谢谢哥哥。
 - groupId: NY24EOY-G3
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 你想当环保大使吗？
@@ -926,39 +701,27 @@
       欢乐小学
       11月2日
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 关于环保大使任务，以下哪项说明是正确的？
       options:
-        - key: "1"
-          text: 每人需要同时完成两个任务。
-        - key: "2"
-          text: 每位环保大使只能选择一个任务。
-        - key: "3"
-          text: 任务二是在学校里帮同学分类垃圾。
-        - key: "4"
-          text: 任务一只需要在楼梯口捡垃圾。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 每人需要同时完成两个任务。
+        - 每位环保大使只能选择一个任务。
+        - 任务二是在学校里帮同学分类垃圾。
+        - 任务一只需要在楼梯口捡垃圾。
+      correct: 每位环保大使只能选择一个任务。
+    - format: MCQ
       text: 想要报名参加活动的学生应该怎么做？
       options:
-        - key: "1"
-          text: 在11月15日前发电邮给陈老师。
-        - key: "2"
-          text: 在11月2日前找陈老师报名。
-        - key: "3"
-          text: 在11月12日前直接到红山组屋区现场报名。
-        - key: "4"
-          text: 在11月12日之前上网报名。
-      correctKey: "4"
+        - 在11月15日前发电邮给陈老师。
+        - 在11月2日前找陈老师报名。
+        - 在11月12日前直接到红山组屋区现场报名。
+        - 在11月12日之前上网报名。
+      correct: 在11月12日之前上网报名。
     - marks: 4
       format: Writing-Constrained
       text: 看了这则通告后，你想起同学小安对可回收物品分类有兴趣，请写一则短信给小安，鼓励他去报名当环保大使，并告诉他适合他的任务、活动详情及报名详情。
       displayAnswer: 小安，学校将举办“共造绿色未来”环保活动。我知道你对可回收物品分类有兴趣，想鼓励你去报名当环保大使，适合你的任务是将可回收物品分类。活动将在11月15日上午9点至中午12点在红山组屋区大牌101-110举行。请在11月12日之前上网（www.greenambassador.com）报名。如有疑问可电邮陈美美老师（may_tan@huanlexiaoxue.com）。希望你能参加！
 - groupId: HP24EOY-G4
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 友康杯歌唱比赛广告
@@ -973,52 +736,35 @@
       报名截止日期：8月8日
       网址：www.youkang.sg
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 这个广告的主要目的是什么？
       options:
-        - key: "1"
-          text: 吸引家长给孩子报名歌唱比赛。
-        - key: "2"
-          text: 吸引观众来观看友康歌唱比赛。
-        - key: "3"
-          text: 鼓励大家到友康超市去买东西。
-        - key: "4"
-          text: 鼓励小孩子长大后当一名歌手。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 吸引家长给孩子报名歌唱比赛。
+        - 吸引观众来观看友康歌唱比赛。
+        - 鼓励大家到友康超市去买东西。
+        - 鼓励小孩子长大后当一名歌手。
+      correct: 吸引家长给孩子报名歌唱比赛。
+    - format: MCQ
       text: 下面哪位小朋友能够报名参加这个比赛？
       options:
-        - key: "1"
-          text: 今年5岁，唱歌非常好听的玉美。
-        - key: "2"
-          text: 今年7岁，来游玩的美国居民国华。
-        - key: "3"
-          text: 今年9岁，曾经获得友康杯冠军的伟强。
-        - key: "4"
-          text: 今年12岁，从来没参加过歌唱比赛的月丽。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 今年5岁，唱歌非常好听的玉美。
+        - 今年7岁，来游玩的美国居民国华。
+        - 今年9岁，曾经获得友康杯冠军的伟强。
+        - 今年12岁，从来没参加过歌唱比赛的月丽。
+      correct: 今年12岁，从来没参加过歌唱比赛的月丽。
+    - format: MCQ
       text: 以下哪一句话是不正确的？
       options:
-        - key: "1"
-          text: 如果有任何问题可以上网查看。
-        - key: "2"
-          text: 友康杯歌唱比赛每一年举办一次。
-        - key: "3"
-          text: 试音成功的小歌手会收到电话通知。
-        - key: "4"
-          text: 参赛歌手必须通过试音才能参加比赛。
-      correctKey: "1"
+        - 如果有任何问题可以上网查看。
+        - 友康杯歌唱比赛每一年举办一次。
+        - 试音成功的小歌手会收到电话通知。
+        - 参赛歌手必须通过试音才能参加比赛。
+      correct: 如果有任何问题可以上网查看。
     - marks: 4
       format: Writing-Constrained
       text: 假如你是康康，看了广告后，很有兴趣参加这个比赛。请写一张便条给妈妈，告诉她报名时要注意的事，并请她帮你报名。
       displayAnswer: 可以帮我报名。如果你可以帮我报名，你要再上网 www.youkang.sg 填写报名表格。报名费5元，而且报名的截止日期是8月8日。
 - groupId: MB24SA2-G4
-  subject: Chinese
-  category: practical
   lessonIds: []
   passage:
     title: 国家图书馆读报角落活动
@@ -1036,42 +782,27 @@
       报名截止日期：10月31日
       报名方式：请上网 www.library.gov.sg 或到各图书馆柜台报名。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 举办这项活动的主要目的是什么？
       options:
-        - key: "1"
-          text: 教会学生怎样采访新闻。
-        - key: "2"
-          text: 鼓励学生时常阅读报纸。
-        - key: "3"
-          text: 介绍图书馆的读报角落。
-        - key: "4"
-          text: 让人们能免费阅读报纸。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 教会学生怎样采访新闻。
+        - 鼓励学生时常阅读报纸。
+        - 介绍图书馆的读报角落。
+        - 让人们能免费阅读报纸。
+      correct: 鼓励学生时常阅读报纸。
+    - format: MCQ
       text: 什么人能报名参加这个活动？
       options:
-        - key: "1"
-          text: 图书馆的义工和记者。
-        - key: "2"
-          text: 喜欢《大拇指》的学生。
-        - key: "3"
-          text: 想陪孩子去图书馆的家长。
-        - key: "4"
-          text: 有兴趣的小学高年级学生。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 图书馆的义工和记者。
+        - 喜欢《大拇指》的学生。
+        - 想陪孩子去图书馆的家长。
+        - 有兴趣的小学高年级学生。
+      correct: 有兴趣的小学高年级学生。
+    - format: MCQ
       text: 以下哪一个句子是正确的？
       options:
-        - key: "1"
-          text: 义工将会讲解过去一周的新闻。
-        - key: "2"
-          text: 记者会送所有在场的学生免费报纸。
-        - key: "3"
-          text: 学生和家长可以一起参加这项活动。
-        - key: "4"
-          text: 只要参加这次活动就能得到精美礼包。
-      correctKey: "1"
+        - 义工将会讲解过去一周的新闻。
+        - 记者会送所有在场的学生免费报纸。
+        - 学生和家长可以一起参加这项活动。
+        - 只要参加这次活动就能得到精美礼包。
+      correct: 义工将会讲解过去一周的新闻。

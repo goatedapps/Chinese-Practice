@@ -1,6 +1,5 @@
 - groupId: P2-CLZ1
   subject: Chinese
-  category: cloze
   lessonIds: []
   passage:
     title: 小狗迷路了
@@ -12,42 +11,27 @@
 
       过了一会儿，小明看见小狗在大树下坐着，他跑过去 [Q3]___ 地抱起了小狗。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 小狗看见一只蝴蝶，就 ___ 地追了过去。
       options:
-        - key: "1"
-          text: 慢慢
-        - key: "2"
-          text: 高兴
-        - key: "3"
-          text: 快快
-        - key: "4"
-          text: 安静
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 慢慢
+        - 高兴
+        - 快快
+        - 安静
+      correct: 快快
+    - format: MCQ
       text: 小明找不到小狗，心里很 ___。
       options:
-        - key: "1"
-          text: 开心
-        - key: "2"
-          text: 着急
-        - key: "3"
-          text: 骄傲
-        - key: "4"
-          text: 轻松
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 开心
+        - 着急
+        - 骄傲
+        - 轻松
+      correct: 着急
+    - format: MCQ
       text: 他跑过去 ___ 地抱起了小狗。
       options:
-        - key: "1"
-          text: 高兴
-        - key: "2"
-          text: 生气
-        - key: "3"
-          text: 伤心
-        - key: "4"
-          text: 害怕
-      correctKey: "1"
+        - 高兴
+        - 生气
+        - 伤心
+        - 害怕
+      correct: 高兴

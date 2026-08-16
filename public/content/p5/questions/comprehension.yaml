@@ -1,6 +1,5 @@
 - groupId: HC-G3
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 大卫的成长
@@ -20,26 +19,22 @@
 
       从那以后，大卫学会了尊重别人，渐渐赢回了村民们的信任和友谊。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 从短文中找出与下列画线词语意思相近或相同的词语：这个活动十分__没趣__，大家都不想参加。
       accepted:
         - 无聊
       displayAnswer: 无聊
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 从短文中找出与下列画线词语意思相近或相同的词语：天气__一点一点__变冷了，我们都开始穿上厚衣服。
       accepted:
         - 渐渐
       displayAnswer: 渐渐
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 在拉小提琴给马丁听之前，大卫的心情是怎样的？原因是什么？
       displayAnswer: |-
         心情：难过
         原因：大卫邀请村民们听他拉小提琴，但没人来。
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 在拉小提琴给马丁听之后，大卫的心情是怎样的？原因是什么？
       displayAnswer: |-
         心情：激动
@@ -54,7 +49,6 @@
       displayAnswer: 选 (1) 大卫的成长。理由——起因：大卫以前爱捉弄别人，大家都讨厌他（0.5分）；经过：后来只有马丁一个人来看他的演出（0.5分）；结果：大卫知道自己以前做错了（0.5分）；点题：他成长了，学会了尊重别人，渐渐赢回了村民们的信任和友谊（0.5分）。
 - groupId: HC-G4
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 散步
@@ -72,12 +66,10 @@
 
       坐在长椅上，一家人说说笑笑，风轻轻地吹着，阳光洒在他们身上，特别舒服。这一刻，明文明白了一个道理：原来走哪一条路都不重要，因为只要有家人的陪伴，就是最幸福的事了！
   questions:
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释下面短语在文中的意思（第四段）：“你就让一下吧”
       displayAnswer: 丽丽想走石路（0.5分），明文（0.5分）要她让奶奶（0.5分）走木板步道（0.5分）。
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释下面短语在文中的意思（第五段）：“心中涌起一种说不出的温暖”
       displayAnswer: 明文很感动（1分），因为他看到了丽丽看到奶奶满头大汗的，便建议她坐下来休息一会儿（0.5分），妻子也拿出毛巾，帮母亲擦汗（0.5分）。
     - marks: 4
@@ -103,7 +95,6 @@
       displayAnswer: 明文认为，只要有家人的陪伴，就是最幸福的事。第二部分为开放式问题：需结合自己的生活例子说明是否同意，没有固定答案。
 - groupId: CH-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 西瓜和苹果
@@ -121,74 +112,48 @@
 
       妈妈走到弟弟身边问：“怎么啦，西瓜不好吃吗？”弟弟调皮地回答：“别人会让苹果，我会让西瓜。”
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: “我”为什么给弟弟讲故事？
       options:
-        - key: "1"
-          text: 因为“我”想给弟弟随便讲个故事。
-        - key: "2"
-          text: 因为“我”不想让弟弟一直问问题。
-        - key: "3"
-          text: 因为弟弟知道“我”很喜欢讲故事。
-        - key: "4"
-          text: 因为弟弟一定要“我”讲一个故事。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 因为“我”想给弟弟随便讲个故事。
+        - 因为“我”不想让弟弟一直问问题。
+        - 因为弟弟知道“我”很喜欢讲故事。
+        - 因为弟弟一定要“我”讲一个故事。
+      correct: 因为弟弟一定要“我”讲一个故事。
+    - format: MCQ
       text: 文中“这可真把我给问倒了”指的是什么？
       options:
-        - key: "1"
-          text: “我”不必回答弟弟的问题。
-        - key: "2"
-          text: “我”不想回答弟弟的问题。
-        - key: "3"
-          text: “我”不敢回答弟弟的问题。
-        - key: "4"
-          text: “我”不会回答弟弟的问题。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - “我”不必回答弟弟的问题。
+        - “我”不想回答弟弟的问题。
+        - “我”不敢回答弟弟的问题。
+        - “我”不会回答弟弟的问题。
+      correct: “我”不会回答弟弟的问题。
+    - format: MCQ
       text: 什么事让“我”认为弟弟忘了“我”给他讲的故事？
       options:
-        - key: "1"
-          text: 弟弟把西瓜紧紧地抓住。
-        - key: "2"
-          text: 弟弟一直吵着要吃西瓜。
-        - key: "3"
-          text: 弟弟拿走最大块的西瓜。
-        - key: "4"
-          text: 弟弟没有帮爸爸摆西瓜。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 弟弟把西瓜紧紧地抓住。
+        - 弟弟一直吵着要吃西瓜。
+        - 弟弟拿走最大块的西瓜。
+        - 弟弟没有帮爸爸摆西瓜。
+      correct: 弟弟拿走最大块的西瓜。
+    - format: MCQ
       text: 大家为什么都“大跌眼镜”？
       options:
-        - key: "1"
-          text: 因为弟弟还是把最大块的西瓜给自己。
-        - key: "2"
-          text: 因为弟弟这次没等爸爸给每人分西瓜。
-        - key: "3"
-          text: 因为弟弟今天要吃苹果，不要吃西瓜。
-        - key: "4"
-          text: 因为弟弟会主动把大块西瓜分给家人。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 因为弟弟还是把最大块的西瓜给自己。
+        - 因为弟弟这次没等爸爸给每人分西瓜。
+        - 因为弟弟今天要吃苹果，不要吃西瓜。
+        - 因为弟弟会主动把大块西瓜分给家人。
+      correct: 因为弟弟会主动把大块西瓜分给家人。
+    - format: MCQ
       text: 从弟弟吃西瓜这件事可以看出他是个怎样的人？
       options:
-        - key: "1"
-          text: 爱听故事。
-        - key: "2"
-          text: 贪吃自私。
-        - key: "3"
-          text: 孝顺懂事。
-        - key: "4"
-          text: 没有耐心。
-      correctKey: "3"
+        - 爱听故事。
+        - 贪吃自私。
+        - 孝顺懂事。
+        - 没有耐心。
+      correct: 孝顺懂事。
 - groupId: CH-G5
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 书店老板
@@ -206,14 +171,12 @@
 
       最近爸爸让我专心准备考试，没安排家务给我做。没有钱，我只好不去书店了。这天放学后，我经过书店时，老板叫住了我，问道：“最近怎么不来买书了？”我红着脸告诉他实情。他笑着递给我一个笔记本，说：“没事的，你就先拿吧，然后把拿的书记在这个本子上，以后再付钱。”听了他的话，我的眼圈红红的。一个和我没有什么关系的人愿意为我这样做，让我的心中暖暖的。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示“心里紧张，动作忙乱”的词语是 ___ 。
       accepted:
         - 慌张
       displayAnswer: 慌张
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示“动作速度快”的词语是 ___ 。
       accepted:
         - 快速
@@ -243,7 +206,6 @@
         【或：1方法+1说明】a) 如果我是书店老板，我会以比较便宜的价钱把书卖给作者（2分）。b) 因为我知道作者喜欢看书（0.5分），但家里不富有（0.5分），用这样的方法可以鼓励他继续看书（1分）。
 - groupId: NH-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 捐鞋子
@@ -261,74 +223,48 @@
 
       我想：以后我在帮助别人的时候，也要像妈妈一样，带着尊重和爱心去做每一件小事。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 作者为什么想要捐鞋子？
       options:
-        - key: "1"
-          text: 想要再买一双新的鞋子
-        - key: "2"
-          text: 去帮助那些有需要的人
-        - key: "3"
-          text: 不想要再清洗旧鞋子了
-        - key: "4"
-          text: 感谢别人送的二手衣服
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 想要再买一双新的鞋子
+        - 去帮助那些有需要的人
+        - 不想要再清洗旧鞋子了
+        - 感谢别人送的二手衣服
+      correct: 去帮助那些有需要的人
+    - format: MCQ
       text: 什么事情让作者感到好奇？
       options:
-        - key: "1"
-          text: 妈妈清洗将要捐出去的鞋子
-        - key: "2"
-          text: 妈妈要找个时间准备旧鞋子
-        - key: "3"
-          text: 妈妈不想收到不干净的衣服
-        - key: "4"
-          text: 妈妈希望拿到鞋子的人开心
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 妈妈清洗将要捐出去的鞋子
+        - 妈妈要找个时间准备旧鞋子
+        - 妈妈不想收到不干净的衣服
+        - 妈妈希望拿到鞋子的人开心
+      correct: 妈妈清洗将要捐出去的鞋子
+    - format: MCQ
       text: “没想到这件事并没有那么简单”，这句话是什么意思？
       options:
-        - key: "1"
-          text: 觉得这样捐东西给别人太麻烦了
-        - key: "2"
-          text: 认为可以把不要的东西直接扔掉
-        - key: "3"
-          text: 不知道帮人时要注意别人的感受
-        - key: "4"
-          text: 以为别人拿到旧鞋子时会很开心
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 觉得这样捐东西给别人太麻烦了
+        - 认为可以把不要的东西直接扔掉
+        - 不知道帮人时要注意别人的感受
+        - 以为别人拿到旧鞋子时会很开心
+      correct: 不知道帮人时要注意别人的感受
+    - format: MCQ
       text: 你认为妈妈是一个怎样的人？
       options:
-        - key: "1"
-          text: 喜欢干净
-        - key: "2"
-          text: 不怕麻烦
-        - key: "3"
-          text: 做事认真
-        - key: "4"
-          text: 为人着想
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 喜欢干净
+        - 不怕麻烦
+        - 做事认真
+        - 为人着想
+      correct: 为人着想
+    - format: MCQ
       text: 这个故事告诉大家一个什么道理？
       options:
-        - key: "1"
-          text: 把旧鞋子刷干净才能捐出去
-        - key: "2"
-          text: 可以把不要的东西送给别人
-        - key: "3"
-          text: 做好事也要带着尊重和爱心
-        - key: "4"
-          text: 尽自己所能帮助有需要的人
-      correctKey: "3"
+        - 把旧鞋子刷干净才能捐出去
+        - 可以把不要的东西送给别人
+        - 做好事也要带着尊重和爱心
+        - 尽自己所能帮助有需要的人
+      correct: 做好事也要带着尊重和爱心
 - groupId: NH-G5
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 值日生
@@ -346,14 +282,12 @@
 
       又到了做值日的时候，立成留在教室里打扫。明伟没有说话，只是递给他一块抹布，两人看着对方，不约而同地笑了。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示“做事认真”的词语是 ___。
       accepted:
         - 仔细
       displayAnswer: 仔细
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示“事先没有约定，行动却完全一样”的词语是 ___。
       accepted:
         - 不约而同
@@ -383,7 +317,6 @@
         【友情角度】我从明伟的身上学到了不应该为了一点小事而破坏了友情。和朋友相处时，不要为了一小事争吵，有误会时要说清楚。
 - groupId: NH-HC-G3
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 了不起的爸爸
@@ -397,25 +330,21 @@
 
       几天后，爸爸回来了，大卫小声问：“您真的是布恩特？”没等爸爸回答，大卫就把一本爸爸写的书递了过去，兴奋地请他签名。爸爸微笑地看着大卫，然后在第一页写下：“爸爸永远爱你！”
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 从短文中找出与下列画线词语意思相近或相同的词语：弟弟做错了事，却不肯道歉。
       accepted:
         - 拒绝
       displayAnswer: 拒绝
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 从短文中找出与下列画线词语意思相近或相同的词语：他听到自己拿了一百分，非常自豪。
       accepted:
         - 骄傲
       displayAnswer: 骄傲
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 大卫在得知第一个秘密时，他的反应有所不同，试加以比较，并说明原因。（填入表格：得知第一个秘密时）
       context: 表格栏目：反应 / 原因
       displayAnswer: 反应：满脸通红，一句话也说不出来\n原因：知道了爸爸是为了自己而受伤，感到惭愧
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 大卫在得知第二个秘密时，他的反应有所不同，试加以比较，并说明原因。（填入表格：得知第二个秘密时）
       context: 表格栏目：反应 / 原因
       displayAnswer: 反应：不敢相信自己的耳朵，冲去问老师\n原因：没想到爸爸是著名作家
@@ -429,7 +358,6 @@
       displayAnswer: 选 (1) 伟大的父亲。我选《伟大的父亲》作为这篇短文的题目，因为短文主要讲的是大卫的父亲为了救大卫而失去一条腿，而且父亲怕大卫有压力，就没有告诉大卫自己就是著名作家布恩特。大卫最后明白了父亲一直默默在为自己付出，是一位伟大的父亲。
 - groupId: NH-HC-G4
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 自己动脑
@@ -449,12 +377,10 @@
 
       假期快结束时，王爷爷问小光现在有没有明白他的用意。小光点点头，说：“您是想让我学会自己动脑，也让我知道，很多事情不是别人不帮，而是自己可以做到。”王爷爷笑着说：“真正的成长，是哪怕一开始觉得难，也愿意去尝试。”
   questions:
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释下面短语在文中的意思（第三段）：“被一句话打发了”
       displayAnswer: 小光以为王爷爷会帮他找东西，没想到王爷爷却说架子上都有，让他自己找，便不再理会小光。
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释下面短语在文中的意思（第六段）：“觉得自己长高了一点”
       displayAnswer: 小光每次独自完成任务，发现自己找东西越来越快，觉得自己成长了。
     - marks: 4
@@ -483,7 +409,6 @@
         【不会】我不会像小光一样自己尝试解决问题，因为我觉得刚开始做一件事时，还是需要有大人的帮助和指导。我小时候第一次学游泳，我很紧张，还是需要妈妈带着我一起游，最后我学会了。
 - groupId: ACSJ-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 妈妈的用心
@@ -497,74 +422,48 @@
 
       那天晚上，妈妈请小安教她打篮球，那是小安最喜欢的运动之一。小安一边教妈妈，一边兴奋地和她说了很多心里话。从那天起，家里又传出了欢声笑语。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 小安什么时候才会开口和妈妈说话？
       options:
-        - key: "1"
-          text: 需要钱的时候。
-        - key: "2"
-          text: 有烦恼的时候。
-        - key: "3"
-          text: 开家长会的时候。
-        - key: "4"
-          text: 一起吃饭的时候。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 需要钱的时候。
+        - 有烦恼的时候。
+        - 开家长会的时候。
+        - 一起吃饭的时候。
+      correct: 需要钱的时候。
+    - format: MCQ
       text: 小安不肯和妈妈说话，妈妈有什么感受？
       options:
-        - key: "1"
-          text: 很失望。
-        - key: "2"
-          text: 很难过。
-        - key: "3"
-          text: 很生气。
-        - key: "4"
-          text: 很害怕。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 很失望。
+        - 很难过。
+        - 很生气。
+        - 很害怕。
+      correct: 很难过。
+    - format: MCQ
       text: 为什么小安不愿意和妈妈说话？
       options:
-        - key: "1"
-          text: 妈妈不懂得怎么跟别人面对面交谈。
-        - key: "2"
-          text: 妈妈经常忙着上网购物和追看连续剧。
-        - key: "3"
-          text: 妈妈只会批评小安，从不称赞和鼓励他。
-        - key: "4"
-          text: 妈妈一开口就问功课，让他觉得压力很大。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 妈妈不懂得怎么跟别人面对面交谈。
+        - 妈妈经常忙着上网购物和追看连续剧。
+        - 妈妈只会批评小安，从不称赞和鼓励他。
+        - 妈妈一开口就问功课，让他觉得压力很大。
+      correct: 妈妈一开口就问功课，让他觉得压力很大。
+    - format: MCQ
       text: 文中“恍然大悟”说明了什么？
       options:
-        - key: "1"
-          text: 老师知道孩子们有许多烦恼。
-        - key: "2"
-          text: 老师知道小安的妈妈关心他。
-        - key: "3"
-          text: 妈妈知道应该和小安聊些什么了。
-        - key: "4"
-          text: 妈妈知道要怎样说出自己的想法。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 老师知道孩子们有许多烦恼。
+        - 老师知道小安的妈妈关心他。
+        - 妈妈知道应该和小安聊些什么了。
+        - 妈妈知道要怎样说出自己的想法。
+      correct: 妈妈知道应该和小安聊些什么了。
+    - format: MCQ
       text: 妈妈是个怎样的人？
       options:
-        - key: "1"
-          text: 关心孩子的人。
-        - key: "2"
-          text: 热爱学习的人。
-        - key: "3"
-          text: 喜欢运动的人。
-        - key: "4"
-          text: 乐于助人的人。
-      correctKey: "1"
+        - 关心孩子的人。
+        - 热爱学习的人。
+        - 喜欢运动的人。
+        - 乐于助人的人。
+      correct: 关心孩子的人。
 - groupId: ACSJ-G5
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 游戏机
@@ -578,14 +477,12 @@
 
       接下来的一年，他每天认真听讲，晚上还会复习老师当天讲过的内容。此外，遇到不懂的题目他会立刻问老师或同学。在年终考试中，杨文取得了全年级第一名的好成绩。爸爸妈妈看到成绩册，笑着拿出一千元对杨文说：“我们存了一些钱。给！去买游戏机吧！”杨文没有伸手去接，而是从书包里拿出一件新衬衫和一双新鞋子递给了爸爸妈妈，说：“这一年，我明白了有些东西比游戏机更重要！”
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示“不说话”的词语是 ___ 。
       accepted:
         - 沉默
       displayAnswer: 沉默
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示“只要是、所有”的词语是 ___ 。
       accepted:
         - 凡是
@@ -612,7 +509,6 @@
       displayAnswer: 杨文有两个值得我学习的地方。第一，他孝顺并且体谅父母。父母答应实现愿望却没有做到，这时他没有大吵大闹，而且十分理解与体谅父母的难处，还买了新衬衫与新鞋子给父母。第二，他通过自己的努力一步一步实现不可能的任务，让自己从考试不超过40分到全班第一，这样决心与努力也值得我学习。
 - groupId: HP-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 别乱说话
@@ -632,74 +528,48 @@
 
       老师这时也看向其他同学，问道：“你们现在知道到处乱说话的后果了吗？”同学们听了都红着脸，低下了头。兴亮也恍然大悟，后悔之前对小美做的事……
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 兴亮的坏习惯是什么？
       options:
-        - key: "1"
-          text: 他常常在空闲时找同学们说话。
-        - key: "2"
-          text: 他喜欢躲在角落听别人说坏话。
-        - key: "3"
-          text: 他没弄清楚情况就到处乱说话。
-        - key: "4"
-          text: 他在老师的面前说朋友的坏话。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 他常常在空闲时找同学们说话。
+        - 他喜欢躲在角落听别人说坏话。
+        - 他没弄清楚情况就到处乱说话。
+        - 他在老师的面前说朋友的坏话。
+      correct: 他没弄清楚情况就到处乱说话。
+    - format: MCQ
       text: 为什么小美会怒气冲冲地瞪着小女孩？因为
       options:
-        - key: "1"
-          text: 小女孩还没有向小美道歉。
-        - key: "2"
-          text: 小女孩又弄丢了她的水瓶。
-        - key: "3"
-          text: 小女孩在食堂的角落大哭。
-        - key: "4"
-          text: 小女孩在休息时去找小美。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 小女孩还没有向小美道歉。
+        - 小女孩又弄丢了她的水瓶。
+        - 小女孩在食堂的角落大哭。
+        - 小女孩在休息时去找小美。
+      correct: 小女孩又弄丢了她的水瓶。
+    - format: MCQ
       text: 为什么同学们都渐渐地远离小美？因为
       options:
-        - key: "1"
-          text: 小美抄了别的同学的作业。
-        - key: "2"
-          text: 小美爱欺负年纪小的同学。
-        - key: "3"
-          text: 同学们以为小美是坏学生。
-        - key: "4"
-          text: 同学们认为小美太安静了。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 小美抄了别的同学的作业。
+        - 小美爱欺负年纪小的同学。
+        - 同学们以为小美是坏学生。
+        - 同学们认为小美太安静了。
+      correct: 同学们以为小美是坏学生。
+    - format: MCQ
       text: 文中“同学们都红着脸，低下了头”指的是什么？
       options:
-        - key: "1"
-          text: 大家很生气，因为兴亮害大家都被老师批评了。
-        - key: "2"
-          text: 大家很伤心，因为没有人能够回答老师的问题。
-        - key: "3"
-          text: 大家很惭愧，因为他们之前的行为伤害了小美。
-        - key: "4"
-          text: 大家很后悔，因为他们没有向老师报告整件事。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 大家很生气，因为兴亮害大家都被老师批评了。
+        - 大家很伤心，因为没有人能够回答老师的问题。
+        - 大家很惭愧，因为他们之前的行为伤害了小美。
+        - 大家很后悔，因为他们没有向老师报告整件事。
+      correct: 大家很惭愧，因为他们之前的行为伤害了小美。
+    - format: MCQ
       text: 丽文是一个怎样的人？
       options:
-        - key: "1"
-          text: 见义勇为
-        - key: "2"
-          text: 聪明能干
-        - key: "3"
-          text: 做事非常小心
-        - key: "4"
-          text: 懂得尊重别人
-      correctKey: "1"
+        - 见义勇为
+        - 聪明能干
+        - 做事非常小心
+        - 懂得尊重别人
+      correct: 见义勇为
 - groupId: HP-G5
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 小乌龟爬山
@@ -719,20 +589,17 @@
 
       终于，它到达了山顶。夕阳的金光洒满森林，它看到了一片从来都没见过的美丽景色。它没有大声欢呼，而是安静地看着远方，嘴角露出了微笑。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容“用看不起别人的语气笑话别人”的词语是 ___ 。
       accepted:
         - 嘲笑
       displayAnswer: 嘲笑
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容“情况没有改变，还是和原来一样”的词语是 ___ 。
       accepted:
         - 依然
       displayAnswer: 依然
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 小乌龟有什么梦想？
       displayAnswer: 小乌龟要爬上山顶，从那里看看森林的美景。
     - marks: 4
@@ -753,7 +620,6 @@
       displayAnswer: 我觉得小乌龟是个遇到困难不放弃的动物，小乌龟想要爬上山顶看美景，但它没有放弃，而是努力坚持下去，最后爬到山顶看到了美景。
 - groupId: MB-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 邻居的手电筒
@@ -767,74 +633,48 @@
 
       那晚，手电筒的光虽然很弱，却像太阳一样照亮了我的心。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 一开始，作者对邻居家的孩子有什么看法？
       options:
-        - key: "1"
-          text: 喜欢吵闹，衣服很旧。
-        - key: "2"
-          text: 有礼貌，会关心邻居。
-        - key: "3"
-          text: 很穷，喜欢向人借东西。
-        - key: "4"
-          text: 爱玩，邻居都不想理他们。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 喜欢吵闹，衣服很旧。
+        - 有礼貌，会关心邻居。
+        - 很穷，喜欢向人借东西。
+        - 爱玩，邻居都不想理他们。
+      correct: 喜欢吵闹，衣服很旧。
+    - format: MCQ
       text: 什么事让作者感到害怕？
       options:
-        - key: "1"
-          text: 突然听见敲门的声音。
-        - key: "2"
-          text: 找不到家里的手电筒。
-        - key: "3"
-          text: 打雷后整座组屋受了影响。
-        - key: "4"
-          text: 停电后的屋子里非常黑暗。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 突然听见敲门的声音。
+        - 找不到家里的手电筒。
+        - 打雷后整座组屋受了影响。
+        - 停电后的屋子里非常黑暗。
+      correct: 停电后的屋子里非常黑暗。
+    - format: MCQ
       text: 为什么作者急着把门关上？
       options:
-        - key: "1"
-          text: 不太认识这个小男孩。
-        - key: "2"
-          text: 被小男孩吓了一大跳。
-        - key: "3"
-          text: 不想用小男孩家的手电筒。
-        - key: "4"
-          text: 认为小男孩是来借手电筒的。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 不太认识这个小男孩。
+        - 被小男孩吓了一大跳。
+        - 不想用小男孩家的手电筒。
+        - 认为小男孩是来借手电筒的。
+      correct: 认为小男孩是来借手电筒的。
+    - format: MCQ
       text: 听了小男孩的话，作者的脸为什么红了？
       options:
-        - key: "1"
-          text: 她对小男孩说了一个谎。
-        - key: "2"
-          text: 她发现刚才的想法不对。
-        - key: "3"
-          text: 她不想把手电筒借给男孩。
-        - key: "4"
-          text: 她没想到小男孩很有礼貌。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 她对小男孩说了一个谎。
+        - 她发现刚才的想法不对。
+        - 她不想把手电筒借给男孩。
+        - 她没想到小男孩很有礼貌。
+      correct: 她发现刚才的想法不对。
+    - format: MCQ
       text: 文中“像太阳一样照亮了我的心”说明了什么？
       options:
-        - key: "1"
-          text: 作者希望太阳光照进屋子里。
-        - key: "2"
-          text: 手电筒可以照亮作者的屋子。
-        - key: "3"
-          text: 邻居的关心让作者感到温暖。
-        - key: "4"
-          text: 作者害怕停电的时候的感觉。
-      correctKey: "3"
+        - 作者希望太阳光照进屋子里。
+        - 手电筒可以照亮作者的屋子。
+        - 邻居的关心让作者感到温暖。
+        - 作者害怕停电的时候的感觉。
+      correct: 邻居的关心让作者感到温暖。
 - groupId: MB-G5
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 新朋友
@@ -850,14 +690,12 @@
 
       两年之后，小明的爸妈回国了，决定带着他重新回到乡下生活，小明只好依依不舍地告别了亲爱的乐乐与王阿姨。他的心里，充满了对王阿姨的感激，感谢她给了自己一只温暖的手。而在未来的日子里，他要做的就是将这份温暖传递下去。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容“注意力集中，专心地看着”的词语是 ___ 。
       accepted:
         - 目不转睛
       displayAnswer: 目不转睛
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容“舍不得分离”的词语是 ___ 。
       accepted:
         - 依依不舍
@@ -884,7 +722,6 @@
       displayAnswer: 因为是王阿姨给了他一只温暖的手，在他无助的时候唯有王阿姨不会看不起他，觉得他脏。小明很对王阿姨充满了感激。如果我是小明，我会把王阿姨给予我的爱传下去，例如帮助有需要的人让他们也感受到爱。
 - groupId: NY-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 诚实面对错误
@@ -906,74 +743,48 @@
 
       后来，许多邻居都捐了钱。当明文再次把钱交给老师时，他放下了心中的大石……
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 童子军举办这次捐钱活动的目的是什么？
       options:
-        - key: "1"
-          text: 给学生表现自己的机会。
-        - key: "2"
-          text: 让学生取得亮眼的成绩。
-        - key: "3"
-          text: 让学生帮助和关心他人。
-        - key: "4"
-          text: 使学生明白诚实的可贵。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 给学生表现自己的机会。
+        - 让学生取得亮眼的成绩。
+        - 让学生帮助和关心他人。
+        - 使学生明白诚实的可贵。
+      correct: 让学生帮助和关心他人。
+    - format: MCQ
       text: 明文在小区转了几圈后，为什么没有向邻居开口？
       options:
-        - key: "1"
-          text: 他觉得邻居都很忙。
-        - key: "2"
-          text: 他害怕邻居拒绝他。
-        - key: "3"
-          text: 他不想给邻居添麻烦。
-        - key: "4"
-          text: 他不愿意让邻居帮忙。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 他觉得邻居都很忙。
+        - 他害怕邻居拒绝他。
+        - 他不想给邻居添麻烦。
+        - 他不愿意让邻居帮忙。
+      correct: 他害怕邻居拒绝他。
+    - format: MCQ
       text: 明文从小区回到家后，做了什么决定？
       options:
-        - key: "1"
-          text: 他决定不再做任何努力。
-        - key: "2"
-          text: 他把自己的钱放进信封。
-        - key: "3"
-          text: 他将所有的钱都捐出去。
-        - key: "4"
-          text: 他勇敢向老师承认错误。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 他决定不再做任何努力。
+        - 他把自己的钱放进信封。
+        - 他将所有的钱都捐出去。
+        - 他勇敢向老师承认错误。
+      correct: 他把自己的钱放进信封。
+    - format: MCQ
       text: 明文在卡片上写上了几个"捐钱者"的名字，说明了什么？
       options:
-        - key: "1"
-          text: 他想要证明自己是一个很有爱心的人。
-        - key: "2"
-          text: 他想要让这次的捐钱活动变得有意义。
-        - key: "3"
-          text: 他想要帮助邻居完成这次的捐钱任务。
-        - key: "4"
-          text: 他想要假装自己已经找到不少人捐钱。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 他想要证明自己是一个很有爱心的人。
+        - 他想要让这次的捐钱活动变得有意义。
+        - 他想要帮助邻居完成这次的捐钱任务。
+        - 他想要假装自己已经找到不少人捐钱。
+      correct: 他想要假装自己已经找到不少人捐钱。
+    - format: MCQ
       text: 这次的捐钱活动对明文有什么影响？
       options:
-        - key: "1"
-          text: 他明白了只有捐钱才能够帮助有困难的家庭。
-        - key: "2"
-          text: 他感受到只要放下心中的大石才能取得成功。
-        - key: "3"
-          text: 他学会了诚实，并明白捐钱活动的真正意义。
-        - key: "4"
-          text: 他体会到邻居工作非常辛苦，不再"出风头"。
-      correctKey: "3"
+        - 他明白了只有捐钱才能够帮助有困难的家庭。
+        - 他感受到只要放下心中的大石才能取得成功。
+        - 他学会了诚实，并明白捐钱活动的真正意义。
+        - 他体会到邻居工作非常辛苦，不再"出风头"。
+      correct: 他学会了诚实，并明白捐钱活动的真正意义。
 - groupId: RG-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 打错的电话
@@ -987,74 +798,48 @@
 
       我放下电话后，心想：原来一个孩子需要的，只是简单的陪伴。我忽然想起自己的儿子，心里做了个决定。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 一开始，小女孩打电话来时，作者有什么反应？
       options:
-        - key: "1"
-          text: 温柔地对女孩说话，并安慰她。
-        - key: "2"
-          text: 答应女孩的要求，买个布娃娃。
-        - key: "3"
-          text: 觉得很有趣，想要和女孩聊天。
-        - key: "4"
-          text: 不耐烦地说话，然后放下电话。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 温柔地对女孩说话，并安慰她。
+        - 答应女孩的要求，买个布娃娃。
+        - 觉得很有趣，想要和女孩聊天。
+        - 不耐烦地说话，然后放下电话。
+      correct: 不耐烦地说话，然后放下电话。
+    - format: MCQ
       text: 为什么女孩很坚持地一直打电话来？
       options:
-        - key: "1"
-          text: 她喜欢打电话，想找人陪她聊天。
-        - key: "2"
-          text: 她一个人在家，想听别人讲故事。
-        - key: "3"
-          text: 她很想爸爸，希望可以和爸爸说话。
-        - key: "4"
-          text: 她想要个布娃娃，请求爸爸买给她。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 她喜欢打电话，想找人陪她聊天。
+        - 她一个人在家，想听别人讲故事。
+        - 她很想爸爸，希望可以和爸爸说话。
+        - 她想要个布娃娃，请求爸爸买给她。
+      correct: 她很想爸爸，希望可以和爸爸说话。
+    - format: MCQ
       text: 为什么作者会继续和女孩聊天？
       options:
-        - key: "1"
-          text: 女孩对爸爸的想念让他感动。
-        - key: "2"
-          text: 女孩很喜欢听他讲童话故事。
-        - key: "3"
-          text: 他想知道女孩打错电话的原因。
-        - key: "4"
-          text: 他没有办法让女孩先放下电话。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 女孩对爸爸的想念让他感动。
+        - 女孩很喜欢听他讲童话故事。
+        - 他想知道女孩打错电话的原因。
+        - 他没有办法让女孩先放下电话。
+      correct: 女孩对爸爸的想念让他感动。
+    - format: MCQ
       text: 女孩打电话的真正原因是什么？
       options:
-        - key: "1"
-          text: 要爸爸给她讲个故事。
-        - key: "2"
-          text: 要爸爸给她买布娃娃。
-        - key: "3"
-          text: 希望爸爸能回家陪她。
-        - key: "4"
-          text: 希望和爸爸一起去玩。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 要爸爸给她讲个故事。
+        - 要爸爸给她买布娃娃。
+        - 希望爸爸能回家陪她。
+        - 希望和爸爸一起去玩。
+      correct: 希望爸爸能回家陪她。
+    - format: MCQ
       text: 最后，作者做了什么决定？
       options:
-        - key: "1"
-          text: 不再忙着工作，专心照顾女儿。
-        - key: "2"
-          text: 多花点时间，陪伴自己的儿子。
-        - key: "3"
-          text: 继续接女孩的电话，和她聊天。
-        - key: "4"
-          text: 和女孩保持联系，给她讲故事。
-      correctKey: "2"
+        - 不再忙着工作，专心照顾女儿。
+        - 多花点时间，陪伴自己的儿子。
+        - 继续接女孩的电话，和她聊天。
+        - 和女孩保持联系，给她讲故事。
+      correct: 多花点时间，陪伴自己的儿子。
 - groupId: RG-G5
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 善意的传递
@@ -1070,20 +855,17 @@
 
       那一刻，我似乎明白了什么。我接受了老板的建议，小心地接过笔，连声道谢。回家的路上，我想起那天在公园里发生的事，终于明白了：善心能让人与人之间的感情变得更好，也能让人心里感到更温暖。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容"不能控制"的词语是 ___ 。
       accepted:
         - 忍不住
       displayAnswer: 忍不住
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容"好像"的词语是 ___ 。
       accepted:
         - 似乎
       displayAnswer: 似乎
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 阿姨为什么要向作者的父亲借钱？(2分)
       displayAnswer: 因为阿姨的钱包不见了，手机也没电，她想搭巴士回家，所以阿姨向作者的父亲借钱。
     - marks: 4
@@ -1104,7 +886,6 @@
       displayAnswer: 作者认为父亲是个善良的人。因为当一位阿姨问作者跟他的父亲可不可以借他两块钱搭巴士回家时，父亲立刻把一张十元的钞票给她了，他没有因为自己曾经被骗手机而拒绝帮助真正需要帮助的人。
 - groupId: RS-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 乔布斯的家规
@@ -1122,74 +903,48 @@
 
       在乔布斯的家里，晚餐时间就是全家人一起聊天的时刻，谁也不会拿出手机或平板电脑。他的孩子也并没有因此感到不快乐，反而喜爱阅读和运动，生活得非常充实。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 为什么很多人听了乔布斯的话会非常吃惊？
       options:
-        - key: "1"
-          text: 因为他的家里有很多电子用品。
-        - key: "2"
-          text: 因为他的孩子不喜欢平板电脑。
-        - key: "3"
-          text: 因为他不让孩子使用平板电脑。
-        - key: "4"
-          text: 因为他的孩子每天用电子用品。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 因为他的家里有很多电子用品。
+        - 因为他的孩子不喜欢平板电脑。
+        - 因为他不让孩子使用平板电脑。
+        - 因为他的孩子每天用电子用品。
+      correct: 因为他不让孩子使用平板电脑。
+    - format: MCQ
       text: 孩子用手机或电脑，大多数父母是怎么做的？
       options:
-        - key: "1"
-          text: 毫不在意
-        - key: "2"
-          text: 无能为力
-        - key: "3"
-          text: 小心控制
-        - key: "4"
-          text: 鼓励使用
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 毫不在意
+        - 无能为力
+        - 小心控制
+        - 鼓励使用
+      correct: 小心控制
+    - format: MCQ
       text: 以下哪一个不是父母要孩子少用手机和电脑的原因？
       options:
-        - key: "1"
-          text: 孩子有可能会上瘾。
-        - key: "2"
-          text: 孩子每天都在使用。
-        - key: "3"
-          text: 影响孩子的身体健康。
-        - key: "4"
-          text: 孩子会变得不爱说话。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 孩子有可能会上瘾。
+        - 孩子每天都在使用。
+        - 影响孩子的身体健康。
+        - 孩子会变得不爱说话。
+      correct: 孩子每天都在使用。
+    - format: MCQ
       text: 为什么有人觉得禁止孩子用手机和电脑是不好的？
       options:
-        - key: "1"
-          text: 因为会让孩子长大常常往外跑。
-        - key: "2"
-          text: 因为孩子可能会变得不爱读书。
-        - key: "3"
-          text: 因为孩子应该和朋友一起玩耍。
-        - key: "4"
-          text: 因为过度禁止可能产生反作用。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 因为会让孩子长大常常往外跑。
+        - 因为孩子可能会变得不爱读书。
+        - 因为孩子应该和朋友一起玩耍。
+        - 因为过度禁止可能产生反作用。
+      correct: 因为过度禁止可能产生反作用。
+    - format: MCQ
       text: 这篇文章最主要想告诉我们什么？
       options:
-        - key: "1"
-          text: 使用手机和电脑会有危险。
-        - key: "2"
-          text: 孩子不需要用手机和电脑。
-        - key: "3"
-          text: 父母不应该买手机和电脑。
-        - key: "4"
-          text: 应该合理使用手机和电脑。
-      correctKey: "4"
+        - 使用手机和电脑会有危险。
+        - 孩子不需要用手机和电脑。
+        - 父母不应该买手机和电脑。
+        - 应该合理使用手机和电脑。
+      correct: 应该合理使用手机和电脑。
 - groupId: RS-G5
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 藏起来的功课
@@ -1207,14 +962,12 @@
 
       从此以后，伟明对功课有了新的看法。妈妈看到伟明的改变，成绩也进步了，露出了满意的笑容。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容"不惊动人或不让别人知道"的词语是 ___ 。
       accepted:
         - 悄悄
       displayAnswer: 悄悄
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容"事情过后感到自责，心里不舒服"的词语是 ___ 。
       accepted:
         - 后悔
@@ -1241,7 +994,6 @@
       displayAnswer: 因为伟明听了妈妈的话后，做出了改变／改过自新（行为），成绩也进步了（结果），妈妈感到开心（感受）。
 - groupId: RO-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 老人的善心
@@ -1259,74 +1011,48 @@
 
       后来，年轻人把那些钱捐给了穷人。从此，年轻人积极帮助别人，做了很多好事。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 为什么年轻人躺在路旁？
       options:
-        - key: "1"
-          text: 他忘了回家的路。
-        - key: "2"
-          text: 他不要别人帮忙。
-        - key: "3"
-          text: 他等着老人出现。
-        - key: "4"
-          text: 他被一条蛇咬伤。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 他忘了回家的路。
+        - 他不要别人帮忙。
+        - 他等着老人出现。
+        - 他被一条蛇咬伤。
+      correct: 他被一条蛇咬伤。
+    - format: MCQ
       text: 以下哪一个不是老人把年轻人背回家的原因？
       options:
-        - key: "1"
-          text: 老人在半路叫不醒年轻人。
-        - key: "2"
-          text: 老人发现年轻人倒在路旁。
-        - key: "3"
-          text: 老人想请年轻人喝他煮的菜汤。
-        - key: "4"
-          text: 老人担心年轻人在山上有危险。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 老人在半路叫不醒年轻人。
+        - 老人发现年轻人倒在路旁。
+        - 老人想请年轻人喝他煮的菜汤。
+        - 老人担心年轻人在山上有危险。
+      correct: 老人想请年轻人喝他煮的菜汤。
+    - format: MCQ
       text: 老人认为年轻人给他最好的礼物是什么？
       options:
-        - key: "1"
-          text: 年轻人把所有的钱都给老人。
-        - key: "2"
-          text: 年轻人紧闭着的眼睛睁开了。
-        - key: "3"
-          text: 年轻人把钱捐给有需要的人。
-        - key: "4"
-          text: 年轻人懂得向老人表示感谢。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 年轻人把所有的钱都给老人。
+        - 年轻人紧闭着的眼睛睁开了。
+        - 年轻人把钱捐给有需要的人。
+        - 年轻人懂得向老人表示感谢。
+      correct: 年轻人把钱捐给有需要的人。
+    - format: MCQ
       text: 年轻人想到以前的自己，他感到 ___ 。
       options:
-        - key: "1"
-          text: 痛苦
-        - key: "2"
-          text: 惭愧
-        - key: "3"
-          text: 烦恼
-        - key: "4"
-          text: 后悔
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 痛苦
+        - 惭愧
+        - 烦恼
+        - 后悔
+      correct: 惭愧
+    - format: MCQ
       text: 后来，年轻人变成一个怎样的人？
       options:
-        - key: "1"
-          text: 乐于助人
-        - key: "2"
-          text: 积极努力
-        - key: "3"
-          text: 坚持到底
-        - key: "4"
-          text: 注意安全
-      correctKey: "1"
+        - 乐于助人
+        - 积极努力
+        - 坚持到底
+        - 注意安全
+      correct: 乐于助人
 - groupId: RO-G5
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 拆穿谎言的考题
@@ -1342,14 +1068,12 @@
 
       那是一道我永远都无法忘记的考题，它虽然简单，但我却得了零分！老师用一道很简单的考题，让我明白了一个重要的道理。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示"停止进行，不再继续"的词语是：___ 。
       accepted:
         - 结束
       displayAnswer: 结束
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示"不太相信"的词语是：___ 。
       accepted:
         - 怀疑
@@ -1376,7 +1100,6 @@
       displayAnswer: 因为那道考题虽然简单，但是"我"却得了零分。那道题让"我"明白了做人要诚实。
 - groupId: TN-HC-G3
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 老婆婆过马路
@@ -1392,44 +1115,39 @@
 
       我撑着伞，在雨中扶着老婆婆过了马路。与她道别后，我立刻赶往巴士车站。这时，我已经迟到了，但我却不后悔。我决心在未来的日子里，无论多忙都要记得停下脚步，去帮助那些需要帮助的人。因为善良和关怀，是我们面对生活风雨最好的力量。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 从短文中找出与下列画线词语意思相近或相同的词语：小文向哥哥借故事书，哥哥立刻__同意__了。
       accepted:
         - 答应
       displayAnswer: 答应
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 从短文中找出与下列画线词语意思相近或相同的词语：弟弟向妈妈保证，__以后__再也不会犯同样的错误了。
       accepted:
         - 未来
       displayAnswer: 未来
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 老婆婆请求作者帮忙时，作者的做法是什么？原因是什么？（试比较老婆婆两次需要帮助时，作者前后不同的做法。）
+      notes: 官方评分备注：老婆婆两次需要帮助时作者的做法前后不同，若"作者的做法"一项写错，则该题（做法+原因）0分；答案须以转述方式作答，若只是照抄原文而未转述，扣0.5分。
       displayAnswer: 作者的做法：放开她的手，向前跑去。原因：担心/怕/不想迟到，被老师批评/骂/脑海中浮现出老师生气的样子。
-      notes: 官方评分备注：老婆婆两次需要帮助时作者的做法前后不同，若"作者的做法"一项写错，则该题（做法+原因）0分；答案须以转述方式作答，若只是照抄原文而未转述，扣0.5分。
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 老婆婆跌倒时，作者的做法是什么？原因是什么？
-      displayAnswer: 作者的做法：冲上去扶起她。原因：（内心）充满/感到后悔和自责，担心/怕她受伤。
       notes: 官方评分备注：老婆婆两次需要帮助时作者的做法前后不同，若"作者的做法"一项写错，则该题（做法+原因）0分；答案须以转述方式作答，若只是照抄原文而未转述，扣0.5分。
+      displayAnswer: 作者的做法：冲上去扶起她。原因：（内心）充满/感到后悔和自责，担心/怕她受伤。
     - marks: 4
       format: Long-Answer
       text: 文中"眼前的情景"指的是什么？（2分）为什么它会让作者感到不安？（2分）
-      displayAnswer: 文中"眼前的情景"指的是老婆婆无助地站在路边，整个人像只落汤鸡/湿透了。作者想起老师和父母常教他（们）要乐于助人，不应该不理老婆婆/但是他没有去帮助老婆婆。
       notes: 官方评分备注：答案须分别完整回答"是什么"与"为什么"两部分，须使用两个问号、两个句号。
+      displayAnswer: 文中"眼前的情景"指的是老婆婆无助地站在路边，整个人像只落汤鸡/湿透了。作者想起老师和父母常教他（们）要乐于助人，不应该不理老婆婆/但是他没有去帮助老婆婆。
     - marks: 4
       format: Long-Answer
       text: 试从以下的两个选项中，选一个最适合作为这篇短文的题目。这两个选项只有一个是适当的，请为正确的答案打钩（✓），并从短文中找出支持你的答案的理由。
       context: (1) 《一件令我自责的事》　(2) 《我不后悔做了这个决定》
+      notes: 官方评分备注：只勾选项而没有解释说明，该题0分。
       displayAnswer: |-
         (2) 《我不后悔做了这个决定》 ✓
         【起因】作者担心迟到，而没有扶老婆婆过马路。【经过】但他看见老婆婆跌倒了，想到老师和父母教导她要乐于助人，便扶起老婆婆。【结果】他虽然迟到了，但他从这件事明白自己无论多忙，都要去帮助有需要帮助的人。
-      notes: 官方评分备注：只勾选项而没有解释说明，该题0分。
 - groupId: TN-HC-G4
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 半截尺子
@@ -1447,26 +1165,24 @@
 
       真正的朋友在你遇到困难时，会主动帮助你，并不要求回报。丽文会永远记住这件事，珍惜这份友情。
   questions:
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释下面短语在文中的意思：额头冒出了冷汗（第二段）
+      notes: 官方评分备注：答案须包含"谁"、"原因"、"心情"三要素，不可重复使用关键词。
       displayAnswer: 丽文在考试时，忘记带文具盒，感到很紧张/不安/担心/害怕/着急/很急/慌张/惊慌失措。
-      notes: 官方评分备注：答案须包含"谁"、"原因"、"心情"三要素，不可重复使用关键词。
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释下面短语在文中的意思：心里暖暖的（第四段）
-      displayAnswer: 丽文看到小红把尺子折成两半，把半截尺子递给她，心里很感动。
       notes: 官方评分备注：答案须包含"谁"、"原因"、"心情"三要素，不可重复使用关键词。
+      displayAnswer: 丽文看到小红把尺子折成两半，把半截尺子递给她，心里很感动。
     - marks: 3
       format: Long-Answer
       text: 丽文对老师的提醒有什么看法？
-      displayAnswer: 丽文认为/觉得/心想老师真唠叨，带文具那么简单的事，不可能会忘记。
       notes: 官方评分备注：须直接回答，不可用"丽文对老师的提醒有……看法"的句式作答，否则视为病句。
+      displayAnswer: 丽文认为/觉得/心想老师真唠叨，带文具那么简单的事，不可能会忘记。
     - marks: 4
       format: Long-Answer
       text: 发现丽文忘记带文具时，其他同学和小红的反应有什么不同？
-      displayAnswer: 其他同学嘲笑丽文又没记住老师交代的事，这次考试她惨了。小红快速地翻找自己的文具盒，然后拿出备用的笔和橡皮递给丽文。
       notes: 官方评分备注：人物（其他同学/小红）对应错误，该项0分。
+      displayAnswer: 其他同学嘲笑丽文又没记住老师交代的事，这次考试她惨了。小红快速地翻找自己的文具盒，然后拿出备用的笔和橡皮递给丽文。
     - marks: 4
       format: Long-Answer
       text: 请用不超过18个字，写出短文中第五段的段落大意。
@@ -1474,16 +1190,15 @@
     - marks: 4
       format: Long-Answer
       text: 小红怎么解决丽文没有尺子的问题？（1分）她一开始就决定用这个方法来解决问题吗？从哪里可以看出？（3分）
-      displayAnswer: 小红把自己唯一的一把尺折成两半，然后把半截尺子递给丽文。她一开始不想/没有决定用这个方法解决问题，从哪里可以看出：小红看了看自己文具盒里唯一的一把尺，皱了一下眉。
       notes: 官方评分备注：没有立场，即使有解释，0分；有立场但没解释/解释错误，0分；需使用三个问号、三个句号；不要写"从"，直接回答。
+      displayAnswer: 小红把自己唯一的一把尺折成两半，然后把半截尺子递给丽文。她一开始不想/没有决定用这个方法解决问题，从哪里可以看出：小红看了看自己文具盒里唯一的一把尺，皱了一下眉。
     - marks: 5
       format: Long-Answer
       text: 你从这篇短文中学到了什么道理？（2分）试举一个例子说明你如何把这个道理应用在生活中。（3分）
-      displayAnswer: （示例答案，学生可自由发挥，只要贴题即可）我学到了在朋友遇到困难时，要主动帮助他，并不要求回报。有一次，我的朋友小文忘了带钱包，我主动请他吃饭，隔天他想请我吃汉堡，但我拒绝了，还说帮助朋友是应该的。
       notes: 官方评分备注：假设性例子可以接受；例子必须明确具体，不可笼统地讲道理。本题为开放式意见题，官方仅提供示例答案，学生答案只要言之成理、贴合主题即可给分。
+      displayAnswer: （示例答案，学生可自由发挥，只要贴题即可）我学到了在朋友遇到困难时，要主动帮助他，并不要求回报。有一次，我的朋友小文忘了带钱包，我主动请他吃饭，隔天他想请我吃汉堡，但我拒绝了，还说帮助朋友是应该的。
 - groupId: SH-HC-G3
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 迟来的责任感
@@ -1501,28 +1216,24 @@
 
       下台后，明华低着头，鼓起勇气说：“对不起，我太不负责任了，早知道就该好好练了……”小丽终于忍不住，瞪着明华，指责道：“如果你早点对团队负责，我们也不会落到如此下场。表演已经结束，再也没有下次了！”明华听了，顿时沉默了下来，眼里闪过一丝后悔。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 从短文中找出与下列画线词语意思相近或相同的词语：虽然他的成绩很好，但他__还是__努力追求更好。
       accepted:
         - 依然
       displayAnswer: 依然
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 从短文中找出与下列画线词语意思相近或相同的词语：看到孩子得到比赛的冠军，爸爸妈妈都感到很__骄傲__。
       accepted:
         - 自豪
       displayAnswer: 自豪
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试比较观众对小丽和明华表演的反应，并说明原因：观众对小丽的表演有什么反应？原因是什么？
-      displayAnswer: 观众的反应：感到满意，报以热烈的掌声。原因：小丽演得非常精彩（这是她努力练习的成果）。
       notes: 官方答案原文以 '小丽的表演满意 > 表演得很精彩' 的简写形式呈现，已根据短文内容重新整理为完整的'反应+原因'表述。
-    - marks: 2
-      format: Long-Answer
+      displayAnswer: 观众的反应：感到满意，报以热烈的掌声。原因：小丽演得非常精彩（这是她努力练习的成果）。
+    - format: Long-Answer
       text: 试比较观众对小丽和明华表演的反应，并说明原因：观众对明华的表演有什么反应？原因是什么？
-      displayAnswer: 观众的反应：感到失望，露出失望的神情。原因：明华突然忘词，表演中出现了好几处错误。
       notes: 官方答案原文以 '明华的表演 > 失望忘词 > 出现了好几处错误' 的简写形式呈现，已根据短文内容重新整理为完整的'反应+原因'表述。
+      displayAnswer: 观众的反应：感到失望，露出失望的神情。原因：明华突然忘词，表演中出现了好几处错误。
     - marks: 4
       format: Long-Answer
       text: 小丽有没有接受明华的道歉？（1分）为什么？（3分）
@@ -1536,7 +1247,6 @@
       displayAnswer: (2) 迟来的责任感。起因：小丽和明华被分到同一组表演。经过：明华排练时很不认真，虽然小丽劝他要认真练习，但他依然不当一回事。结果：表演时，明华在台上忘词，这才让他明白到应该对团队负责。
 - groupId: SH-HC-G4
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 山间雨伞
@@ -1570,12 +1280,10 @@
 
       看到这段话，我心里暖暖的。
   questions:
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释短语“这下惨了”（第二段）在文中的意思。
       displayAnswer: 当时下起了小雨，作者和妈妈没带伞，他担心会被雨淋湿。
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释短语“让它继续传递温暖”（第十一段）在文中的意思。
       displayAnswer: 用过这把伞的人将伞传给下一个人，让下一个人感受到关爱。
     - marks: 3
@@ -1597,11 +1305,10 @@
     - marks: 5
       format: Long-Answer
       text: 这篇短文告诉了我们什么道理？（2分）试举生活中的例子加以说明。（3分）
-      displayAnswer: 这篇短文告诉我们，我们获得了帮助后应该帮助别人。（举例仅供参考）有一次，我忘了带笔，朋友借我笔用。之后，我看到其他同学没带笔时，想到别人曾经帮助过我，也将自己的笔借给他用。
       notes: 前半部分（道理）为短文中可归纳的固定要点，后半部分（生活例子）为学生个人开放式作答，本答案仅为示例。
+      displayAnswer: 这篇短文告诉我们，我们获得了帮助后应该帮助别人。（举例仅供参考）有一次，我忘了带笔，朋友借我笔用。之后，我看到其他同学没带笔时，想到别人曾经帮助过我，也将自己的笔借给他用。
 - groupId: TN-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 乐乐的孝心
@@ -1621,74 +1328,48 @@
 
       乐乐明白了：真正的爱，不只是说出来。他学会了用行动去关爱家人。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 猴妈妈是怎么受伤的？
       options:
-        - key: "1"
-          text: 她在树上跳来跳去。
-        - key: "2"
-          text: 她摘果子时弄伤了脚。
-        - key: "3"
-          text: 她被大风吹倒摔在地上。
-        - key: "4"
-          text: 她不小心在河边跌倒了。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 她在树上跳来跳去。
+        - 她摘果子时弄伤了脚。
+        - 她被大风吹倒摔在地上。
+        - 她不小心在河边跌倒了。
+      correct: 她摘果子时弄伤了脚。
+    - format: MCQ
       text: 知道妈妈受伤后，乐乐决定怎么做？
       options:
-        - key: "1"
-          text: 拒绝小鹿来家里玩。
-        - key: "2"
-          text: 让自己有充足的休息。
-        - key: "3"
-          text: 学习做家务和找食物。
-        - key: "4"
-          text: 和朋友们一起出去玩耍。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 拒绝小鹿来家里玩。
+        - 让自己有充足的休息。
+        - 学习做家务和找食物。
+        - 和朋友们一起出去玩耍。
+      correct: 学习做家务和找食物。
+    - format: MCQ
       text: 小鹿知道了乐乐的情况后，有什么反应？
       options:
-        - key: "1"
-          text: 觉得很好奇。
-        - key: "2"
-          text: 夸乐乐有孝心。
-        - key: "3"
-          text: 脸上露出了笑容。
-        - key: "4"
-          text: 约乐乐去森林里玩。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 觉得很好奇。
+        - 夸乐乐有孝心。
+        - 脸上露出了笑容。
+        - 约乐乐去森林里玩。
+      correct: 夸乐乐有孝心。
+    - format: MCQ
       text: 猴妈妈既开心又感动的原因是
       options:
-        - key: "1"
-          text: 乐乐变得懂事了。
-        - key: "2"
-          text: 乐乐为她感到自豪。
-        - key: "3"
-          text: 小鹿把家收拾得很整齐。
-        - key: "4"
-          text: 小鹿要她在家里安心休养。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 乐乐变得懂事了。
+        - 乐乐为她感到自豪。
+        - 小鹿把家收拾得很整齐。
+        - 小鹿要她在家里安心休养。
+      correct: 乐乐变得懂事了。
+    - format: MCQ
       text: 这个故事告诉我们什么道理？
       options:
-        - key: "1"
-          text: 要学会分工合作。
-        - key: "2"
-          text: 出门时要注意安全。
-        - key: "3"
-          text: 要通过行动关爱家人。
-        - key: "4"
-          text: 朋友之间要互相尊重。
-      correctKey: "3"
+        - 要学会分工合作。
+        - 出门时要注意安全。
+        - 要通过行动关爱家人。
+        - 朋友之间要互相尊重。
+      correct: 要通过行动关爱家人。
 - groupId: TN-G5
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 荧光笔风波
@@ -1710,14 +1391,12 @@
 
       从那天起，小华和伟明更加珍惜彼此之间的友情了。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容“表示出乎意料”的词语是：___ 。
       accepted:
         - 竟然
       displayAnswer: 竟然
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容“因对不起别人而内心不安”的词语是：___ 。
       accepted:
         - 惭愧
@@ -1744,7 +1423,6 @@
       displayAnswer: 如果我是伟明，我会继续跟小华做朋友。小华只是一时冲动，错怪我偷了他的荧光笔，但是他已经向我道歉，并承认了错误。每个人都会犯错，只要知错能改，就值得被原谅。我们是好朋友，友谊比一时的误会更重要，我们不应该为了一件小事而闹得不愉快。
 - groupId: RL-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 孔子教学生
@@ -1760,74 +1438,48 @@
 
       孔子笑了笑，说：“因为子路做事总是拿不定主意，所以我要鼓励他；然由总是没有想清楚就去做事，所以我要提醒他先想再做。教不同的学生要用不同的方法，这样他们才能各自进步。”学生听了，恍然大悟。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 子路问孔子什么问题？
       options:
-        - key: "1"
-          text: 应不应该马上帮助别人
-        - key: "2"
-          text: 怎样才能不让机会溜走
-        - key: "3"
-          text: 如何才能一直被人称赞
-        - key: "4"
-          text: 怎样确保自己不会后悔
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 应不应该马上帮助别人
+        - 怎样才能不让机会溜走
+        - 如何才能一直被人称赞
+        - 怎样确保自己不会后悔
+      correct: 应不应该马上帮助别人
+    - format: MCQ
       text: 文中的子路是一个 ___ 的人
       options:
-        - key: "1"
-          text: 很胆小怕事
-        - key: "2"
-          text: 拿不定主意
-        - key: "3"
-          text: 喜欢问问题
-        - key: "4"
-          text: 要求很严格
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 很胆小怕事
+        - 拿不定主意
+        - 喜欢问问题
+        - 要求很严格
+      correct: 拿不定主意
+    - format: MCQ
       text: 孔子让然由怎么做？
       options:
-        - key: "1"
-          text: 马上去做
-        - key: "2"
-          text: 想想再做
-        - key: "3"
-          text: 让别人做
-        - key: "4"
-          text: 不要去做
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 马上去做
+        - 想想再做
+        - 让别人做
+        - 不要去做
+      correct: 想想再做
+    - format: MCQ
       text: 为什么孔子对两个学生的问题回答不一样？
       options:
-        - key: "1"
-          text: 因为他想考一考学生
-        - key: "2"
-          text: 因为两个问题不一样
-        - key: "3"
-          text: 因为学生的特点不同
-        - key: "4"
-          text: 因为他记不清楚答案
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 因为他想考一考学生
+        - 因为两个问题不一样
+        - 因为学生的特点不同
+        - 因为他记不清楚答案
+      correct: 因为学生的特点不同
+    - format: MCQ
       text: 这个故事主要说明了什么道理？
       options:
-        - key: "1"
-          text: 要学会分工合作
-        - key: "2"
-          text: 学生要听老师的话
-        - key: "3"
-          text: 提问之前要先思考
-        - key: "4"
-          text: 根据特点来教学生
-      correctKey: "4"
+        - 要学会分工合作
+        - 学生要听老师的话
+        - 提问之前要先思考
+        - 根据特点来教学生
+      correct: 根据特点来教学生
 - groupId: RL-G5
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 错怪好友
@@ -1845,14 +1497,12 @@
 
       小丽先是瞪大了眼睛，然后露出了笑容。她拍拍我的肩膀，说：“没关系，我们还是好朋友。”那一刻，我心里的大石头落了地，眼睛也有些湿湿的……
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示“从前有过那种情况”的词语是：___ 。
       accepted:
         - 曾经
       displayAnswer: 曾经
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容“没想到，出乎意料”的词语是：___ 。
       accepted:
         - 竟然
@@ -1879,7 +1529,6 @@
       displayAnswer: 我同意小丽的做法。因为作者丢了她最喜欢的笔，刚巧小丽有一支和她一样的笔，所以作者误会了。后来，作者意识到自己的错误，主动和小丽道歉，朋友之间不应该因为小事而争吵，应该对彼此宽容理解对方。每个人都会犯错，我们应该给同学一个改过的机会。
 - groupId: SH-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 运动会上的坚持
@@ -1895,74 +1544,48 @@
 
       运动会结束后，小明珍惜地摸着奖杯，心里暖暖的。他明白：只要不怕困难，肯努力，就一定能超越自己。晚上，小明在日记本上认真写道：“今天的运动会让我懂得，比成绩更重要的是永不服输的精神……”
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 从哪里可以看出小明已经为比赛做好准备？
       options:
-        - key: "1"
-          text: 他是班上的短跑选手。
-        - key: "2"
-          text: 他像箭一样飞扑了出去。
-        - key: "3"
-          text: 他的心里感到既兴奋又紧张。
-        - key: "4"
-          text: 他胸有成竹地站在跑道上热身。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 他是班上的短跑选手。
+        - 他像箭一样飞扑了出去。
+        - 他的心里感到既兴奋又紧张。
+        - 他胸有成竹地站在跑道上热身。
+      correct: 他胸有成竹地站在跑道上热身。
+    - format: MCQ
       text: 为什么小明会哭了出来？
       options:
-        - key: "1"
-          text: 他的腿很疼。
-        - key: "2"
-          text: 他输了比赛。
-        - key: "3"
-          text: 他的老师骂了他。
-        - key: "4"
-          text: 他快到终点时跌倒了。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 他的腿很疼。
+        - 他输了比赛。
+        - 他的老师骂了他。
+        - 他快到终点时跌倒了。
+      correct: 他的腿很疼。
+    - format: MCQ
       text: 同学们怎么关心小明？
       options:
-        - key: "1"
-          text: 有些同学扶他起来。
-        - key: "2"
-          text: 他们给他的伤口上药。
-        - key: "3"
-          text: 同学给他喝水和安慰他。
-        - key: "4"
-          text: 同学代替他完成接力赛。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 有些同学扶他起来。
+        - 他们给他的伤口上药。
+        - 同学给他喝水和安慰他。
+        - 同学代替他完成接力赛。
+      correct: 同学给他喝水和安慰他。
+    - format: MCQ
       text: 小明受伤参加接力赛，有什么结果？
       options:
-        - key: "1"
-          text: 他又摔到了。
-        - key: "2"
-          text: 他没冲过终点。
-        - key: "3"
-          text: 他没稳稳地接住接力棒。
-        - key: "4"
-          text: 他帮助班级得到了第三名。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 他又摔到了。
+        - 他没冲过终点。
+        - 他没稳稳地接住接力棒。
+        - 他帮助班级得到了第三名。
+      correct: 他帮助班级得到了第三名。
+    - format: MCQ
       text: 这个故事让你明白了什么道理？
       options:
-        - key: "1"
-          text: 忍住疼痛很重要。
-        - key: "2"
-          text: 成绩比过程更重要。
-        - key: "3"
-          text: 坚持能让我们超越自己。
-        - key: "4"
-          text: 我们要努力超越其他选手。
-      correctKey: "3"
+        - 忍住疼痛很重要。
+        - 成绩比过程更重要。
+        - 坚持能让我们超越自己。
+        - 我们要努力超越其他选手。
+      correct: 坚持能让我们超越自己。
 - groupId: SH-G5
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 五块钱的品格
@@ -1982,14 +1605,12 @@
 
       这句话像一记重拳打在小杰的胸口。他感到脸上一热，惭愧地低下了头，连忙跟着爸爸出门去了。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容“不说话”的词语是：___ 。
       accepted:
         - 沉默
       displayAnswer: 沉默
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容“做错了事而感到不安”的词语是：___ 。
       accepted:
         - 惭愧
@@ -2016,7 +1637,6 @@
       displayAnswer: 我学到了做人要诚实，不能拿不属于自己的东西。例如：如果在学校看到老师改错试卷多给了分数，我会主动向老师说明并扣回分数。虽然分数少了，但我做到了诚实。
 - groupId: HP-HC-G3
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 爷爷奶奶的智慧
@@ -2034,26 +1654,22 @@
 
       卫国连忙摆手，说：“不用了……我决定留在篮球训练队继续努力，我相信我一定会成功的！”爷爷和奶奶相视而笑，饭桌上的气氛又轻松了起来。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 找出与“诉苦”意思相近或相同的词语。
       accepted:
         - 抱怨
       displayAnswer: 抱怨
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 找出与“以前”意思相近或相同的词语。
       accepted:
         - 曾经
       displayAnswer: 曾经
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 吃饭前，卫国的心情是怎样的？他对是否继续留在篮球训练队有什么想法？
       displayAnswer: |-
         心情：生气
         想法：不要留在篮球队，认为自己永远不够好
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 吃饭后，卫国的心情是怎样的？他对是否继续留在篮球训练队有什么想法？
       displayAnswer: |-
         心情：忏悔
@@ -2068,7 +1684,6 @@
       displayAnswer: (2) 聪明的爷爷奶奶。我觉得《聪明的爷爷奶奶》最适合作为这篇短文的题目。因为奶奶听到卫国说他不要待在篮球训练队了，经过劝说，他还是不听，就没有一直劝，而是聪明地通过煮肉卷的例子，说她曾想过要放弃，但爷爷说多试几次，一定会煮成功，来让卫国明白成功是靠日积月累的尝试和努力，没有人一出生就会的道理，去改变了卫国的想法，让他决定留在篮球训练继续努力。
 - groupId: HP-HC-G4
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 月美的成长
@@ -2088,12 +1703,10 @@
 
       李林冷静地回答：“自己的事应该自己做。房间和袜子是我的，怎么能让妈妈收拾呢？”听了李林的话，月美的脸红了起来。
   questions:
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释短语在文中的意思：“让水声盖过外头的声音”（第二段）
       displayAnswer: 因为月美不想听妈妈的唠叨，故意将水龙头开到最大，让水的声音大过妈妈的声音，她可以不用听到妈妈的唠叨。
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释短语在文中的意思：“视而不见”（第三段）
       displayAnswer: 月美对臭袜子假装没有看见，直接走进房间。
     - marks: 4
@@ -2119,7 +1732,6 @@
       displayAnswer: 我从这篇短文里学到，自己的事情应该自己做，不应该依赖家长。例如我们自己的书包及房间应该自己整理和打扫，而不是让家长代劳。学习也是我们自己的事情，应该认真对待。
 - groupId: MB-HC-G3
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 大信封里的善意
@@ -2139,26 +1751,22 @@
 
       大信封继续留在教室里，它就像一股无形的鼓励，让整个班级的气氛变得更和谐了。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 找出与“正好”意思相近或相同的词语。
       accepted:
         - 刚巧
       displayAnswer: 刚巧
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 找出与“友好”意思相近或相同的词语。
       accepted:
         - 和谐
       displayAnswer: 和谐
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 帮助小明之前，同学对待文光的态度是怎样的？原因是什么？
       displayAnswer: |-
         态度：看不起他
         原因：学习中等，穿着旧校服
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 帮助小明之后，同学对待文光的态度是怎样的？原因是什么？
       displayAnswer: |-
         态度：看文光的眼神变了，主动接近他；认为他乐于助人
@@ -2173,7 +1781,6 @@
       displayAnswer: (1) 善良的力量。我认为《善良的力量》适合作为短文的题目。在文中，文光常被同学看不起，但是当小明需要帮助时，却只有他一个人主动上前伸出援手。同学们因为这个举动而对他的态度转变。大家开始懂得彼此关心、彼此帮助。这都是因为“善良”带来的变化。
 - groupId: MB-HC-G4
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 丽亚的花店
@@ -2195,12 +1802,10 @@
 
       从那以后，古城里的人只要一提到丽亚就会说：“她的花特别美，她的心更美。”
   questions:
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释短语在文中的意思：“风雨无阻”（第二段）
       displayAnswer: 即使天气恶劣，丽亚还是出去卖花。
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释短语在文中的意思：“环境的改变是个大麻烦”（第三段）
       displayAnswer: 原本熟悉的街道被围起来了，这对失明的丽亚来说很不方便。
     - marks: 3
@@ -2226,7 +1831,6 @@
       displayAnswer: 我从丽亚的身上学到了无论遇到什么困难，只要不放弃，就一定可以成功。例如我天生个子矮小，每次体育达标测试不及格，但是我每次都能积极准备。虽然我体育考试不达标，但是我能在篮球比赛中发挥自己个子矮小的优势，灵活、快速，和大家一起合作，每次都能赢得比赛，我也变得自信。
 - groupId: NY-HC-G3
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 美云的舞蹈演出
@@ -2240,26 +1844,22 @@
 
       演出开始了，美云自信地跳起舞来，跳出了自己最优美的一支舞蹈！表演结束后，台下响起热烈的掌声，美云感动地流下了眼泪……她像一朵盛开的花朵，美丽又迷人，和自己脸上的那朵花一样，在灯光照射下，闪闪发亮。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 哥哥是一位优秀的运动员，家中摆满了奖杯。 —— 找出与画线词语意思相近或相同的词语。
       accepted:
         - 出色
       displayAnswer: 出色
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 尽管明华今天生病了，他还是决定来上学。 —— 找出与画线词语意思相近或相同的词语。
       accepted:
         - 仍然
       displayAnswer: 仍然
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 对于美云参加舞蹈演出这件事，试说明演出开始前美云的感受和原因。
       displayAnswer: |-
         感受：感到担心/不安
         原因：不知道同学会不会嘲笑她的脸
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 对于美云参加舞蹈演出这件事，试说明演出结束后美云的感受和原因。
       displayAnswer: |-
         感受：感到（很/非常）感动
@@ -2274,7 +1874,6 @@
       displayAnswer: (1) 两朵美丽迷人的花儿。我觉得《两朵美丽迷人的花儿》最适合作为题目。因为短文中李教练在美云脸上涂抹颜料，使她脸上的伤口变成了一朵鲜艳的花；而在演出成功后，美云也像一朵盛开的花朵一样美丽迷人。这两朵花都象征着美云重新找回自信、闪闪发亮的过程，非常贴切短文的主旨。
 - groupId: NY-HC-G4
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 与众不同的于老师
@@ -2290,12 +1889,10 @@
 
       有同学问于老师，如果我们成绩没有进步的话该怎么办。于老师回答：“其实不论成绩有没有进步，你们只要努力学了，最终都会有收获，不是吗？”
   questions:
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释短语在文中的意思：“渐渐落了下去”（第一段）
       displayAnswer: 这个短语在文中的意思是教室里原本很吵闹，后来发现老师来了，慢慢安静下来。
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释短语在文中的意思：“对自己有错误的认识”（第三段）
       displayAnswer: 这个短语在文中的意思是于老师教我们不要因为别人不看好自己/别人的评语，而认为自己一定不行/学不好。
     - marks: 3
@@ -2323,7 +1920,6 @@
         例如有一次，我因自己没做过/自我否定不敢参加学校运动会，但后来我勇敢报名并努力训练，最后取得了不错的成绩，证明了自己的能力。
 - groupId: RG-HC-G3
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 林伟的兴趣大发现
@@ -2343,26 +1939,22 @@
 
       回到家，林伟对妈妈说：“我喜欢讲故事！讲故事真的很有趣！”妈妈笑着说：“你看，我之前跟你说的没错吧。你不尝试怎么知道自己对什么感兴趣呢？”
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 他总是主动地帮助同学，解决他们的问题。 —— 找出与画线词语意思相近或相同的词语。
       accepted:
         - 积极
       displayAnswer: 积极
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 他顺利找出数学题的答案，感到十分骄傲。 —— 找出与画线词语意思相近或相同的词语。
       accepted:
         - 自豪
       displayAnswer: 自豪
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试说明林伟在参加武术班时的行为和发现。
       displayAnswer: |-
         行为：准备要“飞踢”，结果脚还没有抬起来就踩到裤脚摔倒了
         发现：自己并不喜欢又累又痛的感觉
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试说明林伟在分享故事时的行为和发现。
       displayAnswer: |-
         行为：站在台上，讲起那些让他难为情却有趣的事
@@ -2377,7 +1969,6 @@
       displayAnswer: (2) 从尝试中发现兴趣。我认为《从尝试中发现兴趣》是最适合的题目。因为当林伟开始对什么都不感兴趣，但在妈妈鼓励下，他尝试参加了不同的活动，最后林伟在台上讲故事，才发现自己喜欢讲故事。
 - groupId: RG-HC-G4
   subject: Higher Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 误会与和好
@@ -2395,12 +1986,10 @@
 
       我这才恍然大悟，原来明恩不是不想和我一组，而是为了帮助同学才做了那个决定。想到这里，我红着脸，小声地说：“对不起，我不该对你发脾气。”明恩回答：“我也有错，应该先把话说清楚。”老师见我们和好了，便拍拍我们的肩膀，说：“朋友之间应该互相了解，这样的友情才能长久！现在雨过天晴，你们回班上课吧。”
   questions:
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释短语在文中的意思：“拉不下面子”（第四段）
       displayAnswer: 这个短语在文中的意思是作者因为害怕丢脸，所以不去跟明恩说话/道歉。
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 试解释短语在文中的意思：“恍然大悟”（第六段）
       displayAnswer: 这个短语在文中的意思是作者忽然明白明恩不是不要跟他一组，而是想帮学习比较吃力的同学。
     - marks: 3
@@ -2428,7 +2017,6 @@
       displayAnswer: 他们互相道歉，就和好了。我学到朋友之间要互相了解，这样友情才能长久。例如我的朋友因为没考好，心情不好，突然不理我，我没有马上生气，而是问她原因。我们把话说清楚，避免发生误会。
 - groupId: PL-G3
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 妈妈与蒸鱼
@@ -2444,14 +2032,12 @@
 
       其实，看孩子吃着自己煮的食物，心里那甜甜的感受让嘴里的鱼头也变甜了。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中第一段和第二段中与“喜欢”意思相反的词语是：___ 。
       accepted:
         - 讨厌
       displayAnswer: 讨厌
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中第三段与“怀疑”意思相反的词语是：___ 。
       accepted:
         - 相信
@@ -2478,7 +2064,6 @@
       displayAnswer: 作者的妈妈是个很爱孩子的母亲。妈妈都把最好的食物给了作者，自己却只吃剩下的一点肉，还常说很好吃。
 - groupId: NY24-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 手影游戏
@@ -2492,74 +2077,48 @@
 
       站在一旁看我们玩游戏的爸爸对我说：“这就是你的不对了，你没有按照规则来玩游戏，怎么还和小刚吵架呢？如果大家都像你一样，这样的游戏还有趣吗？”我不服气地说：“咬到的只是我的手影，又不是真的我。”爸爸说：“就算这只是个游戏，但只要你来玩，就要认真对待，真正地进入到游戏里。将来无论你做什么事，只有认真对待了，才能做好啊。”我听了，脸忍不住红了……
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 在楼下游乐场玩时，“我”最喜欢玩的游戏是什么？
       options:
-        - key: "1"
-          text: 荡秋千。
-        - key: "2"
-          text: 溜滑梯。
-        - key: "3"
-          text: 你追我跑。
-        - key: "4"
-          text: 手影游戏。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 荡秋千。
+        - 溜滑梯。
+        - 你追我跑。
+        - 手影游戏。
+      correct: 手影游戏。
+    - format: MCQ
       text: “小狗”咬到“小鸟”后，“我”的反应是什么？
       options:
-        - key: "1"
-          text: 一脸认真地和小刚玩游戏。
-        - key: "2"
-          text: 叹了口气并且向小刚认输。
-        - key: "3"
-          text: 发出“啊呀啊呀”的声音。
-        - key: "4"
-          text: 假装自己被小刚咬得很痛。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 一脸认真地和小刚玩游戏。
+        - 叹了口气并且向小刚认输。
+        - 发出“啊呀啊呀”的声音。
+        - 假装自己被小刚咬得很痛。
+      correct: 叹了口气并且向小刚认输。
+    - format: MCQ
       text: 小刚和“我”吵架的原因是什么？
       options:
-        - key: "1"
-          text: “我”认为没必要和小刚一起玩。
-        - key: "2"
-          text: “我”拒绝遵守这个游戏的规则。
-        - key: "3"
-          text: 小刚认为这个游戏一点也不有趣。
-        - key: "4"
-          text: 小刚在游戏时根本就追不上“我”。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - “我”认为没必要和小刚一起玩。
+        - “我”拒绝遵守这个游戏的规则。
+        - 小刚认为这个游戏一点也不有趣。
+        - 小刚在游戏时根本就追不上“我”。
+      correct: “我”拒绝遵守这个游戏的规则。
+    - format: MCQ
       text: 根据篇章内容，以下哪一句话是正确的？
       options:
-        - key: "1"
-          text: 爸爸认为“我”不应该和小刚吵架。
-        - key: "2"
-          text: 爸爸玩游戏的方式让“我”不服气。
-        - key: "3"
-          text: 爸爸跟“我”说的话让小刚脸红了。
-        - key: "4"
-          text: 爸爸坚持要“我”向小刚说对不起。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 爸爸认为“我”不应该和小刚吵架。
+        - 爸爸玩游戏的方式让“我”不服气。
+        - 爸爸跟“我”说的话让小刚脸红了。
+        - 爸爸坚持要“我”向小刚说对不起。
+      correct: 爸爸认为“我”不应该和小刚吵架。
+    - format: MCQ
       text: 爸爸教“我”什么道理？
       options:
-        - key: "1"
-          text: 做错事要主动承认错误。
-        - key: "2"
-          text: 要仔细制定好游戏规则。
-        - key: "3"
-          text: 要认真对待所做的事情。
-        - key: "4"
-          text: 不要把输赢看得很重要。
-      correctKey: "3"
+        - 做错事要主动承认错误。
+        - 要仔细制定好游戏规则。
+        - 要认真对待所做的事情。
+        - 不要把输赢看得很重要。
+      correct: 要认真对待所做的事情。
 - groupId: CHS-G1
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 爱的付出
@@ -2575,14 +2134,12 @@
 
       兄妹俩走出玩具店时，一个顾客指着他们手上的玩具，问保安人员怎么领取，他解释是自己买给他们的。明华终于明白是怎么一回事。他十分感动，下定决心，要像保安人员一样，为他人献出爱心。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示“不收钱”的词语是：___
       accepted:
         - 免费
       displayAnswer: 免费
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示“忍住不要做”的词语是：___
       accepted:
         - 控制
@@ -2609,7 +2166,6 @@
       displayAnswer: 你好！那天在玩具店，您送小玩具给我们，我们十分感谢。我从你身上学到了要为他人献出爱心。
 - groupId: NY24EOY-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 学习打乒乓球
@@ -2621,74 +2177,48 @@
 
       听了爸爸的话，我深受启发。回到课堂后，我重新调整了心态，变得更加认真地进行每一次练习。遇到困难时，我也能耐心地克服，不再轻易想要放弃。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: “我”一开始对打乒乓球的态度是怎样的？
       options:
-        - key: "1"
-          text: 非常专心。
-        - key: "2"
-          text: 很有耐心。
-        - key: "3"
-          text: 十分自信。
-        - key: "4"
-          text: 充满好奇。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 非常专心。
+        - 很有耐心。
+        - 十分自信。
+        - 充满好奇。
+      correct: 充满好奇。
+    - format: MCQ
       text: 为什么上乒乓球课后，“我”对乒乓球失去了兴趣？
       options:
-        - key: "1"
-          text: 同学们都对“我”很不耐烦。
-        - key: "2"
-          text: 爸爸责怪“我”没有取得进步。
-        - key: "3"
-          text: “我”没机会去参加乒乓球比赛。
-        - key: "4"
-          text: 教练让“我”不停地练习新动作。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 同学们都对“我”很不耐烦。
+        - 爸爸责怪“我”没有取得进步。
+        - “我”没机会去参加乒乓球比赛。
+        - 教练让“我”不停地练习新动作。
+      correct: 教练让“我”不停地练习新动作。
+    - format: MCQ
       text: 爸爸是怎样帮助“我”的？
       options:
-        - key: "1"
-          text: 为“我”报名参加其他乒乓球课。
-        - key: "2"
-          text: 带“我”去看专业的乒乓球比赛。
-        - key: "3"
-          text: 鼓励“我”在上课时多交新朋友。
-        - key: "4"
-          text: 请教练多教“我”新的打球方法。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 为“我”报名参加其他乒乓球课。
+        - 带“我”去看专业的乒乓球比赛。
+        - 鼓励“我”在上课时多交新朋友。
+        - 请教练多教“我”新的打球方法。
+      correct: 带“我”去看专业的乒乓球比赛。
+    - format: MCQ
       text: 爸爸的帮助对“我”有什么影响？
       options:
-        - key: "1"
-          text: “我”上课时变得更加认真了。
-        - key: "2"
-          text: “我”开始耐心地教别人打球。
-        - key: "3"
-          text: “我”练习时再也没遇到困难。
-        - key: "4"
-          text: “我”成为班上最厉害的球员。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - “我”上课时变得更加认真了。
+        - “我”开始耐心地教别人打球。
+        - “我”练习时再也没遇到困难。
+        - “我”成为班上最厉害的球员。
+      correct: “我”上课时变得更加认真了。
+    - format: MCQ
       text: 通过学习打乒乓球，“我”学到了什么？
       options:
-        - key: "1"
-          text: 相信自己就能有进步。
-        - key: "2"
-          text: 要耐心听别人的意见。
-        - key: "3"
-          text: 遇到困难坚持不放弃。
-        - key: "4"
-          text: 兴趣是要慢慢培养的。
-      correctKey: "3"
+        - 相信自己就能有进步。
+        - 要耐心听别人的意见。
+        - 遇到困难坚持不放弃。
+        - 兴趣是要慢慢培养的。
+      correct: 遇到困难坚持不放弃。
 - groupId: NY24EOY-G4
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 小华的困惑与成长
@@ -2702,14 +2232,12 @@
 
       听了爸爸的建议，小华心里感到无比温暖，决定回到学校后主动找同学沟通，解开误会。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示“有目的地、有意识地；明明知道不应该这样做还要这样做”的词语是：___ 。
       accepted:
         - 故意
       displayAnswer: 故意
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示“受到关怀、爱护时心里产生的感觉”的词语是：___ 。
       accepted:
         - 温暖
@@ -2733,11 +2261,10 @@
     - marks: 4
       format: Long-Answer
       text: 你认为小华回到学校后会怎么做？请加以说明。
-      displayAnswer: 我认为小华回到学校后会主动去找那群指指点点的同学，有礼貌地询问他们是不是对自己有什么误会，并勇敢地把事情解释清楚。
       notes: 开放性作答题，根据题目要求与故事走向提供示范答案。
+      displayAnswer: 我认为小华回到学校后会主动去找那群指指点点的同学，有礼貌地询问他们是不是对自己有什么误会，并勇敢地把事情解释清楚。
 - groupId: HP24EOY-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 明文与爷爷的花园
@@ -2749,74 +2276,48 @@
 
       几天后，后花园的植物重新恢复了生机。当爷爷看到这一切时，眼眶湿润，鼻子一酸。他觉得明文变得懂事了，内心无比感动。明文看到爷爷高兴的样子，觉得能和爷爷一起打理花园是一件非常幸福的事。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 为什么爷爷看到他后花园的植物后会叹气？因为
       options:
-        - key: "1"
-          text: 他的孙子住在他家。
-        - key: "2"
-          text: 他的行动很不方便。
-        - key: "3"
-          text: 他的年纪已经很大。
-        - key: "4"
-          text: 他的植物都快死了。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 他的孙子住在他家。
+        - 他的行动很不方便。
+        - 他的年纪已经很大。
+        - 他的植物都快死了。
+      correct: 他的植物都快死了。
+    - format: MCQ
       text: 以下哪一个不是明文在准备惊喜时做的事？
       options:
-        - key: "1"
-          text: 用园艺工具除草和浇水。
-        - key: "2"
-          text: 向每盆植物说鼓励的话。
-        - key: "3"
-          text: 仔细地看爷爷照顾植物。
-        - key: "4"
-          text: 特地很早起床去后花园。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 用园艺工具除草和浇水。
+        - 向每盆植物说鼓励的话。
+        - 仔细地看爷爷照顾植物。
+        - 特地很早起床去后花园。
+      correct: 仔细地看爷爷照顾植物。
+    - format: MCQ
       text: 爷爷为什么会突然鼻子一酸？因为
       options:
-        - key: "1"
-          text: 他看到明文弄得一身泥让他很难过。
-        - key: "2"
-          text: 他觉得明文变得懂事了让他很感动。
-        - key: "3"
-          text: 明文很喜欢他的后花园让他很好奇。
-        - key: "4"
-          text: 明文比他更会照顾植物让他很满意。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
+        - 他看到明文弄得一身泥让他很难过。
+        - 他觉得明文变得懂事了让他很感动。
+        - 明文很喜欢他的后花园让他很好奇。
+        - 明文比他更会照顾植物让他很满意。
+      correct: 他觉得明文变得懂事了让他很感动。
+    - format: MCQ
       text: 以下哪一句话是正确的？
       options:
-        - key: "1"
-          text: 爷爷要求明文在每个假期时去他的家住。
-        - key: "2"
-          text: 爷爷认为照他的习惯做事会让明文长大。
-        - key: "3"
-          text: 明文悄悄地走进花园时就被爷爷发现了。
-        - key: "4"
-          text: 明文觉得和爷爷打理花园是件幸福的事。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 爷爷要求明文在每个假期时去他的家住。
+        - 爷爷认为照他的习惯做事会让明文长大。
+        - 明文悄悄地走进花园时就被爷爷发现了。
+        - 明文觉得和爷爷打理花园是件幸福的事。
+      correct: 明文觉得和爷爷打理花园是件幸福的事。
+    - format: MCQ
       text: 明文有什么地方是值得我们学习的？
       options:
-        - key: "1"
-          text: 有每天都很早起床的好习惯。
-        - key: "2"
-          text: 常给家中的长辈不同的惊喜。
-        - key: "3"
-          text: 为懂得打理花园而感到骄傲。
-        - key: "4"
-          text: 通过行动来表示对家人的爱。
-      correctKey: "4"
+        - 有每天都很早起床的好习惯。
+        - 常给家中的长辈不同的惊喜。
+        - 为懂得打理花园而感到骄傲。
+        - 通过行动来表示对家人的爱。
+      correct: 通过行动来表示对家人的爱。
 - groupId: HP24EOY-G5
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 陈老师的课
@@ -2834,20 +2335,17 @@
 
       课室里又是一片沉默，班里好几个同学低下头，脸红了起来……
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示“做决定”的词语是：___ 。
       accepted:
         - 决定
       displayAnswer: 决定
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中表示“商量；探讨”的词语是：___ 。
       accepted:
         - 讨论
       displayAnswer: 讨论
-    - marks: 2
-      format: Long-Answer
+    - format: Long-Answer
       text: 方丽的脸上为什么会一阵红一阵白？
       displayAnswer: 小文看到有些简单的题目，方丽不会，小文取笑她。
     - marks: 4
@@ -2868,7 +2366,6 @@
       displayAnswer: 我觉得陈老师是一个用心良苦、有耐心的好老师。从她为了让学生学会换位思考和顾及他人感受，特地通过切身体会的方式引导学生反思自己的言行可以看出。
 - groupId: MB24SA2-G2
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 开着的门
@@ -2884,74 +2381,48 @@
 
       从那以后，女儿决定留下来孝顺妈妈，一家人幸福地生活在一起。
   questions:
-    - marks: 2
-      format: MCQ
+    - format: MCQ
       text: 妈妈为什么每天睡觉前都认真地关好家里的门？
       options:
-        - key: "1"
-          text: 担心女儿会跑出去玩。
-        - key: "2"
-          text: 不想女儿去城市工作。
-        - key: "3"
-          text: 怕晚上家里进来小偷。
-        - key: "4"
-          text: 觉得菜和鸡鸭会被偷。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 担心女儿会跑出去玩。
+        - 不想女儿去城市工作。
+        - 怕晚上家里进来小偷。
+        - 觉得菜和鸡鸭会被偷。
+      correct: 怕晚上家里进来小偷。
+    - format: MCQ
       text: “她们为了这件事发生了争吵”文中的这件事指的是什么？
       options:
-        - key: "1"
-          text: 女儿不想要住在村子里。
-        - key: "2"
-          text: 女儿帮忙种菜和喂鸡鸭。
-        - key: "3"
-          text: 妈妈不想女儿去城市工作。
-        - key: "4"
-          text: 妈妈认为出外工作很危险。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
+        - 女儿不想要住在村子里。
+        - 女儿帮忙种菜和喂鸡鸭。
+        - 妈妈不想女儿去城市工作。
+        - 妈妈认为出外工作很危险。
+      correct: 妈妈不想女儿去城市工作。
+    - format: MCQ
       text: 看到门开着时，女儿有什么想法？
       options:
-        - key: "1"
-          text: 觉得家里可能进来了小偷。
-        - key: "2"
-          text: 认为妈妈没关门就去睡觉。
-        - key: "3"
-          text: 生气妈妈很粗心，忘记关门。
-        - key: "4"
-          text: 十分感动妈妈还这么关心她。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
+        - 觉得家里可能进来了小偷。
+        - 认为妈妈没关门就去睡觉。
+        - 生气妈妈很粗心，忘记关门。
+        - 十分感动妈妈还这么关心她。
+      correct: 觉得家里可能进来了小偷。
+    - format: MCQ
       text: 一听到女儿的叫声，妈妈立刻睁开眼睛。这说明了什么？
       options:
-        - key: "1"
-          text: 女儿告诉妈妈她晚上回家。
-        - key: "2"
-          text: 她知道女儿一定会回来的。
-        - key: "3"
-          text: 女儿每天晚上都准时回家。
-        - key: "4"
-          text: 她时刻盼望女儿早点回家。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
+        - 女儿告诉妈妈她晚上回家。
+        - 她知道女儿一定会回来的。
+        - 女儿每天晚上都准时回家。
+        - 她时刻盼望女儿早点回家。
+      correct: 她时刻盼望女儿早点回家。
+    - format: MCQ
       text: 这篇文章让我们明白了什么道理？
       options:
-        - key: "1"
-          text: 不应该经常和妈妈吵架。
-        - key: "2"
-          text: 去大城市工作不会开心。
-        - key: "3"
-          text: 门应该开着让孩子能回家。
-        - key: "4"
-          text: 与家人在一起是最快乐的。
-      correctKey: "4"
+        - 不应该经常和妈妈吵架。
+        - 去大城市工作不会开心。
+        - 门应该开着让孩子能回家。
+        - 与家人在一起是最快乐的。
+      correct: 与家人在一起是最快乐的。
 - groupId: MB24SA2-G5
   subject: Chinese
-  category: comprehension
   lessonIds: []
   passage:
     title: 丽飞与康乐
@@ -2965,14 +2436,12 @@
 
       听到康乐的话，丽飞恍然大悟。她意识到康乐是一个真诚善良的好朋友，而自己过去的做法太狭隘了。她决定放下偏见，和康乐成为真正的朋友。隔天，老师在全班面前宣布丽飞和康乐共同获得了科学进步奖，大家都为他们热烈鼓掌。
   questions:
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容“公开告诉大家”的词语是：___ 。
       accepted:
         - 宣布
       displayAnswer: 宣布
-    - marks: 2
-      format: Fill-in
+    - format: Fill-in
       text: 文中形容“一下子明白过来”的词语是：___ 。
       accepted:
         - 恍然大悟

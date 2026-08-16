@@ -1,20 +1,10 @@
-- groupId: P2-USE1
-  subject: Chinese
-  category: usage
+- questionID: P2-USE1
   lessonIds:
     - 2
-  passage: null
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 以下哪一个句子是正确的？（词语：开心）
-      options:
-        - key: "1"
-          text: 我今天很开心，因为吃到了好吃的蛋糕。
-        - key: "2"
-          text: 我的开心很大。
-        - key: "3"
-          text: 他跑得很开心。
-        - key: "4"
-          text: 桌子上有一个开心。
-      correctKey: "1"
+  question: 以下哪一个句子是正确的？（词语：开心）
+  options:
+    - 我今天很开心，因为吃到了好吃的蛋糕。
+    - 我的开心很大。
+    - 他跑得很开心。
+    - 桌子上有一个开心。
+  correct: 我今天很开心，因为吃到了好吃的蛋糕。

@@ -1,24 +1,5 @@
 - groupId: CH-G3
-  subject: Chinese
-  category: dialogue
   lessonIds: []
-  optionBank:
-    - key: "1"
-      text: 只要赢了这场游戏
-    - key: "2"
-      text: 应该让眼睛好好休息
-    - key: "3"
-      text: 黑眼圈就很快会来找你
-    - key: "4"
-      text: 这场游戏很快就结束了
-    - key: "5"
-      text: 我可以再玩半个小时吗
-    - key: "6"
-      text: 我是不是已经得了近视
-    - key: "7"
-      text: 我只玩了半个小时的时间
-    - key: "8"
-      text: 你不让眼睛得到足够的休息
   passage:
     title: 电脑游戏
     source: 老师自编
@@ -31,44 +12,26 @@
       小强：对不起，妈妈，我不知道已经玩了那么长时间了。
       妈妈：[Q29]___，很容易得近视，到时候就需要戴眼镜了。
       小强：我不要戴眼镜。好，我这就把电脑关上。
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 小强：___？（回应妈妈问他为什么还在玩电脑游戏）
-      correctKey: "5"
-    - marks: 2
-      format: MCQ
-      text: 小强：请你让我再玩一会儿嘛。___，我就关电脑休息。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
-      text: 妈妈：你已经玩了两个多小时了，___。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
-      text: 妈妈：___，很容易得近视，到时候就需要戴眼镜了。
-      correctKey: "8"
-- groupId: NH-G3
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 我想去日本看雪
-    - key: "2"
-      text: 你什么时候出发
-    - key: "3"
-      text: 想和家人一起去看花展
-    - key: "4"
-      text: 只要你穿上保暖的衣物
-    - key: "5"
-      text: 要是不习惯那里的天气
-    - key: "6"
-      text: 那里的天气和新加坡一样热
-    - key: "7"
-      text: 如果你没带平常生病时吃的药
-    - key: "8"
-      text: 你买了哪一天回新加坡的机票
+    - 只要赢了这场游戏
+    - 应该让眼睛好好休息
+    - 黑眼圈就很快会来找你
+    - 这场游戏很快就结束了
+    - 我可以再玩半个小时吗
+    - 我是不是已经得了近视
+    - 我只玩了半个小时的时间
+    - 你不让眼睛得到足够的休息
+  questions:
+    - text: 小强：___？（回应妈妈问他为什么还在玩电脑游戏）
+      correct: 我可以再玩半个小时吗
+    - text: 小强：请你让我再玩一会儿嘛。___，我就关电脑休息。
+      correct: 只要赢了这场游戏
+    - text: 妈妈：你已经玩了两个多小时了，___。
+      correct: 应该让眼睛好好休息
+    - text: 妈妈：___，很容易得近视，到时候就需要戴眼镜了。
+      correct: 你不让眼睛得到足够的休息
+- groupId: NH-G3
+  lessonIds: []
   passage:
     title: 去日本旅行
     source: 老师自编
@@ -81,44 +44,26 @@
       伟玲：真的吗？那太好了！谢谢你！
       文乐：不客气！[Q29]___？我把东西准备好，送到你家。
       伟玲：我买了十二月一号的机票。真的太感谢你了！
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 伟玲：我喜欢冬天，___。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
-      text: 伟玲：不过冬天十分寒冷，特别是刮风的时候。___，就容易生病。
-      correctKey: "5"
-    - marks: 2
-      format: MCQ
-      text: 文乐：不用担心，___，就没问题了。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
-      text: 文乐：不客气！___？我把东西准备好，送到你家。
-      correctKey: "2"
-- groupId: ACSJ-G3
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 我只写了一半
-    - key: "2"
-      text: 谁会来帮助我呢
-    - key: "3"
-      text: 你什么时候有空
-    - key: "4"
-      text: 这次的作业不简单
-    - key: "5"
-      text: 我把作业留在课室里了
-    - key: "6"
-      text: 我很乐意当你的小老师
-    - key: "7"
-      text: 你可以把作业借给我抄吗
-    - key: "8"
-      text: 老师一定会狠狠骂我一顿的
+    - 我想去日本看雪
+    - 你什么时候出发
+    - 想和家人一起去看花展
+    - 只要你穿上保暖的衣物
+    - 要是不习惯那里的天气
+    - 那里的天气和新加坡一样热
+    - 如果你没带平常生病时吃的药
+    - 你买了哪一天回新加坡的机票
+  questions:
+    - text: 伟玲：我喜欢冬天，___。
+      correct: 我想去日本看雪
+    - text: 伟玲：不过冬天十分寒冷，特别是刮风的时候。___，就容易生病。
+      correct: 要是不习惯那里的天气
+    - text: 文乐：不用担心，___，就没问题了。
+      correct: 只要你穿上保暖的衣物
+    - text: 文乐：不客气！___？我把东西准备好，送到你家。
+      correct: 你什么时候出发
+- groupId: ACSJ-G3
+  lessonIds: []
   passage:
     title: 忘做作业
     source: 老师自编
@@ -133,44 +78,26 @@
       阿东：[Q29]___？
       李聪：我今天下午有时间，你可以随时来我家找我。
       阿东：好的，我吃完午餐就去找你。
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 阿东：哦，___ 。 (回应李聪问他作业做完了吗)
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
-      text: 阿东：___ ，有几道题我不会做，你可以教我吗？
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
-      text: 李聪：当然可以，___ 。
-      correctKey: "6"
-    - marks: 2
-      format: MCQ
-      text: 阿东：___ ？
-      correctKey: "3"
-- groupId: HP-G3
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 你不用太紧张
-    - key: "2"
-      text: 你在担心什么呢
-    - key: "3"
-      text: 老师会骂我们吗
-    - key: "4"
-      text: 我会觉得很难受的
-    - key: "5"
-      text: 不像家里那么好吃
-    - key: "6"
-      text: 但是我还是很想念
-    - key: "7"
-      text: 我最爱吃盒饭里的食物哟
-    - key: "8"
-      text: 但大家还是有足够的时间冲凉的
+    - 我只写了一半
+    - 谁会来帮助我呢
+    - 你什么时候有空
+    - 这次的作业不简单
+    - 我把作业留在课室里了
+    - 我很乐意当你的小老师
+    - 你可以把作业借给我抄吗
+    - 老师一定会狠狠骂我一顿的
+  questions:
+    - text: 阿东：哦，___ 。 (回应李聪问他作业做完了吗)
+      correct: 我只写了一半
+    - text: 阿东：___ ，有几道题我不会做，你可以教我吗？
+      correct: 这次的作业不简单
+    - text: 李聪：当然可以，___ 。
+      correct: 我很乐意当你的小老师
+    - text: 阿东：___ ？
+      correct: 你什么时候有空
+- groupId: HP-G3
+  lessonIds: []
   passage:
     title: 露营
     source: 老师自编
@@ -185,44 +112,26 @@
       小新：我以前露营的时候，虽然时间短，[Q29]___。
       小丽：谢谢你，小新！听你这么说，我好像没那么紧张了。
       小新：五年级的露营活动机会难得，我们可不要错过哦！
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 小新：露营很好玩的！___？
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
-      text: 小丽：不过我听说露营期间我们吃的食物都是盒饭，___ 。
-      correctKey: "5"
-    - marks: 2
-      format: MCQ
-      text: 小丽：流了汗不冲凉，___ 。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
-      text: 小新：我以前露营的时候，虽然时间短，___ 。
-      correctKey: "8"
-- groupId: MB-G3
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 安全最重要
-    - key: "2"
-      text: 的确很不方便
-    - key: "3"
-      text: 我要打电话报警
-    - key: "4"
-      text: 这里离巴士站很远
-    - key: "5"
-      text: 我们家附近没有坡道
-    - key: "6"
-      text: 可是他们都听不进去
-    - key: "7"
-      text: 他们完全不懂得礼让
-    - key: "8"
-      text: 邻居之间应该互相理解才对
+    - 你不用太紧张
+    - 你在担心什么呢
+    - 老师会骂我们吗
+    - 我会觉得很难受的
+    - 不像家里那么好吃
+    - 但是我还是很想念
+    - 我最爱吃盒饭里的食物哟
+    - 但大家还是有足够的时间冲凉的
+  questions:
+    - text: 小新：露营很好玩的！___？
+      correct: 你在担心什么呢
+    - text: 小丽：不过我听说露营期间我们吃的食物都是盒饭，___ 。
+      correct: 不像家里那么好吃
+    - text: 小丽：流了汗不冲凉，___ 。
+      correct: 我会觉得很难受的
+    - text: 小新：我以前露营的时候，虽然时间短，___ 。
+      correct: 但大家还是有足够的时间冲凉的
+- groupId: MB-G3
+  lessonIds: []
   passage:
     title: 林爷爷搬家
     source: 老师自拟
@@ -235,44 +144,26 @@
       林爷爷：还有更让人头疼的！最近搬来了不少年轻人，每到周末他们就玩到很晚，音乐也开得很大声。我们没办法好好休息。我提醒了好几次，[Q28]___。
       美美：这些人真不为别人着想！[Q29]___。
       林爷爷：是啊，希望我们搬到新环境后能住得更舒适。
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 林爷爷：你看看，___ ，所以每次从巴刹买菜回来的时候，我们需要提着大包小包的东西爬上楼梯，没办法使用推车。
-      correctKey: "5"
-    - marks: 2
-      format: MCQ
-      text: 美美：对年纪大的居民来说，___ 。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
-      text: 林爷爷：我提醒了好几次，___ 。
-      correctKey: "6"
-    - marks: 2
-      format: MCQ
-      text: 美美：这些人真不为别人着想！___ 。
-      correctKey: "8"
-- groupId: NY-G3
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 我画的是民众俱乐部
-    - key: "2"
-      text: 希望这些海报能起作用
-    - key: "3"
-      text: 警告公众不讲卫生是会被抓的
-    - key: "4"
-      text: 你将通过什么方法提醒食客呢
-    - key: "5"
-      text: 正在为附近的小贩中心设计海报
-    - key: "6"
-      text: 民众俱乐部对海报有什么要求呢
-    - key: "7"
-      text: 有些公众怀疑这些海报是否有效
-    - key: "8"
-      text: 提醒大家注意小贩中心的清洁人人有责
+    - 安全最重要
+    - 的确很不方便
+    - 我要打电话报警
+    - 这里离巴士站很远
+    - 我们家附近没有坡道
+    - 可是他们都听不进去
+    - 他们完全不懂得礼让
+    - 邻居之间应该互相理解才对
+  questions:
+    - text: 林爷爷：你看看，___ ，所以每次从巴刹买菜回来的时候，我们需要提着大包小包的东西爬上楼梯，没办法使用推车。
+      correct: 我们家附近没有坡道
+    - text: 美美：对年纪大的居民来说，___ 。
+      correct: 的确很不方便
+    - text: 林爷爷：我提醒了好几次，___ 。
+      correct: 可是他们都听不进去
+    - text: 美美：这些人真不为别人着想！___ 。
+      correct: 邻居之间应该互相理解才对
+- groupId: NY-G3
+  lessonIds: []
   passage:
     title: 海报设计比赛
     source: 老师自拟
@@ -285,44 +176,26 @@
       小乐：民众俱乐部将会把获奖的海报贴在小贩中心，[Q28]___。因此，设计必须使大家明白公共卫生的重要，例如归还碗盘、注意公厕卫生等。
       安安：我认为这次的海报设计比赛太有意义了！[Q29]___，让大家更加自觉地为环境尽一份力。
       小乐：是的！海报设计好后，再让你看看！
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 小乐：我参加了民众俱乐部举办的海报设计比赛，___ 。
-      correctKey: "5"
-    - marks: 2
-      format: MCQ
-      text: 安安：___ ？
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
-      text: 小乐：民众俱乐部将会把获奖的海报贴在小贩中心，___ 。因此，设计必须使大家明白公共卫生的重要。
-      correctKey: "8"
-    - marks: 2
-      format: MCQ
-      text: 安安：我认为这次的海报设计比赛太有意义了！___ ，让大家更加自觉地为环境尽一份力。
-      correctKey: "2"
-- groupId: RG-G3
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 但我昨天吃得太饱
-    - key: "2"
-      text: 我现在要去归还碗盘
-    - key: "3"
-      text: 我还有很多功课要做
-    - key: "4"
-      text: 请阿姨换别的食物给你
-    - key: "5"
-      text: 但我就是不喜欢吃鱼丸
-    - key: "6"
-      text: 让阿姨每天的工作更辛苦
-    - key: "7"
-      text: 是老师提醒我们不要浪费的
-    - key: "8"
-      text: 都是别人辛辛苦苦准备的啊
+    - 我画的是民众俱乐部
+    - 希望这些海报能起作用
+    - 警告公众不讲卫生是会被抓的
+    - 你将通过什么方法提醒食客呢
+    - 正在为附近的小贩中心设计海报
+    - 民众俱乐部对海报有什么要求呢
+    - 有些公众怀疑这些海报是否有效
+    - 提醒大家注意小贩中心的清洁人人有责
+  questions:
+    - text: 小乐：我参加了民众俱乐部举办的海报设计比赛，___ 。
+      correct: 正在为附近的小贩中心设计海报
+    - text: 安安：___ ？
+      correct: 你将通过什么方法提醒食客呢
+    - text: 小乐：民众俱乐部将会把获奖的海报贴在小贩中心，___ 。因此，设计必须使大家明白公共卫生的重要。
+      correct: 提醒大家注意小贩中心的清洁人人有责
+    - text: 安安：我认为这次的海报设计比赛太有意义了！___ ，让大家更加自觉地为环境尽一份力。
+      correct: 希望这些海报能起作用
+- groupId: RG-G3
+  lessonIds: []
   passage:
     title: 别浪费食物
     source: 老师自拟
@@ -335,44 +208,26 @@
       明强：你说得对，我应该这么做。我常看到有同学和我一样，把吃不完的食物丢进垃圾桶。
       伟文：这些扔掉的食物，[Q29]___！这就像自己用心画了一个星期的画，被别人扔了一样！
       明强：我明白了，我下次一定会把食物吃完。
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 明强：不了，___ ，然后和你一起去踢球！
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
-      text: 明强：我也不想这么做，___ 。
-      correctKey: "5"
-    - marks: 2
-      format: MCQ
-      text: 伟文：你在买面时，应该告诉阿姨，___ 。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
-      text: 伟文：这些扔掉的食物，___ ！这就像自己用心画了一个星期的画，被别人扔了一样！
-      correctKey: "8"
-- groupId: RS-G3
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 他伤得不严重
-    - key: "2"
-      text: 住院的人不多
-    - key: "3"
-      text: 我们改天去好吗
-    - key: "4"
-      text: 他就不用看医生了
-    - key: "5"
-      text: 他一定会感到安慰
-    - key: "6"
-      text: 不如我和你一起去
-    - key: "7"
-      text: 怎么现在才告诉我
-    - key: "8"
-      text: 我想做张卡片送给他
+    - 但我昨天吃得太饱
+    - 我现在要去归还碗盘
+    - 我还有很多功课要做
+    - 请阿姨换别的食物给你
+    - 但我就是不喜欢吃鱼丸
+    - 让阿姨每天的工作更辛苦
+    - 是老师提醒我们不要浪费的
+    - 都是别人辛辛苦苦准备的啊
+  questions:
+    - text: 明强：不了，___ ，然后和你一起去踢球！
+      correct: 我现在要去归还碗盘
+    - text: 明强：我也不想这么做，___ 。
+      correct: 但我就是不喜欢吃鱼丸
+    - text: 伟文：你在买面时，应该告诉阿姨，___ 。
+      correct: 请阿姨换别的食物给你
+    - text: 伟文：这些扔掉的食物，___ ！这就像自己用心画了一个星期的画，被别人扔了一样！
+      correct: 都是别人辛辛苦苦准备的啊
+- groupId: RS-G3
+  lessonIds: []
   passage:
     title: 林伯伯住院了
     source: 老师自拟
@@ -384,44 +239,26 @@
       美文：[Q28]___，可以吗？
       妈妈：当然可以呀！你真是个懂事的孩子。看了你做的卡片，[Q29]___。
       美文：太好了，那我现在就去做！
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 妈妈：___ ？林伯伯住院了，我今晚要去探望他。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
-      text: 妈妈：他今天在巴刹里跌倒了。幸好，___ ，只需要住院几天。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
-      text: 美文：___ ，可以吗？
-      correctKey: "8"
-    - marks: 2
-      format: MCQ
-      text: 妈妈：当然可以呀！你真是个懂事的孩子。看了你做的卡片，___ 。
-      correctKey: "5"
-- groupId: RO-G3
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 还是不能得第一名
-    - key: "2"
-      text: 还会做很多练习题
-    - key: "3"
-      text: 也会想起老师的话
-    - key: "4"
-      text: 我越做越觉得容易
-    - key: "5"
-      text: 偏偏一直没有进步
-    - key: "6"
-      text: 只要我肯加倍努力
-    - key: "7"
-      text: 我答错的练习题非常多
-    - key: "8"
-      text: 你一定要找出答错的原因
+    - 他伤得不严重
+    - 住院的人不多
+    - 我们改天去好吗
+    - 他就不用看医生了
+    - 他一定会感到安慰
+    - 不如我和你一起去
+    - 怎么现在才告诉我
+    - 我想做张卡片送给他
+  questions:
+    - text: 妈妈：___ ？林伯伯住院了，我今晚要去探望他。
+      correct: 我们改天去好吗
+    - text: 妈妈：他今天在巴刹里跌倒了。幸好，___ ，只需要住院几天。
+      correct: 他伤得不严重
+    - text: 美文：___ ，可以吗？
+      correct: 我想做张卡片送给他
+    - text: 妈妈：当然可以呀！你真是个懂事的孩子。看了你做的卡片，___ 。
+      correct: 他一定会感到安慰
+- groupId: RO-G3
+  lessonIds: []
   passage:
     title: 数学退步了
     source: 老师自拟
@@ -437,44 +274,26 @@
       小安： [Q29]___，知道哪里不对，才能进步。
       立明： 我明白了，我今天放学后就会去找老师。
       小安： 老师一定会教你的。加油！
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 立明：是的，我努力学习了，___ 。
-      correctKey: "5"
-    - marks: 2
-      format: MCQ
-      text: 立明：我每天都会看笔记本，___ 。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
-      text: 立明：___ 。 (回答"那些问题你都答得如何？")
-      correctKey: "7"
-    - marks: 2
-      format: MCQ
-      text: 小安：___ ，知道哪里不对，才能进步。
-      correctKey: "8"
-- groupId: TN-G3
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 这真是个好主意
-    - key: "2"
-      text: 我不会骑脚踏车
-    - key: "3"
-      text: 你有什么好建议吗
-    - key: "4"
-      text: 你为什么喜欢户外活动
-    - key: "5"
-      text: 我们在海边欣赏优美的景色
-    - key: "6"
-      text: 我们还会进行有趣的户外活动
-    - key: "7"
-      text: 我会跟家人一起去东海岸公园野餐
-    - key: "8"
-      text: 还可以让我和家人的感情越来越好
+    - 还是不能得第一名
+    - 还会做很多练习题
+    - 也会想起老师的话
+    - 我越做越觉得容易
+    - 偏偏一直没有进步
+    - 只要我肯加倍努力
+    - 我答错的练习题非常多
+    - 你一定要找出答错的原因
+  questions:
+    - text: 立明：是的，我努力学习了，___ 。
+      correct: 偏偏一直没有进步
+    - text: 立明：我每天都会看笔记本，___ 。
+      correct: 还会做很多练习题
+    - text: 立明：___ 。 (回答"那些问题你都答得如何？")
+      correct: 我答错的练习题非常多
+    - text: 小安：___ ，知道哪里不对，才能进步。
+      correct: 你一定要找出答错的原因
+- groupId: TN-G3
+  lessonIds: []
   passage:
     title: 假期计划
     source: Tao Nan School, 2025 P5 EOY
@@ -488,44 +307,26 @@
       美美：[Q29]___。到时我去哪里找你们呢？
       小明：下周一下午两点，我在快餐店门口等你，好吗？
       美美：好的，到时候见！
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 小明：___ 。
-      correctKey: "7"
-    - marks: 2
-      format: MCQ
-      text: 在海边除了野餐，___ ，比如骑脚踏车、放风筝和堆沙堡等。
-      correctKey: "6"
-    - marks: 2
-      format: MCQ
-      text: 我却不知道怎么安排那天的时间！___ ？
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
-      text: 美美：___ 。到时我去哪里找你们呢？
-      correctKey: "1"
-- groupId: RL-G3
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 坚持是最重要的
-    - key: "2"
-      text: 我上了华文补习班
-    - key: "3"
-      text: 我每天都会读华文故事书
-    - key: "4"
-      text: 听写就是要花很多时间学
-    - key: "5"
-      text: 多读故事书就能学到新词语
-    - key: "6"
-      text: 故事书上有很多字我都不认识
-    - key: "7"
-      text: 我会把好词好句抄在笔记本上
-    - key: "8"
-      text: 原来学习华文有这么多方法啊
+    - 这真是个好主意
+    - 我不会骑脚踏车
+    - 你有什么好建议吗
+    - 你为什么喜欢户外活动
+    - 我们在海边欣赏优美的景色
+    - 我们还会进行有趣的户外活动
+    - 我会跟家人一起去东海岸公园野餐
+    - 还可以让我和家人的感情越来越好
+  questions:
+    - text: 小明：___ 。
+      correct: 我会跟家人一起去东海岸公园野餐
+    - text: 在海边除了野餐，___ ，比如骑脚踏车、放风筝和堆沙堡等。
+      correct: 我们还会进行有趣的户外活动
+    - text: 我却不知道怎么安排那天的时间！___ ？
+      correct: 你有什么好建议吗
+    - text: 美美：___ 。到时我去哪里找你们呢？
+      correct: 这真是个好主意
+- groupId: RL-G3
+  lessonIds: []
   passage:
     title: 学习华文的方法
     source: Rulang Primary School, 2025 P5 EOY
@@ -540,44 +341,26 @@
       立伟：你要多复习。我会把词语写在卡片上，每天睡前都会看一看。
       志明：我明白了，不管用什么方法，[Q29]___！
       立伟：你说得对，只要坚持下去，每天学一点，华文一定会进步的。加油！
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 立伟：我的方法很简单，___ 。
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
-      text: 立伟：有用啊！___ 。
-      correctKey: "5"
-    - marks: 2
-      format: MCQ
-      text: 立伟：___ ，写作文的时候就可以用上。
-      correctKey: "7"
-    - marks: 2
-      format: MCQ
-      text: 志明：我明白了，不管用什么方法，___ ！
-      correctKey: "1"
-- groupId: SH-G3
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 别着急
-    - key: "2"
-      text: 我可急死了
-    - key: "3"
-      text: 应该在书包里
-    - key: "4"
-      text: 我不想让她担心
-    - key: "5"
-      text: 真的太粗心大意了
-    - key: "6"
-      text: 连文件夹都翻遍了
-    - key: "7"
-      text: 难道已经交给老师了
-    - key: "8"
-      text: 告诉她不就马上被骂吗
+    - 坚持是最重要的
+    - 我上了华文补习班
+    - 我每天都会读华文故事书
+    - 听写就是要花很多时间学
+    - 多读故事书就能学到新词语
+    - 故事书上有很多字我都不认识
+    - 我会把好词好句抄在笔记本上
+    - 原来学习华文有这么多方法啊
+  questions:
+    - text: 立伟：我的方法很简单，___ 。
+      correct: 我每天都会读华文故事书
+    - text: 立伟：有用啊！___ 。
+      correct: 多读故事书就能学到新词语
+    - text: 立伟：___ ，写作文的时候就可以用上。
+      correct: 我会把好词好句抄在笔记本上
+    - text: 志明：我明白了，不管用什么方法，___ ！
+      correct: 坚持是最重要的
+- groupId: SH-G3
+  lessonIds: []
   passage:
     title: 找不到的作业
     source: St Hilda's Primary School, 2025 P5 EOY
@@ -590,44 +373,26 @@
       姐姐：不要，妈妈在准备晚餐，[Q28]___。
       弟弟：说的也是。[Q29]___，我帮你一起找吧！
       姐姐：太好了！谢谢你，你真是我的好弟弟！
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 姐姐：我的华文作业不见了，明天就要交给老师，___ ！
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
-      text: 姐姐：都找过了，___ ，还是没有看到。
-      correctKey: "6"
-    - marks: 2
-      format: MCQ
-      text: 姐姐：不要，妈妈在准备晚餐，___ 。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
-      text: 弟弟：说的也是。___ ，我帮你一起找吧！
-      correctKey: "1"
-- groupId: PL-G1
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 结果聊了起来
-    - key: "2"
-      text: 那我先去煮晚餐了
-    - key: "3"
-      text: 我才刚遇到林阿姨
-    - key: "4"
-      text: 那我先去洗衣服了
-    - key: "5"
-      text: 你不是刚读了报纸吗
-    - key: "6"
-      text: 你不是刚遇到林阿姨吗
-    - key: "7"
-      text: 我好久没见到林阿姨了
-    - key: "8"
-      text: 你不是刚从杂货店回来吗
+    - 别着急
+    - 我可急死了
+    - 应该在书包里
+    - 我不想让她担心
+    - 真的太粗心大意了
+    - 连文件夹都翻遍了
+    - 难道已经交给老师了
+    - 告诉她不就马上被骂吗
+  questions:
+    - text: 姐姐：我的华文作业不见了，明天就要交给老师，___ ！
+      correct: 我可急死了
+    - text: 姐姐：都找过了，___ ，还是没有看到。
+      correct: 连文件夹都翻遍了
+    - text: 姐姐：不要，妈妈在准备晚餐，___ 。
+      correct: 我不想让她担心
+    - text: 弟弟：说的也是。___ ，我帮你一起找吧！
+      correct: 别着急
+- groupId: PL-G1
+  lessonIds: []
   passage:
     title: 下楼买报纸
     source: Paya Lebar Methodist Girls' School (Primary), 2024 P5 WA2
@@ -640,44 +405,26 @@
       小美：原来是这样。妈妈，我先下楼买报纸。
       妈妈：谢谢你，小美。[Q29]___ 。
       小美：好的，妈妈。我回来后再帮你一起做饭。
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 小美：可以啊，但是 ___ ？
-      correctKey: "8"
-    - marks: 2
-      format: MCQ
-      text: 妈妈：是啊，我刚好在那里遇到林阿姨，___ ，就忘了买报纸。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
-      text: 小美：___ ，她最近还好吗？
-      correctKey: "7"
-    - marks: 2
-      format: MCQ
-      text: 妈妈：谢谢你，小美。___ 。
-      correctKey: "2"
-- groupId: RS24-G1
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 就请把饮料喝完吧
-    - key: "2"
-      text: 我要把瓶子拿去回收
-    - key: "3"
-      text: 我还是别去洗瓶子了
-    - key: "4"
-      text: 它们会发出难闻的味道
-    - key: "5"
-      text: 这样就能很快完成这件事了
-    - key: "6"
-      text: 我们还是能为环保尽一份力
-    - key: "7"
-      text: 难道你不知道水也很宝贵吗
-    - key: "8"
-      text: 你知不知道你这么做是在浪费水呢
+    - 结果聊了起来
+    - 那我先去煮晚餐了
+    - 我才刚遇到林阿姨
+    - 那我先去洗衣服了
+    - 你不是刚读了报纸吗
+    - 你不是刚遇到林阿姨吗
+    - 我好久没见到林阿姨了
+    - 你不是刚从杂货店回来吗
+  questions:
+    - text: 小美：可以啊，但是 ___ ？
+      correct: 你不是刚从杂货店回来吗
+    - text: 妈妈：是啊，我刚好在那里遇到林阿姨，___ ，就忘了买报纸。
+      correct: 结果聊了起来
+    - text: 小美：___ ，她最近还好吗？
+      correct: 我好久没见到林阿姨了
+    - text: 妈妈：谢谢你，小美。___ 。
+      correct: 那我先去煮晚餐了
+- groupId: RS24-G1
+  lessonIds: []
   passage:
     title: 回收瓶子
     source: Red Swastika School, 2024 P5 WA2
@@ -690,44 +437,26 @@
       张文：原来如此，可是这么多瓶子要洗到什么时候呢？
       雪儿：要不我们分工合作，一起把瓶子洗一洗吧！
       张文：好啊！谢谢你！[Q4]___。
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 张文：___ ，为环保尽一份力。
-      correctKey: "2"
-    - marks: 2
-      format: MCQ
-      text: 张文：洗瓶子？ ___ ？
-      correctKey: "7"
-    - marks: 2
-      format: MCQ
-      text: 雪儿：……老师告诉我们如果不清洗， ___ 。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
-      text: 张文：好啊！谢谢你！ ___ 。
-      correctKey: "5"
-- groupId: HP24EOY-G3
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 老师会帮我吗
-    - key: "2"
-      text: 我也打了他一下
-    - key: "3"
-      text: 打算告诉老师吗
-    - key: "4"
-      text: 昨天我没被人打
-    - key: "5"
-      text: 我去跟老师说这件事
-    - key: "6"
-      text: 上次另一班的同学打了我
-    - key: "7"
-      text: 我要告诉华明不要这么做了
-    - key: "8"
-      text: 她才可以阻止华明继续这样做
+    - 就请把饮料喝完吧
+    - 我要把瓶子拿去回收
+    - 我还是别去洗瓶子了
+    - 它们会发出难闻的味道
+    - 这样就能很快完成这件事了
+    - 我们还是能为环保尽一份力
+    - 难道你不知道水也很宝贵吗
+    - 你知不知道你这么做是在浪费水呢
+  questions:
+    - text: 张文：___ ，为环保尽一份力。
+      correct: 我要把瓶子拿去回收
+    - text: 张文：洗瓶子？ ___ ？
+      correct: 难道你不知道水也很宝贵吗
+    - text: 雪儿：……老师告诉我们如果不清洗， ___ 。
+      correct: 它们会发出难闻的味道
+    - text: 张文：好啊！谢谢你！ ___ 。
+      correct: 这样就能很快完成这件事了
+- groupId: HP24EOY-G3
+  lessonIds: []
   passage:
     title: 美美与国强的对话
     source: Henry Park Primary School, 2024 P5 EOY
@@ -743,44 +472,26 @@
       美美：老师一定有办法阻止华明再这么对你！
       国强：好吧！[Q29]，不然我怕下次华明又会乱踢我或其他人。
       美美：这样做才对啊！
-  questions:
-    - marks: 2
-      format: MCQ
-      text: 美美：你还好吗？___ ？
-      correctKey: "3"
-    - marks: 2
-      format: MCQ
-      text: 美美：为什么不说？告诉老师，___ ！
-      correctKey: "8"
-    - marks: 2
-      format: MCQ
-      text: 美美：怎么这么说呢？___ ，我跟老师说后，同学就不敢再打我了。
-      correctKey: "6"
-    - marks: 2
-      format: MCQ
-      text: 国强：好吧！___ ，不然我怕下次华明又会乱踢我或其他人。
-      correctKey: "5"
-- groupId: MB24SA2-G3
-  subject: Chinese
-  category: dialogue
-  lessonIds: []
   optionBank:
-    - key: "1"
-      text: 我嘲笑了她
-    - key: "2"
-      text: 她没有责任感
-    - key: "3"
-      text: 人都难免会犯错
-    - key: "4"
-      text: 这就是你不对了
-    - key: "5"
-      text: 我们在同一个小组
-    - key: "6"
-      text: 你不应该和她吵架
-    - key: "7"
-      text: 我明白你的意思了
-    - key: "8"
-      text: 她昨天突然跑过来
+    - 老师会帮我吗
+    - 我也打了他一下
+    - 打算告诉老师吗
+    - 昨天我没被人打
+    - 我去跟老师说这件事
+    - 上次另一班的同学打了我
+    - 我要告诉华明不要这么做了
+    - 她才可以阻止华明继续这样做
+  questions:
+    - text: 美美：你还好吗？___ ？
+      correct: 打算告诉老师吗
+    - text: 美美：为什么不说？告诉老师，___ ！
+      correct: 她才可以阻止华明继续这样做
+    - text: 美美：怎么这么说呢？___ ，我跟老师说后，同学就不敢再打我了。
+      correct: 上次另一班的同学打了我
+    - text: 国强：好吧！___ ，不然我怕下次华明又会乱踢我或其他人。
+      correct: 我去跟老师说这件事
+- groupId: MB24SA2-G3
+  lessonIds: []
   passage:
     title: 完成对话
     source: Maha Bodhi School, 2024 P5 SA2
@@ -793,20 +504,21 @@
       小月：可是，她写字真的是太慢了，影响了我们的小组讨论……
       妈妈：如果有同学在大家的面前嘲笑你，你会有什么感受呢？
       小月：[Q29]___ ，我现在就去向美美和伟芳道歉。
+  optionBank:
+    - 我嘲笑了她
+    - 她没有责任感
+    - 人都难免会犯错
+    - 这就是你不对了
+    - 我们在同一个小组
+    - 你不应该和她吵架
+    - 我明白你的意思了
+    - 她昨天突然跑过来
   questions:
-    - marks: 2
-      format: MCQ
-      text: 小月：___ 说我不懂得照顾同学的感受。
-      correctKey: "8"
-    - marks: 2
-      format: MCQ
-      text: 小月：昨天做小组作业时，伟芳写字很慢，___ 美美说了我几句，我们就这样吵了起来。
-      correctKey: "1"
-    - marks: 2
-      format: MCQ
-      text: 妈妈：___ 。同学有困难，我们应该帮助他们，而不是嘲笑他们。
-      correctKey: "4"
-    - marks: 2
-      format: MCQ
-      text: 小月：___ ，我现在就去向美美和伟芳道歉。
-      correctKey: "7"
+    - text: 小月：___ 说我不懂得照顾同学的感受。
+      correct: 她昨天突然跑过来
+    - text: 小月：昨天做小组作业时，伟芳写字很慢，___ 美美说了我几句，我们就这样吵了起来。
+      correct: 我嘲笑了她
+    - text: 妈妈：___ 。同学有困难，我们应该帮助他们，而不是嘲笑他们。
+      correct: 这就是你不对了
+    - text: 小月：___ ，我现在就去向美美和伟芳道歉。
+      correct: 我明白你的意思了

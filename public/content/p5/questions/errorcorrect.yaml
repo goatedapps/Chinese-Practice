@@ -1,6 +1,4 @@
 - groupId: HC-G2
-  subject: Higher Chinese
-  category: errorcorrect
   lessonIds: []
   passage:
     title: 无声的爱
@@ -14,39 +12,27 @@
 
       我把雨衣披在身上，感受到了爸爸的温暖。我是多么幸运有一位一直保护着我的爸爸，我一定要 [Q10]珍贵 爸爸对我的爱，长大后用行动来感谢他。
   questions:
-    - marks: 2
-      format: Fill-in
-      text: 爸爸 (兰) 住了我。 —— 括号里的字是写错的字，请写出正确的字。
+    - text: 爸爸 (兰) 住了我。 —— 括号里的字是写错的字，请写出正确的字。
       accepted:
         - 拦
       displayAnswer: 拦 (拦住)
-    - marks: 2
-      format: Fill-in
-      text: 心里__不时__担心起来 —— 画线词语中有一个字用得不恰当，请写出正确的词语。
+    - text: 心里__不时__担心起来 —— 画线词语中有一个字用得不恰当，请写出正确的词语。
       accepted:
         - 不禁
       displayAnswer: 不禁
-    - marks: 2
-      format: Fill-in
-      text: 就在我 (扮) 望有人来接我时 —— 括号里的字是写错的字，请写出正确的字。
+    - text: 就在我 (扮) 望有人来接我时 —— 括号里的字是写错的字，请写出正确的字。
       accepted:
         - 盼
       displayAnswer: 盼 (盼望)
-    - marks: 2
-      format: Fill-in
-      text: 爸爸把雨衣 (第) 给我。 —— 括号里的字是写错的字，请写出正确的字。
+    - text: 爸爸把雨衣 (第) 给我。 —— 括号里的字是写错的字，请写出正确的字。
       accepted:
         - 递
       displayAnswer: 递 (递给)
-    - marks: 2
-      format: Fill-in
-      text: 我一定要__珍贵__爸爸对我的爱 —— 画线词语中有一个字用得不恰当，请写出正确的词语。
+    - text: 我一定要__珍贵__爸爸对我的爱 —— 画线词语中有一个字用得不恰当，请写出正确的词语。
       accepted:
         - 珍惜
       displayAnswer: 珍惜
 - groupId: NH-HC-G2
-  subject: Higher Chinese
-  category: errorcorrect
   lessonIds: []
   passage:
     title: 扫地机器人
@@ -60,39 +46,27 @@
 
       多么聪明的扫地机啊！自从有了它，我家 [Q10]增长 了许多乐趣！
   questions:
-    - marks: 2
-      format: Fill-in
-      text: 它还长着两只“小眼睛”，停止 它乱撞家里的东西 —— 画线词语中有一个字用得不恰当，请改正。
+    - text: 它还长着两只“小眼睛”，停止 它乱撞家里的东西 —— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 防止
       displayAnswer: 防止
-    - marks: 2
-      format: Fill-in
-      text: 它就会 (墨)(墨) 地扫起地来 —— 括号里的字是写错的字，请改正。
+    - text: 它就会 (墨)(墨) 地扫起地来 —— 括号里的字是写错的字，请改正。
       accepted:
         - 默
       displayAnswer: 默 (默默)
-    - marks: 2
-      format: Fill-in
-      text: 你完全不用怀 (意) 它的能力 —— 括号里的字是写错的字，请改正。
+    - text: 你完全不用怀 (意) 它的能力 —— 括号里的字是写错的字，请改正。
       accepted:
         - 疑
       displayAnswer: 疑 (怀疑)
-    - marks: 2
-      format: Fill-in
-      text: 除了辛 (琴) 地工作 —— 括号里的字是写错的字，请改正。
+    - text: 除了辛 (琴) 地工作 —— 括号里的字是写错的字，请改正。
       accepted:
         - 勤
       displayAnswer: 勤 (辛勤)
-    - marks: 2
-      format: Fill-in
-      text: 自从有了它，我家 增长 了许多乐趣 —— 画线词语中有一个字用得不恰当，请改正。
+    - text: 自从有了它，我家 增长 了许多乐趣 —— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 增添
       displayAnswer: 增添
 - groupId: TN-HC-G2
-  subject: Higher Chinese
-  category: errorcorrect
   lessonIds: []
   passage:
     title: 妈妈的建议
@@ -106,39 +80,27 @@
 
       妈妈让我学会了坚强与感 [Q10](思)。在成长的道路上，无论我遇到什么困难，只要想到妈妈，我就能坚持下去。
   questions:
-    - marks: 2
-      format: Fill-in
-      text: 并给我 珍贵 的建议。 —— 画线词语中有一个字用得不恰当，请改正。
+    - text: 并给我 珍贵 的建议。 —— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 宝贵
       displayAnswer: 宝贵 (宝贵的建议)
-    - marks: 2
-      format: Fill-in
-      text: 安 (卫) 我说："失败是成功之母。只要你努力，下次一定会考到好成绩。" —— 括号里的字是写错的字，请改正。
+    - text: 安 (卫) 我说："失败是成功之母。只要你努力，下次一定会考到好成绩。" —— 括号里的字是写错的字，请改正。
       accepted:
         - 慰
       displayAnswer: 慰 (安慰)
-    - marks: 2
-      format: Fill-in
-      text: 妈妈的话让我 回复 自信，变得积极起来。 —— 画线词语中有一个字用得不恰当，请改正。
+    - text: 妈妈的话让我 回复 自信，变得积极起来。 —— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 恢复
       displayAnswer: 恢复 (恢复自信)
-    - marks: 2
-      format: Fill-in
-      text: 她为人慷 (既)，时常捐钱给老人院，也时常带我一起做义工。 —— 括号里的字是写错的字，请改正。
+    - text: 她为人慷 (既)，时常捐钱给老人院，也时常带我一起做义工。 —— 括号里的字是写错的字，请改正。
       accepted:
         - 慨
       displayAnswer: 慨 (慷慨)
-    - marks: 2
-      format: Fill-in
-      text: 妈妈让我学会了坚强与感 (思)。 —— 括号里的字是写错的字，请改正。
+    - text: 妈妈让我学会了坚强与感 (思)。 —— 括号里的字是写错的字，请改正。
       accepted:
         - 恩
       displayAnswer: 恩 (感恩)
 - groupId: SH-HC-G2
-  subject: Higher Chinese
-  category: errorcorrect
   lessonIds: []
   passage:
     title: 陪伴老人
@@ -150,39 +112,27 @@
 
       活动中，她带领老人玩拼图、跳舞。看到老人们从烦[Q8](脑)中走出来，脸上重现笑容，她深感愉快。“有位马来族奶奶常常请大家吃她亲手煮的马来炒面，大家吃了都觉得很快乐。她这种与他人[Q9]分担的精神让我明白，善良不分年龄。”她笑着说。老人常[Q10](斗)得她开怀大笑，让她很想继续在老人院帮忙。
   questions:
-    - marks: 2
-      format: Fill-in
-      text: 为各族老人增（天）欢乐。—— 括号里的字是写错的字，请改正。
+    - text: 为各族老人增（天）欢乐。—— 括号里的字是写错的字，请改正。
       accepted:
         - 添
       displayAnswer: 添 (增添)
-    - marks: 2
-      format: Fill-in
-      text: 她十分珍贵与老人相处的时光。—— 画线词语中有一个字用得不恰当，请改正。
+    - text: 她十分珍贵与老人相处的时光。—— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 珍惜
       displayAnswer: 珍惜
-    - marks: 2
-      format: Fill-in
-      text: 看到老人们从烦（脑）中走出来，脸上重现笑容。—— 括号里的字是写错的字，请改正。
+    - text: 看到老人们从烦（脑）中走出来，脸上重现笑容。—— 括号里的字是写错的字，请改正。
       accepted:
         - 恼
       displayAnswer: 恼 (烦恼)
-    - marks: 2
-      format: Fill-in
-      text: 她这种与他人分担的精神让我明白，善良不分年龄。—— 画线词语中有一个字用得不恰当，请改正。
+    - text: 她这种与他人分担的精神让我明白，善良不分年龄。—— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 分享
       displayAnswer: 分享
-    - marks: 2
-      format: Fill-in
-      text: 老人常（斗）得她开怀大笑，让她很想继续在老人院帮忙。—— 括号里的字是写错的字，请改正。
+    - text: 老人常（斗）得她开怀大笑，让她很想继续在老人院帮忙。—— 括号里的字是写错的字，请改正。
       accepted:
         - 逗
       displayAnswer: 逗
 - groupId: HP-HC-G2
-  subject: Higher Chinese
-  category: errorcorrect
   lessonIds: []
   passage:
     title: 姐姐和她的好朋友们
@@ -196,39 +146,27 @@
 
       姐姐和三个好朋友之间的友情让我十分向往。我从中也学会了要好好珍惜和朋友之间们的友情。我迫不及 [Q10](带) 地要长大，遇到自己的好朋友。
   questions:
-    - marks: 2
-      format: Fill-in
-      text: 包 (舌) 她和三个好朋友——诗乐、紫英和雪丽的生活趣事。 —— 括号里的字是写错的字，请改正。
+    - text: 包 (舌) 她和三个好朋友——诗乐、紫英和雪丽的生活趣事。 —— 括号里的字是写错的字，请改正。
       accepted:
         - 括
       displayAnswer: 括 (包括)
-    - marks: 2
-      format: Fill-in
-      text: 大家离开学校后，还一直__保护__联系。 —— 画线词语中有一个字用得不恰当，请改正。
+    - text: 大家离开学校后，还一直__保护__联系。 —— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 保持
       displayAnswer: 保持
-    - marks: 2
-      format: Fill-in
-      text: 每个月还会安排一次__会议__。 —— 画线词语中有一个字用得不恰当，请改正。
+    - text: 每个月还会安排一次__会议__。 —— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 聚会
       displayAnswer: 聚会
-    - marks: 2
-      format: Fill-in
-      text: 还会慷 (开) 地捐钱给老人院。 —— 括号里的字是写错的字，请改正。
+    - text: 还会慷 (开) 地捐钱给老人院。 —— 括号里的字是写错的字，请改正。
       accepted:
         - 慨
       displayAnswer: 慨 (慷慨)
-    - marks: 2
-      format: Fill-in
-      text: 我迫不及 (带) 地要长大，遇到自己的好朋友。 —— 括号里的字是写错的字，请改正。
+    - text: 我迫不及 (带) 地要长大，遇到自己的好朋友。 —— 括号里的字是写错的字，请改正。
       accepted:
         - 待
       displayAnswer: 待 (迫不及待)
 - groupId: MB-HC-G2
-  subject: Higher Chinese
-  category: errorcorrect
   lessonIds: []
   passage:
     title: 跳到月亮上的男孩
@@ -240,41 +178,29 @@
 
       谁能想到，这个小男孩长大后真的“跳”到月亮上了！他就是人类历史上第一个 [Q10](灯) 上月球的人——阿姆斯特朗。
   questions:
-    - marks: 2
-      format: Fill-in
-      text: 母亲不断听到儿子蹦蹦跳跳的声音，感到很__奇妙__，便问他在干什么。 —— 画线词语中有一个字用得不恰当，请改正。
+    - text: 母亲不断听到儿子蹦蹦跳跳的声音，感到很__奇妙__，便问他在干什么。 —— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 奇怪
         - 好奇
       displayAnswer: 奇怪 / 好奇
-    - marks: 2
-      format: Fill-in
-      text: 母亲听了，笑了笑，__温情__地说：“真的吗？……” —— 画线词语中有一个字用得不恰当，请改正。
+    - text: 母亲听了，笑了笑，__温情__地说：“真的吗？……” —— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 温柔
         - 温和
       displayAnswer: 温柔 / 温和
-    - marks: 2
-      format: Fill-in
-      text: 邻居看到这一幕，__小心__极了，立刻通知了小男孩的母亲。 —— 画线词语中有一个字用得不恰当，请改正。
+    - text: 邻居看到这一幕，__小心__极了，立刻通知了小男孩的母亲。 —— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 担心
       displayAnswer: 担心
-    - marks: 2
-      format: Fill-in
-      text: 可是你没有带 (将) 落伞，到月亮上怎么下来呢？ —— 括号里的字是写错的字，请改正。
+    - text: 可是你没有带 (将) 落伞，到月亮上怎么下来呢？ —— 括号里的字是写错的字，请改正。
       accepted:
         - 降
       displayAnswer: 降 (降落伞)
-    - marks: 2
-      format: Fill-in
-      text: 他就是人类历史上第一个 (灯) 上月球的人——阿姆斯特朗。 —— 括号里的字是写错的字，请改正。
+    - text: 他就是人类历史上第一个 (灯) 上月球的人——阿姆斯特朗。 —— 括号里的字是写错的字，请改正。
       accepted:
         - 登
       displayAnswer: 登 (登上)
 - groupId: NY-HC-G2
-  subject: Higher Chinese
-  category: errorcorrect
   lessonIds: []
   passage:
     title: 明华打乒乓球
@@ -286,39 +212,27 @@
 
       从那以后，明华非常 [Q10]珍贵 训练时的每一分，每一秒，无论训练有多辛苦，他都会尽力完成。经过半年的刻苦训练，明华最终得了冠军。他明白了只有勇敢地面对困难，才有战胜它的可能。
   questions:
-    - marks: 2
-      format: Fill-in
-      text: 表达自己的委 (区)。 —— 括号里的字是写错的字，请改正。
+    - text: 表达自己的委 (区)。 —— 括号里的字是写错的字，请改正。
       accepted:
         - 屈
       displayAnswer: 屈 (委屈)
-    - marks: 2
-      format: Fill-in
-      text: 我真__可疑__自己是不是选错了课外活动？ —— 画线词语中有一个字用得不恰当，请改正。
+    - text: 我真__可疑__自己是不是选错了课外活动？ —— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 怀疑
       displayAnswer: 怀疑
-    - marks: 2
-      format: Fill-in
-      text: 每一个人都会有遇到失 (贩) 的时候 —— 括号里的字是写错的字，请改正。
+    - text: 每一个人都会有遇到失 (贩) 的时候 —— 括号里的字是写错的字，请改正。
       accepted:
         - 败
       displayAnswer: 败 (失败)
-    - marks: 2
-      format: Fill-in
-      text: 而不是逃 (闭)。 —— 括号里的字是写错的字，请改正。
+    - text: 而不是逃 (闭)。 —— 括号里的字是写错的字，请改正。
       accepted:
         - 避
       displayAnswer: 避 (逃避)
-    - marks: 2
-      format: Fill-in
-      text: 明华非常__珍贵__训练时的每一分，每一秒 —— 画线词语中有一个字用得不恰当，请改正。
+    - text: 明华非常__珍贵__训练时的每一分，每一秒 —— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 珍惜
       displayAnswer: 珍惜
 - groupId: RG-HC-G2
-  subject: Higher Chinese
-  category: errorcorrect
   lessonIds: []
   passage:
     title: 保护花园与和谐社区
@@ -330,33 +244,23 @@
 
       这件事让我明白，要拥有一个美丽的生活环境，不能只靠 [Q9]计时，还需要大家合作。美好的生活不会自己降 [Q10](林) 在我们身上，而是需要大家一起努力。
   questions:
-    - marks: 2
-      format: Fill-in
-      text: 我就对这里感到熟 (惜) 了。 —— 括号里的字是写错的字，请改正。
+    - text: 我就对这里感到熟 (惜) 了。 —— 括号里的字是写错的字，请改正。
       accepted:
         - 悉
       displayAnswer: 悉 (熟悉)
-    - marks: 2
-      format: Fill-in
-      text: 气 (纷) 十分和谐。 —— 括号里的字是写错的字，请改正。
+    - text: 气 (纷) 十分和谐。 —— 括号里的字是写错的字，请改正。
       accepted:
         - 氛
       displayAnswer: 氛 (气氛)
-    - marks: 2
-      format: Fill-in
-      text: 居民决定__加速__努力来保护环境。 —— 画线词语中有一个字用得不恰当，请改正。
+    - text: 居民决定__加速__努力来保护环境。 —— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 加倍
       displayAnswer: 加倍
-    - marks: 2
-      format: Fill-in
-      text: 不能只靠__计时__，还需要大家合作。 —— 画线词语中有一个字用得不恰当，请改正。
+    - text: 不能只靠__计时__，还需要大家合作。 —— 画线词语中有一个字用得不恰当，请改正。
       accepted:
         - 计划
       displayAnswer: 计划
-    - marks: 2
-      format: Fill-in
-      text: 美好的生活不会自己降 (林) 在我们身上 —— 括号里的字是写错的字，请改正。
+    - text: 美好的生活不会自己降 (林) 在我们身上 —— 括号里的字是写错的字，请改正。
       accepted:
         - 临
       displayAnswer: 临 (降临)
