@@ -71,15 +71,1323 @@
   lessonIds:
     - 2
   questionCount: 1
-- groupId: P2-VOC1
+- groupId: CHATGPT-Vocab-1
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-2
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-3
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-4
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-5
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-6
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-7
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-8
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-9
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-10
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-11
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-12
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-13
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-14
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-15
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-16
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-17
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-18
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-19
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-20
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-21
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-22
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-23
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-24
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-25
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-26
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-27
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: CHATGPT-Vocab-28
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-29
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-30
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-31
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-32
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-33
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-34
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-35
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-36
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-37
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-38
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-39
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-40
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-41
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-42
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-43
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-44
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-45
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-46
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-47
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-48
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-49
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-50
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: CHATGPT-Vocab-51
   subject: Chinese
   category: vocab
   lessonIds:
     - 1
   questionCount: 1
-- groupId: P2-VOC2
+- groupId: CHATGPT-Vocab-52
   subject: Chinese
   category: vocab
   lessonIds:
-    - 2
+    - 1
+  questionCount: 1
+- groupId: CHATGPT-Vocab-53
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: CHATGPT-Vocab-54
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: CHATGPT-Vocab-55
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: CHATGPT-Vocab-56
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: CHATGPT-Vocab-57
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: CHATGPT-Vocab-58
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: CHATGPT-Vocab-59
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: CHATGPT-Vocab-60
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: CHATGPT-Vocab-61
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: CHATGPT-Vocab-62
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: CHATGPT-Vocab-63
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: CHATGPT-Vocab-64
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: CHATGPT-Vocab-65
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: CHATGPT-Vocab-66
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: CHATGPT-Vocab-67
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: CHATGPT-Vocab-68
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: CHATGPT-Vocab-69
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: CHATGPT-Vocab-70
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: CHATGPT-Vocab-71
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: CHATGPT-Vocab-72
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: CHATGPT-Vocab-73
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: CHATGPT-Vocab-74
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: CHATGPT-Vocab-75
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: CHATGPT-Vocab-76
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: CHATGPT-Vocab-77
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: CHATGPT-Vocab-78
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: CHATGPT-Vocab-79
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: CHATGPT-Vocab-80
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: CHATGPT-Vocab-81
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: CHATGPT-Vocab-82
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: CHATGPT-Vocab-83
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: CHATGPT-Vocab-84
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: CHATGPT-Vocab-85
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: CHATGPT-Vocab-86
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: CHATGPT-Vocab-87
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: CHATGPT-Vocab-88
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: CHATGPT-Vocab-89
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: CHATGPT-Vocab-90
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: CHATGPT-Vocab-91
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: CHATGPT-Vocab-92
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: CHATGPT-Vocab-93
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: CHATGPT-Vocab-94
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: CHATGPT-Vocab-95
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: CHATGPT-Vocab-96
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: CHATGPT-Vocab-97
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: CHATGPT-Vocab-98
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: CHATGPT-Vocab-99
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: CHATGPT-Vocab-100
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: CHATGPT-Vocab-101
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: CHATGPT-Vocab-102
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: CHATGPT-Vocab-103
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: CHATGPT-Vocab-104
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: CHATGPT-Vocab-105
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: CHATGPT-Vocab-106
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: CHATGPT-Vocab-107
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: CHATGPT-Vocab-108
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: CHATGPT-Vocab-109
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: CHATGPT-Vocab-110
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: CHATGPT-Vocab-111
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: CHATGPT-Vocab-112
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: CHATGPT-Vocab-113
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: CHATGPT-Vocab-114
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: CHATGPT-Vocab-115
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: CHATGPT-Vocab-116
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: CHATGPT-Vocab-117
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: CHATGPT-Vocab-118
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: CHATGPT-Vocab-119
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: CHATGPT-Vocab-120
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: CHATGPT-Vocab-121
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: CHATGPT-Vocab-122
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: CHATGPT-Vocab-123
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: CHATGPT-Vocab-124
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: CHATGPT-Vocab-125
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: CHATGPT-Vocab-126
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: CHATGPT-Vocab-127
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: CHATGPT-Vocab-128
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: CHATGPT-Vocab-129
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: CHATGPT-Vocab-130
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: CHATGPT-Vocab-131
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: CHATGPT-Vocab-132
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: CHATGPT-Vocab-133
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: CHATGPT-Vocab-134
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: CHATGPT-Vocab-135
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: CHATGPT-Vocab-136
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: CHATGPT-Vocab-137
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: CHATGPT-Vocab-138
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: CHATGPT-Vocab-139
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: CHATGPT-Vocab-140
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: CHATGPT-Vocab-141
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: CHATGPT-Vocab-142
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: CHATGPT-Vocab-143
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: CHATGPT-Vocab-144
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: CHATGPT-Vocab-145
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: CHATGPT-Vocab-146
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: CHATGPT-Vocab-147
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: CHATGPT-Vocab-148
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: CHATGPT-Vocab-149
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: CHATGPT-Vocab-150
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: CHATGPT-Vocab-151
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: CHATGPT-Vocab-152
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: CHATGPT-Vocab-153
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: CHATGPT-Vocab-154
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: CHATGPT-Vocab-155
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: CHATGPT-Vocab-156
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: CHATGPT-Vocab-157
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: CHATGPT-Vocab-158
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: CHATGPT-Vocab-159
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: CHATGPT-Vocab-160
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: CHATGPT-Vocab-161
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: CHATGPT-Vocab-162
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: CHATGPT-Vocab-163
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: CHATGPT-Vocab-164
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: CHATGPT-Vocab-165
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: CHATGPT-Vocab-166
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: CHATGPT-Vocab-167
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: CHATGPT-Vocab-168
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: CHATGPT-Vocab-169
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: CHATGPT-Vocab-170
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: CHATGPT-Vocab-171
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: CHATGPT-Vocab-172
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: CHATGPT-Vocab-173
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: CHATGPT-Vocab-174
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: CHATGPT-Vocab-175
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: CHATGPT-Vocab-176
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: CHATGPT-Vocab-177
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: CHATGPT-Vocab-178
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: CHATGPT-Vocab-179
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: CHATGPT-Vocab-180
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: CHATGPT-Vocab-181
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: CHATGPT-Vocab-182
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: CHATGPT-Vocab-183
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: CHATGPT-Vocab-184
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: CHATGPT-Vocab-185
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: CHATGPT-Vocab-186
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: CHATGPT-Vocab-187
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: CHATGPT-Vocab-188
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: CHATGPT-Vocab-189
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: CHATGPT-Vocab-190
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: CHATGPT-Vocab-191
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: CHATGPT-Vocab-192
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: CHATGPT-Vocab-193
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: CHATGPT-Vocab-194
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: CHATGPT-Vocab-195
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: CHATGPT-Vocab-196
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: CHATGPT-Vocab-197
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: CHATGPT-Vocab-198
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: CHATGPT-Vocab-199
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: CHATGPT-Vocab-200
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: CHATGPT-Vocab-201
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 18
+  questionCount: 1
+- groupId: CHATGPT-Vocab-202
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 18
+  questionCount: 1
+- groupId: CHATGPT-Vocab-203
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 18
+  questionCount: 1
+- groupId: CHATGPT-Vocab-204
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 18
+  questionCount: 1
+- groupId: CHATGPT-Vocab-205
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 18
+  questionCount: 1
+- groupId: CHATGPT-Vocab-206
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 18
+  questionCount: 1
+- groupId: CHATGPT-Vocab-207
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 18
+  questionCount: 1
+- groupId: CHATGPT-Vocab-208
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 18
+  questionCount: 1
+- groupId: CHATGPT-Vocab-209
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 18
+  questionCount: 1
+- groupId: CHATGPT-Vocab-210
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 18
+  questionCount: 1
+- groupId: CHATGPT-Vocab-211
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 19
+  questionCount: 1
+- groupId: CHATGPT-Vocab-212
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 19
+  questionCount: 1
+- groupId: CHATGPT-Vocab-213
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 19
+  questionCount: 1
+- groupId: CHATGPT-Vocab-214
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 19
+  questionCount: 1
+- groupId: CHATGPT-Vocab-215
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 19
+  questionCount: 1
+- groupId: CHATGPT-Vocab-216
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 19
+  questionCount: 1
+- groupId: CHATGPT-Vocab-217
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 19
+  questionCount: 1
+- groupId: CHATGPT-Vocab-218
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 19
+  questionCount: 1
+- groupId: CHATGPT-Vocab-219
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 19
+  questionCount: 1
+- groupId: CHATGPT-Vocab-220
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 19
   questionCount: 1
