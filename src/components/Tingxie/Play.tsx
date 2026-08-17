@@ -25,8 +25,9 @@ function randomFallSec(): number {
   return TINGXIE_PLAY_CONFIG.MIN_FALL_SEC + Math.random() * (TINGXIE_PLAY_CONFIG.MAX_FALL_SEC - TINGXIE_PLAY_CONFIG.MIN_FALL_SEC);
 }
 
-// Dictation Practice's "Play" (词云游戏) minigame -- a 30s timed round: a
-// blanked sentence (from the lesson's sentenceBank, same source Apply's
+// Dictation Practice's "Play" (词云游戏) minigame -- a timed round (see
+// TINGXIE_PLAY_CONFIG.DURATION_SEC) where a blanked sentence (from the
+// lesson's sentenceBank, same source Apply's
 // blank-fill exercise uses -- see buildTingxieApplyQueue()) is shown, and
 // word clouds keep falling until the student taps the one that fills the
 // blank. A correct tap scores it and immediately swaps in the next blanked

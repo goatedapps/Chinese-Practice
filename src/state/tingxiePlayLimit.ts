@@ -5,7 +5,7 @@
 // and likewise local-only/not synced across devices -- this is a soft
 // per-device anti-farming limit, not meaningful progress worth syncing.
 import { dateKey } from "../lib/stats";
-import { loadJSON } from "../lib/storage";
+import { loadJSON, saveJSON } from "../lib/storage";
 
 const TINGXIE_PLAY_LIMIT_KEY = "hanyuPracticeTingxiePlayLimit_v1";
 
@@ -21,7 +21,7 @@ function loadStore(): StoredShape {
 }
 
 function saveStore(store: StoredShape): void {
-  localStorage.setItem(TINGXIE_PLAY_LIMIT_KEY, JSON.stringify(store));
+  saveJSON(TINGXIE_PLAY_LIMIT_KEY, store);
 }
 
 // How many Play rounds have already been finished today -- Play.tsx checks

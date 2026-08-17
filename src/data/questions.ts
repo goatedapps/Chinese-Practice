@@ -39,7 +39,7 @@ export const CATEGORIES: Record<string, Category> = {
 };
 
 // The 4 categories the Practice screen combines into one "词语运用 Vocabulary"
-// button (see Practice.tsx's TYPE_PICKER_GROUPS) -- also exactly the set of
+// button (see Practice.tsx's TYPE_PICKER_GROUP_DEFS) -- also exactly the set of
 // categories whose lessonIds were actually verified against a real per-lesson
 // vocab list (see CLAUDE.md's lessonIds note), which is why lesson-filtering
 // on the Practice screen only ever applies to these four, never to

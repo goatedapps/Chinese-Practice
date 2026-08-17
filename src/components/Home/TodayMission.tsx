@@ -57,7 +57,11 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
 
   async function startReadingMission() {
     if (starting) return;
-    const chosen = shuffle(READING_MISSION_CATEGORIES).slice(0, 2);
+    // Filtered to this level's relevant categories first (see
+    // data/levels.ts) -- e.g. P2 has no real dialogue/practical content, so
+    // without this filter a 1-in-6 shuffle could pick both of those and
+    // silently no-op below once selectTypeSessionGroups() drops them.
+    const chosen = shuffle(READING_MISSION_CATEGORIES.filter((c) => isCategoryRelevantForLevel(c, level))).slice(0, 2);
     setStarting(true);
     try {
       const lists = await Promise.all(chosen.map((c) => fetchQuestionCategory(c)));
