@@ -1,9 +1,7 @@
 - groupId: HC-G1
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 科学馆参观
-    source: 老师自编
     text: |-
       上个星期，学校带我们到科学馆参观。那里有许多有趣的展览。我最喜欢的是“未来城市”展区。
 
@@ -57,10 +55,8 @@
       displayAnswer: 8 小心翼翼
 - groupId: CH-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 行善日
-    source: 改编自《早报校园》新闻
     text: |-
       如果你的同学在踢球时不小心摔伤了腿，需要坐轮椅，你会怎么做呢？有所学校的一个学生受伤后，他的同学有的主动帮他推轮椅，有的同学提早到学校等他，个个都 [Q16]___ 地想帮忙，让他非常感动。
 
@@ -112,10 +108,8 @@
       correct: 积极
 - groupId: NH-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 难忘的五年级
-    source: 老师自编
     text: |-
       五年级有丰富的活动，如：露营、学习之旅、观看国庆预演等。最让我难忘的是三天两夜的露营活动。那是我第一次离开家人，[Q16]___ 参加那么久的活动。虽然没有美味的食物，也没有舒服的床，但那一次的露营经历却让我更加 [Q17]___ 和同学在一起的时光。
 
@@ -165,10 +159,8 @@
       correct: 一眨眼
 - groupId: NH-HC-G1
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 误会
-    source: 老师自编
     text: |-
       休息时间，教室里传来争吵声。
 
@@ -224,10 +216,8 @@
       displayAnswer: 8 语重心长
 - groupId: ACSJ-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 建国60周年
-    source: 老师自编
     text: |-
       今年是新加坡建国60周年。爷爷说以前很多人的家里很穷，一家几口挤在一个小房间里。房间里光线[Q16]___，就连白天都看不清楚书本上的字。到了晚上，路灯下坐满了写作业的孩子。虽然生活困难，但是大家的感情很好，只要有人买了好吃的，都会和邻居[Q17]___。
 
@@ -279,10 +269,8 @@
       correct: 幸福
 - groupId: HP-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 热心的邻居
-    source: 老师自编
     text: |-
       现在的人住在一座座高楼里，多数的人却与邻居都 [Q16]___。但我很幸运有一个热心助人的邻居。
 
@@ -336,10 +324,8 @@
       correct: 不时
 - groupId: MB-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 好朋友
-    source: 老师自拟
     text: |-
       小云和小玉是邻居，也是同班同学。每天早上，[Q16]___7点，她们就会在家楼下等对方，然后一起上学。放学后，她们也会一起回家。
 
@@ -391,10 +377,8 @@
       correct: 盼望
 - groupId: NY-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 妈妈的提醒
-    source: 老师自拟
     text: |-
       丽文六年级毕业后，考进了体育学校。这是她第一次离开父母，和同学们住在一起。离开家之前，为了 [Q16]___ 她和同学们争吵，妈妈不断地提醒她要多为别人着想，但丽文总是回答："别管我，我已经长大了，知道怎么做！"
 
@@ -444,10 +428,8 @@
       correct: 模糊
 - groupId: RG-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 交流生
-    source: 老师自拟
     text: |-
       去年，五名从印度来的学生到我的学校交流。在短短的一个月里，我们一起上课，一起参加不同的户外活动，拉近了我们之间的 [Q16]___。
 
@@ -499,10 +481,8 @@
       correct: 珍惜
 - groupId: RS-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 陈老师的词典
-    source: 老师自拟
     text: |-
       陈老师是我们的华文老师。他的脾气很好，但是十分 [Q16]___ ，同样的事要说很多次。
 
@@ -554,10 +534,8 @@
       correct: 珍惜
 - groupId: RO-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 班长的信心
-    source: 老师自拟
     text: |-
       小红是我们班的班长。但是她觉得自已 [Q16]___ 安静，不适合当班长。她对自已没有什么信心。
 
@@ -607,10 +585,8 @@
       correct: 鼓励
 - groupId: TN-HC-G1
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 爱迪生的坚持
-    source: 老师自编
     text: |-
       爱迪生是闻名世界的“发明大王”，一生的发明共有一千多项。从小，他就 [Q1]___ 很强的好奇心，自学了很多知识。
 
@@ -662,10 +638,8 @@
       displayAnswer: 1 沉浸
 - groupId: SH-HC-G1
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 李明的电影梦
-    source: 老师自编
     text: |-
       李明念大学时参加学校的电影学会，并在空闲时举办电影活动。
 
@@ -719,10 +693,8 @@
       displayAnswer: 6 充实
 - groupId: TN-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 外婆的红烧排骨
-    source: Tao Nan School, 2025 P5 EOY
     text: |-
       今天是个特别的日子，因为住在马来西亚的外婆要来我家！一想到又能吃外婆做的红烧排骨，我的心里感到很 [Q16]___。
 
@@ -772,10 +744,8 @@
       correct: 浮现
 - groupId: RL-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 课程辅助活动
-    source: Rulang Primary School, 2025 P5 EOY
     text: |-
       在学校里，除了上课，同学们还会参加课程辅助活动。这些活动让校园生活变得更 [Q16]___。
 
@@ -827,10 +797,8 @@
       correct: 积极
 - groupId: SH-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 伟明的演讲
-    source: St Hilda's Primary School, 2025 P5 EOY
     text: |-
       有一次，伟明在准备上台演讲之前，[Q16]___ 坐在一边自言自语。他觉得很紧张，还想象自己会在台上说错话。这时候，他的朋友小丽走过来对他说：“不要担心，你已经准备好了，只要尽力就可以。”听了朋友的话，伟明心里觉得舒服多了。
 
@@ -882,10 +850,8 @@
       correct: 感恩
 - groupId: HP-HC-G1
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 熊哥哥的安慰
-    source: Henry Park Primary School, 2025 P5 Higher Chinese EOY
     text: |-
       一天，小熊回到家后，看着天空发呆。看到平时爱说话的小熊突然沉默起来，熊哥哥感到 [Q1]___，便走到小熊身边想关心它。熊哥哥轻轻伸出手 [Q2]___ 地摸了摸小熊的头，问它怎么了。
 
@@ -935,10 +901,8 @@
       displayAnswer: 4 放心
 - groupId: MB-HC-G1
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 小安的道歉
-    source: Maha Bodhi School, 2025 P5 Higher Chinese EOY
     text: |-
       放学了，小安一个人慢慢走在回家的路上，心里很难过。
 
@@ -992,10 +956,8 @@
       displayAnswer: 5 正确
 - groupId: NY-HC-G1
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 林肯爱读书
-    source: Nanyang Primary School, 2025 P5 Higher Chinese EOY
     text: |-
       美国第16任总统林肯小时候家里很穷，连买书的钱都没有，但他非常爱护书籍，即使是借来的书也会好好保管。
 
@@ -1049,10 +1011,8 @@
       displayAnswer: 2 昏暗
 - groupId: RG-HC-G1
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 画画比赛与乐于助人的班长
-    source: Raffles Girls' Primary School, 2025 P5 Higher Chinese EOY
     text: |-
       今天有画画比赛，来参加比赛的子文紧握着画笔，不敢走进美术室。他在美术教室外面 [Q1]___ 时，看到墙上的画，心想：要是我也能画得那么漂亮就好了！
 
@@ -1106,10 +1066,8 @@
       displayAnswer: 6 可贵
 - groupId: NY24-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 文文的试卷
-    source: Nanyang Primary School, 2024 P5 WA2
     text: |-
       年终考试到了，老师分回试卷。看到同桌丽丽优异的成绩，文文默默收起自己的试卷回家了。
 
@@ -1169,10 +1127,8 @@
       correct: 永远
 - groupId: NY24EOY-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 小学同学聚会
-    source: Nanyang Primary School, 2024 P5 EOY
     text: |-
       一天，我接到了一个令人兴奋的电话，原来是我小学时的班长请我参加同学聚会。想到我们好多年都没见面了，我立刻就答应了。
 
@@ -1224,10 +1180,8 @@
       correct: 渐渐
 - groupId: HP24EOY-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 陈强的梦想
-    source: Henry Park Primary School, 2024 P5 EOY
     text: |-
       陈强对学习很有兴趣，父母从小也让陈强阅读各种书，因为他们相信知识是 [Q16]___ 的财富，能为陈强打开通往未来的大门。
 
@@ -1277,10 +1231,8 @@
       correct: 实现
 - groupId: MB24SA2-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 短文填空
-    source: Maha Bodhi School, 2024 P5 SA2
     text: |-
       许多年前，有一对母女住在山村里。女儿渐渐长大了，想要到大城市去工作。妈妈听了很担心，因为城市离村子很远，而且外面并不安全，所以不同意女儿去。为了这件事，她们发生了争吵。[Q16]___ 妈妈不同意，女儿还是决定离开村子去城市。
 

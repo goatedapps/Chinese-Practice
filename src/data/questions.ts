@@ -128,7 +128,10 @@ interface RawGroupQuestion {
 interface RawGroup {
   groupId: string;
   subject?: string;
-  lessonIds: number[];
+  // Omitted for categories where no group is ever lesson-tagged (cloze/
+  // comprehension -- both lessonMode:false, so lessonIds was always [] and
+  // never read by anything, see CATEGORIES above); defaults to [] on load.
+  lessonIds?: number[];
   passage: Passage | null;
   optionBank?: string[];
   questions: RawGroupQuestion[];
@@ -160,7 +163,7 @@ function expandGroup(category: string, raw: RawGroup): Omit<QuestionGroup, "less
     return { ...base, format: format as "Long-Answer" | "Writing-Constrained", displayAnswer: rq.displayAnswer ?? "" } as Question;
   });
 
-  return { groupId: raw.groupId, subject, category, lessonIds: raw.lessonIds, passage: raw.passage, optionBank, questions };
+  return { groupId: raw.groupId, subject, category, lessonIds: raw.lessonIds ?? [], passage: raw.passage, optionBank, questions };
 }
 
 // Pure YAML-text -> QuestionGroup[] parser (no fetch, no cache) -- shared by

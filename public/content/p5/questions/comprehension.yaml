@@ -1,9 +1,7 @@
 - groupId: HC-G3
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 大卫的成长
-    source: 改编自《新列车》
     text: |-
       大卫家里十分有钱，从小要什么有什么，但这让他觉得生活有些无聊，于是开始喜欢捉弄别人。村民们都讨厌他，不愿意和他做朋友。
 
@@ -49,10 +47,8 @@
       displayAnswer: 选 (1) 大卫的成长。理由——起因：大卫以前爱捉弄别人，大家都讨厌他（0.5分）；经过：后来只有马丁一个人来看他的演出（0.5分）；结果：大卫知道自己以前做错了（0.5分）；点题：他成长了，学会了尊重别人，渐渐赢回了村民们的信任和友谊（0.5分）。
 - groupId: HC-G4
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 散步
-    source: 改编自《散步》
     text: |-
       明文的父亲去世了，年老的母亲一个人住。一天，明文对母亲说：“妈，您年纪越来越大了，身体也不太好，我担心您要是发生什么意外，没有人知道怎么办？我想让您和我们一起住。”母亲想了想，就同意了，很快便搬来跟明文住。
 
@@ -95,10 +91,8 @@
       displayAnswer: 明文认为，只要有家人的陪伴，就是最幸福的事。第二部分为开放式问题：需结合自己的生活例子说明是否同意，没有固定答案。
 - groupId: CH-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 西瓜和苹果
-    source: 改编自网络故事
     text: |-
       我的弟弟今年五岁。他爱听故事，也爱问问题，而且每次都一定要问出答案不可。
 
@@ -154,10 +148,8 @@
       correct: 孝顺懂事。
 - groupId: CH-G5
   subject: Chinese
-  lessonIds: []
   passage:
     title: 书店老板
-    source: 改编自《别饿坏了那匹马》
     text: |-
       上小学时，学校外的书店是我放学后常去的地方。照理来说，去书店应该是买书来看的，但更多的时候，口袋空空的我只能装作选书的样子，偷偷地看几页的故事，然后装作没事离开。我以为这样做神不知鬼不觉，心中一直非常得意。
 
@@ -206,10 +198,8 @@
         【或：1方法+1说明】a) 如果我是书店老板，我会以比较便宜的价钱把书卖给作者（2分）。b) 因为我知道作者喜欢看书（0.5分），但家里不富有（0.5分），用这样的方法可以鼓励他继续看书（1分）。
 - groupId: NH-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 捐鞋子
-    source: 老师自编
     text: |-
       几天前，我放学回家时看到门上插着一张纸。我拿起来一看，原来是有人在回收旧物品，如衣服、书包，还有旧鞋子。
 
@@ -265,10 +255,8 @@
       correct: 做好事也要带着尊重和爱心
 - groupId: NH-G5
   subject: Chinese
-  lessonIds: []
   passage:
     title: 值日生
-    source: 老师自编
     text: |-
       休息铃声响起后，明伟和立成留在教室里，他们是今天的值日生。明伟在擦白板时，立成却偷偷跑出去打篮球了。
 
@@ -317,10 +305,8 @@
         【友情角度】我从明伟的身上学到了不应该为了一点小事而破坏了友情。和朋友相处时，不要为了一小事争吵，有误会时要说清楚。
 - groupId: NH-HC-G3
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 了不起的爸爸
-    source: 老师自编
     text: |-
       大卫的爸爸只有一条腿，这让大卫觉得有点丢脸。有一天，学校举行篮球比赛，大卫希望妈妈能去看。但当妈妈说要和爸爸一起去时，大卫立刻拒绝，不情愿地说：“我只希望您一个人去。爸爸去了，会让气氛变得奇怪。”妈妈叹了口气，正要说话，爸爸刚好走过来说：“我要出国工作，你们去就好。”
 
@@ -358,10 +344,8 @@
       displayAnswer: 选 (1) 伟大的父亲。我选《伟大的父亲》作为这篇短文的题目，因为短文主要讲的是大卫的父亲为了救大卫而失去一条腿，而且父亲怕大卫有压力，就没有告诉大卫自己就是著名作家布恩特。大卫最后明白了父亲一直默默在为自己付出，是一位伟大的父亲。
 - groupId: NH-HC-G4
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 自己动脑
-    source: 老师自编
     text: |-
       假期里，小光到外婆家住。外婆写了一张购物清单，让他去附近的小超市帮忙买日用品。
 
@@ -409,10 +393,8 @@
         【不会】我不会像小光一样自己尝试解决问题，因为我觉得刚开始做一件事时，还是需要有大人的帮助和指导。我小时候第一次学游泳，我很紧张，还是需要妈妈带着我一起游，最后我学会了。
 - groupId: ACSJ-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 妈妈的用心
-    source: 老师自编
     text: |-
       小时候，小安喜欢围着妈妈转，告诉她学校里发生的事情。可是随着年龄增长，他只有在向妈妈要零用钱时才会和她说两句话。就连一起吃晚餐时，他也只是安静地盯着电视屏幕看，这让妈妈很伤心。妈妈担心小安长大后不懂得怎么跟别人交流，也无法清楚地说出自己的想法。
 
@@ -464,10 +446,8 @@
       correct: 关心孩子的人。
 - groupId: ACSJ-G5
   subject: Chinese
-  lessonIds: []
   passage:
     title: 游戏机
-    source: 老师自编
     text: |-
       一天，杨文回家告诉爸爸妈妈他的同学都买了最新的游戏机，他请求爸爸妈妈也给他买一台。那台游戏机要一千元，太贵了！爸爸想了想，说：“这样吧，如果你在年终考试能考到班级前十名，我们就想办法帮你实现愿望。”杨文听了，说：“您要说到做到！如果大家发现只有我没有游戏机，我会被取笑的！”
 
@@ -509,10 +489,8 @@
       displayAnswer: 杨文有两个值得我学习的地方。第一，他孝顺并且体谅父母。父母答应实现愿望却没有做到，这时他没有大吵大闹，而且十分理解与体谅父母的难处，还买了新衬衫与新鞋子给父母。第二，他通过自己的努力一步一步实现不可能的任务，让自己从考试不超过40分到全班第一，这样决心与努力也值得我学习。
 - groupId: HP-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 别乱说话
-    source: 老师自编
     text: |-
       兴亮是一个可爱的男孩，但是他有一个坏习惯。
 
@@ -570,10 +548,8 @@
       correct: 见义勇为
 - groupId: HP-G5
   subject: Chinese
-  lessonIds: []
   passage:
     title: 小乌龟爬山
-    source: 老师自编
     text: |-
       在一片美丽的森林里，有一座山，山脚下住着一只小乌龟。它有个梦想，就是爬上山顶，从那里看看森林的美景。
 
@@ -620,10 +596,8 @@
       displayAnswer: 我觉得小乌龟是个遇到困难不放弃的动物，小乌龟想要爬上山顶看美景，但它没有放弃，而是努力坚持下去，最后爬到山顶看到了美景。
 - groupId: MB-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 邻居的手电筒
-    source: 改编自《小孩的心》
     text: |-
       我刚搬进新家，跟周围的人都不太认识。每天下班回家，我总会看到邻居家的孩子在楼下玩耍。他们常常穿着破旧的校服，在空地上追跑打闹，笑声和吵闹声连楼上的邻居都能听得一清二楚。我皱了皱眉头，心里想：这么吵，也太不为别人着想了！衣服已经那么旧了，还在穿，不觉得难为情吗？我关上窗，告诉自己不要理他们。
 
@@ -675,10 +649,8 @@
       correct: 邻居的关心让作者感到温暖。
 - groupId: MB-G5
   subject: Chinese
-  lessonIds: []
   passage:
     title: 新朋友
-    source: 老师自拟
     text: |-
       小明七岁那年，父母要出国工作，就把小明从乡下送到住在城里的叔叔家住。刚开始，他好开心，觉得大城市里有宽阔的马路和高大的楼房，真好啊！接下来的几天，每当看到楼下的一群孩子玩得热闹时，小明也曾试着加入他们的队伍，可每一次他都会被周围的大人赶出去：“去，去，哪里来的脏孩子！”这让他心里酸酸的，感到闷闷不乐。
 
@@ -722,10 +694,8 @@
       displayAnswer: 因为是王阿姨给了他一只温暖的手，在他无助的时候唯有王阿姨不会看不起他，觉得他脏。小明很对王阿姨充满了感激。如果我是小明，我会把王阿姨给予我的爱传下去，例如帮助有需要的人让他们也感受到爱。
 - groupId: NY-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 诚实面对错误
-    source: 老师自拟
     text: |-
       明文今年刚加入童子军，他一直希望能在大家面前证明自己的能力。有一回，童子军举办了一项捐钱活动，帮助学校里家庭困难的同学。明文觉得这是一个表现自己的好机会，想交出一份亮眼的成绩单。
 
@@ -785,10 +755,8 @@
       correct: 他学会了诚实，并明白捐钱活动的真正意义。
 - groupId: RG-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 打错的电话
-    source: 老师自拟
     text: |-
       一天，我的手机响了，电话另一边传来了个小女孩的声音："爸爸，您快回来吧，我好想您！"我知道她打错了，因为我没有女儿，只有一个五岁的儿子。我不耐烦地说："打错了！"说完，我便放下电话。没想到小女孩很坚持，一直打电话来。
 
@@ -840,10 +808,8 @@
       correct: 多花点时间，陪伴自己的儿子。
 - groupId: RG-G5
   subject: Chinese
-  lessonIds: []
   passage:
     title: 善意的传递
-    source: 老师自拟
     text: |-
       一天傍晚，我和父亲一起去公园散步。突然，一位阿姨向我们走来。她不好意思地说："先生，能借我两块钱搭巴士回家吗？我的钱包不见了，手机也没电了。"
 
@@ -886,10 +852,8 @@
       displayAnswer: 作者认为父亲是个善良的人。因为当一位阿姨问作者跟他的父亲可不可以借他两块钱搭巴士回家时，父亲立刻把一张十元的钞票给她了，他没有因为自己曾经被骗手机而拒绝帮助真正需要帮助的人。
 - groupId: RS-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 乔布斯的家规
-    source: 老师自拟
     text: |-
       乔布斯和他的团队推出了世界上第一台苹果手机。很多人以为像他这样的大老板，他家里一定有很多电子用品。他的孩子也肯定每天都在使用手机或电脑。但事实却偏偏相反。
 
@@ -945,10 +909,8 @@
       correct: 应该合理使用手机和电脑。
 - groupId: RS-G5
   subject: Chinese
-  lessonIds: []
   passage:
     title: 藏起来的功课
-    source: 老师自拟
     text: |-
       "伟明，你在发什么呆？功课做完了吗？"妈妈一边在厨房里炒菜，一边说道。伟明觉得做功课很浪费时间。妈妈的问题让他感到非常不耐烦。"功课，功课！每天都有做不完的功课！今天做完了，老师明天又会再给。我什么时候才可以看电视、玩手机？"伟明生气地说道。
 
@@ -994,10 +956,8 @@
       displayAnswer: 因为伟明听了妈妈的话后，做出了改变／改过自新（行为），成绩也进步了（结果），妈妈感到开心（感受）。
 - groupId: RO-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 老人的善心
-    source: 老师自拟
     text: |-
       从前，有一个年轻人很自私，他的心中只有他自己。当别人遇到困难时，他也不会去帮助他们。
 
@@ -1053,10 +1013,8 @@
       correct: 乐于助人
 - groupId: RO-G5
   subject: Chinese
-  lessonIds: []
   passage:
     title: 拆穿谎言的考题
-    source: 老师自拟
     text: |-
       一天早上，我在上学的路上遇到小安和家明。看到他们手里拿着游戏机，我和他们玩了起来。结果，我们三人玩得很入迷，忘了时间。等我们跑到学校才发现已经迟到了一个小时，林老师安排的考试已经快结束了。
 
@@ -1100,10 +1058,8 @@
       displayAnswer: 因为那道考题虽然简单，但是"我"却得了零分。那道题让"我"明白了做人要诚实。
 - groupId: TN-HC-G3
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 老婆婆过马路
-    source: 老师自编
     text: |-
       一个早晨，我匆匆向巴士车站赶去，担心着上课会迟到。突然，天空乌云密布，大雨倾盆而下。我急忙撑起伞，加快了脚步，心想：如果十分钟内还没到学校，肯定会被老师批评的。
 
@@ -1148,10 +1104,8 @@
         【起因】作者担心迟到，而没有扶老婆婆过马路。【经过】但他看见老婆婆跌倒了，想到老师和父母教导她要乐于助人，便扶起老婆婆。【结果】他虽然迟到了，但他从这件事明白自己无论多忙，都要去帮助有需要帮助的人。
 - groupId: TN-HC-G4
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 半截尺子
-    source: 老师自编
     text: |-
       去年年终考试前，老师再三提醒同学们要带齐考试用品：“笔、尺子、橡皮，一个都不能少！”“真唠叨！这么简单的事情怎么会忘记？”丽文不耐烦地想，并没有把老师的话放在心上。
 
@@ -1199,10 +1153,8 @@
       displayAnswer: （示例答案，学生可自由发挥，只要贴题即可）我学到了在朋友遇到困难时，要主动帮助他，并不要求回报。有一次，我的朋友小文忘了带钱包，我主动请他吃饭，隔天他想请我吃汉堡，但我拒绝了，还说帮助朋友是应该的。
 - groupId: SH-HC-G3
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 迟来的责任感
-    source: 老师自编
     text: |-
       一年一度的学校艺术节到来了！同学们得根据课本的故事，上台表演。老师把全班分成五人一组，小丽和明华在同一组。小丽鼓励大家：“只要用心准备，我们就能呈现最精彩的表演！”明华却不把这次活动放在心上，说：“小菜一碟！这么简单的故事，我看一遍就会了。”
 
@@ -1247,10 +1199,8 @@
       displayAnswer: (2) 迟来的责任感。起因：小丽和明华被分到同一组表演。经过：明华排练时很不认真，虽然小丽劝他要认真练习，但他依然不当一回事。结果：表演时，明华在台上忘词，这才让他明白到应该对团队负责。
 - groupId: SH-HC-G4
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 山间雨伞
-    source: 老师自编
     text: |-
       去年，我陪妈妈去爬山。
 
@@ -1309,10 +1259,8 @@
       displayAnswer: 这篇短文告诉我们，我们获得了帮助后应该帮助别人。（举例仅供参考）有一次，我忘了带笔，朋友借我笔用。之后，我看到其他同学没带笔时，想到别人曾经帮助过我，也将自己的笔借给他用。
 - groupId: TN-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 乐乐的孝心
-    source: Tao Nan School, 2025 P5 EOY
     text: |-
       小猴子乐乐和它的家人住在森林里。乐乐很好动，喜欢在树上跳来跳去。一有时间，它就会约朋友们到处去玩耍。猴妈妈年纪大了，动作不像以前那么快，但她还是会每天去找最甜的果子给乐乐吃。
 
@@ -1370,10 +1318,8 @@
       correct: 要通过行动关爱家人。
 - groupId: TN-G5
   subject: Chinese
-  lessonIds: []
   passage:
     title: 荧光笔风波
-    source: Tao Nan School, 2025 P5 EOY
     text: |-
       伟明和小华是同班同学，也是好朋友。他们经常讨论功课，还一起参加课外活动。可是，最近他们却为了一件小事而闹得不愉快。
 
@@ -1423,10 +1369,8 @@
       displayAnswer: 如果我是伟明，我会继续跟小华做朋友。小华只是一时冲动，错怪我偷了他的荧光笔，但是他已经向我道歉，并承认了错误。每个人都会犯错，只要知错能改，就值得被原谅。我们是好朋友，友谊比一时的误会更重要，我们不应该为了一件小事而闹得不愉快。
 - groupId: RL-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 孔子教学生
-    source: Rulang Primary School, 2025 P5 EOY
     text: |-
       孔子是古时候有名的老师，他会根据每个学生的特点，用不同的方法教学生。
 
@@ -1480,10 +1424,8 @@
       correct: 根据特点来教学生
 - groupId: RL-G5
   subject: Chinese
-  lessonIds: []
   passage:
     title: 错怪好友
-    source: Rulang Primary School, 2025 P5 EOY
     text: |-
       一天上午，我正准备写作业，忽然发现自己最喜欢的笔不见了。我把书包翻了个遍，还是找不到。
 
@@ -1529,10 +1471,8 @@
       displayAnswer: 我同意小丽的做法。因为作者丢了她最喜欢的笔，刚巧小丽有一支和她一样的笔，所以作者误会了。后来，作者意识到自己的错误，主动和小丽道歉，朋友之间不应该因为小事而争吵，应该对彼此宽容理解对方。每个人都会犯错，我们应该给同学一个改过的机会。
 - groupId: SH-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 运动会上的坚持
-    source: St Hilda's Primary School, 2025 P5 EOY
     text: |-
       今天是学校运动会，小明胸有成竹地站在跑道上开始热身。他的心里既兴奋又紧张。作为班级的短跑选手，他希望为班级赢得冠军。
 
@@ -1586,10 +1526,8 @@
       correct: 坚持能让我们超越自己。
 - groupId: SH-G5
   subject: Chinese
-  lessonIds: []
   passage:
     title: 五块钱的品格
-    source: St Hilda's Primary School, 2025 P5 EOY
     text: |-
       星期六，爸爸带小杰去附近的图书馆。他们借完书正好是中午。天气非常炎热，他们走了一会儿，就已经满头大汗了。爸爸见路边有个饮料摊，便买了一瓶汽水给小杰解渴。
 
@@ -1637,10 +1575,8 @@
       displayAnswer: 我学到了做人要诚实，不能拿不属于自己的东西。例如：如果在学校看到老师改错试卷多给了分数，我会主动向老师说明并扣回分数。虽然分数少了，但我做到了诚实。
 - groupId: HP-HC-G3
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 爷爷奶奶的智慧
-    source: Henry Park Primary School, 2025 P5 Higher Chinese EOY
     text: |-
       “反正我永远不够好！我不要留在篮球训练队了！”卫国一上爷爷的车，便开始抱怨，因为他又没被选上篮球校队。奶奶想劝卫国不要轻易放弃，爷爷却示意她别说话，奶奶明白再劝也没用，便不说了。
 
@@ -1684,10 +1620,8 @@
       displayAnswer: (2) 聪明的爷爷奶奶。我觉得《聪明的爷爷奶奶》最适合作为这篇短文的题目。因为奶奶听到卫国说他不要待在篮球训练队了，经过劝说，他还是不听，就没有一直劝，而是聪明地通过煮肉卷的例子，说她曾想过要放弃，但爷爷说多试几次，一定会煮成功，来让卫国明白成功是靠日积月累的尝试和努力，没有人一出生就会的道理，去改变了卫国的想法，让他决定留在篮球训练继续努力。
 - groupId: HP-HC-G4
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 月美的成长
-    source: Henry Park Primary School, 2025 P5 Higher Chinese EOY
     text: |-
       “把臭袜子放进洗衣篮，不要又乱放！”妈妈有些生气地说。
 
@@ -1732,10 +1666,8 @@
       displayAnswer: 我从这篇短文里学到，自己的事情应该自己做，不应该依赖家长。例如我们自己的书包及房间应该自己整理和打扫，而不是让家长代劳。学习也是我们自己的事情，应该认真对待。
 - groupId: MB-HC-G3
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 大信封里的善意
-    source: Maha Bodhi School, 2025 P5 Higher Chinese EOY
     text: |-
       在五乙班，有一个总是坐在角落里的男孩——文光。文光的学习中等，穿着旧校服，经常被同学看不起。班上的同学们几乎把他当成了“透明人”，没有人愿意主动和他说话，也没有人关心他的感受。虽然文光从不说什么，但心里其实很难受。
 
@@ -1781,10 +1713,8 @@
       displayAnswer: (1) 善良的力量。我认为《善良的力量》适合作为短文的题目。在文中，文光常被同学看不起，但是当小明需要帮助时，却只有他一个人主动上前伸出援手。同学们因为这个举动而对他的态度转变。大家开始懂得彼此关心、彼此帮助。这都是因为“善良”带来的变化。
 - groupId: MB-HC-G4
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 丽亚的花店
-    source: Maha Bodhi School, 2025 P5 Higher Chinese EOY
     text: |-
       在一座美丽的古城里，住着一个可爱的女孩，名叫丽亚。
 
@@ -1831,10 +1761,8 @@
       displayAnswer: 我从丽亚的身上学到了无论遇到什么困难，只要不放弃，就一定可以成功。例如我天生个子矮小，每次体育达标测试不及格，但是我每次都能积极准备。虽然我体育考试不达标，但是我能在篮球比赛中发挥自己个子矮小的优势，灵活、快速，和大家一起合作，每次都能赢得比赛，我也变得自信。
 - groupId: NY-HC-G3
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 美云的舞蹈演出
-    source: Nanyang Primary School, 2025 P5 Higher Chinese EOY
     text: |-
       美云是一名舞蹈员，两个星期前她在排练时不小心跌倒，划伤了脸，留下了一道伤口。美云看着镜子里的自己，越想越伤心。她感到绝望，决定再也不跳舞了。
 
@@ -1874,10 +1802,8 @@
       displayAnswer: (1) 两朵美丽迷人的花儿。我觉得《两朵美丽迷人的花儿》最适合作为题目。因为短文中李教练在美云脸上涂抹颜料，使她脸上的伤口变成了一朵鲜艳的花；而在演出成功后，美云也像一朵盛开的花朵一样美丽迷人。这两朵花都象征着美云重新找回自信、闪闪发亮的过程，非常贴切短文的主旨。
 - groupId: NY-HC-G4
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 与众不同的于老师
-    source: Nanyang Primary School, 2025 P5 Higher Chinese EOY
     text: |-
       于老师第一次出现在我们班时，课室里吵闹声一片，有人在聊天，有人在吵架，还有人在丢纸飞机。过了一会儿，不知道是谁发现课室里忽然多了一个人，大家互相提醒着老师已经来了，教室里的声音就这样渐渐落了下去。没有大声责骂，于老师的这一招以静制动马上起了作用。
 
@@ -1920,10 +1846,8 @@
         例如有一次，我因自己没做过/自我否定不敢参加学校运动会，但后来我勇敢报名并努力训练，最后取得了不错的成绩，证明了自己的能力。
 - groupId: RG-HC-G3
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 林伟的兴趣大发现
-    source: Raffles Girls' Primary School, 2025 P5 Higher Chinese EOY
     text: |-
       林伟一直觉得自己是个“无聊”的人。看到同学们在兴趣班里都很积极，他却对什么都不感兴趣。妈妈鼓励他说：“多参加不同的活动，你就会知道自己喜欢什么！”于是，林伟开始了他的“兴趣大发现”。
 
@@ -1969,10 +1893,8 @@
       displayAnswer: (2) 从尝试中发现兴趣。我认为《从尝试中发现兴趣》是最适合的题目。因为当林伟开始对什么都不感兴趣，但在妈妈鼓励下，他尝试参加了不同的活动，最后林伟在台上讲故事，才发现自己喜欢讲故事。
 - groupId: RG-HC-G4
   subject: Higher Chinese
-  lessonIds: []
   passage:
     title: 误会与和好
-    source: Raffles Girls' Primary School, 2025 P5 Higher Chinese EOY
     text: |-
       今天上午，我和好朋友明恩为了一件小事大吵了一架。
 
@@ -2017,10 +1939,8 @@
       displayAnswer: 他们互相道歉，就和好了。我学到朋友之间要互相了解，这样友情才能长久。例如我的朋友因为没考好，心情不好，突然不理我，我没有马上生气，而是问她原因。我们把话说清楚，避免发生误会。
 - groupId: PL-G3
   subject: Chinese
-  lessonIds: []
   passage:
     title: 妈妈与蒸鱼
-    source: Paya Lebar Methodist Girls' School (Primary), 2024 P5 WA2
     text: |-
       每年过年过节时，妈妈都会想起她的童年。因为家里很穷，妈妈只有在农历新年时才会吃到鱼、肉等。她常常说，现在的孩子不用等到过年过节，平日也能吃到这些美食，真是幸福啊！
 
@@ -2064,10 +1984,8 @@
       displayAnswer: 作者的妈妈是个很爱孩子的母亲。妈妈都把最好的食物给了作者，自己却只吃剩下的一点肉，还常说很好吃。
 - groupId: NY24-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 手影游戏
-    source: Nanyang Primary School, 2024 P5 WA2
     text: |-
       每天吃了晚餐后，我和邻居小孩们就会不约而同地来到楼下的游乐场玩耍。他们有的爱玩荡秋千，有的喜欢溜滑梯，有的爱玩你追我跑，而我最喜欢玩的一种游戏就是手影游戏。明亮的路灯下，我们会用手在组屋的墙上做出各种动物的影子。这些影子在墙上动来动去，有趣极了。
 
@@ -2119,10 +2037,8 @@
       correct: 要认真对待所做的事情。
 - groupId: CHS-G1
   subject: Chinese
-  lessonIds: []
   passage:
     title: 爱的付出
-    source: Catholic High School, 2024 P5 WA3
     text: |-
       自从妈妈去世后，爸爸为了两个孩子，每天做两份工作，很辛苦。为了不让爸爸担心家里的事，明华开始负责做家务。此外，明华还学习怎样照顾妹妹。
 
@@ -2166,10 +2082,8 @@
       displayAnswer: 你好！那天在玩具店，您送小玩具给我们，我们十分感谢。我从你身上学到了要为他人献出爱心。
 - groupId: NY24EOY-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 学习打乒乓球
-    source: Nanyang Primary School, 2024 P5 EOY
     text: |-
       起初，我对打乒乓球充满好奇，吵着让爸爸帮我报名乒乓球班。然而，上了几次课后，教练要求我们不断反复练习基本动作，这让我感到非常枯燥。我逐渐失去了兴趣，上课时也开始心不在焉。
 
@@ -2219,10 +2133,8 @@
       correct: 遇到困难坚持不放弃。
 - groupId: NY24EOY-G4
   subject: Chinese
-  lessonIds: []
   passage:
     title: 小华的困惑与成长
-    source: Nanyang Primary School, 2024 P5 EOY
     text: |-
       小华在食堂吃饭时，注意到一群同学聚在一起，不时看向他，其中一些人还对他指指点点的。小华不明白发生了什么事，也不敢上前去问，只好低着头默默吃饭。
 
@@ -2265,10 +2177,8 @@
       displayAnswer: 我认为小华回到学校后会主动去找那群指指点点的同学，有礼貌地询问他们是不是对自己有什么误会，并勇敢地把事情解释清楚。
 - groupId: HP24EOY-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 明文与爷爷的花园
-    source: Henry Park Primary School, 2024 P5 EOY
     text: |-
       爷爷年纪大了，行动不太方便，但他依然非常喜爱后花园里的各种植物。假期里，明文去爷爷家住。他看到后花园的植物都快枯死了，爷爷无奈地叹了口气。
 
@@ -2318,10 +2228,8 @@
       correct: 通过行动来表示对家人的爱。
 - groupId: HP24EOY-G5
   subject: Chinese
-  lessonIds: []
   passage:
     title: 陈老师的课
-    source: Henry Park Primary School, 2024 P5 EOY
     text: |-
       “这些题很简单，你竟然不会！”看到方丽的卷子有些题答错了，小文便取笑道。方丽的脸上一阵红一阵白的，小文却没有发现，还教起方丽怎么答题。陈老师看了，本想说些什么，但后来决定多观察一下。
 
@@ -2366,10 +2274,8 @@
       displayAnswer: 我觉得陈老师是一个用心良苦、有耐心的好老师。从她为了让学生学会换位思考和顾及他人感受，特地通过切身体会的方式引导学生反思自己的言行可以看出。
 - groupId: MB24SA2-G2
   subject: Chinese
-  lessonIds: []
   passage:
     title: 开着的门
-    source: Maha Bodhi School, 2024 P5 SA2
     text: |-
       许多年前，有一对母女住在山村里。女儿渐渐长大了，想要到大城市去工作。妈妈听了很担心，因为城市离村子很远，而且外面并不安全，所以不同意女儿去。为了这件事，她们发生了争吵。尽管妈妈不同意，女儿还是决定离开村子去城市。
 
@@ -2423,10 +2329,8 @@
       correct: 与家人在一起是最快乐的。
 - groupId: MB24SA2-G5
   subject: Chinese
-  lessonIds: []
   passage:
     title: 丽飞与康乐
-    source: Maha Bodhi School, 2024 P5 SA2
     text: |-
       丽飞是班上的学习委员，不仅聪明，运动方面也很优秀，许多同学都喜欢她。这学期班上来了一位转学生叫康乐。康乐性格开朗，乐于助人，很快也得到了大家的喜爱。
 
