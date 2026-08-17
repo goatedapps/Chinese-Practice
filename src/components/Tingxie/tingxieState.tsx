@@ -40,6 +40,14 @@ export interface TingxieState {
   vocabIndex: number;
   vocabFlipped: boolean;
   vocabFlippedIndices: number[];
+  // Whether this lesson visit's "all vocab flipped" BP has already been
+  // awarded -- lives here (not a component-local ref) because switching
+  // Tingxie's tabs (SET_VIEW) unmounts/remounts <Learn/> without resetting
+  // vocab progress, and a ref would reset to false on that remount and
+  // re-fire the award the instant the student tabs back in. Only reset by
+  // a genuine fresh lesson pick (SELECT_LESSON_SUCCESS) or leaving the
+  // lesson entirely (GO_SELECT, via the initialState spread).
+  vocabLearnAwarded: boolean;
 
   // Learn / 学默写 -- chipOrder is a shuffled permutation of indices into
   // tingxieSentenceWords(currentSentence); placing them in ascending order
@@ -50,6 +58,9 @@ export interface TingxieState {
   sentenceResult: "correct" | "incorrect" | null;
   sentenceSolvedIndices: number[];
   sentenceRevealed: boolean;
+  // Same reasoning/lifecycle as vocabLearnAwarded above, for the sentence
+  // sub-tab's "all sentences solved" BP award.
+  sentenceLearnAwarded: boolean;
 
   // 词语应用 Apply -- queue shrinks from the front on correct, and a miss
   // pushes the current item to the back so it resurfaces later this pass.
@@ -88,6 +99,7 @@ const initialState: TingxieState = {
   vocabIndex: 0,
   vocabFlipped: false,
   vocabFlippedIndices: [],
+  vocabLearnAwarded: false,
 
   sentenceIndex: 0,
   chipOrder: [],
@@ -95,6 +107,7 @@ const initialState: TingxieState = {
   sentenceResult: null,
   sentenceSolvedIndices: [],
   sentenceRevealed: false,
+  sentenceLearnAwarded: false,
 
   applyQueue: [],
   applyFlipped: false,
@@ -130,6 +143,8 @@ export type TingxieAction =
   | { type: "VOCAB_FLIP" }
   | { type: "VOCAB_NEXT" }
   | { type: "VOCAB_PREV" }
+  | { type: "VOCAB_LEARN_AWARDED" }
+  | { type: "SENTENCE_LEARN_AWARDED" }
   | { type: "SENTENCE_PICK"; idx: number }
   | { type: "SENTENCE_UNPICK"; idx: number }
   | { type: "SENTENCE_RESET" }
@@ -181,12 +196,14 @@ function reducer(state: TingxieState, action: TingxieAction): TingxieState {
         vocabIndex: 0,
         vocabFlipped: false,
         vocabFlippedIndices: [],
+        vocabLearnAwarded: false,
         sentenceIndex: 0,
         chipOrder: shuffledChipOrder(content.sentences[0]),
         placedIndices: [],
         sentenceResult: null,
         sentenceSolvedIndices: [],
         sentenceRevealed: false,
+        sentenceLearnAwarded: false,
         applyQueue: [],
         applyComplete: false,
         practiceQueue: [],
@@ -216,6 +233,10 @@ function reducer(state: TingxieState, action: TingxieAction): TingxieState {
       if (total === 0) return state;
       return { ...state, vocabIndex: (state.vocabIndex - 1 + total) % total, vocabFlipped: false };
     }
+    case "VOCAB_LEARN_AWARDED":
+      return { ...state, vocabLearnAwarded: true };
+    case "SENTENCE_LEARN_AWARDED":
+      return { ...state, sentenceLearnAwarded: true };
 
     case "SENTENCE_PICK": {
       if (state.sentenceResult !== null) return state;

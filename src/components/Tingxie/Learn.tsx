@@ -15,10 +15,13 @@ function VocabFlipCard() {
   const state = useTingxieState();
   const dispatch = useTingxieDispatch();
   const { awardBP } = usePet();
-  // Guards the "flip every card once" BP award to fire at most once per
-  // mount (i.e. once per lesson visit) -- Learn remounts fresh each time the
-  // student navigates back into it, so replaying the lesson re-earns BP,
-  // matching the source app's behavior.
+  // Extra same-mount guard for React 18 StrictMode's dev-only double effect
+  // invocation -- state.vocabLearnAwarded (reducer state, see tingxieState.tsx)
+  // is the real guard, since it survives the unmount/remount that switching
+  // Tingxie's tabs causes (a plain ref would reset to false on that remount
+  // and re-fire the award instantly without the student redoing anything).
+  // Leaving/re-entering the lesson for real (GO_SELECT/SELECT_LESSON_SUCCESS)
+  // resets vocabLearnAwarded too, so replaying the lesson still re-earns BP.
   const awardedRef = useRef(false);
 
   const vocab = state.activeContent!.vocab;
@@ -37,15 +40,16 @@ function VocabFlipCard() {
   // still flipped) so the applause sound never plays before that screen
   // actually appears.
   useEffect(() => {
-    if (allFlipped && !state.vocabFlipped && !awardedRef.current) {
+    if (allFlipped && !state.vocabFlipped && !state.vocabLearnAwarded && !awardedRef.current) {
       awardedRef.current = true;
+      dispatch({ type: "VOCAB_LEARN_AWARDED" });
       awardBP(TINGXIE_BP_AWARD.VOCAB_LEARN);
       Sound.applause();
       recordTingxieActivityCompleted();
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|learnVocab` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
-  }, [allFlipped, state.vocabFlipped, awardBP, state.activeContent]);
+  }, [allFlipped, state.vocabFlipped, state.vocabLearnAwarded, awardBP, state.activeContent, dispatch]);
 
   if (!current) return <p className="tingxie-empty">这一课还没有生词。No vocab in this lesson yet.</p>;
 
@@ -102,6 +106,8 @@ function SentenceBuilderGame() {
   const state = useTingxieState();
   const dispatch = useTingxieDispatch();
   const { awardBP } = usePet();
+  // Same StrictMode-only same-mount guard as VocabFlipCard above --
+  // state.sentenceLearnAwarded is the real cross-remount guard.
   const awardedRef = useRef(false);
 
   const sentences = state.activeContent!.sentences;
@@ -125,15 +131,16 @@ function SentenceBuilderGame() {
   // banner is still showing) so the applause sound never plays before that
   // screen actually appears.
   useEffect(() => {
-    if (allSolved && state.sentenceResult === null && !awardedRef.current) {
+    if (allSolved && state.sentenceResult === null && !state.sentenceLearnAwarded && !awardedRef.current) {
       awardedRef.current = true;
+      dispatch({ type: "SENTENCE_LEARN_AWARDED" });
       awardBP(TINGXIE_BP_AWARD.SENTENCE_LEARN);
       Sound.applause();
       recordTingxieActivityCompleted();
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|learnSentence` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
-  }, [allSolved, state.sentenceResult, awardBP, state.activeContent]);
+  }, [allSolved, state.sentenceResult, state.sentenceLearnAwarded, awardBP, state.activeContent, dispatch]);
 
   if (!current) return <p className="tingxie-empty">这一课还没有句子。No sentences in this lesson yet.</p>;
 
