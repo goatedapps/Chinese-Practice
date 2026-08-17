@@ -32,8 +32,12 @@ function VocabFlipCard() {
     stopSpeaking();
   }, [state.vocabIndex, state.vocabFlipped]);
 
+  // Gated on the same condition that swaps in CompleteScreen below (not just
+  // allFlipped, which goes true a render earlier, while the last card is
+  // still flipped) so the applause sound never plays before that screen
+  // actually appears.
   useEffect(() => {
-    if (allFlipped && !awardedRef.current) {
+    if (allFlipped && !state.vocabFlipped && !awardedRef.current) {
       awardedRef.current = true;
       awardBP(TINGXIE_BP_AWARD.VOCAB_LEARN);
       Sound.applause();
@@ -41,7 +45,7 @@ function VocabFlipCard() {
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|learnVocab` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
-  }, [allFlipped, awardBP, state.activeContent]);
+  }, [allFlipped, state.vocabFlipped, awardBP, state.activeContent]);
 
   if (!current) return <p className="tingxie-empty">这一课还没有生词。No vocab in this lesson yet.</p>;
 
@@ -116,8 +120,12 @@ function SentenceBuilderGame() {
     stopSpeaking();
   }, [state.sentenceIndex, state.sentenceResult, state.sentenceRevealed]);
 
+  // Gated on the same condition that swaps in CompleteScreen below (not just
+  // allSolved, which goes true a render earlier, while the last result
+  // banner is still showing) so the applause sound never plays before that
+  // screen actually appears.
   useEffect(() => {
-    if (allSolved && !awardedRef.current) {
+    if (allSolved && state.sentenceResult === null && !awardedRef.current) {
       awardedRef.current = true;
       awardBP(TINGXIE_BP_AWARD.SENTENCE_LEARN);
       Sound.applause();
@@ -125,7 +133,7 @@ function SentenceBuilderGame() {
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|learnSentence` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
-  }, [allSolved, awardBP, state.activeContent]);
+  }, [allSolved, state.sentenceResult, awardBP, state.activeContent]);
 
   if (!current) return <p className="tingxie-empty">这一课还没有句子。No sentences in this lesson yet.</p>;
 
