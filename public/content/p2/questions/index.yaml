@@ -1,13 +1,183 @@
-- groupId: P2-CLZ1
+- groupId: P2-CLZ2
   subject: Chinese
   category: cloze
   lessonIds: []
-  questionCount: 3
+  questionCount: 5
+- groupId: P2-CLZ3
+  subject: Chinese
+  category: cloze
+  lessonIds: []
+  questionCount: 5
+- groupId: P2-CLZ4
+  subject: Chinese
+  category: cloze
+  lessonIds: []
+  questionCount: 5
+- groupId: P2-CLZ5
+  subject: Chinese
+  category: cloze
+  lessonIds: []
+  questionCount: 5
+- groupId: P2-CLZ6
+  subject: Chinese
+  category: cloze
+  lessonIds: []
+  questionCount: 5
+- groupId: P2-CLZ7
+  subject: Chinese
+  category: cloze
+  lessonIds: []
+  questionCount: 4
 - groupId: P2-COMP1
   subject: Chinese
   category: comprehension
   lessonIds: []
   questionCount: 3
+- groupId: P2-COMP2
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 3
+- groupId: P2-COMP3
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 2
+- groupId: P2-COMP4
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 5
+- groupId: P2-COMP5
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 4
+- groupId: P2-COMP6
+  subject: Higher Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 4
+- groupId: P2-COMP7
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 5
+- groupId: P2-COMP8
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 3
+- groupId: P2-COMP9
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 3
+- groupId: P2-COMP10
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 3
+- groupId: P2-COMP11
+  subject: Higher Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 5
+- groupId: P2-COMP12
+  subject: Higher Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 3
+- groupId: P2-COMP13
+  subject: Higher Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 6
+- groupId: P2-COMP14
+  subject: Higher Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 5
+- groupId: P2-COMP15
+  subject: Higher Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 5
+- groupId: P2-COMP16
+  subject: Higher Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 5
+- groupId: P2-COMP17
+  subject: Higher Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 5
+- groupId: P2-COMP18
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 3
+- groupId: P2-COMP19
+  subject: Higher Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 3
+- groupId: P2-COMP20
+  subject: Higher Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 3
+- groupId: P2-COMP21
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 3
+- groupId: P2-COMP22
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 3
+- groupId: P2-COMP23
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 4
+- groupId: P2-COMP24
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 6
+- groupId: P2-COMP25
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 4
+- groupId: P2-COMP26
+  subject: Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 5
+- groupId: P2-COMP27
+  subject: Higher Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 4
+- groupId: P2-COMP28
+  subject: Higher Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 4
+- groupId: P2-COMP29
+  subject: Higher Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 3
+- groupId: P2-COMP30
+  subject: Higher Chinese
+  category: comprehension
+  lessonIds: []
+  questionCount: 2
 - groupId: P2-CJ1
   subject: Chinese
   category: conjunction
