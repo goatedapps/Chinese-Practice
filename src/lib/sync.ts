@@ -93,6 +93,19 @@ export function clearLocalStore(key: string): void {
   localStorage.removeItem(key);
 }
 
+// Wipes every locally-recorded "when did I last save this key" timestamp --
+// called (alongside clearLocalStore() for each synced key) whenever local
+// storage is being reset to a clean slate: a brand-new signup (see
+// components/Auth/Auth.tsx's startFresh()) and, critically, a genuine
+// sign-out (see state/SyncBootstrap.tsx). Without this, a stale timestamp
+// left over from the *previous* signed-in account could make
+// pullAndMergeAll() think that leftover local value is newer than the
+// next signed-in user's real remote row and push it up as theirs -- the
+// cross-account data leak this exists to prevent.
+export function clearSyncMeta(): void {
+  localStorage.removeItem(SYNC_META_KEY);
+}
+
 // Pull-side primitive: writes remote data straight to local storage and
 // records the *remote's* updated_at as this key's sync-meta timestamp (not
 // "now") -- deliberately not saveAndSync, so a merge-pull can never schedule

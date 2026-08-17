@@ -83,12 +83,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   async function signOut(): Promise<void> {
-    // Deliberately does not touch localStorage -- signing out only stops
-    // future syncing, the device's own local progress stays fully usable
-    // (see CLAUDE.md's Auth / cross-device sync section). Does not clear
-    // isGuest either -- a student who already made the guest-vs-login
-    // decision once shouldn't be forced through the login gate again just
-    // because they signed out of an account.
+    // This function itself only ends the Supabase session -- clearing this
+    // account's local data (every synced store, the live pet state, and the
+    // sync-meta timestamps) happens in state/SyncBootstrap.tsx, reacting to
+    // the resulting signedIn -> signedOut transition, since that's the one
+    // place with access to both this Context and PetContext (AuthProvider
+    // sits above PetProvider in App.tsx's tree, so it can't call usePet()
+    // itself). See SyncBootstrap.tsx for why that clearing is required, not
+    // optional -- without it, the next login on this device/tab (same or a
+    // different account) inherits this account's leftover local data, and
+    // the merge-pull can even push it into that next account's own Supabase
+    // row. Does not clear isGuest, though -- a student who already made the
+    // guest-vs-login decision once shouldn't be forced through the login
+    // gate again just because they signed out of an account.
     if (!supabase) return;
     await supabase.auth.signOut();
   }

@@ -3,7 +3,7 @@ import { useAppDispatch } from "../../state/AppStateContext";
 import { useAuth } from "../../state/AuthContext";
 import { usePet } from "../../state/PetContext";
 import { PET_DEFAULT_STATE } from "../../data/pet";
-import { clearLocalStore } from "../../lib/sync";
+import { clearLocalStore, clearSyncMeta } from "../../lib/sync";
 import { HISTORY_KEY } from "../../state/history";
 import { ACHIEVEMENTS_KEY } from "../../state/achievements";
 import { TINGXIE_PROGRESS_KEY } from "../../state/tingxieProgress";
@@ -54,6 +54,12 @@ export function Auth({ gated = false }: { gated?: boolean }) {
     clearLocalStore(HISTORY_KEY);
     clearLocalStore(ACHIEVEMENTS_KEY);
     clearLocalStore(TINGXIE_PROGRESS_KEY);
+    // Also clear any leftover sync-meta timestamps (e.g. from local guest
+    // play before this signup) -- same reasoning as SyncBootstrap.tsx's
+    // sign-out cleanup, so a stale timestamp can never make a later merge
+    // treat pre-signup local data as newer than this brand-new account's
+    // (nonexistent) remote row.
+    clearSyncMeta();
   }
 
   async function handleSubmit(e: FormEvent) {
