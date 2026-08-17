@@ -1521,6 +1521,11 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
    Tingxie too (Read a Story), so these classes are deliberately unprefixed
    rather than "tingxie-*". */
 .complete-screen { text-align: center; padding: 40px 0; }
+/* .mission-hint-box is block-level (flex) and would otherwise stretch to
+   this screen's full width, unlike everything else here which is tightly
+   centered -- constrain/center it the same way .tingxie-play-cap-banner
+   does outside a complete screen. */
+.complete-screen .mission-hint-box { max-width: 420px; margin: 18px auto 0; text-align: left; }
 .complete-emoji { font-size: 48px; margin-bottom: 8px; }
 .complete-screen .bp-pop { font-size: 22px; animation: none; opacity: 1; }
 .complete-screen .action-row { justify-content: center; margin-top: 24px; }
@@ -1591,6 +1596,12 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .tingxie-play { text-align: center; }
 .tingxie-play .tingxie-apply-sentence { margin: 4px 0 2px; }
 .tingxie-play .tingxie-apply-english { margin-bottom: 14px; }
+/* Reuses .mission-hint-box's gold-bordered hint styling (see its own
+   comment) for the daily BP-cap notice, both while playing a capped round
+   and on that round's complete screen -- constrained/centered the same way
+   Practice's own .picker-hint hints are, since .mission-hint-box's default
+   width otherwise stretches to this text-align:center screen's full width. */
+.tingxie-play-cap-banner { max-width: 420px; margin: 0 auto 14px; text-align: left; }
 .tingxie-play-timer {
   display: inline-block; font-weight: 700; font-size: 18px; color: var(--gold-deep);
   background: linear-gradient(180deg, var(--card-hi), var(--card-bg));

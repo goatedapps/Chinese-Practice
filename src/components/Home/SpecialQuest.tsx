@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useAppDispatch } from "../../state/AppStateContext";
+import { useAppDispatch, useAppState } from "../../state/AppStateContext";
 import { usePet } from "../../state/PetContext";
 import { SPECIAL_QUEST_TYPES } from "../../data/pet";
 import { VOCABULARY_CATEGORY_KEYS, fetchQuestionCategory } from "../../data/questions";
+import { isCategoryRelevantForLevel } from "../../data/levels";
 import { selectTypeSessionGroups } from "../../lib/typeSession";
 import { getTodaySpecialQuest, spinSpecialQuest } from "../../state/specialQuest";
 import { Sound } from "../../lib/sound";
@@ -34,6 +35,7 @@ function QuestIcon({ icon, className }: { icon: string; className?: string }) {
 // quest is actually completed.
 export function SpecialQuest() {
   const dispatch = useAppDispatch();
+  const { level } = useAppState();
   const { pet } = usePet();
   const [quest, setQuest] = useState(() => getTodaySpecialQuest());
   const [spinning, setSpinning] = useState(false);
@@ -71,7 +73,9 @@ export function SpecialQuest() {
       try {
         const groups =
           quest.questId === "vocab100"
-            ? selectTypeSessionGroups((await Promise.all(VOCABULARY_CATEGORY_KEYS.map((c) => fetchQuestionCategory(c)))).flat())
+            ? selectTypeSessionGroups(
+                (await Promise.all(VOCABULARY_CATEGORY_KEYS.filter((c) => isCategoryRelevantForLevel(c, level)).map((c) => fetchQuestionCategory(c)))).flat()
+              )
             : selectTypeSessionGroups(await fetchQuestionCategory("comprehension"));
         if (groups.length === 0) return;
         dispatch({

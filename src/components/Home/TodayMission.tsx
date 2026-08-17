@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useAppDispatch } from "../../state/AppStateContext";
+import { useAppDispatch, useAppState } from "../../state/AppStateContext";
 import { CATEGORIES, VOCABULARY_CATEGORY_KEYS, fetchQuestionCategory } from "../../data/questions";
+import { isCategoryRelevantForLevel } from "../../data/levels";
 import { MISSION_COMPLETE_BONUS_BP } from "../../data/pet";
 import { selectTypeSessionGroups } from "../../lib/typeSession";
 import { shuffle } from "../../lib/shuffle";
@@ -33,6 +34,7 @@ function untiltMissionCard(e: React.MouseEvent<HTMLButtonElement>) {
 
 export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
   const dispatch = useAppDispatch();
+  const { level } = useAppState();
   const [starting, setStarting] = useState(false);
   const lessonDone = isLessonMissionComplete(hist);
   const readingDone = getReadingMissionCount(hist) >= 1;
@@ -42,11 +44,13 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
   // Jumps to the Practice screen pre-set for a lesson revision: subject
   // reset to "All" (Vocabulary only exists under Chinese, so a stale
   // "Higher Chinese" subject would leave it greyed out right after this),
-  // categories replaced with just Vocabulary, and lessons reset to the "all
-  // lessons" default so the student picks which lesson(s) themselves.
+  // categories replaced with just Vocabulary (filtered to this level's
+  // relevant categories, see data/levels.ts -- e.g. P2 has no "phrase"
+  // content), and lessons reset to the "all lessons" default so the student
+  // picks which lesson(s) themselves.
   function startLessonMission() {
     dispatch({ type: "SELECT_SUBJECT", subject: "All" });
-    dispatch({ type: "SET_CATEGORIES", keys: VOCABULARY_CATEGORY_KEYS });
+    dispatch({ type: "SET_CATEGORIES", keys: VOCABULARY_CATEGORY_KEYS.filter((k) => isCategoryRelevantForLevel(k, level)) });
     dispatch({ type: "SELECT_ALL_LESSONS" });
     dispatch({ type: "GO_TO_SCREEN", screen: "practice" });
   }

@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer, type ReactNode, type Dispatch } from "react";
 import type { QuestionGroup, GroupResult, GroupResultItem, QuestionIndexEntry } from "../data/types";
 import { VOCABULARY_CATEGORY_KEYS } from "../data/questions";
-import { DEFAULT_LEVEL } from "../data/levels";
+import { DEFAULT_LEVEL, isCategoryRelevantForLevel } from "../data/levels";
 
 export type Screen =
   | "home"
@@ -91,12 +91,19 @@ export type AppAction =
   | { type: "RESET_TO_HOME" }
   | { type: "START_PLAY"; itemId: string };
 
-// Whether every one of Vocabulary's 4 underlying categories is still in a
-// candidate selectedCategories set -- used to decide whether selectedLessons
-// should survive a categories change, since a lesson filter is meaningless
-// (and would sit there stale) once Vocabulary itself isn't selected.
-function vocabRetained(categories: Set<string>): boolean {
-  return VOCABULARY_CATEGORY_KEYS.every((k) => categories.has(k));
+// Whether every one of Vocabulary's underlying categories *that are
+// relevant for this level* (see data/levels.ts's relevantCategories -- e.g.
+// P2 has no "phrase" content, so only pinyin/vocab/usage apply there) is
+// still in a candidate selectedCategories set -- used to decide whether
+// selectedLessons should survive a categories change, since a lesson filter
+// is meaningless (and would sit there stale) once Vocabulary itself isn't
+// selected. Filtering by level here matters: checking against the full,
+// unfiltered VOCABULARY_CATEGORY_KEYS would never be satisfied on a level
+// that doesn't offer every one of those categories, silently wiping
+// selectedLessons on every categories change even while the student still
+// has every level-relevant Vocabulary category selected.
+function vocabRetained(categories: Set<string>, level: string): boolean {
+  return VOCABULARY_CATEGORY_KEYS.filter((k) => isCategoryRelevantForLevel(k, level)).every((k) => categories.has(k));
 }
 
 function reducer(state: AppState, action: AppAction): AppState {
@@ -137,7 +144,7 @@ function reducer(state: AppState, action: AppAction): AppState {
         ...state,
         selectedSubject: action.subject,
         selectedCategories: next,
-        selectedLessons: vocabRetained(next) ? state.selectedLessons : new Set()
+        selectedLessons: vocabRetained(next, state.level) ? state.selectedLessons : new Set()
       };
     }
     case "SET_QUESTION_INDEX":
@@ -152,7 +159,7 @@ function reducer(state: AppState, action: AppAction): AppState {
       const next = new Set(state.selectedCategories);
       if (next.has(action.key)) next.delete(action.key);
       else next.add(action.key);
-      return { ...state, selectedCategories: next, selectedLessons: vocabRetained(next) ? state.selectedLessons : new Set() };
+      return { ...state, selectedCategories: next, selectedLessons: vocabRetained(next, state.level) ? state.selectedLessons : new Set() };
     }
     case "TOGGLE_CATEGORY_GROUP": {
       const next = new Set(state.selectedCategories);
@@ -161,11 +168,11 @@ function reducer(state: AppState, action: AppAction): AppState {
         if (allSelected) next.delete(k);
         else next.add(k);
       }
-      return { ...state, selectedCategories: next, selectedLessons: vocabRetained(next) ? state.selectedLessons : new Set() };
+      return { ...state, selectedCategories: next, selectedLessons: vocabRetained(next, state.level) ? state.selectedLessons : new Set() };
     }
     case "SET_CATEGORIES": {
       const next = new Set(action.keys);
-      return { ...state, selectedCategories: next, selectedLessons: vocabRetained(next) ? state.selectedLessons : new Set() };
+      return { ...state, selectedCategories: next, selectedLessons: vocabRetained(next, state.level) ? state.selectedLessons : new Set() };
     }
     case "TOGGLE_LESSON": {
       const next = new Set(state.selectedLessons);

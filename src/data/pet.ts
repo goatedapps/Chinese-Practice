@@ -73,13 +73,20 @@ export const TINGXIE_BP_AWARD = {
 // ends (see components/Tingxie/Play.tsx) -- clamped to 0 if the round nets
 // negative, never a debit against the pet's existing BP.
 export const TINGXIE_PLAY_CONFIG = {
-  DURATION_SEC: 90,
+  DURATION_SEC: 60,
   CORRECT_BP: 1,
   WRONG_BP: -2,
   SPAWN_INTERVAL_MS: 900,
   MIN_FALL_SEC: 4.5,
   MAX_FALL_SEC: 7,
-  MAX_CLOUDS: 8
+  MAX_CLOUDS: 8,
+  // Anti-farming cap: only the first this-many rounds *finished* each
+  // calendar day actually award BP (see state/tingxiePlayLimit.ts) -- every
+  // round beyond that still plays normally, it just scores 0 BP regardless
+  // of in-round performance. A round counts toward this the moment it's
+  // finished (timer hits 0), whether or not it happened to net positive BP,
+  // so deliberately playing badly can't be used to "save" a free extra slot.
+  DAILY_BP_ROUND_LIMIT: 3
 };
 
 // Flat BP awarded once per story finished in Read a Story mode (see

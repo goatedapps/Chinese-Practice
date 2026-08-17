@@ -1,4 +1,5 @@
 import type { QuestionGroup } from "../data/types";
+import { getCurrentLevel, isCategoryRelevantForLevel } from "../data/levels";
 import { shuffle } from "./shuffle";
 import { shuffleMcqOptions } from "./mcqShuffle";
 
@@ -61,8 +62,17 @@ function pickRoundRobin(category: string, groups: QuestionGroup[], store: Rotati
 //  - standalone single-question categories (pinyin, vocab, ...) are pooled
 //    together across every selected one and capped at a fixed count.
 export function selectTypeSessionGroups(candidates: QuestionGroup[]): QuestionGroup[] {
+  // Defense-in-depth, not just a picker-UI concern: every START_QUIZ
+  // dispatch site (Practice, Today's Mission, Special Quest) funnels
+  // through this one function, so filtering here guarantees a level's
+  // irrelevant categories (see data/levels.ts's relevantCategories) can
+  // never end up in a built session regardless of which UI path assembled
+  // the candidate groups.
+  const level = getCurrentLevel();
+  const relevant = candidates.filter((g) => isCategoryRelevantForLevel(g.category, level));
+
   const byCategory = new Map<string, QuestionGroup[]>();
-  for (const g of candidates) {
+  for (const g of relevant) {
     const list = byCategory.get(g.category);
     if (list) list.push(g);
     else byCategory.set(g.category, [g]);

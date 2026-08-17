@@ -6,6 +6,7 @@ import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
 import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { loadHistory } from "../../state/history";
+import { tingxiePlayRoundsToday, recordTingxiePlayRound } from "../../state/tingxiePlayLimit";
 import { useTingxieState } from "./tingxieState";
 import { CompleteScreen } from "../common/CompleteScreen";
 
@@ -64,6 +65,12 @@ export function Play() {
   const scoreRef = useRef(0);
   const cloudIdRef = useRef(0);
   const finishedRef = useRef(false);
+  // Locked in once, when the round starts (not re-checked at finish) --
+  // whether today's rounds-played count is still under
+  // TINGXIE_PLAY_CONFIG.DAILY_BP_ROUND_LIMIT. Determines both the
+  // "practice mode" banner shown for the whole round and whether
+  // finishRound() actually awards BP.
+  const roundCanEarnBPRef = useRef(true);
 
   function advanceSentence() {
     if (queueRef.current.length === 0) {
@@ -93,6 +100,7 @@ export function Play() {
       })
       .finally(() => {
         if (cancelled) return;
+        roundCanEarnBPRef.current = tingxiePlayRoundsToday() < TINGXIE_PLAY_CONFIG.DAILY_BP_ROUND_LIMIT;
         advanceSentence();
         setPhase("playing");
       });
@@ -110,7 +118,8 @@ export function Play() {
     const clamped = Math.max(0, scoreRef.current);
     setFinalScore(clamped);
     setPhase("complete");
-    if (clamped > 0) awardBP(clamped);
+    recordTingxiePlayRound();
+    if (roundCanEarnBPRef.current && clamped > 0) awardBP(clamped);
     Sound.applause();
     recordTingxieActivityCompleted();
     logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|play` });
@@ -190,12 +199,34 @@ export function Play() {
   }
 
   if (phase === "complete") {
-    return <CompleteScreen title="游戏结束！Time's Up!" bpAmount={finalScore} />;
+    const capped = !roundCanEarnBPRef.current && finalScore > 0;
+    return (
+      <CompleteScreen title="游戏结束！Time's Up!" bpAmount={capped ? undefined : finalScore}>
+        {capped && (
+          <div className="mission-hint-box">
+            <span className="mission-hint-icon">🎮</span>
+            <span>
+              本局得分 {finalScore}，但今天的词云游戏 BP 奖励已用完（每天前 {TINGXIE_PLAY_CONFIG.DAILY_BP_ROUND_LIMIT} 局才有 BP）。
+              <br />
+              Score: {finalScore}, but today's Play BP rewards are used up (only the first{" "}
+              {TINGXIE_PLAY_CONFIG.DAILY_BP_ROUND_LIMIT} rounds each day earn BP).
+            </span>
+          </div>
+        )}
+      </CompleteScreen>
+    );
   }
 
   return (
     <div className="tingxie-play">
       <div className="tingxie-play-timer">⏱ {timeLeft}s</div>
+
+      {!roundCanEarnBPRef.current && (
+        <div className="mission-hint-box tingxie-play-cap-banner">
+          <span className="mission-hint-icon">🎮</span>
+          <span>今天的 BP 奖励已用完，这一局不计 BP，仍可练习。Today's BP rewards are used up — this round is practice only, no BP.</span>
+        </div>
+      )}
 
       <div className="tingxie-apply-sentence">{current?.blanked}</div>
       <div className="tingxie-apply-english">{current?.english}</div>

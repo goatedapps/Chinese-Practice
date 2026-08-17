@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useAppDispatch, useAppState } from "../../state/AppStateContext";
 import { CATEGORIES, SUBJECTS, VOCABULARY_CATEGORY_KEYS, fetchQuestionCategory } from "../../data/questions";
+import { isCategoryRelevantForLevel } from "../../data/levels";
 import type { QuestionGroup } from "../../data/types";
 import { selectTypeSessionGroups } from "../../lib/typeSession";
 import { loadHistory } from "../../state/history";
@@ -13,7 +14,12 @@ import { isLessonMissionComplete } from "../../lib/stats";
 // picking this doesn't think of them as separate types, while every other
 // category still gets its own button. The underlying CATEGORIES keys are
 // untouched (per-category lessonIds tagging still needs them distinct).
-const TYPE_PICKER_GROUPS: { key: string; label: string; categories: string[] }[] = [
+// Each group's `categories` list is filtered down to the current level's
+// relevantCategories (data/levels.ts) before use below -- a standalone
+// group (e.g. Conjunctions) disappears entirely once filtered to nothing,
+// and the combined Vocabulary group drops just its irrelevant members (e.g.
+// "phrase" for P2) while staying selectable for the rest.
+const TYPE_PICKER_GROUP_DEFS: { key: string; label: string; categories: string[] }[] = [
   { key: "vocabulary", label: "词语运用 Vocabulary", categories: VOCABULARY_CATEGORY_KEYS },
   { key: "conjunction", label: CATEGORIES.conjunction.label, categories: ["conjunction"] },
   { key: "sentence", label: CATEGORIES.sentence.label, categories: ["sentence"] },
@@ -37,6 +43,22 @@ export function Practice() {
   const [hist] = useState(() => loadHistory());
   const lessonMissionDone = isLessonMissionComplete(hist);
 
+  // Level-filtered view of TYPE_PICKER_GROUP_DEFS/VOCABULARY_CATEGORY_KEYS
+  // (see the defs' comment above) -- recomputed only when the level changes
+  // (SET_LEVEL resets the whole screen via RESET_TO_HOME-style state anyway,
+  // see AppStateContext.tsx, so this rarely recomputes mid-visit).
+  const typePickerGroups = useMemo(
+    () =>
+      TYPE_PICKER_GROUP_DEFS.map((g) => ({ ...g, categories: g.categories.filter((k) => isCategoryRelevantForLevel(k, state.level)) })).filter(
+        (g) => g.categories.length > 0
+      ),
+    [state.level]
+  );
+  const vocabularyCategoryKeys = useMemo(
+    () => VOCABULARY_CATEGORY_KEYS.filter((k) => isCategoryRelevantForLevel(k, state.level)),
+    [state.level]
+  );
+
   // Whether at least one of a group's underlying categories has a question
   // under the given subject -- greyed out/unclickable otherwise (e.g.
   // Vocabulary, Conjunctions, Sentence Completion, Dialogue Completion, and
@@ -49,7 +71,7 @@ export function Practice() {
     return categories.some((k) => state.categorySubjects[k]?.has(subject));
   }
 
-  const vocabularySelected = VOCABULARY_CATEGORY_KEYS.every((k) => state.selectedCategories.has(k));
+  const vocabularySelected = vocabularyCategoryKeys.length > 0 && vocabularyCategoryKeys.every((k) => state.selectedCategories.has(k));
 
   // How many Vocabulary-category questions exist per lesson under the
   // current subject filter -- lets the lesson grid grey out a lesson with no
@@ -61,12 +83,12 @@ export function Practice() {
     const counts = new Map<number, number>();
     for (let n = 1; n <= state.lessonCount; n++) counts.set(n, 0);
     for (const g of state.questionIndex) {
-      if (g.lessonIds.length === 0 || !VOCABULARY_CATEGORY_KEYS.includes(g.category)) continue;
+      if (g.lessonIds.length === 0 || !vocabularyCategoryKeys.includes(g.category)) continue;
       if (state.selectedSubject !== "All" && g.subject !== state.selectedSubject) continue;
       for (const n of g.lessonIds) counts.set(n, (counts.get(n) ?? 0) + g.questionCount);
     }
     return counts;
-  }, [state.selectedSubject, state.questionIndex, state.lessonCount]);
+  }, [state.selectedSubject, state.questionIndex, state.lessonCount, vocabularyCategoryKeys]);
 
   async function startPractice() {
     if (state.selectedCategories.size === 0) {
@@ -94,7 +116,7 @@ export function Practice() {
 
     const groups = categoryLists.flat().filter((g) => {
       if (state.selectedSubject !== "All" && g.subject !== state.selectedSubject) return false;
-      if (lessonFiltered && VOCABULARY_CATEGORY_KEYS.includes(g.category)) {
+      if (lessonFiltered && vocabularyCategoryKeys.includes(g.category)) {
         if (!g.lessonEligible || !g.lessonIds.some((id) => state.selectedLessons.has(id))) return false;
       }
       return true;
@@ -104,7 +126,7 @@ export function Practice() {
       return;
     }
 
-    const selectedGroups = TYPE_PICKER_GROUPS.filter((g) => g.categories.every((k) => state.selectedCategories.has(k)));
+    const selectedGroups = typePickerGroups.filter((g) => g.categories.every((k) => state.selectedCategories.has(k)));
     const lessonNums = [...state.selectedLessons].sort((a, b) => a - b);
     const label = selectedGroups
       .map((g) => (lessonFiltered && g.key === "vocabulary" ? `${g.label}（第 ${lessonNums.join("、")} 课）` : g.label))
@@ -150,7 +172,7 @@ export function Practice() {
         ))}
       </div>
       <div className="category-grid">
-        {TYPE_PICKER_GROUPS.map(({ key, label, categories }) => {
+        {typePickerGroups.map(({ key, label, categories }) => {
           const active = categories.every((k) => state.selectedCategories.has(k));
           const applicable = groupApplicable(categories, state.selectedSubject);
           return (
