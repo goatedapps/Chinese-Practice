@@ -135,6 +135,13 @@ export interface PetState {
   growth: number;
   moodAtCheckpoint: number;
   lastFedAt: number;
+  // Anchor for growth-decay-from-neglect accounting (see PetContext.tsx's
+  // settleGrowthDecay()) -- advances by whole days consumed each time decay
+  // is applied while mood sits at 0, and resets to "now" the moment mood
+  // rises back above 0. Absent on pre-this-feature saves; loadPetState()'s
+  // merge with PET_DEFAULT_STATE backfills it to "now" so an old save never
+  // takes a retroactive growth penalty for neglect that predates the field.
+  growthDecayCheckpointAt: number;
   // Items bought in the Shop land here first, keyed by ShopItem id; the
   // student opens the Bag and chooses when to give each one to the owl.
   inventory: Record<string, number>;

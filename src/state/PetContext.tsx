@@ -1,6 +1,14 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { PetState, MoodBucket, ShopItem } from "../data/types";
-import { PET_DEFAULT_STATE, PET_STAGES, MOOD_DECAY_PER_HOUR, GROWTH_PER_AGE_YEAR, specialQuestConfig } from "../data/pet";
+import {
+  PET_DEFAULT_STATE,
+  PET_STAGES,
+  MOOD_DECAY_PER_HOUR,
+  GROWTH_PER_AGE_YEAR,
+  GROWTH_DECAY_PER_DAY_AT_ZERO_MOOD,
+  GROWTH_DECAY_DAY_MS,
+  specialQuestConfig
+} from "../data/pet";
 import { loadJSON } from "../lib/storage";
 import { saveAndSync } from "../lib/sync";
 import { getTodaySpecialQuest, completeSpecialQuest } from "./specialQuest";
@@ -10,10 +18,19 @@ import { logAchievement } from "./achievements";
 // keys it reconciles against Supabase after sign-in -- see lib/sync.ts.
 export const PET_KEY = "hanyuPracticePet_v1";
 
+// How often PetProvider's background timer re-checks growth-decay-from-
+// neglect (see settleGrowthDecay()) while the app stays open. Purely an
+// implementation/polling detail (not a gamification tunable, unlike
+// GROWTH_DECAY_PER_DAY_AT_ZERO_MOOD/GROWTH_DECAY_DAY_MS in data/pet.ts) --
+// doesn't need to be anywhere near a full day, just frequent enough that a
+// long-open tab doesn't have to wait for a reload to see growth actually
+// drop.
+const GROWTH_DECAY_SETTLE_CHECK_MS = 15 * 60 * 1000;
+
 function loadPetState(): PetState {
   const saved = loadJSON<Partial<PetState> | null>(PET_KEY, null);
   if (saved) return { ...PET_DEFAULT_STATE, ...saved };
-  return { ...PET_DEFAULT_STATE, lastFedAt: Date.now() };
+  return { ...PET_DEFAULT_STATE, lastFedAt: Date.now(), growthDecayCheckpointAt: Date.now() };
 }
 
 function savePetState(pet: PetState): void {
@@ -23,10 +40,42 @@ function savePetState(pet: PetState): void {
 // Mood is derived, never stored as an already-decayed value: pet.moodAtCheckpoint
 // + pet.lastFedAt is a fixed pair, and this function decays from that pair fresh
 // every call -- calling it repeatedly (every render) never compounds rounding
-// error. Growth/stage is completely separate and never affected by decay.
+// error. Growth/stage is a separate, directly-stored value -- normally
+// unaffected by mood decay, except for the rock-bottom-neglect case handled by
+// settleGrowthDecay() below.
 export function computeCurrentMood(pet: PetState, now: number = Date.now()): number {
   const hoursElapsed = Math.max(0, (now - pet.lastFedAt) / 3600000);
   return Math.max(0, Math.min(100, pet.moodAtCheckpoint - MOOD_DECAY_PER_HOUR * hoursElapsed));
+}
+
+// Applies "1 growth point lost per full day at 0 mood" neglect decay.
+// Growth is a directly-stored, normally-monotonic value (unlike mood, which
+// is always derived fresh -- see computeCurrentMood() above), so this can't
+// just be computed for display: it has to actually decrement pet.growth and
+// persist how much of the neglect period has already been "charged", or the
+// same days would be re-charged every time this runs.
+//
+// pet.growthDecayCheckpointAt is that charged-up-to anchor. While mood is
+// above 0 the pet isn't neglected, so the anchor is simply kept at "now"
+// (pure bookkeeping, no growth lost, and no debt silently accrues for a
+// later dip back to 0). Once mood is genuinely at 0, whole days since the
+// anchor are converted to lost growth (floored at 0 growth) and the anchor
+// advances by exactly that many whole days -- not to "now" -- so a partial
+// day in progress carries over to the next check instead of being dropped.
+// Pure and idempotent: safe to call as often as convenient (mount, a
+// periodic timer, tab refocus, ...).
+export function settleGrowthDecay(pet: PetState, now: number = Date.now()): PetState {
+  if (computeCurrentMood(pet, now) > 0) {
+    return pet.growthDecayCheckpointAt === now ? pet : { ...pet, growthDecayCheckpointAt: now };
+  }
+  const daysElapsed = Math.floor((now - pet.growthDecayCheckpointAt) / GROWTH_DECAY_DAY_MS);
+  if (daysElapsed <= 0) return pet;
+  const lost = Math.min(pet.growth, daysElapsed * GROWTH_DECAY_PER_DAY_AT_ZERO_MOOD);
+  return {
+    ...pet,
+    growth: pet.growth - lost,
+    growthDecayCheckpointAt: pet.growthDecayCheckpointAt + daysElapsed * GROWTH_DECAY_DAY_MS
+  };
 }
 
 export function moodBucket(mood: number): MoodBucket {
@@ -92,6 +141,36 @@ const PetCtx = createContext<PetContextValue | null>(null);
 export function PetProvider({ children }: { children: ReactNode }) {
   const [pet, setPet] = useState<PetState>(loadPetState);
 
+  // Growth-decay-from-neglect (see settleGrowthDecay()) only actually moves
+  // growth once a full day at 0 mood has elapsed, so it doesn't need to run
+  // every render -- just often enough that a student who leaves the app open
+  // across a day boundary (not just closes and reopens it, which already
+  // hits loadPetState... no, loadPetState doesn't settle either, only this
+  // effect does) still sees it applied without a reload. Runs once on mount,
+  // on an interval while the app stays open, and again whenever the tab
+  // regains focus (the moment a returning student is most likely to check
+  // on a neglected pet).
+  useEffect(() => {
+    function settle() {
+      setPet((prev) => {
+        const next = settleGrowthDecay(prev);
+        if (next === prev) return prev;
+        savePetState(next);
+        return next;
+      });
+    }
+    settle();
+    const interval = setInterval(settle, GROWTH_DECAY_SETTLE_CHECK_MS);
+    function onVisible() {
+      if (document.visibilityState === "visible") settle();
+    }
+    document.addEventListener("visibilitychange", onVisible);
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, []);
+
   function awardBP(amount: number) {
     setPet((prev) => {
       const next = { ...prev, bp: prev.bp + amount };
@@ -122,22 +201,30 @@ export function PetProvider({ children }: { children: ReactNode }) {
   // already decremented earlier by consumeItem (see the Play flow note on
   // PetContextValue above), so it must not double-decrement.
   function applyGrowthAndMood(moodAmount: number, growthAmount: number): { agedUp: boolean; age: number } {
-    const newGrowth = pet.growth + growthAmount;
-    const newAge = getAge(newGrowth);
-    const agedUp = newAge > getAge(pet.growth);
-    // Read from the same outer `pet` closure as newGrowth/agedUp above
-    // (not `prev` inside the setPet updater) -- an existing quirk of this
+    const now = Date.now();
+    // Settle any neglect-decay owed up to this moment first (see
+    // settleGrowthDecay()), so a feed/play right after a long absence starts
+    // from the correct (already-decayed) growth rather than adding on top of
+    // a stale, un-settled value.
+    //
+    // Read from the same outer `pet` closure as newGrowth/agedUp below (not
+    // `prev` inside the setPet updater) -- an existing quirk of this
     // function, harmless here since this is only used for the >=100 "quest
     // complete" check below, not persisted.
-    const newMood = Math.min(100, computeCurrentMood(pet) + moodAmount);
+    const settledPet = settleGrowthDecay(pet, now);
+    const newGrowth = settledPet.growth + growthAmount;
+    const newAge = getAge(newGrowth);
+    const agedUp = newAge > getAge(settledPet.growth);
+    const newMood = Math.min(100, computeCurrentMood(settledPet, now) + moodAmount);
 
     setPet((prev) => {
-      const currentMood = computeCurrentMood(prev);
+      const settledPrev = settleGrowthDecay(prev, now);
+      const currentMood = computeCurrentMood(settledPrev, now);
       const next: PetState = {
-        ...prev,
+        ...settledPrev,
         moodAtCheckpoint: Math.min(100, currentMood + moodAmount),
-        lastFedAt: Date.now(),
-        growth: prev.growth + growthAmount
+        lastFedAt: now,
+        growth: settledPrev.growth + growthAmount
       };
       savePetState(next);
       return next;
