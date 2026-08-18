@@ -139,20 +139,12 @@ function BagItemCard({ item, qty, owlRef, onGive, onAgedUp, onPlay }: BagItemCar
       <div className="bag-item-info">
         <div className="bag-item-label">{shopItemName(item)}</div>
         <div className="bag-item-stat">
-          {isToy ? (
-            <span className="stat-inline">
-              <img className="stat-inline-icon" src={HUNGER_ICON} alt="" /> 饱食度最高 +{item.mood}
-            </span>
-          ) : (
-            <>
-              <span className="stat-inline">
-                <img className="stat-inline-icon" src={GROWTH_ICON} alt="" /> 成长 +{item.growth}
-              </span>
-              <span className="stat-inline">
-                <img className="stat-inline-icon" src={HUNGER_ICON} alt="" /> 饱食度 +{item.mood}
-              </span>
-            </>
-          )}
+          <span className="stat-inline">
+            <img className="stat-inline-icon" src={GROWTH_ICON} alt="" /> +{item.growth}
+          </span>
+          <span className="stat-inline">
+            <img className="stat-inline-icon" src={HUNGER_ICON} alt="" /> {isToy ? "最高 " : ""}+{item.mood}
+          </span>
         </div>
       </div>
     </button>

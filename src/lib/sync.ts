@@ -75,9 +75,21 @@ function scheduleSync(key: string, value: unknown): void {
 // The local half always happens; the push half silently no-ops when signed
 // out or Supabase isn't configured, so nothing here can slow down or change
 // behavior for a student who never logs in.
+//
+// Sync-meta is only stamped while `currentUserId` is genuinely set (i.e.
+// this write happened while actually signed in as a real account) -- not
+// while playing as a guest. Guest play still saves locally exactly as
+// before, it just never claims a "just now" timestamp for merge purposes.
+// Without this guard, a guest session's local timestamp could later outrank
+// an *existing* account's real remote `updated_at` the moment that guest
+// logs in, and pullAndMergeAll's last-write-wins merge would push the
+// guest's local data up over the account's actual cloud progress -- a
+// second variant of the cross-account data leak clearSyncMeta() (see below)
+// exists to prevent, this time via guest activity rather than a previous
+// account's leftover session.
 export function saveAndSync<T>(key: string, value: T): void {
   saveJSON(key, value);
-  setSyncMeta(key, Date.now());
+  if (currentUserId) setSyncMeta(key, Date.now());
   scheduleSync(key, value);
 }
 
