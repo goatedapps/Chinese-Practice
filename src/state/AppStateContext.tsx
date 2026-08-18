@@ -1,7 +1,8 @@
 import { createContext, useContext, useReducer, type ReactNode, type Dispatch } from "react";
 import type { QuestionGroup, GroupResult, GroupResultItem, QuestionIndexEntry } from "../data/types";
 import { VOCABULARY_CATEGORY_KEYS } from "../data/questions";
-import { DEFAULT_LEVEL, isCategoryRelevantForLevel } from "../data/levels";
+import { isCategoryRelevantForLevel } from "../data/levels";
+import { loadSavedLevel } from "./levelPreference";
 
 export type Screen =
   | "home"
@@ -57,7 +58,7 @@ export interface AppState {
 
 const initialState: AppState = {
   screen: "home",
-  level: DEFAULT_LEVEL,
+  level: loadSavedLevel(),
   mode: null,
   modeLabel: "",
   groups: [],

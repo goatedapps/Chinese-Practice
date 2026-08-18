@@ -9,7 +9,7 @@ import {
   GROWTH_DECAY_DAY_MS,
   specialQuestConfig
 } from "../data/pet";
-import { loadJSON } from "../lib/storage";
+import { loadJSON, saveJSON } from "../lib/storage";
 import { saveAndSync } from "../lib/sync";
 import { getTodaySpecialQuest, completeSpecialQuest } from "./specialQuest";
 import { logAchievement } from "./achievements";
@@ -155,7 +155,19 @@ export function PetProvider({ children }: { children: ReactNode }) {
       setPet((prev) => {
         const next = settleGrowthDecay(prev);
         if (next === prev) return prev;
-        savePetState(next);
+        // settleGrowthDecay almost always returns a *new* object even when
+        // no growth was actually lost -- while mood > 0 it still bumps
+        // growthDecayCheckpointAt to "now" as pure bookkeeping (see its own
+        // comment). That happens on essentially every mount/interval tick,
+        // so routing it through the sync-aware savePetState would re-stamp
+        // this key's sync-meta timestamp and schedule a Supabase push on
+        // every single tick for no substantive change -- wasteful, and (before
+        // lib/sync.ts's syncReady gate existed) exactly the kind of no-op
+        // write that could race a still-pending post-login merge. Only a
+        // genuine growth change goes through the sync path; the pure
+        // checkpoint refresh is saved locally only.
+        if (next.growth !== prev.growth) savePetState(next);
+        else saveJSON(PET_KEY, next);
         return next;
       });
     }

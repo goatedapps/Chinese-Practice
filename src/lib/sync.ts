@@ -28,21 +28,69 @@ function setSyncMeta(key: string, updatedAtMs: number): void {
 
 let currentUserId: string | null = null;
 
+// True once it's safe for saveAndSync/pushRow to actually touch Supabase for
+// the current signed-in user -- false from the moment a *new* user id is set
+// until state/SyncBootstrap.tsx's post-sign-in pullAndMergeAll() finishes
+// SUCCESSFULLY for that user (see markSyncReady() below). Starts true so an
+// app that's never signed in (or has signed out) never blocks -- currentUserId
+// being null already no-ops every push on its own.
+//
+// Why this exists: without it, any write that happens to land in the window
+// between a session resolving and the merge-pull completing -- most reliably
+// PetContext's mount-time growth-decay "settle" effect, which fires on
+// essentially every app load -- would stamp a fresh local timestamp and push
+// a still-un-merged (possibly default/empty) local state up to Supabase,
+// permanently overwriting the account's real remote data before
+// pullAndMergeAll ever gets a chance to pull it down. Worse, if that merge
+// fetch itself silently fails (offline, or an iPad backgrounding the tab
+// mid-request), nothing used to retry it, so every *later* save (feeding the
+// pet, a quiz's BP award, ...) kept pushing the still-default local state
+// over the real remote row. This was a real reported bug: a signed-in
+// student's pet reset to 0 growth/0 BP/no name after opening the app on a
+// new device, and that reset had propagated to Supabase itself, not just the
+// local display. See state/SyncBootstrap.tsx for the retry loop that keeps
+// re-attempting the merge (on visibility/online) until it actually succeeds,
+// only then calling markSyncReady().
+let syncReady = true;
+
 // The one seam between this plain module and React: AuthContext calls this
 // whenever the signed-in user changes (including to `null` on sign-out), so
 // every function below knows whether/where to push without needing its own
-// Context access.
+// Context access. Re-closes the syncReady gate whenever the id genuinely
+// changes to a new signed-in user (a fresh sign-in needs its own merge-pull
+// before it's safe to push); a repeat call with the same id (e.g. a duplicate
+// onAuthStateChange firing) is a no-op so it can't re-close a gate that
+// already legitimately opened.
 export function setSyncUser(userId: string | null): void {
-  currentUserId = userId;
+  if (userId !== currentUserId) {
+    currentUserId = userId;
+    syncReady = userId === null;
+  }
+}
+
+// Called by state/SyncBootstrap.tsx once pullAndMergeAll() has genuinely
+// succeeded for the current user -- flips the gate back open and flushes
+// anything that was queued in pendingPush while it was closed.
+export function markSyncReady(): void {
+  syncReady = true;
+  for (const [key, value] of pendingPush) void pushRow(key, value);
 }
 
 const debounceTimers = new Map<string, ReturnType<typeof setTimeout>>();
-// Any push that failed (most likely offline) -- retried on the next
-// successful `scheduleSync` call for that key, or immediately on reconnect.
+// Any push that failed (most likely offline, or deferred because syncReady
+// was still closed) -- retried on the next successful `scheduleSync` call for
+// that key, on reconnect, or once markSyncReady() flushes the queue.
 const pendingPush = new Map<string, unknown>();
 
 async function pushRow(key: string, value: unknown): Promise<void> {
   if (!supabase || !currentUserId) return;
+  if (!syncReady) {
+    // Don't push while a post-sign-in merge is still pending -- see
+    // syncReady's own comment above for why. markSyncReady() retries
+    // whatever's queued here the moment it's actually safe to.
+    pendingPush.set(key, value);
+    return;
+  }
   const { error } = await supabase
     .from(TABLE)
     .upsert({ user_id: currentUserId, key, value, updated_at: new Date().toISOString() });
@@ -89,7 +137,12 @@ function scheduleSync(key: string, value: unknown): void {
 // account's leftover session.
 export function saveAndSync<T>(key: string, value: T): void {
   saveJSON(key, value);
-  if (currentUserId) setSyncMeta(key, Date.now());
+  // Also gated on syncReady, not just currentUserId -- stamping "now" here
+  // while a merge-pull is still pending would poison pullAndMergeAll's own
+  // read of this timestamp (it runs later, in the same login flow) into
+  // wrongly thinking this device's not-yet-merged local value is newer than
+  // the account's real remote data. See syncReady's comment above.
+  if (currentUserId && syncReady) setSyncMeta(key, Date.now());
   scheduleSync(key, value);
 }
 
@@ -143,14 +196,24 @@ interface SyncRow {
 // state (PetContext) rather than only read lazily on mount -- everything
 // else lands via applyRemoteToLocal and is picked up next time its owning
 // screen mounts.
+// Returns whether the merge genuinely completed (a real response came back
+// from Supabase and every key's decision was applied) -- state/SyncBootstrap.tsx
+// only calls markSyncReady() on `true`, and keeps retrying (on visibility/
+// online) while it keeps coming back `false`, rather than ever opening the
+// push gate on top of a merge that never actually happened.
 export async function pullAndMergeAll(
   userId: string,
   syncKeys: string[],
-  opts: { petKey?: string; onPetRow?: (value: unknown, remoteUpdatedAtMs: number) => void } = {}
-): Promise<void> {
-  if (!supabase) return;
+  opts: {
+    petKey?: string;
+    onPetRow?: (value: unknown, remoteUpdatedAtMs: number) => void;
+    levelKey?: string;
+    onLevelRow?: (value: unknown, remoteUpdatedAtMs: number) => void;
+  } = {}
+): Promise<boolean> {
+  if (!supabase) return false;
   const { data, error } = await supabase.from(TABLE).select("key,value,updated_at").eq("user_id", userId);
-  if (error || !data) return;
+  if (error || !data) return false;
 
   const remoteByKey = new Map<string, SyncRow>((data as SyncRow[]).map((row) => [row.key, row]));
   const meta = getSyncMeta();
@@ -171,10 +234,12 @@ export async function pullAndMergeAll(
 
     if (localMs === null || remoteMs > localMs) {
       if (key === opts.petKey && opts.onPetRow) opts.onPetRow(remote.value, remoteMs);
+      else if (key === opts.levelKey && opts.onLevelRow) opts.onLevelRow(remote.value, remoteMs);
       else applyRemoteToLocal(key, remote.value, remoteMs);
     } else if (localMs > remoteMs) {
       const local = loadJSON<unknown>(key, null);
       if (local !== null) void pushRow(key, local);
     }
   }
+  return true;
 }

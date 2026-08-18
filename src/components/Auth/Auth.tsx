@@ -7,6 +7,8 @@ import { clearLocalStore, clearSyncMeta } from "../../lib/sync";
 import { HISTORY_KEY } from "../../state/history";
 import { ACHIEVEMENTS_KEY } from "../../state/achievements";
 import { TINGXIE_PROGRESS_KEY } from "../../state/tingxieProgress";
+import { LEVEL_KEY } from "../../state/levelPreference";
+import { DEFAULT_LEVEL, setCurrentLevel } from "../../data/levels";
 
 // The "auth" screen -- reached via AccountBar's Login button, GO_TO_SCREEN
 // "auth", or (when `gated`) forced by App.tsx's ScreenRouter for a student
@@ -54,6 +56,9 @@ export function Auth({ gated = false }: { gated?: boolean }) {
     clearLocalStore(HISTORY_KEY);
     clearLocalStore(ACHIEVEMENTS_KEY);
     clearLocalStore(TINGXIE_PROGRESS_KEY);
+    clearLocalStore(LEVEL_KEY);
+    setCurrentLevel(DEFAULT_LEVEL);
+    dispatch({ type: "SET_LEVEL", level: DEFAULT_LEVEL });
     // Also clear any leftover sync-meta timestamps (e.g. from local guest
     // play before this signup) -- same reasoning as SyncBootstrap.tsx's
     // sign-out cleanup, so a stale timestamp can never make a later merge

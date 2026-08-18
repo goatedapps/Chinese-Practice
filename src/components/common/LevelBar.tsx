@@ -1,5 +1,6 @@
 import { useAppState, useAppDispatch } from "../../state/AppStateContext";
 import { LEVELS, setCurrentLevel } from "../../data/levels";
+import { saveLevel } from "../../state/levelPreference";
 
 // A small persistent level switcher, rendered alongside TopNav/AccountBar
 // (see App.tsx) -- same "small bar below TopNav" placement as AccountBar.
@@ -28,6 +29,7 @@ export function LevelBar() {
           disabled={state.level === lvl.id}
           onClick={() => {
             setCurrentLevel(lvl.id);
+            saveLevel(lvl.id);
             dispatch({ type: "SET_LEVEL", level: lvl.id });
           }}
         >

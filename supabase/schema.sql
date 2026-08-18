@@ -2,10 +2,11 @@
 -- Backs the app's cross-device sync layer (see src/lib/sync.ts) -- one row
 -- per synced localStorage store per user, keyed by the same string constant
 -- the app already uses locally (e.g. "hanyuPracticePet_v1"), so no separate
--- key-mapping table is needed. Only the four stores that are meaningfully
--- cross-device (pet, history, achievements, tingxieProgress) ever get a row
--- here -- the day-scoped stores (todaySummary, specialQuest) stay local-only
--- by design, see CLAUDE.md's Auth / cross-device sync section.
+-- key-mapping table is needed. Only the five stores that are meaningfully
+-- cross-device (pet, history, achievements, tingxieProgress, the chosen
+-- content level) ever get a row here -- the day-scoped stores (todaySummary,
+-- specialQuest) stay local-only by design, see CLAUDE.md's Auth /
+-- cross-device sync section.
 
 create table if not exists user_state (
   user_id uuid references auth.users(id) on delete cascade not null,
