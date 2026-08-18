@@ -1989,3 +1989,1023 @@
   category: vocab
   lessonIds: []
   questionCount: 1
+- groupId: TX-Q1
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: TX-Q2
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: TX-Q3
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: TX-Q4
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: TX-Q5
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: TX-Q6
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: TX-Q7
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: TX-Q8
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: TX-Q9
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: TX-Q10
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 1
+  questionCount: 1
+- groupId: TX-Q11
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: TX-Q12
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: TX-Q13
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: TX-Q14
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: TX-Q15
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: TX-Q16
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: TX-Q17
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: TX-Q18
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: TX-Q19
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: TX-Q20
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 2
+  questionCount: 1
+- groupId: TX-Q21
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: TX-Q22
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: TX-Q23
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: TX-Q24
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: TX-Q25
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: TX-Q26
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: TX-Q27
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: TX-Q28
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: TX-Q29
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: TX-Q30
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 3
+  questionCount: 1
+- groupId: TX-Q31
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: TX-Q32
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: TX-Q33
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: TX-Q34
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: TX-Q35
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: TX-Q36
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: TX-Q37
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: TX-Q38
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: TX-Q39
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: TX-Q40
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 4
+  questionCount: 1
+- groupId: TX-Q41
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: TX-Q42
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: TX-Q43
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: TX-Q44
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: TX-Q45
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: TX-Q46
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: TX-Q47
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: TX-Q48
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: TX-Q49
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: TX-Q50
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 5
+  questionCount: 1
+- groupId: TX-Q51
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: TX-Q52
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: TX-Q53
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: TX-Q54
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: TX-Q55
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: TX-Q56
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: TX-Q57
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: TX-Q58
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: TX-Q59
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: TX-Q60
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 6
+  questionCount: 1
+- groupId: TX-Q61
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: TX-Q62
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: TX-Q63
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: TX-Q64
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: TX-Q65
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: TX-Q66
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: TX-Q67
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: TX-Q68
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: TX-Q69
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: TX-Q70
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 7
+  questionCount: 1
+- groupId: TX-Q71
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: TX-Q72
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: TX-Q73
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: TX-Q74
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: TX-Q75
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: TX-Q76
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: TX-Q77
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: TX-Q78
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: TX-Q79
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: TX-Q80
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 8
+  questionCount: 1
+- groupId: TX-Q81
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: TX-Q82
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: TX-Q83
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: TX-Q84
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: TX-Q85
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: TX-Q86
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: TX-Q87
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: TX-Q88
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: TX-Q89
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: TX-Q90
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 9
+  questionCount: 1
+- groupId: TX-Q91
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: TX-Q92
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: TX-Q93
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: TX-Q94
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: TX-Q95
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: TX-Q96
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: TX-Q97
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: TX-Q98
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: TX-Q99
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: TX-Q100
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 10
+  questionCount: 1
+- groupId: TX-Q101
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: TX-Q102
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: TX-Q103
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: TX-Q104
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: TX-Q105
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: TX-Q106
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: TX-Q107
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: TX-Q108
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: TX-Q109
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: TX-Q110
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 11
+  questionCount: 1
+- groupId: TX-Q111
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: TX-Q112
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: TX-Q113
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: TX-Q114
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: TX-Q115
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: TX-Q116
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: TX-Q117
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: TX-Q118
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: TX-Q119
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: TX-Q120
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 12
+  questionCount: 1
+- groupId: TX-Q121
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: TX-Q122
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: TX-Q123
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: TX-Q124
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: TX-Q125
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: TX-Q126
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: TX-Q127
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: TX-Q128
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: TX-Q129
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: TX-Q130
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 13
+  questionCount: 1
+- groupId: TX-Q131
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: TX-Q132
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: TX-Q133
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: TX-Q134
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: TX-Q135
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: TX-Q136
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: TX-Q137
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: TX-Q138
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: TX-Q139
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: TX-Q140
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 14
+  questionCount: 1
+- groupId: TX-Q141
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: TX-Q142
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: TX-Q143
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: TX-Q144
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: TX-Q145
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: TX-Q146
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: TX-Q147
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: TX-Q148
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: TX-Q149
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: TX-Q150
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 15
+  questionCount: 1
+- groupId: TX-Q151
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: TX-Q152
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: TX-Q153
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: TX-Q154
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: TX-Q155
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: TX-Q156
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: TX-Q157
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: TX-Q158
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: TX-Q159
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: TX-Q160
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 16
+  questionCount: 1
+- groupId: TX-Q161
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: TX-Q162
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: TX-Q163
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: TX-Q164
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: TX-Q165
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: TX-Q166
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: TX-Q167
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: TX-Q168
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: TX-Q169
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
+- groupId: TX-Q170
+  subject: Chinese
+  category: vocab
+  lessonIds:
+    - 17
+  questionCount: 1
