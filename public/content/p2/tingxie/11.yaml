@@ -368,15 +368,15 @@ vocab:
       - zh: 小鸡正在草地上开心地吃东西和玩耍。
         en: The chicks are happily eating and playing on the grass.
 sentences:
-  - text: 你玩过五子棋吗？
+  - text: 你玩过五石子吗？
     segments:
       - 你
       - 玩过
-      - 五子棋
+      - 五石子
       - 吗
       - "？"
     icon: activity
-    description: Have you played five-in-a-row (gomoku) before?
+    description: Have you played five stones before?
   - text: 我跟朋友一起下棋。
     segments:
       - 我
