@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { usePet } from "../../state/PetContext";
-import { TINGXIE_BP_AWARD } from "../../data/pet";
+import { TINGXIE_BP_PER_UNIT } from "../../data/pet";
 import { buildTingxiePracticeVocabQueue, tingxieIconEmoji } from "../../data/tingxie";
 import { speakText } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
@@ -20,6 +20,11 @@ export function Practice() {
   // at most once per mount -- resets each time the student re-enters Practice.
   const awardedRef = useRef(false);
   const hasVocab = state.activeContent!.vocab.length > 0;
+  // Both phases' unit counts, so the award covers the whole test (vocab +
+  // sentence phases) regardless of which phase just finished.
+  const bpAmount =
+    TINGXIE_BP_PER_UNIT.PRACTICE_VOCAB * state.activeContent!.vocab.length +
+    TINGXIE_BP_PER_UNIT.PRACTICE_SENTENCE * state.activeContent!.sentences.length;
 
   useEffect(() => {
     dispatch({ type: "PRACTICE_START", queue: buildTingxiePracticeVocabQueue(state.activeContent!.vocab) });
@@ -31,13 +36,13 @@ export function Practice() {
   useEffect(() => {
     if (state.practiceComplete && hasVocab && !awardedRef.current) {
       awardedRef.current = true;
-      awardBP(TINGXIE_BP_AWARD.PRACTICE);
+      awardBP(bpAmount);
       Sound.applause();
       recordTingxieActivityCompleted();
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|test` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
-  }, [state.practiceComplete, hasVocab, awardBP, state.activeContent]);
+  }, [state.practiceComplete, hasVocab, awardBP, state.activeContent, bpAmount]);
 
   const current = state.practiceQueue[0];
 
@@ -89,7 +94,7 @@ export function Practice() {
   }
 
   if (state.practiceComplete) {
-    return <CompleteScreen title="听写测试完成！Test Complete!" bpAmount={TINGXIE_BP_AWARD.PRACTICE} />;
+    return <CompleteScreen title="听写测试完成！Test Complete!" bpAmount={bpAmount} />;
   }
 
   if (!current) return null;

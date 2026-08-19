@@ -6,12 +6,7 @@
    here -- this file only holds tunable config, never per-user
    state.
 
-   Owl art is 24 fully-illustrated PNGs (6 growth stages x 4 mood
-   buckets, user-supplied sprite sheet sliced by
-   scripts/slice_owl_sprites.py into public/owl/) -- see
-   owlSpritePath() below. Unlike the old hand-rolled SVG version,
-   every stage (including egg) has all 4 mood variants drawn, so
-   there's no more "egg has no face" special case.
+   Owl art is 24 fully-illustrated PNGs or MP4 (6 growth stages x 4 mood) 
    ========================================================= */
 import type { PetState, PetStage, ShopItem, MoodBucket } from "./types";
 
@@ -33,7 +28,7 @@ export const PET_STAGES: PetStage[] = [
 ];
 
 // How fast neglect sets in: mood points lost per hour since last feed/play.
-export const MOOD_DECAY_PER_HOUR: number = 2;
+export const MOOD_DECAY_PER_HOUR: number = 4;
 
 // Growth points lost per full day the pet's mood sits at rock bottom (0) --
 // severe, prolonged neglect, not just "a bit hungry." Unlike mood (always
@@ -54,24 +49,28 @@ export const BP_AWARD: Record<string, number> = {
   "Writing-Constrained": 2
 };
 
-// Tingxie-mode BP awards -- carried over 1:1 from the source app's point
-// values. Larger than the per-question BP_AWARD above because each of these
-// covers completing a whole lesson-scale activity (~15-20 vocab words or
-// 5+ sentences), not a single question. Tunable, not gospel.
-export const TINGXIE_BP_AWARD = {
-  VOCAB_LEARN: 10, // 学习(学词语) -- every vocab card flipped at least once, this visit
-  SENTENCE_LEARN: 10, // 学习(学默写) -- every sentence solved correctly, this visit
-  APPLY: 10, // 词语应用 -- whole apply queue (incl. requeued misses) completed
-  PRACTICE: 20 // 听写练习 -- BOTH phases (tingxie + moxie) completed
+// Tingxie-mode BP awards -- per-unit (not flat per-activity any more), so a
+// lesson with more vocab/sentences pays out proportionally more. Each
+// activity's actual award is this rate times however many vocab
+// words/sentences that lesson visit covered -- see the awardBP() call sites
+// in components/Tingxie/Learn.tsx, Apply.tsx, Practice.tsx. Tunable, not
+// gospel.
+export const TINGXIE_BP_PER_UNIT = {
+  VOCAB_LEARN: 1, // 学习(学词语) -- BP per vocab word flipped at least once, this visit
+  SENTENCE_LEARN: 2, // 学习(学默写) -- BP per sentence solved correctly, this visit
+  APPLY: 1, // 词语应用 -- BP per word in the apply queue (incl. requeued misses)
+  PRACTICE_VOCAB: 1, // 听写练习 phase 1 -- BP per vocab word
+  PRACTICE_SENTENCE: 2 // 听写练习 phase 2 -- BP per sentence
 };
 
 // Dictation Practice's "Play" (词云游戏) minigame -- a fixed-length timed
 // round where falling word-clouds must be tapped to fill in a blanked
 // sentence's missing word before time runs out. Unlike every other Tingxie
-// activity's flat TINGXIE_BP_AWARD, this one's payout is earned live
-// (CORRECT_BP/WRONG_BP per tap) and only totalled + awarded once the round
-// ends (see components/Tingxie/Play.tsx) -- clamped to 0 if the round nets
-// negative, never a debit against the pet's existing BP.
+// activity's TINGXIE_BP_PER_UNIT rate (a per-word/sentence multiplier), this
+// one's payout is earned live (CORRECT_BP/WRONG_BP per tap) and only
+// totalled + awarded once the round ends (see components/Tingxie/Play.tsx)
+// -- clamped to 0 if the round nets negative, never a debit against the
+// pet's existing BP.
 export const TINGXIE_PLAY_CONFIG = {
   DURATION_SEC: 60,
   CORRECT_BP: 1,
@@ -108,12 +107,12 @@ export const MISSION_COMPLETE_BONUS_BP = 100;
 // toy's `mood` here is its *maximum* possible payout (flat + bonus, see
 // TOY_GAMES), shown in the Shop/Bag as "up to" a stat, not a guaranteed one.
 export const SHOP_ITEMS: ShopItem[] = [
-  { id: "seed",   label: "🌾 谷粒 Seeds",       type: "food", cost: 25,  growth: 2,  mood: 20 },
-  { id: "worm",   label: "🐛 虫子 Worm",        type: "food", cost: 48,  growth: 4,  mood: 40 },
-  { id: "fish",   label: "🐟 小鱼干 Dried Fish", type: "food", cost: 70, growth: 8, mood: 60 },
-  { id: "ball",   label: "⚽ 小球 Play Ball",    type: "toy",  cost: 10,  growth: 1,  mood: 20 },
-  { id: "kite",   label: "🪁 风筝 Kite",         type: "toy",  cost: 18, growth: 2,  mood: 45 },
-  { id: "puzzle", label: "🃏 记忆卡牌 Memory Cards", type: "toy", cost: 25, growth: 3, mood: 60 }
+  { id: "seed",   label: "🌾 谷粒 Seeds",       type: "food", cost: 25,  growth: 1,  mood: 10 },
+  { id: "worm",   label: "🐛 虫子 Worm",        type: "food", cost: 65,  growth: 3,  mood: 30 },
+  { id: "fish",   label: "🐟 小鱼干 Dried Fish", type: "food", cost: 100, growth: 5, mood: 40 },
+  { id: "ball",   label: "⚽ 小球 Play Ball",    type: "toy",  cost: 20,  growth: 1,  mood: 8 },
+  { id: "kite",   label: "🪁 风筝 Kite",         type: "toy",  cost: 38, growth: 2,  mood: 16 },
+  { id: "puzzle", label: "🃏 记忆卡牌 Memory Cards", type: "toy", cost: 48, growth: 2, mood: 24 }
 ];
 
 // Extracts the terse Chinese name out of a SHOP_ITEMS label
@@ -186,24 +185,24 @@ export const TOY_GAMES: Record<string, ToyGameConfig> = {
     game: "catch",
     attempts: 10,
     bonusThreshold: 8,
-    flatMood: 18,
-    bonusMood: 12,
+    flatMood: 5,
+    bonusMood: 3,
     bonusLabel: "接住 8 个以上！Near-perfect run!"
   },
   kite: {
     game: "feather",
     attempts: 8,
     bonusThreshold: 7,
-    flatMood: 35,
-    bonusMood: 20,
+    flatMood: 10,
+    bonusMood: 6,
     bonusLabel: "接住 7 个以上！Near-perfect catch!"
   },
   puzzle: {
     game: "memory",
     pairCount: 6,
     bonusTimeSeconds: 20,
-    flatMood: 55,
-    bonusMood: 25,
+    flatMood: 15,
+    bonusMood: 9,
     bonusLabel: "20 秒内配对成功！Matched within 20 seconds!"
   }
 };

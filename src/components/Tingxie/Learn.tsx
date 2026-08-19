@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { usePet } from "../../state/PetContext";
-import { TINGXIE_BP_AWARD } from "../../data/pet";
+import { TINGXIE_BP_PER_UNIT } from "../../data/pet";
 import { tingxieIconEmoji, tingxieSentenceWords } from "../../data/tingxie";
 import { speakText, speakWordThenSentence, stopSpeaking } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
@@ -27,6 +27,7 @@ function VocabFlipCard() {
   const vocab = state.activeContent!.vocab;
   const current = vocab[state.vocabIndex];
   const allFlipped = vocab.length > 0 && state.vocabFlippedIndices.length === vocab.length;
+  const bpAmount = TINGXIE_BP_PER_UNIT.VOCAB_LEARN * vocab.length;
 
   // Stop any in-progress dictation read-aloud whenever the student moves on
   // (flips back, moves to the next/prev card) so a reading never bleeds into
@@ -43,13 +44,13 @@ function VocabFlipCard() {
     if (allFlipped && !state.vocabFlipped && !state.vocabLearnAwarded && !awardedRef.current) {
       awardedRef.current = true;
       dispatch({ type: "VOCAB_LEARN_AWARDED" });
-      awardBP(TINGXIE_BP_AWARD.VOCAB_LEARN);
+      awardBP(bpAmount);
       Sound.applause();
       recordTingxieActivityCompleted();
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|learnVocab` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
-  }, [allFlipped, state.vocabFlipped, state.vocabLearnAwarded, awardBP, state.activeContent, dispatch]);
+  }, [allFlipped, state.vocabFlipped, state.vocabLearnAwarded, awardBP, state.activeContent, dispatch, bpAmount]);
 
   if (!current) return <p className="tingxie-empty">这一课还没有生词。No vocab in this lesson yet.</p>;
 
@@ -58,7 +59,7 @@ function VocabFlipCard() {
   // very last card would yank its answer away before the student can read
   // it, since allFlipped goes true the instant that flip happens.
   if (allFlipped && !state.vocabFlipped) {
-    return <CompleteScreen title="全部生词已学习！All vocab reviewed!" bpAmount={TINGXIE_BP_AWARD.VOCAB_LEARN} />;
+    return <CompleteScreen title="全部生词已学习！All vocab reviewed!" bpAmount={bpAmount} />;
   }
 
   return (
@@ -113,6 +114,7 @@ function SentenceBuilderGame() {
   const sentences = state.activeContent!.sentences;
   const current = sentences[state.sentenceIndex];
   const allSolved = sentences.length > 0 && state.sentenceSolvedIndices.length === sentences.length;
+  const bpAmount = TINGXIE_BP_PER_UNIT.SENTENCE_LEARN * sentences.length;
 
   useEffect(() => {
     if (state.sentenceResult === "correct") Sound.ding();
@@ -134,13 +136,13 @@ function SentenceBuilderGame() {
     if (allSolved && state.sentenceResult === null && !state.sentenceLearnAwarded && !awardedRef.current) {
       awardedRef.current = true;
       dispatch({ type: "SENTENCE_LEARN_AWARDED" });
-      awardBP(TINGXIE_BP_AWARD.SENTENCE_LEARN);
+      awardBP(bpAmount);
       Sound.applause();
       recordTingxieActivityCompleted();
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|learnSentence` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
-  }, [allSolved, state.sentenceResult, state.sentenceLearnAwarded, awardBP, state.activeContent, dispatch]);
+  }, [allSolved, state.sentenceResult, state.sentenceLearnAwarded, awardBP, state.activeContent, dispatch, bpAmount]);
 
   if (!current) return <p className="tingxie-empty">这一课还没有句子。No sentences in this lesson yet.</p>;
 
@@ -149,7 +151,7 @@ function SentenceBuilderGame() {
   // sentence would yank its "Correct!"/reveal feedback away immediately,
   // since allSolved goes true the instant that answer is checked.
   if (allSolved && state.sentenceResult === null) {
-    return <CompleteScreen title="全部句子已完成！All sentences solved!" bpAmount={TINGXIE_BP_AWARD.SENTENCE_LEARN} />;
+    return <CompleteScreen title="全部句子已完成！All sentences solved!" bpAmount={bpAmount} />;
   }
 
   const words = tingxieSentenceWords(current);

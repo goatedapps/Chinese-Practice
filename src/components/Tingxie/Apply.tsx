@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { usePet } from "../../state/PetContext";
-import { TINGXIE_BP_AWARD } from "../../data/pet";
+import { TINGXIE_BP_PER_UNIT } from "../../data/pet";
 import { buildTingxieApplyQueue } from "../../data/tingxie";
 import { speakText, stopSpeaking } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
@@ -20,7 +20,11 @@ export function Apply() {
   // per Apply visit) -- this component remounts fresh each time the student
   // navigates back into the Apply tab, so redoing it re-earns BP.
   const awardedRef = useRef(false);
-  const hasBankEntries = state.activeContent!.applyVocab.some((v) => v.sentenceBank && v.sentenceBank.length > 0);
+  // Same filter buildTingxieApplyQueue() uses to decide which words get a
+  // queue item, so this word count always matches the queue's real length.
+  const wordCount = state.activeContent!.applyVocab.filter((v) => v.sentenceBank && v.sentenceBank.length > 0).length;
+  const hasBankEntries = wordCount > 0;
+  const bpAmount = TINGXIE_BP_PER_UNIT.APPLY * wordCount;
 
   useEffect(() => {
     dispatch({ type: "APPLY_START", queue: buildTingxieApplyQueue(state.activeContent!.applyVocab) });
@@ -31,13 +35,13 @@ export function Apply() {
   useEffect(() => {
     if (state.applyComplete && hasBankEntries && !awardedRef.current) {
       awardedRef.current = true;
-      awardBP(TINGXIE_BP_AWARD.APPLY);
+      awardBP(bpAmount);
       Sound.applause();
       recordTingxieActivityCompleted();
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|apply` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
-  }, [state.applyComplete, hasBankEntries, awardBP, state.activeContent]);
+  }, [state.applyComplete, hasBankEntries, awardBP, state.activeContent, bpAmount]);
 
   const current = state.applyQueue[0];
 
@@ -74,7 +78,7 @@ export function Apply() {
   }
 
   if (state.applyComplete) {
-    return <CompleteScreen title="词语应用完成！Apply Practice Complete!" bpAmount={TINGXIE_BP_AWARD.APPLY} />;
+    return <CompleteScreen title="词语应用完成！Apply Practice Complete!" bpAmount={bpAmount} />;
   }
 
   if (!current) return null;
