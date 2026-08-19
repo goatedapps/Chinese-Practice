@@ -102,11 +102,6 @@ export function getStage(growth: number) {
   return current;
 }
 
-export function nextStage(growth: number) {
-  const age = getAge(growth);
-  return PET_STAGES.find((s) => s.minAgeYears > age) ?? null;
-}
-
 interface PetContextValue {
   pet: PetState;
   awardBP: (amount: number) => void;

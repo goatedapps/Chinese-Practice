@@ -149,11 +149,6 @@ body {
 }
 .top-nav-item-active:hover { color: #fff8ee; }
 .top-nav-label { font-size: 14px; font-weight: 600; text-align: center; }
-/* Account affordance -- not sized like the 5 destination items above (each
-   flex:1), since it's a smaller state-dependent action, not a screen
-   destination competing for equal width. */
-.top-nav-account { flex: 0 0 auto; padding: 11px 14px; }
-.top-nav-account .top-nav-label { white-space: nowrap; }
 
 /* ---------- Account bar (Login/Sign out) ---------- */
 /* A separate bar rendered just below TopNav (see App.tsx), not a TopNav nav
