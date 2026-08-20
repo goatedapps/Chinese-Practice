@@ -3,7 +3,7 @@ import { useAppDispatch } from "../../state/AppStateContext";
 import { useAuth } from "../../state/AuthContext";
 import { usePet } from "../../state/PetContext";
 import { PET_DEFAULT_STATE } from "../../data/pet";
-import { clearLocalStore, clearSyncMeta } from "../../lib/sync";
+import { clearLocalStore, clearSyncMeta, resetSyncState } from "../../lib/sync";
 import { HISTORY_KEY } from "../../state/history";
 import { ACHIEVEMENTS_KEY } from "../../state/achievements";
 import { TINGXIE_PROGRESS_KEY } from "../../state/tingxieProgress";
@@ -63,8 +63,12 @@ export function Auth({ gated = false }: { gated?: boolean }) {
     // play before this signup) -- same reasoning as SyncBootstrap.tsx's
     // sign-out cleanup, so a stale timestamp can never make a later merge
     // treat pre-signup local data as newer than this brand-new account's
-    // (nonexistent) remote row.
+    // (nonexistent) remote row. resetSyncState() clears the in-memory
+    // counterpart (lib/sync.ts's pendingKeys/latestValues) for the same
+    // reason -- a pending push queued during guest play must not get flushed
+    // into this brand-new account's Supabase row once it signs in.
     clearSyncMeta();
+    resetSyncState();
   }
 
   async function handleSubmit(e: FormEvent) {

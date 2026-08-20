@@ -6,7 +6,14 @@ import { HISTORY_KEY } from "./history";
 import { ACHIEVEMENTS_KEY } from "./achievements";
 import { TINGXIE_PROGRESS_KEY } from "./tingxieProgress";
 import { LEVEL_KEY, isKnownLevel } from "./levelPreference";
-import { pullAndMergeAll, applyRemoteToLocal, clearLocalStore, clearSyncMeta, markSyncReady } from "../lib/sync";
+import {
+  pullAndMergeAll,
+  applyRemoteToLocal,
+  clearLocalStore,
+  clearSyncMeta,
+  resetSyncState,
+  markSyncReady
+} from "../lib/sync";
 import { PET_DEFAULT_STATE } from "../data/pet";
 import { DEFAULT_LEVEL, setCurrentLevel } from "../data/levels";
 import type { PetState } from "../data/types";
@@ -64,6 +71,13 @@ export function SyncBootstrap() {
     setCurrentLevel(DEFAULT_LEVEL);
     dispatch({ type: "SET_LEVEL", level: DEFAULT_LEVEL });
     clearSyncMeta();
+    // Also wipe this module's in-memory pending-push bookkeeping -- without
+    // this, a key left over from this account (e.g. one that failed to push
+    // while offline) could still be sitting in lib/sync.ts's in-memory
+    // pendingKeys/latestValues, and the next signed-in user's own merge could
+    // flush it straight into *their* Supabase row. Same cross-account leak
+    // clearSyncMeta() exists to prevent, just for the in-memory half.
+    resetSyncState();
     // Allow a future sign-in (even by the same account re-logging in) to
     // re-run the merge-pull below instead of being skipped as "already ran
     // for this user id".

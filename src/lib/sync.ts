@@ -28,9 +28,9 @@ function setSyncMeta(key: string, updatedAtMs: number): void {
 
 let currentUserId: string | null = null;
 
-// True once it's safe for saveAndSync/pushRow to actually touch Supabase for
-// the current signed-in user -- false from the moment a *new* user id is set
-// until state/SyncBootstrap.tsx's post-sign-in pullAndMergeAll() finishes
+// True once it's safe for pushes to actually reach Supabase for the current
+// signed-in user -- false from the moment a *new* user id is set until
+// state/SyncBootstrap.tsx's post-sign-in pullAndMergeAll() finishes
 // SUCCESSFULLY for that user (see markSyncReady() below). Starts true so an
 // app that's never signed in (or has signed out) never blocks -- currentUserId
 // being null already no-ops every push on its own.
@@ -38,17 +38,10 @@ let currentUserId: string | null = null;
 // Why this exists: without it, any write that happens to land in the window
 // between a session resolving and the merge-pull completing -- most reliably
 // PetContext's mount-time growth-decay "settle" effect, which fires on
-// essentially every app load -- would stamp a fresh local timestamp and push
-// a still-un-merged (possibly default/empty) local state up to Supabase,
-// permanently overwriting the account's real remote data before
-// pullAndMergeAll ever gets a chance to pull it down. Worse, if that merge
-// fetch itself silently fails (offline, or an iPad backgrounding the tab
-// mid-request), nothing used to retry it, so every *later* save (feeding the
-// pet, a quiz's BP award, ...) kept pushing the still-default local state
-// over the real remote row. This was a real reported bug: a signed-in
-// student's pet reset to 0 growth/0 BP/no name after opening the app on a
-// new device, and that reset had propagated to Supabase itself, not just the
-// local display. See state/SyncBootstrap.tsx for the retry loop that keeps
+// essentially every app load -- could push a still-un-merged (possibly
+// default/empty) local state up to Supabase, permanently overwriting the
+// account's real remote data before pullAndMergeAll ever gets a chance to
+// pull it down. See state/SyncBootstrap.tsx for the retry loop that keeps
 // re-attempting the merge (on visibility/online) until it actually succeeds,
 // only then calling markSyncReady().
 let syncReady = true;
@@ -68,43 +61,89 @@ export function setSyncUser(userId: string | null): void {
   }
 }
 
+// --- Canonical "what should this key currently hold in Supabase" state ---
+//
+// This is the actual fix for the recurring "pet reset to 0 after login" bug.
+// The previous version kept a `pendingPush: Map<key, value>` that captured
+// whatever value was on hand *at the moment a push got deferred* (e.g.
+// because the post-login merge hadn't finished yet). If a *newer* value for
+// the same key showed up afterwards -- e.g. pullAndMergeAll pulling the real
+// remote pet down -- nothing ever updated that already-queued stale value,
+// so markSyncReady()'s flush could push the OLD (pre-merge) value over the
+// just-restored remote data. `latestValues` fixes this by being the single
+// source of truth for "the value to push for this key" -- every push, no
+// matter when/why it fires, re-reads it fresh instead of trusting a closure.
+// `pendingKeys` just tracks *which* keys still need pushing; it never carries
+// its own value.
+const latestValues = new Map<string, unknown>();
+const pendingKeys = new Set<string>();
+
+// latestValues starts empty every page load (it's in-memory only) -- for a
+// key nothing has written *this session* yet, fall back to whatever's
+// already on disk, which is exactly the right value to push (e.g. the
+// "local wins" branch of a merge, for a key untouched since that decision).
+function getLatestValue(key: string): unknown {
+  if (latestValues.has(key)) return latestValues.get(key);
+  return loadJSON<unknown>(key, null);
+}
+
 // Called by state/SyncBootstrap.tsx once pullAndMergeAll() has genuinely
 // succeeded for the current user -- flips the gate back open and flushes
-// anything that was queued in pendingPush while it was closed.
+// anything that was left pending while it was closed.
 export function markSyncReady(): void {
   syncReady = true;
-  for (const [key, value] of pendingPush) void pushRow(key, value);
+  for (const key of Array.from(pendingKeys)) void pushRow(key);
 }
 
 const debounceTimers = new Map<string, ReturnType<typeof setTimeout>>();
-// Any push that failed (most likely offline, or deferred because syncReady
-// was still closed) -- retried on the next successful `scheduleSync` call for
-// that key, on reconnect, or once markSyncReady() flushes the queue.
-const pendingPush = new Map<string, unknown>();
 
-async function pushRow(key: string, value: unknown): Promise<void> {
+// The raw, ungated upsert attempt -- always reads the current latestValues
+// (never a stale captured one). Never called directly by app code; go
+// through pushRow (respects the syncReady gate) or flushAllNow (deliberately
+// bypasses it, see below).
+async function doPush(key: string): Promise<void> {
   if (!supabase || !currentUserId) return;
-  if (!syncReady) {
-    // Don't push while a post-sign-in merge is still pending -- see
-    // syncReady's own comment above for why. markSyncReady() retries
-    // whatever's queued here the moment it's actually safe to.
-    pendingPush.set(key, value);
+  const value = getLatestValue(key);
+  if (value === null) {
+    pendingKeys.delete(key);
     return;
   }
   const { error } = await supabase
     .from(TABLE)
     .upsert({ user_id: currentUserId, key, value, updated_at: new Date().toISOString() });
-  if (error) pendingPush.set(key, value);
-  else pendingPush.delete(key);
+  if (error) pendingKeys.add(key);
+  else pendingKeys.delete(key);
+}
+
+// The gated push attempt -- used by the normal debounce/retry paths. Defers
+// to pendingKeys (to be flushed later by markSyncReady/online/visibility)
+// instead of pushing while a post-sign-in merge is still pending -- see
+// syncReady's own comment above for why.
+async function pushRow(key: string): Promise<void> {
+  if (!supabase || !currentUserId) return;
+  if (!syncReady) {
+    pendingKeys.add(key);
+    return;
+  }
+  await doPush(key);
 }
 
 if (typeof window !== "undefined") {
   window.addEventListener("online", () => {
-    for (const [key, value] of pendingPush) void pushRow(key, value);
+    for (const key of Array.from(pendingKeys)) void pushRow(key);
+  });
+  // Best-effort safety net against losing a write that's still sitting in
+  // its 2s debounce window if the tab gets closed/backgrounded before that
+  // timer fires -- flushes whatever's pending the moment the tab is hidden,
+  // not just on an explicit logout (see flushAllNow for that stronger case).
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+      for (const key of Array.from(pendingKeys)) void pushRow(key);
+    }
   });
 }
 
-function scheduleSync(key: string, value: unknown): void {
+function scheduleSync(key: string): void {
   if (!supabase || !currentUserId) return;
   const existing = debounceTimers.get(key);
   if (existing) clearTimeout(existing);
@@ -112,38 +151,33 @@ function scheduleSync(key: string, value: unknown): void {
     key,
     setTimeout(() => {
       debounceTimers.delete(key);
-      void pushRow(key, value);
+      void pushRow(key);
     }, DEBOUNCE_MS)
   );
 }
 
 // Local write + debounced background push -- the one hook point every
 // syncing store (history.ts, achievements.ts, tingxieProgress.ts,
-// PetContext.tsx's savePetState) calls instead of a raw localStorage write.
-// The local half always happens; the push half silently no-ops when signed
-// out or Supabase isn't configured, so nothing here can slow down or change
-// behavior for a student who never logs in.
+// levelPreference.ts, PetContext.tsx's savePetState) calls instead of a raw
+// localStorage write. The local half always happens; the push half silently
+// no-ops when signed out or Supabase isn't configured, so nothing here can
+// slow down or change behavior for a student who never logs in.
 //
 // Sync-meta is only stamped while `currentUserId` is genuinely set (i.e.
 // this write happened while actually signed in as a real account) -- not
-// while playing as a guest. Guest play still saves locally exactly as
-// before, it just never claims a "just now" timestamp for merge purposes.
-// Without this guard, a guest session's local timestamp could later outrank
-// an *existing* account's real remote `updated_at` the moment that guest
-// logs in, and pullAndMergeAll's last-write-wins merge would push the
-// guest's local data up over the account's actual cloud progress -- a
-// second variant of the cross-account data leak clearSyncMeta() (see below)
-// exists to prevent, this time via guest activity rather than a previous
-// account's leftover session.
+// while playing as a guest -- and only once `syncReady`, so a write made
+// before the post-login merge finishes can't poison that merge's own read of
+// "was local newer than remote" with a premature "just now" timestamp.
+// `pendingKeys`/`latestValues` are still updated regardless of syncReady, so
+// the write is never lost -- it just waits for markSyncReady() to flush it
+// with its correct (freshest) value.
 export function saveAndSync<T>(key: string, value: T): void {
   saveJSON(key, value);
-  // Also gated on syncReady, not just currentUserId -- stamping "now" here
-  // while a merge-pull is still pending would poison pullAndMergeAll's own
-  // read of this timestamp (it runs later, in the same login flow) into
-  // wrongly thinking this device's not-yet-merged local value is newer than
-  // the account's real remote data. See syncReady's comment above.
-  if (currentUserId && syncReady) setSyncMeta(key, Date.now());
-  scheduleSync(key, value);
+  latestValues.set(key, value);
+  if (!currentUserId) return;
+  pendingKeys.add(key);
+  if (syncReady) setSyncMeta(key, Date.now());
+  scheduleSync(key);
 }
 
 // Wipes a synced store's local copy entirely -- used only when a brand-new
@@ -171,13 +205,60 @@ export function clearSyncMeta(): void {
   localStorage.removeItem(SYNC_META_KEY);
 }
 
+// Wipes this module's in-memory sync bookkeeping -- called alongside
+// clearSyncMeta() on a genuine sign-out (state/SyncBootstrap.tsx) and a
+// brand-new signup (Auth.tsx's startFresh()). Without this, a key left
+// pending from the *previous* account (e.g. a push that failed while
+// offline) would still be sitting in `pendingKeys`/`latestValues` in memory
+// -- and the moment the *next* user signs in on this same tab and their own
+// merge calls markSyncReady(), that leftover key would get flushed straight
+// into the new user's Supabase row. Same class of cross-account leak
+// clearSyncMeta() exists to prevent, just for the in-memory half of the
+// bookkeeping rather than the persisted half.
+export function resetSyncState(): void {
+  for (const timer of debounceTimers.values()) clearTimeout(timer);
+  debounceTimers.clear();
+  latestValues.clear();
+  pendingKeys.clear();
+}
+
 // Pull-side primitive: writes remote data straight to local storage and
 // records the *remote's* updated_at as this key's sync-meta timestamp (not
-// "now") -- deliberately not saveAndSync, so a merge-pull can never schedule
-// a redundant push right back to Supabase.
+// "now"). Also caches the remote value as this key's latest known value and
+// clears any pending-push flag -- local now genuinely matches remote, so
+// there's nothing left to push, and critically this overwrites (rather than
+// leaves stale) whatever a pre-merge local write may have queued for this
+// key. Deliberately not saveAndSync, so a merge-pull can never schedule a
+// redundant push right back to Supabase.
 export function applyRemoteToLocal<T>(key: string, value: T, remoteUpdatedAtMs: number): void {
   saveJSON(key, value);
+  latestValues.set(key, value);
+  pendingKeys.delete(key);
   setSyncMeta(key, remoteUpdatedAtMs);
+}
+
+// Best-effort immediate flush of every key with a pending push, bypassing
+// the syncReady gate (doPush, not pushRow) since by the time this is called
+// we're intentionally ending the session -- there's no later chance for a
+// deferred push to retry. Used by AuthContext.tsx's signOut() to guarantee
+// every local change made up to that point actually reaches Supabase before
+// the session ends and state/SyncBootstrap.tsx wipes local storage (see its
+// sign-out effect) -- without this, a write still sitting in its 2s debounce
+// window at the moment of logout was previously discarded outright. Races
+// against a timeout so a dead network can't hang the sign-out button
+// forever; whatever didn't make it stays queued in pendingKeys, but that's
+// moot once resetSyncState() clears it right after (local data is about to
+// be wiped anyway on this device).
+const FLUSH_TIMEOUT_MS = 8000;
+
+export async function flushAllNow(): Promise<void> {
+  if (!supabase || !currentUserId) return;
+  for (const timer of debounceTimers.values()) clearTimeout(timer);
+  debounceTimers.clear();
+  const keys = Array.from(pendingKeys);
+  if (keys.length === 0) return;
+  const pushes = Promise.all(keys.map((key) => doPush(key)));
+  await Promise.race([pushes, new Promise<void>((resolve) => setTimeout(resolve, FLUSH_TIMEOUT_MS))]);
 }
 
 interface SyncRow {
@@ -220,25 +301,32 @@ export async function pullAndMergeAll(
 
   for (const key of syncKeys) {
     const remote = remoteByKey.get(key);
+    const localMs = meta[key] ?? null;
 
     if (!remote) {
-      // No remote row yet -- first login on a device with existing local
-      // progress, or a genuinely fresh store. Push local as-is, if any.
-      const local = loadJSON<unknown>(key, null);
-      if (local !== null) void pushRow(key, local);
+      // No remote row yet -- either a genuinely fresh store, or this
+      // account's first-ever sync of this particular key (existing account,
+      // new device, or a key added after the account was created). Only
+      // push local data here if it carries a real sync-meta timestamp --
+      // i.e. it was actually written while signed in before, just never
+      // reached the server (offline, a dropped push, ...). Local data with
+      // NO timestamp was written while signed OUT (guest play, see
+      // saveAndSync's guard) and must never be adopted as this account's
+      // data just because nothing existed on the server yet to compare it
+      // against -- that would let guest activity with no relation to this
+      // account silently become its cloud data on this account's first
+      // sync of a key.
+      if (localMs !== null) pendingKeys.add(key);
       continue;
     }
 
     const remoteMs = new Date(remote.updated_at).getTime();
-    const localMs = meta[key] ?? null;
-
     if (localMs === null || remoteMs > localMs) {
       if (key === opts.petKey && opts.onPetRow) opts.onPetRow(remote.value, remoteMs);
       else if (key === opts.levelKey && opts.onLevelRow) opts.onLevelRow(remote.value, remoteMs);
       else applyRemoteToLocal(key, remote.value, remoteMs);
     } else if (localMs > remoteMs) {
-      const local = loadJSON<unknown>(key, null);
-      if (local !== null) void pushRow(key, local);
+      pendingKeys.add(key);
     }
   }
   return true;
