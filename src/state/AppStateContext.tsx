@@ -208,9 +208,10 @@ function reducer(state: AppState, action: AppAction): AppState {
         screen: groupIndex >= state.groups.length ? "result" : "quiz"
       };
     }
-    // Mirrors the old app's resetToHome(): clears the in-session quiz state
-    // but deliberately keeps selectedSubject/selectedCategories/selectedLessons,
-    // same as before.
+    // Clears in-session quiz state but keeps the picker selections
+    // (selectedSubject/selectedCategories/selectedLessons) -- these are the
+    // student's own choices, not session state, so backing out of a quiz
+    // shouldn't force them to re-pick.
     case "RESET_TO_HOME":
       return {
         ...initialState,

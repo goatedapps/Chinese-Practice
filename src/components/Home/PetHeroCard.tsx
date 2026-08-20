@@ -20,12 +20,10 @@ function greeting(): string {
 }
 
 // The whole card is one <button> navigating to the Owl screen (which has
-// its own Feed button routing to Bag/Shop based on inventory) -- no nested
-// buttons, so no HTML-validity constraint to work around here. Merges what
-// used to be Home's separate greeting section into this card's left column
-// (greeting on top, pet identity/bars below it) so the greeting and the pet
-// read as one unit, not two stacked sections -- the right column is the BP
-// badge above the art, not beside the stage badge.
+// its own Feed button routing to Bag/Shop based on inventory). The greeting
+// lives in this card's left column (above pet identity/bars) so it reads as
+// one unit with the pet rather than a separate section; the right column is
+// the BP badge above the art.
 export function PetHeroCard({ hist }: { hist: HistoryEntry[] }) {
   const dispatch = useAppDispatch();
   const { pet } = usePet();

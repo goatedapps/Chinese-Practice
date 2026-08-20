@@ -75,10 +75,10 @@ export function Practice() {
 
   // How many Vocabulary-category questions exist per lesson under the
   // current subject filter -- lets the lesson grid grey out a lesson with no
-  // matching questions, same as the old Lesson Picker did. Computed from the
-  // lightweight question index (already in state from app bootstrap) rather
-  // than fetching full category content -- the index already carries
-  // lessonIds/questionCount per group, which is all this needs.
+  // matching questions. Computed from the lightweight question index
+  // (already in state from app bootstrap) rather than fetching full category
+  // content -- the index already carries lessonIds/questionCount per group,
+  // which is all this needs.
   const lessonCounts = useMemo(() => {
     const counts = new Map<number, number>();
     for (let n = 1; n <= state.lessonCount; n++) counts.set(n, 0);

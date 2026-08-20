@@ -32,13 +32,11 @@ export function Result() {
 
   const pct = totalItems ? Math.round((correctItems / totalItems) * 100) : 0;
 
-  // Runs once when the result screen is first shown for this session, same
-  // as the old renderResult()'s saveHistory() call. Guarded by a ref (not
-  // just the empty dep array) because React 18 StrictMode double-invokes
-  // empty-dep effects once on mount in dev -- harmless for the old
-  // idempotent saveHistory-only version of this effect, but the achievement
-  // logging added below is NOT idempotent (it appends), so this effect must
-  // truly run once per mount, not "twice in dev, deduped by luck."
+  // Runs once when the result screen is first shown for this session.
+  // Guarded by a ref (not just the empty dep array) because React 18
+  // StrictMode double-invokes empty-dep effects once on mount in dev, and
+  // the achievement logging below is NOT idempotent (it appends) -- this
+  // must truly run once per mount, not "twice in dev, deduped by luck."
   const ranRef = useRef(false);
   useEffect(() => {
     if (ranRef.current) return;

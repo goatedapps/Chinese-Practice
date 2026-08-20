@@ -21,36 +21,23 @@ import type { PetState } from "../data/types";
 const SYNC_KEYS = [PET_KEY, HISTORY_KEY, ACHIEVEMENTS_KEY, TINGXIE_PROGRESS_KEY, LEVEL_KEY];
 
 // Renders nothing -- mounted inside both AuthProvider and PetProvider (see
-// App.tsx) purely so it can read both useAuth() and usePet() in one place,
-// plus useAppDispatch() for the level row (see below). Two jobs:
-//   1. The moment a genuine sign-out resolves (not the initial "loading" ->
-//      "signedOut" resolution when there was never a session this load --
-//      that must NOT wipe a guest's local-only progress), wipe every synced
-//      store's local copy, the live pet state, the active level (back to
-//      DEFAULT_LEVEL), and the sync-meta timestamps that decide merge-pull
-//      winners. Without this, the *next* login on this device/tab -- same
-//      account or a different one -- would see the signed-out account's
-//      leftover data (AuthContext.tsx's signOut() only ends the Supabase
-//      session, it never touched local storage), and pullAndMergeAll's
-//      last-write-wins merge could even push that leftover data up into the
-//      newly-signed-in user's own Supabase row, overwriting their real
-//      progress. This is what caused a reported bug where user B signed in
-//      right after user A signed out on the same tab and inherited A's
-//      pet/history both locally and in her own Supabase row.
-//   2. The moment sign-in resolves, run the one-time merge-pull
-//      reconciliation against Supabase (see lib/sync.ts's pullAndMergeAll)
-//      and route the pet/level rows through their own live-state setters --
-//      the two synced stores held in live state (PetContext, AppStateContext)
-//      rather than only read lazily on mount by whichever screen needs them,
-//      so overwriting localStorage alone wouldn't update what's already on
-//      screen/active. Retried on visibility/online until it actually
-//      succeeds, and only a genuine success calls lib/sync.ts's
-//      markSyncReady() -- opening the gate on a merge that silently failed
-//      (offline, or an iPad backgrounding the tab mid-request) is exactly
-//      what let a still-default local pet state get pushed up and overwrite
-//      a signed-in student's real Supabase row before the merge ever got a
-//      chance to pull the real data down. See lib/sync.ts's syncReady
-//      comment for the full story.
+// App.tsx) so it can read useAuth(), usePet(), and useAppDispatch() (for the
+// level row) all in one place. Two effects:
+//   1. Sign-out cleanup: the moment a genuine sign-out resolves (not the
+//      initial "loading" -> "signedOut" resolution on a fresh load with no
+//      session -- that must not wipe a guest's local-only progress), wipe
+//      every synced store's local copy, the live pet state, the active
+//      level, and the sync-meta timestamps -- otherwise the next login on
+//      this device/tab (same account or a different one) would inherit this
+//      account's leftover data, and pullAndMergeAll's last-write-wins merge
+//      could push it into the newly-signed-in user's own Supabase row.
+//   2. Sign-in merge: reconciles local vs. remote via lib/sync.ts's
+//      pullAndMergeAll(), routing the pet/level rows through their own
+//      live-state setters (PetContext/AppStateContext hold these in memory,
+//      not just localStorage, so a plain overwrite wouldn't update what's
+//      on screen). Retried on visibility/online until it genuinely
+//      succeeds -- only then calls lib/sync.ts's markSyncReady() (see that
+//      file for why opening the push gate on an incomplete merge is unsafe).
 export function SyncBootstrap() {
   const { status, user } = useAuth();
   const { replacePetState } = usePet();

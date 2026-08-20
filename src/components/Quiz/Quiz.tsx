@@ -49,7 +49,7 @@ export function Quiz() {
     return stopSpeaking;
   }, [state.groupIndex]);
 
-  // Defensive fallback matching the old renderQuiz()'s `if (!group) return renderResult()`.
+  // Guards against groupIndex running past the end of the session.
   useEffect(() => {
     if (!group) dispatch({ type: "GO_TO_SCREEN", screen: "result" });
   }, [group, dispatch]);
