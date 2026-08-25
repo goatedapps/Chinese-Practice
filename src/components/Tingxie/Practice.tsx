@@ -86,14 +86,15 @@ export function Practice() {
     dispatch({ type: "PRACTICE_MISSED" });
   }
 
-  // Swipe left/right mirror the Got it/Missed it self-check buttons -- only
-  // meaningful once the answer is showing, same as those buttons.
+  // Swipe left/right mirror the Missed it/Got it edge buttons below (cross
+  // on the left, tick on the right) -- only meaningful once the answer is
+  // showing, same as those buttons.
   const swipe = useSwipe(
     () => {
-      if (state.practiceFlipped) correct();
+      if (state.practiceFlipped) missed();
     },
     () => {
-      if (state.practiceFlipped) missed();
+      if (state.practiceFlipped) correct();
     }
   );
 
@@ -179,11 +180,11 @@ export function Practice() {
         {state.practiceFlipped && (
           <button
             type="button"
-            className="tingxie-flip-edge-btn tingxie-flip-edge-btn-left tingxie-flip-edge-btn-correct"
-            aria-label="记住了 Got it"
-            onClick={correct}
+            className="tingxie-flip-edge-btn tingxie-flip-edge-btn-left tingxie-flip-edge-btn-wrong"
+            aria-label="记错了 Missed it"
+            onClick={missed}
           >
-            ✓
+            ✕
           </button>
         )}
 
@@ -192,11 +193,11 @@ export function Practice() {
         {state.practiceFlipped && (
           <button
             type="button"
-            className="tingxie-flip-edge-btn tingxie-flip-edge-btn-right tingxie-flip-edge-btn-wrong"
-            aria-label="记错了 Missed it"
-            onClick={missed}
+            className="tingxie-flip-edge-btn tingxie-flip-edge-btn-right tingxie-flip-edge-btn-correct"
+            aria-label="记住了 Got it"
+            onClick={correct}
           >
-            ✕
+            ✓
           </button>
         )}
       </div>

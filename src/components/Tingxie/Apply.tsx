@@ -70,14 +70,15 @@ export function Apply() {
     dispatch({ type: "APPLY_MISSED" });
   }
 
-  // Swipe left/right mirror the Correct/Wrong self-check buttons -- only
-  // meaningful once the answer is showing, same as those buttons.
+  // Swipe left/right mirror the Wrong/Correct edge buttons below (cross on
+  // the left, tick on the right) -- only meaningful once the answer is
+  // showing, same as those buttons.
   const swipe = useSwipe(
     () => {
-      if (state.applyFlipped) correct();
+      if (state.applyFlipped) missed();
     },
     () => {
-      if (state.applyFlipped) missed();
+      if (state.applyFlipped) correct();
     }
   );
 
@@ -103,11 +104,11 @@ export function Apply() {
         {state.applyFlipped && (
           <button
             type="button"
-            className="tingxie-flip-edge-btn tingxie-flip-edge-btn-left tingxie-flip-edge-btn-correct"
-            aria-label="答对了 Correct"
-            onClick={correct}
+            className="tingxie-flip-edge-btn tingxie-flip-edge-btn-left tingxie-flip-edge-btn-wrong"
+            aria-label="答错了 Wrong"
+            onClick={missed}
           >
-            ✓
+            ✕
           </button>
         )}
 
@@ -139,11 +140,11 @@ export function Apply() {
         {state.applyFlipped && (
           <button
             type="button"
-            className="tingxie-flip-edge-btn tingxie-flip-edge-btn-right tingxie-flip-edge-btn-wrong"
-            aria-label="答错了 Wrong"
-            onClick={missed}
+            className="tingxie-flip-edge-btn tingxie-flip-edge-btn-right tingxie-flip-edge-btn-correct"
+            aria-label="答对了 Correct"
+            onClick={correct}
           >
-            ✕
+            ✓
           </button>
         )}
       </div>
