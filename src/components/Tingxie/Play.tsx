@@ -66,6 +66,11 @@ export function Play() {
   const scoreRef = useRef(0);
   const cloudIdRef = useRef(0);
   const finishedRef = useRef(false);
+  // Timestamp the correct cloud most recently went missing from screen, or
+  // null while one is currently falling -- lets the spawner guarantee an
+  // eventual reappearance (CORRECT_MAX_ABSENCE_MS) without making every
+  // reappearance happen at the same predictable delay.
+  const correctMissingSinceRef = useRef<number | null>(null);
   // Locked in once, when the round starts (not re-checked at finish) --
   // whether today's rounds-played count is still under
   // TINGXIE_PLAY_CONFIG.DAILY_BP_ROUND_LIMIT. Determines both the
@@ -148,10 +153,11 @@ export function Play() {
 
   // Cloud spawner -- reads currentRef/wordPoolRef (not the `current`/state
   // closures) so this interval's own cadence never has to restart just
-  // because a sentence changed a moment ago. Always guarantees a cloud for
-  // the current answer is somewhere on screen (spawns it first if none is
-  // already falling) rather than leaving the round to chance on whether a
-  // correct cloud ever appears.
+  // because a sentence changed a moment ago. Guarantees a cloud for the
+  // current answer eventually reappears once none is falling, but rolls the
+  // dice each tick rather than forcing it the instant it's missing --
+  // forcing it immediately made the correct cloud drop at the same
+  // memorizable delay every time, which defeats the point of the game.
   useEffect(() => {
     if (phase !== "playing") return;
     const id = setInterval(() => {
@@ -159,8 +165,20 @@ export function Play() {
         const answer = currentRef.current?.answer;
         const hasCorrectFalling = answer != null && prev.some((c) => c.word === answer);
         const pool = wordPoolRef.current;
-        const word = !hasCorrectFalling && answer ? answer : pool.length > 0 ? pool[Math.floor(Math.random() * pool.length)] : (answer ?? "");
+
+        let spawnCorrect = false;
+        if (answer && !hasCorrectFalling) {
+          const now = Date.now();
+          if (correctMissingSinceRef.current === null) correctMissingSinceRef.current = now;
+          const missingFor = now - correctMissingSinceRef.current;
+          spawnCorrect = missingFor >= TINGXIE_PLAY_CONFIG.CORRECT_MAX_ABSENCE_MS || Math.random() < TINGXIE_PLAY_CONFIG.CORRECT_SPAWN_CHANCE;
+        } else if (hasCorrectFalling) {
+          correctMissingSinceRef.current = null;
+        }
+
+        const word = spawnCorrect ? answer! : pool.length > 0 ? pool[Math.floor(Math.random() * pool.length)] : (answer ?? "");
         if (!word) return prev;
+        if (spawnCorrect) correctMissingSinceRef.current = null;
         const cloud: FallingCloud = { id: cloudIdRef.current++, word, x: randomCloudX(), fallSec: randomFallSec() };
         const next = [...prev, cloud];
         return next.length > TINGXIE_PLAY_CONFIG.MAX_CLOUDS ? next.slice(next.length - TINGXIE_PLAY_CONFIG.MAX_CLOUDS) : next;

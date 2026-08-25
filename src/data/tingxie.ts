@@ -106,9 +106,24 @@ export function tingxieIconEmoji(name: string): string {
   return TINGXIE_ICON_EMOJI[name] ?? "✨";
 }
 
-// The sentence-reorder game's word chips -- segments minus punctuation.
+// The sentence-reorder game's word chips (Easy mode) -- segments minus punctuation.
 export function tingxieSentenceWords(sentence: TingxieSentence): string[] {
   return sentence.segments.filter((s) => !TINGXIE_SENTENCE_PUNCTUATION.has(s));
+}
+
+// Individual punctuation/whitespace characters to drop for the sentence-reorder
+// game's Hard mode -- TINGXIE_SENTENCE_PUNCTUATION's tokens as authored in
+// segments (e.g. "——" as one two-char token), so a single-character split
+// needs its own character-level set.
+const TINGXIE_SENTENCE_CHAR_PUNCTUATION = new Set([
+  "，", "。", "！", "？", "、", "：", "；", "“", "”", "…", "—", ",", ".", "!", "?", " ", "　"
+]);
+
+// The sentence-reorder game's word chips (Hard mode) -- every character of
+// the full sentence, minus punctuation/whitespace, so a 15-character sentence
+// yields 15 chips instead of Easy mode's phrase-sized segments.
+export function tingxieSentenceChars(sentence: TingxieSentence): string[] {
+  return Array.from(sentence.text).filter((ch) => !TINGXIE_SENTENCE_CHAR_PUNCTUATION.has(ch));
 }
 
 // Literal substring replace (first occurrence), matching the source app's

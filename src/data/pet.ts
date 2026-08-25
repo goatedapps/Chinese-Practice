@@ -79,6 +79,13 @@ export const TINGXIE_PLAY_CONFIG = {
   MIN_FALL_SEC: 4.5,
   MAX_FALL_SEC: 7,
   MAX_CLOUDS: 8,
+  // How the correct-answer cloud gets re-guaranteed once none is on screen
+  // (see Play.tsx's spawner) -- a per-tick coin flip so it doesn't always
+  // land on the very next spawn (which made it drop at a predictable,
+  // memorizable cadence), with CORRECT_MAX_ABSENCE_MS as a hard ceiling so a
+  // string of bad rolls can't leave the round with no correct cloud for long.
+  CORRECT_SPAWN_CHANCE: 0.3,
+  CORRECT_MAX_ABSENCE_MS: 4500,
   // Anti-farming cap: only the first this-many rounds *finished* each
   // calendar day actually award BP (see state/tingxiePlayLimit.ts) -- every
   // round beyond that still plays normally, it just scores 0 BP regardless

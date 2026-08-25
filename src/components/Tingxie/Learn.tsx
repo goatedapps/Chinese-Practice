@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { usePet } from "../../state/PetContext";
 import { TINGXIE_BP_PER_UNIT } from "../../data/pet";
-import { tingxieIconEmoji, tingxieSentenceWords } from "../../data/tingxie";
+import { tingxieIconEmoji, tingxieSentenceWords, tingxieSentenceChars } from "../../data/tingxie";
 import { speakText, speakWordThenSentence, stopSpeaking } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
@@ -154,7 +154,7 @@ function SentenceBuilderGame() {
     return <CompleteScreen title="全部句子已完成！All sentences solved!" bpAmount={bpAmount} />;
   }
 
-  const words = tingxieSentenceWords(current);
+  const words = state.sentenceDifficulty === "hard" ? tingxieSentenceChars(current) : tingxieSentenceWords(current);
   const bag = state.chipOrder.filter((i) => !state.placedIndices.includes(i));
   const trayClass = "tingxie-tray" + (state.sentenceResult === "correct" ? " result-correct" : state.sentenceResult === "incorrect" ? " result-incorrect" : "");
 
@@ -162,6 +162,27 @@ function SentenceBuilderGame() {
     <div className="tingxie-sentence-game">
       <div className="tingxie-progress">
         {state.sentenceIndex + 1} / {sentences.length}
+      </div>
+
+      <div className="tingxie-difficulty-toggle">
+        <span className={"tingxie-difficulty-label" + (state.sentenceDifficulty === "easy" ? " tingxie-difficulty-label-active" : "")}>
+          容易 Easy
+        </span>
+        <button
+          type="button"
+          role="switch"
+          aria-checked={state.sentenceDifficulty === "hard"}
+          aria-label="切换难度 Toggle difficulty"
+          className={"tingxie-switch" + (state.sentenceDifficulty === "hard" ? " tingxie-switch-on" : "")}
+          onClick={() =>
+            dispatch({ type: "SET_SENTENCE_DIFFICULTY", difficulty: state.sentenceDifficulty === "easy" ? "hard" : "easy" })
+          }
+        >
+          <span className="tingxie-switch-knob" />
+        </button>
+        <span className={"tingxie-difficulty-label" + (state.sentenceDifficulty === "hard" ? " tingxie-difficulty-label-active" : "")}>
+          困难 Hard
+        </span>
       </div>
 
       <div className="tingxie-scenario">

@@ -10,6 +10,14 @@ function makeUtterance(text: string): SpeechSynthesisUtterance {
 // that's already playing.
 let pendingChainTimeout: ReturnType<typeof setTimeout> | null = null;
 
+// Chrome has a long-standing bug where a SpeechSynthesisUtterance with no
+// surviving JS reference can be garbage-collected mid-read -- the engine
+// then either drops it silently or (what a user actually hit once on a long
+// passage read) keeps talking but starts reading unrelated garbage from
+// elsewhere in memory. Keeping a strong reference for as long as the browser
+// might still be reading it prevents that GC.
+let activeUtterances: SpeechSynthesisUtterance[] = [];
+
 // Reads question text aloud via the browser's SpeechSynthesis API so
 // students can practise 听写 (writing what they hear) without any audio
 // assets. `onDone`, if given, fires exactly once when the reading finishes
@@ -25,10 +33,18 @@ export function speakText(text: string, onDone?: () => void): void {
   }
   stopSpeaking();
   const utter = makeUtterance(text);
-  if (onDone) {
-    utter.onend = onDone;
-    utter.onerror = onDone;
-  }
+  activeUtterances.push(utter);
+  const release = () => {
+    activeUtterances = activeUtterances.filter((u) => u !== utter);
+  };
+  utter.onend = () => {
+    release();
+    onDone?.();
+  };
+  utter.onerror = () => {
+    release();
+    onDone?.();
+  };
   window.speechSynthesis.speak(utter);
 }
 
@@ -42,10 +58,17 @@ export function speakWordThenSentence(word: string, sentence: string): void {
   }
   stopSpeaking();
   const wordUtter = makeUtterance(word);
+  activeUtterances.push(wordUtter);
   wordUtter.onend = () => {
+    activeUtterances = activeUtterances.filter((u) => u !== wordUtter);
     pendingChainTimeout = setTimeout(() => {
       pendingChainTimeout = null;
-      window.speechSynthesis.speak(makeUtterance(sentence));
+      const sentenceUtter = makeUtterance(sentence);
+      activeUtterances.push(sentenceUtter);
+      sentenceUtter.onend = () => {
+        activeUtterances = activeUtterances.filter((u) => u !== sentenceUtter);
+      };
+      window.speechSynthesis.speak(sentenceUtter);
     }, 500);
   };
   window.speechSynthesis.speak(wordUtter);
@@ -60,5 +83,6 @@ export function stopSpeaking(): void {
     clearTimeout(pendingChainTimeout);
     pendingChainTimeout = null;
   }
+  activeUtterances = [];
   window.speechSynthesis?.cancel();
 }

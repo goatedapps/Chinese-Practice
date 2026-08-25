@@ -33,7 +33,7 @@ export function CatchGame({ item, config, onComplete, onExit }: GameProps) {
   const markerRef = useRef<HTMLDivElement>(null);
   const lockedRef = useRef(false);
 
-  const sweepDuration = Math.max(0.9, 1.7 - attempt * 0.15); // seconds per full sweep, ramps up each round
+  const sweepDuration = Math.max(1.15, 1.7 - attempt * 0.08); // seconds per full sweep, ramps up each round (gently -- a steeper/lower floor made late rounds too fast to react to)
 
   function handleTap() {
     if (lockedRef.current || !trackRef.current || !markerRef.current) return;

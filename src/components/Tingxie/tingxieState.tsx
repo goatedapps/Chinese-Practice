@@ -5,11 +5,12 @@
 // through useTingxieState()/useTingxieDispatch() instead of prop drilling.
 import { createContext, useContext, useReducer, type ReactNode, type Dispatch } from "react";
 import type { TingxieLessonIndexEntry, TingxieSentence, TingxieVocabItem } from "../../data/types";
-import { tingxieSentenceWords, buildTingxiePracticeSentenceQueue, type TingxieApplyItem, type TingxiePracticeItem } from "../../data/tingxie";
+import { tingxieSentenceWords, tingxieSentenceChars, buildTingxiePracticeSentenceQueue, type TingxieApplyItem, type TingxiePracticeItem } from "../../data/tingxie";
 import { shuffle } from "../../lib/shuffle";
 
 export type TingxieView = "select" | "picker" | "learn" | "apply" | "play" | "practice";
 export type TingxieSubTab = "vocab" | "sentence";
+export type TingxieSentenceDifficulty = "easy" | "hard";
 
 export interface TingxieActiveContent {
   title: string;
@@ -50,9 +51,11 @@ export interface TingxieState {
   vocabLearnAwarded: boolean;
 
   // Learn / 学默写 -- chipOrder is a shuffled permutation of indices into
-  // tingxieSentenceWords(currentSentence); placing them in ascending order
-  // (0,1,2,...) is what "correct" means, so no need to store the words twice.
+  // tingxieSentenceWords()/tingxieSentenceChars(currentSentence) (picked by
+  // sentenceDifficulty); placing them in ascending order (0,1,2,...) is what
+  // "correct" means, so no need to store the words/chars twice.
   sentenceIndex: number;
+  sentenceDifficulty: TingxieSentenceDifficulty;
   chipOrder: number[];
   placedIndices: number[];
   sentenceResult: "correct" | "incorrect" | null;
@@ -102,6 +105,7 @@ const initialState: TingxieState = {
   vocabLearnAwarded: false,
 
   sentenceIndex: 0,
+  sentenceDifficulty: "easy",
   chipOrder: [],
   placedIndices: [],
   sentenceResult: null,
@@ -123,9 +127,9 @@ const initialState: TingxieState = {
   reviewError: null
 };
 
-function shuffledChipOrder(sentence: TingxieSentence | undefined): number[] {
+function shuffledChipOrder(sentence: TingxieSentence | undefined, difficulty: TingxieSentenceDifficulty): number[] {
   if (!sentence) return [];
-  const count = tingxieSentenceWords(sentence).length;
+  const count = (difficulty === "hard" ? tingxieSentenceChars(sentence) : tingxieSentenceWords(sentence)).length;
   return shuffle(Array.from({ length: count }, (_, i) => i));
 }
 
@@ -145,6 +149,7 @@ export type TingxieAction =
   | { type: "VOCAB_PREV" }
   | { type: "VOCAB_LEARN_AWARDED" }
   | { type: "SENTENCE_LEARN_AWARDED" }
+  | { type: "SET_SENTENCE_DIFFICULTY"; difficulty: TingxieSentenceDifficulty }
   | { type: "SENTENCE_PICK"; idx: number }
   | { type: "SENTENCE_UNPICK"; idx: number }
   | { type: "SENTENCE_RESET" }
@@ -198,7 +203,8 @@ function reducer(state: TingxieState, action: TingxieAction): TingxieState {
         vocabFlippedIndices: [],
         vocabLearnAwarded: false,
         sentenceIndex: 0,
-        chipOrder: shuffledChipOrder(content.sentences[0]),
+        sentenceDifficulty: "easy",
+        chipOrder: shuffledChipOrder(content.sentences[0], "easy"),
         placedIndices: [],
         sentenceResult: null,
         sentenceSolvedIndices: [],
@@ -238,6 +244,22 @@ function reducer(state: TingxieState, action: TingxieAction): TingxieState {
     case "SENTENCE_LEARN_AWARDED":
       return { ...state, sentenceLearnAwarded: true };
 
+    // Switching difficulty changes the word/char count the chips are drawn
+    // from, so the current sentence's in-progress chips are re-shuffled from
+    // scratch -- sentenceSolvedIndices is left alone, since a sentence
+    // already solved (in either mode) still counts as solved.
+    case "SET_SENTENCE_DIFFICULTY": {
+      if (state.sentenceDifficulty === action.difficulty) return state;
+      const sentence = state.activeContent?.sentences[state.sentenceIndex];
+      return {
+        ...state,
+        sentenceDifficulty: action.difficulty,
+        chipOrder: shuffledChipOrder(sentence, action.difficulty),
+        placedIndices: [],
+        sentenceResult: null,
+        sentenceRevealed: false
+      };
+    }
     case "SENTENCE_PICK": {
       if (state.sentenceResult !== null) return state;
       if (state.placedIndices.includes(action.idx)) return state;
@@ -273,7 +295,7 @@ function reducer(state: TingxieState, action: TingxieAction): TingxieState {
     }
     case "SENTENCE_RESET": {
       const sentence = state.activeContent?.sentences[state.sentenceIndex];
-      return { ...state, chipOrder: shuffledChipOrder(sentence), placedIndices: [], sentenceResult: null, sentenceRevealed: false };
+      return { ...state, chipOrder: shuffledChipOrder(sentence, state.sentenceDifficulty), placedIndices: [], sentenceResult: null, sentenceRevealed: false };
     }
     case "SENTENCE_NEXT": {
       const total = state.activeContent?.sentences.length ?? 0;
@@ -282,7 +304,7 @@ function reducer(state: TingxieState, action: TingxieAction): TingxieState {
       return {
         ...state,
         sentenceIndex: idx,
-        chipOrder: shuffledChipOrder(state.activeContent?.sentences[idx]),
+        chipOrder: shuffledChipOrder(state.activeContent?.sentences[idx], state.sentenceDifficulty),
         placedIndices: [],
         sentenceResult: null,
         sentenceRevealed: false
@@ -295,7 +317,7 @@ function reducer(state: TingxieState, action: TingxieAction): TingxieState {
       return {
         ...state,
         sentenceIndex: idx,
-        chipOrder: shuffledChipOrder(state.activeContent?.sentences[idx]),
+        chipOrder: shuffledChipOrder(state.activeContent?.sentences[idx], state.sentenceDifficulty),
         placedIndices: [],
         sentenceResult: null,
         sentenceRevealed: false
