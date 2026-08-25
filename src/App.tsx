@@ -20,6 +20,7 @@ import { TopNav } from "./components/common/TopNav";
 import { AccountBar } from "./components/common/AccountBar";
 import { LevelBar } from "./components/common/LevelBar";
 import { CursorGlow } from "./components/common/CursorGlow";
+import { OwlFlyover } from "./components/common/OwlFlyover";
 
 function ScreenRouter() {
   const state = useAppState();
@@ -197,6 +198,7 @@ export default function App() {
         <PetProvider>
           <SyncBootstrap />
           <CursorGlow />
+          <OwlFlyover />
           <ScreenRouter />
         </PetProvider>
       </AppStateProvider>

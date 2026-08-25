@@ -636,6 +636,71 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   100% { transform: scale(1.25); opacity: 0; }
 }
 
+/* -- owl flyover --
+   flying-owl.png flies in from off-screen left, then perches mid-right and
+   idles (bob + breathing shadow) -- see common/OwlFlyover.tsx (mounted once
+   in App.tsx, not per screen; its setTimeout duration must match
+   owl-fly-in's below). `right` (not transform:translateX) is what's
+   animated for the flight's horizontal travel, same reasoning as
+   .cursor-glow using left/top instead of transform: the resting position is
+   itself expressed as `right: 28px`, so animating that same property in is
+   simpler than reconciling a transform-based flight path with a
+   right-anchored rest state. Vertical centering (top:50% + translateY(-50%))
+   lives on the wrapper and stays constant across both phases, leaving the
+   sprite's own transform free for the flap wave (flying) / gentle bob
+   (landed) -- so the two never fight over one transform. z-index sits above
+   ordinary page content but well under .modal-overlay (1000) so a confirm
+   dialog always wins. */
+.owl-flyover {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+  pointer-events: none;
+  width: 104px;
+}
+.owl-flyover-sprite { position: relative; width: 100%; display: block; }
+.owl-flyover-shadow {
+  position: absolute;
+  left: 50%; bottom: -4px;
+  width: 68%; height: 18px;
+  margin-left: -34%;
+  background: radial-gradient(ellipse, rgba(var(--ink-rgb), .55) 0%, rgba(var(--ink-rgb), .25) 45%, rgba(var(--ink-rgb), 0) 75%);
+  border-radius: 50%;
+}
+.owl-flyover-landed { right: 28px; }
+@media (prefers-reduced-motion: no-preference) {
+  /* Both timed to the same 2.8s so the flap cycle (4 flaps) fills exactly
+     the horizontal glide -- a lazier, longer glide than the original 1.3s
+     linear dash, with real up/down flap + tilt instead of a rigid straight
+     line. */
+  .owl-flyover-flying { animation: owl-fly-in 2.8s ease-in-out forwards; }
+  .owl-flyover-flying .owl-flyover-sprite { animation: owl-flap 2.8s ease-in-out; }
+  .owl-flyover-landed .owl-flyover-sprite { animation: owl-bob 2.6s ease-in-out infinite; }
+  .owl-flyover-landed .owl-flyover-shadow { animation: owl-shadow-breathe 2.6s ease-in-out infinite; }
+}
+/* Reduced motion: OwlFlyover.tsx itself skips the "flying" phase and jumps
+   straight to "landed" with no animation classes active here, so this
+   media query being the only place owl-fly-in/owl-flap/owl-bob/
+   owl-shadow-breathe are ever applied is enough -- the owl just appears
+   already perched, static shadow included. */
+@keyframes owl-fly-in {
+  0%   { right: 100vw; }
+  100% { right: 28px; }
+}
+@keyframes owl-flap {
+  0%, 25%, 50%, 75%, 100% { transform: translateY(0) rotate(0deg); }
+  12.5%, 37.5%, 62.5%, 87.5% { transform: translateY(-16px) rotate(-6deg); }
+}
+@keyframes owl-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes owl-shadow-breathe {
+  0%, 100% { transform: scaleX(1); opacity: .9; }
+  50%      { transform: scaleX(.78); opacity: .55; }
+}
+
 .history-head { margin-bottom: 14px; }
 .history-head .section-heading { margin: 0; }
 .history-row-delete {
