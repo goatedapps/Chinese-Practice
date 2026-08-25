@@ -70,17 +70,34 @@ async function callGemini(apiKey: string, prompt: string, maxScore: number): Pro
       }
     );
     if (res.status === 429) throw new RateLimitedError();
-    if (!res.ok) return null;
-    const json = (await res.json()) as {
-      candidates?: { content?: { parts?: { text?: string }[] } }[];
-    };
-    const text = json.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (typeof text !== "string") return null;
-    const parsed = JSON.parse(text);
-    if (typeof parsed.score !== "number" || !Number.isInteger(parsed.score) || typeof parsed.feedback !== "string") {
+    if (!res.ok) {
+      console.error("[api/grade] Gemini call failed", res.status, await res.text());
       return null;
     }
-    if (parsed.score < 0 || parsed.score > maxScore) return null;
+    const json = (await res.json()) as {
+      candidates?: { content?: { parts?: { text?: string }[] }; finishReason?: string }[];
+      promptFeedback?: unknown;
+    };
+    const text = json.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (typeof text !== "string") {
+      console.error("[api/grade] Gemini response missing text", JSON.stringify(json));
+      return null;
+    }
+    let parsed: { score?: unknown; feedback?: unknown };
+    try {
+      parsed = JSON.parse(text);
+    } catch (err) {
+      console.error("[api/grade] Gemini text wasn't valid JSON", text, err);
+      return null;
+    }
+    if (typeof parsed.score !== "number" || !Number.isInteger(parsed.score) || typeof parsed.feedback !== "string") {
+      console.error("[api/grade] Gemini JSON had unexpected shape", JSON.stringify(parsed));
+      return null;
+    }
+    if (parsed.score < 0 || parsed.score > maxScore) {
+      console.error("[api/grade] Gemini score out of range", parsed.score, "maxScore", maxScore);
+      return null;
+    }
     return { score: parsed.score, feedback: parsed.feedback };
   } finally {
     clearTimeout(timer);
@@ -144,6 +161,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       res.status(504).json({ error: "upstream_timeout" });
       return;
     }
+    console.error("[api/grade] unexpected error calling Gemini", err);
     res.status(502).json({ error: "upstream_error" });
     return;
   }
