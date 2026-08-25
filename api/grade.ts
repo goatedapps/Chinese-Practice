@@ -1,9 +1,10 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 // A current free-tier "Flash" model as of writing -- Google renames/retires
-// free-tier models periodically, so re-check aistudio.google.com if grading
-// starts failing with a 404/model-not-found from Gemini.
-const GEMINI_MODEL = "gemini-2.5-flash";
+// free-tier models periodically (gemini-2.5-flash was retired for new API
+// keys shortly after this was written), so re-check aistudio.google.com if
+// grading starts failing with a 404/model-not-found from Gemini.
+const GEMINI_MODEL = "gemini-3.6-flash";
 const GEMINI_TIMEOUT_MS = 8000;
 
 interface GradeRequestBody {
