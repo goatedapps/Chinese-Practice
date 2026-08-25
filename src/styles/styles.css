@@ -1,29 +1,28 @@
 /* Claymorphism palette -- vivid candy colors + a puffy double-shadow recipe
    (soft outer lift + inset highlight), consumed by every shared class
-   below via these custom properties. Rolled out app-wide from the
-   Home dashboard preview once that direction was approved. Brightened
-   (higher-saturation primary/gold/correct/incorrect/accents, punchier
-   screen-panel gradient) from an earlier, more muted pastel version --
-   if retuning again, push saturation on these tokens rather than
-   hand-picking new one-off colors at call sites. */
+   below via these custom properties. Autumn re-theme: harvest-table hues
+   (pumpkin primary, chestnut ink, toasted-cream backgrounds, olive/moss for
+   --correct, cranberry for --incorrect) at the same saturation/brightness
+   as the palette this replaced -- if retuning again, push saturation on
+   these tokens rather than hand-picking new one-off colors at call sites. */
 :root {
-  --primary: #ff5a36;
-  --primary-hi: #ff8a5c;
-  --primary-dark: #d63b16;
-  --ink: #4b3a32;
-  --ink-rgb: 75, 58, 50;
-  --ink-soft: #8b7565;
-  --bg: #e6edff;
-  --card-bg: #fdfeff;
-  --card-hi: #ffffff;
-  --border: #dcd4fb;
-  --hi-edge: rgba(255, 255, 255, 0.9);
-  --correct: #22c55e;
-  --incorrect: #ff3b3b;
-  --skipped: #ab9484;
-  --gold: #ffb300;
-  --gold-hi: #ffd54f;
-  --gold-deep: #b8790a;
+  --primary: #f2621a;
+  --primary-hi: #ff9152;
+  --primary-dark: #c2450c;
+  --ink: #453022;
+  --ink-rgb: 69, 48, 34;
+  --ink-soft: #8a6f56;
+  --bg: #f7ecd9;
+  --card-bg: #fffaf2;
+  --card-hi: #fffdf8;
+  --border: #e6d3b0;
+  --hi-edge: rgba(255, 250, 240, 0.9);
+  --correct: #7a9d3e;
+  --incorrect: #c22a3e;
+  --skipped: #a8927a;
+  --gold: #f5a623;
+  --gold-hi: #ffcf6b;
+  --gold-deep: #96620a;
 
   /* Home-dashboard accent set -- a brighter, more saturated 4-hue palette
      layered on top of the neutral claymorphism cards, used only within
@@ -33,25 +32,28 @@
      bright mid tone (badges/buttons/bar fills), a "-hi"/"-dark" pair for
      gradients, a "-bg" pale tint (card/row backgrounds), and green additionally
      has "-deep" for text, since --correct itself is too light to pass as
-     heading-text contrast on a white card. */
-  --accent-purple: #7c4dff;
-  --accent-purple-hi: #a389ff;
-  --accent-purple-dark: #5b2fd1;
-  --accent-purple-bg: #ede4ff;
-  --accent-pink: #ff2d92;
-  --accent-pink-hi: #ff6bb8;
-  --accent-pink-dark: #d1176c;
-  --accent-pink-bg: #ffe1f0;
-  --accent-orange: #ff9100;
-  --accent-orange-hi: #ffb347;
-  --accent-orange-dark: #cc6f00;
-  --accent-orange-bg: #ffefd6;
-  --accent-mint-bg: #d7f7e4;
-  --green-deep: #15803d;
+     heading-text contrast on a white card. Autumn set: plum/wine, dusty
+     cranberry-rose, mustard (kept distinct from the pumpkin primary), and
+     sage (paired with the olive --correct) -- a harvest-table spread rather
+     than a plain orange-and-brown re-skin. */
+  --accent-purple: #7a3b6e;
+  --accent-purple-hi: #a25f96;
+  --accent-purple-dark: #5a2350;
+  --accent-purple-bg: #f3e4ef;
+  --accent-pink: #c2486b;
+  --accent-pink-hi: #dd7b96;
+  --accent-pink-dark: #942f4e;
+  --accent-pink-bg: #fbe3ea;
+  --accent-orange: #c98a1f;
+  --accent-orange-hi: #e6ad4c;
+  --accent-orange-dark: #9c6a12;
+  --accent-orange-bg: #fbeed2;
+  --accent-mint-bg: #e9f0d9;
+  --green-deep: #4f6b28;
 
-  --shadow-1: 6px 6px 14px rgba(214, 90, 55, .24), -6px -6px 14px rgba(255, 255, 255, .9);
-  --shadow-2: 10px 10px 24px rgba(214, 90, 55, .30), -8px -8px 20px rgba(255, 255, 255, .95);
-  --shadow-press: inset 5px 5px 10px rgba(214, 90, 55, .32), inset -5px -5px 10px rgba(255, 255, 255, .75);
+  --shadow-1: 6px 6px 14px rgba(196, 90, 40, .24), -6px -6px 14px rgba(255, 250, 240, .9);
+  --shadow-2: 10px 10px 24px rgba(196, 90, 40, .30), -8px -8px 20px rgba(255, 250, 240, .95);
+  --shadow-press: inset 5px 5px 10px rgba(196, 90, 40, .32), inset -5px -5px 10px rgba(255, 250, 240, .75);
 }
 
 * { box-sizing: border-box; }
@@ -88,7 +90,7 @@ body {
    the one screen that gets that extra flourish. */
 .screen {
   position: relative;
-  background: linear-gradient(150deg, #bfe0ff 0%, #d9c8ff 45%, #bff5df 100%);
+  background: linear-gradient(150deg, #ffe7b8 0%, #ffc49a 45%, #d8e2b0 100%);
   border-radius: 32px;
   padding: 28px 20px 40px;
 }
@@ -224,7 +226,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   box-shadow: var(--shadow-1);
 }
 .mode-row:nth-of-type(1) .mode-row-go { background: linear-gradient(155deg, var(--accent-purple-hi), var(--accent-purple)); }
-.mode-row:nth-of-type(2) .mode-row-go { background: linear-gradient(155deg, #5fe08a, var(--correct)); }
+.mode-row:nth-of-type(2) .mode-row-go { background: linear-gradient(155deg, #a3c169, var(--correct)); }
 .mode-row:nth-of-type(3) .mode-row-go { background: linear-gradient(155deg, var(--accent-pink-hi), var(--accent-pink)); }
 
 /* ---------- Home dashboard (pet-centric redesign) ---------- */
@@ -667,7 +669,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .lesson-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: var(--shadow-2); }
 .lesson-btn:active { transform: scale(.96); box-shadow: var(--shadow-press); }
 .lesson-btn.disabled { opacity: .45; cursor: not-allowed; box-shadow: none; transform: none; }
-.lesson-btn-active { background: linear-gradient(180deg, var(--card-hi), #ffe3d1); border: 2px solid var(--primary); font-weight: 700; }
+.lesson-btn-active { background: linear-gradient(180deg, var(--card-hi), #ffdfc0); border: 2px solid var(--primary); font-weight: 700; }
 .lesson-btn-num { font-size: 18px; font-weight: 700; }
 .lesson-btn-count { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
 .lesson-grid-disabled { opacity: .55; }
@@ -713,7 +715,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   transition: transform .12s ease, box-shadow .12s ease;
 }
 .category-btn:hover { transform: translateY(-2px) scale(1.015); box-shadow: var(--shadow-2); }
-.category-active { background: linear-gradient(180deg, var(--card-hi), #ffe3d1); border-color: var(--primary); font-weight: 700; }
+.category-active { background: linear-gradient(180deg, var(--card-hi), #ffdfc0); border-color: var(--primary); font-weight: 700; }
 .category-disabled {
   opacity: .45; cursor: not-allowed; box-shadow: none; color: var(--ink-soft);
 }
@@ -1307,7 +1309,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
    against a moving zone like the ball game. */
 .feather-sky {
   position: relative; max-width: 420px; height: 220px; margin: 10px auto;
-  background: linear-gradient(180deg, #d6f0ff, var(--card-bg));
+  background: linear-gradient(180deg, #ffe3b8, var(--card-bg));
   border-radius: 22px; overflow: hidden;
   box-shadow: var(--shadow-press);
 }
@@ -1461,7 +1463,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   transition: border-color .15s, transform .1s;
 }
 .tingxie-picker-row:hover { transform: translateY(-2px) scale(1.01); }
-.tingxie-picker-row-checked { border-color: var(--primary); background: linear-gradient(180deg, var(--card-hi), #ffe3d1); font-weight: 700; }
+.tingxie-picker-row-checked { border-color: var(--primary); background: linear-gradient(180deg, var(--card-hi), #ffdfc0); font-weight: 700; }
 .tingxie-picker-row input { width: 18px; height: 18px; accent-color: var(--primary); }
 .tingxie-picker-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
@@ -1475,7 +1477,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   transition: transform .1s ease;
 }
 .tingxie-subtab:hover { transform: translateY(-1px) scale(1.03); }
-.tingxie-subtab-active { border-color: var(--primary); color: var(--primary); background: linear-gradient(180deg, var(--card-hi), #ffe3d1); }
+.tingxie-subtab-active { border-color: var(--primary); color: var(--primary); background: linear-gradient(180deg, var(--card-hi), #ffdfc0); }
 
 .tingxie-carousel, .tingxie-sentence-game { text-align: center; }
 .tingxie-progress { color: var(--ink-soft); font-size: 14px; margin-bottom: 12px; }
@@ -1651,7 +1653,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 .tingxie-cloud-sky {
   position: relative; max-width: 640px; height: 320px; margin: 0 auto;
-  background: linear-gradient(180deg, #d6f0ff, var(--card-bg));
+  background: linear-gradient(180deg, #ffe3b8, var(--card-bg));
   border-radius: 24px; overflow: hidden;
   box-shadow: var(--shadow-press);
 }

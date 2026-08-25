@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 // so clicks/hovers always reach the real cards sitting above it; mouse
 // position is tracked at the window level instead purely to compute the
 // repel force.
-const COLORS = ["#ff5a36", "#ffb300", "#7c4dff", "#ff2d92", "#22c55e", "#ff9100", "#a389ff"];
+const COLORS = ["#f2621a", "#f5a623", "#7a3b6e", "#c2486b", "#7a9d3e", "#c98a1f", "#a25f96"];
 const REPEL_RADIUS = 110;
 const REPEL_STRENGTH = 0.9;
 const SPRING = 0.02;
