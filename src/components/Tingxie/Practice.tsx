@@ -8,6 +8,7 @@ import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
 import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { recordTingxieWrong } from "../../state/todaySummary";
 import { loadHistory } from "../../state/history";
+import { useSwipe } from "../../lib/useSwipe";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 import { TingxieFlipCard } from "./TingxieFlipCard";
 import { CompleteScreen } from "../common/CompleteScreen";
@@ -85,6 +86,17 @@ export function Practice() {
     dispatch({ type: "PRACTICE_MISSED" });
   }
 
+  // Swipe left/right mirror the Got it/Missed it self-check buttons -- only
+  // meaningful once the answer is showing, same as those buttons.
+  const swipe = useSwipe(
+    () => {
+      if (state.practiceFlipped) correct();
+    },
+    () => {
+      if (state.practiceFlipped) missed();
+    }
+  );
+
   if (!hasVocab) {
     return <p className="tingxie-empty">这一课没有可用的听写测试。No test content available for this lesson.</p>;
   }
@@ -102,7 +114,7 @@ export function Practice() {
   const phaseLabel = state.practicePhase === "tingxie" ? "第一阶段：听写词语 Phase 1: Vocab" : "第二阶段：听写句子 Phase 2: Sentences";
 
   return (
-    <div className="tingxie-carousel">
+    <div className="tingxie-carousel" onTouchStart={swipe.onTouchStart} onTouchEnd={swipe.onTouchEnd}>
       <div className="tingxie-progress">
         {phaseLabel} · 剩余 {state.practiceQueue.length} 题 remaining
       </div>
@@ -110,7 +122,10 @@ export function Practice() {
       {current.kind === "vocab" ? (
         <TingxieFlipCard
           flipped={state.practiceFlipped}
-          onToggle={() => dispatch({ type: "PRACTICE_FLIP" })}
+          onToggle={() => {
+            if (swipe.guardClick()) return;
+            dispatch({ type: "PRACTICE_FLIP" });
+          }}
           front={
             <div className="tingxie-practice-front">
               <div className="tingxie-vocab-pinyin">{current.item.pinyin}</div>
@@ -122,7 +137,10 @@ export function Practice() {
       ) : (
         <TingxieFlipCard
           flipped={state.practiceFlipped}
-          onToggle={() => dispatch({ type: "PRACTICE_FLIP" })}
+          onToggle={() => {
+            if (swipe.guardClick()) return;
+            dispatch({ type: "PRACTICE_FLIP" });
+          }}
           front={
             <div className="tingxie-scenario tingxie-scenario-card">
               <span className="tingxie-scenario-icon">{tingxieIconEmoji(current.item.icon)}</span>

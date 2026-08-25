@@ -7,6 +7,7 @@ import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
 import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { loadHistory } from "../../state/history";
+import { useSwipe } from "../../lib/useSwipe";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 import { TingxieFlipCard } from "./TingxieFlipCard";
 import { CompleteScreen } from "../common/CompleteScreen";
@@ -28,6 +29,12 @@ function VocabFlipCard() {
   const current = vocab[state.vocabIndex];
   const allFlipped = vocab.length > 0 && state.vocabFlippedIndices.length === vocab.length;
   const bpAmount = TINGXIE_BP_PER_UNIT.VOCAB_LEARN * vocab.length;
+
+  // Swipe left/right mirror the Prev/Next buttons below.
+  const swipe = useSwipe(
+    () => dispatch({ type: "VOCAB_NEXT" }),
+    () => dispatch({ type: "VOCAB_PREV" })
+  );
 
   // Stop any in-progress dictation read-aloud whenever the student moves on
   // (flips back, moves to the next/prev card) so a reading never bleeds into
@@ -63,14 +70,17 @@ function VocabFlipCard() {
   }
 
   return (
-    <div className="tingxie-carousel">
+    <div className="tingxie-carousel" onTouchStart={swipe.onTouchStart} onTouchEnd={swipe.onTouchEnd}>
       <div className="tingxie-progress">
         {state.vocabIndex + 1} / {vocab.length}
       </div>
 
       <TingxieFlipCard
         flipped={state.vocabFlipped}
-        onToggle={() => dispatch({ type: "VOCAB_FLIP" })}
+        onToggle={() => {
+          if (swipe.guardClick()) return;
+          dispatch({ type: "VOCAB_FLIP" });
+        }}
         front={<div className="tingxie-vocab-word">{current.word}</div>}
         back={
           <div className="tingxie-vocab-back">

@@ -8,6 +8,7 @@ import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
 import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { recordTingxieWrong } from "../../state/todaySummary";
 import { loadHistory } from "../../state/history";
+import { useSwipe } from "../../lib/useSwipe";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 import { TingxieFlipCard } from "./TingxieFlipCard";
 import { CompleteScreen } from "../common/CompleteScreen";
@@ -69,6 +70,17 @@ export function Apply() {
     dispatch({ type: "APPLY_MISSED" });
   }
 
+  // Swipe left/right mirror the Correct/Wrong self-check buttons -- only
+  // meaningful once the answer is showing, same as those buttons.
+  const swipe = useSwipe(
+    () => {
+      if (state.applyFlipped) correct();
+    },
+    () => {
+      if (state.applyFlipped) missed();
+    }
+  );
+
   if (!hasBankEntries) {
     return <p className="tingxie-empty">这一课没有可用的词语应用练习。No apply exercises available for this lesson.</p>;
   }
@@ -84,12 +96,15 @@ export function Apply() {
   if (!current) return null;
 
   return (
-    <div className="tingxie-carousel">
+    <div className="tingxie-carousel" onTouchStart={swipe.onTouchStart} onTouchEnd={swipe.onTouchEnd}>
       <div className="tingxie-progress">剩余 {state.applyQueue.length} 题 remaining</div>
 
       <TingxieFlipCard
         flipped={state.applyFlipped}
-        onToggle={() => dispatch({ type: "APPLY_FLIP" })}
+        onToggle={() => {
+          if (swipe.guardClick()) return;
+          dispatch({ type: "APPLY_FLIP" });
+        }}
         front={
           <div className="tingxie-apply-front">
             <div className="tingxie-apply-sentence">{current.blanked}</div>
