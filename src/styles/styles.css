@@ -988,11 +988,15 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .feedback.correct { color: var(--correct); }
 .feedback.incorrect { color: var(--incorrect); }
 .feedback.skipped { color: var(--skipped); }
+.feedback.ai-pending { color: var(--ink-soft); }
 
 .model-answer {
   background: var(--card-bg); border: 2px solid var(--border); border-radius: 16px; padding: 12px 14px; margin-top: 4px;
 }
-.model-answer-label { font-size: 14px; color: var(--ink-soft); margin-bottom: 4px; }
+.model-answer-label {
+  font-size: 14px; color: var(--ink-soft); margin-bottom: 4px;
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
 .model-answer-text { font-size: 17px; white-space: pre-wrap; font-weight: 500; color: var(--ink); }
 .self-check-row { display: flex; gap: 10px; margin-top: 10px; }
 .self-btn {

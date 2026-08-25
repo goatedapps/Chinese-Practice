@@ -9,5 +9,8 @@
         }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/grade.ts": { "maxDuration": 10 }
+  }
 }
