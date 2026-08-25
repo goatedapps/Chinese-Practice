@@ -83,15 +83,13 @@ export function Quiz() {
     // session token, so gradeSelfCheckWithAI would no-op anyway, but skipping
     // it here means they never see a pending flash either.
     const items = user
-      ? graded.map((item, idx) => {
-          const q = group.questions[idx];
-          // gradeQuestion() always sets skipped: true for self-check formats
-          // (it means "not yet self-checked," not "left blank") -- check the
-          // actual typed answer instead to decide whether there's anything
-          // for the AI to grade.
-          const hasAnswer = (answers[q.qNo] ?? "").trim().length > 0;
-          return isSelfCheckFormat(q.format) && hasAnswer ? { ...item, aiGrading: "pending" as const } : item;
-        })
+      ? graded.map((item, idx) =>
+          // A blank self-check answer is already auto-marked wrong by
+          // gradeQuestion() (skipped: true) -- nothing for the AI to grade.
+          isSelfCheckFormat(group.questions[idx].format) && !item.skipped
+            ? { ...item, aiGrading: "pending" as const }
+            : item
+        )
       : graded;
     let dingCount = 0;
     items.forEach((item, idx) => {
@@ -480,6 +478,17 @@ function Feedback({
         </div>
         {item.aiOverridden && <div className="model-answer-label">(已手动修改 manually overridden)</div>}
         {item.correct === true && <span className="bp-pop">+{BP_AWARD[q.format]} BP</span>}
+      </div>
+    );
+  }
+
+  // A blank answer is already auto-marked wrong by gradeQuestion() -- no
+  // point asking the student to click a self-check button for nothing they
+  // wrote, so show the same static "not answered" style MCQ/Fill-in use.
+  if (item.skipped) {
+    return (
+      <div className="feedback skipped">
+        未作答，已自动判为错误。参考答案 Not answered — automatically marked wrong. Suggested answer: {q.displayAnswer}
       </div>
     );
   }

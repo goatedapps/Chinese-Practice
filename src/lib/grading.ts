@@ -15,7 +15,10 @@ export interface AnswerMap {
 // Grades everything gradeable immediately (MCQ/Fill-in). Long-Answer /
 // Writing-Constrained questions come back unresolved (correct: null) since
 // the student self-checks those against a model answer after submitting --
-// see UPDATE_ITEM_RESULT in AppStateContext for how that gets filled in later.
+// see UPDATE_ITEM_RESULT in AppStateContext for how that gets filled in
+// later. A blank self-check answer has nothing to self-check against, so
+// it's marked wrong immediately instead -- skipped mirrors MCQ/Fill-in's
+// meaning here too (genuinely left blank), not "not yet self-checked".
 export function gradeQuestion(question: Question, answer: string | undefined): GroupResultItem {
   if (question.format === "MCQ") {
     const chosen = answer || null;
@@ -27,7 +30,11 @@ export function gradeQuestion(question: Question, answer: string | undefined): G
     const correct = question.accepted.some((a) => normalize(a) === val);
     return { qNo: question.qNo, marks: question.marks, correct, skipped: !val, answer };
   }
-  return { qNo: question.qNo, marks: question.marks, correct: null, skipped: true, bpAwarded: false, answer };
+  const val = normalize(answer);
+  if (!val) {
+    return { qNo: question.qNo, marks: question.marks, correct: false, skipped: true, bpAwarded: false, answer };
+  }
+  return { qNo: question.qNo, marks: question.marks, correct: null, skipped: false, bpAwarded: false, answer };
 }
 
 export function gradeGroup(group: QuestionGroup, answers: AnswerMap): GroupResultItem[] {
