@@ -83,11 +83,15 @@ export function Quiz() {
     // session token, so gradeSelfCheckWithAI would no-op anyway, but skipping
     // it here means they never see a pending flash either.
     const items = user
-      ? graded.map((item, idx) =>
-          isSelfCheckFormat(group.questions[idx].format) && !item.skipped
-            ? { ...item, aiGrading: "pending" as const }
-            : item
-        )
+      ? graded.map((item, idx) => {
+          const q = group.questions[idx];
+          // gradeQuestion() always sets skipped: true for self-check formats
+          // (it means "not yet self-checked," not "left blank") -- check the
+          // actual typed answer instead to decide whether there's anything
+          // for the AI to grade.
+          const hasAnswer = (answers[q.qNo] ?? "").trim().length > 0;
+          return isSelfCheckFormat(q.format) && hasAnswer ? { ...item, aiGrading: "pending" as const } : item;
+        })
       : graded;
     let dingCount = 0;
     items.forEach((item, idx) => {
