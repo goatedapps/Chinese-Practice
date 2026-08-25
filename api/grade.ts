@@ -13,6 +13,7 @@ interface GradeRequestBody {
   studentAnswer: string;
   marks: number;
   context?: string;
+  passage?: string;
 }
 
 function isValidBody(body: unknown): body is GradeRequestBody {
@@ -25,18 +26,39 @@ function isValidBody(body: unknown): body is GradeRequestBody {
     typeof b.marks === "number" &&
     Number.isInteger(b.marks) &&
     b.marks > 0 &&
-    (b.context === undefined || typeof b.context === "string")
+    (b.context === undefined || typeof b.context === "string") &&
+    (b.passage === undefined || typeof b.passage === "string")
   );
 }
 
+// A passage means this is a reading-comprehension question -- grade it as
+// one, with two extra rules that only make sense in that context: answering
+// in a language other than Chinese gets 0 regardless of content, and lifting
+// sentences straight out of the passage doesn't count -- comprehension
+// answers must be the student's own reported-speech paraphrase.
 function buildPrompt(body: GradeRequestBody): string {
-  return `你是一位小学语文老师，请批改学生的开放式问答题。
+  const role = body.passage
+    ? "你是一位小学语文老师，请批改学生的阅读理解开放式问答题。"
+    : "你是一位小学语文老师，请批改学生的开放式问答题。";
+  const passageSection = body.passage ? `文章 Passage:\n${body.passage}\n\n` : "";
 
-题目 Question: ${body.questionText}
+  const rules = [
+    "1. 根据学生作答实际包含了多少参考答案/评分标准中的要点来评分，不要求逐字相同。",
+    "2. 学生必须用中文作答；如果学生用其他语言作答，一律给 0 分。"
+  ];
+  if (body.passage) {
+    rules.push("3. 学生不可以直接抄录文章原句作答，必须用自己的话转述（间接引述）；直接照抄原文的部分不给分。");
+  }
+
+  return `${role}
+
+${passageSection}题目 Question: ${body.questionText}
 ${body.context ? `补充说明/评分标准 Rubric: ${body.context}\n` : ""}参考答案 Model answer: ${body.displayAnswer}
 学生作答 Student's answer: ${body.studentAnswer}
 
-请给出 0 到 ${body.marks} 分之间的整数分数（该题满分 ${body.marks} 分），根据学生作答实际包含了多少参考答案/评分标准中的要点来评分，不要求逐字相同。
+请给出 0 到 ${body.marks} 分之间的整数分数（该题满分 ${body.marks} 分）。评分标准：
+${rules.join("\n")}
+
 同时给出反馈：用简单、容易读懂的中文，具体指出作答可以如何改进（不要只写"对"或"错"，也不要只是重复参考答案）。
 
 请严格输出 JSON：{"score": <0-${body.marks}的整数>, "feedback": "<反馈，不超过50字>"}`;

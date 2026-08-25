@@ -16,6 +16,7 @@ export interface AiGradeResult {
 export async function gradeSelfCheckWithAI(params: {
   questionText: string;
   context?: string;
+  passage?: string;
   displayAnswer: string;
   studentAnswer: string;
   marks: number;

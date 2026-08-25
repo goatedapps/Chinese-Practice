@@ -114,6 +114,7 @@ export function Quiz() {
       gradeSelfCheckWithAI({
         questionText: q.text,
         context: q.context,
+        passage: group.passage?.text,
         displayAnswer: q.displayAnswer,
         studentAnswer: answers[q.qNo] ?? "",
         marks: q.marks
