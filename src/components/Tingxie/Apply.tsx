@@ -99,43 +99,56 @@ export function Apply() {
     <div className="tingxie-carousel" onTouchStart={swipe.onTouchStart} onTouchEnd={swipe.onTouchEnd}>
       <div className="tingxie-progress">剩余 {state.applyQueue.length} 题 remaining</div>
 
-      <TingxieFlipCard
-        flipped={state.applyFlipped}
-        onToggle={() => {
-          if (swipe.guardClick()) return;
-          dispatch({ type: "APPLY_FLIP" });
-        }}
-        front={
-          <div className="tingxie-apply-front">
-            <div className="tingxie-apply-sentence">{current.blanked}</div>
-            <div className="tingxie-apply-english">{current.english}</div>
-            <button
-              type="button"
-              className="secondary-btn tingxie-speak-btn"
-              onClick={(e) => {
-                e.stopPropagation();
-                speakText(current.fullSentence);
-              }}
-            >
-              🔊 朗读 Listen
-            </button>
-          </div>
-        }
-        back={<div className="tingxie-apply-answer">{current.answer}</div>}
-      />
+      <div className="tingxie-flip-stage">
+        {state.applyFlipped && (
+          <button
+            type="button"
+            className="tingxie-flip-edge-btn tingxie-flip-edge-btn-left tingxie-flip-edge-btn-correct"
+            aria-label="答对了 Correct"
+            onClick={correct}
+          >
+            ✓
+          </button>
+        )}
 
-      {state.applyFlipped ? (
-        <div className="self-check-row tingxie-self-check">
-          <button className="self-btn self-right" onClick={correct}>
-            ✓ 答对了 Correct
+        <TingxieFlipCard
+          flipped={state.applyFlipped}
+          onToggle={() => {
+            if (swipe.guardClick()) return;
+            dispatch({ type: "APPLY_FLIP" });
+          }}
+          front={
+            <div className="tingxie-apply-front">
+              <div className="tingxie-apply-sentence">{current.blanked}</div>
+              <div className="tingxie-apply-english">{current.english}</div>
+              <button
+                type="button"
+                className="secondary-btn tingxie-speak-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  speakText(current.fullSentence);
+                }}
+              >
+                🔊 朗读 Listen
+              </button>
+            </div>
+          }
+          back={<div className="tingxie-apply-answer">{current.answer}</div>}
+        />
+
+        {state.applyFlipped && (
+          <button
+            type="button"
+            className="tingxie-flip-edge-btn tingxie-flip-edge-btn-right tingxie-flip-edge-btn-wrong"
+            aria-label="答错了 Wrong"
+            onClick={missed}
+          >
+            ✕
           </button>
-          <button className="self-btn self-wrong" onClick={missed}>
-            ✗ 答错了 Wrong
-          </button>
-        </div>
-      ) : (
-        <p className="tingxie-flip-hint">点击卡片查看答案 Tap the card to see the answer</p>
-      )}
+        )}
+      </div>
+
+      {!state.applyFlipped && <p className="tingxie-flip-hint">点击卡片查看答案 Tap the card to see the answer</p>}
     </div>
   );
 }

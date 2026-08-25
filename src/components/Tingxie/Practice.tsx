@@ -113,80 +113,95 @@ export function Practice() {
 
   const phaseLabel = state.practicePhase === "tingxie" ? "第一阶段：听写词语 Phase 1: Vocab" : "第二阶段：听写句子 Phase 2: Sentences";
 
+  const onToggleFlip = () => {
+    if (swipe.guardClick()) return;
+    dispatch({ type: "PRACTICE_FLIP" });
+  };
+
+  const flipCard =
+    current.kind === "vocab" ? (
+      <TingxieFlipCard
+        flipped={state.practiceFlipped}
+        onToggle={onToggleFlip}
+        front={
+          <div className="tingxie-practice-front">
+            <div className="tingxie-vocab-pinyin">{current.item.pinyin}</div>
+            <div className="tingxie-vocab-meaning">{current.item.meaning}</div>
+          </div>
+        }
+        back={<div className="tingxie-vocab-word">{current.item.word}</div>}
+      />
+    ) : (
+      <TingxieFlipCard
+        flipped={state.practiceFlipped}
+        onToggle={onToggleFlip}
+        front={
+          <div className="tingxie-scenario tingxie-scenario-card">
+            <span className="tingxie-scenario-icon">{tingxieIconEmoji(current.item.icon)}</span>
+            <span className="tingxie-scenario-desc">{current.item.description}</span>
+            <button
+              type="button"
+              className="secondary-btn tingxie-speak-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                speakText(current.item.text);
+              }}
+            >
+              🔊 朗读 Listen
+            </button>
+          </div>
+        }
+        back={
+          <div className="tingxie-practice-sentence-back">
+            {current.item.text}
+            <button
+              type="button"
+              className="secondary-btn tingxie-speak-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                speakText(current.item.text);
+              }}
+            >
+              🔊 朗读 Listen
+            </button>
+          </div>
+        }
+      />
+    );
+
   return (
     <div className="tingxie-carousel" onTouchStart={swipe.onTouchStart} onTouchEnd={swipe.onTouchEnd}>
       <div className="tingxie-progress">
         {phaseLabel} · 剩余 {state.practiceQueue.length} 题 remaining
       </div>
 
-      {current.kind === "vocab" ? (
-        <TingxieFlipCard
-          flipped={state.practiceFlipped}
-          onToggle={() => {
-            if (swipe.guardClick()) return;
-            dispatch({ type: "PRACTICE_FLIP" });
-          }}
-          front={
-            <div className="tingxie-practice-front">
-              <div className="tingxie-vocab-pinyin">{current.item.pinyin}</div>
-              <div className="tingxie-vocab-meaning">{current.item.meaning}</div>
-            </div>
-          }
-          back={<div className="tingxie-vocab-word">{current.item.word}</div>}
-        />
-      ) : (
-        <TingxieFlipCard
-          flipped={state.practiceFlipped}
-          onToggle={() => {
-            if (swipe.guardClick()) return;
-            dispatch({ type: "PRACTICE_FLIP" });
-          }}
-          front={
-            <div className="tingxie-scenario tingxie-scenario-card">
-              <span className="tingxie-scenario-icon">{tingxieIconEmoji(current.item.icon)}</span>
-              <span className="tingxie-scenario-desc">{current.item.description}</span>
-              <button
-                type="button"
-                className="secondary-btn tingxie-speak-btn"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  speakText(current.item.text);
-                }}
-              >
-                🔊 朗读 Listen
-              </button>
-            </div>
-          }
-          back={
-            <div className="tingxie-practice-sentence-back">
-              {current.item.text}
-              <button
-                type="button"
-                className="secondary-btn tingxie-speak-btn"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  speakText(current.item.text);
-                }}
-              >
-                🔊 朗读 Listen
-              </button>
-            </div>
-          }
-        />
-      )}
+      <div className="tingxie-flip-stage">
+        {state.practiceFlipped && (
+          <button
+            type="button"
+            className="tingxie-flip-edge-btn tingxie-flip-edge-btn-left tingxie-flip-edge-btn-correct"
+            aria-label="记住了 Got it"
+            onClick={correct}
+          >
+            ✓
+          </button>
+        )}
 
-      {state.practiceFlipped ? (
-        <div className="self-check-row tingxie-self-check">
-          <button className="self-btn self-right" onClick={correct}>
-            ✓ 记住了 Got it
+        {flipCard}
+
+        {state.practiceFlipped && (
+          <button
+            type="button"
+            className="tingxie-flip-edge-btn tingxie-flip-edge-btn-right tingxie-flip-edge-btn-wrong"
+            aria-label="记错了 Missed it"
+            onClick={missed}
+          >
+            ✕
           </button>
-          <button className="self-btn self-wrong" onClick={missed}>
-            ✗ 记错了 Missed it
-          </button>
-        </div>
-      ) : (
-        <p className="tingxie-flip-hint">点击卡片查看答案 Tap the card to see the answer</p>
-      )}
+        )}
+      </div>
+
+      {!state.practiceFlipped && <p className="tingxie-flip-hint">点击卡片查看答案 Tap the card to see the answer</p>}
     </div>
   );
 }

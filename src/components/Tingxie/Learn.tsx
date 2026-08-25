@@ -75,38 +75,49 @@ function VocabFlipCard() {
         {state.vocabIndex + 1} / {vocab.length}
       </div>
 
-      <TingxieFlipCard
-        flipped={state.vocabFlipped}
-        onToggle={() => {
-          if (swipe.guardClick()) return;
-          dispatch({ type: "VOCAB_FLIP" });
-        }}
-        front={<div className="tingxie-vocab-word">{current.word}</div>}
-        back={
-          <div className="tingxie-vocab-back">
-            <div className="tingxie-vocab-pinyin">{current.pinyin}</div>
-            <div className="tingxie-vocab-meaning">{current.meaning}</div>
-            <div className="tingxie-vocab-example">{current.example}</div>
-            <button
-              type="button"
-              className="secondary-btn tingxie-speak-btn"
-              onClick={(e) => {
-                e.stopPropagation();
-                speakWordThenSentence(current.word, current.example);
-              }}
-            >
-              🔊 朗读 Listen
-            </button>
-          </div>
-        }
-      />
-
-      <div className="tingxie-nav-row">
-        <button className="secondary-btn" onClick={() => dispatch({ type: "VOCAB_PREV" })}>
-          ← 上一个 Prev
+      <div className="tingxie-flip-stage">
+        <button
+          type="button"
+          className="tingxie-flip-edge-btn tingxie-flip-edge-btn-left"
+          aria-label="上一个 Prev"
+          onClick={() => dispatch({ type: "VOCAB_PREV" })}
+        >
+          ‹
         </button>
-        <button className="secondary-btn" onClick={() => dispatch({ type: "VOCAB_NEXT" })}>
-          下一个 Next →
+
+        <TingxieFlipCard
+          flipped={state.vocabFlipped}
+          onToggle={() => {
+            if (swipe.guardClick()) return;
+            dispatch({ type: "VOCAB_FLIP" });
+          }}
+          front={<div className="tingxie-vocab-word">{current.word}</div>}
+          back={
+            <div className="tingxie-vocab-back">
+              <div className="tingxie-vocab-pinyin">{current.pinyin}</div>
+              <div className="tingxie-vocab-meaning">{current.meaning}</div>
+              <div className="tingxie-vocab-example">{current.example}</div>
+              <button
+                type="button"
+                className="secondary-btn tingxie-speak-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  speakWordThenSentence(current.word, current.example);
+                }}
+              >
+                🔊 朗读 Listen
+              </button>
+            </div>
+          }
+        />
+
+        <button
+          type="button"
+          className="tingxie-flip-edge-btn tingxie-flip-edge-btn-right"
+          aria-label="下一个 Next"
+          onClick={() => dispatch({ type: "VOCAB_NEXT" })}
+        >
+          ›
         </button>
       </div>
     </div>
