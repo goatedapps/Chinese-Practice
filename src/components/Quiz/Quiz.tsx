@@ -157,7 +157,6 @@ export function Quiz() {
   function handleSelfCheck(qNo: string, format: string, correct: boolean) {
     const item = currentRecord?.items.find((it) => it.qNo === qNo);
     const patch: Partial<GroupResultItem> = { correct, skipped: false };
-    if (item?.aiGrading === "done") patch.aiOverridden = true;
     if (correct && !item?.bpAwarded) {
       patch.bpAwarded = true;
       awardBP(BP_AWARD[format] ?? 2);
@@ -437,6 +436,7 @@ function Feedback({
     return <div className="feedback ai-pending">🤖 AI 正在批改... AI is grading...</div>;
   }
 
+  // AI grading is final -- no manual override.
   if (item.aiGrading === "done") {
     return (
       <div className="feedback self-check">
@@ -462,22 +462,6 @@ function Feedback({
           <div className="model-answer-label">参考答案 Model Answer:</div>
           <div className="model-answer-text">{q.displayAnswer}</div>
         </div>
-        <div className="model-answer-label">不同意 AI 的判断？手动修改 Disagree? Override:</div>
-        <div className="self-check-row">
-          <button
-            className={"self-btn self-right" + (item.correct === true ? " self-chosen" : "")}
-            onClick={() => onSelfCheck(true)}
-          >
-            ✓ 我答对了 Got it right
-          </button>
-          <button
-            className={"self-btn self-wrong" + (item.correct === false ? " self-chosen" : "")}
-            onClick={() => onSelfCheck(false)}
-          >
-            ✗ 还需加强 Need more practice
-          </button>
-        </div>
-        {item.aiOverridden && <div className="model-answer-label">(已手动修改 manually overridden)</div>}
         {item.correct === true && <span className="bp-pop">+{BP_AWARD[q.format]} BP</span>}
       </div>
     );

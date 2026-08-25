@@ -1444,6 +1444,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 
 .tingxie-select, .tingxie-picker { text-align: left; }
+.tingxie-select-title { text-align: center; }
 .tingxie-review-btn { margin-top: 18px; }
 .tingxie-loading, .tingxie-empty { color: var(--ink-soft); font-size: 15px; margin: 24px 0; text-align: center; }
 .tingxie-error, .tingxie-error-inline { color: var(--incorrect); margin: 14px 0; }

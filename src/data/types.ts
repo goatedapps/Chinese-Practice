@@ -90,12 +90,10 @@ export interface GroupResultItem {
   // accounts on the server-side allowlist (see lib/aiGrading.ts, api/grade.ts).
   // Absent for every MCQ/Fill-in item and for every self-check item graded by
   // a non-eligible user/guest, who take the unchanged manual self-check path.
+  // AI grading is final -- there is no manual override.
   aiGrading?: "pending" | "done" | "failed";
   aiScore?: number; // 0..marks, Gemini's score out of this item's own `marks`
   aiFeedback?: string; // simple Chinese, points out how the answer could improve
-  // Set when the student/parent manually overrides an AI verdict via the
-  // same self-check buttons the fallback flow already uses.
-  aiOverridden?: boolean;
 }
 
 export interface GroupResult {

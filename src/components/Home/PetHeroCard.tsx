@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { usePet, computeCurrentMood, moodBucket, getAge, getStage } from "../../state/PetContext";
 import { PET_STAGES, GROWTH_PER_AGE_YEAR, GROWTH_ICON, HUNGER_ICON } from "../../data/pet";
@@ -5,11 +6,28 @@ import { getTodayStats } from "../../lib/stats";
 import { OwlArt } from "../common/OwlArt";
 import type { MoodBucket, HistoryEntry } from "../../data/types";
 
-const SPEECH_LINES: Record<MoodBucket, string> = {
-  sad: "我有点饿了…… I'm getting hungry...",
-  neutral: "还好，但有点想你 I'm okay, but I miss you a little",
-  happy: "我们一起学习吧！Let's learn together today!",
-  very_happy: "谢谢你照顾我！Thanks for taking care of me!"
+const SPEECH_LINES: Record<MoodBucket, string[]> = {
+  sad: [
+    "我有点饿了…… I'm getting hungry...",
+    "肚子咕咕叫了…… My tummy is rumbling...",
+    "好久没人理我了 It's been a while since anyone visited...",
+    "我需要吃点东西 I could really use a snack..."
+  ],
+  neutral: [
+    "还好，但有点想你 I'm okay, but I miss you a little",
+    "今天想做点什么呢？What should we do today?",
+    "陪我玩一会儿吧 Come hang out with me for a bit"
+  ],
+  happy: [
+    "我们一起学习吧！Let's learn together today!",
+    "今天心情不错！Feeling good today!",
+    "准备好练习了吗？Ready to practice?"
+  ],
+  very_happy: [
+    "谢谢你照顾我！Thanks for taking care of me!",
+    "有你真好！I'm so glad you're here!",
+    "我们是最棒的搭档！We make a great team!"
+  ]
 };
 
 function greeting(): string {
@@ -32,6 +50,14 @@ export function PetHeroCard({ hist }: { hist: HistoryEntry[] }) {
   const age = getAge(pet.growth);
   const stage = getStage(pet.growth);
   const bucket = moodBucket(mood);
+  // Picks a fresh random line whenever the mood bucket itself changes, not
+  // on every incidental re-render (e.g. a BP change elsewhere) -- otherwise
+  // the speech would visibly jump around for no reason tied to the pet.
+  const speechLine = useMemo(() => {
+    const lines = SPEECH_LINES[bucket];
+    return lines[Math.floor(Math.random() * lines.length)];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bucket]);
 
   const stageNum = PET_STAGES.findIndex((s) => s.key === stage.key) + 1;
   // Always progress within the current age year, not toward the next
@@ -88,7 +114,7 @@ export function PetHeroCard({ hist }: { hist: HistoryEntry[] }) {
           <div className="pet-status-bp">💡 {pet.bp} BP</div>
           <div className="pet-hero-art-col">
             <OwlArt stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-hero" playSound />
-            <div className="pet-hero-speech">{SPEECH_LINES[bucket]}</div>
+            <div className="pet-hero-speech">{speechLine}</div>
           </div>
         </div>
       </div>

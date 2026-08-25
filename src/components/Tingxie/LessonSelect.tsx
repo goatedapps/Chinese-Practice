@@ -43,7 +43,7 @@ export function LessonSelect() {
 
   return (
     <div className="tingxie-select">
-      <h1>听写练习 Dictation Practice</h1>
+      <h1 className="tingxie-select-title">听写练习 Dictation Practice</h1>
 
       {!dictationMissionDone && (
         <div className="mission-hint-box">

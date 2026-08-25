@@ -7,9 +7,9 @@ import { useAppDispatch, useAppState, type Screen } from "../../state/AppStateCo
 // decides not to render this on those two screens.
 const NAV_ITEMS: { key: string; label: string; screens: Screen[] }[] = [
   { key: "home", label: "主页", screens: ["home"] },
-  { key: "tingxie", label: "听写练习", screens: ["tingxie"] },
+  { key: "tingxie", label: "听写", screens: ["tingxie"] },
   { key: "practice", label: "练习", screens: ["practice"] },
-  { key: "story", label: "读故事", screens: ["story"] },
+  { key: "story", label: "故事", screens: ["story"] },
   // Shop/Bag/Play are reached from the Owl screen and conceptually part of
   // the same "pet" flow, so this stays highlighted on all four.
   { key: "owl", label: "宠物", screens: ["owl", "shop", "bag", "play"] }

@@ -39,7 +39,11 @@ function TingxieShell() {
         <button className="back-btn" onClick={handleBack}>
           ← 返回 Back
         </button>
-        <div className="tingxie-topbar-title">{state.activeContent?.title ?? "听写练习 Dictation Practice"}</div>
+        {/* LessonSelect (the "select" view) already shows its own big
+            centered title -- a second one here would just duplicate it. */}
+        {state.view !== "select" && (
+          <div className="tingxie-topbar-title">{state.activeContent?.title ?? "听写练习 Dictation Practice"}</div>
+        )}
         <div className="tingxie-topbar-bp">💡 {pet.bp} BP</div>
       </div>
 
