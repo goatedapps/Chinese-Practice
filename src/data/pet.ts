@@ -230,11 +230,11 @@ export interface SpecialQuestConfig {
 }
 
 export const SPECIAL_QUEST_TYPES: SpecialQuestConfig[] = [
-  { id: "vocab100", label: "词语测验满分 Get 100% on a Vocab Quiz", icon: "📚", bonusBP: 50 },
+  { id: "vocab100", label: "词语测验满分 Get 100% on a Vocab Quiz", icon: "/icons/practice.png", bonusBP: 50 },
   { id: "ballPlay", label: "玩一次小球游戏 Play the Ball Game", icon: "/icons/ball.png", bonusBP: 20 },
   { id: "petFull", label: "把宠物喂到饱食度 100% Fill Your Pet's Hunger to 100%", icon: "/icons/rice.png", bonusBP: 40 },
   { id: "memoryFast", label: "20 秒内完成记忆卡牌 Beat the Memory Game in 20s", icon: "/icons/memory.png", bonusBP: 20 },
-  { id: "comprehension1", label: "完成一篇阅读理解 Complete One Comprehension Passage", icon: "📖", bonusBP: 100 }
+  { id: "comprehension1", label: "完成一篇阅读理解 Complete One Comprehension Passage", icon: "/icons/read.png", bonusBP: 100 }
 ];
 
 export function specialQuestConfig(id: string): SpecialQuestConfig | undefined {

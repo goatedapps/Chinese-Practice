@@ -21,6 +21,7 @@ import { AccountBar } from "./components/common/AccountBar";
 import { LevelBar } from "./components/common/LevelBar";
 import { CursorGlow } from "./components/common/CursorGlow";
 import { OwlFlyover } from "./components/common/OwlFlyover";
+import { IconSprite } from "./components/common/Icons";
 
 function ScreenRouter() {
   const state = useAppState();
@@ -146,9 +147,18 @@ function ScreenRouter() {
 
   return (
     <>
-      {showTopNav && <TopNav />}
-      {showAccountBar && <AccountBar />}
-      {showTopNav && <LevelBar />}
+      {/* One merged navy bar (TopNav's nav pills + LevelBar's P2/P5 toggle +
+          AccountBar's BP stat/avatar) -- each stays its own component/hook
+          boundary, but visually reads as a single top bar (see .top-bar in
+          styles.css). AccountBar still conditionally omits itself on the
+          Auth screen. */}
+      {showTopNav && (
+        <div className="top-bar">
+          <TopNav />
+          <LevelBar />
+          {showAccountBar && <AccountBar />}
+        </div>
+      )}
       {screen}
     </>
   );
@@ -197,6 +207,7 @@ export default function App() {
       <AppStateProvider>
         <PetProvider>
           <SyncBootstrap />
+          <IconSprite />
           <CursorGlow />
           <OwlFlyover />
           <ScreenRouter />

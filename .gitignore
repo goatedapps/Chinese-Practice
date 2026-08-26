@@ -30,3 +30,8 @@ scripts/__pycache__/
 
 # Personal Claude Code hooks (see .claude/settings.local.json)
 .claude/hooks/
+
+# Lavish Editor design-review scratch workspace (large self-contained HTML
+# mockups with embedded base64 assets) -- local review tooling output, not
+# app source; regenerate via the /lavish skill if a past mockup is needed.
+.lavish/

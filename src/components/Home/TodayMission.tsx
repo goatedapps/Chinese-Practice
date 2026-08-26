@@ -6,31 +6,8 @@ import { MISSION_COMPLETE_BONUS_BP } from "../../data/pet";
 import { selectTypeSessionGroups } from "../../lib/typeSession";
 import { shuffle } from "../../lib/shuffle";
 import { isLessonMissionComplete, getReadingMissionCount, isTingxieMissionComplete, READING_MISSION_CATEGORIES } from "../../lib/stats";
+import { Icon } from "../common/Icons";
 import type { HistoryEntry } from "../../data/types";
-
-// Interactive half of the "3D carousel" mission cards -- the resting curve
-// (left/right cards angled toward the middle one) is pure CSS (see
-// ".mission-grid .mission-card:nth-of-type(n)" in styles.css); this just
-// layers a live tilt on top while the cursor is over a card, following
-// pointer position the way a carousel card would rock as you look around
-// it. Skipped entirely under prefers-reduced-motion, matching the CSS
-// transition guard on the same elements.
-function tiltMissionCard(e: React.MouseEvent<HTMLButtonElement>) {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const el = e.currentTarget;
-  const rect = el.getBoundingClientRect();
-  const px = (e.clientX - rect.left) / rect.width - 0.5;
-  const py = (e.clientY - rect.top) / rect.height - 0.5;
-  el.style.setProperty("--tilt-y", `${px * 20}deg`);
-  el.style.setProperty("--tilt-x", `${py * -16}deg`);
-  el.style.setProperty("--tilt-z", "20px");
-}
-function untiltMissionCard(e: React.MouseEvent<HTMLButtonElement>) {
-  const el = e.currentTarget;
-  el.style.removeProperty("--tilt-y");
-  el.style.removeProperty("--tilt-x");
-  el.style.removeProperty("--tilt-z");
-}
 
 export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
   const dispatch = useAppDispatch();
@@ -82,63 +59,59 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
 
   return (
     <div className="dash-card today-mission">
-      <h2 className="section-heading">学习任务 Today's Mission</h2>
+      <h2 className="section-heading"><Icon name="target" />学习任务 Today's Mission</h2>
       <p className="mission-subhead">Complete all missions to earn {MISSION_COMPLETE_BONUS_BP} BP</p>
-      <div className="mission-grid">
-        <button
-          className={"mission-card" + (dictationDone ? " mission-card-done" : "")}
-          onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}
-          onMouseMove={tiltMissionCard}
-          onMouseLeave={untiltMissionCard}
-        >
-          <div className="mission-card-top" style={{ backgroundImage: "url(/icons/dictation-bg.png)" }}>
-            <img className="mission-card-icon" src="/icons/dictation.png" alt="" />
-            <span className={"mission-card-badge" + (dictationDone ? " mission-card-badge-done" : " mission-card-badge-todo")}>
-              {dictationDone ? "✓" : "›"}
-            </span>
-          </div>
-          <div className="mission-card-bottom">
-            <span className="mission-card-name">听写练习</span>
-          </div>
-        </button>
-        <button
-          className={"mission-card" + (lessonDone ? " mission-card-done" : "")}
-          onClick={startLessonMission}
-          onMouseMove={tiltMissionCard}
-          onMouseLeave={untiltMissionCard}
-        >
-          <div className="mission-card-top" style={{ backgroundImage: "url(/icons/read-bg.png)" }}>
-            <img className="mission-card-icon" src="/icons/read.png" alt="" />
-            <span className={"mission-card-badge" + (lessonDone ? " mission-card-badge-done" : " mission-card-badge-todo")}>
-              {lessonDone ? "✓" : "›"}
-            </span>
-          </div>
-          <div className="mission-card-bottom">
-            <span className="mission-card-name">词语复习</span>
-          </div>
-        </button>
-        <button
-          className={"mission-card" + (readingDone ? " mission-card-done" : "")}
-          disabled={starting}
-          onClick={startReadingMission}
-          onMouseMove={tiltMissionCard}
-          onMouseLeave={untiltMissionCard}
-        >
-          <div className="mission-card-top" style={{ backgroundImage: "url(/icons/practice-bg.png)" }}>
-            <img className="mission-card-icon" src="/icons/practice.png" alt="" />
-            <span className={"mission-card-badge" + (readingDone ? " mission-card-badge-done" : " mission-card-badge-todo")}>
-              {readingDone ? "✓" : "›"}
-            </span>
-          </div>
-          <div className="mission-card-bottom">
-            <span className="mission-card-name">阅读理解</span>
-          </div>
-        </button>
+      <div className="mission-list">
+        <div className={"mission-row p1" + (dictationDone ? " mission-row-done" : "")}>
+          <span className="mission-num">1</span>
+          <span className="mission-icon-box"><img src="/icons/dictation.png" alt="" /></span>
+          <span className="mission-info">
+            <span className="mission-title">听写练习</span>
+            <span className="mission-status">Dictation Practice</span>
+          </span>
+          {dictationDone ? (
+            <span className="mission-done">✓ 已完成</span>
+          ) : (
+            <button className="mission-go" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}>
+              去完成
+            </button>
+          )}
+        </div>
+        <div className={"mission-row p2" + (lessonDone ? " mission-row-done" : "")}>
+          <span className="mission-num">2</span>
+          <span className="mission-icon-box"><img src="/icons/read.png" alt="" /></span>
+          <span className="mission-info">
+            <span className="mission-title">词语复习</span>
+            <span className="mission-status">Vocabulary Review</span>
+          </span>
+          {lessonDone ? (
+            <span className="mission-done">✓ 已完成</span>
+          ) : (
+            <button className="mission-go" onClick={startLessonMission}>
+              去完成
+            </button>
+          )}
+        </div>
+        <div className={"mission-row p3" + (readingDone ? " mission-row-done" : "")}>
+          <span className="mission-num">3</span>
+          <span className="mission-icon-box"><img src="/icons/practice.png" alt="" /></span>
+          <span className="mission-info">
+            <span className="mission-title">阅读理解</span>
+            <span className="mission-status">Reading Comprehension</span>
+          </span>
+          {readingDone ? (
+            <span className="mission-done">✓ 已完成</span>
+          ) : (
+            <button className="mission-go" disabled={starting} onClick={startReadingMission}>
+              {starting ? "…" : "去完成"}
+            </button>
+          )}
+        </div>
       </div>
 
       {allDone && (
         <div className="mission-bonus-banner">
-          🎉 三项任务全部完成！All 3 missions done today! <span className="bp-pop">+{MISSION_COMPLETE_BONUS_BP} BP</span>
+          三项任务全部完成！All 3 missions done today! <span className="bp-pop">+{MISSION_COMPLETE_BONUS_BP} BP</span>
         </div>
       )}
     </div>

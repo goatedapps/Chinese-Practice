@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useAppDispatch } from "../../state/AppStateContext";
 import { loadHistory, deleteHistoryEntry } from "../../state/history";
 import { loadAchievements } from "../../state/achievements";
 import { getTodayStats, isTingxieMissionComplete } from "../../lib/stats";
@@ -7,14 +6,20 @@ import { getTodaySummary } from "../../state/todaySummary";
 import { exportTodaySummaryToPdf } from "../../lib/exportPdf";
 import { ConfirmModal } from "../common/Modal";
 import { Reveal } from "../common/Reveal";
+import { Icon } from "../common/Icons";
 import { PetHeroCard } from "./PetHeroCard";
 import { TodayMission } from "./TodayMission";
 import { SpecialQuest } from "./SpecialQuest";
 import { RecentAchievements } from "./RecentAchievements";
-import { ConfettiBackground } from "./ConfettiBackground";
+
+function greeting(): string {
+  const hour = new Date().getHours();
+  if (hour < 12) return "早上好";
+  if (hour < 18) return "下午好";
+  return "晚上好";
+}
 
 export function Home() {
-  const dispatch = useAppDispatch();
   const [hist, setHist] = useState(() => loadHistory());
   const [achievements] = useState(() => loadAchievements());
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
@@ -30,69 +35,58 @@ export function Home() {
 
   return (
     <div className="screen home home-dashboard">
-      <ConfettiBackground />
       <div className="home-content">
-        <Reveal delay={20}>
-          <PetHeroCard hist={hist} />
-        </Reveal>
-
-        <Reveal delay={80}>
-          <SpecialQuest />
-        </Reveal>
-
-        <Reveal delay={140}>
-          <TodayMission hist={hist} />
-        </Reveal>
-
-        <Reveal delay={200}>
-          <div className="dash-card continue-section">
-            <h2 className="section-heading">继续学习 Continue Learning</h2>
-            <div className="mode-rows">
-              <button className="mode-row" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}>
-                <img className="mode-row-icon" src="/icons/dictation.png" alt="" />
-                <span className="mode-row-info">
-                  <span className="mode-row-title">听写练习</span>
-                  <span className="mode-row-sub">Dictation Practice</span>
-                </span>
-                <span className="mode-row-go">›</span>
-              </button>
-              <button className="mode-row" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "practice" })}>
-                <img className="mode-row-icon" src="/icons/practice.png" alt="" />
-                <span className="mode-row-info">
-                  <span className="mode-row-title">练习</span>
-                  <span className="mode-row-sub">Practice</span>
-                </span>
-                <span className="mode-row-go">›</span>
-              </button>
-              <button className="mode-row" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "story" })}>
-                <img className="mode-row-icon" src="/icons/read.png" alt="" />
-                <span className="mode-row-info">
-                  <span className="mode-row-title">读故事</span>
-                  <span className="mode-row-sub">Read a Story</span>
-                </span>
-                <span className="mode-row-go">›</span>
-              </button>
-            </div>
+        <Reveal delay={0}>
+          <div className="home-greeting">
+            <h1>
+              {greeting()}
+              <Icon name="sparkle" className="home-greeting-spark" />
+            </h1>
+            <p>
+              {todayStats.questions > 0
+                ? `你今天已经完成 ${todayStats.questions} 题，继续保持！`
+                : "今天还没开始练习，快来陪陪你的小伙伴吧！"}
+            </p>
           </div>
         </Reveal>
 
-        {showTodaySummary && (
-          <Reveal delay={260}>
-            <div className="dash-card today-summary-card">
-              <h2 className="section-heading">今日学习总结 Today's Session Summary</h2>
-              <p className="picker-hint">
-                <span className="en">Print this to show your parents what you have learnt today!</span>
-              </p>
-              <button className="secondary-btn" onClick={() => exportTodaySummaryToPdf(hist)}>
-                🖨️ Print as PDF
-              </button>
-            </div>
+        <div className="home-row-top">
+          <Reveal delay={20}>
+            <PetHeroCard />
           </Reveal>
-        )}
+          <Reveal delay={80}>
+            <SpecialQuest />
+          </Reveal>
+          <Reveal delay={140}>
+            <TodayMission hist={hist} />
+          </Reveal>
+        </div>
 
-        <Reveal delay={320}>
-          <RecentAchievements hist={hist} achievements={achievements} onDeleteRow={setPendingDeleteId} />
-        </Reveal>
+        <div className="home-row-bottom">
+          <Reveal delay={200}>
+            <RecentAchievements hist={hist} achievements={achievements} onDeleteRow={setPendingDeleteId} />
+          </Reveal>
+
+          {showTodaySummary && (
+            <Reveal delay={260}>
+              <div className="dash-card today-summary-card">
+                <div className="today-summary-left">
+                  <h2 className="section-heading"><Icon name="printer" />今日学习总结 Today's Session Summary</h2>
+                  <p className="picker-hint">
+                    <span className="en">Print this to show your parents what you have learnt today!</span>
+                  </p>
+                </div>
+                <div className="today-summary-right">
+                  <Icon name="printer" />
+                  <p>打印今日总结<br />给家长查看</p>
+                  <button className="secondary-btn today-summary-print-btn" onClick={() => exportTodaySummaryToPdf(hist)}>
+                    打印为 PDF
+                  </button>
+                </div>
+              </div>
+            </Reveal>
+          )}
+        </div>
 
         {pendingDeleteId && (
           <ConfirmModal

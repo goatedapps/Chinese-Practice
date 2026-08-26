@@ -1,15 +1,24 @@
 import { formatRelativeTime } from "../../lib/stats";
 import { specialQuestConfig } from "../../data/pet";
 import { parseTingxieCompletedDetail } from "../../state/achievements";
+import { Icon } from "../common/Icons";
 import type { Achievement, HistoryEntry } from "../../data/types";
 
+// A real illustrated PNG where one already exists for the activity
+// (dictation/story), an inline icon glyph otherwise (mission/milestone/
+// quest have no matching asset) -- same isIconPath split SpecialQuest.tsx's
+// QuestIcon already uses for quest icons.
 const TYPE_ICON: Record<Achievement["type"], string> = {
-  missionComplete: "🎯",
-  questionsMilestone: "🏆",
-  storyCompleted: "📖",
-  specialQuestComplete: "🎡",
-  tingxieCompleted: "🔊"
+  missionComplete: "target",
+  questionsMilestone: "trophy",
+  storyCompleted: "/icons/read.png",
+  specialQuestComplete: "wheel",
+  tingxieCompleted: "/icons/dictation.png"
 };
+
+function AchievementIcon({ icon }: { icon: string }) {
+  return icon.startsWith("/") ? <img src={icon} alt="" /> : <Icon name={icon} />;
+}
 
 function describe(a: Achievement): { text: string; en?: string } {
   switch (a.type) {
@@ -80,13 +89,13 @@ export function RecentAchievements({
   return (
     <div className="dash-card recent-achievements">
       <div className="history-head">
-        <h2 className="section-heading">最近成就 Recent Achievements</h2>
+        <h2 className="section-heading"><Icon name="trophy" />最近成就 Recent Achievements</h2>
       </div>
       <div className="achievement-list">
         {rows.map((row) =>
           row.kind === "achievement" ? (
             <div className="achievement-row" key={`a-${row.id}`}>
-              <span className="achievement-icon">{row.icon}</span>
+              <span className="achievement-icon"><AchievementIcon icon={row.icon} /></span>
               <span className="achievement-text">
                 {row.text}
                 {row.en && <span className="en">{row.en}</span>}
@@ -95,7 +104,7 @@ export function RecentAchievements({
             </div>
           ) : (
             <div className="achievement-row" key={`s-${row.id}`}>
-              <span className="achievement-icon">📘</span>
+              <span className="achievement-icon"><img src="/icons/practice.png" alt="" /></span>
               <span className="achievement-text">
                 {row.modeLabel}
                 <span className="en">
@@ -104,7 +113,7 @@ export function RecentAchievements({
               </span>
               <span className="achievement-date">{formatRelativeTime(row.date)}</span>
               <button className="history-row-delete" title="删除 Delete" onClick={() => onDeleteRow(row.id)}>
-                ✕
+                <Icon name="close" />
               </button>
             </div>
           )

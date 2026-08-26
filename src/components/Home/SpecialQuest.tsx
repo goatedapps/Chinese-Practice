@@ -7,6 +7,7 @@ import { isCategoryRelevantForLevel } from "../../data/levels";
 import { selectTypeSessionGroups } from "../../lib/typeSession";
 import { getTodaySpecialQuest, spinSpecialQuest } from "../../state/specialQuest";
 import { Sound } from "../../lib/sound";
+import { Icon } from "../common/Icons";
 
 // How long the wheel's CSS spin transition runs (see .quest-wheel-dial in
 // styles.css) -- the "spinning" UI stays up for exactly this long before
@@ -104,7 +105,7 @@ export function SpecialQuest() {
 
   return (
     <div className="dash-card special-quest">
-      <h2 className="section-heading">🎡 特别任务 Special Quest</h2>
+      <h2 className="section-heading"><Icon name="wheel" />特别任务 Special Quest</h2>
       <p className="mission-subhead">Spin the wheel once a day for a bonus-BP quest!</p>
 
       {!quest ? (
@@ -139,7 +140,7 @@ export function SpecialQuest() {
           <QuestIcon icon={config.icon} className="quest-assigned-icon" />
           <p className="quest-assigned-label">{config.label}</p>
           <p className="quest-assigned-bonus">
-            🎉 今日任务已完成！Quest complete! <span className="bp-pop">+{config.bonusBP} BP</span>
+            今日任务已完成！Quest complete! <span className="bp-pop">+{config.bonusBP} BP</span>
           </p>
         </div>
       ) : config ? (
