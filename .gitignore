@@ -35,3 +35,6 @@ scripts/__pycache__/
 # mockups with embedded base64 assets) -- local review tooling output, not
 # app source; regenerate via the /lavish skill if a past mockup is needed.
 .lavish/
+
+# Local skills-tooling lockfile, not app source.
+skills-lock.json
