@@ -658,8 +658,10 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   z-index: 60;
   pointer-events: none;
   width: 104px;
+  touch-action: none;
+  user-select: none;
 }
-.owl-flyover-sprite { position: relative; width: 100%; display: block; }
+.owl-flyover-sprite { position: relative; width: 100%; display: block; -webkit-user-drag: none; user-select: none; }
 .owl-flyover-shadow {
   position: absolute;
   left: 50%; bottom: -4px;
@@ -668,7 +670,10 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   background: radial-gradient(ellipse, rgba(var(--ink-rgb), .55) 0%, rgba(var(--ink-rgb), .25) 45%, rgba(var(--ink-rgb), 0) 75%);
   border-radius: 50%;
 }
-.owl-flyover-landed { right: 28px; }
+.owl-flyover-landed { right: 28px; cursor: grab; }
+.owl-flyover-dragging { cursor: grabbing; }
+.owl-flyover-dragging .owl-flyover-sprite,
+.owl-flyover-dragging .owl-flyover-shadow { animation: none; }
 @media (prefers-reduced-motion: no-preference) {
   /* Both timed to the same 2.8s so the flap cycle (4 flaps) fills exactly
      the horizontal glide -- a lazier, longer glide than the original 1.3s
