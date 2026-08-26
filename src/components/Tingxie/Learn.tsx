@@ -5,6 +5,7 @@ import { tingxieIconEmoji, tingxieSentenceWords, tingxieSentenceChars } from "..
 import { speakText, speakWordThenSentence, stopSpeaking } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
+import { recordLessonCompleted } from "../../state/lessonFrequency";
 import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { loadHistory } from "../../state/history";
 import { useSwipe } from "../../lib/useSwipe";
@@ -28,7 +29,7 @@ function VocabFlipCard() {
   const vocab = state.activeContent!.vocab;
   const current = vocab[state.vocabIndex];
   const allFlipped = vocab.length > 0 && state.vocabFlippedIndices.length === vocab.length;
-  const bpAmount = TINGXIE_BP_PER_UNIT.VOCAB_LEARN * vocab.length;
+  const bpAmount = Math.round(TINGXIE_BP_PER_UNIT.VOCAB_LEARN * vocab.length * (state.activeContent?.reducedBP ? 0.5 : 1));
 
   // Swipe left/right mirror the Prev/Next buttons below.
   const swipe = useSwipe(
@@ -54,6 +55,7 @@ function VocabFlipCard() {
       awardBP(bpAmount);
       Sound.applause();
       recordTingxieActivityCompleted();
+      if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|learnVocab` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
@@ -135,7 +137,7 @@ function SentenceBuilderGame() {
   const sentences = state.activeContent!.sentences;
   const current = sentences[state.sentenceIndex];
   const allSolved = sentences.length > 0 && state.sentenceSolvedIndices.length === sentences.length;
-  const bpAmount = TINGXIE_BP_PER_UNIT.SENTENCE_LEARN * sentences.length;
+  const bpAmount = Math.round(TINGXIE_BP_PER_UNIT.SENTENCE_LEARN * sentences.length * (state.activeContent?.reducedBP ? 0.5 : 1));
 
   useEffect(() => {
     if (state.sentenceResult === "correct") Sound.ding();
@@ -160,6 +162,7 @@ function SentenceBuilderGame() {
       awardBP(bpAmount);
       Sound.applause();
       recordTingxieActivityCompleted();
+      if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|learnSentence` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }

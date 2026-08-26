@@ -1,11 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchTingxieLessonIndex, fetchTingxieLesson, prefetchTingxieLessons } from "../../data/tingxie";
 import { isTingxieMissionComplete } from "../../lib/stats";
+import { shouldNudgeForLesson } from "../../state/lessonFrequency";
+import { ConfirmModal } from "../common/Modal";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 
 export function LessonSelect() {
   const state = useTingxieState();
   const dispatch = useTingxieDispatch();
+  // Non-null while the "you've practiced this a lot lately" nudge modal is
+  // showing, holding the lesson pending confirmation. See
+  // state/lessonFrequency.ts.
+  const [nudgeLesson, setNudgeLesson] = useState<{ id: number; title: string } | null>(null);
   // Reads localStorage directly (no hist needed, unlike the lesson-revision
   // mission) -- see lib/stats.ts's isTingxieMissionComplete(). Self-hides
   // once today's "听写练习" mission is done, same reasoning as Practice.tsx's
@@ -29,16 +35,32 @@ export function LessonSelect() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function selectLesson(id: number, title: string) {
+  function selectLesson(id: number, title: string, reducedBP = false) {
     dispatch({ type: "SELECT_LESSON_START" });
     fetchTingxieLesson(id)
       .then((lesson) => {
         dispatch({
           type: "SELECT_LESSON_SUCCESS",
-          content: { title: title || lesson.title, vocab: lesson.vocab, sentences: lesson.sentences, applyVocab: lesson.vocab, isCustomReview: false }
+          content: {
+            title: title || lesson.title,
+            vocab: lesson.vocab,
+            sentences: lesson.sentences,
+            applyVocab: lesson.vocab,
+            isCustomReview: false,
+            lessonId: id,
+            reducedBP
+          }
         });
       })
       .catch((err: Error) => dispatch({ type: "SELECT_LESSON_ERROR", error: err.message }));
+  }
+
+  function handleLessonClick(id: number, title: string) {
+    if (shouldNudgeForLesson(id)) {
+      setNudgeLesson({ id, title });
+      return;
+    }
+    selectLesson(id, title);
   }
 
   return (
@@ -70,7 +92,7 @@ export function LessonSelect() {
         <>
           <div className="lesson-grid">
             {state.lessonIndex.map((entry) => (
-              <button key={entry.id} className="lesson-btn" onClick={() => selectLesson(entry.id, entry.title)}>
+              <button key={entry.id} className="lesson-btn" onClick={() => handleLessonClick(entry.id, entry.title)}>
                 <div className="lesson-btn-num">{`第 ${entry.id} 课`}</div>
               </button>
             ))}
@@ -79,6 +101,23 @@ export function LessonSelect() {
             🔀 自由复习 Custom Review
           </button>
         </>
+      )}
+
+      {nudgeLesson && (
+        <ConfirmModal
+          messageLines={[
+            `You've practiced lesson ${nudgeLesson.id} a lot lately — try a different lesson?`,
+            "Continuing will only earn half BP this time."
+          ]}
+          cancelLabel="Pick a different lesson"
+          confirmLabel="Continue anyway (50% BP)"
+          onCancel={() => setNudgeLesson(null)}
+          onConfirm={() => {
+            const lesson = nudgeLesson;
+            setNudgeLesson(null);
+            selectLesson(lesson.id, lesson.title, true);
+          }}
+        />
       )}
     </div>
   );

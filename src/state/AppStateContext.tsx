@@ -28,6 +28,10 @@ export interface AppState {
   level: string;
   mode: "lesson" | "type" | null;
   modeLabel: string;
+  // Set when the student chose to continue practicing an over-repeated
+  // lesson past the LessonSelect/Practice nudge (see state/lessonFrequency.ts)
+  // -- halves this session's per-question BP awards in Quiz.tsx.
+  reducedBP: boolean;
   groups: QuestionGroup[];
   groupIndex: number;
   results: GroupResult[];
@@ -61,6 +65,7 @@ const initialState: AppState = {
   level: loadSavedLevel(),
   mode: null,
   modeLabel: "",
+  reducedBP: false,
   groups: [],
   groupIndex: 0,
   results: [],
@@ -78,7 +83,7 @@ const initialState: AppState = {
 export type AppAction =
   | { type: "GO_TO_SCREEN"; screen: Screen }
   | { type: "SET_LEVEL"; level: string }
-  | { type: "START_QUIZ"; mode: "lesson" | "type"; modeLabel: string; groups: QuestionGroup[] }
+  | { type: "START_QUIZ"; mode: "lesson" | "type"; modeLabel: string; groups: QuestionGroup[]; reducedBP?: boolean }
   | { type: "SELECT_SUBJECT"; subject: string }
   | { type: "SET_QUESTION_INDEX"; index: QuestionIndexEntry[]; categorySubjects: Record<string, Set<string>>; lessonCount: number }
   | { type: "TOGGLE_CATEGORY"; key: string }
@@ -125,6 +130,7 @@ function reducer(state: AppState, action: AppAction): AppState {
         ...state,
         mode: action.mode,
         modeLabel: action.modeLabel,
+        reducedBP: action.reducedBP ?? false,
         groups: action.groups,
         groupIndex: 0,
         results: [],

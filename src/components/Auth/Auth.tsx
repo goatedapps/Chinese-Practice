@@ -7,6 +7,7 @@ import { clearLocalStore, clearSyncMeta, resetSyncState } from "../../lib/sync";
 import { HISTORY_KEY } from "../../state/history";
 import { ACHIEVEMENTS_KEY } from "../../state/achievements";
 import { TINGXIE_PROGRESS_KEY } from "../../state/tingxieProgress";
+import { LESSON_FREQUENCY_KEY } from "../../state/lessonFrequency";
 import { LEVEL_KEY } from "../../state/levelPreference";
 import { DEFAULT_LEVEL, setCurrentLevel } from "../../data/levels";
 
@@ -56,6 +57,7 @@ export function Auth({ gated = false }: { gated?: boolean }) {
     clearLocalStore(HISTORY_KEY);
     clearLocalStore(ACHIEVEMENTS_KEY);
     clearLocalStore(TINGXIE_PROGRESS_KEY);
+    clearLocalStore(LESSON_FREQUENCY_KEY);
     clearLocalStore(LEVEL_KEY);
     setCurrentLevel(DEFAULT_LEVEL);
     dispatch({ type: "SET_LEVEL", level: DEFAULT_LEVEL });

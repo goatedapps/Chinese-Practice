@@ -4,9 +4,11 @@ interface ConfirmModalProps {
   messageLines: string[];
   onConfirm: () => void;
   onCancel: () => void;
+  cancelLabel?: string;
+  confirmLabel?: string;
 }
 
-export function ConfirmModal({ messageLines, onConfirm, onCancel }: ConfirmModalProps) {
+export function ConfirmModal({ messageLines, onConfirm, onCancel, cancelLabel, confirmLabel }: ConfirmModalProps) {
   return (
     <div
       className="modal-overlay"
@@ -22,10 +24,10 @@ export function ConfirmModal({ messageLines, onConfirm, onCancel }: ConfirmModal
         </div>
         <div className="modal-actions">
           <button className="secondary-btn" onClick={onCancel}>
-            取消 Cancel
+            {cancelLabel ?? "取消 Cancel"}
           </button>
           <button className="primary-btn danger-btn" onClick={onConfirm}>
-            确定返回 Confirm
+            {confirmLabel ?? "确定返回 Confirm"}
           </button>
         </div>
       </div>

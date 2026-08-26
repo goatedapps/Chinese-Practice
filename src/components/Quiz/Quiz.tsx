@@ -23,6 +23,10 @@ export function Quiz() {
   const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const group = state.groups[state.groupIndex];
+  const bpMultiplier = state.reducedBP ? 0.5 : 1;
+  function awardBPScaled(base: number) {
+    awardBP(Math.round(base * bpMultiplier));
+  }
 
   function clearAutoAdvance() {
     if (autoAdvanceTimerRef.current) {
@@ -97,7 +101,7 @@ export function Quiz() {
       if (q.format === "MCQ" || q.format === "Fill-in") {
         if (item.correct) {
           Sound.ding(dingCount++ * 0.14);
-          awardBP(BP_AWARD[q.format]);
+          awardBPScaled(BP_AWARD[q.format]);
         } else if (!item.skipped) {
           // Silent on a skipped/unanswered question -- only a genuine wrong
           // answer gets the miss sound.
@@ -132,7 +136,7 @@ export function Quiz() {
         };
         if (result.correct) {
           patch.bpAwarded = true;
-          awardBP(BP_AWARD[q.format] ?? 2);
+          awardBPScaled(BP_AWARD[q.format] ?? 2);
           Sound.ding(0);
         } else {
           Sound.miss();
@@ -159,7 +163,7 @@ export function Quiz() {
     const patch: Partial<GroupResultItem> = { correct, skipped: false };
     if (correct && !item?.bpAwarded) {
       patch.bpAwarded = true;
-      awardBP(BP_AWARD[format] ?? 2);
+      awardBPScaled(BP_AWARD[format] ?? 2);
       Sound.ding(0);
     } else if (!correct) {
       Sound.miss();

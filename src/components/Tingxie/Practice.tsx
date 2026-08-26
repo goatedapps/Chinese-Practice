@@ -5,6 +5,7 @@ import { buildTingxiePracticeVocabQueue, tingxieIconEmoji } from "../../data/tin
 import { speakText } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
+import { recordLessonCompleted } from "../../state/lessonFrequency";
 import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { recordTingxieWrong } from "../../state/todaySummary";
 import { loadHistory } from "../../state/history";
@@ -23,9 +24,11 @@ export function Practice() {
   const hasVocab = state.activeContent!.vocab.length > 0;
   // Both phases' unit counts, so the award covers the whole test (vocab +
   // sentence phases) regardless of which phase just finished.
-  const bpAmount =
-    TINGXIE_BP_PER_UNIT.PRACTICE_VOCAB * state.activeContent!.vocab.length +
-    TINGXIE_BP_PER_UNIT.PRACTICE_SENTENCE * state.activeContent!.sentences.length;
+  const bpAmount = Math.round(
+    (TINGXIE_BP_PER_UNIT.PRACTICE_VOCAB * state.activeContent!.vocab.length +
+      TINGXIE_BP_PER_UNIT.PRACTICE_SENTENCE * state.activeContent!.sentences.length) *
+      (state.activeContent?.reducedBP ? 0.5 : 1)
+  );
 
   useEffect(() => {
     dispatch({ type: "PRACTICE_START", queue: buildTingxiePracticeVocabQueue(state.activeContent!.vocab) });
@@ -40,6 +43,7 @@ export function Practice() {
       awardBP(bpAmount);
       Sound.applause();
       recordTingxieActivityCompleted();
+      if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|test` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }

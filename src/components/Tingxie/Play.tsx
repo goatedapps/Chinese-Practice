@@ -4,6 +4,7 @@ import { TINGXIE_PLAY_CONFIG } from "../../data/pet";
 import { buildTingxieApplyQueue, fetchAllTingxieVocabWords, type TingxieApplyItem } from "../../data/tingxie";
 import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
+import { recordLessonCompleted } from "../../state/lessonFrequency";
 import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { loadHistory } from "../../state/history";
 import { tingxiePlayRoundsToday, recordTingxiePlayRound } from "../../state/tingxiePlayLimit";
@@ -52,6 +53,7 @@ export function Play() {
   const state = useTingxieState();
   const { awardBP } = usePet();
   const hasBankEntries = state.activeContent!.applyVocab.some((v) => v.sentenceBank && v.sentenceBank.length > 0);
+  const bpMultiplier = state.activeContent?.reducedBP ? 0.5 : 1;
 
   const [phase, setPhase] = useState<"loading" | "playing" | "complete">("loading");
   const [current, setCurrent] = useState<TingxieApplyItem | null>(null);
@@ -122,12 +124,14 @@ export function Play() {
     finishedRef.current = true;
     Sound.stopTicker();
     const clamped = Math.max(0, scoreRef.current);
+    const awardAmount = Math.round(clamped * bpMultiplier);
     setFinalScore(clamped);
     setPhase("complete");
     recordTingxiePlayRound();
-    if (roundCanEarnBPRef.current && clamped > 0) awardBP(clamped);
+    if (roundCanEarnBPRef.current && awardAmount > 0) awardBP(awardAmount);
     Sound.applause();
     recordTingxieActivityCompleted();
+    if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
     logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|play` });
     checkAndAwardMissionBonus(loadHistory(), awardBP);
   }
@@ -219,8 +223,9 @@ export function Play() {
 
   if (phase === "complete") {
     const capped = !roundCanEarnBPRef.current && finalScore > 0;
+    const awardedBP = Math.round(finalScore * bpMultiplier);
     return (
-      <CompleteScreen title="游戏结束！Time's Up!" bpAmount={capped ? undefined : finalScore}>
+      <CompleteScreen title="游戏结束！Time's Up!" bpAmount={capped ? undefined : awardedBP}>
         {capped && (
           <div className="mission-hint-box">
             <span className="mission-hint-icon">🎮</span>

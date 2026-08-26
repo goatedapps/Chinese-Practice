@@ -6,6 +6,8 @@ import type { QuestionGroup } from "../../data/types";
 import { selectTypeSessionGroups } from "../../lib/typeSession";
 import { loadHistory } from "../../state/history";
 import { isLessonMissionComplete } from "../../lib/stats";
+import { shouldNudgeForLesson } from "../../state/lessonFrequency";
+import { ConfirmModal } from "../common/Modal";
 
 // Picker-level grouping of the underlying data categories (CATEGORIES in
 // questions.ts) into the buttons shown on this screen -- Hanyu Pinyin,
@@ -35,6 +37,10 @@ export function Practice() {
   const state = useAppState();
   const [starting, setStarting] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
+  // Non-null while the "you've practiced this a lot lately" nudge modal is
+  // showing -- holds the flagged lesson number(s) so the message can name
+  // them. See state/lessonFrequency.ts.
+  const [nudgeLessons, setNudgeLessons] = useState<number[] | null>(null);
   // Loaded once per visit (this screen fully unmounts/remounts on navigation,
   // see App.tsx's ScreenRouter) -- just enough to know whether to show the
   // "复习一课" mission hint below; self-hides once that mission is done today
@@ -90,7 +96,7 @@ export function Practice() {
     return counts;
   }, [state.selectedSubject, state.questionIndex, state.lessonCount, vocabularyCategoryKeys]);
 
-  async function startPractice() {
+  async function startPractice(reducedBP = false) {
     if (state.selectedCategories.size === 0) {
       alert("请至少选择一种题型 Please choose at least one question type.");
       return;
@@ -101,6 +107,18 @@ export function Practice() {
     // applied to Vocabulary's 4 categories, never to conjunction/sentence
     // (whose lessonIds aren't reliably per-lesson, see questions.ts).
     const lessonFiltered = vocabularySelected && state.selectedLessons.size > 0;
+
+    // Nudge toward lesson variety: a lesson practiced on >5 distinct days,
+    // revisited again within a week of last touching it, prompts to try a
+    // different lesson instead of starting right away. Only applies when
+    // exactly one lesson is selected -- picking several lessons together is
+    // already a form of variety, so it's never flagged or BP-reduced.
+    // Skipped once already acknowledged (reducedBP true means the student
+    // clicked "continue anyway" on this same attempt).
+    if (!reducedBP && lessonFiltered && state.selectedLessons.size === 1 && shouldNudgeForLesson([...state.selectedLessons][0])) {
+      setNudgeLessons([...state.selectedLessons]);
+      return;
+    }
 
     setStarting(true);
     setLoadError(null);
@@ -140,7 +158,8 @@ export function Practice() {
       // not just left it at the "all lessons" default.
       mode: lessonFiltered ? "lesson" : "type",
       modeLabel: (lessonFiltered ? "按课文练习 " : "按题型 ") + label,
-      groups: selectTypeSessionGroups(groups)
+      groups: selectTypeSessionGroups(groups),
+      reducedBP
     });
   }
 
@@ -224,10 +243,26 @@ export function Practice() {
       {loadError && <p className="tingxie-error-inline">{loadError}</p>}
 
       <div className="action-row">
-        <button className="primary-btn" disabled={starting} onClick={startPractice}>
+        <button className="primary-btn" disabled={starting} onClick={() => startPractice()}>
           {starting ? "加载中... Loading..." : "开始练习 Start Practice"}
         </button>
       </div>
+
+      {nudgeLessons && (
+        <ConfirmModal
+          messageLines={[
+            `You've practiced lesson ${nudgeLessons.join(", ")} a lot lately — try a different lesson?`,
+            "Continuing will only earn half BP this time."
+          ]}
+          cancelLabel="Pick a different lesson"
+          confirmLabel="Continue anyway (50% BP)"
+          onCancel={() => setNudgeLessons(null)}
+          onConfirm={() => {
+            setNudgeLessons(null);
+            startPractice(true);
+          }}
+        />
+      )}
     </div>
   );
 }

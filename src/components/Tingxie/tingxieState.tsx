@@ -22,6 +22,14 @@ export interface TingxieActiveContent {
   // Learn's flip-card carousel. See data/tingxie.ts's pooledTingxieReview().
   applyVocab: TingxieVocabItem[];
   isCustomReview: boolean;
+  // Lesson number for a single-lesson pick (undefined for Custom Review,
+  // which pools several lessons) -- lets each activity record a completion
+  // against the right lesson, see state/lessonFrequency.ts.
+  lessonId?: number;
+  // Set when the student chose to continue past the "you've practiced this
+  // lesson a lot lately" nudge in LessonSelect.tsx -- halves this visit's
+  // BP awards in Learn/Apply/Practice/Play.
+  reducedBP?: boolean;
 }
 
 export interface TingxieState {

@@ -5,6 +5,7 @@ import { saveHistory, loadHistory } from "../../state/history";
 import { logAchievement, checkAndAwardMissionBonus } from "../../state/achievements";
 import { recordTodayPracticeSession } from "../../state/todaySummary";
 import { getTodaySpecialQuest, completeSpecialQuest } from "../../state/specialQuest";
+import { recordLessonCompleted } from "../../state/lessonFrequency";
 import { specialQuestConfig } from "../../data/pet";
 import { VOCABULARY_CATEGORY_KEYS } from "../../data/questions";
 import { Sound } from "../../lib/sound";
@@ -58,6 +59,9 @@ export function Result() {
     });
     if (state.groups.length > 0) {
       recordTodayPracticeSession({ modeLabel: state.modeLabel || "", groups: state.groups, results: state.results });
+    }
+    if (state.mode === "lesson") {
+      state.selectedLessons.forEach(recordLessonCompleted);
     }
     if (totalItems > 0) {
       if (pct >= 90) Sound.applause();

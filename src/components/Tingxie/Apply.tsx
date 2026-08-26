@@ -5,6 +5,7 @@ import { buildTingxieApplyQueue } from "../../data/tingxie";
 import { speakText, stopSpeaking } from "../../lib/speech";
 import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
+import { recordLessonCompleted } from "../../state/lessonFrequency";
 import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { recordTingxieWrong } from "../../state/todaySummary";
 import { loadHistory } from "../../state/history";
@@ -25,7 +26,7 @@ export function Apply() {
   // queue item, so this word count always matches the queue's real length.
   const wordCount = state.activeContent!.applyVocab.filter((v) => v.sentenceBank && v.sentenceBank.length > 0).length;
   const hasBankEntries = wordCount > 0;
-  const bpAmount = TINGXIE_BP_PER_UNIT.APPLY * wordCount;
+  const bpAmount = Math.round(TINGXIE_BP_PER_UNIT.APPLY * wordCount * (state.activeContent?.reducedBP ? 0.5 : 1));
 
   useEffect(() => {
     dispatch({ type: "APPLY_START", queue: buildTingxieApplyQueue(state.activeContent!.applyVocab) });
@@ -39,6 +40,7 @@ export function Apply() {
       awardBP(bpAmount);
       Sound.applause();
       recordTingxieActivityCompleted();
+      if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|apply` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }
