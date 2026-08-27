@@ -1,10 +1,24 @@
 import { useEffect, useState } from "react";
+import type { TingxieVocabItem } from "../../data/types";
 import { fetchTingxieLessonIndex, fetchTingxieLesson, prefetchTingxieLessons, pooledTingxieReview } from "../../data/tingxie";
 import { isTingxieMissionComplete } from "../../lib/stats";
 import { shouldNudgeForLesson } from "../../state/lessonFrequency";
+import { loadMyVocab } from "../../state/myVocab";
 import { ConfirmModal } from "../common/Modal";
 import { Icon } from "../common/Icons";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
+
+// Narrows a lesson/pooled vocab list down to just the words also saved in
+// My Vocab (matched by word text) -- applied to both `vocab` (Learn's
+// flip-card carousel) and `applyVocab` (Apply's fill-in-blank queue), which
+// is why this filters the raw TingxieVocabItem[] rather than replacing it
+// with the (sentenceBank-less) MyVocabEntry records themselves: Apply still
+// needs each word's real sentenceBank, which only the source lesson data
+// carries.
+function filterToMyVocab(vocab: TingxieVocabItem[]): TingxieVocabItem[] {
+  const saved = new Set(loadMyVocab().map((e) => e.word));
+  return vocab.filter((v) => saved.has(v.word));
+}
 
 // Multi-select by default (state.pickerSelectedIds, toggled via
 // TOGGLE_PICKER_LESSON -- the same field/action a separate "自由复习 Custom
@@ -48,18 +62,21 @@ export function LessonSelect() {
 
   function selectLesson(id: number, title: string, reducedBP = false) {
     dispatch({ type: "SELECT_LESSON_START" });
+    const myVocabOnly = state.myVocabOnly;
     fetchTingxieLesson(id)
       .then((lesson) => {
+        const vocab = myVocabOnly ? filterToMyVocab(lesson.vocab) : lesson.vocab;
         dispatch({
           type: "SELECT_LESSON_SUCCESS",
           content: {
             title: title || lesson.title,
-            vocab: lesson.vocab,
-            sentences: lesson.sentences,
-            applyVocab: lesson.vocab,
+            vocab,
+            sentences: myVocabOnly ? [] : lesson.sentences,
+            applyVocab: vocab,
             isCustomReview: false,
             lessonId: id,
-            reducedBP
+            reducedBP,
+            isMyVocabOnly: myVocabOnly
           }
         });
       })
@@ -68,13 +85,23 @@ export function LessonSelect() {
 
   function startCustomReview(ids: number[]) {
     dispatch({ type: "CUSTOM_REVIEW_START" });
+    const myVocabOnly = state.myVocabOnly;
     Promise.all(ids.map((id) => fetchTingxieLesson(id)))
       .then((lessons) => {
         const pooled = pooledTingxieReview(lessons);
+        const vocab = myVocabOnly ? filterToMyVocab(pooled.vocab) : pooled.vocab;
+        const applyVocab = myVocabOnly ? filterToMyVocab(pooled.applyVocab) : pooled.applyVocab;
         dispatch({
           type: "CUSTOM_REVIEW_SUCCESS",
           target: "apply",
-          content: { title: "自由复习 Custom Review", vocab: pooled.vocab, sentences: pooled.sentences, applyVocab: pooled.applyVocab, isCustomReview: true }
+          content: {
+            title: "自由复习 Custom Review",
+            vocab,
+            sentences: myVocabOnly ? [] : pooled.sentences,
+            applyVocab,
+            isCustomReview: true,
+            isMyVocabOnly: myVocabOnly
+          }
         });
       })
       .catch((err: Error) => dispatch({ type: "CUSTOM_REVIEW_ERROR", error: err.message }));
@@ -136,6 +163,22 @@ export function LessonSelect() {
 
       {state.lessonIndex && (
         <>
+          <div className="tingxie-my-vocab-toggle-row">
+            <span className="tingxie-difficulty-label">
+              只显示我的词库 My Vocab Only
+            </span>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={state.myVocabOnly}
+              aria-label="只显示我的词库 My Vocab Only"
+              className={"tingxie-switch" + (state.myVocabOnly ? " tingxie-switch-on" : "")}
+              onClick={() => dispatch({ type: "TOGGLE_MY_VOCAB_ONLY" })}
+            >
+              <span className="tingxie-switch-knob" />
+            </button>
+          </div>
+
           <div className="lesson-grid">
             {state.lessonIndex.map((entry) => (
               <button
@@ -147,6 +190,7 @@ export function LessonSelect() {
               </button>
             ))}
           </div>
+
           <div className="action-row">
             <button
               className="primary-btn"

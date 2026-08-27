@@ -86,6 +86,16 @@ export function AccountBar() {
                 <div className="account-dropdown-divider" />
               </>
             )}
+            <button
+              className="account-dropdown-item"
+              onClick={() => {
+                closeMenu();
+                guard(() => dispatch({ type: "GO_TO_SCREEN", screen: "myVocab" }));
+              }}
+            >
+              我的词库 My Vocab
+            </button>
+            <div className="account-dropdown-divider" />
             {signedIn ? (
               <button className="account-dropdown-item" disabled={signingOut} onClick={() => void handleSignOut()}>
                 {signingOut ? "保存中... Saving..." : "退出 Sign out"}

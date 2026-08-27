@@ -15,7 +15,8 @@ export type Screen =
   | "play"
   | "tingxie"
   | "story"
-  | "auth";
+  | "auth"
+  | "myVocab";
 
 export interface AppState {
   screen: Screen;

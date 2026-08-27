@@ -6,7 +6,6 @@ import { BP_AWARD } from "../../data/pet";
 import { RichText } from "../../lib/richText";
 import { Sound } from "../../lib/sound";
 import { speakText, stopSpeaking } from "../../lib/speech";
-import { ConfirmModal } from "../common/Modal";
 import { gradeGroup, correctOptionFor, isSelfCheckFormat } from "../../lib/grading";
 import type { AnswerMap } from "../../lib/grading";
 import { gradeSelfCheckWithAI } from "../../lib/aiGrading";
@@ -15,10 +14,9 @@ import type { Question, QuestionGroup, GroupResultItem, Passage, SelfCheckQuesti
 export function Quiz() {
   const state = useAppState();
   const dispatch = useAppDispatch();
-  const { pet, awardBP } = usePet();
+  const { awardBP } = usePet();
   const { user } = useAuth();
   const [answers, setAnswers] = useState<AnswerMap>({});
-  const [showHomeConfirm, setShowHomeConfirm] = useState(false);
   const [autoAdvancing, setAutoAdvancing] = useState(false);
   const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -171,23 +169,10 @@ export function Quiz() {
     dispatch({ type: "UPDATE_ITEM_RESULT", groupIndex: state.groupIndex, qNo, patch });
   }
 
-  function hasProgress(): boolean {
-    return state.results.length > 0 || Object.values(answers).some((v) => v.trim().length > 0);
-  }
-
-  function handleHomeClick() {
-    if (hasProgress()) setShowHomeConfirm(true);
-    else dispatch({ type: "RESET_TO_HOME" });
-  }
-
   return (
     <div className="screen quiz">
       <div className="quiz-topbar">
         <div className="quiz-progress">{`第 ${state.groupIndex + 1} / ${state.groups.length} 组`}</div>
-        <div className="quiz-bp-badge">💡 {pet.bp} BP</div>
-        <button className="home-btn" onClick={handleHomeClick}>
-          🏠 返回主页 Home
-        </button>
       </div>
 
       {group.passage && <PassageBox key={group.groupId} passage={group.passage} />}
@@ -237,20 +222,6 @@ export function Quiz() {
           </button>
         )}
       </div>
-
-      {showHomeConfirm && (
-        <ConfirmModal
-          messageLines={[
-            "确定要返回主页吗？本次练习尚未完成，本组进度将不会被保存。",
-            "Are you sure you want to return home? This session isn't finished — progress won't be saved."
-          ]}
-          onConfirm={() => {
-            setShowHomeConfirm(false);
-            dispatch({ type: "RESET_TO_HOME" });
-          }}
-          onCancel={() => setShowHomeConfirm(false)}
-        />
-      )}
     </div>
   );
 }

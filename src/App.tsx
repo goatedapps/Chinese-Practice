@@ -16,6 +16,7 @@ import { PlayGame } from "./components/Play/PlayGame";
 import { Tingxie } from "./components/Tingxie/Tingxie";
 import { Story } from "./components/Story/Story";
 import { Auth } from "./components/Auth/Auth";
+import { MyVocab } from "./components/MyVocab/MyVocab";
 import { TopNav } from "./components/common/TopNav";
 import { AccountBar } from "./components/common/AccountBar";
 import { CursorGlow } from "./components/common/CursorGlow";
@@ -87,10 +88,10 @@ function ScreenRouter() {
   const needsAuthGate = status !== "signedIn" && !isGuest;
 
   // Shown mid-quiz too now (TopNav/AccountBar's own useQuizLeaveGuard asks
-  // "progress will be lost?" before actually navigating away, same wording
-  // as Quiz's own home-btn confirmation, so this doesn't bypass or duplicate
-  // that -- it's a second entry point into the same confirm-then-leave
-  // flow). Still hidden on the result screen -- history's already saved by
+  // "progress will be lost?" before actually navigating away) -- this is
+  // Quiz's only way home now, since its own top-bar Home button/BP badge
+  // were removed once the shared top bar started covering both. Still
+  // hidden on the result screen -- history's already saved by
   // the time Result mounts, so there's nothing to lose there, but Result
   // has its own "Back to Home" affordance and doesn't need a second one.
   // Shown even while the login gate is forcing the Auth screen (brand + nav
@@ -142,6 +143,9 @@ function ScreenRouter() {
         break;
       case "auth":
         screen = <Auth />;
+        break;
+      case "myVocab":
+        screen = <MyVocab />;
         break;
       default:
         screen = (

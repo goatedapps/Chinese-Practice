@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePet } from "../../state/PetContext";
 import { TINGXIE_BP_PER_UNIT } from "../../data/pet";
 import { buildTingxieApplyQueue } from "../../data/tingxie";
@@ -9,6 +9,7 @@ import { recordLessonCompleted } from "../../state/lessonFrequency";
 import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { recordTingxieWrong } from "../../state/todaySummary";
 import { loadHistory } from "../../state/history";
+import { isWordSaved, addToMyVocab, removeFromMyVocab } from "../../state/myVocab";
 import { useSwipe } from "../../lib/useSwipe";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 import { TingxieFlipCard } from "./TingxieFlipCard";
@@ -39,14 +40,42 @@ export function Apply() {
       awardedRef.current = true;
       awardBP(bpAmount);
       Sound.applause();
-      recordTingxieActivityCompleted();
-      if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|apply` });
-      checkAndAwardMissionBonus(loadHistory(), awardBP);
+      if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
+      // My Vocab Only sessions still earn BP, but don't count towards
+      // Today's Mission/quests -- see TingxieActiveContent.isMyVocabOnly.
+      if (!state.activeContent!.isMyVocabOnly) {
+        recordTingxieActivityCompleted();
+        checkAndAwardMissionBonus(loadHistory(), awardBP);
+      }
     }
   }, [state.applyComplete, hasBankEntries, awardBP, state.activeContent, bpAmount]);
 
   const current = state.applyQueue[0];
+  // Apply's own TingxieApplyItem only carries word/answer text, not
+  // pinyin/meaning -- look the full word back up in applyVocab (the real
+  // lesson data, not a My Vocab entry) for the Add-to-My-Vocab button.
+  const currentVocabItem = current ? state.activeContent!.applyVocab.find((v) => v.word === current.word) : undefined;
+  // Forces a re-render after toggling My Vocab -- isWordSaved() below reads
+  // localStorage directly (no subscription), so nothing else would notice
+  // the change.
+  const [, forceVocabTick] = useState(0);
+  function toggleMyVocab() {
+    if (!currentVocabItem) return;
+    if (isWordSaved(currentVocabItem.word)) removeFromMyVocab(currentVocabItem.word);
+    else {
+      addToMyVocab({
+        word: currentVocabItem.word,
+        pinyin: currentVocabItem.pinyin,
+        meaning: currentVocabItem.meaning,
+        example: currentVocabItem.example,
+        lessonId: state.activeContent!.lessonId ?? null,
+        lessonTitle: state.activeContent!.title
+      });
+      Sound.ding();
+    }
+    forceVocabTick((n) => n + 1);
+  }
 
   // Stop any in-progress dictation read-aloud the moment the card is flipped
   // -- otherwise a reading started via the front's 🔊 button keeps playing
@@ -152,6 +181,17 @@ export function Apply() {
       </div>
 
       {!state.applyFlipped && <p className="tingxie-flip-hint">点击卡片查看答案 Tap the card to see the answer</p>}
+
+      {currentVocabItem && (
+        <button
+          type="button"
+          className={"tingxie-add-vocab-btn" + (isWordSaved(currentVocabItem.word) ? " tingxie-add-vocab-btn-saved" : "")}
+          onClick={toggleMyVocab}
+        >
+          <span className="tingxie-add-vocab-plus">{isWordSaved(currentVocabItem.word) ? "✓" : "+"}</span>
+          {isWordSaved(currentVocabItem.word) ? "已加入我的词库 Saved" : "加入我的词库 Add to My Vocab"}
+        </button>
+      )}
     </div>
   );
 }
