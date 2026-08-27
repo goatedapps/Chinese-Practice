@@ -8,6 +8,7 @@ import { loadHistory } from "../../state/history";
 import { isLessonMissionComplete } from "../../lib/stats";
 import { shouldNudgeForLesson } from "../../state/lessonFrequency";
 import { ConfirmModal } from "../common/Modal";
+import { Icon } from "../common/Icons";
 
 // Picker-level grouping of the underlying data categories (CATEGORIES in
 // questions.ts) into the buttons shown on this screen -- Hanyu Pinyin,
@@ -166,13 +167,19 @@ export function Practice() {
   return (
     <div className="screen picker">
       <button className="back-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>
-        ← 返回 Back
+        <span className="back-btn-arrow">←</span>
+        <span className="back-btn-label">返回 Back</span>
       </button>
-      <h1>练习 Practice</h1>
+      <h1 className="page-header">
+        <Icon name="sparkle" className="page-header-spark" />
+        <img className="page-header-icon" src="/icons/practice.png" alt="" />
+        练习 Practice
+        <Icon name="sparkle" className="page-header-spark" />
+      </h1>
 
       {!lessonMissionDone && (
         <div className="mission-hint-box">
-          <span className="mission-hint-icon">💡</span>
+          <img className="mission-hint-icon" src="/icons/todays-mission.png" alt="" />
           <span>To complete today's "Revise a Lesson" mission: select "Vocabulary", pick at least one lesson, then start practice.</span>
         </div>
       )}

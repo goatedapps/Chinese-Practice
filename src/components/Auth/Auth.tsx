@@ -91,10 +91,14 @@ export function Auth({ gated = false }: { gated?: boolean }) {
     <div className="screen auth-screen">
       {!gated && (
         <button className="back-btn" onClick={goHome}>
-          ← Back
+          <span className="back-btn-arrow">←</span>
+          <span className="back-btn-label">返回 Back</span>
         </button>
       )}
-      <h1 className="auth-title">{mode === "signIn" ? "Sign In" : "Create Account"}</h1>
+      <h1 className="auth-title page-header">
+        <img className="page-header-icon" src="/icons/pet.png" alt="" />
+        {mode === "signIn" ? "登录 Sign In" : "创建账号 Create Account"}
+      </h1>
       <p className="auth-subtitle">Sign in to sync your progress across devices.</p>
 
       <form className="auth-form" onSubmit={handleSubmit}>

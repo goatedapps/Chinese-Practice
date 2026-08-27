@@ -3,14 +3,8 @@ import { useAppDispatch } from "../../state/AppStateContext";
 import { usePet, computeCurrentMood, moodBucket, getAge, getStage } from "../../state/PetContext";
 import { OwlArt } from "../common/OwlArt";
 import { PetStatBars } from "../common/PetStatBars";
+import { Icon } from "../common/Icons";
 import { Sound } from "../../lib/sound";
-
-const MOOD_LABELS: Record<string, string> = {
-  sad: "心情低落 Sad",
-  neutral: "心情平静 Neutral",
-  happy: "心情满足 Happy",
-  very_happy: "心情开心 Very Happy"
-};
 
 export function Owl() {
   const dispatch = useAppDispatch();
@@ -37,66 +31,79 @@ export function Owl() {
   return (
     <div className="screen owl-screen">
       <button className="back-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>
-        ← 返回 Back
+        <span className="back-btn-arrow">←</span>
+        <span className="back-btn-label">返回 Back</span>
       </button>
-      {editingName ? (
-        <div className="owl-name-row owl-name-editing">
-          <input
-            className="owl-name-input"
-            value={nameInput}
-            onChange={(e) => setNameInput(e.target.value)}
-            maxLength={12}
-            autoFocus
-            onKeyDown={(e) => {
-              if (e.key === "Enter") saveName();
-              if (e.key === "Escape") setEditingName(false);
-            }}
-          />
-          <button className="owl-name-save" title="保存 Save" onClick={saveName}>
-            ✓
-          </button>
-          <button className="owl-name-cancel" title="取消 Cancel" onClick={() => setEditingName(false)}>
-            ✕
-          </button>
-        </div>
-      ) : (
-        <h1 className="owl-name-row owl-name-heading">
-          {pet.name || "为它取个名字吧 Give it a name"}
-          <button className="owl-name-edit" title="改名 Rename" onClick={startEditingName}>
-            ✏️
-          </button>
-        </h1>
-      )}
-
-      <div className="pet-layout">
-        <div className="pet-layout-art">
-          <OwlArt stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" playSound />
-        </div>
-        <div className="pet-layout-info">
-          <div className="owl-info">
-            <div className="owl-stage-label">{stage.label} · 🎂 {age}岁 {age} yrs old</div>
-            <div className="owl-mood-label">{MOOD_LABELS[bucket]}</div>
-            <PetStatBars pet={pet} />
-            <div className="owl-bp-label">💡 可用 BP: {pet.bp}</div>
+      <h1 className="page-header">
+        <Icon name="sparkle" className="page-header-spark" />
+        <img className="page-header-icon" src="/icons/pet.png" alt="" />
+        我的宠物 My Pet
+        <Icon name="sparkle" className="page-header-spark" />
+      </h1>
+      <div className="pet-layout pet-layout-wide">
+        <div className="pet-profile-card">
+          <div className="pet-layout-art owl-large-xl-wrap">
+            <OwlArt stageKey={stage.key} mood={bucket} label={stage.label} sizeClass="owl-large" playSound />
           </div>
-          <div className="action-row">
+          {editingName ? (
+            <div className="owl-name-row owl-name-editing owl-name-pill">
+              <input
+                className="owl-name-input"
+                value={nameInput}
+                onChange={(e) => setNameInput(e.target.value)}
+                maxLength={12}
+                autoFocus
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") saveName();
+                  if (e.key === "Escape") setEditingName(false);
+                }}
+              />
+              <button className="owl-name-save" title="保存 Save" onClick={saveName}>
+                ✓
+              </button>
+              <button className="owl-name-cancel" title="取消 Cancel" onClick={() => setEditingName(false)}>
+                ✕
+              </button>
+            </div>
+          ) : (
+            <h1 className="owl-name-row owl-name-heading owl-name-pill">
+              {pet.name || "为它取个名字吧 Give it a name"}
+              <button className="owl-name-edit" title="改名 Rename" onClick={startEditingName}>
+                ✏️
+              </button>
+            </h1>
+          )}
+          <div className="pet-profile-meta">
+            <span className="pet-profile-age">{age}岁 {age} yrs old</span>
+            <span className="pet-profile-stage-badge">{stage.label}</span>
+          </div>
+        </div>
+
+        <div className="pet-layout-info pet-layout-info-wide">
+          <div className="owl-info">
+            <PetStatBars pet={pet} />
+          </div>
+
+          <div className="owl-action-banner-row">
             <button
-              className="primary-btn"
+              className="owl-action-banner owl-action-banner-shop"
               onClick={() => {
                 Sound.enterShop();
                 dispatch({ type: "GO_TO_SCREEN", screen: "shop" });
               }}
             >
-              🛍 商店 Shop
+              <img src="/icons/shop.png" alt="" />
+              <span className="owl-action-banner-label">商店 Shop</span>
             </button>
             <button
-              className="secondary-btn"
+              className="owl-action-banner owl-action-banner-play"
               onClick={() => {
                 Sound.bagOpen();
                 dispatch({ type: "GO_TO_SCREEN", screen: "bag" });
               }}
             >
-              🍚 喂食／玩耍 Feed / Play{bagCount ? ` (${bagCount})` : ""}
+              <img src="/icons/play.png" alt="" />
+              <span className="owl-action-banner-label">喂食／玩耍 Feed / Play{bagCount ? ` (${bagCount})` : ""}</span>
             </button>
           </div>
         </div>

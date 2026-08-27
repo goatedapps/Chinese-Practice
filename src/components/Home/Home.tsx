@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { loadHistory, deleteHistoryEntry } from "../../state/history";
 import { loadAchievements } from "../../state/achievements";
 import { getTodayStats, isTingxieMissionComplete } from "../../lib/stats";
@@ -25,16 +25,6 @@ export function Home() {
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
   const todayStats = getTodayStats(hist);
   const showTodaySummary = todayStats.questions > 0 || isTingxieMissionComplete() || getTodaySummary().storiesRead.length > 0;
-
-  // The illustrated background lives on <body> (not .home itself) so it
-  // reaches the true page top/edges, behind the sticky top-bar included --
-  // see body.home-bg-active in styles.css. Toggled here rather than baked
-  // into a static class since every other screen keeps the plain page
-  // background.
-  useEffect(() => {
-    document.body.classList.add("home-bg-active");
-    return () => document.body.classList.remove("home-bg-active");
-  }, []);
 
   function handleConfirm() {
     if (!pendingDeleteId) return;

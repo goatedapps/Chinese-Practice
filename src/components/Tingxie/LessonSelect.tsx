@@ -3,6 +3,7 @@ import { fetchTingxieLessonIndex, fetchTingxieLesson, prefetchTingxieLessons } f
 import { isTingxieMissionComplete } from "../../lib/stats";
 import { shouldNudgeForLesson } from "../../state/lessonFrequency";
 import { ConfirmModal } from "../common/Modal";
+import { Icon } from "../common/Icons";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 
 export function LessonSelect() {
@@ -65,11 +66,23 @@ export function LessonSelect() {
 
   return (
     <div className="tingxie-select">
-      <h1 className="tingxie-select-title">听写练习 Dictation Practice</h1>
+      <h1 className="tingxie-select-title">
+        <Icon name="sparkle" className="tingxie-select-title-spark" />
+        <img className="tingxie-select-title-icon" src="/icons/dictatation-mission.png" alt="" />
+        听写练习 Dictation Practice
+        <Icon name="sparkle" className="tingxie-select-title-spark" />
+      </h1>
+
+      {state.lessonIndex && (
+        <div className="lesson-count-badge">
+          <Icon name="star" />
+          共有 {state.lessonIndex.length} 个课程
+        </div>
+      )}
 
       {!dictationMissionDone && (
         <div className="mission-hint-box">
-          <span className="mission-hint-icon">💡</span>
+          <img className="mission-hint-icon" src="/icons/todays-mission.png" alt="" />
           <span>To complete today's "Dictation Lesson" mission: pick any lesson and finish one activity (Learn / Apply / Test).</span>
         </div>
       )}

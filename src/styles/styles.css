@@ -1,3 +1,17 @@
+/* Smiley Sans (得意黑) -- self-hosted (public/fonts/, not a Google Fonts/CDN
+   link) so the app's "works fully offline once built" guarantee still
+   holds. Its normal weight is genuinely named "Oblique" upstream (a slight
+   built-in slant is the typeface's whole design signature, not a separate
+   italic cut) -- font-style stays "normal" here since that's still its
+   normal/only style, not an actual oblique variant of some other weight. */
+@font-face {
+  font-family: "Smiley Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/SmileySans-Oblique.woff2") format("woff2");
+}
+
 /* Claymorphism palette -- vivid candy colors + a puffy double-shadow recipe
    (soft outer lift + inset highlight), consumed by every shared class
    below via these custom properties. Autumn re-theme: harvest-table hues
@@ -57,11 +71,12 @@
 
   /* "Owl Garden" redesign palette -- navy/violet/gold on a sky-to-grass
      world, approved via a Lavish Editor review pass (see
-     .lavish/owl-garden-mockup.html). Deliberately its own --garden- prefix,
-     never reusing --primary/--gold/etc: those existing tokens are consumed
-     app-wide (e.g. --gold by Quiz's BP badge), and this redesign is scoped
-     to Home + the shared nav chrome only for now -- a shared name would
-     silently reskin screens this pass isn't touching. */
+     .lavish/owl-garden-mockup.html) and being rolled out screen by screen
+     (see CLAUDE.md's Styling section for which pieces are done so far).
+     Deliberately its own --garden- prefix, never reusing --primary/--gold/
+     etc: those existing tokens are still consumed by every not-yet-touched
+     element (e.g. --gold by Quiz's BP badge) -- a shared name would
+     silently reskin those before their own pass. */
   --garden-navy: #1c1f4d;
   --garden-navy-deep: #12143a;
   --garden-navy-soft: #2a2e66;
@@ -87,18 +102,28 @@
 
 * { box-sizing: border-box; }
 
+/* The illustrated garden scene (public/icons/homepage.png) is the whole
+   app's background now, not just Home's -- every screen's own .screen
+   panel (see below) sits on top of it, cream instead of the old peach
+   gradient, so this one shared scene shows at its edges everywhere. Painted
+   on <body>, not any per-screen element: body spans the true page from
+   viewport (0,0), so it starts at the very top/sides on any screen width,
+   with no breakout hack needed, and stays put across every screen without
+   needing to be toggled per-route. background-color is the image's own
+   grass tone, a fallback fill for whatever's below the scaled image on a
+   page taller than one screen's worth of content (background-size:100%
+   auto scales the image to the viewport's width and lets its natural,
+   portrait height follow, rather than `cover`, which would crop/zoom
+   unpredictably against each screen's own variable content height). */
 body {
   margin: 0;
-  /* .home's full-bleed background (see below) uses the classic 100vw +
-     translateX(-50%) breakout, which can overhang the true visible width by
-     a scrollbar's worth of pixels on platforms where 100vw doesn't itself
-     account for the scrollbar gutter -- this is what keeps that overhang
-     from ever showing as real horizontal scroll. */
   overflow-x: hidden;
   font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
-  background-color: var(--bg);
-  background-image: radial-gradient(circle at 1px 1px, rgba(var(--ink-rgb), .05) 1px, transparent 0);
-  background-size: 3px 3px;
+  background-color: #5fae4a;
+  background-image: url("/icons/homepage.png");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% auto;
   color: var(--ink);
   line-height: 1.6;
 }
@@ -120,14 +145,18 @@ body {
   #root { padding-left: 40px; padding-right: 40px; }
 }
 
-/* Every screen sits on the same soft pastel wash -- Home additionally
-   isolates itself for its drifting background blobs (see ".home" below),
-   the one screen that gets that extra flourish. */
+/* Every screen (other than Home, see ".home" below) is a cream card
+   floating on the shared garden-scene body background (see body's own
+   comment) -- previously a self-contained peach/green gradient card on a
+   plain dotted page background, recolored here rather than restructured so
+   every existing claymorphism class inside (buttons, badges, bars, ...)
+   still just works unchanged. */
 .screen {
   position: relative;
-  background: linear-gradient(150deg, #ffe7b8 0%, #ffc49a 45%, #d8e2b0 100%);
+  background: linear-gradient(180deg, var(--garden-cream), #fff9ec);
   border-radius: 32px;
   padding: 28px 20px 40px;
+  box-shadow: 0 14px 34px -12px rgba(20, 20, 60, .3), 0 2px 10px rgba(20, 20, 60, .1);
 }
 /* Text-heavy single-column screens (a quiz's passage/question text, the
    result screen, a story's reading view) opt back out of #root's wide
@@ -171,20 +200,20 @@ body {
   gap: 10px 16px;
   background: linear-gradient(180deg, var(--garden-navy-soft), var(--garden-navy) 70%, var(--garden-navy-deep));
   border-radius: 20px;
-  padding: 14px 22px 14px 12px;
+  padding: 16px 24px 16px 14px;
   box-shadow: 0 10px 22px -8px rgba(18, 20, 58, .55);
   margin-bottom: 20px;
 }
 .top-nav-row { display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0; }
 .top-nav-brand { display: flex; align-items: center; gap: 10px; flex: none; }
 .top-nav-brand-badge {
-  width: 36px; height: 36px; border-radius: 50%; flex: none; overflow: hidden;
+  width: 46px; height: 46px; border-radius: 50%; flex: none; overflow: hidden;
   background: radial-gradient(circle at 32% 28%, #fff, var(--garden-violet-pale) 45%, var(--garden-violet) 100%);
   padding: 3px; box-shadow: inset 0 0 0 2px #fff;
 }
 .top-nav-brand-badge img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .top-nav-brand-text { line-height: 1.15; display: none; }
-.top-nav-brand-title { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 16px; color: #fff; }
+.top-nav-brand-title { font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 20px; color: #fff; }
 @media (min-width: 760px) { .top-nav-brand-text { display: block; } }
 
 .top-nav { flex: 1; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
@@ -194,17 +223,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   background: none;
   border: none;
   border-radius: 999px;
-  padding: 10px 6px;
+  padding: 12px 8px;
   white-space: nowrap;
   cursor: pointer;
   color: #c7caf2;
   transition: transform .12s ease, box-shadow .12s ease, background .12s ease, color .12s ease;
 }
-.top-nav-item-icon { width: 17px; height: 17px; object-fit: contain; }
+.top-nav-item-icon { width: 23px; height: 23px; object-fit: contain; }
 .top-nav-item:hover { transform: translateY(-1px); background: rgba(255,255,255,.08); color: #fff; }
 .top-nav-item:active { transform: scale(.95); }
 .top-nav-item-active {
@@ -213,7 +242,7 @@ body {
   box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 6px 14px -4px rgba(134,87,240,.7);
 }
 .top-nav-item-active:hover { color: #fff; background: linear-gradient(180deg, var(--garden-violet), var(--garden-violet-deep)); }
-.top-nav-label { font-size: 13.5px; font-weight: 700; text-align: center; }
+.top-nav-label { font-size: 16px; font-weight: 700; text-align: center; }
 
 /* ---------- Bottom tab bar (mobile only) ----------
    Below 700px there's no longer room in .top-bar for the brand + all 5 nav
@@ -266,28 +295,28 @@ body {
    App.tsx), not its own separate bar. */
 .account-bar { display: flex; align-items: center; gap: 10px; flex: none; }
 .top-nav-stat {
-  display: flex; align-items: center; gap: 6px;
+  display: flex; align-items: center; gap: 7px;
   background: rgba(255,255,255,.1); color: #fff;
-  padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 800;
+  padding: 9px 16px; border-radius: 999px; font-size: 16px; font-weight: 800;
 }
-.top-nav-stat svg { width: 15px; height: 15px; color: var(--garden-gold); }
+.top-nav-stat svg { width: 19px; height: 19px; color: var(--garden-gold); }
 .account-menu { position: relative; flex: none; }
 .account-chip {
-  display: flex; align-items: center; gap: 8px;
+  display: flex; align-items: center; gap: 9px;
   background: rgba(255,255,255,.1);
-  border: none; border-radius: 999px; padding: 5px 12px 5px 5px;
+  border: none; border-radius: 999px; padding: 6px 14px 6px 6px;
   cursor: pointer; transition: background .12s ease;
 }
 .account-chip:hover { background: rgba(255,255,255,.18); }
 .account-chip:active { transform: scale(.97); }
 .account-avatar {
-  width: 26px; height: 26px; border-radius: 50%; flex: none;
+  width: 33px; height: 33px; border-radius: 50%; flex: none;
   background: linear-gradient(160deg, var(--garden-gold), var(--garden-pink));
-  display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 12px;
+  display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 15px;
 }
-.account-avatar svg { width: 14px; height: 14px; }
-.account-bar-status { font-size: 13px; color: #c7caf2; white-space: nowrap; font-weight: 700; }
-.account-menu-caret { width: 13px; height: 13px; color: #c7caf2; flex: none; transition: transform .15s ease; }
+.account-avatar svg { width: 17px; height: 17px; }
+.account-bar-status { font-size: 16px; color: #c7caf2; white-space: nowrap; font-weight: 700; }
+.account-menu-caret { width: 16px; height: 16px; color: #c7caf2; flex: none; transition: transform .15s ease; }
 .account-menu-caret-open { transform: rotate(180deg); }
 /* Floats below the trigger, right-aligned so it never overhangs the
    viewport's right edge regardless of how wide the panel gets. A light
@@ -334,7 +363,7 @@ body {
 .level-bar .chip:disabled { cursor: default; }
 
 h1, h2 {
-  font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
 }
 h1 { font-size: 28px; font-weight: 600; margin: 4px 0 6px; text-wrap: balance; }
 h2 { font-size: 19px; margin: 24px 0 10px; }
@@ -358,7 +387,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 
 .home-greeting { margin-bottom: 22px; }
 .home-greeting h1 {
-  font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
   font-size: 32px; color: var(--garden-cream);
   text-shadow: 0 2px 10px rgba(20, 30, 20, .35);
   display: flex; align-items: center; gap: 10px;
@@ -380,7 +409,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 
 .section-heading {
   margin: 0 0 14px; color: var(--garden-navy);
-  font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
   display: flex; align-items: center; gap: 9px;
 }
 .section-heading svg { width: 21px; height: 21px; color: var(--garden-violet); flex: none; }
@@ -453,7 +482,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   border-right: 8px solid transparent;
   border-bottom: 8px solid var(--garden-cream-soft);
 }
-.pet-hero-name { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 20px; color: var(--garden-navy); }
+.pet-hero-name { font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 20px; color: var(--garden-navy); }
 .pet-hero-bars { display: flex; flex-direction: column; gap: 14px; width: 100%; text-align: left; }
 .pet-hero-bar-label {
   display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 2px;
@@ -829,33 +858,110 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .history-row-delete:hover { color: #fff8ee; background: var(--incorrect); }
 
 /* ---------- Pickers ---------- */
+/* Standardized page-chrome pieces (back button, top-middle header) shared
+   across every screen that has them -- see CLAUDE.md's Styling section. */
 .back-btn {
-  background: none; border: none; color: var(--primary); font-size: 15px;
-  cursor: pointer; padding: 0; margin-bottom: 14px;
+  /* A block-level flex box sized to its content (not inline-flex) so it
+     always sits at the container's left edge regardless of the many
+     screens (.story-screen, .owl-screen, .auth-screen, ...) that set
+     text-align:center for their own centered content -- text-align only
+     positions inline-level boxes, which inline-flex still counts as. */
+  display: flex; width: fit-content;
+  align-items: center; gap: 6px;
+  /* Same gradient as .screen itself (not a distinct fill) so the pill
+     blends into the card -- only the 3D shadow below gives it shape. */
+  background: linear-gradient(180deg, var(--garden-cream), #fff9ec);
+  border: none; border-radius: 999px;
+  padding: 9px 18px 9px 14px;
+  font-size: 14px; cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), inset 0 -3px 0 rgba(20,20,60,.08), 0 4px 10px -4px rgba(20,20,60,.35);
+  transition: transform .12s ease, box-shadow .12s ease;
+  margin-bottom: 14px;
 }
+.back-btn:hover { transform: translateY(-1px); }
+.back-btn:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -1px 0 rgba(20,20,60,.06), 0 2px 4px -2px rgba(20,20,60,.3);
+}
+.back-btn-arrow { color: var(--garden-violet); font-weight: 800; font-size: 16px; line-height: 1; }
+.back-btn-label { color: var(--garden-ink); font-weight: 700; }
 
+/* Icon + bilingual title, centered -- the standardized "top middle" header
+   (see LessonSelect.tsx's original version of this pattern, now shared). */
+.tingxie-select-title, .page-header {
+  text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  color: var(--garden-navy);
+}
+.tingxie-select-title-icon, .page-header-icon { width: 46px; height: 46px; object-fit: contain; }
+.tingxie-select-title-spark, .page-header-spark { width: 22px; height: 22px; color: var(--garden-gold); flex: none; }
+
+/* minmax's 220px floor is chosen so this never packs more than 5 columns
+   per row even on the widest realistic .screen content width (~1280px) --
+   auto-fill still drops to fewer, wider columns on narrower screens. */
 .lesson-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
   margin-top: 12px;
 }
+/* Owl Garden restyle: a 6-color cycle (--lesson-color, set per nth-child
+   below) drives both the number and the little hanging ribbon in the top
+   corner, so the grid reads as varied/playful rather than one flat color --
+   purely decorative, doesn't encode anything about the lesson itself.
+   Selected state swaps the ribbon for a round checkmark badge instead of
+   removing it. */
 .lesson-btn {
-  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
-  border: none;
-  border-radius: 20px;
-  padding: 18px 10px;
+  position: relative;
+  background: #fff;
+  border: 2px solid transparent;
+  border-radius: 22px;
+  padding: 26px 14px 22px;
   text-align: center;
   cursor: pointer;
   box-shadow: var(--shadow-1);
   transition: transform .18s ease, box-shadow .18s ease;
 }
+.lesson-btn:nth-child(6n+1) { --lesson-color: var(--garden-violet); }
+.lesson-btn:nth-child(6n+2) { --lesson-color: var(--garden-green); }
+.lesson-btn:nth-child(6n+3) { --lesson-color: var(--garden-blue); }
+.lesson-btn:nth-child(6n+4) { --lesson-color: var(--garden-gold-deep); }
+.lesson-btn:nth-child(6n+5) { --lesson-color: var(--garden-pink); }
+.lesson-btn:nth-child(6n+6) { --lesson-color: var(--garden-violet-deep); }
+.lesson-btn::before {
+  content: "";
+  position: absolute; top: 0; right: 16px;
+  width: 13px; height: 20px;
+  background: var(--lesson-color, var(--garden-violet));
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 76%, 0 100%);
+}
+.lesson-btn::after {
+  content: "\2726";
+  position: absolute; bottom: 8px; left: 10px;
+  font-size: 12px; color: var(--lesson-color, var(--garden-gold));
+  opacity: .4;
+}
 .lesson-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: var(--shadow-2); }
 .lesson-btn:active { transform: scale(.96); box-shadow: var(--shadow-press); }
 .lesson-btn.disabled { opacity: .45; cursor: not-allowed; box-shadow: none; transform: none; }
-.lesson-btn-active { background: linear-gradient(180deg, var(--card-hi), #ffdfc0); border: 2px solid var(--primary); font-weight: 700; }
-.lesson-btn-num { font-size: 18px; font-weight: 700; }
-.lesson-btn-count { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+.lesson-btn-active {
+  background: linear-gradient(180deg, #fff, var(--garden-violet-pale));
+  border-color: var(--lesson-color, var(--garden-violet));
+  font-weight: 700;
+}
+.lesson-btn-active::before {
+  content: "\2713";
+  clip-path: none;
+  top: -8px; right: -6px;
+  width: 22px; height: 22px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--lesson-color, var(--garden-violet)); color: #fff;
+  font-size: 12px; font-weight: 800;
+  box-shadow: var(--shadow-1);
+}
+.lesson-btn-num { font-size: 24px; font-weight: 700; color: var(--lesson-color, var(--garden-navy)); }
+.lesson-btn-count { font-size: 15px; color: var(--garden-ink-soft); margin-top: 4px; }
 .lesson-grid-disabled { opacity: .55; }
 .picker-hint { font-size: 13px; font-weight: 400; color: var(--ink-soft); }
 
@@ -870,6 +976,11 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   font-size: 15px; color: var(--ink); box-shadow: var(--shadow-1);
 }
 .mission-hint-box .mission-hint-icon { font-size: 20px; line-height: 1; flex-shrink: 0; }
+/* Play.tsx still uses an emoji span here (🎮, a different message about
+   the daily play-round cap, not the "today's mission" hint) -- this only
+   sizes the <img> variant (LessonSelect.tsx/Practice.tsx's todays-mission
+   icon), the font-size rule above stays for that emoji case. */
+img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 
 .subject-row { display: flex; align-items: center; gap: 8px; margin: 10px 0 18px; flex-wrap: wrap; }
 .field-label { font-size: 15px; color: var(--ink-soft); margin-right: 4px; }
@@ -885,45 +996,96 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   border-color: var(--primary-dark); color: #fff8ee;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.25), var(--shadow-1);
 }
+/* Scoped override, not a base .chip-active redesign -- that class is also
+   shared with the top bar's Level dropdown (.level-bar .chip, its own
+   separate scoped override further up), which stays gold/on-navy. */
+.subject-row .chip-active {
+  background: linear-gradient(180deg, var(--garden-violet), var(--garden-violet-deep));
+  border-color: var(--garden-violet-deep); color: #fff;
+}
 
+/* Same 5-columns-max reasoning as .lesson-grid above. */
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
   margin-bottom: 24px;
 }
+/* Same visual language as the lesson picker's .lesson-btn (white card, a
+   colored ribbon + sparkle cycling per position, colored border when
+   active) -- kept as its own rule block rather than merged into .lesson-btn
+   itself since this one stays left-aligned (labels can run to two lines)
+   where lesson-btn is centered around a single big number. */
 .category-btn {
-  border: 2px solid var(--border); background: var(--card-bg); border-radius: 16px;
-  padding: 12px 14px; font-size: 15px; text-align: left; cursor: pointer;
+  position: relative;
+  background: #fff; border: 2px solid transparent; border-radius: 22px;
+  padding: 20px 22px; font-size: 18px; font-weight: 700; text-align: left; cursor: pointer;
+  color: var(--lesson-color, var(--garden-navy));
   box-shadow: var(--shadow-1);
   transition: transform .12s ease, box-shadow .12s ease;
 }
+.category-btn:nth-child(6n+1) { --lesson-color: var(--garden-violet); }
+.category-btn:nth-child(6n+2) { --lesson-color: var(--garden-green); }
+.category-btn:nth-child(6n+3) { --lesson-color: var(--garden-blue); }
+.category-btn:nth-child(6n+4) { --lesson-color: var(--garden-gold-deep); }
+.category-btn:nth-child(6n+5) { --lesson-color: var(--garden-pink); }
+.category-btn:nth-child(6n+6) { --lesson-color: var(--garden-violet-deep); }
+.category-btn::before {
+  content: "";
+  position: absolute; top: 0; right: 14px;
+  width: 12px; height: 18px;
+  background: var(--lesson-color, var(--garden-violet));
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 76%, 0 100%);
+}
+.category-btn::after {
+  content: "\2726";
+  position: absolute; bottom: 8px; right: 10px;
+  font-size: 11px; color: var(--lesson-color, var(--garden-gold));
+  opacity: .4;
+}
 .category-btn:hover { transform: translateY(-2px) scale(1.015); box-shadow: var(--shadow-2); }
-.category-active { background: linear-gradient(180deg, var(--card-hi), #ffdfc0); border-color: var(--primary); font-weight: 700; }
+.category-active {
+  background: linear-gradient(180deg, #fff, var(--garden-violet-pale));
+  border-color: var(--lesson-color, var(--garden-violet)); font-weight: 800;
+}
 .category-disabled {
-  opacity: .45; cursor: not-allowed; box-shadow: none; color: var(--ink-soft);
+  opacity: .45; cursor: not-allowed; box-shadow: none; color: var(--garden-ink-soft) !important;
 }
 .category-disabled:hover { transform: none; box-shadow: none; }
 
+/* Standardized "generally purple 3D pill" -- same gumdrop recipe as
+   TodayMission's .mission-go (glossy sheen + inset top highlight + inset
+   bottom shade for a raised edge + real drop shadow), just always violet
+   instead of cycling per row, since this is the app's one generic
+   primary-action button used on every screen. */
 .primary-btn {
-  background: linear-gradient(180deg, var(--primary-hi), var(--primary) 60%, var(--primary-dark));
-  color: #fff8ee; border: none; border-radius: 18px;
-  padding: 13px 26px; font-size: 17px; font-weight: 700; cursor: pointer;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.3), var(--shadow-1);
-  transition: filter .15s ease, transform .1s ease, box-shadow .1s ease;
+  background-color: var(--garden-violet);
+  background-image: linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,0) 55%);
+  color: #fff; border: none; border-radius: 999px;
+  padding: 13px 28px; font-size: 16px; font-weight: 800; cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 -4px 0 rgba(0,0,0,.18), 0 8px 18px -6px rgba(134,87,240,.55);
+  text-shadow: 0 1px 1px rgba(0,0,0,.15);
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
 }
-.primary-btn:hover { filter: brightness(1.06); transform: translateY(-2px); }
-.primary-btn:active { transform: scale(.94); box-shadow: var(--shadow-press); }
+.primary-btn:hover { transform: translateY(-2px); filter: brightness(1.04); }
+.primary-btn:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.3), inset 0 -1px 0 rgba(0,0,0,.12), 0 3px 8px -4px rgba(134,87,240,.45);
+}
+/* Lighter pale-violet pill (outline, not filled) for secondary actions --
+   still reads as part of the same purple family, just visually a step down
+   from .primary-btn. */
 .secondary-btn {
-  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
-  color: var(--primary); border: 2px solid var(--primary); border-radius: 18px;
-  padding: 11px 24px; font-size: 17px; font-weight: 700; cursor: pointer;
-  box-shadow: var(--shadow-1);
-  transition: filter .15s ease, transform .1s ease, box-shadow .1s ease;
+  background: linear-gradient(180deg, #fff, var(--garden-violet-pale));
+  color: var(--garden-violet-deep); border: 2px solid var(--garden-violet); border-radius: 999px;
+  padding: 11px 26px; font-size: 16px; font-weight: 800; cursor: pointer;
+  box-shadow: 0 4px 10px -4px rgba(134,87,240,.35);
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
 }
-.secondary-btn:hover { filter: brightness(1.03); transform: translateY(-2px); }
-.secondary-btn:active { transform: scale(.94); box-shadow: var(--shadow-press); }
+.secondary-btn:hover { transform: translateY(-2px); filter: brightness(1.02); }
+.secondary-btn:active { transform: translateY(1px); box-shadow: none; }
 .action-row { margin-top: 20px; display: flex; gap: 12px; }
+.picker .action-row { justify-content: flex-end; }
 .hidden { display: none !important; }
 
 /* ---------- Quiz ---------- */
@@ -990,7 +1152,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 .passage-head { display: flex; align-items: flex-start; gap: 10px; }
 .passage-heading { flex: 1; min-width: 0; }
-.passage-title { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.passage-title { font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
 .passage-source { font-size: 14px; color: var(--ink-soft); margin-bottom: 14px; }
 .passage-text {
   font-size: 20px;
@@ -1044,7 +1206,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .story-page-head { display: flex; justify-content: flex-end; margin-bottom: 10px; }
 .story-text {
   font-size: 20px; line-height: 1.95; letter-spacing: .3px;
-  font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
 }
 .story-paragraph { margin: 0 0 14px; }
 .story-paragraph:last-child { margin-bottom: 0; }
@@ -1256,14 +1418,12 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .owl-name-save { color: var(--correct); }
 .owl-name-cancel { color: var(--incorrect); }
 .owl-name-input {
-  font-size: 22px; font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  font-size: 22px; font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
   padding: 6px 10px; border: 2px solid var(--border); border-radius: 14px;
   background: var(--card-bg); color: var(--ink); text-align: center;
   box-shadow: inset 0 1px 3px rgba(var(--ink-rgb), .08);
 }
 .owl-info { max-width: 320px; margin: 0 auto; }
-.owl-stage-label { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 20px; font-weight: 700; }
-.owl-mood-label { font-size: 15px; color: var(--ink-soft); margin-bottom: 14px; }
 /* Art + info/actions stack in one centered column on mobile (unchanged
    from before this layout existed as its own wrapper) and sit side by
    side on desktop, so a wide .screen panel isn't just a big art thumbnail
@@ -1314,12 +1474,27 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 @media (min-width: 700px) {
   .pet-layout-wide { max-width: 1100px; }
   .pet-layout-info-wide { flex: 1 1 480px; max-width: 640px; }
+  /* Owl-only: the shared .pet-layout rule above sets align-items:flex-start
+     (so Bag.tsx's shorter item-grid column stays top-aligned, not
+     stretched) -- overridden here so Owl's info column instead stretches
+     to match .pet-profile-card's full height, split into three equal
+     thirds: growth bar+label, hunger bar+label, then the action banners.
+     .owl-info wraps both stat rows (via the shared PetStatBars component,
+     see its own comment) so it's given flex:2 (two of the three thirds),
+     with its own contents further split 1:1 so each stat lands on exactly
+     one third; the action-banner row is the plain remaining third. */
+  .owl-screen .pet-layout { align-items: stretch; }
+  .owl-screen .pet-layout-info { display: flex; flex-direction: column; }
+  .owl-screen .owl-action-banner-row { flex: 1 1 0; margin-top: 0; }
 }
 .growth-bar, .mood-bar {
   background: var(--card-bg); border: none; border-radius: 999px;
   height: 18px; overflow: hidden;
   box-shadow: var(--shadow-press);
 }
+/* Scoped override, not a base .growth-bar/.mood-bar redesign -- that pair
+   is shared with Bag.tsx's own PetStatBars, which wasn't asked to grow. */
+.owl-screen .growth-bar, .owl-screen .mood-bar { height: 28px; }
 .growth-bar-fill, .mood-bar-fill {
   height: 100%; border-radius: 999px; position: relative; overflow: hidden;
   transition: width .3s;
@@ -1347,13 +1522,136 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   100% { background-position: -60% 0; }
 }
 .growth-caption { font-size: 14px; color: var(--ink-soft); margin: 8px 0; }
+/* Scoped overrides, not base redesigns -- .growth-caption/.stat-bar-label/
+   .stat-bar-icon are shared with Bag.tsx's own PetStatBars, which wasn't
+   asked to grow. */
+.owl-screen .growth-caption { font-size: 16px; }
 .pet-stat-bars { display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 0 auto 14px; }
 .stat-bar-label {
   display: flex; align-items: center; gap: 6px;
   font-size: 13px; font-weight: 700; color: var(--ink-soft); margin-bottom: 4px; text-align: left;
 }
-.owl-bp-label { font-size: 16px; font-weight: 700; color: var(--gold-deep); margin-top: 6px; }
-.owl-screen .action-row { justify-content: center; }
+.owl-screen .stat-bar-label { font-size: 18px; gap: 8px; margin-bottom: 14px; }
+.owl-screen .stat-bar-icon { width: 19px; height: 19px; }
+/* Completes the growth/hunger/buttons three-way even split described next
+   to .owl-screen .owl-action-banner-row above: .owl-info (flex:2, two of
+   the three thirds) needs to itself be a flex column so .pet-stat-bars can
+   fill 100% of that; .pet-stat-bars (flex:1 within .owl-info, i.e. the
+   whole two-thirds) then splits 1:1 between its two direct children (the
+   growth block, the hunger block) so each lands on exactly one third of
+   the full column. justify-content:center on each stat block is what
+   turns the bigger label margin above into real breathing room around the
+   bar instead of just pushing the caption below it further down. */
+@media (min-width: 700px) {
+  .owl-screen .owl-info { flex: 2 1 0; display: flex; flex-direction: column; margin: 0; max-width: none; }
+  .owl-screen .pet-stat-bars { flex: 1; display: flex; flex-direction: column; margin: 0; max-width: none; gap: 0; }
+  /* Each pushed toward the shared divider between them (see the golden
+     border-top below) rather than centered in its own third -- that's
+     what leaves the extra breathing room at the card's outer edges
+     (above growth, below hunger) instead of splitting it evenly on both
+     sides of each bar. */
+  .owl-screen .pet-stat-bars > div:first-child { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; }
+  .owl-screen .pet-stat-bars > div:last-child { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
+}
+/* Golden divider between the growth and hunger blocks -- the adjacent-
+   sibling selector lands on the second (hunger) block only, so there's
+   never a stray line above growth or below hunger. */
+.owl-screen .pet-stat-bars > div + div {
+  border-top: 2px solid var(--garden-gold);
+  margin-top: 16px;
+  padding-top: 16px;
+}
+/* Owl-only "pet profile card" -- the left column of .pet-layout is this
+   card (art + name pill + age/stage-badge all grouped inside it) rather
+   than the bare art .pet-layout-art used to be; flex:0 0 auto keeps it a
+   fixed, content-sized column (driven by .owl-large-xl-wrap's own width
+   below) instead of stretching to share space with the info column. */
+.pet-profile-card {
+  flex: 0 0 auto;
+  /* gap:0 -- the art->pill spacing isn't a normal gap, it's a deliberate
+     overlap (see .owl-name-pill's negative margin-top below), so it can't
+     be handled by a uniform flex gap; the pill->meta gap is its own
+     explicit margin-top instead. */
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  background: linear-gradient(180deg, var(--garden-cream), #fff9ec);
+  border: 2px solid var(--garden-gold);
+  border-radius: 28px;
+  padding: 22px;
+  box-shadow: 0 14px 30px -12px rgba(20,20,60,.25), 0 2px 10px rgba(20,20,60,.08);
+}
+/* Wraps both the editing (input+save/cancel) and heading (name+pencil)
+   variants of .owl-name-row in the same pill shape, so switching between
+   them doesn't change the surrounding shape. Pulled up by roughly half its
+   own height so it visually sits half on top of the sprite above it,
+   half below -- z-index (plus position:relative, needed for z-index to
+   apply) keeps it painting over the art rather than under it. */
+.owl-name-pill {
+  position: relative; z-index: 1;
+  background: var(--garden-cream-soft);
+  border-radius: 999px;
+  padding: 10px 20px;
+  width: 100%;
+  margin-top: -26px;
+  box-shadow: var(--shadow-1);
+}
+.pet-profile-meta { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.pet-profile-age { font-size: 17px; font-weight: 700; color: var(--garden-ink-soft); }
+.pet-profile-stage-badge {
+  display: inline-flex; align-items: center;
+  background: linear-gradient(155deg, var(--garden-violet), var(--garden-violet-deep));
+  color: #fff; font-size: 15px; font-weight: 700;
+  border-radius: 999px; padding: 6px 16px;
+}
+/* Owl-only: bigger than the shared .owl-large (also used by Bag.tsx, which
+   wasn't asked to grow) -- combined with .pet-layout-wide/
+   .pet-layout-info-wide below so the art and the stat-bar column both
+   stretch to fill most of the card's width, not just this one image.
+   OwlArt.tsx's own sizeClass prop is a closed union (stays plain
+   "owl-large" there) -- resized instead via this wrapper, forcing its
+   child .owl-art to fill it, rather than widening that prop's type. */
+.owl-large-xl-wrap { width: min(300px, 75vw); height: min(300px, 75vw); }
+.owl-large-xl-wrap .owl-art.owl-large { width: 100%; height: 100%; }
+@media (min-width: 700px) {
+  .owl-large-xl-wrap { width: min(420px, 36vw); height: min(420px, 36vw); }
+}
+/* Two wide banner buttons (real shop.png/play.png icons, not emoji) below
+   the pet/stats row, replacing the old small pill action-row -- own
+   violet/gold colors rather than .primary-btn/.secondary-btn since these
+   are big tappable banners, not the app's generic action-button shape. */
+.owl-action-banner-row { display: flex; gap: 16px; margin-top: 22px; flex-wrap: wrap; }
+/* Gumdrop/3D pill: same recipe as TodayMission's .mission-go and
+   .primary-btn (glossy top sheen + inset top highlight + inset bottom
+   shade for a raised edge + a real drop shadow) -- the sheen is layered
+   into each variant's own background-image below (a second gradient
+   after the color one) rather than declared once here, since a later
+   background-image on the same element would just replace this one. */
+.owl-action-banner {
+  flex: 1 1 220px;
+  display: flex; align-items: center; gap: 16px;
+  border: none; border-radius: 22px; padding: 24px 26px;
+  cursor: pointer; text-align: left;
+  color: #fff; font-weight: 800; font-size: 17px;
+  text-shadow: 0 1px 2px rgba(0,0,0,.2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.45), inset 0 -5px 0 rgba(0,0,0,.18), 0 10px 22px -8px rgba(20,20,60,.5);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.owl-action-banner:hover { transform: translateY(-2px); }
+.owl-action-banner:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.3), inset 0 -1px 0 rgba(0,0,0,.14), 0 4px 10px -4px rgba(20,20,60,.4);
+}
+/* Half the button's own width, not a fixed px size -- flex-basis:50% is a
+   share of the row's content box (already excluding its padding), and
+   height:auto + aspect-ratio:1 keeps the (square) icon from stretching
+   into an oval as it scales with the button's own width. */
+.owl-action-banner img { flex: 0 0 50%; width: 50%; height: auto; aspect-ratio: 1; object-fit: contain; }
+.owl-action-banner-label { line-height: 1.3; }
+.owl-action-banner-shop {
+  background-image: linear-gradient(180deg, rgba(255,255,255,.4), rgba(255,255,255,0) 55%), linear-gradient(180deg, var(--garden-violet), var(--garden-violet-deep));
+}
+.owl-action-banner-play {
+  background-image: linear-gradient(180deg, rgba(255,255,255,.4), rgba(255,255,255,0) 55%), linear-gradient(180deg, var(--garden-gold), var(--garden-gold-deep));
+}
 
 .shop-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -1604,11 +1902,14 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   gap: 12px; margin-bottom: 6px;
 }
 .tingxie-topbar .back-btn { margin-bottom: 0; flex: 0 0 auto; }
+/* No BP indicator here any more -- the top nav's own BP pill (AccountBar)
+   already shows it on every screen, so a second one was redundant. */
 .tingxie-topbar-title {
-  flex: 1; text-align: center; font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+  text-align: center; font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
   font-size: 17px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.tingxie-topbar-bp { flex: 0 0 auto; font-weight: 700; color: var(--gold-deep); font-size: 14px; white-space: nowrap; }
+.tingxie-topbar-title img { width: 22px; height: 22px; object-fit: contain; flex: none; }
 
 .tingxie-tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
 .tingxie-tab {
@@ -1620,13 +1921,24 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 .tingxie-tab:hover { transform: translateY(-2px) scale(1.03); }
 .tingxie-tab-active {
-  background: linear-gradient(180deg, var(--primary-hi), var(--primary));
-  border-color: var(--primary-dark); color: #fff8ee;
+  background: linear-gradient(180deg, var(--garden-violet), var(--garden-violet-deep));
+  border-color: var(--garden-violet-deep); color: #fff;
 }
 
 .tingxie-select, .tingxie-picker { text-align: left; }
-.tingxie-select-title { text-align: center; }
-.tingxie-review-btn { margin-top: 18px; }
+.lesson-count-badge {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: fit-content; margin: 10px auto 0;
+  background: var(--garden-cream-soft); color: var(--garden-gold-deep);
+  border-radius: 999px; padding: 6px 16px; font-size: 13px; font-weight: 800;
+}
+.lesson-count-badge svg { width: 14px; height: 14px; color: var(--garden-gold); }
+/* display:flex + width:fit-content (not the button's own natural
+   inline-block box) + margin-left:auto is the same "push to the opposite
+   edge" trick .back-btn uses to escape its container's text-align --
+   .tingxie-select sets text-align:left, which would otherwise just leave
+   this sitting at the left like any other inline content. */
+.tingxie-review-btn { display: flex; width: fit-content; margin: 18px 0 0 auto; }
 .tingxie-loading, .tingxie-empty { color: var(--ink-soft); font-size: 15px; margin: 24px 0; text-align: center; }
 .tingxie-error, .tingxie-error-inline { color: var(--incorrect); margin: 14px 0; }
 .tingxie-error button { margin-top: 8px; }
@@ -1702,7 +2014,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 .tingxie-flip-hint { color: var(--ink-soft); font-size: 14px; margin-top: 14px; }
 
-.tingxie-vocab-word { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 44px; font-weight: 700; }
+.tingxie-vocab-word { font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 44px; font-weight: 700; }
 .tingxie-vocab-pinyin { font-size: 20px; opacity: .92; }
 .tingxie-vocab-meaning { font-size: 22px; font-weight: 700; }
 .tingxie-vocab-example { font-size: 20px; opacity: .85; line-height: 1.5; }
@@ -1807,7 +2119,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 /* -- Apply / Practice cards -- */
 .tingxie-apply-sentence { font-size: 22px; font-weight: 700; line-height: 1.5; }
 .tingxie-apply-english { font-size: 15px; opacity: .85; }
-.tingxie-apply-answer { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 40px; font-weight: 700; }
+.tingxie-apply-answer { font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 40px; font-weight: 700; }
 .tingxie-practice-front { display: flex; flex-direction: column; gap: 10px; }
 .tingxie-practice-sentence-back { font-size: 18px; font-weight: 700; line-height: 1.5; }
 
@@ -1874,30 +2186,10 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
    .mode-row, buttons, badges, bars, and every screen's card-like
    classes) so the whole app now shares one look.
    ========================================================= */
-/* Owl Garden redesign: the real illustrated scene (public/icons/homepage.png)
-   is the page's own background while Home is open, not a boxed/rounded card
-   sitting inside .screen's padded panel. Painted on <body> (toggled via
-   Home.tsx's mount effect adding/removing this class) rather than on .home
-   itself -- .home still sits inside #root's padded/max-width column same as
-   every other screen, so a background painted there could never reach
-   behind the sticky .top-bar or the padding around it (leaving a strip of
-   .screen's peach gradient showing above/around the bar). body spans the
-   true page from viewport (0,0), so its own background starts at the very
-   top edge and reaches every side on any screen width -- no 100vw/translateX
-   breakout hack needed, and it works identically on mobile.
-   background-color is the image's own grass tone, a fallback fill for
-   whatever's below the scaled image on a page taller than one screen's
-   worth of content (background-size:100% auto scales the image to the
-   viewport's width and lets its natural, now-portrait height follow, rather
-   than `cover`, which would crop/zoom unpredictably against Home's variable
-   content height). */
-body.home-bg-active {
-  background-color: #5fae4a;
-  background-image: url("/icons/homepage.png");
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: 100% auto;
-}
+/* Home stays full-bleed (no boxed .screen panel of its own) -- every other
+   screen keeps .screen's cream card look sitting on the shared body
+   background (see body's own comment above), but Home's dashboard cards
+   float directly on the scene with no outer card boundary. */
 .home {
   background: none;
   border-radius: 0;
@@ -1916,7 +2208,7 @@ body.home-bg-active {
 
 /* ---------- Auth ---------- */
 .auth-screen { max-width: 420px; margin: 0 auto; text-align: center; }
-.auth-title { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; margin: 4px 0 8px; }
+.auth-title { font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; margin: 4px 0 8px; }
 .auth-subtitle { color: var(--ink-soft); font-size: 14px; margin: 0 0 22px; }
 /* Guest-mode escape hatch -- always available (gated login or not), visually
    separated from the sign-in/sign-up form above it since it's a distinct

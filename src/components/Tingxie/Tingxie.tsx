@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
-import { usePet } from "../../state/PetContext";
 import { stopSpeaking } from "../../lib/speech";
 import { TingxieProvider, useTingxieState, useTingxieDispatch } from "./tingxieState";
 import { LessonSelect } from "./LessonSelect";
@@ -14,7 +13,6 @@ function TingxieShell() {
   const appDispatch = useAppDispatch();
   const state = useTingxieState();
   const dispatch = useTingxieDispatch();
-  const { pet } = usePet();
 
   const inActivity = state.view === "learn" || state.view === "apply" || state.view === "play" || state.view === "practice";
   const showTabs = inActivity && state.activeContent !== null;
@@ -37,14 +35,17 @@ function TingxieShell() {
     <div className="screen tingxie-screen">
       <div className="tingxie-topbar">
         <button className="back-btn" onClick={handleBack}>
-          ← 返回 Back
+          <span className="back-btn-arrow">←</span>
+          <span className="back-btn-label">返回 Back</span>
         </button>
         {/* LessonSelect (the "select" view) already shows its own big
             centered title -- a second one here would just duplicate it. */}
         {state.view !== "select" && (
-          <div className="tingxie-topbar-title">{state.activeContent?.title ?? "听写练习 Dictation Practice"}</div>
+          <div className="tingxie-topbar-title">
+            <img src="/icons/dictatation-mission.png" alt="" />
+            {state.activeContent?.title ?? "听写练习 Dictation Practice"}
+          </div>
         )}
-        <div className="tingxie-topbar-bp">💡 {pet.bp} BP</div>
       </div>
 
       {showTabs && (

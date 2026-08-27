@@ -6,6 +6,7 @@ import { usePet } from "../../state/PetContext";
 import { STORY_COMPLETE_BP_AWARD } from "../../data/pet";
 import { Sound } from "../../lib/sound";
 import { CompleteScreen } from "../common/CompleteScreen";
+import { Icon } from "../common/Icons";
 import { logAchievement } from "../../state/achievements";
 import { recordTodayStoryRead } from "../../state/todaySummary";
 
@@ -128,9 +129,15 @@ export function Story() {
   return (
     <div className="screen story-screen">
       <button className="back-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>
-        ← 返回 Back
+        <span className="back-btn-arrow">←</span>
+        <span className="back-btn-label">返回 Back</span>
       </button>
-      <h1>读故事 Read a Story</h1>
+      <h1 className="page-header">
+        <Icon name="sparkle" className="page-header-spark" />
+        <img className="page-header-icon" src="/icons/read.png" alt="" />
+        读故事 Read a Story
+        <Icon name="sparkle" className="page-header-spark" />
+      </h1>
       <p className="picker-hint">
         <span className="en">Choose a lesson to read its story.</span>
       </p>
@@ -254,7 +261,8 @@ function StoryReader({ lesson, segmentIndex, onSegmentChange, onExit, onFinish }
   return (
     <div className="screen story-screen story-reading">
       <button className="back-btn" onClick={onExit}>
-        ← 返回课文列表 Back to Lessons
+        <span className="back-btn-arrow">←</span>
+        <span className="back-btn-label">返回课文列表 Back to Lessons</span>
       </button>
       <h1>{lesson.title}</h1>
       <div className="story-page-indicator">{`第 ${segmentIndex + 1} / ${lesson.segments.length} 页`}</div>
