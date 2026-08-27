@@ -6,7 +6,6 @@ import { MISSION_COMPLETE_BONUS_BP } from "../../data/pet";
 import { selectTypeSessionGroups } from "../../lib/typeSession";
 import { shuffle } from "../../lib/shuffle";
 import { isLessonMissionComplete, getReadingMissionCount, isTingxieMissionComplete, READING_MISSION_CATEGORIES } from "../../lib/stats";
-import { Icon } from "../common/Icons";
 import type { HistoryEntry } from "../../data/types";
 
 export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
@@ -59,7 +58,7 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
 
   return (
     <div className="dash-card today-mission">
-      <h2 className="section-heading"><Icon name="target" />学习任务 Today's Mission</h2>
+      <h2 className="section-heading"><img className="section-heading-icon" src="/icons/todays-mission.png" alt="" />学习任务 Today's Mission</h2>
       <p className="mission-subhead">Complete all missions to earn {MISSION_COMPLETE_BONUS_BP} BP</p>
       <div className="mission-list">
         <div className={"mission-row p1" + (dictationDone ? " mission-row-done" : "")}>

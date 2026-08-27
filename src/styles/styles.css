@@ -170,7 +170,7 @@ body {
   flex-wrap: wrap;
   gap: 10px 16px;
   background: linear-gradient(180deg, var(--garden-navy-soft), var(--garden-navy) 70%, var(--garden-navy-deep));
-  border-radius: 999px;
+  border-radius: 20px;
   padding: 14px 22px 14px 12px;
   box-shadow: 0 10px 22px -8px rgba(18, 20, 58, .55);
   margin-bottom: 20px;
@@ -214,6 +214,48 @@ body {
 }
 .top-nav-item-active:hover { color: #fff; background: linear-gradient(180deg, var(--garden-violet), var(--garden-violet-deep)); }
 .top-nav-label { font-size: 13.5px; font-weight: 700; text-align: center; }
+
+/* ---------- Bottom tab bar (mobile only) ----------
+   Below 700px there's no longer room in .top-bar for the brand + all 5 nav
+   items + the BP pill + profile chip in one row -- .top-nav (the inline
+   version) squeezes down to unreadable slivers rather than actually
+   wrapping, since it's a single non-wrapping flex row with overflow-x:auto.
+   Past this width the inline nav is hidden entirely and this fixed bottom
+   bar (same NAV_ITEMS/go(), see TopNav.tsx) takes over instead, the
+   familiar native-app tab-bar pattern -- the top bar then only has to fit
+   the brand mark + BP + profile chip, which it already does comfortably.
+   Desktop (>700px) never sees this element (display:none by default,
+   below); #root's extra bottom padding in the same media query reserves
+   room so page content doesn't end up hidden behind it. */
+.bottom-nav { display: none; }
+@media (max-width: 700px) {
+  .top-nav { display: none; }
+  .bottom-nav {
+    display: flex;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
+    justify-content: space-around;
+    background: linear-gradient(0deg, var(--garden-navy-deep), var(--garden-navy) 70%, var(--garden-navy-soft));
+    padding: 8px 4px calc(8px + env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 -8px 20px -8px rgba(18, 20, 58, .5);
+  }
+  .bottom-nav-item {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    flex: 1; min-width: 0;
+    background: none; border: none; border-radius: 14px;
+    padding: 6px 2px; color: #c7caf2; cursor: pointer;
+    transition: background .12s ease, color .12s ease;
+  }
+  .bottom-nav-item:active { transform: scale(.95); }
+  .bottom-nav-item-active { background: rgba(255,255,255,.1); color: #fff; }
+  .bottom-nav-item-icon { width: 20px; height: 20px; object-fit: contain; }
+  .bottom-nav-label { font-size: 10.5px; font-weight: 700; white-space: nowrap; }
+  /* padding-bottom: room for the fixed bar itself, on top of #root's own
+     60px base. Side padding: a lot of it stacked (#root's 20px +
+     .screen's 20px) looked like wasted margin on a narrow phone screen --
+     tightened here rather than lowering the shared desktop values. */
+  #root { padding-bottom: 130px; padding-left: 12px; padding-right: 12px; }
+  .screen { padding-left: 12px; padding-right: 12px; }
+}
 
 /* ---------- Account menu (profile dropdown + BP stat) ---------- */
 /* AccountBar.tsx -- a single "Profile" trigger (avatar + name) that opens a
@@ -386,16 +428,30 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   0%, 100% { transform: translateY(0) scale(1); }
   50% { transform: translateY(-5px) scale(1.015); }
 }
+/* A real speech bubble (rounded rectangle + a small triangular tail
+   pointing up toward the pet's art above it), not a plain rounded box --
+   the tail is a classic zero-size-box-with-borders triangle, colored to
+   match the bubble's own background so it reads as one continuous shape. */
 .pet-hero-speech {
   position: relative;
   background: var(--garden-cream-soft);
   border: none;
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 10px 14px;
   font-size: 13px; font-weight: 600; color: var(--garden-navy-soft);
   text-align: center;
   max-width: 100%;
   box-shadow: none;
+}
+.pet-hero-speech::before {
+  content: "";
+  position: absolute;
+  top: -7px; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid var(--garden-cream-soft);
 }
 .pet-hero-name { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 20px; color: var(--garden-navy); }
 .pet-hero-bars { display: flex; flex-direction: column; gap: 14px; width: 100%; text-align: left; }
@@ -515,7 +571,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
    scoped to this card only (Today's Mission/Recent Achievements etc. keep
    their headings left-aligned). */
 .quest-heading { justify-content: center; }
-.quest-heading-star { width: 15px; height: 15px; color: var(--garden-gold); flex: none; }
+.quest-heading-star { width: 17px; height: 17px; object-fit: contain; color: var(--garden-gold); flex: none; }
 .quest-wheel-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; }
 /* Uses the real illustrated wheel graphic (public/icons/spinwheel.png, a
    plain circular dial, 738x734) as the whole wheel face, instead of a CSS

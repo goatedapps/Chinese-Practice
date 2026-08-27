@@ -17,7 +17,7 @@ const NAV_ITEMS: { key: string; label: string; screens: Screen[]; icon: string; 
   { key: "story", label: "故事", screens: ["story"], icon: "/icons/read.png", isImage: true },
   // Shop/Bag/Play are reached from the Owl screen and conceptually part of
   // the same "pet" flow, so this stays highlighted on all four.
-  { key: "owl", label: "宠物", screens: ["owl", "shop", "bag", "play"], icon: "paw" }
+  { key: "owl", label: "宠物", screens: ["owl", "shop", "bag", "play"], icon: "/icons/pet.png", isImage: true }
 ];
 
 export function TopNav() {
@@ -32,27 +32,51 @@ export function TopNav() {
     else dispatch({ type: "GO_TO_SCREEN", screen: key as Screen });
   }
 
+  function renderIcon(item: (typeof NAV_ITEMS)[number], className: string) {
+    return item.isImage ? <img className={className} src={item.icon} alt="" /> : <Icon name={item.icon} className={className} />;
+  }
+
   return (
-    <div className="top-nav-row">
-      <div className="top-nav-brand">
-        <div className="top-nav-brand-badge"><img src="/icons/pet.png" alt="" /></div>
-        <div className="top-nav-brand-text">
-          <div className="top-nav-brand-title">华文练习</div>
+    <>
+      <div className="top-nav-row">
+        <div className="top-nav-brand">
+          <div className="top-nav-brand-badge"><img src="/icons/pet.png" alt="" /></div>
+          <div className="top-nav-brand-text">
+            <div className="top-nav-brand-title">华文练习</div>
+          </div>
         </div>
+
+        <nav className="top-nav">
+          {NAV_ITEMS.map((item) => (
+            <button
+              key={item.key}
+              className={"top-nav-item" + (item.screens.includes(state.screen) ? " top-nav-item-active" : "")}
+              onClick={() => go(item.key)}
+            >
+              {renderIcon(item, "top-nav-item-icon")}
+              <span className="top-nav-label">{item.label}</span>
+            </button>
+          ))}
+        </nav>
       </div>
 
-      <nav className="top-nav">
+      {/* Mobile-only bottom tab bar -- same NAV_ITEMS/go(), just a second
+          rendering swapped in by CSS (see .bottom-nav's media query) once
+          the top bar is too narrow to fit the brand + 5 nav items + BP +
+          profile chip all in one row. Fixed to the viewport, not .top-bar,
+          so it stays reachable even once the page scrolls. */}
+      <nav className="bottom-nav">
         {NAV_ITEMS.map((item) => (
           <button
             key={item.key}
-            className={"top-nav-item" + (item.screens.includes(state.screen) ? " top-nav-item-active" : "")}
+            className={"bottom-nav-item" + (item.screens.includes(state.screen) ? " bottom-nav-item-active" : "")}
             onClick={() => go(item.key)}
           >
-            {item.isImage ? <img className="top-nav-item-icon" src={item.icon} alt="" /> : <Icon name={item.icon} className="top-nav-item-icon" />}
-            <span className="top-nav-label">{item.label}</span>
+            {renderIcon(item, "bottom-nav-item-icon")}
+            <span className="bottom-nav-label">{item.label}</span>
           </button>
         ))}
       </nav>
-    </div>
+    </>
   );
 }
