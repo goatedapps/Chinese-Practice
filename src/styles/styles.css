@@ -158,7 +158,12 @@ body {
      plain `sticky` overrides it with the second line as usual. */
   position: -webkit-sticky;
   position: sticky;
-  top: 12px;
+  top: 0;
+  /* Cancels #root's own padding-top (24px, see #root above) so the bar's
+     top edge lands exactly at the true viewport top instead of floating
+     24px down -- #root has no responsive override for its top padding, so
+     this constant stays correct at every width. */
+  margin-top: -24px;
   z-index: 20;
   display: flex;
   align-items: center;
@@ -166,7 +171,7 @@ body {
   gap: 10px 16px;
   background: linear-gradient(180deg, var(--garden-navy-soft), var(--garden-navy) 70%, var(--garden-navy-deep));
   border-radius: 999px;
-  padding: 8px 18px 8px 8px;
+  padding: 14px 22px 14px 12px;
   box-shadow: 0 10px 22px -8px rgba(18, 20, 58, .55);
   margin-bottom: 20px;
 }
@@ -179,8 +184,7 @@ body {
 }
 .top-nav-brand-badge img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .top-nav-brand-text { line-height: 1.15; display: none; }
-.top-nav-brand-title { font-family: "ZCOOL QingKe HuangYou", "Noto Sans SC", sans-serif; font-size: 16px; color: #fff; }
-.top-nav-brand-sub { font-size: 10px; color: #b9bced; margin-top: 2px; }
+.top-nav-brand-title { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 16px; color: #fff; }
 @media (min-width: 760px) { .top-nav-brand-text { display: block; } }
 
 .top-nav { flex: 1; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
@@ -211,12 +215,13 @@ body {
 .top-nav-item-active:hover { color: #fff; background: linear-gradient(180deg, var(--garden-violet), var(--garden-violet-deep)); }
 .top-nav-label { font-size: 13.5px; font-weight: 700; text-align: center; }
 
-/* ---------- Account chip (Login/Sign out + BP stat) ---------- */
-/* AccountBar.tsx -- not a TopNav nav item, since Login/Sign out is a
-   state-dependent action, not a fixed screen destination. Also carries the
-   BP stat pill, the natural "current status" slot alongside account
-   status. Now a plain flex child inside .top-bar (see App.tsx), not its
-   own separate bar. */
+/* ---------- Account menu (profile dropdown + BP stat) ---------- */
+/* AccountBar.tsx -- a single "Profile" trigger (avatar + name) that opens a
+   dropdown holding Login/Sign out and a nested Level pullout (LevelBar.tsx,
+   see its own comment), instead of the old always-visible status/button
+   row. Also carries the BP stat pill, the natural "current status" slot
+   alongside account status. A plain flex child inside .top-bar (see
+   App.tsx), not its own separate bar. */
 .account-bar { display: flex; align-items: center; gap: 10px; flex: none; }
 .top-nav-stat {
   display: flex; align-items: center; gap: 6px;
@@ -224,35 +229,66 @@ body {
   padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 800;
 }
 .top-nav-stat svg { width: 15px; height: 15px; color: var(--garden-gold); }
+.account-menu { position: relative; flex: none; }
 .account-chip {
   display: flex; align-items: center; gap: 8px;
   background: rgba(255,255,255,.1);
-  border-radius: 999px; padding: 5px 14px 5px 5px;
+  border: none; border-radius: 999px; padding: 5px 12px 5px 5px;
+  cursor: pointer; transition: background .12s ease;
 }
+.account-chip:hover { background: rgba(255,255,255,.18); }
+.account-chip:active { transform: scale(.97); }
 .account-avatar {
   width: 26px; height: 26px; border-radius: 50%; flex: none;
   background: linear-gradient(160deg, var(--garden-gold), var(--garden-pink));
   display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 12px;
 }
 .account-avatar svg { width: 14px; height: 14px; }
-.account-bar-status { font-size: 13px; color: #c7caf2; white-space: nowrap; }
-.account-bar-btn {
-  background: none;
-  border: none; border-radius: 999px;
-  padding: 6px 4px; font-size: 13px; font-weight: 700; color: #fff; white-space: nowrap;
-  cursor: pointer;
-  transition: transform .12s ease, opacity .12s ease;
+.account-bar-status { font-size: 13px; color: #c7caf2; white-space: nowrap; font-weight: 700; }
+.account-menu-caret { width: 13px; height: 13px; color: #c7caf2; flex: none; transition: transform .15s ease; }
+.account-menu-caret-open { transform: rotate(180deg); }
+/* Floats below the trigger, right-aligned so it never overhangs the
+   viewport's right edge regardless of how wide the panel gets. A light
+   card (not navy) so it reads as a distinct layer above the bar, matching
+   every other dash-card surface in the app. */
+.account-dropdown {
+  position: absolute; top: calc(100% + 10px); right: 0; z-index: 30;
+  min-width: 210px;
+  background: linear-gradient(180deg, #fff, var(--garden-cream));
+  border-radius: 18px;
+  box-shadow: 0 18px 34px -10px rgba(18,20,58,.4), 0 2px 8px rgba(18,20,58,.12);
+  padding: 8px;
+  display: flex; flex-direction: column; gap: 2px;
 }
-.account-bar-btn:hover { transform: translateY(-1px); opacity: .85; }
-.account-bar-btn:active { transform: scale(.95); }
+.account-dropdown-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  width: 100%; text-align: left;
+  background: none; border: none; border-radius: 12px;
+  padding: 10px 12px; font-size: 13.5px; font-weight: 800; color: var(--garden-navy);
+  cursor: pointer; transition: background .12s ease;
+}
+.account-dropdown-item:hover { background: var(--garden-cream-soft); }
+.account-dropdown-item:disabled { cursor: default; opacity: .6; }
+.account-dropdown-caret { width: 13px; height: 13px; color: var(--garden-ink-faint); flex: none; transition: transform .15s ease; }
+.account-dropdown-caret-open { transform: rotate(180deg); }
+/* The parent "年级 Level" menu item already labels this pullout, so
+   LevelBar's own inline label would just repeat it -- hidden here rather
+   than in LevelBar.tsx since that label is still wanted wherever else
+   LevelBar might render. */
+.account-dropdown-pullout { padding: 2px 4px 8px; }
+.account-dropdown-pullout .level-bar-label { display: none; }
+.account-dropdown-divider { height: 1px; background: var(--border); margin: 4px 6px; }
 
 /* ---------- Level toggle ---------- */
-.level-bar { display: flex; align-items: center; gap: 8px; flex: none; }
-.level-bar-label { font-size: 13px; color: #c7caf2; font-weight: 600; white-space: nowrap; }
+/* Nested inside AccountBar's dropdown as a pullout (see account-dropdown-
+   pullout above), not its own top-bar item any more -- restyled here for
+   that light-card context instead of sitting directly on the navy bar. */
+.level-bar { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; flex: none; }
+.level-bar-label { font-size: 12px; color: var(--garden-ink-soft); font-weight: 700; white-space: nowrap; }
 /* Scoped override, not a base .chip/.chip-active redesign -- those classes
    are shared with e.g. Practice's subject filter, which stays unchanged. */
-.level-bar .chip { padding: 5px 14px; font-size: 12.5px; font-weight: 800; background: rgba(255,255,255,.1); color: #c7caf2; border-color: transparent; }
-.level-bar .chip-active { background: var(--garden-gold); color: var(--garden-navy-deep); box-shadow: none; }
+.level-bar .chip { padding: 7px 14px; font-size: 12.5px; font-weight: 800; background: var(--garden-cream-soft); color: var(--garden-navy); border-color: transparent; }
+.level-bar .chip-active { background: var(--garden-violet); color: #fff; box-shadow: none; }
 .level-bar .chip:disabled { cursor: default; }
 
 h1, h2 {
@@ -280,12 +316,16 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 
 .home-greeting { margin-bottom: 22px; }
 .home-greeting h1 {
-  font-family: "ZCOOL QingKe HuangYou", "Noto Serif SC", sans-serif;
-  font-size: 32px; color: var(--garden-navy);
+  font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  font-size: 32px; color: var(--garden-cream);
+  text-shadow: 0 2px 10px rgba(20, 30, 20, .35);
   display: flex; align-items: center; gap: 10px;
 }
 .home-greeting-spark { width: 26px; height: 26px; color: var(--garden-gold); }
-.home-greeting p { margin: 6px 0 0; color: var(--garden-navy-soft); font-size: 14.5px; font-weight: 600; }
+.home-greeting p {
+  margin: 6px 0 0; color: var(--garden-cream); font-size: 14.5px; font-weight: 600;
+  text-shadow: 0 1px 8px rgba(20, 30, 20, .35);
+}
 
 .dash-card {
   background: linear-gradient(180deg, var(--garden-cream), #fff9ec);
@@ -298,10 +338,11 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 
 .section-heading {
   margin: 0 0 14px; color: var(--garden-navy);
-  font-family: "ZCOOL QingKe HuangYou", "Noto Serif SC", sans-serif;
+  font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
   display: flex; align-items: center; gap: 9px;
 }
 .section-heading svg { width: 21px; height: 21px; color: var(--garden-violet); flex: none; }
+.section-heading img.section-heading-icon { width: 22px; height: 22px; object-fit: contain; flex: none; }
 
 /* -- companion card: single column (name/badge, art, bars, speech) rather
    than the old greeting+identity/BP+art two-column split -- the greeting
@@ -356,7 +397,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   max-width: 100%;
   box-shadow: none;
 }
-.pet-hero-name { font-family: "ZCOOL QingKe HuangYou", "Noto Serif SC", sans-serif; font-size: 20px; color: var(--garden-navy); }
+.pet-hero-name { font-family: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 20px; color: var(--garden-navy); }
 .pet-hero-bars { display: flex; flex-direction: column; gap: 14px; width: 100%; text-align: left; }
 .pet-hero-bar-label {
   display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 2px;
@@ -377,51 +418,77 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
    badge if done today) rather than a stacked list of rows -- the tick's
    slot is always rendered (empty when not done) so all 3 cards stay the
    same height regardless of completion state. */
-.today-mission { display: flex; flex-direction: column; }
+.today-mission { display: flex; flex-direction: column; height: 100%; }
 .today-mission .section-heading { margin-bottom: 4px; }
 .mission-subhead { color: var(--garden-ink-soft); font-size: 13px; font-weight: 600; margin: 0 0 16px; }
 /* Pastel numbered rows (violet/green/blue, fixed to position -- always the
    same 3 missions in the same order) replacing the old 3D-tilt card grid --
    stretches to fill the row's full height (see .home-row-top) so the card
    doesn't sit with dead space below a short list. */
-/* Packed close together (small fixed gap), not spread across the card's
-   full height (that grows to match the taller wheel/companion cards in the
-   same row, see .home-row-top) -- any leftover height just sits below the
-   3 rows as blank space instead of stretching gaps between them. */
-.mission-list { display: flex; flex-direction: column; gap: 12px; }
+/* Fills the card's full height (which itself grows to match the taller
+   wheel/companion cards in the same row, see .home-row-top) by growing each
+   row equally (flex:1 on .mission-row below), not by adding blank space
+   below the rows or stretching the gaps between them. */
+.mission-list { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+/* Row = [numbered badge] [title/subtext, grows] [right column: icon on
+   top, action button/done-tick pinned toward the bottom] -- align-items:
+   stretch on the row (not center) is what lets .mission-right's own
+   flex-column + space-between spread its icon/button apart to the row's
+   full height; the badge/text column re-centers itself within that via
+   align-self since it's shorter than the icon+button stack. */
 .mission-row {
-  display: flex; align-items: center; gap: 14px;
-  border-radius: 20px; padding: 16px 16px;
+  display: flex; align-items: stretch; gap: 14px;
+  flex: 1;
+  border-radius: 20px; padding: 16px 18px;
+  border: 1px solid transparent;
   transition: transform .15s ease, box-shadow .15s ease;
 }
 .mission-row:hover { transform: translateY(-2px); box-shadow: 0 8px 16px -8px rgba(20,20,60,.25); }
-.mission-row.p1 { background: linear-gradient(180deg, #f2ecff, #fbf9ff); }
-.mission-row.p2 { background: linear-gradient(180deg, #e9f8ee, #fbfdfb); }
-.mission-row.p3 { background: linear-gradient(180deg, #e8f4fc, #fafcfe); }
+.mission-row.p1 { background: linear-gradient(180deg, #f2ecff, #fbf9ff); border-color: #e3d6ff; }
+.mission-row.p2 { background: linear-gradient(180deg, #e9f8ee, #fbfdfb); border-color: #cdedd8; }
+.mission-row.p3 { background: linear-gradient(180deg, #e8f4fc, #fafcfe); border-color: #cde3f5; }
 .mission-num {
+  align-self: center;
   width: 26px; height: 26px; border-radius: 50%; flex: none; color: #fff; font-weight: 800; font-size: 13px;
   display: flex; align-items: center; justify-content: center;
 }
 .mission-row.p1 .mission-num { background: var(--garden-violet); }
 .mission-row.p2 .mission-num { background: var(--garden-green); }
 .mission-row.p3 .mission-num { background: var(--garden-blue); }
-.mission-icon-box { width: 48px; height: 48px; border-radius: 14px; flex: none; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-1); }
-.mission-row.p1 .mission-icon-box { background: var(--garden-violet-pale); }
-.mission-row.p2 .mission-icon-box { background: #dcf5e3; }
-.mission-row.p3 .mission-icon-box { background: #d9edfb; }
-.mission-icon-box img { width: 30px; height: 30px; object-fit: contain; }
-.mission-info { flex: 1; min-width: 0; }
-.mission-title { font-weight: 800; font-size: 14.5px; color: var(--garden-navy); display: block; }
+.mission-info { flex: 1; min-width: 0; align-self: center; }
+.mission-title { font-weight: 800; font-size: 20px; color: var(--garden-navy); display: block; }
 .mission-status { font-size: 12px; color: var(--garden-ink-soft); font-weight: 600; margin-top: 2px; display: block; }
+/* No boxed background any more -- the icon sits bare. Sized to a fixed 1/3
+   of the row's width (flex: 0 0 33%, not just content-sized) and stretched
+   to the row's full height (align-items:stretch on .mission-row above);
+   the icon takes the flexible share of that height (flex:1 on
+   .mission-icon-box) so it grows to fill whatever's left after the
+   fixed-height button below it, instead of both just centering as a small
+   cluster. */
+.mission-right { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 8px; flex: 0 0 33%; }
+.mission-icon-box { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; }
+.mission-icon-box img { width: 100%; height: 100%; max-width: 92px; max-height: 92px; object-fit: contain; }
+/* Gumdrop/3D pill: a glossy white-to-transparent sheen layered over the
+   flat variant color, an inset top highlight + bottom shade for a raised
+   edge, and a real drop shadow for lift -- :active flattens all of that and
+   nudges the button down a touch to read as a genuine press. */
 .mission-go {
-  border: none; border-radius: 999px; padding: 10px 20px; font-size: 13px; font-weight: 800; color: #fff; cursor: pointer; flex: none;
-  transition: transform .12s ease;
+  border: none; border-radius: 999px; padding: 13px 18px; font-size: 14.5px; font-weight: 800; color: #fff; cursor: pointer; flex: none;
+  width: 100%;
+  background-image: linear-gradient(180deg, rgba(255,255,255,.4), rgba(255,255,255,0) 55%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 -3px 0 rgba(0,0,0,.16), 0 4px 10px -3px rgba(20,20,60,.4);
+  text-shadow: 0 1px 1px rgba(0,0,0,.15);
+  transition: transform .12s ease, box-shadow .12s ease;
 }
 .mission-go:hover { transform: translateY(-1px); }
-.mission-row.p1 .mission-go { background: var(--garden-violet); }
-.mission-row.p2 .mission-go { background: var(--garden-green); }
-.mission-row.p3 .mission-go { background: var(--garden-blue); }
-.mission-done { display: flex; align-items: center; gap: 5px; color: var(--garden-green); font-weight: 800; font-size: 12.5px; flex: none; padding-right: 6px; }
+.mission-go:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.25), inset 0 -1px 0 rgba(0,0,0,.1), 0 2px 4px -2px rgba(20,20,60,.35);
+}
+.mission-row.p1 .mission-go { background-color: var(--garden-violet); }
+.mission-row.p2 .mission-go { background-color: var(--garden-green); }
+.mission-row.p3 .mission-go { background-color: var(--garden-blue); }
+.mission-done { display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--garden-green); font-weight: 800; font-size: 14px; flex: none; }
 .mission-bonus-banner {
   margin-top: 14px; padding: 14px 18px; border-radius: 20px;
   background: linear-gradient(180deg, #fff, var(--garden-cream-soft));
@@ -436,15 +503,29 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
    Icon divs are positioned radially with the classic
    rotate->translate->counter-content trick and rotate along with the dial
    itself (matching a real prize wheel, where labels are always radial). */
-.special-quest { display: flex; flex-direction: column; text-align: center; }
+/* Overrides .dash-card's plain cream gradient with the illustrated
+   public/icons/quest-bg.png, stretched to exactly fill the card (its own
+   colors shown as-is, no tint/overlay). */
+.special-quest {
+  display: flex; flex-direction: column; text-align: center;
+  background: url("/icons/quest-bg.png") center / 100% 100% no-repeat;
+}
+/* .section-heading is itself a flex row (icon + text), so the card's own
+   text-align:center has no effect on it -- centered here explicitly,
+   scoped to this card only (Today's Mission/Recent Achievements etc. keep
+   their headings left-aligned). */
+.quest-heading { justify-content: center; }
+.quest-heading-star { width: 15px; height: 15px; color: var(--garden-gold); flex: none; }
 .quest-wheel-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; }
-/* Uses the real illustrated wheel graphic (public/icons/spinwheel.png,
-   1013x1166 -- a circular dial + baked-in pointer + a wooden stand below
-   it) as the whole wheel face, instead of a CSS conic-gradient dial with
-   separately-drawn pointer/segment-icon overlays -- so .quest-wheel-frame's
-   aspect-ratio matches the image (not a plain circle any more), and the
-   pointer/per-segment icon overlay elements are hidden (see below) rather
-   than removed from SpecialQuest.tsx, since the image already draws both.
+/* Uses the real illustrated wheel graphic (public/icons/spinwheel.png, a
+   plain circular dial, 738x734) as the whole wheel face, instead of a CSS
+   conic-gradient dial with separately-drawn pointer/segment-icon overlays
+   -- the pointer/per-segment icon overlay elements are hidden (see below)
+   rather than removed from SpecialQuest.tsx, since the image already draws
+   the pointer. A separate public/icons/wheel-base.png (a wooden stand,
+   752x345) sits behind the dial (.quest-wheel-base below), centered on the
+   dial's own bottom edge so half its height is hidden behind the circular
+   dial and half peeks out below it, like the wheel resting on a stand.
    --wheel-size caps shrink on narrow/mobile screens -- deliberately
    `100vw`-based, not `100%`, so it resolves the same wherever it's
    substituted (a percentage embedded in a custom property is only
@@ -453,30 +534,41 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
    approximates the card's horizontal padding stack -- #root's 20px+20px,
    PLUS .screen's own 20px+20px, PLUS .special-quest's own 22px+22px --
    only matters on narrow phones where this second term is actually the
-   smaller of the two and controls the wheel's size. */
+   smaller of the two and controls the wheel's size. The frame is taller
+   than the (square) dial to leave room for the base's visible bottom
+   half -- 1.22x is a rough visual fit, not exact, and doesn't need to be
+   since nothing here clips overflow. */
 .quest-wheel-frame {
   --wheel-size: min(240px, calc(100vw - 124px));
-  position: relative; width: var(--wheel-size); aspect-ratio: 1013 / 1166; margin: 4px auto 0;
+  position: relative; width: var(--wheel-size); height: calc(var(--wheel-size) * 1.22); margin: 4px auto 0;
 }
 @media (min-width: 700px) {
   .quest-wheel-frame { --wheel-size: min(340px, calc(100vw - 124px)); }
 }
 /* Baked into spinwheel.png now -- see the comment above. */
 .quest-wheel-pointer, .quest-wheel-slot { display: none; }
+.quest-wheel-base {
+  position: absolute; left: 50%; top: var(--wheel-size); transform: translate(-50%, -50%);
+  width: 92%; aspect-ratio: 752 / 345;
+  background: url("/icons/wheel-base.png") center / contain no-repeat;
+  z-index: 0;
+}
 .quest-wheel-dial {
-  position: absolute; inset: 0;
+  position: absolute; top: 0; left: 0; width: 100%; aspect-ratio: 1;
+  z-index: 1;
   background: url("/icons/spinwheel.png") center / contain no-repeat;
 }
 @media (prefers-reduced-motion: no-preference) {
   .quest-wheel-dial { transition: transform 2.6s cubic-bezier(.12, .72, .18, 1); }
 }
 /* Sibling of .quest-wheel-dial (not nested inside it) so it stays fixed and
-   upright at the wheel's center while the dial spins around/behind it.
-   Positioned/sized against the image's actual circle (which sits in the
-   upper ~86% of the taller image, above the wooden stand), not the full
-   box, and transparent so the image's own gold hub shows through. */
+   upright at the wheel's center while the dial spins around/behind it. `top`
+   is a plain length (half the dial's own width, since the dial is square
+   and top-anchored) rather than a percentage of the frame, so it lands on
+   the dial's true center regardless of the frame's own (taller, to fit the
+   base) height. Transparent so the image's own gold hub shows through. */
 .quest-wheel-spin-btn {
-  position: absolute; top: 43%; left: 50%; transform: translate(-50%, -50%);
+  position: absolute; top: calc(var(--wheel-size) / 2); left: 50%; transform: translate(-50%, -50%);
   z-index: 3;
   width: calc(var(--wheel-size) * 0.28); height: calc(var(--wheel-size) * 0.28); border-radius: 50%;
   border: none; background: none; box-shadow: none;
@@ -509,7 +601,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 
 /* -- today's session summary --
    Two columns: left is the summary content, right is its own dedicated
-   "print" panel (icon + caption + button stacked). */
+   "print" panel (a large icon + button, no caption text). */
 .today-summary-card { display: flex; gap: 18px; align-items: stretch; }
 .today-summary-left { flex: 1; min-width: 0; }
 .today-summary-card .picker-hint { display: block; margin: 2px 0 0; }
@@ -517,8 +609,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   flex: 0 0 160px; background: var(--garden-cream-soft); border-radius: 20px; padding: 18px 14px;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center;
 }
-.today-summary-right svg { width: 30px; height: 30px; color: var(--garden-violet); }
-.today-summary-right p { font-size: 11px; font-weight: 700; color: var(--garden-ink-soft); margin: 0; line-height: 1.4; }
+.today-summary-right svg, .today-summary-right img { width: 52px; height: 52px; object-fit: contain; color: var(--garden-violet); }
 .today-summary-print-btn {
   width: 100%; border: none; border-radius: 999px; padding: 11px; font-size: 13px; font-weight: 800; color: #fff; cursor: pointer;
   background: linear-gradient(180deg, var(--garden-violet), var(--garden-violet-deep));
@@ -1727,38 +1818,40 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
    .mode-row, buttons, badges, bars, and every screen's card-like
    classes) so the whole app now shares one look.
    ========================================================= */
-.home {
-  /* Owl Garden redesign: the real illustrated scene (public/icons/homepage.png)
-     IS the page background now, not a boxed/rounded card sitting on top of
-     .screen's default panel -- no border-radius, no shadow, no clipped edge.
-     Genuinely full-bleed to the browser viewport (not just filling #root's
-     padded/max-width column, which would still leave body's own background
-     visible as a frame around it) via the standard "breakout" trick: made
-     100vw wide, then re-centered on the viewport with a translateX(-50%)
-     from its own (already viewport-centered, since #root has margin:0 auto)
-     natural position -- left:50% alone would only center against this
-     element's own start edge, not the viewport, so the transform is what
-     actually cancels that out. .home-content (a child, not this same
-     element) puts its own max-width/centering back for the actual cards, so
-     only the background bleeds full-width, not the dashboard grid itself.
-     background-color is the image's own grass tone as a fallback fill for
-     whatever's below the scaled image on a page taller than one screen's
-     worth of content (background-size:100% auto scales the image to the
-     viewport's width and lets its natural height follow, rather than
-     `cover`, which would crop/zoom unpredictably against Home's variable
-     content height). */
-  position: relative;
-  left: 50%;
-  width: 100vw;
-  transform: translateX(-50%);
+/* Owl Garden redesign: the real illustrated scene (public/icons/homepage.png)
+   is the page's own background while Home is open, not a boxed/rounded card
+   sitting inside .screen's padded panel. Painted on <body> (toggled via
+   Home.tsx's mount effect adding/removing this class) rather than on .home
+   itself -- .home still sits inside #root's padded/max-width column same as
+   every other screen, so a background painted there could never reach
+   behind the sticky .top-bar or the padding around it (leaving a strip of
+   .screen's peach gradient showing above/around the bar). body spans the
+   true page from viewport (0,0), so its own background starts at the very
+   top edge and reaches every side on any screen width -- no 100vw/translateX
+   breakout hack needed, and it works identically on mobile.
+   background-color is the image's own grass tone, a fallback fill for
+   whatever's below the scaled image on a page taller than one screen's
+   worth of content (background-size:100% auto scales the image to the
+   viewport's width and lets its natural, now-portrait height follow, rather
+   than `cover`, which would crop/zoom unpredictably against Home's variable
+   content height). */
+body.home-bg-active {
   background-color: #5fae4a;
   background-image: url("/icons/homepage.png");
   background-repeat: no-repeat;
   background-position: top center;
   background-size: 100% auto;
+}
+.home {
+  background: none;
   border-radius: 0;
   box-shadow: none;
-  padding-top: 26px;
+  padding-top: 0;
+  /* .home always immediately follows .top-bar in the DOM (see App.tsx) --
+     cancels the bar's own margin-bottom (20px, shared with every other
+     screen, so not touched there) so the greeting sits flush against it
+     here specifically. */
+  margin-top: -20px;
 }
 .home-footer {
   text-align: center; color: var(--garden-navy-soft); font-size: 12px; font-weight: 600;

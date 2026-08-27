@@ -1,62 +1,105 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { useAuth } from "../../state/AuthContext";
 import { usePet } from "../../state/PetContext";
+import { LEVELS } from "../../data/levels";
 import { Icon } from "./Icons";
+import { LevelBar } from "./LevelBar";
 
-// The Login/Sign out affordance, split out of TopNav into its own small bar
-// rendered just below it (see App.tsx) -- it's a state-dependent action, not
-// a fixed screen destination, so it no longer competes for space with
-// TopNav's 5 nav items. Also carries the BP stat pill (garden redesign) --
-// this row is the natural "current status" slot, alongside account status.
-// Signing out now flushes every pending local change to Supabase before the
-// session actually ends (see state/AuthContext.tsx's signOut / lib/sync.ts's
-// flushAllNow), so it's a real (if brief) network wait rather than instant --
-// `signingOut` disables the button and swaps its label so a student can't
-// double-tap it mid-flush.
+// The rightmost slot of the top bar: the BP stat pill, plus a single
+// "Profile" trigger (avatar + name) that opens a dropdown holding both the
+// Login/Sign out action and a nested Level pullout (LevelBar.tsx itself is
+// unchanged -- still the one place that calls setCurrentLevel()+dispatches
+// SET_LEVEL together, see data/levels.ts -- only where/how it's rendered
+// changed). Closes on an outside click or Escape, same as any other
+// lightweight menu.
 export function AccountBar() {
   const dispatch = useAppDispatch();
   const { status, user, isGuest, signOut } = useAuth();
   const { pet } = usePet();
   const [signingOut, setSigningOut] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [levelOpen, setLevelOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    function handlePointerDown(e: PointerEvent) {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) closeMenu();
+    }
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") closeMenu();
+    }
+    document.addEventListener("pointerdown", handlePointerDown, true);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown, true);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [menuOpen]);
+
+  function closeMenu() {
+    setMenuOpen(false);
+    setLevelOpen(false);
+  }
 
   async function handleSignOut() {
     setSigningOut(true);
     await signOut();
     setSigningOut(false);
+    closeMenu();
   }
 
-  const bpPill = (
-    <div className="top-nav-stat font-num">
-      <Icon name="star" />
-      {pet.bp.toLocaleString()} BP
-    </div>
-  );
-
-  if (status === "signedIn" && user) {
-    return (
-      <div className="account-bar">
-        {bpPill}
-        <div className="account-chip">
-          <span className="account-avatar">{user.username.slice(0, 1).toUpperCase()}</span>
-          <span className="account-bar-status">@{user.username}</span>
-          <button className="account-bar-btn" disabled={signingOut} onClick={() => void handleSignOut()}>
-            {signingOut ? "保存中... Saving..." : "退出 Sign out"}
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const signedIn = status === "signedIn" && user;
+  const displayName = signedIn ? `@${user.username}` : isGuest ? "访客 Guest" : "未登录 Guest";
 
   return (
     <div className="account-bar">
-      {bpPill}
-      <div className="account-chip">
-        <span className="account-avatar"><Icon name="paw" /></span>
-        {isGuest && <span className="account-bar-status">访客模式 Guest mode</span>}
-        <button className="account-bar-btn" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "auth" })}>
-          登录 Login
+      <div className="top-nav-stat font-num">
+        <Icon name="star" />
+        {pet.bp.toLocaleString()} BP
+      </div>
+
+      <div className="account-menu" ref={rootRef}>
+        <button className="account-chip" onClick={() => setMenuOpen((open) => !open)}>
+          <span className="account-avatar">{signedIn ? user.username.slice(0, 1).toUpperCase() : <Icon name="paw" />}</span>
+          <span className="account-bar-status">{displayName}</span>
+          <Icon name="chevron" className={"account-menu-caret" + (menuOpen ? " account-menu-caret-open" : "")} />
         </button>
+
+        {menuOpen && (
+          <div className="account-dropdown">
+            {LEVELS.length > 1 && (
+              <>
+                <button className="account-dropdown-item" onClick={() => setLevelOpen((open) => !open)}>
+                  <span>年级 Level</span>
+                  <Icon name="chevron" className={"account-dropdown-caret" + (levelOpen ? " account-dropdown-caret-open" : "")} />
+                </button>
+                {levelOpen && (
+                  <div className="account-dropdown-pullout">
+                    <LevelBar />
+                  </div>
+                )}
+                <div className="account-dropdown-divider" />
+              </>
+            )}
+            {signedIn ? (
+              <button className="account-dropdown-item" disabled={signingOut} onClick={() => void handleSignOut()}>
+                {signingOut ? "保存中... Saving..." : "退出 Sign out"}
+              </button>
+            ) : (
+              <button
+                className="account-dropdown-item"
+                onClick={() => {
+                  closeMenu();
+                  dispatch({ type: "GO_TO_SCREEN", screen: "auth" });
+                }}
+              >
+                登录 Login
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

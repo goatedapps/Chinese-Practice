@@ -89,7 +89,7 @@ export function RecentAchievements({
   return (
     <div className="dash-card recent-achievements">
       <div className="history-head">
-        <h2 className="section-heading"><Icon name="trophy" />最近成就 Recent Achievements</h2>
+        <h2 className="section-heading"><img className="section-heading-icon" src="/icons/recent-achievements.png" alt="" />最近成就 Recent Achievements</h2>
       </div>
       <div className="achievement-list">
         {rows.map((row) =>

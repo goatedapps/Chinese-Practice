@@ -105,12 +105,17 @@ export function SpecialQuest() {
 
   return (
     <div className="dash-card special-quest">
-      <h2 className="section-heading"><Icon name="wheel" />特别任务 Special Quest</h2>
+      <h2 className="section-heading quest-heading">
+        <Icon name="star" className="quest-heading-star" />
+        <Icon name="wheel" />特别任务 Special Quest
+        <Icon name="star" className="quest-heading-star" />
+      </h2>
       <p className="mission-subhead">Spin the wheel once a day for a bonus-BP quest!</p>
 
       {!quest ? (
         <div className="quest-wheel-wrap">
           <div className="quest-wheel-frame">
+            <div className="quest-wheel-base" />
             <div className="quest-wheel-pointer" />
             <div
               className="quest-wheel-dial"

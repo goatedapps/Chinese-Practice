@@ -35,10 +35,9 @@ export function TopNav() {
   return (
     <div className="top-nav-row">
       <div className="top-nav-brand">
-        <div className="top-nav-brand-badge"><img src="/owl/owl-toddler-very_happy.png" alt="" /></div>
+        <div className="top-nav-brand-badge"><img src="/icons/pet.png" alt="" /></div>
         <div className="top-nav-brand-text">
           <div className="top-nav-brand-title">华文练习</div>
-          <div className="top-nav-brand-sub">快乐学习每一天 · Learn a little every day</div>
         </div>
       </div>
 

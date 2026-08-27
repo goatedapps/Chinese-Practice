@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { loadHistory, deleteHistoryEntry } from "../../state/history";
 import { loadAchievements } from "../../state/achievements";
 import { getTodayStats, isTingxieMissionComplete } from "../../lib/stats";
@@ -25,6 +25,16 @@ export function Home() {
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
   const todayStats = getTodayStats(hist);
   const showTodaySummary = todayStats.questions > 0 || isTingxieMissionComplete() || getTodaySummary().storiesRead.length > 0;
+
+  // The illustrated background lives on <body> (not .home itself) so it
+  // reaches the true page top/edges, behind the sticky top-bar included --
+  // see body.home-bg-active in styles.css. Toggled here rather than baked
+  // into a static class since every other screen keeps the plain page
+  // background.
+  useEffect(() => {
+    document.body.classList.add("home-bg-active");
+    return () => document.body.classList.remove("home-bg-active");
+  }, []);
 
   function handleConfirm() {
     if (!pendingDeleteId) return;
@@ -71,14 +81,13 @@ export function Home() {
             <Reveal delay={260}>
               <div className="dash-card today-summary-card">
                 <div className="today-summary-left">
-                  <h2 className="section-heading"><Icon name="printer" />今日学习总结 Today's Session Summary</h2>
+                  <h2 className="section-heading"><img className="section-heading-icon" src="/icons/todays-summary.png" alt="" />今日学习总结 Today's Session Summary</h2>
                   <p className="picker-hint">
                     <span className="en">Print this to show your parents what you have learnt today!</span>
                   </p>
                 </div>
                 <div className="today-summary-right">
-                  <Icon name="printer" />
-                  <p>打印今日总结<br />给家长查看</p>
+                  <img src="/icons/printer.png" alt="" />
                   <button className="secondary-btn today-summary-print-btn" onClick={() => exportTodaySummaryToPdf(hist)}>
                     打印为 PDF
                   </button>

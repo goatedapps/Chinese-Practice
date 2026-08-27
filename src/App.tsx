@@ -18,7 +18,6 @@ import { Story } from "./components/Story/Story";
 import { Auth } from "./components/Auth/Auth";
 import { TopNav } from "./components/common/TopNav";
 import { AccountBar } from "./components/common/AccountBar";
-import { LevelBar } from "./components/common/LevelBar";
 import { CursorGlow } from "./components/common/CursorGlow";
 import { OwlFlyover } from "./components/common/OwlFlyover";
 import { IconSprite } from "./components/common/Icons";
@@ -147,15 +146,16 @@ function ScreenRouter() {
 
   return (
     <>
-      {/* One merged navy bar (TopNav's nav pills + LevelBar's P2/P5 toggle +
-          AccountBar's BP stat/avatar) -- each stays its own component/hook
-          boundary, but visually reads as a single top bar (see .top-bar in
-          styles.css). AccountBar still conditionally omits itself on the
-          Auth screen. */}
+      {/* One merged navy bar (TopNav's nav pills + AccountBar's BP stat and
+          profile menu) -- each stays its own component/hook boundary, but
+          visually reads as a single top bar (see .top-bar in styles.css).
+          The P2/P5 level toggle now lives inside AccountBar's profile
+          dropdown (LevelBar.tsx itself, just rendered as a nested pullout
+          there instead of its own bar item) -- see AccountBar.tsx.
+          AccountBar still conditionally omits itself on the Auth screen. */}
       {showTopNav && (
         <div className="top-bar">
           <TopNav />
-          <LevelBar />
           {showAccountBar && <AccountBar />}
         </div>
       )}

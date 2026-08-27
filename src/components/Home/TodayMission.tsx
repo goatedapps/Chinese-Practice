@@ -64,48 +64,54 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
       <div className="mission-list">
         <div className={"mission-row p1" + (dictationDone ? " mission-row-done" : "")}>
           <span className="mission-num">1</span>
-          <span className="mission-icon-box"><img src="/icons/dictation.png" alt="" /></span>
           <span className="mission-info">
             <span className="mission-title">听写练习</span>
             <span className="mission-status">Dictation Practice</span>
           </span>
-          {dictationDone ? (
-            <span className="mission-done">✓ 已完成</span>
-          ) : (
-            <button className="mission-go" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}>
-              去完成
-            </button>
-          )}
+          <span className="mission-right">
+            <span className="mission-icon-box"><img src="/icons/dictatation-mission.png" alt="" /></span>
+            {dictationDone ? (
+              <span className="mission-done">✓ 已完成</span>
+            ) : (
+              <button className="mission-go" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}>
+                去完成
+              </button>
+            )}
+          </span>
         </div>
         <div className={"mission-row p2" + (lessonDone ? " mission-row-done" : "")}>
           <span className="mission-num">2</span>
-          <span className="mission-icon-box"><img src="/icons/read.png" alt="" /></span>
           <span className="mission-info">
             <span className="mission-title">词语复习</span>
             <span className="mission-status">Vocabulary Review</span>
           </span>
-          {lessonDone ? (
-            <span className="mission-done">✓ 已完成</span>
-          ) : (
-            <button className="mission-go" onClick={startLessonMission}>
-              去完成
-            </button>
-          )}
+          <span className="mission-right">
+            <span className="mission-icon-box"><img src="/icons/practice-mission.png" alt="" /></span>
+            {lessonDone ? (
+              <span className="mission-done">✓ 已完成</span>
+            ) : (
+              <button className="mission-go" onClick={startLessonMission}>
+                去完成
+              </button>
+            )}
+          </span>
         </div>
         <div className={"mission-row p3" + (readingDone ? " mission-row-done" : "")}>
           <span className="mission-num">3</span>
-          <span className="mission-icon-box"><img src="/icons/practice.png" alt="" /></span>
           <span className="mission-info">
             <span className="mission-title">阅读理解</span>
             <span className="mission-status">Reading Comprehension</span>
           </span>
-          {readingDone ? (
-            <span className="mission-done">✓ 已完成</span>
-          ) : (
-            <button className="mission-go" disabled={starting} onClick={startReadingMission}>
-              {starting ? "…" : "去完成"}
-            </button>
-          )}
+          <span className="mission-right">
+            <span className="mission-icon-box"><img src="/icons/read-mission.png" alt="" /></span>
+            {readingDone ? (
+              <span className="mission-done">✓ 已完成</span>
+            ) : (
+              <button className="mission-go" disabled={starting} onClick={startReadingMission}>
+                {starting ? "…" : "去完成"}
+              </button>
+            )}
+          </span>
         </div>
       </div>
 
