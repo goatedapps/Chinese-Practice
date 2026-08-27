@@ -1,21 +1,35 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { stopSpeaking } from "../../lib/speech";
-import { TingxieProvider, useTingxieState, useTingxieDispatch } from "./tingxieState";
+import { TingxieProvider, useTingxieState, useTingxieDispatch, type TingxieView } from "./tingxieState";
+import { Icon } from "../common/Icons";
 import { LessonSelect } from "./LessonSelect";
-import { TingxiePicker } from "./TingxiePicker";
 import { Learn } from "./Learn";
 import { Apply } from "./Apply";
 import { Play } from "./Play";
 import { Practice } from "./Practice";
 
+// Learn isn't in this list -- it renders as its own taller sidebar card
+// (icon/title row plus the vocab/sentence sub-tab toggle inline below,
+// see tingxie-mode-card-tall) instead of the plain single-row button the
+// other three modes use.
+const MODES: { view: Exclude<TingxieView, "select" | "learn">; icon: string; title: string; colorClass: string }[] = [
+  { view: "apply", icon: "/icons/dictation-apply.png", title: "应用模式 Apply", colorClass: "tingxie-mode-apply" },
+  { view: "play", icon: "/icons/dictation-play.png", title: "游戏模式 Play", colorClass: "tingxie-mode-play" },
+  { view: "practice", icon: "/icons/dictation-test.png", title: "测试模式 Test", colorClass: "tingxie-mode-test" }
+];
+
 function TingxieShell() {
   const appDispatch = useAppDispatch();
   const state = useTingxieState();
   const dispatch = useTingxieDispatch();
+  // Mobile-only: the mode sidebar is off-canvas by default there (see
+  // .tingxie-mode-sidebar's media query) and slides in as an overlay when
+  // this is true -- purely ephemeral UI state, not worth lifting into the
+  // shared reducer.
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const inActivity = state.view === "learn" || state.view === "apply" || state.view === "play" || state.view === "practice";
-  const showTabs = inActivity && state.activeContent !== null;
 
   // Stop any in-progress "🔊 朗读 Listen" reading whenever the student
   // switches view/tab/lesson, or leaves Tingxie mode entirely (unmount) --
@@ -31,48 +45,123 @@ function TingxieShell() {
     else appDispatch({ type: "GO_TO_SCREEN", screen: "home" });
   }
 
-  return (
-    <div className="screen tingxie-screen">
-      <div className="tingxie-topbar">
-        <button className="back-btn" onClick={handleBack}>
-          <span className="back-btn-arrow">←</span>
-          <span className="back-btn-label">返回 Back</span>
-        </button>
-        {/* LessonSelect (the "select" view) already shows its own big
-            centered title -- a second one here would just duplicate it. */}
-        {state.view !== "select" && (
-          <div className="tingxie-topbar-title">
-            <img src="/icons/dictatation-mission.png" alt="" />
-            {state.activeContent?.title ?? "听写练习 Dictation Practice"}
-          </div>
-        )}
-      </div>
+  function goToMode(view: Exclude<TingxieView, "select">) {
+    dispatch({ type: "SET_VIEW", view });
+    setSidebarOpen(false);
+  }
 
-      {showTabs && (
-        <div className="tingxie-tabs">
-          {!state.activeContent?.isCustomReview && (
-            <button className={"tingxie-tab" + (state.view === "learn" ? " tingxie-tab-active" : "")} onClick={() => dispatch({ type: "SET_VIEW", view: "learn" })}>
-              📖 学习 Learn
-            </button>
-          )}
-          <button className={"tingxie-tab" + (state.view === "apply" ? " tingxie-tab-active" : "")} onClick={() => dispatch({ type: "SET_VIEW", view: "apply" })}>
-            ✏️ 词语应用 Apply
-          </button>
-          <button className={"tingxie-tab" + (state.view === "play" ? " tingxie-tab-active" : "")} onClick={() => dispatch({ type: "SET_VIEW", view: "play" })}>
-            ☁️ 词云游戏 Play
-          </button>
-          <button className={"tingxie-tab" + (state.view === "practice" ? " tingxie-tab-active" : "")} onClick={() => dispatch({ type: "SET_VIEW", view: "practice" })}>
-            🔊 听写测试 Test
+  // The "select" (LessonSelect) screen keeps the plain single-bar layout it
+  // always had -- LessonSelect shows its own big centered title, so this
+  // bar only needs the back button. Once a lesson (or custom review pool)
+  // is chosen, the mode tabs move into their own left sidebar instead (see
+  // .tingxie-activity-layout below), matching the approved mockup.
+  if (!inActivity || !state.activeContent) {
+    return (
+      <div className="screen tingxie-screen">
+        <div className="tingxie-topbar">
+          <button className="back-btn" onClick={handleBack}>
+            <span className="back-btn-arrow">←</span>
+            <span className="back-btn-label">返回 Back</span>
           </button>
         </div>
-      )}
+        <LessonSelect />
+      </div>
+    );
+  }
 
-      {state.view === "select" && <LessonSelect />}
-      {state.view === "picker" && <TingxiePicker />}
-      {state.view === "learn" && state.activeContent && <Learn />}
-      {state.view === "apply" && state.activeContent && <Apply />}
-      {state.view === "play" && state.activeContent && <Play />}
-      {state.view === "practice" && state.activeContent && <Practice />}
+  return (
+    <div className="screen tingxie-screen tingxie-screen-activity">
+      <div className="tingxie-activity-layout">
+        {/* Mobile only (see .tingxie-sidebar-backdrop's media query) --
+            dims the content and closes the sidebar on tap, the standard
+            off-canvas-drawer pattern. */}
+        {sidebarOpen && <div className="tingxie-sidebar-backdrop" onClick={() => setSidebarOpen(false)} />}
+
+        <aside className={"tingxie-mode-sidebar" + (sidebarOpen ? " tingxie-mode-sidebar-open" : "")}>
+          <button className="back-btn" onClick={handleBack}>
+            <span className="back-btn-arrow">←</span>
+            <span className="back-btn-label">返回 Back</span>
+          </button>
+          <h2 className="tingxie-mode-heading">
+            <Icon name="sparkle" className="tingxie-mode-heading-spark" />
+            选择听写模式 Choose Mode
+            <Icon name="sparkle" className="tingxie-mode-heading-spark" />
+          </h2>
+          <div className="tingxie-mode-list">
+            {/* Learn's tall card: a plain header row (own <button>, since
+                the sub-tab toggle below needs real <button>s too and a
+                <button> can't nest other buttons) plus the vocab/sentence
+                toggle inline underneath -- forced to exactly double the
+                other cards' height via flex-grow (see .tingxie-mode-card-tall).
+                Unavailable during custom review (no single lesson to attach
+                Learn's BP to), same as before. */}
+            {!state.activeContent?.isCustomReview && (
+              <div className={"tingxie-mode-card tingxie-mode-learn tingxie-mode-card-tall" + (state.view === "learn" ? " tingxie-mode-card-active" : "")}>
+                <button className="tingxie-mode-card-main" onClick={() => goToMode("learn")}>
+                  <span className="tingxie-mode-icon"><img src="/icons/dictation-learn.png" alt="" /></span>
+                  <span className="tingxie-mode-text">
+                    <span className="tingxie-mode-title">学习模式 Learn</span>
+                  </span>
+                  <Icon name="chevron" className="tingxie-mode-chevron" />
+                </button>
+                <div className="tingxie-mode-card-subtabs">
+                  <button
+                    className={"tingxie-mode-card-subtab" + (state.subTab === "vocab" ? " tingxie-mode-card-subtab-active" : "")}
+                    onClick={() => {
+                      dispatch({ type: "SET_SUB_TAB", tab: "vocab" });
+                      goToMode("learn");
+                    }}
+                  >
+                    词语 Vocab
+                  </button>
+                  <button
+                    className={"tingxie-mode-card-subtab" + (state.subTab === "sentence" ? " tingxie-mode-card-subtab-active" : "")}
+                    onClick={() => {
+                      dispatch({ type: "SET_SUB_TAB", tab: "sentence" });
+                      goToMode("learn");
+                    }}
+                  >
+                    句子 Sentences
+                  </button>
+                </div>
+              </div>
+            )}
+            {MODES.map((mode) => (
+              <button
+                key={mode.view}
+                className={"tingxie-mode-card " + mode.colorClass + (state.view === mode.view ? " tingxie-mode-card-active" : "")}
+                onClick={() => goToMode(mode.view)}
+              >
+                <span className="tingxie-mode-icon"><img src={mode.icon} alt="" /></span>
+                <span className="tingxie-mode-text">
+                  <span className="tingxie-mode-title">{mode.title}</span>
+                </span>
+                <Icon name="chevron" className="tingxie-mode-chevron" />
+              </button>
+            ))}
+          </div>
+        </aside>
+
+        <div className="tingxie-activity-content">
+          <div className="tingxie-activity-header">
+            {/* Hidden on desktop (the sidebar is always visible there) --
+                see .tingxie-mode-toggle-btn's media query. */}
+            <button className="tingxie-mode-toggle-btn" onClick={() => setSidebarOpen(true)}>
+              <Icon name="chevron" className="tingxie-mode-toggle-icon" />
+              切换模式 Modes
+            </button>
+            <div className="tingxie-activity-title">
+              <img src="/icons/dictatation-mission.png" alt="" />
+              {state.activeContent.title}
+            </div>
+          </div>
+
+          {state.view === "learn" && <Learn />}
+          {state.view === "apply" && <Apply />}
+          {state.view === "play" && <Play />}
+          {state.view === "practice" && <Practice />}
+        </div>
+      </div>
     </div>
   );
 }

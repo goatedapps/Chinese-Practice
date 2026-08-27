@@ -8,7 +8,7 @@ import type { TingxieLessonIndexEntry, TingxieSentence, TingxieVocabItem } from 
 import { tingxieSentenceWords, tingxieSentenceChars, buildTingxiePracticeSentenceQueue, type TingxieApplyItem, type TingxiePracticeItem } from "../../data/tingxie";
 import { shuffle } from "../../lib/shuffle";
 
-export type TingxieView = "select" | "picker" | "learn" | "apply" | "play" | "practice";
+export type TingxieView = "select" | "learn" | "apply" | "play" | "practice";
 export type TingxieSubTab = "vocab" | "sentence";
 export type TingxieSentenceDifficulty = "easy" | "hard";
 
@@ -88,7 +88,9 @@ export interface TingxieState {
   practiceFlipped: boolean;
   practiceComplete: boolean;
 
-  // 自由复习 Custom review picker
+  // LessonSelect's own multi-select state -- one lesson selected goes
+  // through the single-lesson path (SELECT_LESSON_SUCCESS); two or more
+  // pool together into a 自由复习 Custom Review session via these.
   pickerSelectedIds: number[];
   loadingReview: boolean;
   reviewError: string | null;
@@ -144,7 +146,6 @@ function shuffledChipOrder(sentence: TingxieSentence | undefined, difficulty: Ti
 export type TingxieAction =
   | { type: "SET_VIEW"; view: TingxieView }
   | { type: "GO_SELECT" }
-  | { type: "GO_PICKER" }
   | { type: "SET_SUB_TAB"; tab: TingxieSubTab }
   | { type: "LOAD_INDEX_START" }
   | { type: "LOAD_INDEX_SUCCESS"; index: TingxieLessonIndexEntry[] }
@@ -173,7 +174,6 @@ export type TingxieAction =
   | { type: "PRACTICE_CORRECT" }
   | { type: "PRACTICE_MISSED" }
   | { type: "TOGGLE_PICKER_LESSON"; id: number }
-  | { type: "TOGGLE_PICKER_ALL"; allIds: number[] }
   | { type: "CUSTOM_REVIEW_START" }
   | { type: "CUSTOM_REVIEW_SUCCESS"; content: TingxieActiveContent; target: "apply" | "play" | "practice" }
   | { type: "CUSTOM_REVIEW_ERROR"; error: string };
@@ -184,8 +184,6 @@ function reducer(state: TingxieState, action: TingxieAction): TingxieState {
       return { ...state, view: action.view };
     case "GO_SELECT":
       return { ...initialState, lessonIndex: state.lessonIndex };
-    case "GO_PICKER":
-      return { ...state, view: "picker", pickerSelectedIds: [] };
     case "SET_SUB_TAB":
       return { ...state, subTab: action.tab };
 
@@ -388,11 +386,6 @@ function reducer(state: TingxieState, action: TingxieAction): TingxieState {
         pickerSelectedIds: has ? state.pickerSelectedIds.filter((id) => id !== action.id) : [...state.pickerSelectedIds, action.id]
       };
     }
-    case "TOGGLE_PICKER_ALL": {
-      const allSelected = action.allIds.length > 0 && action.allIds.every((id) => state.pickerSelectedIds.includes(id));
-      return { ...state, pickerSelectedIds: allSelected ? [] : action.allIds };
-    }
-
     case "CUSTOM_REVIEW_START":
       return { ...state, loadingReview: true, reviewError: null };
     case "CUSTOM_REVIEW_SUCCESS": {

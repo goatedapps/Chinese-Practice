@@ -86,16 +86,24 @@ function ScreenRouter() {
   // real sign-in resolves with no extra dispatch needed.
   const needsAuthGate = status !== "signedIn" && !isGuest;
 
-  // Hidden mid-quiz/on the result screen -- Quiz already has its own Home
-  // button with a "leave without saving?" confirmation, and a second
-  // always-visible way out would either bypass that or duplicate it. Also
-  // hidden while the login gate is forcing the Auth screen, since there's
-  // nowhere else in the app to navigate to yet.
-  const showTopNav = !needsAuthGate && state.screen !== "quiz" && state.screen !== "result";
+  // Shown mid-quiz too now (TopNav/AccountBar's own useQuizLeaveGuard asks
+  // "progress will be lost?" before actually navigating away, same wording
+  // as Quiz's own home-btn confirmation, so this doesn't bypass or duplicate
+  // that -- it's a second entry point into the same confirm-then-leave
+  // flow). Still hidden on the result screen -- history's already saved by
+  // the time Result mounts, so there's nothing to lose there, but Result
+  // has its own "Back to Home" affordance and doesn't need a second one.
+  // Shown even while the login gate is forcing the Auth screen (brand + nav
+  // pill above the login card), even though its nav items are inert there --
+  // needsAuthGate keeps forcing Auth back onto screen regardless of what a
+  // nav click sets state.screen to, so a click there just does nothing
+  // visible rather than breaking anything.
+  const showTopNav = state.screen !== "result";
   // The Login/Sign out affordance lives here, not as a TopNav item -- paired
   // with TopNav's own visibility, but also hidden on the Auth screen itself
-  // (no point offering "Login" while already on the login page).
-  const showAccountBar = showTopNav && state.screen !== "auth";
+  // (no point offering "Login" while already on the login page) and while
+  // the login gate is forcing Auth regardless of state.screen's real value.
+  const showAccountBar = showTopNav && !needsAuthGate && state.screen !== "auth";
 
   let screen: ReactNode;
   if (needsAuthGate) {

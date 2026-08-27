@@ -54,15 +54,17 @@ export function PlayGame() {
     if (completion.perfect) Sound.applause();
     else Sound.encourage();
 
-    // "Play the ball game" (any outcome) / "Beat the memory game in 20s"
-    // (a perfect result) Special Quests -- see components/Home/SpecialQuest.tsx.
-    // completeSpecialQuest() is the dedup guard: only true the first time a
-    // qualifying game finishes while that quest is pending today.
+    // "Play the ball game" (any outcome) / "Beat the memory game in 20s" /
+    // "Catch 7+ feathers in the kite game" (both perfect results) Special
+    // Quests -- see components/Home/SpecialQuest.tsx. completeSpecialQuest()
+    // is the dedup guard: only true the first time a qualifying game
+    // finishes while that quest is pending today.
     let questBonusBP: number | undefined;
     const quest = getTodaySpecialQuest();
     const questMatches =
       (quest?.questId === "ballPlay" && item!.id === "ball") ||
-      (quest?.questId === "memoryFast" && item!.id === "puzzle" && completion.perfect);
+      (quest?.questId === "memoryFast" && item!.id === "puzzle" && completion.perfect) ||
+      (quest?.questId === "kitePlay" && item!.id === "kite" && completion.perfect);
     if (quest && questMatches && completeSpecialQuest(quest.questId)) {
       const questConfig = specialQuestConfig(quest.questId);
       if (questConfig) {

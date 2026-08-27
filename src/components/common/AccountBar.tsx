@@ -5,6 +5,8 @@ import { usePet } from "../../state/PetContext";
 import { LEVELS } from "../../data/levels";
 import { Icon } from "./Icons";
 import { LevelBar } from "./LevelBar";
+import { ConfirmModal } from "./Modal";
+import { useQuizLeaveGuard } from "../../lib/useQuizLeaveGuard";
 
 // The rightmost slot of the top bar: the BP stat pill, plus a single
 // "Profile" trigger (avatar + name) that opens a dropdown holding both the
@@ -21,6 +23,7 @@ export function AccountBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [levelOpen, setLevelOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
+  const { guard, confirmOpen, confirm, cancel } = useQuizLeaveGuard();
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -56,7 +59,7 @@ export function AccountBar() {
   return (
     <div className="account-bar">
       <div className="top-nav-stat font-num">
-        <Icon name="star" />
+        <img className="top-nav-stat-coin" src="/icons/coin.png" alt="" />
         {pet.bp.toLocaleString()} BP
       </div>
 
@@ -92,7 +95,7 @@ export function AccountBar() {
                 className="account-dropdown-item"
                 onClick={() => {
                   closeMenu();
-                  dispatch({ type: "GO_TO_SCREEN", screen: "auth" });
+                  guard(() => dispatch({ type: "GO_TO_SCREEN", screen: "auth" }));
                 }}
               >
                 登录 Login
@@ -101,6 +104,17 @@ export function AccountBar() {
           </div>
         )}
       </div>
+
+      {confirmOpen && (
+        <ConfirmModal
+          messageLines={[
+            "确定要离开吗？本次练习尚未完成，本组进度将不会被保存。",
+            "Are you sure? Your current progress will be lost."
+          ]}
+          onConfirm={confirm}
+          onCancel={cancel}
+        />
+      )}
     </div>
   );
 }

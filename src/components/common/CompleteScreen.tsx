@@ -14,9 +14,14 @@ interface CompleteScreenProps {
 export function CompleteScreen({ title, bpAmount, children }: CompleteScreenProps) {
   return (
     <div className="complete-screen">
-      <div className="complete-emoji">🎉</div>
+      <img className="complete-emoji" src="/icons/congratulations.png" alt="" />
       <h2>{title}</h2>
-      {bpAmount != null && <p className="bp-pop">+{bpAmount} BP</p>}
+      {bpAmount != null && (
+        <p className="bp-pop">
+          <img className="bp-pop-coin" src="/icons/coin.png" alt="" />
+          {`+${bpAmount} BP`}
+        </p>
+      )}
       {children}
     </div>
   );

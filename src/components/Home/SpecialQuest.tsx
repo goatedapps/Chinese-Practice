@@ -14,6 +14,12 @@ import { Sound } from "../../lib/sound";
 // transition duration" pattern as Story.tsx's page-flip animation.
 const SPIN_MS = 2600;
 const SEGMENT_DEG = 360 / SPECIAL_QUEST_TYPES.length;
+// spinwheel.png's wedges sit about 30deg further clockwise than a naive
+// "segment 0 starts at 12 o'clock" reading would suggest -- this only
+// nudges where each icon is drawn on top of the (already-correct) dial
+// artwork, not the spin-landing math in handleSpin() below, which lands on
+// the right wedge by index regardless of the icons' own rotation offset.
+const ICON_ANGLE_OFFSET_DEG = 30;
 
 function isIconPath(icon: string): boolean {
   return icon.startsWith("/");
@@ -93,6 +99,8 @@ export function SpecialQuest() {
       dispatch({ type: "GO_TO_SCREEN", screen: (pet.inventory["ball"] ?? 0) > 0 ? "bag" : "shop" });
     } else if (quest.questId === "memoryFast") {
       dispatch({ type: "GO_TO_SCREEN", screen: (pet.inventory["puzzle"] ?? 0) > 0 ? "bag" : "shop" });
+    } else if (quest.questId === "kitePlay") {
+      dispatch({ type: "GO_TO_SCREEN", screen: (pet.inventory["kite"] ?? 0) > 0 ? "bag" : "shop" });
     } else if (quest.questId === "petFull") {
       // Bag.tsx already self-handles an empty bag by offering its own
       // "Visit Shop" redirect -- no smart-routing needed for this one.
@@ -121,7 +129,7 @@ export function SpecialQuest() {
               style={{ transform: `rotate(${dialRotation}deg)` }}
             >
               {SPECIAL_QUEST_TYPES.map((q, idx) => {
-                const angle = idx * SEGMENT_DEG + SEGMENT_DEG / 2;
+                const angle = idx * SEGMENT_DEG + SEGMENT_DEG / 2 + ICON_ANGLE_OFFSET_DEG;
                 return (
                   <div
                     key={q.id}

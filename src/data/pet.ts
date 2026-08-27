@@ -234,7 +234,11 @@ export const SPECIAL_QUEST_TYPES: SpecialQuestConfig[] = [
   { id: "ballPlay", label: "玩一次小球游戏 Play the Ball Game", icon: "/icons/ball.png", bonusBP: 20 },
   { id: "petFull", label: "把宠物喂到饱食度 100% Fill Your Pet's Hunger to 100%", icon: "/icons/rice.png", bonusBP: 40 },
   { id: "memoryFast", label: "20 秒内完成记忆卡牌 Beat the Memory Game in 20s", icon: "/icons/memory.png", bonusBP: 20 },
-  { id: "comprehension1", label: "完成一篇阅读理解 Complete One Comprehension Passage", icon: "/icons/read.png", bonusBP: 100 }
+  { id: "comprehension1", label: "完成一篇阅读理解 Complete One Comprehension Passage", icon: "/icons/read.png", bonusBP: 100 },
+  // Requires actually crossing the kite minigame's own bonusThreshold (7/8
+  // catches, see TOY_GAMES.kite) -- i.e. completion.perfect, not just any
+  // finish -- unlike ballPlay above, which pays out on any outcome.
+  { id: "kitePlay", label: "接住 7 个以上羽毛 Catch 7+ Feathers in the Kite Game", icon: "/icons/kite.png", bonusBP: 60 }
 ];
 
 export function specialQuestConfig(id: string): SpecialQuestConfig | undefined {

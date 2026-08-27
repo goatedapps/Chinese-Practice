@@ -299,7 +299,7 @@ body {
   background: rgba(255,255,255,.1); color: #fff;
   padding: 9px 16px; border-radius: 999px; font-size: 16px; font-weight: 800;
 }
-.top-nav-stat svg { width: 19px; height: 19px; color: var(--garden-gold); }
+.top-nav-stat-coin { width: 19px; height: 19px; object-fit: contain; flex: none; }
 .account-menu { position: relative; flex: none; }
 .account-chip {
   display: flex; align-items: center; gap: 9px;
@@ -630,8 +630,12 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 @media (min-width: 700px) {
   .quest-wheel-frame { --wheel-size: min(340px, calc(100vw - 124px)); }
 }
-/* Baked into spinwheel.png now -- see the comment above. */
-.quest-wheel-pointer, .quest-wheel-slot { display: none; }
+/* The pointer is baked into spinwheel.png (see the comment above), so that
+   overlay stays hidden -- but the per-segment icons are real content
+   (SPECIAL_QUEST_TYPES' own icon, different per quest), so they're drawn
+   for real here, one per colored wedge of the 6-wedge dial graphic. */
+.quest-wheel-pointer { display: none; }
+.quest-wheel-slot { position: absolute; top: 50%; left: 50%; }
 .quest-wheel-base {
   position: absolute; left: 50%; top: var(--wheel-size); transform: translate(-50%, -50%);
   width: 92%; aspect-ratio: 752 / 345;
@@ -642,9 +646,25 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   position: absolute; top: 0; left: 0; width: 100%; aspect-ratio: 1;
   z-index: 1;
   background: url("/icons/spinwheel.png") center / contain no-repeat;
+  /* How far out from the hub each segment's icon sits -- .quest-wheel-slot's
+     inline transform (see SpecialQuest.tsx) reads this. ~32% of the dial's
+     own width lands roughly in the middle of a wedge's colored area,
+     comfortably clear of both the gold center hub and the outer rim. */
+  --wheel-radius: calc(var(--wheel-size) * .32);
 }
 @media (prefers-reduced-motion: no-preference) {
   .quest-wheel-dial { transition: transform 2.6s cubic-bezier(.12, .72, .18, 1); }
+}
+/* Bare icon, no coin/badge behind it -- QuestIcon (see SpecialQuest.tsx)
+   puts this class directly on the <img> (every current SPECIAL_QUEST_TYPES
+   entry is a real icon path, not an emoji span). Rotates along with the
+   dial by design (see this section's own top comment) -- like labels on a
+   real prize wheel, always radial rather than counter-rotated upright. */
+.quest-wheel-icon {
+  display: block;
+  width: calc(var(--wheel-size) * .16); height: calc(var(--wheel-size) * .16);
+  object-fit: contain;
+  filter: drop-shadow(0 2px 3px rgba(20, 20, 60, .35));
 }
 /* Sibling of .quest-wheel-dial (not nested inside it) so it stays fixed and
    upright at the wheel's center while the dial spins around/behind it. `top`
@@ -1085,7 +1105,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .secondary-btn:hover { transform: translateY(-2px); filter: brightness(1.02); }
 .secondary-btn:active { transform: translateY(1px); box-shadow: none; }
 .action-row { margin-top: 20px; display: flex; gap: 12px; }
-.picker .action-row { justify-content: flex-end; }
+.picker .action-row, .tingxie-select .action-row { justify-content: flex-end; }
 .hidden { display: none !important; }
 
 /* ---------- Quiz ---------- */
@@ -1653,77 +1673,81 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   background-image: linear-gradient(180deg, rgba(255,255,255,.4), rgba(255,255,255,0) 55%), linear-gradient(180deg, var(--garden-gold), var(--garden-gold-deep));
 }
 
+/* Exactly 3 columns so the 6 SHOP_ITEMS always land in exactly 2 rows (per
+   the design brief) rather than reflowing at odd widths like the old
+   auto-fill grid did. Desktop additionally pins the whole page to the
+   viewport height (see .shop-screen below) so those 2 rows never need a
+   page scrollbar -- .shop-grid itself is the flex:1 piece that fills
+   whatever's left under the header, with the grid rows (and each card
+   inside them) stretching to fill that evenly. */
 .shop-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 14px; margin-top: 16px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 20px;
 }
-/* Items-for-Sale cards share the same "icon + name/stat row" look as
-   Bag.tsx's cards (.bag-item-row below) -- the only structural difference is
-   the Buy button stacked underneath, since purchasing needs its own distinct
-   action + cost display that a bare tap can't express. */
+@media (min-width: 900px) {
+  .screen.shop-screen { height: calc(100vh - 160px); display: flex; flex-direction: column; overflow: hidden; }
+  /* minmax(0, 1fr), not a bare 1fr -- a bare fr track's automatic minimum
+     size is content-based (auto), so without this the two rows would just
+     grow to fit each card's natural content height (as this actually did
+     the first time around) instead of splitting the grid's own fixed
+     height evenly, defeating the whole fixed-height page. */
+  .screen.shop-screen .shop-grid { flex: 1; min-height: 0; grid-template-rows: repeat(2, minmax(0, 1fr)); overflow-y: auto; }
+}
+/* Icon claims ~50% of the card's own height (see .shop-item-icon's
+   flex-basis) with the label/stats/buy-button splitting the rest, per the
+   design brief -- .shop-item-owned is the "how many you already have"
+   badge in the top-right corner (always shown, even at ×0, so its position
+   never shifts around as a purchase changes the count). */
 .shop-item-card {
+  position: relative; min-height: 0;
   background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
   border: none;
   border-radius: 22px;
-  padding: 14px 16px;
-  display: flex; flex-direction: column; gap: 10px;
+  padding: 16px;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px;
   box-shadow: var(--shadow-1);
   transition: transform .18s ease, box-shadow .18s ease;
 }
 .shop-item-card:hover { transform: translateY(-3px) scale(1.02); box-shadow: var(--shadow-2); }
 .shop-item-disabled { opacity: .5; }
 .shop-item-disabled:hover { transform: none; box-shadow: var(--shadow-1); }
-.shop-item-buy:disabled { cursor: not-allowed; opacity: .6; filter: none; box-shadow: none; }
-.shop-bag-indicator {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-weight: 700; color: var(--ink);
+.shop-item-owned {
+  position: absolute; top: 12px; right: 14px;
+  background: var(--garden-violet-pale, #efe7ff); color: var(--garden-violet-deep, var(--primary));
+  font-size: 12px; font-weight: 800; line-height: 1;
+  padding: 4px 9px; border-radius: 999px;
 }
+.shop-item-icon { flex: 0 0 50%; min-height: 0; width: auto; max-width: 70%; object-fit: contain; margin-top: 6px; }
+.shop-item-label { font-size: 15px; font-weight: 800; color: var(--ink); }
+.shop-item-stats { font-size: 12.5px; color: var(--ink-soft); display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.shop-item-buy {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%; margin-top: auto;
+}
+.shop-item-buy-coin { width: 16px; height: 16px; object-fit: contain; flex: none; }
+.shop-item-buy:disabled { cursor: not-allowed; opacity: .6; filter: none; box-shadow: none; }
 
 .bag-screen { text-align: center; }
 .bag-screen .action-row { justify-content: center; }
+/* Same auto-fill sizing as before, but now populated with .shop-item-card
+   (see below) instead of the old horizontal .bag-item-card row -- Bag's
+   grid still varies its own column count by available width (unlike
+   Shop's fixed repeat(3, 1fr), which specifically needs its 6 items to
+   land in exactly 2 rows), so this stays auto-fill rather than adopting
+   Shop's grid template wholesale, just its card look. */
 .bag-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 14px; margin-top: 20px; text-align: center;
 }
-/* Shared "icon + name/stat" row: image next to the name (not stacked above
-   it), stat line underneath the name. Bag.tsx's tappable card *is* this row
-   (no other content); Shop.tsx's "Items for Sale" card nests it above its
-   own Buy button (.shop-item-card above); Shop's read-only "My Bag" preview
-   also uses .bag-item-card directly, just without a .bag-item-stat line. */
-.bag-item-card, .bag-item-row {
-  display: flex; flex-direction: row; align-items: center; gap: 12px; text-align: left;
-}
-.bag-item-card {
-  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
-  border: none;
-  border-radius: 22px;
-  padding: 14px 16px;
-  box-shadow: var(--shadow-1);
-  transition: transform .15s ease, box-shadow .15s ease;
-}
-.bag-item-card:hover { transform: translateY(-3px) scale(1.02); box-shadow: var(--shadow-2); }
 /* Bag.tsx's card is a real <button> (the whole card is the tap target --
-   tap to feed/play, no separate "Give"/"Play" button inside it); Shop.tsx
-   reuses .bag-item-card for its own read-only bag preview as a plain <div>,
-   so the button-only resets/affordance live in this modifier instead of the
-   shared base class. */
+   tap to feed/play, no separate "Give"/"Play" button inside it) built on
+   top of Shop.tsx's own .shop-item-card visual base -- this is just the
+   button-reset/press-state modifier layered on top of that shared look. */
 .bag-item-card-tappable {
   width: 100%; cursor: pointer; font-family: inherit; color: inherit;
 }
 .bag-item-card-tappable:active { transform: scale(.97); box-shadow: var(--shadow-press); }
 .bag-item-card-tappable:disabled { cursor: not-allowed; opacity: .6; filter: none; box-shadow: none; transform: none; }
-.bag-item-emoji { position: relative; flex: 0 0 auto; }
-.bag-item-icon { display: block; width: 46px; height: 46px; object-fit: contain; }
-.bag-item-qty-badge {
-  position: absolute; top: -6px; right: -12px;
-  background: var(--primary); color: #fff8ee;
-  font-size: 11px; font-weight: 700; line-height: 1;
-  padding: 3px 6px; border-radius: 999px;
-  box-shadow: var(--shadow-1);
-}
-.bag-item-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 auto; }
-.bag-item-label { font-size: 14px; font-weight: 700; color: var(--ink); }
-.bag-item-stat { font-size: 12.5px; color: var(--ink-soft); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .stat-inline { display: inline-flex; align-items: center; gap: 3px; }
 .stat-inline-icon { width: 13px; height: 13px; object-fit: contain; }
 
@@ -1903,29 +1927,165 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 }
 .tingxie-topbar .back-btn { margin-bottom: 0; flex: 0 0 auto; }
 /* No BP indicator here any more -- the top nav's own BP pill (AccountBar)
-   already shows it on every screen, so a second one was redundant. */
-.tingxie-topbar-title {
-  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
-  text-align: center; font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
-  font-size: 17px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.tingxie-topbar-title img { width: 22px; height: 22px; object-fit: contain; flex: none; }
+   already shows it on every screen, so a second one was redundant. Only
+   ever rendered on the "select" (LessonSelect) view now -- once a lesson
+   is picked, the equivalent title moves into .tingxie-activity-title
+   instead (see the in-activity two-column layout below), so there's no
+   title to show back here any more. */
 
-.tingxie-tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
-.tingxie-tab {
-  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
-  border: 2px solid var(--border); border-radius: 999px;
-  padding: 8px 14px; font-size: 14px; font-weight: 600; color: var(--ink-soft); cursor: pointer;
-  box-shadow: var(--shadow-1);
-  transition: border-color .15s, color .15s, transform .1s;
+/* ---------- Tingxie in-activity layout (mode sidebar + content) ----------
+   Once a lesson (or custom-review pool) is picked, the old horizontal
+   .tingxie-tabs row is replaced by this two-column layout: a left sidebar
+   of colored mode cards (Learn/Apply/Play/Test), and the actual activity
+   content on the right. Desktop: side by side, sidebar always visible.
+   Mobile: the sidebar is an off-canvas drawer (see its own media query
+   below), toggled via .tingxie-mode-toggle-btn in the content header. */
+/* align-items:stretch (not flex-start) so the sidebar matches the content
+   column's height -- .tingxie-mode-list below is what actually grows to
+   fill that height (the back button/heading above it stay their own
+   natural size), and each mode card gets an equal share of it in turn, so
+   the last one (Test) ends up bottom-aligned with the flashcard. Mobile's
+   sidebar is `position:fixed` with its own top/bottom:0 (see its own media
+   query below), so this has no effect there -- fixed positioning already
+   overrides flex sizing once applied. */
+/* Desktop only: pin the whole in-activity card to exactly fill the
+   viewport (no page scrollbar), and keep that height constant across every
+   mode -- Play's own fixed-height cloud-sky used to leave the card looking
+   shorter than Learn/Apply/Test since height was otherwise just whatever
+   the active mode's content needed. 160px = the sticky .top-bar's own
+   rendered height (80px) + its margin-bottom (20px) + #root's own
+   padding-bottom (60px), i.e. the fixed chrome above and below this card;
+   only holds while .top-bar stays a single row, true from this breakpoint
+   up (it only wraps to two rows/hides nav items well below it). */
+@media (min-width: 900px) {
+  .screen.tingxie-screen-activity {
+    height: calc(100vh - 160px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .tingxie-screen-activity .tingxie-activity-layout { flex: 1; min-height: 0; }
+  .tingxie-screen-activity .tingxie-activity-content {
+    display: flex; flex-direction: column; min-height: 0;
+    overflow-y: auto;
+  }
 }
-.tingxie-tab:hover { transform: translateY(-2px) scale(1.03); }
-.tingxie-tab-active {
+.tingxie-activity-layout { display: flex; align-items: stretch; gap: 22px; position: relative; }
+.tingxie-mode-sidebar {
+  flex: 0 0 260px;
+  display: flex; flex-direction: column; gap: 14px;
+  background: linear-gradient(180deg, var(--garden-cream), #fff9ec);
+  border-radius: 24px; padding: 20px;
+  box-shadow: 0 14px 30px -12px rgba(20,20,60,.2), 0 2px 10px rgba(20,20,60,.08);
+}
+.tingxie-mode-sidebar .back-btn { margin-bottom: 0; }
+.tingxie-mode-heading {
+  margin: 0; text-align: center;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  font-size: 17px; color: var(--garden-navy);
+}
+.tingxie-mode-heading-spark { width: 15px; height: 15px; color: var(--garden-gold); flex: none; }
+.tingxie-mode-list { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+/* Equal flex-basis:0 for every card, so the flex-grow factor alone decides
+   height -- .tingxie-mode-card-tall (Learn) overrides its own grow factor
+   to 2 below, making it exactly double any one of these three. */
+.tingxie-mode-list > * { flex: 1 1 0; }
+.tingxie-mode-card {
+  display: flex; align-items: center; gap: 12px;
+  border: none; border-radius: 18px; padding: 14px 16px;
+  color: #fff; text-align: left; cursor: pointer;
+  opacity: .82;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 6px 14px -8px rgba(20,20,60,.4);
+  transition: transform .12s ease, opacity .12s ease, box-shadow .12s ease;
+}
+.tingxie-mode-card:hover { transform: translateY(-2px); opacity: 1; }
+.tingxie-mode-card-active { opacity: 1; box-shadow: inset 0 0 0 3px rgba(255,255,255,.7), 0 6px 14px -8px rgba(20,20,60,.4); }
+/* No more white badge behind the icon -- it sits directly on the card's own
+   color, sized off the card's own width (not a fixed px) so it keeps
+   occupying roughly a third of the button regardless of sidebar width. */
+.tingxie-mode-icon {
+  flex: 0 0 33%; width: 33%; aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+.tingxie-mode-icon img { width: 100%; height: 100%; object-fit: contain; }
+.tingxie-mode-text { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
+.tingxie-mode-title { font-weight: 800; font-size: 18px; }
+.tingxie-mode-chevron { width: 14px; height: 14px; color: rgba(255,255,255,.85); flex: none; align-self: center; transform: rotate(-90deg); }
+.tingxie-mode-learn { background: linear-gradient(180deg, var(--garden-violet), var(--garden-violet-deep)); }
+.tingxie-mode-apply { background: linear-gradient(180deg, var(--garden-green), #2f8f57); }
+.tingxie-mode-play { background: linear-gradient(180deg, var(--garden-gold), var(--garden-gold-deep)); }
+.tingxie-mode-test { background: linear-gradient(180deg, var(--garden-blue), #2f8fc7); }
+/* Learn's tall card: .tingxie-mode-card-tall zeroes out the base card's own
+   padding (the header row and the sub-tab row below need their own,
+   different, padding) and doubles its flex-grow share (2 vs the other
+   three cards' 1 each, see .tingxie-mode-list > *) so it's always exactly
+   double their height, not just whatever its two stacked rows happen to
+   need. Only the header half (.tingxie-mode-card-main) carries the violet
+   color now -- the card's own background is cleared so the sub-tab half
+   shows the sidebar's own cream tone through it instead, with
+   overflow:hidden clipping both halves to the card's rounded corners. */
+.tingxie-mode-card-tall { flex: 2 1 0; flex-direction: column; align-items: stretch; justify-content: center; gap: 8px; padding: 0; cursor: default; overflow: hidden; }
+.tingxie-mode-card-tall.tingxie-mode-learn { background: none; }
+.tingxie-mode-card-main {
+  display: flex; align-items: center; gap: 12px; width: 100%;
   background: linear-gradient(180deg, var(--garden-violet), var(--garden-violet-deep));
-  border-color: var(--garden-violet-deep); color: #fff;
+  border: none; color: #fff; text-align: left; cursor: pointer;
+  padding: 14px 16px;
+}
+.tingxie-mode-card-subtabs {
+  display: flex; gap: 8px; padding: 14px;
+  background: linear-gradient(180deg, var(--garden-cream), #fff9ec);
+}
+.tingxie-mode-card-subtab {
+  flex: 1;
+  background: rgba(124,58,183,.12); border: none; border-radius: 999px;
+  padding: 7px 8px; font-size: 12px; font-weight: 800; color: var(--garden-violet-deep);
+  cursor: pointer; transition: background .12s ease, color .12s ease;
+}
+.tingxie-mode-card-subtab:hover { background: rgba(124,58,183,.22); }
+.tingxie-mode-card-subtab-active { background: var(--garden-violet); color: #fff; }
+
+.tingxie-activity-content { flex: 1; min-width: 0; }
+.tingxie-activity-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.tingxie-activity-title {
+  flex: 1; display: flex; align-items: center; gap: 8px;
+  font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  font-size: 17px; font-weight: 700; color: var(--garden-navy);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.tingxie-activity-title img { width: 22px; height: 22px; object-fit: contain; flex: none; }
+/* Hidden on desktop -- the sidebar sits inline there, always visible, so
+   there's nothing to toggle. */
+.tingxie-mode-toggle-btn { display: none; }
+.tingxie-sidebar-backdrop { display: none; }
+
+@media (max-width: 780px) {
+  .tingxie-activity-layout { display: block; }
+  .tingxie-mode-sidebar {
+    position: fixed; top: 0; bottom: 0; left: 0; z-index: 40;
+    width: min(300px, 84vw); flex: none;
+    border-radius: 0 24px 24px 0;
+    transform: translateX(-100%);
+    transition: transform .2s ease;
+    overflow-y: auto;
+  }
+  .tingxie-mode-sidebar-open { transform: translateX(0); }
+  .tingxie-sidebar-backdrop {
+    display: block;
+    position: fixed; inset: 0; z-index: 39;
+    background: rgba(20, 20, 60, .45);
+  }
+  .tingxie-mode-toggle-btn {
+    display: flex; align-items: center; gap: 6px; flex: none;
+    background: var(--garden-cream-soft); color: var(--garden-navy);
+    border: none; border-radius: 999px; padding: 8px 14px;
+    font-size: 13px; font-weight: 800; cursor: pointer;
+  }
+  .tingxie-mode-toggle-icon { width: 12px; height: 12px; transform: rotate(90deg); }
 }
 
-.tingxie-select, .tingxie-picker { text-align: left; }
+.tingxie-select { text-align: left; }
 .lesson-count-badge {
   display: flex; align-items: center; justify-content: center; gap: 6px;
   width: fit-content; margin: 10px auto 0;
@@ -1933,44 +2093,24 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   border-radius: 999px; padding: 6px 16px; font-size: 13px; font-weight: 800;
 }
 .lesson-count-badge svg { width: 14px; height: 14px; color: var(--garden-gold); }
-/* display:flex + width:fit-content (not the button's own natural
-   inline-block box) + margin-left:auto is the same "push to the opposite
-   edge" trick .back-btn uses to escape its container's text-align --
-   .tingxie-select sets text-align:left, which would otherwise just leave
-   this sitting at the left like any other inline content. */
-.tingxie-review-btn { display: flex; width: fit-content; margin: 18px 0 0 auto; }
 .tingxie-loading, .tingxie-empty { color: var(--ink-soft); font-size: 15px; margin: 24px 0; text-align: center; }
 .tingxie-error, .tingxie-error-inline { color: var(--incorrect); margin: 14px 0; }
 .tingxie-error button { margin-top: 8px; }
 
-.tingxie-picker-all-btn { margin-bottom: 14px; }
-.tingxie-picker-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-.tingxie-picker-row {
-  display: flex; align-items: center; gap: 10px;
-  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
-  border: 2px solid var(--border); border-radius: 18px;
-  padding: 12px 14px; cursor: pointer; font-size: 15px;
-  box-shadow: var(--shadow-1);
-  transition: border-color .15s, transform .1s;
-}
-.tingxie-picker-row:hover { transform: translateY(-2px) scale(1.01); }
-.tingxie-picker-row-checked { border-color: var(--primary); background: linear-gradient(180deg, var(--card-hi), #ffdfc0); font-weight: 700; }
-.tingxie-picker-row input { width: 18px; height: 18px; accent-color: var(--primary); }
-.tingxie-picker-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-
 .tingxie-learn { text-align: center; }
-.tingxie-subtabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 18px; }
-.tingxie-subtab {
-  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
-  border: 2px solid var(--border); border-radius: 999px;
-  padding: 9px 18px; font-size: 15px; font-weight: 600; color: var(--ink-soft); cursor: pointer;
-  box-shadow: var(--shadow-1);
-  transition: transform .1s ease;
-}
-.tingxie-subtab:hover { transform: translateY(-1px) scale(1.03); }
-.tingxie-subtab-active { border-color: var(--primary); color: var(--primary); background: linear-gradient(180deg, var(--card-hi), #ffdfc0); }
-
 .tingxie-carousel, .tingxie-sentence-game { text-align: center; }
+/* Desktop, inside the fixed-height activity card (see .tingxie-screen-activity
+   near .tingxie-activity-layout above): let the flashcard/game area flex to
+   fill whatever vertical room is left after the header, rather than the
+   purely width-driven aspect ratio .tingxie-flip-card otherwise uses, which
+   could run taller than that room and force this content pane to scroll. */
+@media (min-width: 900px) {
+  .tingxie-screen-activity .tingxie-learn { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  .tingxie-screen-activity .tingxie-carousel,
+  .tingxie-screen-activity .tingxie-sentence-game {
+    flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0;
+  }
+}
 .tingxie-progress { color: var(--ink-soft); font-size: 14px; margin-bottom: 12px; }
 
 .tingxie-difficulty-toggle { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 14px; }
@@ -1995,6 +2135,13 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   width: 100%; aspect-ratio: 4 / 5; max-width: 380px; margin: 0 auto;
   position: relative; cursor: pointer;
 }
+/* Wider on desktop -- the mode sidebar (see .tingxie-mode-sidebar) already
+   claims its own width, so the remaining content column has more room
+   than the mobile-sized 380px card was using, leaving a lot of dead space
+   beside it otherwise. */
+@media (min-width: 900px) {
+  .tingxie-flip-card { max-width: 560px; }
+}
 .tingxie-flip-card:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 28px; }
 .tingxie-flip-inner {
   position: relative; width: 100%; height: 100%;
@@ -2003,25 +2150,25 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .tingxie-flip-inner.flipped { transform: rotateY(180deg); }
 .tingxie-flip-face {
   position: absolute; inset: 0; backface-visibility: hidden;
-  border-radius: 28px; border: none;
+  border-radius: 28px; border: 3px solid var(--garden-violet-pale);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 10px; padding: 32px; box-shadow: var(--shadow-2); text-align: center;
+  gap: 26px; padding: 32px; box-shadow: var(--shadow-2); text-align: center;
 }
 .tingxie-flip-front { background: linear-gradient(180deg, var(--card-hi), var(--card-bg)); }
 .tingxie-flip-back {
-  transform: rotateY(180deg); color: #fff8ee; border: none;
-  background: linear-gradient(155deg, var(--primary-hi), var(--primary) 55%, var(--primary-dark));
+  transform: rotateY(180deg); color: #fff; border: none;
+  background: linear-gradient(155deg, var(--garden-violet), var(--garden-violet-deep));
 }
 .tingxie-flip-hint { color: var(--ink-soft); font-size: 14px; margin-top: 14px; }
 
-.tingxie-vocab-word { font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 44px; font-weight: 700; }
-.tingxie-vocab-pinyin { font-size: 20px; opacity: .92; }
-.tingxie-vocab-meaning { font-size: 22px; font-weight: 700; }
-.tingxie-vocab-example { font-size: 20px; opacity: .85; line-height: 1.5; }
-.tingxie-speak-btn { margin-top: 6px; padding: 7px 16px; font-size: 14px; }
+.tingxie-vocab-word { font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 60px; font-weight: 700; line-height: 1.3; }
+.tingxie-vocab-pinyin { font-size: 24px; opacity: .92; line-height: 1.4; }
+.tingxie-vocab-meaning { font-size: 27px; font-weight: 700; line-height: 1.4; }
+.tingxie-vocab-example { font-size: 23px; opacity: .85; line-height: 1.7; }
+.tingxie-speak-btn { margin-top: 14px; padding: 7px 16px; font-size: 14px; }
 .tingxie-flip-back .tingxie-speak-btn {
   background: rgba(255,255,255,.15); color: #fff8ee; border-color: rgba(255,255,255,.5);
-  margin-top: 24px;
+  margin-top: 32px;
 }
 
 .tingxie-nav-row { display: flex; justify-content: center; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
@@ -2035,12 +2182,57 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
    viewports both stage and card shrink to the same width and the buttons
    naturally settle fully onto the card's edge instead. */
 .tingxie-flip-stage { position: relative; max-width: 432px; margin: 0 auto; }
+@media (min-width: 900px) {
+  .tingxie-flip-stage { max-width: 612px; }
+  /* Inside the fixed-height activity card (see .tingxie-screen-activity near
+     .tingxie-activity-layout), the flashcard fills the wide empty content
+     column instead of staying phone-card-sized: the stage gets an explicit
+     width:100% (its own max-width opens up a lot too, just still capped so
+     the edge buttons below never bump the sidebar/viewport edge) --
+     `align-items:stretch` alone does NOT stretch it here despite being the
+     flex default (verified empirically: .tingxie-carousel's column-flex
+     cross-axis stretch never kicks in for this item, apparently because a
+     descendant's aspect-ratio -- .tingxie-flip-card's, still 4/5 for every
+     non-activity use of this shell -- pins the stage to a content-based
+     width instead; don't remove this explicit width assuming stretch has
+     you covered). .tingxie-flip-outer/.tingxie-flip-card then fill that
+     width via ordinary block auto-sizing (.tingxie-flip-card's own base
+     width:100% rule, untouched here), just capped a button-diameter
+     narrower so the edge buttons still land half-on/half-off the card
+     exactly as before. flex:1 gives the stage a definite height in turn,
+     which .tingxie-flip-outer/.tingxie-flip-card fill via height:100% --
+     both axes end up independently sized, so the card's aspect-ratio no
+     longer applies here. */
+  .tingxie-screen-activity .tingxie-flip-stage { flex: 1; min-height: 0; width: 100%; max-width: 1040px; }
+  .tingxie-screen-activity .tingxie-flip-outer { width: 100%; height: 100%; }
+  .tingxie-screen-activity .tingxie-flip-card { height: 100%; max-height: 520px; max-width: calc(100% - 64px); }
+}
+/* Not wired up yet -- see Learn.tsx's own comment. Styled like the
+   secondary-btn family (pale violet outline pill) but its own class since
+   it needs the circular "+" badge secondary-btn doesn't have. */
+.tingxie-add-vocab-btn {
+  display: flex; align-items: center; gap: 8px;
+  margin: 18px auto 0; width: fit-content;
+  background: linear-gradient(180deg, #fff, var(--garden-violet-pale));
+  border: 2px solid var(--garden-violet); border-radius: 999px;
+  padding: 9px 20px 9px 9px; font-size: 14px; font-weight: 800; color: var(--garden-violet-deep);
+  cursor: pointer;
+  box-shadow: 0 4px 10px -4px rgba(134,87,240,.35);
+  transition: transform .12s ease;
+}
+.tingxie-add-vocab-btn:hover { transform: translateY(-1px); }
+.tingxie-add-vocab-btn:active { transform: translateY(1px); }
+.tingxie-add-vocab-plus {
+  display: flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 50%; flex: none;
+  background: var(--garden-violet); color: #fff; font-size: 15px; font-weight: 800; line-height: 1;
+}
 .tingxie-flip-edge-btn {
   position: absolute; top: 50%; transform: translateY(-50%);
-  width: 52px; height: 52px; border-radius: 50%; z-index: 2;
-  border: 2px solid var(--border); background: var(--card-bg); color: var(--ink);
+  width: 64px; height: 64px; border-radius: 50%; z-index: 2;
+  border: 2px solid var(--border); background: var(--card-bg); color: var(--garden-violet);
   display: flex; align-items: center; justify-content: center;
-  font-size: 24px; line-height: 1; cursor: pointer;
+  font-size: 30px; font-weight: 800; line-height: 1; cursor: pointer;
   box-shadow: var(--shadow-1);
   transition: transform .1s ease, box-shadow .1s ease, background .1s ease, color .1s ease;
 }
@@ -2062,8 +2254,12 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
    centered -- constrain/center it the same way .tingxie-play-cap-banner
    does outside a complete screen. */
 .complete-screen .mission-hint-box { max-width: 420px; margin: 18px auto 0; text-align: left; }
-.complete-emoji { font-size: 48px; margin-bottom: 8px; }
-.complete-screen .bp-pop { font-size: 22px; animation: none; opacity: 1; }
+.complete-emoji { display: block; width: 64px; height: 64px; object-fit: contain; margin: 0 auto 8px; }
+.complete-screen .bp-pop {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 22px; animation: none; opacity: 1;
+}
+.bp-pop-coin { width: 22px; height: 22px; object-fit: contain; flex: none; }
 .complete-screen .action-row { justify-content: center; margin-top: 24px; }
 
 /* -- sentence-builder game -- */
@@ -2130,12 +2326,23 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .tingxie-play { text-align: center; }
 .tingxie-play .tingxie-apply-sentence { margin: 4px 0 2px; }
 .tingxie-play .tingxie-apply-english { margin-bottom: 14px; }
+/* Desktop, inside the fixed-height activity card (see .tingxie-screen-activity
+   near .tingxie-activity-layout): let the cloud-sky box grow to fill
+   whatever vertical room is left after the timer/sentence, instead of its
+   own fixed 320px height leaving empty space below it now that the card's
+   overall height no longer shrinks to fit Play's shorter content. */
+@media (min-width: 900px) {
+  .tingxie-screen-activity .tingxie-play { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  .tingxie-screen-activity .tingxie-play-timer { align-self: center; }
+  .tingxie-screen-activity .tingxie-cloud-sky { flex: 1; width: 100%; height: auto; min-height: 0; }
+}
 /* Reuses .mission-hint-box's gold-bordered hint styling (see its own
-   comment) for the daily BP-cap notice, both while playing a capped round
-   and on that round's complete screen -- constrained/centered the same way
-   Practice's own .picker-hint hints are, since .mission-hint-box's default
-   width otherwise stretches to this text-align:center screen's full width. */
-.tingxie-play-cap-banner { max-width: 420px; margin: 0 auto 14px; text-align: left; }
+   comment) for the daily BP-cap notice shown while actively playing a
+   capped round -- deliberately full-width (unlike the narrower, centered
+   .complete-screen .mission-hint-box variant of this same banner shown
+   after the round ends) so it uses the same wide row the sentence/cloud-sky
+   below it already spans, instead of a narrow centered strip. */
+.tingxie-play-cap-banner { margin: 0 0 14px; text-align: left; }
 .tingxie-play-timer {
   display: inline-block; font-weight: 700; font-size: 18px; color: var(--gold-deep);
   background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
@@ -2206,20 +2413,92 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   margin-top: 28px; padding-top: 16px; padding-bottom: 8px; opacity: .75;
 }
 
-/* ---------- Auth ---------- */
-.auth-screen { max-width: 420px; margin: 0 auto; text-align: center; }
-.auth-title { font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; margin: 4px 0 8px; }
-.auth-subtitle { color: var(--ink-soft); font-size: 14px; margin: 0 0 22px; }
-/* Guest-mode escape hatch -- always available (gated login or not), visually
-   separated from the sign-in/sign-up form above it since it's a distinct
-   choice ("skip this entirely"), not another form field. */
-.auth-guest { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--border); }
-.auth-guest-text { color: var(--ink-soft); font-size: 13px; line-height: 1.5; margin: 0 0 12px; }
-.auth-guest-btn { width: 100%; }
-.auth-form { display: flex; flex-direction: column; gap: 16px; text-align: left; }
-.auth-field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+/* ---------- Auth ----------
+   Layout: a centered logo+title hero, then a two-panel row (sign-in form /
+   owl-and-features showcase) that touches at a shared seam so it reads as
+   one card split in two -- each panel keeps only its own outer corners
+   rounded (see .auth-panel-main/-side) -- and finally a full-width
+   guest-mode card below. Stacks to full-width panels under 760px
+   (.auth-panels' own media query), where the seam styling is dropped for
+   two ordinary rounded cards.
+   Desktop (min-width:900px) additionally pins the whole page -- hero +
+   screen together -- to exactly the viewport height so it never needs a
+   page scrollbar, the same fixed-height technique Tingxie's in-activity
+   layout uses (see .tingxie-screen-activity's own comment for the 160px
+   derivation: sticky .top-bar's height + margin + #root's own
+   padding-bottom). */
+.auth-screen { max-width: 1080px; margin: 0 auto; }
+@media (min-width: 900px) {
+  .auth-page { height: calc(100vh - 160px); display: flex; flex-direction: column; overflow: hidden; }
+  .auth-page .auth-hero { flex: none; }
+  .auth-page .auth-screen { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+  .auth-page .auth-screen .back-btn { flex: none; }
+  .auth-page .auth-panels { flex: 1; min-height: 0; overflow-y: auto; }
+  .auth-page .auth-guest-card { flex: none; }
+}
+/* Deliberately no card/background of its own -- sits directly on the shared
+   garden-scene page background (see body's own comment), the one piece of
+   this screen that opts out of .screen's boxed-card look, same reasoning as
+   Home's own greeting header. Cream text + a soft dark shadow (matching
+   .home-greeting's own treatment) keeps it legible over the busy
+   sky/tree artwork behind it. */
+.auth-hero {
+  display: flex; align-items: center; justify-content: center; gap: 24px;
+  max-width: 1080px; margin: 4px auto 18px; text-align: left;
+}
+.auth-hero-logo { width: 96px; height: 96px; object-fit: contain; flex: none; }
+.auth-hero-title {
+  font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  font-size: 42px; margin: 0; color: var(--garden-cream);
+  text-shadow: 0 2px 10px rgba(20, 30, 20, .35);
+}
+.auth-hero-subtitle {
+  color: var(--garden-cream); font-size: 19px; font-weight: 600; margin: 4px 0 0;
+  text-shadow: 0 1px 8px rgba(20, 30, 20, .35);
+}
+
+.auth-panels { display: flex; align-items: stretch; margin: 0 auto; }
+.auth-panel {
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  box-shadow: 0 14px 30px -14px rgba(20, 20, 60, .25);
+  padding: 28px 32px;
+}
+.auth-panel-main { flex: 0 0 55%; min-width: 0; border-radius: 28px 0 0 28px; }
+/* Owl showcase: violet fills this whole panel (not just an inner box), the
+   owl image claims ~30% of its height (.auth-owl-img's flex-basis) and the
+   4-item feature list below it splits the rest evenly
+   (.auth-feature-list's flex:1 + space-evenly) -- no dividers between
+   those 4 rows, per the design brief. */
+.auth-panel-side {
+  flex: 0 0 45%; min-width: 0; border-radius: 0 28px 28px 0;
+  background: var(--garden-violet-pale, #efe7ff);
+  box-shadow: 0 14px 30px -14px rgba(20, 20, 60, .25);
+  display: flex; flex-direction: column;
+  padding: 20px 28px;
+}
+.auth-owl-img { flex: 0 0 30%; min-height: 90px; width: 100%; object-fit: contain; }
+.auth-feature-list { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; }
+.auth-feature-row { display: flex; align-items: center; gap: 14px; }
+.auth-feature-icon { flex: 0 0 20%; width: 20%; max-width: 52px; height: auto; object-fit: contain; }
+.auth-feature-text { flex: 1; min-width: 0; }
+.auth-feature-title { font-weight: 800; font-size: 15px; color: var(--ink); }
+.auth-feature-desc { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+
+.auth-form-title {
+  font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  margin: 0 0 4px; font-size: 21px;
+}
+.auth-subtitle { color: var(--ink-soft); font-size: 13.5px; margin: 0 0 16px; }
+.auth-form { display: flex; flex-direction: column; gap: 14px; text-align: left; }
+.auth-field { display: flex; flex-direction: column; gap: 6px; }
+/* Leading icon inside the field (login-username.png/login-password.png)
+   replaces the old plain "Username"/"Password" label -- the input's own
+   placeholder ("Your username here"/"Your password here") now carries
+   that labeling job instead. */
+.auth-input-wrap { position: relative; display: flex; align-items: center; }
+.auth-input-icon { position: absolute; left: 14px; width: 22px; height: 22px; object-fit: contain; pointer-events: none; }
 .auth-input {
-  font-size: 16px; padding: 12px 14px; border: 2px solid var(--border); border-radius: 14px;
+  width: 100%; font-size: 16px; padding: 12px 14px 12px 46px; border: 2px solid var(--border); border-radius: 14px;
   background: var(--card-bg); color: var(--ink);
   box-shadow: inset 0 1px 3px rgba(var(--ink-rgb), .08);
 }
@@ -2227,9 +2506,44 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .auth-error { color: var(--incorrect); font-size: 14px; margin: 0; }
 .auth-submit { width: 100%; margin-top: 4px; }
 .auth-toggle {
-  background: none; border: none; color: var(--primary); font-size: 14px;
+  display: block; background: none; border: none; color: var(--primary); font-size: 14px;
   cursor: pointer; margin-top: 18px; padding: 4px;
 }
 .auth-toggle:hover { text-decoration: underline; }
+
+/* Guest-mode escape hatch -- always available (gated login or not), its own
+   full-width card below the two-panel row since it's a distinct choice
+   ("skip this entirely"), not another form field. The whole card is itself
+   the click target (a <button>, not a card containing one) -- icon left,
+   title+description stacked in the middle, a ">" chevron on the right
+   standing in for a separate "Continue as Guest" button. */
+.auth-guest-card {
+  display: flex; align-items: center; gap: 16px; width: 100%;
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  box-shadow: 0 14px 30px -14px rgba(20, 20, 60, .25);
+  border: none; border-radius: 24px; padding: 20px 26px; margin-top: 22px;
+  text-align: left; cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.auth-guest-card:hover { transform: translateY(-1px); box-shadow: 0 18px 34px -14px rgba(20, 20, 60, .3); }
+.auth-guest-card:active { transform: translateY(1px); }
+.auth-guest-icon {
+  flex: none; width: 46px; height: 46px; border-radius: 50%;
+  background: var(--garden-violet-pale, #efe7ff); color: var(--garden-violet, var(--primary));
+  display: flex; align-items: center; justify-content: center;
+}
+.auth-guest-icon svg { width: 22px; height: 22px; }
+.auth-guest-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.auth-guest-title { font-weight: 800; font-size: 15px; color: var(--ink); }
+.auth-guest-text { color: var(--ink-soft); font-size: 13px; line-height: 1.5; }
+.auth-guest-chevron { flex: none; width: 16px; height: 16px; color: var(--ink-soft); transform: rotate(-90deg); }
+
+@media (max-width: 760px) {
+  .auth-hero { flex-direction: column; text-align: center; gap: 10px; margin-bottom: 22px; }
+  .auth-panels { flex-direction: column; gap: 20px; }
+  .auth-panel-main, .auth-panel-side { flex: 1 1 auto; border-radius: 24px; }
+  .auth-owl-img { min-height: 140px; }
+  .auth-guest-card { text-align: left; }
+}
 
 .result .action-row { justify-content: center; }

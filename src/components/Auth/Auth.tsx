@@ -10,6 +10,19 @@ import { TINGXIE_PROGRESS_KEY } from "../../state/tingxieProgress";
 import { LESSON_FREQUENCY_KEY } from "../../state/lessonFrequency";
 import { LEVEL_KEY } from "../../state/levelPreference";
 import { DEFAULT_LEVEL, setCurrentLevel } from "../../data/levels";
+import { Icon } from "../common/Icons";
+
+// The owl panel's feature highlights -- purely informational (no click
+// target), reusing the same Learn/Apply(~"Practice" here)/Play/Test
+// copy Tingxie's own mode sidebar uses (see Tingxie.tsx's MODES) so the
+// wording stays consistent between "what the app does" (here) and "what
+// this button does" (there).
+const AUTH_FEATURES = [
+  { icon: "/icons/dictation-learn.png", title: "Learn", desc: "认识词语，打好基础" },
+  { icon: "/icons/dictation-apply.png", title: "Practice", desc: "学以致用，巩固记忆" },
+  { icon: "/icons/dictation-play.png", title: "Play", desc: "趣味挑战，快乐学习" },
+  { icon: "/icons/dictation-test.png", title: "Test", desc: "检验成果，查漏补缺" }
+];
 
 // The "auth" screen -- reached via AccountBar's Login button, GO_TO_SCREEN
 // "auth", or (when `gated`) forced by App.tsx's ScreenRouter for a student
@@ -88,71 +101,111 @@ export function Auth({ gated = false }: { gated?: boolean }) {
   }
 
   return (
-    <div className="screen auth-screen">
-      {!gated && (
-        <button className="back-btn" onClick={goHome}>
-          <span className="back-btn-arrow">←</span>
-          <span className="back-btn-label">返回 Back</span>
-        </button>
-      )}
-      <h1 className="auth-title page-header">
-        <img className="page-header-icon" src="/icons/pet.png" alt="" />
-        {mode === "signIn" ? "登录 Sign In" : "创建账号 Create Account"}
-      </h1>
-      <p className="auth-subtitle">Sign in to sync your progress across devices.</p>
+    <div className="auth-page">
+      {/* Deliberately sits directly on the shared garden-scene page
+          background, not inside .auth-screen's own card -- see that
+          class's own comment in styles.css. */}
+      <div className="auth-hero">
+        <img className="auth-hero-logo" src="/icons/logo.png" alt="" />
+        <div className="auth-hero-text">
+          <h1 className="auth-hero-title">华文练习</h1>
+          <p className="auth-hero-subtitle">快乐学习每一天</p>
+        </div>
+      </div>
 
-      <form className="auth-form" onSubmit={handleSubmit}>
-        <label className="auth-field">
-          <span>Username</span>
-          <input
-            className="auth-input"
-            type="text"
-            required
-            minLength={3}
-            maxLength={20}
-            pattern="[a-zA-Z0-9_-]+"
-            autoComplete="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
-        <label className="auth-field">
-          <span>Password</span>
-          <input
-            className="auth-input"
-            type="password"
-            required
-            minLength={6}
-            autoComplete={mode === "signIn" ? "current-password" : "new-password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
+      <div className="screen auth-screen">
+        {!gated && (
+          <button className="back-btn" onClick={goHome}>
+            <span className="back-btn-arrow">←</span>
+            <span className="back-btn-label">返回 Back</span>
+          </button>
+        )}
 
-        {error && <p className="auth-error">{error}</p>}
+        <div className="auth-panels">
+          <div className="auth-panel auth-panel-main">
+            <h2 className="auth-form-title">{mode === "signIn" ? "登录 Sign In" : "创建账号 Create Account"}</h2>
+            <p className="auth-subtitle">Sign in to sync your progress across devices.</p>
 
-        <button className="primary-btn auth-submit" type="submit" disabled={submitting}>
-          {submitting ? "Please wait..." : mode === "signIn" ? "Sign In" : "Create Account"}
-        </button>
-      </form>
+            <form className="auth-form" onSubmit={handleSubmit}>
+              <label className="auth-field">
+                <div className="auth-input-wrap">
+                  <img className="auth-input-icon" src="/icons/login-username.png" alt="" />
+                  <input
+                    className="auth-input"
+                    type="text"
+                    required
+                    minLength={3}
+                    maxLength={20}
+                    pattern="[a-zA-Z0-9_-]+"
+                    autoComplete="username"
+                    placeholder="Your username here"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </div>
+              </label>
+              <label className="auth-field">
+                <div className="auth-input-wrap">
+                  <img className="auth-input-icon" src="/icons/login-password.png" alt="" />
+                  <input
+                    className="auth-input"
+                    type="password"
+                    required
+                    minLength={6}
+                    autoComplete={mode === "signIn" ? "current-password" : "new-password"}
+                    placeholder="Your password here"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+              </label>
 
-      <button
-        className="auth-toggle"
-        onClick={() => {
-          setError(null);
-          setMode(mode === "signIn" ? "signUp" : "signIn");
-        }}
-      >
-        {mode === "signIn" ? "No account? Create one" : "Have an account? Sign in"}
-      </button>
+              {error && <p className="auth-error">{error}</p>}
 
-      <div className="auth-guest">
-        <p className="auth-guest-text">
-          Or skip login for now and use the app as a guest. In guest mode, your progress is saved only on this
-          device and won't sync across devices.
-        </p>
-        <button className="secondary-btn auth-guest-btn" onClick={handleContinueAsGuest}>
-          Continue as Guest
+              <button className="primary-btn auth-submit" type="submit" disabled={submitting}>
+                {submitting ? "Please wait..." : mode === "signIn" ? "Sign In" : "Create Account"}
+              </button>
+            </form>
+
+            <button
+              className="auth-toggle"
+              onClick={() => {
+                setError(null);
+                setMode(mode === "signIn" ? "signUp" : "signIn");
+              }}
+            >
+              {mode === "signIn" ? "No account? Create one" : "Have an account? Sign in"}
+            </button>
+          </div>
+
+          <div className="auth-panel-side">
+            <img className="auth-owl-img" src="/icons/login-owl.png" alt="" />
+            <div className="auth-feature-list">
+              {AUTH_FEATURES.map((feature) => (
+                <div className="auth-feature-row" key={feature.title}>
+                  <img className="auth-feature-icon" src={feature.icon} alt="" />
+                  <div className="auth-feature-text">
+                    <div className="auth-feature-title">{feature.title}</div>
+                    <div className="auth-feature-desc">{feature.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <button type="button" className="auth-guest-card" onClick={handleContinueAsGuest}>
+          <span className="auth-guest-icon">
+            <Icon name="paw" />
+          </span>
+          <span className="auth-guest-body">
+            <span className="auth-guest-title">Continue as Guest</span>
+            <span className="auth-guest-text">
+              Skip login for now and use the app as a guest. Your progress is saved only on this device and won't
+              sync across devices.
+            </span>
+          </span>
+          <Icon name="chevron" className="auth-guest-chevron" />
         </button>
       </div>
     </div>

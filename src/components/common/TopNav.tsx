@@ -1,5 +1,7 @@
 import { useAppDispatch, useAppState, type Screen } from "../../state/AppStateContext";
 import { Icon } from "./Icons";
+import { ConfirmModal } from "./Modal";
+import { useQuizLeaveGuard } from "../../lib/useQuizLeaveGuard";
 
 // Persistent top nav shown on every screen except Quiz/Result -- an
 // in-progress quiz already has its own Home button with a "leave without
@@ -23,13 +25,18 @@ const NAV_ITEMS: { key: string; label: string; screens: Screen[]; icon: string; 
 export function TopNav() {
   const state = useAppState();
   const dispatch = useAppDispatch();
+  const { guard, confirmOpen, confirm, cancel } = useQuizLeaveGuard();
 
   function go(key: string) {
-    // Matches every other "go home" affordance in the app (Owl/Practice back
-    // buttons, Result's "Back to Home") -- clears any stale quiz state while
-    // keeping the student's subject/category/lesson picker selections.
-    if (key === "home") dispatch({ type: "RESET_TO_HOME" });
-    else dispatch({ type: "GO_TO_SCREEN", screen: key as Screen });
+    // Mid-quiz, confirm first (see useQuizLeaveGuard) -- otherwise navigate
+    // straight away, matching every other "go home" affordance in the app
+    // (Owl/Practice back buttons, Result's "Back to Home"), which clears any
+    // stale quiz state while keeping the student's subject/category/lesson
+    // picker selections.
+    guard(() => {
+      if (key === "home") dispatch({ type: "RESET_TO_HOME" });
+      else dispatch({ type: "GO_TO_SCREEN", screen: key as Screen });
+    });
   }
 
   function renderIcon(item: (typeof NAV_ITEMS)[number], className: string) {
@@ -77,6 +84,17 @@ export function TopNav() {
           </button>
         ))}
       </nav>
+
+      {confirmOpen && (
+        <ConfirmModal
+          messageLines={[
+            "确定要离开吗？本次练习尚未完成，本组进度将不会被保存。",
+            "Are you sure? Your current progress will be lost."
+          ]}
+          onConfirm={confirm}
+          onCancel={cancel}
+        />
+      )}
     </>
   );
 }

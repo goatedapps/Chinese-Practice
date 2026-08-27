@@ -122,6 +122,13 @@ function VocabFlipCard() {
           ›
         </button>
       </div>
+
+      {/* Not wired up yet -- the button itself is ready, the "my vocab
+          list" feature it'll add to doesn't exist yet. */}
+      <button type="button" className="tingxie-add-vocab-btn">
+        <span className="tingxie-add-vocab-plus">+</span>
+        加入我的词库 Add to My Vocab
+      </button>
     </div>
   );
 }
@@ -296,22 +303,12 @@ function SentenceBuilderGame() {
   );
 }
 
+// The vocab/sentence sub-tab toggle used to live here, but now lives in the
+// sidebar's own tall Learn card (see Tingxie.tsx's tingxie-mode-card-tall)
+// -- state.subTab/SET_SUB_TAB are shared reducer state either way, so this
+// component just reads the current choice.
 export function Learn() {
   const state = useTingxieState();
-  const dispatch = useTingxieDispatch();
 
-  return (
-    <div className="tingxie-learn">
-      <div className="tingxie-subtabs">
-        <button className={"tingxie-subtab" + (state.subTab === "vocab" ? " tingxie-subtab-active" : "")} onClick={() => dispatch({ type: "SET_SUB_TAB", tab: "vocab" })}>
-          学词语 Vocab
-        </button>
-        <button className={"tingxie-subtab" + (state.subTab === "sentence" ? " tingxie-subtab-active" : "")} onClick={() => dispatch({ type: "SET_SUB_TAB", tab: "sentence" })}>
-          学默写 Sentences
-        </button>
-      </div>
-
-      {state.subTab === "vocab" ? <VocabFlipCard /> : <SentenceBuilderGame />}
-    </div>
-  );
+  return <div className="tingxie-learn">{state.subTab === "vocab" ? <VocabFlipCard /> : <SentenceBuilderGame />}</div>;
 }

@@ -24,7 +24,8 @@ export function Bag() {
   return (
     <div className="screen bag-screen">
       <button className="back-btn" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "owl" })}>
-        ← 返回 Back
+        <span className="back-btn-arrow">←</span>
+        <span className="back-btn-label">返回 Back</span>
       </button>
       <h1>{`喂食／玩耍 Feed / Play with ${pet.name || "它"}`}</h1>
       <div className="pet-layout pet-layout-wide">
@@ -45,16 +46,20 @@ export function Bag() {
           {entries.length === 0 ? (
             <div className="bag-empty">
               <p className="subtitle">道具袋是空的 Your bag is empty</p>
-              <div className="owl-bp-label">💡 可用 BP: {pet.bp}</div>
               <div className="action-row">
+                {/* Same button as the Owl page's own Shop banner (see
+                    Owl.tsx), reused here rather than a bespoke primary-btn,
+                    so "go buy something" looks identical everywhere it's
+                    offered. */}
                 <button
-                  className="primary-btn"
+                  className="owl-action-banner owl-action-banner-shop"
                   onClick={() => {
                     Sound.enterShop();
                     dispatch({ type: "GO_TO_SCREEN", screen: "shop" });
                   }}
                 >
-                  🛍 前往商店 Visit Shop
+                  <img src="/icons/shop.png" alt="" />
+                  <span className="owl-action-banner-label">商店 Shop</span>
                 </button>
               </div>
             </div>
@@ -97,10 +102,12 @@ interface BagItemCardProps {
 
 // The card itself is the tap target (no separate "Give"/"Play" button inside
 // it) -- tapping anywhere on a food card throws it at the owl and feeds it;
-// tapping a toy card starts its minigame immediately. Kept deliberately
-// terse: image + Chinese name + one stat line, no English text and no
-// "tap to ..." hint -- the tap affordance comes from the card itself being a
-// button (cursor/press states via .bag-item-card-tappable), not a label.
+// tapping a toy card starts its minigame immediately. Visual layout matches
+// Shop.tsx's own item cards (icon on top, label + stat row below, an "owned"
+// count badge in the top-right corner) -- .bag-item-card-tappable is just
+// the button-reset/press-state modifier layered on top of that shared
+// .shop-item-card look, same as it already layered on the old horizontal
+// .bag-item-card look.
 function BagItemCard({ item, qty, owlRef, onGive, onAgedUp, onPlay }: BagItemCardProps) {
   const cardRef = useRef<HTMLButtonElement>(null);
   const [giving, setGiving] = useState(false);
@@ -127,25 +134,21 @@ function BagItemCard({ item, qty, owlRef, onGive, onAgedUp, onPlay }: BagItemCar
 
   return (
     <button
-      className="bag-item-card bag-item-card-tappable"
+      className="shop-item-card bag-item-card-tappable"
       ref={cardRef}
       disabled={!isToy && giving}
       onClick={handleClick}
     >
-      <div className="bag-item-emoji">
-        <img className="bag-item-icon" src={shopItemIconPath(item)} alt="" />
-        {qty > 1 && <span className="bag-item-qty-badge">×{qty}</span>}
-      </div>
-      <div className="bag-item-info">
-        <div className="bag-item-label">{shopItemName(item)}</div>
-        <div className="bag-item-stat">
-          <span className="stat-inline">
-            <img className="stat-inline-icon" src={GROWTH_ICON} alt="" /> +{item.growth}
-          </span>
-          <span className="stat-inline">
-            <img className="stat-inline-icon" src={HUNGER_ICON} alt="" /> {isToy ? "最高 " : ""}+{item.mood}
-          </span>
-        </div>
+      <span className="shop-item-owned">×{qty}</span>
+      <img className="shop-item-icon" src={shopItemIconPath(item)} alt="" />
+      <div className="shop-item-label">{shopItemName(item)}</div>
+      <div className="shop-item-stats">
+        <span className="stat-inline">
+          <img className="stat-inline-icon" src={GROWTH_ICON} alt="" /> +{item.growth}
+        </span>
+        <span className="stat-inline">
+          <img className="stat-inline-icon" src={HUNGER_ICON} alt="" /> {isToy ? "最高 " : ""}+{item.mood}
+        </span>
       </div>
     </button>
   );
