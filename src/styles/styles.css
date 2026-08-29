@@ -109,21 +109,28 @@
    on <body>, not any per-screen element: body spans the true page from
    viewport (0,0), so it starts at the very top/sides on any screen width,
    with no breakout hack needed, and stays put across every screen without
-   needing to be toggled per-route. background-color is the image's own
-   grass tone, a fallback fill for whatever's below the scaled image on a
-   page taller than one screen's worth of content (background-size:100%
-   auto scales the image to the viewport's width and lets its natural,
-   portrait height follow, rather than `cover`, which would crop/zoom
-   unpredictably against each screen's own variable content height). */
+   needing to be toggled per-route. background-size:100% auto scales the
+   image to the viewport's width and lets its natural, portrait height
+   follow, rather than `cover`, which would crop/zoom unpredictably against
+   each screen's own variable content height.
+   Below that image's own bottom edge, a second, lower background layer
+   (public/icons/garden-tile.png, a stone-path-through-flowers crop) tiles
+   to fill however much further a page taller than one screen's worth of
+   content scrolls -- CSS paints comma-separated background layers in
+   listed order (first = frontmost), so the no-repeat hero simply has
+   nothing left to paint past its own height and the repeating tile shows
+   through underneath, no manual height math needed. background-color is
+   the tile's own grass tone, a last-resort fallback only for the sliver
+   before either image has loaded. */
 body {
   margin: 0;
   overflow-x: hidden;
   font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
   background-color: #5fae4a;
-  background-image: url("/icons/homepage.png");
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: 100% auto;
+  background-image: url("/icons/homepage.png"), url("/icons/garden-tile.png");
+  background-repeat: no-repeat, repeat;
+  background-position: top center, top center;
+  background-size: 100% auto, 280px 420px;
   color: var(--ink);
   line-height: 1.6;
 }
@@ -848,6 +855,26 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .owl-flyover-dragging { cursor: grabbing; }
 .owl-flyover-dragging .owl-flyover-sprite,
 .owl-flyover-dragging .owl-flyover-shadow { animation: none; }
+/* Only rendered while landed (OwlFlyover.tsx) -- the wrapper only gets
+   pointer-events:auto at that point too, so this is never a dead click
+   target during the fly-in. Sits slightly outside the sprite's own top-right
+   corner rather than clipped inside it, same "half on, half off" treatment
+   as e.g. .lesson-btn-active's checkmark badge. */
+.owl-flyover-close {
+  position: absolute;
+  top: -6px; right: -2px;
+  width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+  background: #fff;
+  border: none; border-radius: 50%;
+  color: var(--ink-soft);
+  font-size: 12px; line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow-1);
+  transition: transform .12s ease, color .12s ease;
+}
+.owl-flyover-close:hover { color: var(--incorrect); transform: scale(1.1); }
+.owl-flyover-close:active { transform: scale(.92); }
 @media (prefers-reduced-motion: no-preference) {
   /* Both timed to the same 2.8s so the flap cycle (4 flaps) fills exactly
      the horizontal glide -- a lazier, longer glide than the original 1.3s
@@ -1783,6 +1810,16 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 14px; margin-top: 20px; text-align: center;
 }
+/* Mobile: auto-fill's 200px floor only ever fits 1 column on a phone-width
+   screen, leaving each card stretched full-width -- fixed at 2 columns
+   instead, same reasoning (and shared .shop-item-card look) as .shop-grid's
+   own mobile override just above. Placed after the base rule above (not
+   grouped with .shop-grid's own override) since an equal-specificity rule
+   earlier in the file loses the cascade regardless of being inside a media
+   query -- verified empirically after the first attempt silently lost. */
+@media (max-width: 699px) {
+  .shop-grid, .bag-grid { grid-template-columns: repeat(2, 1fr); }
+}
 /* Bag.tsx's card is a real <button> (the whole card is the tap target --
    tap to feed/play, no separate "Give"/"Play" button inside it) built on
    top of Shop.tsx's own .shop-item-card visual base -- this is just the
@@ -2640,7 +2677,16 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .auth-guest-chevron { flex: none; width: 16px; height: 16px; color: var(--ink-soft); transform: rotate(-90deg); }
 
 @media (max-width: 760px) {
-  .auth-hero { flex-direction: column; text-align: center; gap: 10px; margin-bottom: 22px; }
+  /* Stays a row (not column) on mobile too -- the logo and the title used
+     to stack into two separate centered rows here, leaving the title
+     looking oddly small and alone; a smaller logo alongside a smaller
+     title (both scaled down together) keeps them on one line instead,
+     with the subtitle wrapping onto its own line below within the same
+     text column, same layout shape as desktop just smaller. */
+  .auth-hero { text-align: left; gap: 14px; margin-bottom: 18px; justify-content: center; }
+  .auth-hero-logo { width: 52px; height: 52px; }
+  .auth-hero-title { font-size: 26px; }
+  .auth-hero-subtitle { font-size: 14px; }
   .auth-panels { flex-direction: column; gap: 20px; }
   .auth-panel-main, .auth-panel-side { flex: 1 1 auto; border-radius: 24px; }
   .auth-owl-img { min-height: 140px; }
