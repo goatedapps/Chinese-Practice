@@ -2041,16 +2041,26 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
    sidebar is `position:fixed` with its own top/bottom:0 (see its own media
    query below), so this has no effect there -- fixed positioning already
    overrides flex sizing once applied. */
-/* Desktop only: pin the whole in-activity card to exactly fill the
-   viewport (no page scrollbar), and keep that height constant across every
-   mode -- Play's own fixed-height cloud-sky used to leave the card looking
-   shorter than Learn/Apply/Test since height was otherwise just whatever
-   the active mode's content needed. 160px = the sticky .top-bar's own
-   rendered height (80px) + its margin-bottom (20px) + #root's own
-   padding-bottom (60px), i.e. the fixed chrome above and below this card;
-   only holds while .top-bar stays a single row, true from this breakpoint
-   up (it only wraps to two rows/hides nav items well below it). */
-@media (min-width: 900px) {
+/* Pin the whole in-activity card to exactly fill the viewport (no page
+   scrollbar), and keep that height constant across every mode -- Play's
+   own fixed-height cloud-sky used to leave the card looking shorter than
+   Learn/Apply/Test since height was otherwise just whatever the active
+   mode's content needed. Without this, .tingxie-activity-layout's
+   align-items:stretch (see its own comment) instead stretches the sidebar
+   to match whichever mode's content happens to be showing -- switching
+   from Learn's tall flip-card to Play's shorter cloud-sky visibly shrank
+   the sidebar (Learn's own card worst of all, being flex:2) rather than
+   leaving it alone, since nothing was pinning the row's own height. 160px
+   = the sticky .top-bar's own rendered height (80px) + its margin-bottom
+   (20px) + #root's own padding-bottom (60px), i.e. the fixed chrome above
+   and below this card; only holds while .top-bar stays a single row and
+   the sidebar is inline rather than an off-canvas drawer -- both true from
+   this breakpoint up (measured empirically: the top bar doesn't wrap to a
+   second row until well below this, and .tingxie-mode-sidebar's own
+   min-width:780px is where it stops being position:fixed), matching
+   .tingxie-mode-sidebar's own breakpoint so there's no gap width where the
+   sidebar is inline but not yet height-stabilized. */
+@media (min-width: 780px) {
   .screen.tingxie-screen-activity {
     height: calc(100vh - 160px);
     display: flex;
@@ -2201,12 +2211,12 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 
 .tingxie-learn { text-align: center; }
 .tingxie-carousel, .tingxie-sentence-game { text-align: center; }
-/* Desktop, inside the fixed-height activity card (see .tingxie-screen-activity
-   near .tingxie-activity-layout above): let the flashcard/game area flex to
+/* Inside the fixed-height activity card (see .tingxie-screen-activity near
+   .tingxie-activity-layout above): let the flashcard/game area flex to
    fill whatever vertical room is left after the header, rather than the
    purely width-driven aspect ratio .tingxie-flip-card otherwise uses, which
    could run taller than that room and force this content pane to scroll. */
-@media (min-width: 900px) {
+@media (min-width: 780px) {
   .tingxie-screen-activity .tingxie-learn { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   .tingxie-screen-activity .tingxie-carousel,
   .tingxie-screen-activity .tingxie-sentence-game {
@@ -2284,11 +2294,12 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   width: 100%; aspect-ratio: 4 / 5; max-width: 380px; margin: 0 auto;
   position: relative; cursor: pointer;
 }
-/* Wider on desktop -- the mode sidebar (see .tingxie-mode-sidebar) already
-   claims its own width, so the remaining content column has more room
-   than the mobile-sized 380px card was using, leaving a lot of dead space
-   beside it otherwise. */
-@media (min-width: 900px) {
+/* Wider once the mode sidebar (see .tingxie-mode-sidebar) is inline rather
+   than an off-canvas drawer -- it already claims its own width at that
+   point, so the remaining content column has more room than the
+   mobile-sized 380px card was using, leaving a lot of dead space beside
+   it otherwise. Matches .tingxie-mode-sidebar's own breakpoint. */
+@media (min-width: 780px) {
   .tingxie-flip-card { max-width: 560px; }
 }
 .tingxie-flip-card:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 28px; }
@@ -2331,7 +2342,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
    viewports both stage and card shrink to the same width and the buttons
    naturally settle fully onto the card's edge instead. */
 .tingxie-flip-stage { position: relative; max-width: 432px; margin: 0 auto; }
-@media (min-width: 900px) {
+@media (min-width: 780px) {
   .tingxie-flip-stage { max-width: 612px; }
   /* Inside the fixed-height activity card (see .tingxie-screen-activity near
      .tingxie-activity-layout), the flashcard fills the wide empty content
@@ -2485,12 +2496,12 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .tingxie-play { text-align: center; }
 .tingxie-play .tingxie-apply-sentence { margin: 4px 0 2px; }
 .tingxie-play .tingxie-apply-english { margin-bottom: 14px; }
-/* Desktop, inside the fixed-height activity card (see .tingxie-screen-activity
-   near .tingxie-activity-layout): let the cloud-sky box grow to fill
-   whatever vertical room is left after the timer/sentence, instead of its
-   own fixed 320px height leaving empty space below it now that the card's
-   overall height no longer shrinks to fit Play's shorter content. */
-@media (min-width: 900px) {
+/* Inside the fixed-height activity card (see .tingxie-screen-activity near
+   .tingxie-activity-layout): let the cloud-sky box grow to fill whatever
+   vertical room is left after the timer/sentence, instead of its own fixed
+   320px height leaving empty space below it now that the card's overall
+   height no longer shrinks to fit Play's shorter content. */
+@media (min-width: 780px) {
   .tingxie-screen-activity .tingxie-play { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   .tingxie-screen-activity .tingxie-play-timer { align-self: center; }
   .tingxie-screen-activity .tingxie-cloud-sky { flex: 1; width: 100%; height: auto; min-height: 0; }
