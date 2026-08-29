@@ -42,6 +42,12 @@ export function OwlFlyover() {
   const [pos, setPos] = useState<Pos | null>(null);
   const [dragging, setDragging] = useState(false);
   const dragOffsetRef = useRef({ dx: 0, dy: 0 });
+  // Lets a student dismiss the landed owl off the current page entirely
+  // (its own close button, not a drag) -- separate from `phase` so the
+  // Home-departure effect below can keep resetting phase without needing to
+  // know about dismissal; cleared on every fresh flight so the next
+  // departure from Home always shows it again.
+  const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
     const prev = prevScreenRef.current;
@@ -56,6 +62,7 @@ export function OwlFlyover() {
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       // Reduced motion skips straight to landed -- no flight to play.
       setPhase(reduceMotion ? "landed" : "flying");
+      setDismissed(false);
     }
     // Navigating between two non-home screens while already landed (or
     // hidden on a HIDDEN_ON screen) is left alone -- no re-trigger.
@@ -136,7 +143,7 @@ export function OwlFlyover() {
     e.currentTarget.releasePointerCapture(e.pointerId);
   }
 
-  if (phase === "hidden" || HIDDEN_ON.has(state.screen)) return null;
+  if (phase === "hidden" || dismissed || HIDDEN_ON.has(state.screen)) return null;
 
   return (
     <div
@@ -160,6 +167,22 @@ export function OwlFlyover() {
           real element never moves, and the native drag start fires a
           pointercancel that aborts our own drag logic mid-gesture). */}
       <img src="/owl/flying-owl.png" alt="" className="owl-flyover-sprite" draggable={false} />
+      {phase === "landed" && (
+        <button
+          type="button"
+          className="owl-flyover-close"
+          aria-label="移开小猫头鹰 Dismiss the owl"
+          // Stops the wrapper's own onPointerDown from starting a drag when
+          // the tap lands on this button instead of the sprite.
+          onPointerDown={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+            setDismissed(true);
+          }}
+        >
+          ✕
+        </button>
+      )}
     </div>
   );
 }
