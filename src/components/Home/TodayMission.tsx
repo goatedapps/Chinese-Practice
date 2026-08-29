@@ -6,6 +6,7 @@ import { MISSION_COMPLETE_BONUS_BP } from "../../data/pet";
 import { selectTypeSessionGroups } from "../../lib/typeSession";
 import { shuffle } from "../../lib/shuffle";
 import { isLessonMissionComplete, getReadingMissionCount, isTingxieMissionComplete, READING_MISSION_CATEGORIES } from "../../lib/stats";
+import { loadTodaysReadingMission, saveTodaysReadingMission } from "../../state/dailyReadingMission";
 import type { HistoryEntry } from "../../data/types";
 
 export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
@@ -33,6 +34,21 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
 
   async function startReadingMission() {
     if (starting) return;
+    // Pinned to the same question set all day (see
+    // state/dailyReadingMission.ts) -- leaving this mission mid-quiz and
+    // clicking "去完成" again must not hand back a different random
+    // category pick / passage draw than the first attempt today.
+    const cached = loadTodaysReadingMission();
+    if (cached) {
+      dispatch({
+        type: "START_QUIZ",
+        mode: "type",
+        modeLabel: "按题型 " + cached.chosen.map((k) => CATEGORIES[k].label).join("、"),
+        groups: cached.groups
+      });
+      return;
+    }
+
     // Filtered to this level's relevant categories first (see
     // data/levels.ts) -- e.g. P2 has no real dialogue/practical content, so
     // without this filter a 1-in-6 shuffle could pick both of those and
@@ -43,6 +59,7 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
       const lists = await Promise.all(chosen.map((c) => fetchQuestionCategory(c)));
       const groups = selectTypeSessionGroups(lists.flat());
       if (groups.length === 0) return;
+      saveTodaysReadingMission({ chosen, groups });
       dispatch({
         type: "START_QUIZ",
         mode: "type",
