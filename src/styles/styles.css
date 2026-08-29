@@ -284,6 +284,18 @@ body {
      tightened here rather than lowering the shared desktop values. */
   #root { padding-bottom: 130px; padding-left: 12px; padding-right: 12px; }
   .screen { padding-left: 12px; padding-right: 12px; }
+
+  /* Shrink the top bar itself on mobile -- the inline nav is gone (moved to
+     .bottom-nav above) so there's nothing left to justify the desktop
+     ~80px-tall bar; a smaller brand badge/BP pill/account chip plus tighter
+     padding claims back vertical space for content on a small phone screen. */
+  .top-bar { padding: 10px 14px 10px 10px; margin-bottom: 12px; gap: 8px 10px; }
+  .top-nav-brand-badge { width: 34px; height: 34px; }
+  .top-nav-stat { padding: 6px 11px; font-size: 13px; gap: 5px; }
+  .top-nav-stat-coin { width: 15px; height: 15px; }
+  .account-chip { padding: 4px 10px 4px 4px; gap: 6px; }
+  .account-avatar { width: 27px; height: 27px; font-size: 12px; }
+  .account-avatar svg { width: 14px; height: 14px; }
 }
 
 /* ---------- Account menu (profile dropdown + BP stat) ---------- */
@@ -984,6 +996,21 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .lesson-btn-count { font-size: 15px; color: var(--garden-ink-soft); margin-top: 4px; }
 .lesson-grid-disabled { opacity: .55; }
 .picker-hint { font-size: 13px; font-weight: 400; color: var(--ink-soft); }
+
+/* Mobile: auto-fill's 220px floor only ever fits 1 column on a phone-width
+   screen, leaving a long single-file list of lesson buttons -- fixed at 3
+   columns instead, with the card's padding/font/decorations scaled down to
+   fit a ~100px-wide column (shared by Tingxie's LessonSelect and Practice's
+   Vocabulary lesson filter, both built on .lesson-grid/.lesson-btn). */
+@media (max-width: 700px) {
+  .lesson-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .lesson-btn { padding: 14px 6px 12px; border-radius: 16px; }
+  .lesson-btn-num { font-size: 15px; }
+  .lesson-btn-count { font-size: 11px; margin-top: 2px; }
+  .lesson-btn::before { width: 9px; height: 14px; right: 8px; }
+  .lesson-btn::after { font-size: 9px; left: 6px; bottom: 5px; }
+  .lesson-btn-active::before { width: 16px; height: 16px; font-size: 9px; top: -5px; right: -4px; }
+}
 
 /* Explains what actually completes a Today's Mission -- shown near the top
    of the screen a mission's button lands on (Practice.tsx, Tingxie's
@@ -2100,6 +2127,51 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   .tingxie-screen-activity .tingxie-sentence-game {
     flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0;
   }
+}
+/* Mobile, Learn mode only (Tingxie.tsx adds .tingxie-screen-activity-learn
+   only while state.view === "learn" -- Apply/Play/Test are unaffected and
+   keep scrolling normally): same fixed-height/flex-fill technique as the
+   min-width:900px block above, so the flip-card/sentence-builder page never
+   needs the whole page to scroll on a phone. 200px = the mobile .top-bar's
+   own shrunk height (~55px, see its own max-width:700px rule) + its
+   margin-bottom (12px) + #root's mobile padding-bottom (130px, already
+   reserves room for the fixed .bottom-nav).
+   .tingxie-activity-layout needs an explicit display:flex here to win over
+   its own max-width:780px rule below (display:block, for the off-canvas
+   sidebar) -- same specificity, but that rule's plain .tingxie-activity-layout
+   selector loses to this file's later two-class selector regardless of
+   source order, so without restating display here the flex-basis/min-height
+   props below would silently do nothing (verified empirically: the whole
+   fixed-height cascade stops dead at a `display:block` ancestor). The
+   sidebar itself is unaffected either way -- it's position:fixed at this
+   width, already out of normal flow. flip-stage/outer/card get the same
+   explicit width/height overrides as the min-width:900px block for the same
+   reason documented on .tingxie-flip-stage below: a descendant's aspect-ratio
+   otherwise pins the stage to a content-based (here: collapsed to 0) size
+   instead of stretching into the flex-allotted space. */
+@media (max-width: 700px) {
+  .tingxie-screen-activity-learn {
+    height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .tingxie-screen-activity-learn .tingxie-activity-layout {
+    display: flex; flex-direction: column;
+    flex: 1; min-height: 0;
+  }
+  .tingxie-screen-activity-learn .tingxie-activity-content {
+    display: flex; flex-direction: column; min-height: 0;
+    overflow-y: auto;
+  }
+  .tingxie-screen-activity-learn .tingxie-learn { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  .tingxie-screen-activity-learn .tingxie-carousel,
+  .tingxie-screen-activity-learn .tingxie-sentence-game {
+    flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0;
+  }
+  .tingxie-screen-activity-learn .tingxie-flip-stage { flex: 1; min-height: 0; width: 100%; }
+  .tingxie-screen-activity-learn .tingxie-flip-outer { width: 100%; height: 100%; }
+  .tingxie-screen-activity-learn .tingxie-flip-card { height: 100%; max-height: 460px; max-width: calc(100% - 56px); }
 }
 .tingxie-progress { color: var(--ink-soft); font-size: 14px; margin-bottom: 12px; }
 
