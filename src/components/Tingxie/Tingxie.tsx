@@ -70,7 +70,7 @@ function TingxieShell() {
   }
 
   return (
-    <div className="screen tingxie-screen tingxie-screen-activity">
+    <div className={"screen tingxie-screen tingxie-screen-activity" + (state.view === "learn" ? " tingxie-screen-activity-learn" : "")}>
       <div className="tingxie-activity-layout">
         {/* Mobile only (see .tingxie-sidebar-backdrop's media query) --
             dims the content and closes the sidebar on tap, the standard
