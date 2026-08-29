@@ -1864,6 +1864,15 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 @media (max-width: 699px) {
   .shop-grid, .bag-grid { grid-template-columns: repeat(2, 1fr); }
 }
+/* Same WebKit percentage-flex-basis bug the max-width:699px block below
+   documents in full, but this closes the gap between it and the
+   min-width:900px fixed-height grid (see .screen.shop-screen above) --
+   .shop-item-card has no fixed height in 700-899px either (e.g. an iPad in
+   a narrower split-view), so the same blown-up-icon bug could still hit
+   Safari there even outside the phone-sized compact styling below. */
+@media (max-width: 899px) {
+  .shop-item-icon { flex: 0 0 auto; }
+}
 /* Mobile: .shop-item-card's icon claiming ~70% of the card's width (see its
    own comment above) plus the full desktop padding/button size left every
    card roughly twice as tall as it needed to be at a 2-column phone width --
@@ -1872,6 +1881,9 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
    to half on its own. Shared by Bag.tsx too (same .shop-item-card base). */
 @media (max-width: 699px) {
   .shop-item-card { padding: 7px; gap: 2px; border-radius: 16px; }
+  /* flex:0 0 auto already applied by the max-width:899px block above (this
+     narrower block only needs to tighten max-width further for the phone
+     type scale) -- see that block for why the flex override exists. */
   .shop-item-icon { max-width: 27%; margin-top: 2px; }
   .shop-item-label { font-size: 12px; }
   .shop-item-stats { font-size: 10px; gap: 6px; }
