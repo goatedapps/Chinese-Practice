@@ -43,18 +43,25 @@ export function TopNav() {
     return item.isImage ? <img className={className} src={item.icon} alt="" /> : <Icon name={item.icon} className={className} />;
   }
 
+  // Desktop's inline .top-nav drops its own "home" item -- the brand/logo
+  // button just below takes over that job there (see its own onClick) -- but
+  // .bottom-nav (mobile) still needs it, since the brand there has no room
+  // to show its own label/expanded tap target and a home icon is still the
+  // clearer, more familiar affordance in a tab bar.
+  const inlineNavItems = NAV_ITEMS.filter((item) => item.key !== "home");
+
   return (
     <>
       <div className="top-nav-row">
-        <div className="top-nav-brand">
+        <button type="button" className="top-nav-brand" onClick={() => go("home")}>
           <div className="top-nav-brand-badge"><img src="/icons/pet.png" alt="" /></div>
           <div className="top-nav-brand-text">
             <div className="top-nav-brand-title">华文练习</div>
           </div>
-        </div>
+        </button>
 
         <nav className="top-nav">
-          {NAV_ITEMS.map((item) => (
+          {inlineNavItems.map((item) => (
             <button
               key={item.key}
               className={"top-nav-item" + (item.screens.includes(state.screen) ? " top-nav-item-active" : "")}

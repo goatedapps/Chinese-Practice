@@ -4,6 +4,7 @@ import { CATEGORIES, SUBJECTS, VOCABULARY_CATEGORY_KEYS, fetchQuestionCategory }
 import { isCategoryRelevantForLevel } from "../../data/levels";
 import type { QuestionGroup } from "../../data/types";
 import { selectTypeSessionGroups } from "../../lib/typeSession";
+import { loadPendingPracticeSession, savePendingPracticeSession, type PracticeSelectionSignature } from "../../state/pendingPractice";
 import { loadHistory } from "../../state/history";
 import { isLessonMissionComplete } from "../../lib/stats";
 import { shouldNudgeForLesson } from "../../state/lessonFrequency";
@@ -150,6 +151,22 @@ export function Practice() {
     const label = selectedGroups
       .map((g) => (lessonFiltered && g.key === "vocabulary" ? `${g.label}（第 ${lessonNums.join("、")} 课）` : g.label))
       .join("、");
+    const mode = lessonFiltered ? "lesson" : "type";
+
+    // Resume the exact same question set if this exact selection was started
+    // (but not finished) most recently -- see state/pendingPractice.ts's own
+    // comment for why. A different selection just means this isn't a resume,
+    // so a fresh set is generated (and remembered in turn) as before.
+    const signature: PracticeSelectionSignature = {
+      subject: state.selectedSubject,
+      categories: [...state.selectedCategories].sort(),
+      lessons: lessonFiltered ? lessonNums : []
+    };
+    const pending = loadPendingPracticeSession(signature);
+    const sessionGroups = pending ? pending.groups : selectTypeSessionGroups(groups);
+    if (!pending) {
+      savePendingPracticeSession({ signature, mode, modeLabel: label, groups: sessionGroups, reducedBP });
+    }
 
     dispatch({
       type: "START_QUIZ",
@@ -157,9 +174,9 @@ export function Practice() {
       // dashboard working as before: a session only counts as "lesson" mode
       // when the student actually narrowed Vocabulary to specific lesson(s),
       // not just left it at the "all lessons" default.
-      mode: lessonFiltered ? "lesson" : "type",
+      mode,
       modeLabel: (lessonFiltered ? "按课文练习 " : "按题型 ") + label,
-      groups: selectTypeSessionGroups(groups),
+      groups: sessionGroups,
       reducedBP
     });
   }

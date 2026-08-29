@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { loadHistory, deleteHistoryEntry } from "../../state/history";
 import { loadAchievements } from "../../state/achievements";
 import { getTodayStats, isTingxieMissionComplete } from "../../lib/stats";
@@ -21,10 +21,25 @@ function greeting(): string {
 
 export function Home() {
   const [hist, setHist] = useState(() => loadHistory());
-  const [achievements] = useState(() => loadAchievements());
+  const [achievements, setAchievements] = useState(() => loadAchievements());
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
   const todayStats = getTodayStats(hist);
   const showTodaySummary = todayStats.questions > 0 || isTingxieMissionComplete() || getTodaySummary().storiesRead.length > 0;
+
+  // Both are otherwise loaded once, at mount, and Home doesn't itself
+  // remount just because the student printed a PDF (window.open()'s new
+  // tab) or switched apps and came back -- re-reading on refocus is a
+  // cheap, general safety net against showing stale Today's Mission/
+  // achievements state after whatever happened while this tab was in the
+  // background, rather than needing to track down every individual cause.
+  useEffect(() => {
+    function refresh() {
+      setHist(loadHistory());
+      setAchievements(loadAchievements());
+    }
+    window.addEventListener("focus", refresh);
+    return () => window.removeEventListener("focus", refresh);
+  }, []);
 
   function handleConfirm() {
     if (!pendingDeleteId) return;
