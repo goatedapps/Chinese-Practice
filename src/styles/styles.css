@@ -288,9 +288,21 @@ body {
   /* padding-bottom: room for the fixed bar itself, on top of #root's own
      60px base. Side padding: a lot of it stacked (#root's 20px +
      .screen's 20px) looked like wasted margin on a narrow phone screen --
-     tightened here rather than lowering the shared desktop values. */
-  #root { padding-bottom: 130px; padding-left: 12px; padding-right: 12px; }
-  .screen { padding-left: 12px; padding-right: 12px; }
+     tightened here rather than lowering the shared desktop values.
+     112px covers .bottom-nav's own worst-case rendered height (its own
+     8px+8px padding plus content, plus up to ~34px of a notched phone's
+     safe-area-inset-bottom folded into its bottom padding -- ~99px total)
+     with a little headroom, rather than the far larger 130px this used to
+     be: that value, stacked with .screen's own unrelated 40px end-of-card
+     padding below, let every page scroll a good 100px+ past its real
+     content into plain background before hitting the true bottom --
+     visually indistinguishable from "scrolling past" the fixed nav even
+     though the nav itself never moves. .screen's own bottom padding is
+     trimmed to match here for the same reason (its 40px desktop value is
+     a card-ending breathing margin, not part of the nav-clearance
+     reservation, so it shouldn't also compound with it here). */
+  #root { padding-bottom: 112px; padding-left: 12px; padding-right: 12px; }
+  .screen { padding-left: 12px; padding-right: 12px; padding-bottom: 16px; }
 
   /* Shrink the top bar itself on mobile -- the inline nav is gone (moved to
      .bottom-nav above) so there's nothing left to justify the desktop
@@ -2143,8 +2155,17 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 
 @media (max-width: 780px) {
   .tingxie-activity-layout { display: block; }
+  /* z-index above .owl-flyover's own 60 (see styles.css's own comment on
+     that class) -- the decorative flying-owl mascot is position:fixed
+     app-wide and can be parked (by default, or a student's earlier drag)
+     anywhere on screen, including right over this drawer's cards; once
+     open, this off-canvas panel is real interactive UI, not page content,
+     so it needs to win that stack the same way an actual modal would
+     (this still sits comfortably under .modal-overlay's 1000). Without
+     this, the mode list -- Learn included -- could silently render behind
+     the owl and look like a button had disappeared. */
   .tingxie-mode-sidebar {
-    position: fixed; top: 0; bottom: 0; left: 0; z-index: 40;
+    position: fixed; top: 0; bottom: 0; left: 0; z-index: 70;
     width: min(300px, 84vw); flex: none;
     border-radius: 0 24px 24px 0;
     transform: translateX(-100%);
@@ -2154,7 +2175,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   .tingxie-mode-sidebar-open { transform: translateX(0); }
   .tingxie-sidebar-backdrop {
     display: block;
-    position: fixed; inset: 0; z-index: 39;
+    position: fixed; inset: 0; z-index: 69;
     background: rgba(20, 20, 60, .45);
   }
   .tingxie-mode-toggle-btn {
@@ -2196,9 +2217,9 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
    only while state.view === "learn" -- Apply/Play/Test are unaffected and
    keep scrolling normally): same fixed-height/flex-fill technique as the
    min-width:900px block above, so the flip-card/sentence-builder page never
-   needs the whole page to scroll on a phone. 200px = the mobile .top-bar's
+   needs the whole page to scroll on a phone. 180px = the mobile .top-bar's
    own shrunk height (~55px, see its own max-width:700px rule) + its
-   margin-bottom (12px) + #root's mobile padding-bottom (130px, already
+   margin-bottom (12px) + #root's mobile padding-bottom (112px, already
    reserves room for the fixed .bottom-nav).
    .tingxie-activity-layout needs an explicit display:flex here to win over
    its own max-width:780px rule below (display:block, for the off-canvas
@@ -2215,7 +2236,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
    instead of stretching into the flex-allotted space. */
 @media (max-width: 700px) {
   .tingxie-screen-activity-learn {
-    height: calc(100vh - 200px);
+    height: calc(100vh - 180px);
     display: flex;
     flex-direction: column;
     overflow: hidden;
