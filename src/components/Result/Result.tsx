@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useAppState, useAppDispatch } from "../../state/AppStateContext";
 import { usePet } from "../../state/PetContext";
 import { saveHistory, loadHistory } from "../../state/history";
+import { clearPendingPracticeSession } from "../../state/pendingPractice";
 import { logAchievement, checkAndAwardMissionBonus } from "../../state/achievements";
 import { recordTodayPracticeSession } from "../../state/todaySummary";
 import { getTodaySpecialQuest, completeSpecialQuest } from "../../state/specialQuest";
@@ -57,6 +58,10 @@ export function Result() {
       skippedItems,
       categoryCounts
     });
+    // This session genuinely finished -- whatever Practice.tsx had marked as
+    // "resume this if the same selection comes back" (see
+    // state/pendingPractice.ts) no longer applies.
+    clearPendingPracticeSession();
     if (state.groups.length > 0) {
       recordTodayPracticeSession({ modeLabel: state.modeLabel || "", groups: state.groups, results: state.results });
     }
