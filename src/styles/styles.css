@@ -1864,6 +1864,21 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 @media (max-width: 699px) {
   .shop-grid, .bag-grid { grid-template-columns: repeat(2, 1fr); }
 }
+/* Mobile: .shop-item-card's icon claiming ~70% of the card's width (see its
+   own comment above) plus the full desktop padding/button size left every
+   card roughly twice as tall as it needed to be at a 2-column phone width --
+   shrunk on every axis (icon, padding, gaps, type scale, the buy button's
+   own padding) rather than just one, since no single change gets it close
+   to half on its own. Shared by Bag.tsx too (same .shop-item-card base). */
+@media (max-width: 699px) {
+  .shop-item-card { padding: 7px; gap: 2px; border-radius: 16px; }
+  .shop-item-icon { max-width: 27%; margin-top: 2px; }
+  .shop-item-label { font-size: 12px; }
+  .shop-item-stats { font-size: 10px; gap: 6px; }
+  .shop-item-owned { top: 6px; right: 8px; padding: 3px 7px; font-size: 10px; }
+  .shop-item-buy { padding: 5px 10px; font-size: 11px; gap: 4px; }
+  .shop-item-buy-coin { width: 12px; height: 12px; }
+}
 /* Bag.tsx's card is a real <button> (the whole card is the tap target --
    tap to feed/play, no separate "Give"/"Play" button inside it) built on
    top of Shop.tsx's own .shop-item-card visual base -- this is just the
