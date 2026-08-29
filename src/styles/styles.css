@@ -1767,6 +1767,27 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   .owl-action-banner-row .owl-action-banner img { flex: 0 0 auto; width: 34px; height: 34px; }
 }
 
+/* Mobile: the pet's name pill and the growth/hunger bars below it were sized
+   for the wide desktop card (h1-sized name, an 18px bar label, a 28px-tall
+   bar) -- all scaled back down here to match the rest of the page's mobile
+   type scale instead of looking oversized on a phone. Scoped to .owl-screen
+   so Bag.tsx's own (already mobile-appropriate, never enlarged) stat bars
+   are untouched. */
+@media (max-width: 699px) {
+  .owl-screen .owl-name-heading,
+  .owl-screen .owl-name-editing {
+    font-size: 20px;
+  }
+  .owl-screen .owl-name-heading .owl-name-edit { font-size: 16px; }
+  .owl-screen .owl-name-input { font-size: 17px; padding: 5px 8px; }
+  .owl-screen .pet-profile-age { font-size: 14px; }
+  .owl-screen .pet-profile-stage-badge { font-size: 12.5px; padding: 5px 13px; }
+  .owl-screen .growth-bar, .owl-screen .mood-bar { height: 20px; }
+  .owl-screen .stat-bar-label { font-size: 14px; gap: 6px; margin-bottom: 8px; }
+  .owl-screen .stat-bar-icon { width: 15px; height: 15px; }
+  .owl-screen .growth-caption { font-size: 13px; }
+}
+
 /* Exactly 3 columns so the 6 SHOP_ITEMS always land in exactly 2 rows (per
    the design brief) rather than reflowing at odd widths like the old
    auto-fill grid did. Desktop additionally pins the whole page to the
@@ -2332,7 +2353,14 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 }
 .tingxie-flip-hint { color: var(--ink-soft); font-size: 14px; margin-top: 14px; }
 
-.tingxie-vocab-word { font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 60px; font-weight: 700; line-height: 1.3; }
+/* Standard sans-serif Chinese font (same stack as body), not the stylized
+   Smiley Sans headline face -- a dictation flashcard's whole point is
+   showing the student the word's normal, standard-looking form, not a
+   decorative display font. */
+.tingxie-vocab-word {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+  font-size: 60px; font-weight: 700; line-height: 1.3;
+}
 .tingxie-vocab-pinyin { font-size: 24px; opacity: .92; line-height: 1.4; }
 .tingxie-vocab-meaning { font-size: 27px; font-weight: 700; line-height: 1.4; }
 .tingxie-vocab-example { font-size: 23px; opacity: .85; line-height: 1.7; }
@@ -2496,7 +2524,12 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 /* -- Apply / Practice cards -- */
 .tingxie-apply-sentence { font-size: 22px; font-weight: 700; line-height: 1.5; }
 .tingxie-apply-english { font-size: 15px; opacity: .85; }
-.tingxie-apply-answer { font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 40px; font-weight: 700; }
+/* Standard sans-serif Chinese font, same reasoning as .tingxie-vocab-word
+   above -- not the stylized Smiley Sans headline face. */
+.tingxie-apply-answer {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+  font-size: 40px; font-weight: 700;
+}
 .tingxie-practice-front { display: flex; flex-direction: column; gap: 10px; }
 .tingxie-practice-sentence-back { font-size: 18px; font-weight: 700; line-height: 1.5; }
 
