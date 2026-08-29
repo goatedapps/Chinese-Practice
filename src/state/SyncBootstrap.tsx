@@ -7,6 +7,7 @@ import { ACHIEVEMENTS_KEY } from "./achievements";
 import { TINGXIE_PROGRESS_KEY } from "./tingxieProgress";
 import { LESSON_FREQUENCY_KEY } from "./lessonFrequency";
 import { LEVEL_KEY, isKnownLevel } from "./levelPreference";
+import { MY_VOCAB_KEY } from "./myVocab";
 import {
   pullAndMergeAll,
   applyRemoteToLocal,
@@ -19,7 +20,7 @@ import { PET_DEFAULT_STATE } from "../data/pet";
 import { DEFAULT_LEVEL, setCurrentLevel } from "../data/levels";
 import type { PetState } from "../data/types";
 
-const SYNC_KEYS = [PET_KEY, HISTORY_KEY, ACHIEVEMENTS_KEY, TINGXIE_PROGRESS_KEY, LESSON_FREQUENCY_KEY, LEVEL_KEY];
+const SYNC_KEYS = [PET_KEY, HISTORY_KEY, ACHIEVEMENTS_KEY, TINGXIE_PROGRESS_KEY, LESSON_FREQUENCY_KEY, LEVEL_KEY, MY_VOCAB_KEY];
 
 // Renders nothing -- mounted inside both AuthProvider and PetProvider (see
 // App.tsx) so it can read useAuth(), usePet(), and useAppDispatch() (for the
@@ -57,6 +58,7 @@ export function SyncBootstrap() {
     clearLocalStore(TINGXIE_PROGRESS_KEY);
     clearLocalStore(LESSON_FREQUENCY_KEY);
     clearLocalStore(LEVEL_KEY);
+    clearLocalStore(MY_VOCAB_KEY);
     setCurrentLevel(DEFAULT_LEVEL);
     dispatch({ type: "SET_LEVEL", level: DEFAULT_LEVEL });
     clearSyncMeta();

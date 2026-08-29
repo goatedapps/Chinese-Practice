@@ -217,3 +217,18 @@ export interface TingxieLessonIndexEntry {
   id: number;
   title: string;
 }
+
+// A word a student flagged for extra revision via "Add to My Vocab" in
+// Learn/Apply/Test. word/pinyin/meaning/example are captured at save-time
+// (not re-fetched from the lesson), so a saved entry still displays
+// correctly even if the source content changes later.
+export interface MyVocabEntry {
+  id: string;
+  word: string;
+  pinyin: string;
+  meaning: string;
+  example: string;
+  lessonId: number | null;
+  lessonTitle: string;
+  savedAt: number;
+}

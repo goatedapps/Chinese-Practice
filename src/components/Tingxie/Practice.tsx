@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePet } from "../../state/PetContext";
 import { TINGXIE_BP_PER_UNIT } from "../../data/pet";
 import { buildTingxiePracticeVocabQueue, tingxieIconEmoji } from "../../data/tingxie";
@@ -9,6 +9,7 @@ import { recordLessonCompleted } from "../../state/lessonFrequency";
 import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { recordTingxieWrong } from "../../state/todaySummary";
 import { loadHistory } from "../../state/history";
+import { isWordSaved, addToMyVocab, removeFromMyVocab } from "../../state/myVocab";
 import { useSwipe } from "../../lib/useSwipe";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 import { TingxieFlipCard } from "./TingxieFlipCard";
@@ -42,14 +43,39 @@ export function Practice() {
       awardedRef.current = true;
       awardBP(bpAmount);
       Sound.applause();
-      recordTingxieActivityCompleted();
-      if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|test` });
-      checkAndAwardMissionBonus(loadHistory(), awardBP);
+      if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
+      // My Vocab Only sessions still earn BP, but don't count towards
+      // Today's Mission/quests -- see TingxieActiveContent.isMyVocabOnly.
+      if (!state.activeContent!.isMyVocabOnly) {
+        recordTingxieActivityCompleted();
+        checkAndAwardMissionBonus(loadHistory(), awardBP);
+      }
     }
   }, [state.practiceComplete, hasVocab, awardBP, state.activeContent, bpAmount]);
 
   const current = state.practiceQueue[0];
+  // Forces a re-render after toggling My Vocab -- isWordSaved() below reads
+  // localStorage directly (no subscription), so nothing else would notice
+  // the change.
+  const [, forceVocabTick] = useState(0);
+  function toggleMyVocab() {
+    if (current?.kind !== "vocab") return;
+    const item = current.item;
+    if (isWordSaved(item.word)) removeFromMyVocab(item.word);
+    else {
+      addToMyVocab({
+        word: item.word,
+        pinyin: item.pinyin,
+        meaning: item.meaning,
+        example: item.example,
+        lessonId: state.activeContent!.lessonId ?? null,
+        lessonTitle: state.activeContent!.title
+      });
+      Sound.ding();
+    }
+    forceVocabTick((n) => n + 1);
+  }
 
   // Auto-speak the word when a new tingxie-phase (vocab) card appears --
   // not on click, matching the source app. The sentence phase (moxie) never
@@ -207,6 +233,17 @@ export function Practice() {
       </div>
 
       {!state.practiceFlipped && <p className="tingxie-flip-hint">点击卡片查看答案 Tap the card to see the answer</p>}
+
+      {current.kind === "vocab" && (
+        <button
+          type="button"
+          className={"tingxie-add-vocab-btn" + (isWordSaved(current.item.word) ? " tingxie-add-vocab-btn-saved" : "")}
+          onClick={toggleMyVocab}
+        >
+          <span className="tingxie-add-vocab-plus">{isWordSaved(current.item.word) ? "✓" : "+"}</span>
+          {isWordSaved(current.item.word) ? "已加入我的词库 Saved" : "加入我的词库 Add to My Vocab"}
+        </button>
+      )}
     </div>
   );
 }

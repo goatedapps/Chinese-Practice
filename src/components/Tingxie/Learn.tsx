@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePet } from "../../state/PetContext";
 import { TINGXIE_BP_PER_UNIT } from "../../data/pet";
 import { tingxieIconEmoji, tingxieSentenceWords, tingxieSentenceChars } from "../../data/tingxie";
@@ -8,6 +8,7 @@ import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
 import { recordLessonCompleted } from "../../state/lessonFrequency";
 import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { loadHistory } from "../../state/history";
+import { isWordSaved, addToMyVocab, removeFromMyVocab } from "../../state/myVocab";
 import { useSwipe } from "../../lib/useSwipe";
 import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 import { TingxieFlipCard } from "./TingxieFlipCard";
@@ -30,6 +31,25 @@ function VocabFlipCard() {
   const current = vocab[state.vocabIndex];
   const allFlipped = vocab.length > 0 && state.vocabFlippedIndices.length === vocab.length;
   const bpAmount = Math.round(TINGXIE_BP_PER_UNIT.VOCAB_LEARN * vocab.length * (state.activeContent?.reducedBP ? 0.5 : 1));
+  // Forces a re-render after toggling My Vocab -- isWordSaved() below reads
+  // localStorage directly (no subscription), so nothing else would notice
+  // the change.
+  const [, forceVocabTick] = useState(0);
+  function toggleMyVocab() {
+    if (isWordSaved(current.word)) removeFromMyVocab(current.word);
+    else {
+      addToMyVocab({
+        word: current.word,
+        pinyin: current.pinyin,
+        meaning: current.meaning,
+        example: current.example,
+        lessonId: state.activeContent!.lessonId ?? null,
+        lessonTitle: state.activeContent!.title
+      });
+      Sound.ding();
+    }
+    forceVocabTick((n) => n + 1);
+  }
 
   // Swipe left/right mirror the Prev/Next buttons below.
   const swipe = useSwipe(
@@ -54,10 +74,14 @@ function VocabFlipCard() {
       dispatch({ type: "VOCAB_LEARN_AWARDED" });
       awardBP(bpAmount);
       Sound.applause();
-      recordTingxieActivityCompleted();
-      if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|learnVocab` });
-      checkAndAwardMissionBonus(loadHistory(), awardBP);
+      if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
+      // My Vocab Only sessions still earn BP, but don't count towards
+      // Today's Mission/quests -- see TingxieActiveContent.isMyVocabOnly.
+      if (!state.activeContent!.isMyVocabOnly) {
+        recordTingxieActivityCompleted();
+        checkAndAwardMissionBonus(loadHistory(), awardBP);
+      }
     }
   }, [allFlipped, state.vocabFlipped, state.vocabLearnAwarded, awardBP, state.activeContent, dispatch, bpAmount]);
 
@@ -123,11 +147,13 @@ function VocabFlipCard() {
         </button>
       </div>
 
-      {/* Not wired up yet -- the button itself is ready, the "my vocab
-          list" feature it'll add to doesn't exist yet. */}
-      <button type="button" className="tingxie-add-vocab-btn">
-        <span className="tingxie-add-vocab-plus">+</span>
-        加入我的词库 Add to My Vocab
+      <button
+        type="button"
+        className={"tingxie-add-vocab-btn" + (isWordSaved(current.word) ? " tingxie-add-vocab-btn-saved" : "")}
+        onClick={toggleMyVocab}
+      >
+        <span className="tingxie-add-vocab-plus">{isWordSaved(current.word) ? "✓" : "+"}</span>
+        {isWordSaved(current.word) ? "已加入我的词库 Saved" : "加入我的词库 Add to My Vocab"}
       </button>
     </div>
   );

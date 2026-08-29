@@ -9,6 +9,7 @@ import { ACHIEVEMENTS_KEY } from "../../state/achievements";
 import { TINGXIE_PROGRESS_KEY } from "../../state/tingxieProgress";
 import { LESSON_FREQUENCY_KEY } from "../../state/lessonFrequency";
 import { LEVEL_KEY } from "../../state/levelPreference";
+import { MY_VOCAB_KEY } from "../../state/myVocab";
 import { DEFAULT_LEVEL, setCurrentLevel } from "../../data/levels";
 import { Icon } from "../common/Icons";
 
@@ -72,6 +73,7 @@ export function Auth({ gated = false }: { gated?: boolean }) {
     clearLocalStore(TINGXIE_PROGRESS_KEY);
     clearLocalStore(LESSON_FREQUENCY_KEY);
     clearLocalStore(LEVEL_KEY);
+    clearLocalStore(MY_VOCAB_KEY);
     setCurrentLevel(DEFAULT_LEVEL);
     dispatch({ type: "SET_LEVEL", level: DEFAULT_LEVEL });
     // Also clear any leftover sync-meta timestamps (e.g. from local guest

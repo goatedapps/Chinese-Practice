@@ -114,15 +114,20 @@ function TingxieShell() {
                   >
                     词语 Vocab
                   </button>
-                  <button
-                    className={"tingxie-mode-card-subtab" + (state.subTab === "sentence" ? " tingxie-mode-card-subtab-active" : "")}
-                    onClick={() => {
-                      dispatch({ type: "SET_SUB_TAB", tab: "sentence" });
-                      goToMode("learn");
-                    }}
-                  >
-                    句子 Sentences
-                  </button>
+                  {/* Hidden in My Vocab Only mode -- saved words carry no
+                      sentence data (see TingxieActiveContent.isMyVocabOnly),
+                      and content-loading forces sentences to []. */}
+                  {!state.activeContent?.isMyVocabOnly && (
+                    <button
+                      className={"tingxie-mode-card-subtab" + (state.subTab === "sentence" ? " tingxie-mode-card-subtab-active" : "")}
+                      onClick={() => {
+                        dispatch({ type: "SET_SUB_TAB", tab: "sentence" });
+                        goToMode("learn");
+                      }}
+                    >
+                      句子 Sentences
+                    </button>
+                  )}
                 </div>
               </div>
             )}
@@ -153,6 +158,9 @@ function TingxieShell() {
             <div className="tingxie-activity-title">
               <img src="/icons/dictatation-mission.png" alt="" />
               {state.activeContent.title}
+              {state.activeContent.isMyVocabOnly && (
+                <span className="tingxie-my-vocab-badge">我的词库 My Vocab</span>
+              )}
             </div>
           </div>
 

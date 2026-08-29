@@ -1108,24 +1108,18 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .picker .action-row, .tingxie-select .action-row { justify-content: flex-end; }
 .hidden { display: none !important; }
 
-/* ---------- Quiz ---------- */
-.quiz-topbar {
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; margin-bottom: 14px;
-}
+/* ---------- Quiz ----------
+   No BP badge/Home button here any more -- the shared top app bar (see
+   App.tsx's showTopNav) covers both now that it stays visible during a
+   quiz, so .quiz-topbar is just the group-progress counter. Its own
+   .action-row (Submit/Next) sits bottom-right (.quiz .action-row below),
+   not the shared default left alignment. */
+.quiz-topbar { display: flex; align-items: center; margin-bottom: 14px; }
 .quiz-progress {
   display: flex; flex-direction: column; gap: 2px;
   font-size: 15px; color: var(--ink-soft);
 }
-.home-btn {
-  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
-  border: 2px solid var(--border); border-radius: 999px;
-  padding: 8px 14px; font-size: 14px; cursor: pointer; white-space: nowrap;
-  box-shadow: var(--shadow-1);
-  transition: border-color .15s, color .15s, transform .1s;
-}
-.home-btn:hover { border-color: var(--primary); color: var(--primary); }
-.home-btn:active { transform: translateY(2px); box-shadow: var(--shadow-press); }
+.quiz .action-row { justify-content: flex-end; }
 
 .underline-word { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 2px; }
 
@@ -1281,7 +1275,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 
 /* Puffy pill badges -- the signature element. Anywhere a small value is
    "certified": marks per question, BP counts, growth stage, streaks. */
-.marks-badge, .quiz-bp-badge, .pet-hero-stage-badge {
+.marks-badge, .pet-hero-stage-badge {
   position: relative;
   display: inline-flex; align-items: center; gap: 4px;
   font-size: 13px; font-weight: 700; color: #fff8ee;
@@ -1292,13 +1286,9 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   box-shadow: var(--shadow-1);
   transition: transform .15s ease;
 }
-.marks-badge:hover, .quiz-bp-badge:hover,
-.pet-hero-stage-badge:hover { transform: scale(1.06); }
+.marks-badge:hover, .pet-hero-stage-badge:hover { transform: scale(1.06); }
 .marks-badge, .pet-hero-stage-badge {
   background: linear-gradient(155deg, var(--primary-hi), var(--primary) 55%, var(--primary-dark));
-}
-.quiz-bp-badge {
-  background: linear-gradient(155deg, var(--gold-hi), var(--gold) 55%, var(--gold-deep));
 }
 /* The stage badge's text ("蛋 Egg · 0岁 · 第 1／6 阶段") can be long relative
    to the card's width, and this card is otherwise .dash-card-free -- nothing
@@ -2129,6 +2119,8 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 }
 .tingxie-switch-on .tingxie-switch-knob { transform: translateX(20px); }
 
+.tingxie-my-vocab-toggle-row { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin: 0 0 14px; }
+
 /* -- 3D flip card shell (Learn/vocab, Apply, Practice) -- */
 .tingxie-flip-outer { perspective: 1200px; }
 .tingxie-flip-card {
@@ -2207,9 +2199,10 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   .tingxie-screen-activity .tingxie-flip-outer { width: 100%; height: 100%; }
   .tingxie-screen-activity .tingxie-flip-card { height: 100%; max-height: 520px; max-width: calc(100% - 64px); }
 }
-/* Not wired up yet -- see Learn.tsx's own comment. Styled like the
-   secondary-btn family (pale violet outline pill) but its own class since
-   it needs the circular "+" badge secondary-btn doesn't have. */
+/* Used by Learn/Apply/Practice's per-word "Add to My Vocab" button. Styled
+   like the secondary-btn family (pale violet outline pill) but its own
+   class since it needs the circular "+"/"✓" badge secondary-btn doesn't
+   have. */
 .tingxie-add-vocab-btn {
   display: flex; align-items: center; gap: 8px;
   margin: 18px auto 0; width: fit-content;
@@ -2222,10 +2215,19 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 }
 .tingxie-add-vocab-btn:hover { transform: translateY(-1px); }
 .tingxie-add-vocab-btn:active { transform: translateY(1px); }
+.tingxie-add-vocab-btn-saved {
+  background: linear-gradient(180deg, #fff, var(--garden-cream)); border-color: var(--garden-gold); color: var(--garden-gold);
+}
 .tingxie-add-vocab-plus {
   display: flex; align-items: center; justify-content: center;
   width: 22px; height: 22px; border-radius: 50%; flex: none;
   background: var(--garden-violet); color: #fff; font-size: 15px; font-weight: 800; line-height: 1;
+}
+.tingxie-add-vocab-btn-saved .tingxie-add-vocab-plus { background: var(--garden-gold); }
+.tingxie-my-vocab-badge {
+  display: inline-flex; align-items: center;
+  margin-left: 10px; padding: 3px 10px; border-radius: 999px;
+  background: var(--garden-gold); color: #fff; font-size: 12px; font-weight: 700;
 }
 .tingxie-flip-edge-btn {
   position: absolute; top: 50%; transform: translateY(-50%);
@@ -2545,5 +2547,34 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   .auth-owl-img { min-height: 140px; }
   .auth-guest-card { text-align: left; }
 }
+
+/* -- My Vocab screen (components/MyVocab/MyVocab.tsx) -- */
+.my-vocab-controls { display: flex; justify-content: center; gap: 22px; margin: 4px 0 22px; flex-wrap: wrap; }
+.my-vocab-toggle-label {
+  display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--ink-soft); cursor: pointer;
+}
+.my-vocab-toggle-label input { width: 17px; height: 17px; accent-color: var(--primary); cursor: pointer; }
+.my-vocab-groups { display: flex; flex-direction: column; gap: 26px; max-width: 720px; margin: 0 auto; }
+.my-vocab-lesson-title { font-size: 17px; font-weight: 800; color: var(--ink); margin: 0 0 10px; }
+.my-vocab-table { display: flex; flex-direction: column; gap: 8px; }
+/* Flexbox (not grid) so the row reflows cleanly on its own regardless of
+   which columns are present -- showPinyin/showMeaning omit those spans
+   from the DOM entirely rather than hiding them via CSS, so there's no
+   fixed column count to coordinate here. */
+.my-vocab-row {
+  position: relative; display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px 20px;
+  background: var(--card-bg); border: 2px solid var(--border); border-radius: 14px; padding: 10px 46px 10px 16px;
+}
+.my-vocab-word { font-size: 18px; font-weight: 800; color: var(--ink); flex: 0 0 auto; min-width: 60px; }
+.my-vocab-pinyin { color: var(--ink-soft); font-size: 14px; flex: 1 1 90px; }
+.my-vocab-meaning { color: var(--ink-soft); font-size: 14px; flex: 2 1 140px; }
+.my-vocab-remove-btn {
+  position: absolute; top: 8px; right: 8px;
+  display: flex; align-items: center; justify-content: center; flex: none;
+  width: 26px; height: 26px; border-radius: 50%; border: none; background: transparent; color: var(--ink-soft);
+  cursor: pointer; transition: background .12s ease, color .12s ease;
+}
+.my-vocab-remove-btn svg { width: 13px; height: 13px; }
+.my-vocab-remove-btn:hover { background: var(--accent-pink-bg); color: var(--incorrect); }
 
 .result .action-row { justify-content: center; }

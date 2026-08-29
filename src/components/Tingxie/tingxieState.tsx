@@ -30,6 +30,14 @@ export interface TingxieActiveContent {
   // lesson a lot lately" nudge in LessonSelect.tsx -- halves this visit's
   // BP awards in Learn/Apply/Practice/Play.
   reducedBP?: boolean;
+  // Set when this content was built with LessonSelect's "My Vocab Only"
+  // toggle on -- vocab/applyVocab are pre-filtered to just the selected
+  // lesson(s)' words also saved in My Vocab, and sentences is forced empty
+  // (My Vocab only ever stores words, never sentences). Learn/Practice read
+  // this to hide their sentence-side UI; Learn/Apply/Practice's completion
+  // effects read it to skip Today's Mission tracking (see state/myVocab.ts
+  // and CLAUDE.md's Tingxie section).
+  isMyVocabOnly?: boolean;
 }
 
 export interface TingxieState {
@@ -94,6 +102,12 @@ export interface TingxieState {
   pickerSelectedIds: number[];
   loadingReview: boolean;
   reviewError: string | null;
+  // LessonSelect's "My Vocab Only" switch -- read at SELECT_LESSON_SUCCESS/
+  // CUSTOM_REVIEW_SUCCESS build time to filter the resulting content down to
+  // saved words (see TingxieActiveContent.isMyVocabOnly above). Resets to
+  // off on GO_SELECT so it doesn't silently carry over into an unrelated
+  // later lesson pick.
+  myVocabOnly: boolean;
 }
 
 const initialState: TingxieState = {
@@ -134,7 +148,8 @@ const initialState: TingxieState = {
 
   pickerSelectedIds: [],
   loadingReview: false,
-  reviewError: null
+  reviewError: null,
+  myVocabOnly: false
 };
 
 function shuffledChipOrder(sentence: TingxieSentence | undefined, difficulty: TingxieSentenceDifficulty): number[] {
@@ -174,6 +189,7 @@ export type TingxieAction =
   | { type: "PRACTICE_CORRECT" }
   | { type: "PRACTICE_MISSED" }
   | { type: "TOGGLE_PICKER_LESSON"; id: number }
+  | { type: "TOGGLE_MY_VOCAB_ONLY" }
   | { type: "CUSTOM_REVIEW_START" }
   | { type: "CUSTOM_REVIEW_SUCCESS"; content: TingxieActiveContent; target: "apply" | "play" | "practice" }
   | { type: "CUSTOM_REVIEW_ERROR"; error: string };
@@ -363,7 +379,7 @@ function reducer(state: TingxieState, action: TingxieAction): TingxieState {
       if (rest.length > 0) {
         return { ...state, practiceQueue: rest, practiceFlipped: false };
       }
-      if (state.practicePhase === "tingxie" && state.activeContent) {
+      if (state.practicePhase === "tingxie" && state.activeContent && state.activeContent.sentences.length > 0) {
         return {
           ...state,
           practiceQueue: buildTingxiePracticeSentenceQueue(state.activeContent.sentences),
@@ -386,6 +402,8 @@ function reducer(state: TingxieState, action: TingxieAction): TingxieState {
         pickerSelectedIds: has ? state.pickerSelectedIds.filter((id) => id !== action.id) : [...state.pickerSelectedIds, action.id]
       };
     }
+    case "TOGGLE_MY_VOCAB_ONLY":
+      return { ...state, myVocabOnly: !state.myVocabOnly };
     case "CUSTOM_REVIEW_START":
       return { ...state, loadingReview: true, reviewError: null };
     case "CUSTOM_REVIEW_SUCCESS": {
