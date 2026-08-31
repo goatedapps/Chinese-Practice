@@ -1,8 +1,21 @@
 import { createContext, useContext, useReducer, type ReactNode, type Dispatch } from "react";
 import type { QuestionGroup, GroupResult, GroupResultItem, QuestionIndexEntry } from "../data/types";
 import { VOCABULARY_CATEGORY_KEYS } from "../data/questions";
-import { isCategoryRelevantForLevel } from "../data/levels";
+import { isCategoryRelevantForLevel, setCurrentLevel } from "../data/levels";
 import { loadSavedLevel } from "./levelPreference";
+
+// data/levels.ts's module-level currentLevel (read by every content loader --
+// questions.ts/tingxie.ts/stories.ts) otherwise starts at DEFAULT_LEVEL on
+// every fresh page load, regardless of what level was actually saved -- only
+// LevelBar/SyncBootstrap/Auth call setCurrentLevel() afterward, and only in
+// response to a later user action or sync event. Without this, a student
+// whose saved preference is "p2" would see "P2" active in the UI while
+// App.tsx's bootstrap fetch (which fires immediately on mount, before any of
+// those later call sites run) silently pulls P5's question index instead --
+// fixed by syncing the loaders' level to the same saved value the reducer's
+// initialState below uses, before either one is read.
+const savedLevel = loadSavedLevel();
+setCurrentLevel(savedLevel);
 
 export type Screen =
   | "home"
@@ -63,7 +76,7 @@ export interface AppState {
 
 const initialState: AppState = {
   screen: "home",
-  level: loadSavedLevel(),
+  level: savedLevel,
   mode: null,
   modeLabel: "",
   reducedBP: false,
