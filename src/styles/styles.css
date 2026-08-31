@@ -1769,6 +1769,15 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   background-image: linear-gradient(180deg, rgba(255,255,255,.4), rgba(255,255,255,0) 55%), linear-gradient(180deg, var(--garden-gold), var(--garden-gold-deep));
 }
 
+/* Bag's lone empty-state Shop banner (see Bag.tsx) isn't paired in a
+   .owl-action-banner-row like Owl.tsx's pair -- .owl-action-banner's normal
+   flex:1 1 220px basis has nothing to share the row with, so it grows to
+   fill the whole .action-row width, and its icon (flex:0 0 50% of that
+   width) balloons right along with it. Capped back down to a normal
+   button size here instead. */
+.bag-empty .owl-action-banner { flex: 0 0 auto; padding: 14px 24px; font-size: 15px; }
+.bag-empty .owl-action-banner img { flex: 0 0 32px; width: 32px; }
+
 /* Mobile: the row-wrapped pair (Owl.tsx only -- Bag.tsx's lone empty-state
    .owl-action-banner isn't inside .owl-action-banner-row, so it keeps its
    full-size desktop-style look everywhere) shrinks and switches to a
