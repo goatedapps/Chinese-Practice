@@ -201,9 +201,7 @@ export function Practice() {
         </div>
       )}
 
-      <p className="subtitle">选择题型 Select Question Type</p>
       <div className="subject-row">
-        <span className="field-label">科目 Subject:</span>
         {["All", ...SUBJECTS].map((s) => (
           <button
             key={s}
