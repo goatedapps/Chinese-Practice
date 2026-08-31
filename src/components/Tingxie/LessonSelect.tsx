@@ -132,13 +132,6 @@ export function LessonSelect() {
         <Icon name="sparkle" className="tingxie-select-title-spark" />
       </h1>
 
-      {state.lessonIndex && (
-        <div className="lesson-count-badge">
-          <Icon name="star" />
-          共有 {state.lessonIndex.length} 个课程
-        </div>
-      )}
-
       {!dictationMissionDone && (
         <div className="mission-hint-box">
           <img className="mission-hint-icon" src="/icons/todays-mission.png" alt="" />
