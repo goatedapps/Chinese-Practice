@@ -979,6 +979,19 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .tingxie-select-title-icon, .page-header-icon { width: 46px; height: 46px; object-fit: contain; }
 .tingxie-select-title-spark, .page-header-spark { width: 22px; height: 22px; color: var(--garden-gold); flex: none; }
 
+/* Mobile: this h1 inherits the base 28px h1 size (see h1 rule above), which
+   reads oversized next to its icon on a phone-width screen -- shrunk here,
+   with the icon/spark scaled down to match, same 700px breakpoint as the
+   lesson-grid mobile block just below. Shared by every screen using this
+   pattern (Practice/Story/Owl's .page-header, Tingxie's
+   .tingxie-select-title, also Shop/MyVocab), not just the ones that asked
+   for it -- keeping every user of the shared class visually consistent. */
+@media (max-width: 700px) {
+  .tingxie-select-title, .page-header { font-size: 19px; gap: 6px; }
+  .tingxie-select-title-icon, .page-header-icon { width: 30px; height: 30px; }
+  .tingxie-select-title-spark, .page-header-spark { width: 15px; height: 15px; }
+}
+
 /* minmax's 220px floor is chosen so this never packs more than 5 columns
    per row even on the widest realistic .screen content width (~1280px) --
    auto-fill still drops to fewer, wider columns on narrower screens. */
@@ -1149,6 +1162,18 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   opacity: .45; cursor: not-allowed; box-shadow: none; color: var(--garden-ink-soft) !important;
 }
 .category-disabled:hover { transform: none; box-shadow: none; }
+
+/* Mobile: fixed 2 columns (not auto-fill's 220px floor, which packs only 1
+   per row on a phone) with the card's padding/font/decorations scaled down
+   to match -- same reasoning/recipe as .lesson-grid's own 700px block
+   above, just 2 columns instead of 3 since these buttons carry longer
+   left-aligned labels rather than a single centered number. */
+@media (max-width: 700px) {
+  .category-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
+  .category-btn { padding: 12px 14px; font-size: 13px; border-radius: 16px; }
+  .category-btn::before { width: 9px; height: 14px; right: 10px; }
+  .category-btn::after { font-size: 9px; bottom: 6px; right: 8px; }
+}
 
 /* Standardized "generally purple 3D pill" -- same gumdrop recipe as
    TodayMission's .mission-go (glossy sheen + inset top highlight + inset
