@@ -7,28 +7,56 @@ import { selectTypeSessionGroups } from "../../lib/typeSession";
 import { shuffle } from "../../lib/shuffle";
 import { isLessonMissionComplete, getReadingMissionCount, isTingxieMissionComplete, READING_MISSION_CATEGORIES } from "../../lib/stats";
 import { loadTodaysReadingMission, saveTodaysReadingMission } from "../../state/dailyReadingMission";
-import type { HistoryEntry } from "../../data/types";
+import type { HistoryEntry, QuestionIndexEntry } from "../../data/types";
 
 export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
   const dispatch = useAppDispatch();
-  const { level } = useAppState();
+  const { level, questionIndex } = useAppState();
   const [starting, setStarting] = useState(false);
   const lessonDone = isLessonMissionComplete(hist);
   const readingDone = getReadingMissionCount(hist) >= 1;
   const dictationDone = isTingxieMissionComplete();
   const allDone = lessonDone && readingDone && dictationDone;
 
+  // Picks one lesson number that actually has Vocabulary questions under
+  // this level -- see startLessonMission()'s own comment for why this can't
+  // just leave "all lessons" selected. Mirrors Practice.tsx's own
+  // lessonCounts derivation (same questionIndex, same vocabularyCategoryKeys
+  // filter) rather than a subject filter, since this mission always starts
+  // from subject "All". Returns null only if no lesson has any eligible
+  // question (shouldn't happen with real content, but SELECT_ALL_LESSONS is
+  // still a safe fallback below).
+  function pickVocabLesson(vocabKeys: string[]): number | null {
+    const counts = new Map<number, number>();
+    for (const g of questionIndex as QuestionIndexEntry[]) {
+      if (g.lessonIds.length === 0 || !vocabKeys.includes(g.category)) continue;
+      for (const n of g.lessonIds) counts.set(n, (counts.get(n) ?? 0) + g.questionCount);
+    }
+    const eligible = [...counts.entries()].filter(([, count]) => count > 0).map(([n]) => n);
+    if (eligible.length === 0) return null;
+    return eligible[Math.floor(Math.random() * eligible.length)];
+  }
+
   // Jumps to the Practice screen pre-set for a lesson revision: subject
   // reset to "All" (Vocabulary only exists under Chinese, so a stale
   // "Higher Chinese" subject would leave it greyed out right after this),
   // categories replaced with just Vocabulary (filtered to this level's
   // relevant categories, see data/levels.ts -- e.g. P2 has no "phrase"
-  // content), and lessons reset to the "all lessons" default so the student
-  // picks which lesson(s) themselves.
+  // content), and one lesson pre-picked and selected. This mission
+  // specifically counts as done only when a session is started with mode
+  // "lesson" (see Practice.tsx's startPractice()), which requires narrowing
+  // to at least one specific lesson -- leaving the "all lessons" default
+  // selected here (as this used to) meant a student who tapped "去完成" and
+  // went straight to "开始练习" without separately picking a lesson number
+  // completed a real practice session that still never satisfied the
+  // mission.
   function startLessonMission() {
+    const vocabKeys = VOCABULARY_CATEGORY_KEYS.filter((k) => isCategoryRelevantForLevel(k, level));
     dispatch({ type: "SELECT_SUBJECT", subject: "All" });
-    dispatch({ type: "SET_CATEGORIES", keys: VOCABULARY_CATEGORY_KEYS.filter((k) => isCategoryRelevantForLevel(k, level)) });
+    dispatch({ type: "SET_CATEGORIES", keys: vocabKeys });
     dispatch({ type: "SELECT_ALL_LESSONS" });
+    const lessonNum = pickVocabLesson(vocabKeys);
+    if (lessonNum !== null) dispatch({ type: "TOGGLE_LESSON", lessonNum });
     dispatch({ type: "GO_TO_SCREEN", screen: "practice" });
   }
 
