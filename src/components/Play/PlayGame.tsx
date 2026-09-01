@@ -41,7 +41,7 @@ export function PlayGame() {
     return (
       <div className="screen play-screen">
         <button className="back-btn" onClick={goToBag}>
-          ← 返回 Back
+          ← 返回
         </button>
         <p>找不到这个玩具。Toy not found.</p>
       </div>

@@ -11,7 +11,7 @@ export function PlaceholderGame({ item, onComplete, onExit }: GameProps) {
   return (
     <div className="screen play-screen play-placeholder">
       <button className="back-btn" onClick={onExit}>
-        ← 返回 Back
+        ← 返回
       </button>
       <h1>{item.label}</h1>
       <div className="play-placeholder-emoji">🚧</div>

@@ -59,8 +59,8 @@ export function SelectVocabModal({ lessonIds, onClose }: SelectVocabModalProps) 
     >
       <div className="vocab-picker-box">
         <div className="vocab-picker-header">
-          <h2 className="vocab-picker-title">选择词语 Select Vocab</h2>
-          <button type="button" className="vocab-picker-close" aria-label="关闭 Close" onClick={onClose}>
+          <h2 className="vocab-picker-title">选择词语</h2>
+          <button type="button" className="vocab-picker-close" aria-label="关闭" onClick={onClose}>
             <Icon name="close" />
           </button>
         </div>
@@ -68,14 +68,14 @@ export function SelectVocabModal({ lessonIds, onClose }: SelectVocabModalProps) 
         <div className="vocab-picker-random-row">
           {RANDOM_SAMPLE_SIZES.map((n) => (
             <button key={n} type="button" className="secondary-btn" disabled={!lessons} onClick={() => pickRandom(n)}>
-              随机 {n} 个 Random {n}
+              随机 {n} 个
             </button>
           ))}
         </div>
 
         <div className="vocab-picker-body">
           {error && <p className="tingxie-error-inline">{error}</p>}
-          {!lessons && !error && <p className="tingxie-loading">加载中... Loading...</p>}
+          {!lessons && !error && <p className="tingxie-loading">加载中...</p>}
           {lessons &&
             lessonIds.map((id) => {
               const lesson = lessons[id];
@@ -97,7 +97,7 @@ export function SelectVocabModal({ lessonIds, onClose }: SelectVocabModalProps) 
                   </div>
                   {lesson.sentences.length > 0 && (
                     <>
-                      <h4 className="vocab-picker-sentence-heading">句子 Sentences</h4>
+                      <h4 className="vocab-picker-sentence-heading">句子</h4>
                       <div className="vocab-picker-sentence-list">
                         {lesson.sentences.map((s) => (
                           <label key={s.text} className="vocab-picker-item vocab-picker-sentence-item">
@@ -118,9 +118,9 @@ export function SelectVocabModal({ lessonIds, onClose }: SelectVocabModalProps) 
         </div>
 
         <div className="vocab-picker-footer">
-          <span className="vocab-picker-count">已选 {selectedCount} 项 Selected</span>
+          <span className="vocab-picker-count">已选 {selectedCount} 项</span>
           <button type="button" className="primary-btn" onClick={onClose}>
-            完成 Done
+            完成
           </button>
         </div>
       </div>

@@ -185,7 +185,7 @@ export function Practice() {
     <div className="screen picker">
       <button className="back-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>
         <span className="back-btn-arrow">←</span>
-        <span className="back-btn-label">返回 Back</span>
+        <span className="back-btn-label">返回</span>
       </button>
       <h1 className="page-header">
         <Icon name="sparkle" className="page-header-spark" />
@@ -266,7 +266,7 @@ export function Practice() {
 
       <div className="action-row">
         <button className="primary-btn" disabled={starting} onClick={() => startPractice()}>
-          {starting ? "加载中... Loading..." : "开始练习 Start Practice"}
+          {starting ? "加载中... Loading..." : "开始练习"}
         </button>
       </div>
 
