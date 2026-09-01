@@ -41,9 +41,9 @@ function filterToSelection(
 // gated on having at least one lesson picked (see its `disabled` prop below,
 // since the popup needs to know which lesson(s)' vocab to show).
 const VOCAB_FILTER_OPTIONS: { mode: TingxieVocabFilterMode; label: string }[] = [
-  { mode: "all", label: "全部词语 All Vocab" },
-  { mode: "myVocabOnly", label: "我的词库 My Vocab Only" },
-  { mode: "selected", label: "自选词语 Select Vocab" }
+  { mode: "all", label: "全部词语" },
+  { mode: "myVocabOnly", label: "我的词库" },
+  { mode: "selected", label: "自选词语" }
 ];
 
 // Multi-select by default (state.pickerSelectedIds, toggled via
@@ -222,7 +222,7 @@ export function LessonSelect() {
           </div>
 
           <div className="tingxie-vocab-scope-row">
-            <span className="tingxie-difficulty-label">词语范围 Vocab Scope</span>
+            <span className="tingxie-difficulty-label">词语范围</span>
             <div className="tingxie-vocab-scope-options">
               {VOCAB_FILTER_OPTIONS.map(({ mode, label }) => {
                 const disabled = mode === "selected" && state.pickerSelectedIds.length === 0;
@@ -245,7 +245,7 @@ export function LessonSelect() {
             </div>
             {state.vocabFilterMode === "selected" && state.pickerSelectedIds.length > 0 && (
               <button type="button" className="secondary-btn tingxie-vocab-scope-edit-btn" onClick={() => setShowVocabPicker(true)}>
-                编辑已选（{state.selectedVocabWords.size + state.selectedVocabSentences.size}）Edit Selection
+                编辑已选（{state.selectedVocabWords.size + state.selectedVocabSentences.size}）
               </button>
             )}
           </div>
@@ -261,7 +261,7 @@ export function LessonSelect() {
               }
               onClick={startPractice}
             >
-              {state.loadingReview || state.loadingLesson ? "加载中... Loading..." : "开始练习 Start Practice"}
+              {state.loadingReview || state.loadingLesson ? "加载中... Loading..." : "开始练习"}
             </button>
           </div>
         </>

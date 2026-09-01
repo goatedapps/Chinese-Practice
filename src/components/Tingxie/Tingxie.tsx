@@ -61,7 +61,7 @@ function TingxieShell() {
         <div className="tingxie-topbar">
           <button className="back-btn" onClick={handleBack}>
             <span className="back-btn-arrow">←</span>
-            <span className="back-btn-label">返回 Back</span>
+            <span className="back-btn-label">返回</span>
           </button>
         </div>
         <LessonSelect />
@@ -80,7 +80,7 @@ function TingxieShell() {
         <aside className={"tingxie-mode-sidebar" + (sidebarOpen ? " tingxie-mode-sidebar-open" : "")}>
           <button className="back-btn" onClick={handleBack}>
             <span className="back-btn-arrow">←</span>
-            <span className="back-btn-label">返回 Back</span>
+            <span className="back-btn-label">返回</span>
           </button>
           <h2 className="tingxie-mode-heading">
             <Icon name="sparkle" className="tingxie-mode-heading-spark" />
@@ -164,7 +164,7 @@ function TingxieShell() {
                 <span className="tingxie-my-vocab-badge">我的词库 My Vocab</span>
               )}
               {state.activeContent.vocabFilterMode === "selected" && (
-                <span className="tingxie-my-vocab-badge tingxie-my-vocab-badge-selected">自选词语 Selected Vocab</span>
+                <span className="tingxie-my-vocab-badge tingxie-my-vocab-badge-selected">自选词语</span>
               )}
             </div>
           </div>

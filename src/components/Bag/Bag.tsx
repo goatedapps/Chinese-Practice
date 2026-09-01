@@ -25,7 +25,7 @@ export function Bag() {
     <div className="screen bag-screen">
       <button className="back-btn" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "owl" })}>
         <span className="back-btn-arrow">←</span>
-        <span className="back-btn-label">返回 Back</span>
+        <span className="back-btn-label">返回</span>
       </button>
       <h1>{`喂食／玩耍 Feed / Play with ${pet.name || "它"}`}</h1>
       <div className="pet-layout pet-layout-wide">
@@ -59,7 +59,7 @@ export function Bag() {
                   }}
                 >
                   <img src="/icons/shop.png" alt="" />
-                  <span className="owl-action-banner-label">商店 Shop</span>
+                  <span className="owl-action-banner-label">商店</span>
                 </button>
               </div>
             </div>

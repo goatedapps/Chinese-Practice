@@ -94,7 +94,7 @@ export function MemoryGame({ item, config, onComplete, onExit }: GameProps) {
   return (
     <div className="screen play-screen memory-game">
       <button className="back-btn" onClick={onExit}>
-        ← 返回 Back
+        ← 返回
       </button>
       <h1>{item.label}</h1>
       <p className="picker-hint">

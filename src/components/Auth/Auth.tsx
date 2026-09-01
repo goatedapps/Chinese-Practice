@@ -119,7 +119,7 @@ export function Auth({ gated = false }: { gated?: boolean }) {
         {!gated && (
           <button className="back-btn" onClick={goHome}>
             <span className="back-btn-arrow">←</span>
-            <span className="back-btn-label">返回 Back</span>
+            <span className="back-btn-label">返回</span>
           </button>
         )}
 

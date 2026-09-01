@@ -32,7 +32,7 @@ export function Owl() {
     <div className="screen owl-screen">
       <button className="back-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>
         <span className="back-btn-arrow">←</span>
-        <span className="back-btn-label">返回 Back</span>
+        <span className="back-btn-label">返回</span>
       </button>
       <h1 className="page-header">
         <Icon name="sparkle" className="page-header-spark" />
@@ -93,7 +93,7 @@ export function Owl() {
               }}
             >
               <img src="/icons/shop.png" alt="" />
-              <span className="owl-action-banner-label">商店 Shop</span>
+              <span className="owl-action-banner-label">商店</span>
             </button>
             <button
               className="owl-action-banner owl-action-banner-play"
@@ -103,7 +103,7 @@ export function Owl() {
               }}
             >
               <img src="/icons/play.png" alt="" />
-              <span className="owl-action-banner-label">喂食／玩耍 Feed / Play{bagCount ? ` (${bagCount})` : ""}</span>
+              <span className="owl-action-banner-label">喂食／玩耍{bagCount ? ` (${bagCount})` : ""}</span>
             </button>
           </div>
         </div>

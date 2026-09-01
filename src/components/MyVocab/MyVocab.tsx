@@ -52,7 +52,7 @@ export function MyVocab() {
     <div className="screen my-vocab-screen">
       <button className="back-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>
         <span className="back-btn-arrow">←</span>
-        <span className="back-btn-label">返回 Back</span>
+        <span className="back-btn-label">返回</span>
       </button>
       <h1 className="page-header">
         <Icon name="sparkle" className="page-header-spark" />

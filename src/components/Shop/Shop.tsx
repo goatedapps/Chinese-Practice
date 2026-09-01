@@ -17,7 +17,7 @@ export function Shop() {
     <div className="screen shop-screen">
       <button className="back-btn" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "owl" })}>
         <span className="back-btn-arrow">←</span>
-        <span className="back-btn-label">返回 Back</span>
+        <span className="back-btn-label">返回</span>
       </button>
       <h1 className="page-header">
         <Icon name="sparkle" className="page-header-spark" />

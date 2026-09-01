@@ -136,7 +136,7 @@ export function Result() {
           </button>
         )}
         <button className="primary-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>
-          返回主页 Back to Home
+          返回主页
         </button>
       </div>
     </div>

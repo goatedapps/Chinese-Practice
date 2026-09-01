@@ -118,7 +118,7 @@ export function Story() {
         <CompleteScreen title={`《${lesson.title}》读完了！Story Complete!`} bpAmount={STORY_COMPLETE_BP_AWARD}>
           <div className="action-row">
             <button className="primary-btn" onClick={backToPicker}>
-              ← 返回课文列表 Back to Lessons
+              ← 返回课文列表
             </button>
           </div>
         </CompleteScreen>
@@ -130,7 +130,7 @@ export function Story() {
     <div className="screen story-screen">
       <button className="back-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>
         <span className="back-btn-arrow">←</span>
-        <span className="back-btn-label">返回 Back</span>
+        <span className="back-btn-label">返回</span>
       </button>
       <h1 className="page-header">
         <Icon name="sparkle" className="page-header-spark" />
@@ -262,7 +262,7 @@ function StoryReader({ lesson, segmentIndex, onSegmentChange, onExit, onFinish }
     <div className="screen story-screen story-reading">
       <button className="back-btn" onClick={onExit}>
         <span className="back-btn-arrow">←</span>
-        <span className="back-btn-label">返回课文列表 Back to Lessons</span>
+        <span className="back-btn-label">返回课文列表</span>
       </button>
       <h1>{lesson.title}</h1>
       <div className="story-page-indicator">{`第 ${segmentIndex + 1} / ${lesson.segments.length} 页`}</div>
