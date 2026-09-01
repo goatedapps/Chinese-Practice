@@ -2371,7 +2371,69 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 }
 .tingxie-switch-on .tingxie-switch-knob { transform: translateX(20px); }
 
-.tingxie-my-vocab-toggle-row { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin: 0 0 14px; }
+/* LessonSelect's vocab-scope radio row (All Vocab / My Vocab Only / Select
+   Vocab), sitting below the lesson grid -- replaces the old single "My Vocab
+   Only" switch (see git history), so this reuses that switch's label style
+   (.tingxie-difficulty-label) rather than introducing a parallel one. */
+.tingxie-vocab-scope-row { margin: 18px 0 0; text-align: center; }
+.tingxie-vocab-scope-options {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; margin-top: 8px;
+}
+.tingxie-vocab-scope-option {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 14px; color: var(--ink); cursor: pointer;
+}
+.tingxie-vocab-scope-option input { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; }
+.tingxie-vocab-scope-option-disabled { opacity: .5; cursor: not-allowed; }
+.tingxie-vocab-scope-option-disabled input { cursor: not-allowed; }
+.tingxie-vocab-scope-edit-btn { margin-top: 10px; padding: 6px 16px; font-size: 13px; }
+
+/* ---------- Select Vocab popup (LessonSelect's SelectVocabModal) ----------
+   Reuses .modal-overlay for the backdrop/centering but not .modal-box --
+   that's capped at 460px, far too narrow for a multi-lesson 4-column word
+   grid, so this is its own wider, scrollable box instead. */
+.vocab-picker-box {
+  background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
+  border-radius: 26px; padding: 22px 24px; box-shadow: var(--shadow-2);
+  max-width: 720px; width: 100%; max-height: 85vh;
+  display: flex; flex-direction: column;
+}
+.vocab-picker-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
+.vocab-picker-title { font-size: 19px; font-weight: 800; color: var(--ink); margin: 0; }
+.vocab-picker-close {
+  display: flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; border-radius: 50%; border: none;
+  background: var(--card-bg); color: var(--ink-soft); cursor: pointer; flex: none;
+}
+.vocab-picker-close svg { width: 14px; height: 14px; }
+.vocab-picker-close:hover { background: var(--accent-pink-bg); color: var(--incorrect); }
+.vocab-picker-random-row { display: flex; gap: 10px; margin: 10px 0 4px; }
+.vocab-picker-body { overflow-y: auto; margin: 10px 0; padding-right: 4px; }
+.vocab-picker-lesson-group { margin-bottom: 18px; }
+.vocab-picker-lesson-group:last-child { margin-bottom: 0; }
+.vocab-picker-lesson-title { font-size: 16px; font-weight: 800; color: var(--ink); margin: 0 0 8px; }
+.vocab-picker-word-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px 12px;
+}
+.vocab-picker-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 14px; color: var(--ink); cursor: pointer;
+}
+.vocab-picker-item input { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; flex: none; }
+.vocab-picker-sentence-heading { font-size: 13px; font-weight: 700; color: var(--ink-soft); margin: 12px 0 6px; }
+.vocab-picker-sentence-list { display: flex; flex-direction: column; gap: 6px; }
+.vocab-picker-sentence-item { align-items: flex-start; }
+.vocab-picker-footer {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding-top: 12px; border-top: 1px solid var(--border);
+}
+.vocab-picker-count { font-size: 13px; color: var(--ink-soft); }
+
+@media (max-width: 699px) {
+  .vocab-picker-box { padding: 18px 16px; max-height: 90vh; }
+  .vocab-picker-word-grid { grid-template-columns: repeat(2, 1fr); }
+  .vocab-picker-random-row { flex-wrap: wrap; }
+}
 
 /* -- 3D flip card shell (Learn/vocab, Apply, Practice) -- */
 .tingxie-flip-outer { perspective: 1200px; }
@@ -2489,6 +2551,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   margin-left: 10px; padding: 3px 10px; border-radius: 999px;
   background: var(--garden-gold); color: #fff; font-size: 12px; font-weight: 700;
 }
+.tingxie-my-vocab-badge-selected { background: var(--garden-violet); }
 .tingxie-flip-edge-btn {
   position: absolute; top: 50%; transform: translateY(-50%);
   width: 64px; height: 64px; border-radius: 50%; z-index: 2;

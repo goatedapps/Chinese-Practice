@@ -42,9 +42,9 @@ export function Apply() {
       Sound.applause();
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|apply` });
       if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
-      // My Vocab Only sessions still earn BP, but don't count towards
-      // Today's Mission/quests -- see TingxieActiveContent.isMyVocabOnly.
-      if (!state.activeContent!.isMyVocabOnly) {
+      // My Vocab Only / Select Vocab sessions still earn BP, but don't count
+      // towards Today's Mission/quests -- see TingxieActiveContent.vocabFilterMode.
+      if (state.activeContent!.vocabFilterMode === "all") {
         recordTingxieActivityCompleted();
         checkAndAwardMissionBonus(loadHistory(), awardBP);
       }

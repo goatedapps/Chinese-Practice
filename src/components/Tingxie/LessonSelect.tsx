@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import type { TingxieVocabItem } from "../../data/types";
+import type { TingxieSentence, TingxieVocabItem } from "../../data/types";
 import { fetchTingxieLessonIndex, fetchTingxieLesson, prefetchTingxieLessons, pooledTingxieReview } from "../../data/tingxie";
 import { isTingxieMissionComplete } from "../../lib/stats";
 import { shouldNudgeForLesson } from "../../state/lessonFrequency";
 import { loadMyVocab } from "../../state/myVocab";
 import { ConfirmModal } from "../common/Modal";
 import { Icon } from "../common/Icons";
-import { useTingxieState, useTingxieDispatch } from "./tingxieState";
+import { useTingxieState, useTingxieDispatch, type TingxieVocabFilterMode } from "./tingxieState";
+import { SelectVocabModal } from "./SelectVocabModal";
 
 // Narrows a lesson/pooled vocab list down to just the words also saved in
 // My Vocab (matched by word text) -- applied to both `vocab` (Learn's
@@ -19,6 +20,31 @@ function filterToMyVocab(vocab: TingxieVocabItem[]): TingxieVocabItem[] {
   const saved = new Set(loadMyVocab().map((e) => e.word));
   return vocab.filter((v) => saved.has(v.word));
 }
+
+// Narrows a vocab/sentence list down to exactly what the student checked in
+// the Select Vocab popup (matched by word/sentence text -- see
+// TingxieState.selectedVocabWords/selectedVocabSentences's own comment for
+// why text is a safe-enough key here).
+function filterToSelection(
+  vocab: TingxieVocabItem[],
+  sentences: TingxieSentence[],
+  selectedWords: Set<string>,
+  selectedSentences: Set<string>
+): { vocab: TingxieVocabItem[]; sentences: TingxieSentence[] } {
+  return {
+    vocab: vocab.filter((v) => selectedWords.has(v.word)),
+    sentences: sentences.filter((s) => selectedSentences.has(s.text))
+  };
+}
+
+// LessonSelect's vocab-scope radio group -- "selected" is additionally
+// gated on having at least one lesson picked (see its `disabled` prop below,
+// since the popup needs to know which lesson(s)' vocab to show).
+const VOCAB_FILTER_OPTIONS: { mode: TingxieVocabFilterMode; label: string }[] = [
+  { mode: "all", label: "全部词语 All Vocab" },
+  { mode: "myVocabOnly", label: "我的词库 My Vocab Only" },
+  { mode: "selected", label: "自选词语 Select Vocab" }
+];
 
 // Multi-select by default (state.pickerSelectedIds, toggled via
 // TOGGLE_PICKER_LESSON -- the same field/action a separate "自由复习 Custom
@@ -37,6 +63,10 @@ export function LessonSelect() {
   // showing (only ever reachable via the single-lesson path) -- see
   // state/lessonFrequency.ts.
   const [nudgeLesson, setNudgeLesson] = useState<{ id: number; title: string } | null>(null);
+  // Whether the Select Vocab popup (SelectVocabModal) is open -- not part of
+  // the shared reducer since it's purely this screen's own transient UI
+  // state, same reasoning as Tingxie.tsx's sidebarOpen.
+  const [showVocabPicker, setShowVocabPicker] = useState(false);
   // Reads localStorage directly (no hist needed, unlike the lesson-revision
   // mission) -- see lib/stats.ts's isTingxieMissionComplete(). Self-hides
   // once today's "听写练习" mission is done, same reasoning as Practice.tsx's
@@ -62,21 +92,28 @@ export function LessonSelect() {
 
   function selectLesson(id: number, title: string, reducedBP = false) {
     dispatch({ type: "SELECT_LESSON_START" });
-    const myVocabOnly = state.myVocabOnly;
+    const mode = state.vocabFilterMode;
     fetchTingxieLesson(id)
       .then((lesson) => {
-        const vocab = myVocabOnly ? filterToMyVocab(lesson.vocab) : lesson.vocab;
+        let vocab = lesson.vocab;
+        let sentences = lesson.sentences;
+        if (mode === "myVocabOnly") {
+          vocab = filterToMyVocab(vocab);
+          sentences = [];
+        } else if (mode === "selected") {
+          ({ vocab, sentences } = filterToSelection(vocab, sentences, state.selectedVocabWords, state.selectedVocabSentences));
+        }
         dispatch({
           type: "SELECT_LESSON_SUCCESS",
           content: {
             title: title || lesson.title,
             vocab,
-            sentences: myVocabOnly ? [] : lesson.sentences,
+            sentences,
             applyVocab: vocab,
             isCustomReview: false,
             lessonId: id,
             reducedBP,
-            isMyVocabOnly: myVocabOnly
+            vocabFilterMode: mode
           }
         });
       })
@@ -85,22 +122,38 @@ export function LessonSelect() {
 
   function startCustomReview(ids: number[]) {
     dispatch({ type: "CUSTOM_REVIEW_START" });
-    const myVocabOnly = state.myVocabOnly;
+    const mode = state.vocabFilterMode;
     Promise.all(ids.map((id) => fetchTingxieLesson(id)))
       .then((lessons) => {
-        const pooled = pooledTingxieReview(lessons);
-        const vocab = myVocabOnly ? filterToMyVocab(pooled.vocab) : pooled.vocab;
-        const applyVocab = myVocabOnly ? filterToMyVocab(pooled.applyVocab) : pooled.applyVocab;
+        let vocab: TingxieVocabItem[];
+        let sentences: TingxieSentence[];
+        let applyVocab: TingxieVocabItem[];
+        if (mode === "selected") {
+          // Filters the full (uncapped) pool across every selected lesson,
+          // not pooledTingxieReview()'s random 20-word/5-sentence sample --
+          // Select Vocab's whole point is precise curation, so every
+          // hand-picked word/sentence must survive regardless of whether it
+          // happened to land in that sample.
+          const allVocab = lessons.flatMap((l) => l.vocab);
+          const allSentences = lessons.flatMap((l) => l.sentences);
+          ({ vocab, sentences } = filterToSelection(allVocab, allSentences, state.selectedVocabWords, state.selectedVocabSentences));
+          applyVocab = vocab;
+        } else {
+          const pooled = pooledTingxieReview(lessons);
+          vocab = mode === "myVocabOnly" ? filterToMyVocab(pooled.vocab) : pooled.vocab;
+          sentences = mode === "myVocabOnly" ? [] : pooled.sentences;
+          applyVocab = mode === "myVocabOnly" ? filterToMyVocab(pooled.applyVocab) : pooled.applyVocab;
+        }
         dispatch({
           type: "CUSTOM_REVIEW_SUCCESS",
           target: "apply",
           content: {
             title: "自由复习 Custom Review",
             vocab,
-            sentences: myVocabOnly ? [] : pooled.sentences,
+            sentences,
             applyVocab,
             isCustomReview: true,
-            isMyVocabOnly: myVocabOnly
+            vocabFilterMode: mode
           }
         });
       })
@@ -156,22 +209,6 @@ export function LessonSelect() {
 
       {state.lessonIndex && (
         <>
-          <div className="tingxie-my-vocab-toggle-row">
-            <span className="tingxie-difficulty-label">
-              只显示我的词库 My Vocab Only
-            </span>
-            <button
-              type="button"
-              role="switch"
-              aria-checked={state.myVocabOnly}
-              aria-label="只显示我的词库 My Vocab Only"
-              className={"tingxie-switch" + (state.myVocabOnly ? " tingxie-switch-on" : "")}
-              onClick={() => dispatch({ type: "TOGGLE_MY_VOCAB_ONLY" })}
-            >
-              <span className="tingxie-switch-knob" />
-            </button>
-          </div>
-
           <div className="lesson-grid">
             {state.lessonIndex.map((entry) => (
               <button
@@ -184,10 +221,44 @@ export function LessonSelect() {
             ))}
           </div>
 
+          <div className="tingxie-vocab-scope-row">
+            <span className="tingxie-difficulty-label">词语范围 Vocab Scope</span>
+            <div className="tingxie-vocab-scope-options">
+              {VOCAB_FILTER_OPTIONS.map(({ mode, label }) => {
+                const disabled = mode === "selected" && state.pickerSelectedIds.length === 0;
+                return (
+                  <label key={mode} className={"tingxie-vocab-scope-option" + (disabled ? " tingxie-vocab-scope-option-disabled" : "")}>
+                    <input
+                      type="radio"
+                      name="tingxie-vocab-scope"
+                      disabled={disabled}
+                      checked={state.vocabFilterMode === mode}
+                      onChange={() => {
+                        dispatch({ type: "SET_VOCAB_FILTER_MODE", mode });
+                        if (mode === "selected") setShowVocabPicker(true);
+                      }}
+                    />
+                    {label}
+                  </label>
+                );
+              })}
+            </div>
+            {state.vocabFilterMode === "selected" && state.pickerSelectedIds.length > 0 && (
+              <button type="button" className="secondary-btn tingxie-vocab-scope-edit-btn" onClick={() => setShowVocabPicker(true)}>
+                编辑已选（{state.selectedVocabWords.size + state.selectedVocabSentences.size}）Edit Selection
+              </button>
+            )}
+          </div>
+
           <div className="action-row">
             <button
               className="primary-btn"
-              disabled={state.pickerSelectedIds.length === 0 || state.loadingReview || state.loadingLesson}
+              disabled={
+                state.pickerSelectedIds.length === 0 ||
+                state.loadingReview ||
+                state.loadingLesson ||
+                (state.vocabFilterMode === "selected" && state.selectedVocabWords.size === 0 && state.selectedVocabSentences.size === 0)
+              }
               onClick={startPractice}
             >
               {state.loadingReview || state.loadingLesson ? "加载中... Loading..." : "开始练习 Start Practice"}
@@ -195,6 +266,8 @@ export function LessonSelect() {
           </div>
         </>
       )}
+
+      {showVocabPicker && <SelectVocabModal lessonIds={state.pickerSelectedIds} onClose={() => setShowVocabPicker(false)} />}
 
       {nudgeLesson && (
         <ConfirmModal

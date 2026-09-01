@@ -114,10 +114,12 @@ function TingxieShell() {
                   >
                     词语 Vocab
                   </button>
-                  {/* Hidden in My Vocab Only mode -- saved words carry no
-                      sentence data (see TingxieActiveContent.isMyVocabOnly),
-                      and content-loading forces sentences to []. */}
-                  {!state.activeContent?.isMyVocabOnly && (
+                  {/* Hidden whenever this content has no sentences at all --
+                      always true in My Vocab Only mode (saved words carry no
+                      sentence data, so content-loading forces sentences to
+                      []), and true in Select Vocab mode whenever the student
+                      didn't check any sentence in the picker. */}
+                  {(state.activeContent?.sentences.length ?? 0) > 0 && (
                     <button
                       className={"tingxie-mode-card-subtab" + (state.subTab === "sentence" ? " tingxie-mode-card-subtab-active" : "")}
                       onClick={() => {
@@ -158,8 +160,11 @@ function TingxieShell() {
             <div className="tingxie-activity-title">
               <img src="/icons/dictatation-mission.png" alt="" />
               {state.activeContent.title}
-              {state.activeContent.isMyVocabOnly && (
+              {state.activeContent.vocabFilterMode === "myVocabOnly" && (
                 <span className="tingxie-my-vocab-badge">我的词库 My Vocab</span>
+              )}
+              {state.activeContent.vocabFilterMode === "selected" && (
+                <span className="tingxie-my-vocab-badge tingxie-my-vocab-badge-selected">自选词语 Selected Vocab</span>
               )}
             </div>
           </div>

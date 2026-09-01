@@ -11,6 +11,12 @@ import { shuffle } from "../../lib/shuffle";
 export type TingxieView = "select" | "learn" | "apply" | "play" | "practice";
 export type TingxieSubTab = "vocab" | "sentence";
 export type TingxieSentenceDifficulty = "easy" | "hard";
+// LessonSelect's vocab-scope radio: "all" is every word (the old default);
+// "myVocabOnly" narrows to My Vocab-saved words (state/myVocab.ts);
+// "selected" narrows to exactly the words/sentences hand-picked in
+// LessonSelect's Select Vocab popup (see TingxieState.selectedVocabWords/
+// selectedVocabSentences below).
+export type TingxieVocabFilterMode = "all" | "myVocabOnly" | "selected";
 
 export interface TingxieActiveContent {
   title: string;
@@ -30,14 +36,16 @@ export interface TingxieActiveContent {
   // lesson a lot lately" nudge in LessonSelect.tsx -- halves this visit's
   // BP awards in Learn/Apply/Practice/Play.
   reducedBP?: boolean;
-  // Set when this content was built with LessonSelect's "My Vocab Only"
-  // toggle on -- vocab/applyVocab are pre-filtered to just the selected
-  // lesson(s)' words also saved in My Vocab, and sentences is forced empty
-  // (My Vocab only ever stores words, never sentences). Learn/Practice read
-  // this to hide their sentence-side UI; Learn/Apply/Practice's completion
-  // effects read it to skip Today's Mission tracking (see state/myVocab.ts
-  // and CLAUDE.md's Tingxie section).
-  isMyVocabOnly?: boolean;
+  // Which of LessonSelect's three vocab-scope radios built this content --
+  // "myVocabOnly" pre-filters vocab/applyVocab to the selected lesson(s)'
+  // words also saved in My Vocab and forces sentences empty (My Vocab only
+  // ever stores words, never sentences); "selected" pre-filters to exactly
+  // the hand-picked words/sentences from the Select Vocab popup. Both
+  // "myVocabOnly" and "selected" skip Today's Mission tracking (see
+  // Learn/Apply/Practice's completion effects) since either can trivially
+  // cherry-pick a tiny practice set -- same reasoning My Vocab Only always
+  // had, now shared with Select Vocab.
+  vocabFilterMode: TingxieVocabFilterMode;
 }
 
 export interface TingxieState {
@@ -102,12 +110,20 @@ export interface TingxieState {
   pickerSelectedIds: number[];
   loadingReview: boolean;
   reviewError: string | null;
-  // LessonSelect's "My Vocab Only" switch -- read at SELECT_LESSON_SUCCESS/
-  // CUSTOM_REVIEW_SUCCESS build time to filter the resulting content down to
-  // saved words (see TingxieActiveContent.isMyVocabOnly above). Resets to
-  // off on GO_SELECT so it doesn't silently carry over into an unrelated
+  // LessonSelect's vocab-scope radio -- read at SELECT_LESSON_SUCCESS/
+  // CUSTOM_REVIEW_SUCCESS build time to decide how to filter the resulting
+  // content (see TingxieActiveContent.vocabFilterMode above). Resets to
+  // "all" on GO_SELECT so it doesn't silently carry over into an unrelated
   // later lesson pick.
-  myVocabOnly: boolean;
+  vocabFilterMode: TingxieVocabFilterMode;
+  // "selected" mode's hand-picked words (keyed by word text, same
+  // dedup-by-text convention as state/myVocab.ts) and sentences (keyed by
+  // sentence text -- authored content, unique enough in practice) --
+  // populated via LessonSelect's Select Vocab popup. Cleared whenever the
+  // picker's lesson selection changes (see TOGGLE_PICKER_LESSON below), so a
+  // word/sentence from a since-deselected lesson can't sit here invisibly.
+  selectedVocabWords: Set<string>;
+  selectedVocabSentences: Set<string>;
 }
 
 const initialState: TingxieState = {
@@ -149,7 +165,9 @@ const initialState: TingxieState = {
   pickerSelectedIds: [],
   loadingReview: false,
   reviewError: null,
-  myVocabOnly: false
+  vocabFilterMode: "all",
+  selectedVocabWords: new Set(),
+  selectedVocabSentences: new Set()
 };
 
 function shuffledChipOrder(sentence: TingxieSentence | undefined, difficulty: TingxieSentenceDifficulty): number[] {
@@ -189,7 +207,10 @@ export type TingxieAction =
   | { type: "PRACTICE_CORRECT" }
   | { type: "PRACTICE_MISSED" }
   | { type: "TOGGLE_PICKER_LESSON"; id: number }
-  | { type: "TOGGLE_MY_VOCAB_ONLY" }
+  | { type: "SET_VOCAB_FILTER_MODE"; mode: TingxieVocabFilterMode }
+  | { type: "TOGGLE_SELECTED_VOCAB_WORD"; word: string }
+  | { type: "TOGGLE_SELECTED_VOCAB_SENTENCE"; text: string }
+  | { type: "SET_RANDOM_SELECTED_VOCAB_WORDS"; words: string[] }
   | { type: "CUSTOM_REVIEW_START" }
   | { type: "CUSTOM_REVIEW_SUCCESS"; content: TingxieActiveContent; target: "apply" | "play" | "practice" }
   | { type: "CUSTOM_REVIEW_ERROR"; error: string };
@@ -399,11 +420,29 @@ function reducer(state: TingxieState, action: TingxieAction): TingxieState {
       const has = state.pickerSelectedIds.includes(action.id);
       return {
         ...state,
-        pickerSelectedIds: has ? state.pickerSelectedIds.filter((id) => id !== action.id) : [...state.pickerSelectedIds, action.id]
+        pickerSelectedIds: has ? state.pickerSelectedIds.filter((id) => id !== action.id) : [...state.pickerSelectedIds, action.id],
+        // A hand-picked word/sentence only makes sense relative to the
+        // lesson(s) currently selected -- any lesson change invalidates it.
+        selectedVocabWords: new Set(),
+        selectedVocabSentences: new Set()
       };
     }
-    case "TOGGLE_MY_VOCAB_ONLY":
-      return { ...state, myVocabOnly: !state.myVocabOnly };
+    case "SET_VOCAB_FILTER_MODE":
+      return { ...state, vocabFilterMode: action.mode };
+    case "TOGGLE_SELECTED_VOCAB_WORD": {
+      const next = new Set(state.selectedVocabWords);
+      if (next.has(action.word)) next.delete(action.word);
+      else next.add(action.word);
+      return { ...state, selectedVocabWords: next };
+    }
+    case "TOGGLE_SELECTED_VOCAB_SENTENCE": {
+      const next = new Set(state.selectedVocabSentences);
+      if (next.has(action.text)) next.delete(action.text);
+      else next.add(action.text);
+      return { ...state, selectedVocabSentences: next };
+    }
+    case "SET_RANDOM_SELECTED_VOCAB_WORDS":
+      return { ...state, selectedVocabWords: new Set(action.words), selectedVocabSentences: new Set() };
     case "CUSTOM_REVIEW_START":
       return { ...state, loadingReview: true, reviewError: null };
     case "CUSTOM_REVIEW_SUCCESS": {
