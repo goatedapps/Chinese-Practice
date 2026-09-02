@@ -324,8 +324,18 @@ body {
      grows to claim it. flex-basis:auto means "size to content first", so a
      screen whose content already exceeds the viewport (Home's dashboard,
      a long quiz) is untouched -- there's no leftover space to grow into,
-     and it keeps scrolling exactly as before. */
+     and it keeps scrolling exactly as before.
+     100vh on mobile Safari is a real, well-known trap here: it sizes against
+     the viewport with the address bar fully collapsed, which is taller than
+     what's actually visible on first paint (address bar still showing) --
+     so min-height:100vh overshoots, pushing the bottom nav just below the
+     fold and forcing a scroll on the very "fits without scrolling" pages
+     this rule exists for. 100svh (the *small* viewport, i.e. with browser
+     chrome visible) is what's actually on screen; kept as a second
+     declaration after the 100vh fallback so a browser that doesn't
+     understand svh units simply ignores this line and keeps the first. */
   #root { display: flex; flex-direction: column; min-height: 100vh; }
+  #root { min-height: 100svh; }
   .top-bar { flex: none; }
   .screen { flex: 1 0 auto; }
 
