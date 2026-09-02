@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer, type ReactNode, type Dispatch } from "react";
 import type { QuestionGroup, GroupResult, GroupResultItem, QuestionIndexEntry } from "../data/types";
 import { VOCABULARY_CATEGORY_KEYS } from "../data/questions";
-import { isCategoryRelevantForLevel } from "../data/levels";
+import { isCategoryRelevantForLevel, setCurrentLevel } from "../data/levels";
 import { loadSavedLevel } from "./levelPreference";
 
 export type Screen =
@@ -61,9 +61,20 @@ export interface AppState {
   questionIndexLoaded: boolean;
 }
 
+// data/levels.ts's currentLevel module variable otherwise always boots as
+// DEFAULT_LEVEL ("p5") regardless of what's saved -- every content loader
+// (data/questions.ts/tingxie.ts/stories.ts) reads that, not AppState.level,
+// so without this the very first fetch on a returning P2 student's reload
+// would silently pull p5 content while the UI already shows "P2" selected
+// (a real bug: Practice's lesson question counts came out as p5's numbers).
+// Seeded here, at module init, before ScreenRouter's bootstrap effect (see
+// App.tsx) can possibly fire.
+const savedLevel = loadSavedLevel();
+setCurrentLevel(savedLevel);
+
 const initialState: AppState = {
   screen: "home",
-  level: loadSavedLevel(),
+  level: savedLevel,
   mode: null,
   modeLabel: "",
   reducedBP: false,

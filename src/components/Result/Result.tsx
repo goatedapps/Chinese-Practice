@@ -10,6 +10,7 @@ import { specialQuestConfig } from "../../data/pet";
 import { VOCABULARY_CATEGORY_KEYS } from "../../data/questions";
 import { Sound } from "../../lib/sound";
 import { exportSessionToPdf } from "../../lib/exportPdf";
+import { BpAmount } from "../common/BpAmount";
 
 export function Result() {
   const state = useAppState();
@@ -110,7 +111,7 @@ export function Result() {
       </p>
       {questBonusBP !== null && (
         <p className="quest-bonus-banner">
-          🎯 特别任务完成！Special Quest complete! <span className="bp-pop">+{questBonusBP} BP</span>
+          🎯 特别任务完成！Special Quest complete! <span className="bp-pop"><BpAmount value={questBonusBP} /></span>
         </p>
       )}
       <div className="action-row">

@@ -7,6 +7,7 @@ import { Icon } from "./Icons";
 import { LevelBar } from "./LevelBar";
 import { ConfirmModal } from "./Modal";
 import { useQuizLeaveGuard } from "../../lib/useQuizLeaveGuard";
+import { bpBoostActive } from "../../lib/bpBoost";
 
 // The rightmost slot of the top bar: the BP stat pill, plus a single
 // "Profile" trigger (avatar + name) that opens a dropdown holding both the
@@ -61,6 +62,7 @@ export function AccountBar() {
       <div className="top-nav-stat font-num">
         <img className="top-nav-stat-coin" src="/icons/coin.png" alt="" />
         {pet.bp.toLocaleString()} BP
+        {bpBoostActive && <span className="top-nav-stat-boost" title="双倍 BP 日 Double BP Day">×2</span>}
       </div>
 
       <div className="account-menu" ref={rootRef}>

@@ -11,6 +11,7 @@ import {
 } from "../data/pet";
 import { loadJSON, saveJSON } from "../lib/storage";
 import { saveAndSync } from "../lib/sync";
+import { boostedBp } from "../lib/bpBoost";
 import { getTodaySpecialQuest, completeSpecialQuest } from "./specialQuest";
 import { logAchievement } from "./achievements";
 
@@ -179,8 +180,9 @@ export function PetProvider({ children }: { children: ReactNode }) {
   }, []);
 
   function awardBP(amount: number) {
+    const boosted = boostedBp(amount);
     setPet((prev) => {
-      const next = { ...prev, bp: prev.bp + amount };
+      const next = { ...prev, bp: prev.bp + boosted };
       savePetState(next);
       return next;
     });

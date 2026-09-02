@@ -7,6 +7,7 @@ import { RichText } from "../../lib/richText";
 import { Sound } from "../../lib/sound";
 import { speakText, stopSpeaking } from "../../lib/speech";
 import { gradeGroup, correctOptionFor, isSelfCheckFormat } from "../../lib/grading";
+import { BpAmount } from "../common/BpAmount";
 import type { AnswerMap } from "../../lib/grading";
 import { gradeSelfCheckWithAI } from "../../lib/aiGrading";
 import type { Question, QuestionGroup, GroupResultItem, Passage, SelfCheckQuestion } from "../../data/types";
@@ -384,7 +385,7 @@ function Feedback({
     return (
       <div className={`feedback ${cls}`}>
         {text}
-        {item.correct && <span className="bp-pop">+{BP_AWARD.MCQ} BP</span>}
+        {item.correct && <span className="bp-pop"><BpAmount value={BP_AWARD.MCQ} /></span>}
       </div>
     );
   }
@@ -399,7 +400,7 @@ function Feedback({
     return (
       <div className={`feedback ${cls}`}>
         {text}
-        {item.correct && <span className="bp-pop">+{BP_AWARD["Fill-in"]} BP</span>}
+        {item.correct && <span className="bp-pop"><BpAmount value={BP_AWARD["Fill-in"]} /></span>}
       </div>
     );
   }
@@ -437,7 +438,7 @@ function Feedback({
           <div className="model-answer-label">参考答案 Model Answer:</div>
           <div className="model-answer-text">{q.displayAnswer}</div>
         </div>
-        {item.correct === true && <span className="bp-pop">+{BP_AWARD[q.format]} BP</span>}
+        {item.correct === true && <span className="bp-pop"><BpAmount value={BP_AWARD[q.format]} /></span>}
       </div>
     );
   }
@@ -475,7 +476,7 @@ function Feedback({
           ✗ 还需加强 Need more practice
         </button>
       </div>
-      {item.correct === true && <span className="bp-pop">+{BP_AWARD[q.format]} BP</span>}
+      {item.correct === true && <span className="bp-pop"><BpAmount value={BP_AWARD[q.format]} /></span>}
     </div>
   );
 }

@@ -10,6 +10,7 @@ import { CatchGame } from "./CatchGame";
 import { FeatherGame } from "./FeatherGame";
 import { MemoryGame } from "./MemoryGame";
 import { PlaceholderGame } from "./PlaceholderGame";
+import { BpAmount } from "../common/BpAmount";
 
 interface PlayResult extends GameCompletion {
   moodReward: number;
@@ -88,7 +89,7 @@ export function PlayGame() {
           <p className="play-result-mood">{`🍚 饱食度 +${result.moodReward}`}</p>
           {result.questBonusBP !== undefined && (
             <p className="play-result-quest-bonus">
-              🎯 特别任务完成！Special Quest complete! <span className="bp-pop">+{result.questBonusBP} BP</span>
+              🎯 特别任务完成！Special Quest complete! <span className="bp-pop"><BpAmount value={result.questBonusBP} /></span>
             </p>
           )}
           {result.agedUp && (

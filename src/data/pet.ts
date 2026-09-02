@@ -107,6 +107,11 @@ export const STORY_COMPLETE_BP_AWARD = 10;
 // it's a top-up, not a fourth activity's worth of reward.
 export const MISSION_COMPLETE_BONUS_BP = 100;
 
+// "Boost day" -- see lib/bpBoost.ts. On ~BP_BOOST_CHANCE of days, every BP
+// award anywhere in the app is multiplied by BP_BOOST_MULTIPLIER.
+export const BP_BOOST_CHANCE = 0.2;
+export const BP_BOOST_MULTIPLIER = 2;
+
 // Shop catalogue: buying an item puts it in the Bag (PetState.inventory).
 // Food's growth/mood effect applies immediately when given to the owl from
 // the Bag screen (see giveItem() in PetContext.tsx). Toys instead launch a

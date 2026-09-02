@@ -7,27 +7,54 @@ import { selectTypeSessionGroups } from "../../lib/typeSession";
 import { shuffle } from "../../lib/shuffle";
 import { isLessonMissionComplete, getReadingMissionCount, isTingxieMissionComplete, READING_MISSION_CATEGORIES } from "../../lib/stats";
 import type { HistoryEntry } from "../../data/types";
+import { BpAmount, BoostedNumber } from "../common/BpAmount";
 
 export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
   const dispatch = useAppDispatch();
-  const { level } = useAppState();
+  const state = useAppState();
+  const { level } = state;
   const [starting, setStarting] = useState(false);
   const lessonDone = isLessonMissionComplete(hist);
   const readingDone = getReadingMissionCount(hist) >= 1;
   const dictationDone = isTingxieMissionComplete();
   const allDone = lessonDone && readingDone && dictationDone;
 
+  // Practice.tsx only counts a session as mode "lesson" (what
+  // isLessonMissionComplete checks for) once Vocabulary is narrowed to a
+  // *specific* lesson -- "all lessons" (an empty selectedLessons set) always
+  // produces mode "type" instead, see its startPractice(). So this mission's
+  // shortcut has to pick one real lesson itself rather than leaving the
+  // picker on "all lessons", or Start Practice would silently never
+  // complete the mission. Picks the first lesson (1..lessonCount) that
+  // actually has Vocabulary-category questions at this level, rotating by
+  // day (Date.now() day index) so it isn't the same lesson every time.
+  function pickLessonForMission(): number | null {
+    const vocabKeys = VOCABULARY_CATEGORY_KEYS.filter((k) => isCategoryRelevantForLevel(k, level));
+    const eligible: number[] = [];
+    for (let n = 1; n <= state.lessonCount; n++) {
+      if (state.questionIndex.some((g) => vocabKeys.includes(g.category) && g.questionCount > 0 && g.lessonIds.includes(n))) {
+        eligible.push(n);
+      }
+    }
+    if (eligible.length === 0) return null;
+    const dayIndex = Math.floor(Date.now() / 86400000) % eligible.length;
+    return eligible[dayIndex];
+  }
+
   // Jumps to the Practice screen pre-set for a lesson revision: subject
   // reset to "All" (Vocabulary only exists under Chinese, so a stale
   // "Higher Chinese" subject would leave it greyed out right after this),
   // categories replaced with just Vocabulary (filtered to this level's
   // relevant categories, see data/levels.ts -- e.g. P2 has no "phrase"
-  // content), and lessons reset to the "all lessons" default so the student
-  // picks which lesson(s) themselves.
+  // content), and a specific lesson pre-selected (see pickLessonForMission)
+  // so Start Practice actually completes this mission without the student
+  // having to notice and change the lesson picker themselves.
   function startLessonMission() {
     dispatch({ type: "SELECT_SUBJECT", subject: "All" });
     dispatch({ type: "SET_CATEGORIES", keys: VOCABULARY_CATEGORY_KEYS.filter((k) => isCategoryRelevantForLevel(k, level)) });
+    const lessonNum = pickLessonForMission();
     dispatch({ type: "SELECT_ALL_LESSONS" });
+    if (lessonNum != null) dispatch({ type: "TOGGLE_LESSON", lessonNum });
     dispatch({ type: "GO_TO_SCREEN", screen: "practice" });
   }
 
@@ -59,7 +86,7 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
   return (
     <div className="dash-card today-mission">
       <h2 className="section-heading"><img className="section-heading-icon" src="/icons/todays-mission.png" alt="" />学习任务 Today's Mission</h2>
-      <p className="mission-subhead">Complete all missions to earn {MISSION_COMPLETE_BONUS_BP} BP</p>
+      <p className="mission-subhead">Complete all missions to earn <BoostedNumber value={MISSION_COMPLETE_BONUS_BP} /> BP</p>
       <div className="mission-list">
         <div className={"mission-row p1" + (dictationDone ? " mission-row-done" : "")}>
           <span className="mission-num">1</span>
@@ -116,7 +143,7 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
 
       {allDone && (
         <div className="mission-bonus-banner">
-          三项任务全部完成！All 3 missions done today! <span className="bp-pop">+{MISSION_COMPLETE_BONUS_BP} BP</span>
+          三项任务全部完成！All 3 missions done today! <span className="bp-pop"><BpAmount value={MISSION_COMPLETE_BONUS_BP} /></span>
         </div>
       )}
     </div>
