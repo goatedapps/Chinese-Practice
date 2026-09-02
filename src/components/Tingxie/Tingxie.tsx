@@ -159,7 +159,7 @@ function TingxieShell() {
             </button>
             <div className="tingxie-activity-title">
               <img src="/icons/dictatation-mission.png" alt="" />
-              {state.activeContent.title}
+              <span className="tingxie-activity-title-text">{state.activeContent.title}</span>
               {state.activeContent.vocabFilterMode === "myVocabOnly" && (
                 <span className="tingxie-my-vocab-badge">我的词库 My Vocab</span>
               )}
