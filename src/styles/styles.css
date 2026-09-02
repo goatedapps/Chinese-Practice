@@ -315,6 +315,20 @@ body {
   #root { padding-bottom: 112px; padding-left: 12px; padding-right: 12px; }
   .screen { padding-left: 12px; padding-right: 12px; padding-bottom: 16px; }
 
+  /* A screen whose real content is shorter than the viewport (a short Owl/
+     Shop/Auth/Story-reader/quiz-question card, say) otherwise leaves the
+     garden-scene background showing below the card instead of the card
+     reaching down to the bottom nav -- #root becomes the flex column that
+     actually has the spare room to give away, and .screen (used by every
+     top-level screen, Home included via its own "screen home" classes)
+     grows to claim it. flex-basis:auto means "size to content first", so a
+     screen whose content already exceeds the viewport (Home's dashboard,
+     a long quiz) is untouched -- there's no leftover space to grow into,
+     and it keeps scrolling exactly as before. */
+  #root { display: flex; flex-direction: column; min-height: 100vh; }
+  .top-bar { flex: none; }
+  .screen { flex: 1 0 auto; }
+
   /* Shrink the top bar itself on mobile -- the inline nav is gone (moved to
      .bottom-nav above) so there's nothing left to justify the desktop
      ~80px-tall bar; a smaller brand badge/BP pill/account chip plus tighter
@@ -2244,12 +2258,23 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .tingxie-activity-content { flex: 1; min-width: 0; }
 .tingxie-activity-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 .tingxie-activity-title {
-  flex: 1; display: flex; align-items: center; gap: 8px;
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px;
   font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
   font-size: 17px; font-weight: 700; color: var(--garden-navy);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .tingxie-activity-title img { width: 22px; height: 22px; object-fit: contain; flex: none; }
+/* The lesson title text is the one part of this row allowed to truncate --
+   previously white-space/overflow/ellipsis lived on .tingxie-activity-title
+   itself, but a flex container doesn't ellipsis its children as a unit (only
+   its own direct text content would), so the vocab-scope badge just kept
+   its full natural width and got laid out past the row's right edge instead
+   of shrinking -- min-width:0 is what actually lets this span shrink below
+   its content size inside the flex row (see the badge's own flex:none,
+   which is what keeps it from ever being the thing that shrinks/overflows). */
+.tingxie-activity-title-text {
+  flex: 1 1 auto; min-width: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
 /* Hidden on desktop -- the sidebar sits inline there, always visible, so
    there's nothing to toggle. */
 .tingxie-mode-toggle-btn { display: none; }
@@ -2547,7 +2572,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 }
 .tingxie-add-vocab-btn-saved .tingxie-add-vocab-plus { background: var(--garden-gold); }
 .tingxie-my-vocab-badge {
-  display: inline-flex; align-items: center;
+  display: inline-flex; align-items: center; flex: none;
   margin-left: 10px; padding: 3px 10px; border-radius: 999px;
   background: var(--garden-gold); color: #fff; font-size: 12px; font-weight: 700;
 }
