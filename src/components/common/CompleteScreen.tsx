@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { BpAmount } from "./BpAmount";
 
 interface CompleteScreenProps {
   title: string;
@@ -19,7 +20,7 @@ export function CompleteScreen({ title, bpAmount, children }: CompleteScreenProp
       {bpAmount != null && (
         <p className="bp-pop">
           <img className="bp-pop-coin" src="/icons/coin.png" alt="" />
-          {`+${bpAmount} BP`}
+          <BpAmount value={bpAmount} />
         </p>
       )}
       {children}

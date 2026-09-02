@@ -4,6 +4,7 @@ import { PetProvider } from "./state/PetContext";
 import { AuthProvider, useAuth } from "./state/AuthContext";
 import { SyncBootstrap } from "./state/SyncBootstrap";
 import { fetchQuestionMeta, fetchQuestionIndex, computeCategorySubjects, prefetchAllQuestionCategories } from "./data/questions";
+import { getCurrentLevel } from "./data/levels";
 import { Sound } from "./lib/sound";
 import { Home } from "./components/Home/Home";
 import { Practice } from "./components/Practice/Practice";
@@ -31,8 +32,16 @@ function ScreenRouter() {
 
   function loadQuestionIndex() {
     setBootError(null);
+    // Captured now, checked again once the fetch resolves -- a signed-in
+    // student's cross-device level sync (SyncBootstrap.tsx's onLevelRow) can
+    // call setCurrentLevel()+SET_LEVEL shortly after this fetch already
+    // started (which re-fires this same effect for the corrected level), so
+    // without this guard a slower, now-stale response could still land last
+    // and silently overwrite the correct level's data.
+    const requestedLevel = getCurrentLevel();
     Promise.all([fetchQuestionMeta(), fetchQuestionIndex()])
       .then(([meta, index]) => {
+        if (getCurrentLevel() !== requestedLevel) return;
         dispatch({ type: "SET_QUESTION_INDEX", index, categorySubjects: computeCategorySubjects(index), lessonCount: meta.lessonCount });
         // Non-blocking: warms every category's full content in the
         // background so Practice.tsx's "Start Practice" doesn't have to pay

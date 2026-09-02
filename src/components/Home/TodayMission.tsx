@@ -8,6 +8,7 @@ import { shuffle } from "../../lib/shuffle";
 import { isLessonMissionComplete, getReadingMissionCount, isTingxieMissionComplete, READING_MISSION_CATEGORIES } from "../../lib/stats";
 import { loadTodaysReadingMission, saveTodaysReadingMission } from "../../state/dailyReadingMission";
 import type { HistoryEntry, QuestionIndexEntry } from "../../data/types";
+import { BpAmount, BoostedNumber } from "../common/BpAmount";
 
 export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
   const dispatch = useAppDispatch();
@@ -104,7 +105,7 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
   return (
     <div className="dash-card today-mission">
       <h2 className="section-heading"><img className="section-heading-icon" src="/icons/todays-mission.png" alt="" />学习任务 Today's Mission</h2>
-      <p className="mission-subhead">Complete all missions to earn {MISSION_COMPLETE_BONUS_BP} BP</p>
+      <p className="mission-subhead">Complete all missions to earn <BoostedNumber value={MISSION_COMPLETE_BONUS_BP} /> BP</p>
       <div className="mission-list">
         <div className={"mission-row p1" + (dictationDone ? " mission-row-done" : "")}>
           <span className="mission-num">1</span>
@@ -161,7 +162,7 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
 
       {allDone && (
         <div className="mission-bonus-banner">
-          三项任务全部完成！All 3 missions done today! <span className="bp-pop">+{MISSION_COMPLETE_BONUS_BP} BP</span>
+          三项任务全部完成！All 3 missions done today! <span className="bp-pop"><BpAmount value={MISSION_COMPLETE_BONUS_BP} /></span>
         </div>
       )}
     </div>

@@ -11,6 +11,7 @@ import { PetHeroCard } from "./PetHeroCard";
 import { TodayMission } from "./TodayMission";
 import { SpecialQuest } from "./SpecialQuest";
 import { RecentAchievements } from "./RecentAchievements";
+import { bpBoostActive } from "../../lib/bpBoost";
 
 function greeting(): string {
   const hour = new Date().getHours();
@@ -64,6 +65,24 @@ export function Home() {
             </p>
           </div>
         </Reveal>
+
+        {bpBoostActive && (
+          <Reveal delay={10}>
+            <div className="boost-day-banner">
+              <Icon name="sparkle" className="boost-day-banner-sparkle boost-day-banner-sparkle-1" />
+              <Icon name="sparkle" className="boost-day-banner-sparkle boost-day-banner-sparkle-2" />
+              <Icon name="sparkle" className="boost-day-banner-sparkle boost-day-banner-sparkle-3" />
+              <span className="boost-day-banner-icon-wrap">
+                <img className="boost-day-banner-icon" src="/icons/bonus-day.png" alt="" />
+              </span>
+              <span className="boost-day-banner-text">
+                <span className="boost-day-banner-title">双倍 BP 日！</span>
+                <span className="boost-day-banner-sub">今天完成练习，获得的 BP 全部 ×2！</span>
+              </span>
+              <span className="boost-day-banner-badge">×2</span>
+            </div>
+          </Reveal>
+        )}
 
         <div className="home-row-top">
           <Reveal delay={20}>
