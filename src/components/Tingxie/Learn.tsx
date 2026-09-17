@@ -75,7 +75,7 @@ function VocabFlipCard() {
       awardBP(bpAmount);
       Sound.applause();
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|learnVocab` });
-      if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
+      if (state.activeContent!.lessonId != null) recordLessonCompleted("dictation", state.activeContent!.lessonId);
       // My Vocab Only / Select Vocab sessions still earn BP, but don't count
       // towards Today's Mission/quests -- see TingxieActiveContent.vocabFilterMode.
       if (state.activeContent!.vocabFilterMode === "all") {
@@ -195,7 +195,7 @@ function SentenceBuilderGame() {
       awardBP(bpAmount);
       Sound.applause();
       recordTingxieActivityCompleted();
-      if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
+      if (state.activeContent!.lessonId != null) recordLessonCompleted("dictation", state.activeContent!.lessonId);
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|learnSentence` });
       checkAndAwardMissionBonus(loadHistory(), awardBP);
     }

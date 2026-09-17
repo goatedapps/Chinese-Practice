@@ -44,7 +44,7 @@ export function Practice() {
       awardBP(bpAmount);
       Sound.applause();
       logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|test` });
-      if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
+      if (state.activeContent!.lessonId != null) recordLessonCompleted("dictation", state.activeContent!.lessonId);
       // My Vocab Only / Select Vocab sessions still earn BP, but don't count
       // towards Today's Mission/quests -- see TingxieActiveContent.vocabFilterMode.
       if (state.activeContent!.vocabFilterMode === "all") {

@@ -4,7 +4,6 @@ import { TINGXIE_PLAY_CONFIG } from "../../data/pet";
 import { buildTingxieApplyQueue, fetchAllTingxieVocabWords, type TingxieApplyItem } from "../../data/tingxie";
 import { Sound } from "../../lib/sound";
 import { recordTingxieActivityCompleted } from "../../state/tingxieProgress";
-import { recordLessonCompleted } from "../../state/lessonFrequency";
 import { checkAndAwardMissionBonus, logAchievement } from "../../state/achievements";
 import { loadHistory } from "../../state/history";
 import { tingxiePlayRoundsToday, recordTingxiePlayRound } from "../../state/tingxiePlayLimit";
@@ -131,7 +130,9 @@ export function Play() {
     if (roundCanEarnBPRef.current && awardAmount > 0) awardBP(awardAmount);
     Sound.applause();
     recordTingxieActivityCompleted();
-    if (state.activeContent!.lessonId != null) recordLessonCompleted(state.activeContent!.lessonId);
+    // Deliberately doesn't recordLessonCompleted() -- this is an arcade round,
+    // not lesson practice, so it shouldn't push the lesson toward the
+    // over-practice nudge (see state/lessonFrequency.ts).
     logAchievement({ type: "tingxieCompleted", detail: `${state.activeContent!.title}|play` });
     checkAndAwardMissionBonus(loadHistory(), awardBP);
   }
