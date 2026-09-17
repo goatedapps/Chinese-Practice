@@ -28,6 +28,22 @@ function hashString(s: string): number {
   return (h >>> 0) / 4294967296; // -> [0, 1)
 }
 
+function isNaturalBoostDay(key: string): boolean {
+  return hashString(`bp-boost-${key}`) < BP_BOOST_CHANCE;
+}
+
+// The 7 dateKey()s of the local calendar week (Monday-first) containing `now`.
+// Built with local-calendar arithmetic rather than ±86400000ms offsets for the
+// same reason dateKey() exists at all: a DST transition inside the week would
+// otherwise shift a day across a boundary and give two devices different weeks.
+function weekDateKeys(now: number): string[] {
+  const d = new Date(now);
+  const mondayOffset = (d.getDay() + 6) % 7; // getDay(): 0=Sun..6=Sat -> 0=Mon..6=Sun
+  return Array.from({ length: 7 }, (_, i) =>
+    dateKey(new Date(d.getFullYear(), d.getMonth(), d.getDate() - mondayOffset + i).getTime())
+  );
+}
+
 function isBpBoostDay(now: number): boolean {
   // Dev-only escape hatch: boost days are rare by design (~1 in 5), so
   // `?bpboost=1` / `?bpboost=0` is the only practical way to eyeball the
@@ -38,7 +54,19 @@ function isBpBoostDay(now: number): boolean {
     if (forced === "1") return true;
     if (forced === "0") return false;
   }
-  return hashString(`bp-boost-${dateKey(now)}`) < BP_BOOST_CHANCE;
+
+  const today = dateKey(now);
+  if (isNaturalBoostDay(today)) return true;
+
+  // Weekly floor: an independent per-day roll leaves ~(1 - BP_BOOST_CHANCE)^7
+  // of weeks (about 1 in 5 at 0.2) with no boost day at all, which is a long
+  // dry spell for a kid. A week the per-day roll skipped entirely gets exactly
+  // one made-up day, chosen by hashing the week's own Monday so every device
+  // picks the same one offline. Weeks that already rolled a boost day are
+  // untouched, so this only raises the floor -- it doesn't cap the ceiling.
+  const week = weekDateKeys(now);
+  if (week.some(isNaturalBoostDay)) return false;
+  return week[Math.floor(hashString(`bp-boost-week-${week[0]}`) * 7)] === today;
 }
 
 // Computed once per page load, like data/levels.ts's module-level

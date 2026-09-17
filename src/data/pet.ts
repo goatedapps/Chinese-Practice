@@ -108,7 +108,9 @@ export const STORY_COMPLETE_BP_AWARD = 10;
 export const MISSION_COMPLETE_BONUS_BP = 100;
 
 // "Boost day" -- see lib/bpBoost.ts. On ~BP_BOOST_CHANCE of days, every BP
-// award anywhere in the app is multiplied by BP_BOOST_MULTIPLIER.
+// award anywhere in the app is multiplied by BP_BOOST_MULTIPLIER, with a
+// guaranteed floor of one boost day per calendar week (bpBoost.ts's weekly
+// fallback), so lowering this chance can't reintroduce multi-week dry spells.
 export const BP_BOOST_CHANCE = 0.2;
 export const BP_BOOST_MULTIPLIER = 2;
 
