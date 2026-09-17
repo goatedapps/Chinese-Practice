@@ -43,10 +43,10 @@ export const GROWTH_DECAY_DAY_MS: number = 24 * 60 * 60 * 1000;
 
 // Flat BP payout per correctly-answered question, by format.
 export const BP_AWARD: Record<string, number> = {
-  MCQ: 1,
-  "Fill-in": 1,
-  "Long-Answer": 2,
-  "Writing-Constrained": 2
+  MCQ: 2,
+  "Fill-in": 2,
+  "Long-Answer": 4,
+  "Writing-Constrained": 4
 };
 
 // Tingxie-mode BP awards -- per-unit (not flat per-activity any more), so a
@@ -56,11 +56,11 @@ export const BP_AWARD: Record<string, number> = {
 // in components/Tingxie/Learn.tsx, Apply.tsx, Practice.tsx. Tunable, not
 // gospel.
 export const TINGXIE_BP_PER_UNIT = {
-  VOCAB_LEARN: 1, // 学习(学词语) -- BP per vocab word flipped at least once, this visit
-  SENTENCE_LEARN: 2, // 学习(学默写) -- BP per sentence solved correctly, this visit
-  APPLY: 1, // 词语应用 -- BP per word in the apply queue (incl. requeued misses)
-  PRACTICE_VOCAB: 1, // 听写练习 phase 1 -- BP per vocab word
-  PRACTICE_SENTENCE: 2 // 听写练习 phase 2 -- BP per sentence
+  VOCAB_LEARN: 2, // 学习(学词语) -- BP per vocab word flipped at least once, this visit
+  SENTENCE_LEARN: 4, // 学习(学默写) -- BP per sentence solved correctly, this visit
+  APPLY: 2, // 词语应用 -- BP per word in the apply queue (incl. requeued misses)
+  PRACTICE_VOCAB: 2, // 听写练习 phase 1 -- BP per vocab word
+  PRACTICE_SENTENCE: 4 // 听写练习 phase 2 -- BP per sentence
 };
 
 // Dictation Practice's "Play" (词云游戏) minigame -- a fixed-length timed
@@ -73,8 +73,10 @@ export const TINGXIE_BP_PER_UNIT = {
 // pet's existing BP.
 export const TINGXIE_PLAY_CONFIG = {
   DURATION_SEC: 60,
-  CORRECT_BP: 1,
-  WRONG_BP: -2,
+  // Kept at a 1:-2 ratio so a round's *net* scales with the rest of the
+  // economy instead of the game quietly getting more forgiving.
+  CORRECT_BP: 2,
+  WRONG_BP: -4,
   SPAWN_INTERVAL_MS: 900,
   MIN_FALL_SEC: 4.5,
   MAX_FALL_SEC: 7,
@@ -99,13 +101,12 @@ export const TINGXIE_PLAY_CONFIG = {
 // components/Story/Story.tsx's "完成 Finish" button) -- Read a Story is
 // otherwise still independent of the Quiz/achievements pipeline (no
 // history entry, no Today's Mission credit), this is its only BP hook.
-export const STORY_COMPLETE_BP_AWARD = 10;
+export const STORY_COMPLETE_BP_AWARD = 20;
 
 // One-time-per-day bonus awarded the moment all 3 Today's Mission entries
-// (lesson, reading, dictation) are complete -- on top of each mission's own
-// normal BP. Deliberately smaller than a full Tingxie activity award since
-// it's a top-up, not a fourth activity's worth of reward.
-export const MISSION_COMPLETE_BONUS_BP = 100;
+// (lesson, reading, dictation) are complete -- paid on top of each mission's
+// own normal BP, as the day's "finished everything" capstone.
+export const MISSION_COMPLETE_BONUS_BP = 200;
 
 // "Boost day" -- see lib/bpBoost.ts. On ~BP_BOOST_CHANCE of days, every BP
 // award anywhere in the app is multiplied by BP_BOOST_MULTIPLIER, with a
@@ -237,15 +238,15 @@ export interface SpecialQuestConfig {
 }
 
 export const SPECIAL_QUEST_TYPES: SpecialQuestConfig[] = [
-  { id: "vocab100", label: "词语测验满分 Get 100% on a Vocab Quiz", icon: "/icons/practice.png", bonusBP: 50 },
-  { id: "ballPlay", label: "玩一次小球游戏 Play the Ball Game", icon: "/icons/ball.png", bonusBP: 20 },
-  { id: "petFull", label: "把宠物喂到饱食度 100% Fill Your Pet's Hunger to 100%", icon: "/icons/rice.png", bonusBP: 40 },
-  { id: "memoryFast", label: "20 秒内完成记忆卡牌 Beat the Memory Game in 20s", icon: "/icons/memory.png", bonusBP: 20 },
-  { id: "comprehension1", label: "完成一篇阅读理解 Complete One Comprehension Passage", icon: "/icons/read.png", bonusBP: 100 },
+  { id: "vocab100", label: "词语测验满分 Get 100% on a Vocab Quiz", icon: "/icons/practice.png", bonusBP: 100 },
+  { id: "ballPlay", label: "玩一次小球游戏 Play the Ball Game", icon: "/icons/ball.png", bonusBP: 40 },
+  { id: "petFull", label: "把宠物喂到饱食度 100% Fill Your Pet's Hunger to 100%", icon: "/icons/rice.png", bonusBP: 80 },
+  { id: "memoryFast", label: "20 秒内完成记忆卡牌 Beat the Memory Game in 20s", icon: "/icons/memory.png", bonusBP: 40 },
+  { id: "comprehension1", label: "完成一篇阅读理解 Complete One Comprehension Passage", icon: "/icons/read.png", bonusBP: 200 },
   // Requires actually crossing the kite minigame's own bonusThreshold (7/8
   // catches, see TOY_GAMES.kite) -- i.e. completion.perfect, not just any
   // finish -- unlike ballPlay above, which pays out on any outcome.
-  { id: "kitePlay", label: "接住 7 个以上羽毛 Catch 7+ Feathers in the Kite Game", icon: "/icons/kite.png", bonusBP: 60 }
+  { id: "kitePlay", label: "接住 7 个以上羽毛 Catch 7+ Feathers in the Kite Game", icon: "/icons/kite.png", bonusBP: 120 }
 ];
 
 export function specialQuestConfig(id: string): SpecialQuestConfig | undefined {
