@@ -1,0 +1,386 @@
+- questionID: P6-CH-2026-ACSJ-Q3
+  lessonIds: []
+  question: 华语讲故事比赛的报名___止日期是这个星期五。
+  options:
+    - 截
+    - 载
+    - 戴
+    - 裁
+  correct: 截
+- questionID: P6-CH-2026-ACSJ-Q4
+  lessonIds: []
+  question: 我们应该珍___时间，不要浪费。
+  options:
+    - 系
+    - 席
+    - 惜
+    - 悉
+  correct: 惜
+- questionID: P6-CH-2026-ACSJ-Q5
+  lessonIds:
+    - 1
+  question: 外公每天清晨都会到附近的公园___身体。
+  options:
+    - 锻炼
+    - 修理
+    - 照顾
+    - 保护
+  correct: 锻炼
+- questionID: P6-CH-2026-ACSJ-Q6
+  lessonIds: []
+  question: 老师常常___我们要做一个诚实的人，不要说谎。
+  options:
+    - 训练
+    - 教育
+    - 培养
+    - 介绍
+  correct: 教育
+- questionID: P6-CH-2026-AiTong-Q3
+  lessonIds:
+    - 4
+  question: 外公认真地听我说话，脸上带着慈___的笑容。
+  options:
+    - 洋
+    - 祥
+    - 详
+    - 样
+  correct: 祥
+- questionID: P6-CH-2026-AiTong-Q4
+  lessonIds:
+    - 7
+  question: 经过不断练习，她终于成为班上最___害的象棋高手。
+  options:
+    - 力
+    - 厉
+    - 历
+    - 励
+  correct: 厉
+- questionID: P6-CH-2026-AiTong-Q5
+  lessonIds: []
+  question: 他这次预考成绩很不好，妈妈为他的小六会考感到___。
+  options:
+    - 担忧
+    - 麻烦
+    - 打扰
+    - 急忙
+  correct: 担忧
+- questionID: P6-CH-2026-AiTong-Q6
+  lessonIds: []
+  question: 为了___发生交通意外，司机应该小心开车。
+  options:
+    - 阻拦
+    - 克服
+    - 躲过
+    - 避免
+  correct: 避免
+- questionID: P6-CH-2026-HenryPark-Q3
+  lessonIds:
+    - 12
+  question: 马上要___业了，同学们都舍不得和朋友分开。
+  options:
+    - 闭
+    - 币
+    - 必
+    - 毕
+  correct: 毕
+- questionID: P6-CH-2026-HenryPark-Q4
+  lessonIds: []
+  question: 这本新书在上个月出___了。
+  options:
+    - 版
+    - 贩
+    - 板
+    - 饭
+  correct: 版
+- questionID: P6-CH-2026-HenryPark-Q5
+  lessonIds: []
+  question: 他画的小猫很___，就像要从画纸跳出来一样。
+  options:
+    - 整齐
+    - 生动
+    - 巧妙
+    - 清楚
+  correct: 生动
+- questionID: P6-CH-2026-HenryPark-Q6
+  lessonIds: []
+  question: 食物都需要经过___，才能安全食用。
+  options:
+    - 检验
+    - 搅拌
+    - 保温
+    - 调味
+  correct: 检验
+- questionID: P6-CH-2026-HenryPark-Q9
+  lessonIds: []
+  question: 他不努力还想发财，___在做白日梦。
+  options:
+    - 大约
+    - 明明
+    - 简直
+    - 竟然
+  correct: 简直
+- questionID: P6-CH-2026-NanHua-Q3
+  lessonIds:
+    - 2
+  question: 下雨了，妹妹___起了一把小伞。
+  options:
+    - 称
+    - 撑
+    - 乘
+    - 诚
+  correct: 撑
+- questionID: P6-CH-2026-NanHua-Q4
+  lessonIds: []
+  question: 表演结束时，礼堂里响起了热___的掌声。
+  options:
+    - 烈
+    - 列
+    - 例
+    - 裂
+  correct: 烈
+- questionID: P6-CH-2026-NanHua-Q5
+  lessonIds: []
+  question: 我对妈妈摇了摇头，___不想再吃东西了。
+  options:
+    - 告诉
+    - 宣布
+    - 表示
+    - 讲述
+  correct: 表示
+- questionID: P6-CH-2026-NanHua-Q6
+  lessonIds: []
+  question: 看到桌上的奖杯，往事又在我的脑海里___。
+  options:
+    - 浮现
+    - 回忆
+    - 露出
+    - 显示
+  correct: 浮现
+- questionID: P6-CH-2026-Nanyang-Q3
+  lessonIds:
+    - 8
+  question: 红头巾们为社会的发展___献自己的力量。
+  options:
+    - 供
+    - 贡
+    - 功
+    - 宫
+  correct: 贡
+- questionID: P6-CH-2026-Nanyang-Q4
+  lessonIds: []
+  question: 佳佳小心地___起地上那只受伤的小鸟，把它放回鸟窝中。
+  options:
+    - 扶
+    - 托
+    - 拖
+    - 投
+  correct: 扶
+- questionID: P6-CH-2026-Nanyang-Q5
+  lessonIds:
+    - 5
+  question: 这张实木桌子很___，用了十年还是完好如初。
+  options:
+    - 坚持
+    - 坚固
+    - 坚强
+    - 坚定
+  correct: 坚固
+- questionID: P6-CH-2026-Nanyang-Q6
+  lessonIds:
+    - 6
+  question: 战场上，所有的战士都顽强地与敌人___。
+  options:
+    - 克服
+    - 对抗
+    - 攻打
+    - 挣扎
+  correct: 对抗
+- questionID: P6-CH-2026-PLMGS-Q3
+  lessonIds: []
+  question: 哥哥学会如何___隐形眼镜后，高兴不已。
+  options:
+    - 载
+    - 截
+    - 栽
+    - 戴
+  correct: 戴
+- questionID: P6-CH-2026-PLMGS-Q4
+  lessonIds:
+    - 4
+  question: 这个牌子的行李箱___量很好，只是价格比较贵。
+  options:
+    - 智
+    - 至
+    - 制
+    - 质
+  correct: 质
+- questionID: P6-CH-2026-PLMGS-Q5
+  lessonIds: []
+  question: 买食品时，我们要___包装袋上的日期。
+  options:
+    - 检查
+    - 见证
+    - 记录
+    - 申请
+  correct: 检查
+- questionID: P6-CH-2026-PLMGS-Q6
+  lessonIds:
+    - 6
+  question: 这件事不能再___了，你一定要在这个星期把事情办好。
+  options:
+    - 促进
+    - 考虑
+    - 拖延
+    - 怀疑
+  correct: 拖延
+- questionID: P6-CH-2026-Raffles-Q3
+  lessonIds:
+    - 12
+  question: 上个星期五，我们全家一起参加了姐姐的___业典礼。
+  options:
+    - 毕
+    - 闭
+    - 币
+    - 必
+  correct: 毕
+- questionID: P6-CH-2026-Raffles-Q4
+  lessonIds: []
+  question: 这所新加坡北部的体育学校，___养了很多人才。
+  options:
+    - 赔
+    - 陪
+    - 培
+    - 倍
+  correct: 培
+- questionID: P6-CH-2026-Raffles-Q5
+  lessonIds: []
+  question: 这份小组作业的___方式不限，可以画画也可以表演。
+  options:
+    - 展览
+    - 说明
+    - 表示
+    - 呈现
+  correct: 呈现
+- questionID: P6-CH-2026-Raffles-Q6
+  lessonIds: []
+  question: 由于明天有考试，国强还在___是否出席今晚的聚会。
+  options:
+    - 回想
+    - 考虑
+    - 比较
+    - 盼望
+  correct: 考虑
+- questionID: P6-CH-2026-RedSwastika-Q3
+  lessonIds:
+    - 8
+  question: 为了多赚一点钱，爷爷决定把多出来的房间___出去。
+  options:
+    - 组
+    - 助
+    - 阻
+    - 租
+  correct: 租
+- questionID: P6-CH-2026-RedSwastika-Q4
+  lessonIds:
+    - 3
+  question: 那位表演者很棒，他都可以模___别人做的动作。
+  options:
+    - 亿
+    - 仿
+    - 促
+    - 依
+  correct: 仿
+- questionID: P6-CH-2026-RedSwastika-Q5
+  lessonIds:
+    - 1
+  question: 老师对学生的作业要求很___，每一个错别字都不放过。
+  options:
+    - 严格
+    - 细心
+    - 认真
+    - 自豪
+  correct: 严格
+- questionID: P6-CH-2026-RedSwastika-Q6
+  lessonIds:
+    - 4
+  question: 老板和员工们正在开会，我们别进去___他们。
+  options:
+    - 欢迎
+    - 打扰
+    - 吵闹
+    - 帮助
+  correct: 打扰
+- questionID: P6-CH-2026-StNicholas-Q3
+  lessonIds:
+    - 8
+  question: 奶奶在食堂___了一个摊位卖豆花水。
+  options:
+    - 组
+    - 租
+    - 祖
+    - 阻
+  correct: 租
+- questionID: P6-CH-2026-StNicholas-Q4
+  lessonIds: []
+  question: 店内的___售员热情地向顾客介绍商品。
+  options:
+    - 稍
+    - 消
+    - 销
+    - 悄
+  correct: 销
+- questionID: P6-CH-2026-StNicholas-Q5
+  lessonIds: []
+  question: 考试快到了，老师___我们要复习功课。
+  options:
+    - 教导
+    - 命令
+    - 请求
+    - 提醒
+  correct: 提醒
+- questionID: P6-CH-2026-StNicholas-Q6
+  lessonIds: []
+  question: 花木兰在战场上英勇杀敌，___自己的国家。
+  options:
+    - 保管
+    - 保持
+    - 保卫
+    - 保证
+  correct: 保卫
+- questionID: P6-CH-2026-TaoNan-Q3
+  lessonIds: []
+  question: 昨晚发生的地___，并没有对村民造成严重伤害。
+  options:
+    - 震
+    - 雷
+    - 雾
+    - 露
+  correct: 震
+- questionID: P6-CH-2026-TaoNan-Q4
+  lessonIds: []
+  question: 老师看到同学们争先恐后地上校车，便上前维持___序。
+  options:
+    - 智
+    - 质
+    - 志
+    - 秩
+  correct: 秩
+- questionID: P6-CH-2026-TaoNan-Q5
+  lessonIds:
+    - 5
+  question: 听了外婆___的那段往事，我不禁流下了眼泪。
+  options:
+    - 介绍
+    - 讲述
+    - 吩咐
+    - 讨论
+  correct: 讲述
+- questionID: P6-CH-2026-TaoNan-Q6
+  lessonIds: []
+  question: 丽美在科学课上___虫子的特点，并把自己的发现写下来。
+  options:
+    - 测试
+    - 检查
+    - 考虑
+    - 观察
+  correct: 观察

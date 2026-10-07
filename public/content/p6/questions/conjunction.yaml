@@ -1,0 +1,171 @@
+- questionID: P6-CH-2026-ACSJ-Q9
+  lessonIds: []
+  question: ___这次你取得了好成绩，也要继续努力。
+  options:
+    - 只要
+    - 虽然
+    - 不仅
+    - 就算
+  correct: 就算
+- questionID: P6-CH-2026-ACSJ-Q10
+  lessonIds: []
+  question: ___周末的天气不好，我们___不去海边野餐了。
+  options:
+    - 只有……才
+    - 除了……还
+    - 要是……就
+    - 不管……都
+  correct: 要是……就
+- questionID: P6-CH-2026-AiTong-Q9
+  lessonIds: []
+  question: ___你这次更努力一些，也许就会成功。
+  options:
+    - 由于
+    - 虽然
+    - 要是
+    - 即使
+  correct: 要是
+- questionID: P6-CH-2026-AiTong-Q10
+  lessonIds: []
+  question: ___她的手已经受伤，她___坚持打完比赛。
+  options:
+    - 不但……反而
+    - 不是……而是
+    - 因为……所以
+    - 尽管……还是
+  correct: 尽管……还是
+- questionID: P6-CH-2026-HenryPark-Q10
+  lessonIds: []
+  question: 他上课不专心，___在睡觉，___在讲话。
+  options:
+    - 首先……然后
+    - 即使……也要
+    - 一边……一边
+    - 不是……就是
+  correct: 不是……就是
+- questionID: P6-CH-2026-NanHua-Q9
+  lessonIds: []
+  question: ___老板吩咐的工作，哥哥就会马上去做。
+  options:
+    - 只要
+    - 凡是
+    - 由于
+    - 如果
+  correct: 凡是
+- questionID: P6-CH-2026-NanHua-Q10
+  lessonIds: []
+  question: ___想了很多办法，大家___无法帮他改掉坏习惯。
+  options:
+    - 不但……而且
+    - 不管……仍然
+    - 因为……所以
+    - 尽管……还是
+  correct: 尽管……还是
+- questionID: P6-CH-2026-Nanyang-Q9
+  lessonIds: []
+  question: ___前面的路很难走，你___要勇往直前。
+  options:
+    - 凡是……都
+    - 即使……也
+    - 只有……才
+    - 无论……都
+  correct: 即使……也
+- questionID: P6-CH-2026-Nanyang-Q10
+  lessonIds: []
+  question: ___明天是公共假日，___今晚我们多聊一会吧。
+  options:
+    - 尽管……还是
+    - 不仅……而且
+    - 反正……不如
+    - 除非……不然
+  correct: 反正……不如
+- questionID: P6-CH-2026-PLMGS-Q9
+  lessonIds: []
+  question: ___外头下着大雨，他___还要出门跑步。
+  options:
+    - 除了……还
+    - 如果……就
+    - 虽然……却
+    - 只有……才
+  correct: 虽然……却
+- questionID: P6-CH-2026-PLMGS-Q10
+  lessonIds: []
+  question: ___你心情不好，___不应该对别人乱发脾气。
+  options:
+    - 只要……就
+    - 就算……也
+    - 不管……都
+    - 凡是……都
+  correct: 就算……也
+- questionID: P6-CH-2026-Raffles-Q9
+  lessonIds: []
+  question: ___你是组长，___也应该问一问组员的想法。
+  options:
+    - 只要……就能
+    - 反正……不如
+    - 虽然……但是
+    - 不但……反而
+  correct: 虽然……但是
+- questionID: P6-CH-2026-Raffles-Q10
+  lessonIds: []
+  question: ___心情不好，姐姐___不会乱发脾气。
+  options:
+    - 除了……还
+    - 就算……也
+    - 如果……就
+    - 尽管……还
+  correct: 就算……也
+- questionID: P6-CH-2026-RedSwastika-Q9
+  lessonIds: []
+  question: ___天气很热，小明还是坚持每天跑步锻炼身体。
+  options:
+    - 尽管
+    - 由于
+    - 如果
+    - 只有
+  correct: 尽管
+- questionID: P6-CH-2026-RedSwastika-Q10
+  lessonIds: []
+  question: 大明___勤奋好学，___喜欢帮助别人。
+  options:
+    - 一边……一边
+    - 因为……所以
+    - 虽然……但是
+    - 不仅……而且
+  correct: 不仅……而且
+- questionID: P6-CH-2026-StNicholas-Q9
+  lessonIds: []
+  question: ___明天是否下雨，我们___会去探望外婆。
+  options:
+    - 如果……就
+    - 不管……都
+    - 除了……还
+    - 就算……也
+  correct: 不管……都
+- questionID: P6-CH-2026-StNicholas-Q10
+  lessonIds: []
+  question: ___我们有时间，___去老人院做义工。
+  options:
+    - 与其……不如
+    - 除非……不然
+    - 尽管……还是
+    - 反正……不如
+  correct: 反正……不如
+- questionID: P6-CH-2026-TaoNan-Q9
+  lessonIds: []
+  question: 运动___能锻炼身体，___能放松心情。
+  options:
+    - 除了……也
+    - 只有……才
+    - 不管……都
+    - 要是……就
+  correct: 除了……也
+- questionID: P6-CH-2026-TaoNan-Q10
+  lessonIds: []
+  question: ___大家互相合作，___活动进行得很顺利。
+  options:
+    - 不仅……而且
+    - 一边……一边
+    - 因为……所以
+    - 尽管……还是
+  correct: 因为……所以

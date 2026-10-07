@@ -1,0 +1,192 @@
+- questionID: P6-CH-2026-ACSJ-Q7
+  lessonIds: []
+  question: 妈妈听到这个好消息，__激动__得流下眼泪。（选出画线词语的意思）
+  options:
+    - 感到兴奋
+    - 感到奇怪
+    - 觉得着急
+    - 觉得难过
+  correct: 感到兴奋
+- questionID: P6-CH-2026-ACSJ-Q8
+  lessonIds: []
+  question: 林伯伯__灵机一动__，解决了这个问题。（选出画线词语的意思）
+  options:
+    - 很喜欢自作聪明
+    - 心里早有了主意
+    - 突然想出好方法
+    - 冷静面对新挑战
+  correct: 突然想出好方法
+- questionID: P6-CH-2026-AiTong-Q7
+  lessonIds: []
+  question: 我听到门外有__动静__，于是起身去查看。（选出画线词语的意思）
+  options:
+    - 声音、响动
+    - 消息、情况
+    - 调整、变化
+    - 影响、作用
+  correct: 声音、响动
+- questionID: P6-CH-2026-AiTong-Q8
+  lessonIds: []
+  question: 这里的风景__宜人__，大家都舍不得离开。（选出画线词语的意思）
+  options:
+    - 感觉合适
+    - 让人开心
+    - 合人心意
+    - 令人向往
+  correct: 合人心意
+- questionID: P6-CH-2026-HenryPark-Q7
+  lessonIds: []
+  question: 一到过年，购物中心就会举办各种__促销__活动。（选出画线词语的意思）
+  options:
+    - 售卖多种商品
+    - 推动商品销售
+    - 延长售卖时间
+    - 增加销售人员
+  correct: 推动商品销售
+- questionID: P6-CH-2026-HenryPark-Q8
+  lessonIds:
+    - 10
+  question: 如果你想成为读书会的会员，要先填写__申请__表格。（选出画线词语的意思）
+  options:
+    - 上网报名
+    - 提出请求
+    - 找人查问
+    - 报告老师
+  correct: 提出请求
+- questionID: P6-CH-2026-NanHua-Q7
+  lessonIds: []
+  question: 这件事很重要，我们必须__考虑__清楚。（选出画线词语的意思）
+  options:
+    - 了解详细情况
+    - 仔细地想一想
+    - 做出最后决定
+    - 顺利完成任务
+  correct: 仔细地想一想
+- questionID: P6-CH-2026-NanHua-Q8
+  lessonIds:
+    - 12
+  question: 老师给的作业太多了，同学们纷纷__抱怨__。（选出画线词语的意思）
+  options:
+    - 一直吵个不停
+    - 不客气地说出
+    - 说出心中不满
+    - 围在一起讨论
+  correct: 说出心中不满
+- questionID: P6-CH-2026-Nanyang-Q7
+  lessonIds:
+    - 4
+  question: 医生说如果吃太多糖会__损坏__牙齿。（选出画线词语的意思）
+  options:
+    - 使物品的外表变得十分难看
+    - 使物品的总共数量突然变少
+    - 使物品受到各种巨大的压力
+    - 使物品残破失去原来的功效
+  correct: 使物品残破失去原来的功效
+- questionID: P6-CH-2026-Nanyang-Q8
+  lessonIds:
+    - 6
+    - 8
+  question: 出门前，妈妈再三__吩咐__我要带雨伞。（选出画线词语的意思）
+  options:
+    - 用言语指派或命令
+    - 把解释或道理讲出来
+    - 劝别人对某事表示同意
+    - 提出自己的意见或者想法
+  correct: 用言语指派或命令
+- questionID: P6-CH-2026-PLMGS-Q7
+  lessonIds: []
+  question: 由于缺少人手，这次的活动只好__临时__取消了。（选出画线词语的意思）
+  options:
+    - 事情已经过了很久
+    - 事情已经被人忘记
+    - 事情刚刚结束的时候
+    - 事情在短时间内发生
+  correct: 事情在短时间内发生
+- questionID: P6-CH-2026-PLMGS-Q8
+  lessonIds:
+    - 6
+  question: 小明没有因为同学表现优秀而__妒忌__他，反而向对方学习。（选出画线词语的意思）
+  options:
+    - 讨厌比自己强的人
+    - 嘲笑比自己差的人
+    - 佩服比自己棒的人
+    - 熟悉比自己弱的人
+  correct: 讨厌比自己强的人
+- questionID: P6-CH-2026-Raffles-Q7
+  lessonIds:
+    - 11
+  question: 警察在森林里__搜索__了几个小时，终于救出了迷路的人。（选出画线词语的意思）
+  options:
+    - 认真观看
+    - 仔细寻找
+    - 详细检查
+    - 小心安排
+  correct: 仔细寻找
+- questionID: P6-CH-2026-Raffles-Q8
+  lessonIds:
+    - 4
+  question: 这件衣服看起来__普通__，可是穿起来很舒服。（选出画线词语的意思）
+  options:
+    - 不值钱
+    - 不杰出
+    - 不美丽
+    - 不特别
+  correct: 不特别
+- questionID: P6-CH-2026-RedSwastika-Q7
+  lessonIds:
+    - 8
+  question: 这些建筑工人为国家的早期建设做出了巨大的__贡献__。（选出画线词语的意思）
+  options:
+    - 让人民明白建筑的重要
+    - 使国家和人民得到关怀
+    - 为国家和人民尽一份力
+    - 让人民有建设国家的机会
+  correct: 为国家和人民尽一份力
+- questionID: P6-CH-2026-RedSwastika-Q8
+  lessonIds:
+    - 10
+  question: 打雷了，妈妈__暂时__不让我们出去外面玩。（选出画线词语的意思）
+  options:
+    - 永远
+    - 立刻
+    - 一眨眼
+    - 短时间
+  correct: 短时间
+- questionID: P6-CH-2026-StNicholas-Q7
+  lessonIds:
+    - 10
+  question: 我__打败__了所有的对手，取得了冠军。
+  options:
+    - 赢了对手
+    - 赶走对手
+    - 推倒对手
+    - 攻打对手
+  correct: 赢了对手
+- questionID: P6-CH-2026-StNicholas-Q8
+  lessonIds: []
+  question: 听了哥哥的解释后，我__恍然大悟__，发现我错怪了他。
+  options:
+    - 突然醒来
+    - 突然明白
+    - 突然猜中
+    - 突然想起
+  correct: 突然明白
+- questionID: P6-CH-2026-TaoNan-Q7
+  lessonIds:
+    - 6
+  question: 看到家伟获得第一名，我心里有些__妒忌__。
+  options:
+    - 因自己不如别人而难过
+    - 因别人表现差而讨厌他
+    - 因他人犯错而感到不满
+    - 因对方比自己好而恨他
+  correct: 因对方比自己好而恨他
+- questionID: P6-CH-2026-TaoNan-Q8
+  lessonIds: []
+  question: 奶奶总是__唠叨__，要我尽快完成作业。
+  options:
+    - 不慌不忙地说
+    - 认认真真地说
+    - 没完没了地说
+    - 吞吞吐吐地说
+  correct: 没完没了地说

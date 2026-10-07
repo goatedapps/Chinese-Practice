@@ -1,0 +1,180 @@
+- questionID: P6-CH-2026-ACSJ-Q11
+  lessonIds: []
+  question: ___，靠的是大家的齐心协力。
+  options:
+    - 对方选手表现不佳
+    - 钢琴独奏十分精彩
+    - 游戏规则需要更换
+    - 我们班能赢得比赛
+  correct: 我们班能赢得比赛
+- questionID: P6-CH-2026-ACSJ-Q12
+  lessonIds: []
+  question: 老师宣布明天去参观动物园，___。
+  options:
+    - 同学们都观看了动物表演
+    - 同学们便依依不舍地离开
+    - 同学们都开心地欢呼起来
+    - 同学们兴高采烈地出发了
+  correct: 同学们都开心地欢呼起来
+- questionID: P6-CH-2026-AiTong-Q11
+  lessonIds: []
+  question: ___，大家都喜出望外。
+  options:
+    - 老师叫大家安静下来
+    - 老师宣布明天有测验
+    - 校长宣布全校放假一天
+    - 同学们在操场上踢足球
+  correct: 校长宣布全校放假一天
+- questionID: P6-CH-2026-AiTong-Q12
+  lessonIds: []
+  question: 他从小爱打抱不平，___。
+  options:
+    - 因此一直被人欺负
+    - 常常帮助弱小同学
+    - 总是动不动就打人
+    - 所以时常乱发脾气
+  correct: 常常帮助弱小同学
+- questionID: P6-CH-2026-HenryPark-Q11
+  lessonIds: []
+  question: 我们原本要去野餐，___。
+  options:
+    - 幸好公园景色宜人
+    - 可是下雨不能去了
+    - 全家人都开心极了
+    - 因为星期天不上学
+  correct: 可是下雨不能去了
+- questionID: P6-CH-2026-HenryPark-Q12
+  lessonIds: []
+  question: ___，看是否能想出办法。
+  options:
+    - 只要大家一起努力
+    - 我们可以一起开会
+    - 如果每个人都思考
+    - 他们终于做出决定
+  correct: 我们可以一起开会
+- questionID: P6-CH-2026-NanHua-Q11
+  lessonIds: []
+  question: ___，我们一家人都为他感到骄傲。
+  options:
+    - 如果弟弟真的做错了
+    - 如果弟弟明天去公园
+    - 弟弟捡到了一个钱包
+    - 弟弟在比赛中得了奖
+  correct: 弟弟在比赛中得了奖
+- questionID: P6-CH-2026-NanHua-Q12
+  lessonIds: []
+  question: 自从参加了学校的环保活动后，___。
+  options:
+    - 姐姐每天都会买新衣服
+    - 哥哥每天都会读华文书
+    - 弟弟每次都会随手关灯
+    - 妹妹每次都会多做运动
+  correct: 弟弟每次都会随手关灯
+- questionID: P6-CH-2026-Nanyang-Q11
+  lessonIds: []
+  question: 弟弟津津有味地看着故事书，___。
+  options:
+    - 大家都很想教训他一顿
+    - 妈妈喊他吃饭都没听见
+    - 常常使家人感到难为情
+    - 不一会儿就做完作业了
+  correct: 妈妈喊他吃饭都没听见
+- questionID: P6-CH-2026-Nanyang-Q12
+  lessonIds: []
+  question: ___，我们总算解决了这个难题。
+  options:
+    - 由于大家都想明天再试
+    - 如果大家都能齐心协力
+    - 自从所有人都在想办法
+    - 在所有人的努力付出下
+  correct: 在所有人的努力付出下
+- questionID: P6-CH-2026-PLMGS-Q11
+  lessonIds: []
+  question: 请大家齐心协力，___。
+  options:
+    - 常聚在一起唱唱歌
+    - 吃饱后就赶快回家
+    - 看完这场舞蹈比赛
+    - 准时完成这项工作
+  correct: 准时完成这项工作
+- questionID: P6-CH-2026-PLMGS-Q12
+  lessonIds: []
+  question: ___，老师为他们取得的成绩感到自豪。
+  options:
+    - 同学们七嘴八舌地讨论
+    - 同学们没按时完成作业
+    - 同学们上课时非常专心
+    - 同学们比赛时得了冠军
+  correct: 同学们比赛时得了冠军
+- questionID: P6-CH-2026-Raffles-Q11
+  lessonIds: []
+  question: ___，妈妈催我赶快去机场。
+  options:
+    - 飞机还有两个小时就起飞了
+    - 现在离出发的时间还早着呢
+    - 我向叔叔学如何上网订机票
+    - 我昨天早上已经抵达了终点
+  correct: 飞机还有两个小时就起飞了
+- questionID: P6-CH-2026-Raffles-Q12
+  lessonIds: []
+  question: 学校外面今早交通堵塞，___。
+  options:
+    - 救护人员能把受伤的司机送去医院
+    - 大家不管三七二十一拼命地喊救命
+    - 路上的车子只能慢慢地往前方行驶
+    - 巴士司机经常提醒大家要遵守规则
+  correct: 路上的车子只能慢慢地往前方行驶
+- questionID: P6-CH-2026-RedSwastika-Q11
+  lessonIds: []
+  question: 也许你用小华的方法，___。
+  options:
+    - 一定会成功完成任务的
+    - 不可以准备更多的工具
+    - 就可以查出大象的重量了
+    - 应该去问问老师的意见吧
+  correct: 就可以查出大象的重量了
+- questionID: P6-CH-2026-RedSwastika-Q12
+  lessonIds: []
+  question: ___，小明用了有趣的方法来呈现。
+  options:
+    - 为了节省时间
+    - 为了准备运动会
+    - 为了完成科学作业
+    - 为了赢得讲故事比赛
+  correct: 为了赢得讲故事比赛
+- questionID: P6-CH-2026-StNicholas-Q11
+  lessonIds: []
+  question: 一开始我对新学校感到陌生，___。
+  options:
+    - 总是忘记完成作业
+    - 后来就慢慢熟悉了
+    - 认识了很多新朋友
+    - 时不时被老师批评
+  correct: 后来就慢慢熟悉了
+- questionID: P6-CH-2026-StNicholas-Q12
+  lessonIds: []
+  question: ___，才把钢琴搬上楼。
+  options:
+    - 搬家工人不费吹灰之力
+    - 同学们浪费了很多体力
+    - 我和妹妹花费不少日子
+    - 爸爸费了九牛二虎之力
+  correct: 爸爸费了九牛二虎之力
+- questionID: P6-CH-2026-TaoNan-Q11
+  lessonIds: []
+  question: 小文听到这个坏消息，___。
+  options:
+    - 立刻冲去食堂
+    - 脸上的笑容消失了
+    - 想起了自己难忘的童年
+    - 希望那些同学会被老师批评
+  correct: 脸上的笑容消失了
+- questionID: P6-CH-2026-TaoNan-Q12
+  lessonIds: []
+  question: ___，今天感到十分疲倦。
+  options:
+    - 乐乐打算以后早睡早起
+    - 乐乐睡醒后去公园跑步
+    - 乐乐连续几晚没有睡好
+    - 乐乐睡前喝了一杯牛奶
+  correct: 乐乐连续几晚没有睡好

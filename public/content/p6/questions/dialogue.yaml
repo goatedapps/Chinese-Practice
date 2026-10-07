@@ -1,0 +1,366 @@
+- groupId: P6-CH-2026-ACSJ-Q26-29
+  passage:
+    title: 假期去欧洲旅行
+    source: ACS(J) Primary 6 Chinese Prelim 2026, Paper 2; PDF pages 10; P6_Chinese_Prelim_2026_ACSJ_Exam_Papers.pdf
+    text: |-
+      叶明：洋洋，假期你会做什么？
+      洋洋：[Q26]___，好好放松一下。
+      叶明：你们会去哪里？
+      洋洋：我的爸妈请了十五天的长假，他们会带我去欧洲！[Q27]___。
+      叶明：哇！我也喜欢传统建筑。可是欧洲那么远，[Q28]___，我的父母不会带我去的。
+      洋洋：别失望，等你以后自己赚钱了再去也不迟。
+      叶明：哈哈，那还得等上十几年呢！
+      洋洋：[Q29]___！这样你不出国也能看到美丽的风景了。
+      叶明：这真是个好主意！
+  optionBank:
+    - 机票肯定很贵
+    - 我想每天玩游戏
+    - 感谢伟大的建筑工人
+    - 我的爸妈会带我去旅行
+    - 你可以跟我一起出国啊
+    - 看一看以前贵族居住的城堡
+    - 要不我多拍一些照片给你看吧
+    - 可惜我的父母工作实在太忙了
+  questions:
+    - sourceQuestion: Q26
+      text: "[Q26] 洋洋：___，好好放松一下。"
+      correct: 我的爸妈会带我去旅行
+    - sourceQuestion: Q27
+      text: "[Q27] 洋洋：我的爸妈请了十五天的长假，他们会带我去欧洲！___。"
+      correct: 看一看以前贵族居住的城堡
+    - sourceQuestion: Q28
+      text: "[Q28] 叶明：哇！我也喜欢传统建筑。可是欧洲那么远，___，我的父母不会带我去的。"
+      correct: 机票肯定很贵
+    - sourceQuestion: Q29
+      text: "[Q29] 洋洋：___！这样你不出国也能看到美丽的风景了。"
+      correct: 要不我多拍一些照片给你看吧
+- groupId: P6-CH-2026-AiTong-Q26-29
+  subject: Chinese
+  passage:
+    title: 完成对话
+    source: AiTong Primary 6 Chinese Prelim 2026; PDF pages 9; P6_Chinese_Prelim_2026_AiTong_Exam_Papers.pdf
+    text: |-
+      乐文：小丽，你怎么还没去买你最爱的鱼丸面？
+      小丽：[Q26]___，今天是还书的最后期限！
+      乐文：是吗？我陪你去图书馆还书吧。
+      小丽：可是，我借的那本书不见了。昨天我在家里翻遍了每一个角落，[Q27]___。
+      乐文：你有没有放在书包里，[Q28]___？
+      小丽：乐文，这些地方我当然都找了，还是找不到。怎么办？[Q29]___？
+      乐文：对呀！我觉得你先去主动认错比较好。
+  optionBank:
+    - 鱼丸面的队伍太长
+    - 我借了图书馆的书
+    - 为什么不去课室里找
+    - 连书的影子都没有看到
+    - 妈妈帮我找到了那本书
+    - 或者会不会是在课室里
+    - 你去失物招领处看一看
+    - 我要不要去找老师承认错误
+  questions:
+    - sourceQuestion: Q26
+      text: "[Q26]___"
+      correct: 我借了图书馆的书
+    - sourceQuestion: Q27
+      text: "[Q27]___"
+      correct: 连书的影子都没有看到
+    - sourceQuestion: Q28
+      text: "[Q28]___"
+      correct: 或者会不会是在课室里
+    - sourceQuestion: Q29
+      text: "[Q29]___"
+      correct: 我要不要去找老师承认错误
+- groupId: P6-CH-2026-HenryPark-Q26-29
+  subject: Chinese
+  passage:
+    title: 完成对话
+    source: HenryPark Primary 6 Chinese Prelim 2026; PDF pages 9; P6_Chinese_Prelim_2026_HenryPark_Exam_Papers.pdf
+    text: |-
+      王阿姨：小李啊，最近好像很少看到大家聚在一起聊天了。
+      小李：是啊，王阿姨。[Q26]___，大家下班回来都关着门。
+      王阿姨：这样可不好。你觉得我们该怎么改善呢？
+      小李：这可简单了！[Q27]___，慢慢地和邻居增进感情。
+      王阿姨：你说得对。例如，在电梯里遇到邻居，可以微笑点头。
+      小李：我们也可以多参加民众俱乐部举办的活动，充实自己的当儿，[Q28]___。
+      王阿姨：就像我们俩一样，是因为一起参加义工活动而认识的啊！
+      小李：就是嘛！我们应该多参加社区活动，[Q29]___，让邻居之间的关系越来越好。
+      王阿姨：是的！你说的有道理！
+  optionBank:
+    - 也可以减少争吵
+    - 这里的环境恶劣
+    - 我们需要团结起来
+    - 我们可以主动打招呼
+    - 并且积极地和邻居交流
+    - 最近邻居们都互不来往
+    - 珍惜这美好的居住环境
+    - 还能认识住在周围的邻居
+  questions:
+    - sourceQuestion: Q26
+      text: "[Q26]___"
+      correct: 最近邻居们都互不来往
+    - sourceQuestion: Q27
+      text: "[Q27]___"
+      correct: 我们可以主动打招呼
+    - sourceQuestion: Q28
+      text: "[Q28]___"
+      correct: 还能认识住在周围的邻居
+    - sourceQuestion: Q29
+      text: "[Q29]___"
+      correct: 并且积极地和邻居交流
+- groupId: P6-CH-2026-NanHua-Q26-29
+  subject: Chinese
+  passage:
+    title: 完成对话
+    source: NanHua Primary 6 Chinese Prelim 2026; PDF pages 11; P6_Chinese_Prelim_2026_NanHua_Exam_Papers.pdf
+    text: |-
+      小华：哥哥，今天发生了一件令我非常生气的事。
+      哥哥：[Q26]___？快点告诉我。
+      小华：我早上搭地铁上学时，[Q27]___。你知道他做了什么吗？
+      哥哥：难道他在地铁上乱扔垃圾？
+      小华：就是啊，[Q28]___，然后想转头就走。
+      哥哥：地铁是公共交通工具，我们应该保持地铁里的卫生。
+      小华：我也这么觉得，[Q29]___。
+      哥哥：他有什么反应？
+      小华：他立刻低下头，把垃圾捡起来了。
+  optionBank:
+    - 其他乘客都有帮忙
+    - 是不是又发脾气了
+    - 这件事让我很生气
+    - 什么事令你这么激动
+    - 看到有人在地铁里乱画
+    - 遇到了非常没有公德心的人
+    - 他把糖果的包装纸丢在地上
+    - 于是我便上前劝告他不要这样做
+  questions:
+    - sourceQuestion: Q26
+      text: "[Q26]___"
+      correct: 什么事令你这么激动
+    - sourceQuestion: Q27
+      text: "[Q27]___"
+      correct: 遇到了非常没有公德心的人
+    - sourceQuestion: Q28
+      text: "[Q28]___"
+      correct: 他把糖果的包装纸丢在地上
+    - sourceQuestion: Q29
+      text: "[Q29]___"
+      correct: 于是我便上前劝告他不要这样做
+- groupId: P6-CH-2026-Nanyang-Q26-29
+  subject: Chinese
+  passage:
+    title: 完成对话
+    source: Nanyang Primary 6 Chinese Prelim 2026; PDF pages 12; P6_Chinese_Prelim_2026_Nanyang_Exam_Papers.pdf
+    text: |-
+      志光：美如，你听说了吗？政府要派人来翻新我们这里的组屋了！
+      美如：太好了！[Q26]___，设备都很老旧了。
+      志光：是啊，特别是电梯，又慢又窄小，[Q27]___，大家都觉得很麻烦。
+      美如：对啊！电梯不能到达每一层楼，[Q28]___，太不方便了。
+      志光：这次除了翻新组屋内部，还会一起更新电梯，真是一个好消息啊！
+      美如：除了电梯，我希望组屋楼下的儿童游乐场也会一并翻新，重新放置一些新的游乐设施。
+      志光：不仅如此，我听说停车场也会扩建，[Q29]___。
+      美如：真是期待翻新之后的组屋啊！
+  optionBank:
+    - 厕所的水管又滴水了
+    - 而且不是每层楼都停
+    - 这对老人来说很便利
+    - 组屋已经三十年了
+    - 对我那行动不便的爷爷来说
+    - 因为现在买车的人越来越多
+    - 因此大家都需要每天搭乘电梯
+    - 这样更方便小孩子们在楼下玩耍了
+  questions:
+    - sourceQuestion: Q26
+      text: "[Q26]___"
+      correct: 组屋已经三十年了
+    - sourceQuestion: Q27
+      text: "[Q27]___"
+      correct: 而且不是每层楼都停
+    - sourceQuestion: Q28
+      text: "[Q28]___"
+      correct: 对我那行动不便的爷爷来说
+    - sourceQuestion: Q29
+      text: "[Q29]___"
+      correct: 因为现在买车的人越来越多
+- groupId: P6-CH-2026-PLMGS-Q26-29
+  subject: Chinese
+  passage:
+    title: 完成对话
+    source: PLMGS Primary 6 Chinese Prelim 2026; PDF pages 10; P6_Chinese_Prelim_2026_PLMGS_Exam_Papers.pdf
+    text: |-
+      小乐：欢欢，你有空听我说几句话吗？
+      欢欢：小乐，没问题，[Q26]___？
+      小乐：有件事，我烦恼了很久，想听听你的意见。
+      欢欢：好，你说出来吧，[Q27]___。
+      小乐：我的父母因为工作的关系，要搬到国外居住。如果我想继续留在新加坡求学，就得和爷爷奶奶一起住。
+      欢欢：那你是想和父母在一起，还是留在新加坡求学？
+      小乐：我舍不得父母，但我也很喜欢新加坡的环境，[Q28]___。
+      欢欢：我建议你和父母谈谈，[Q29]___，再决定。
+      小乐：谢谢你，我知道该怎么做了。
+  optionBank:
+    - 你现在有空吗
+    - 烦恼怎么解决
+    - 发生了什么事
+    - 看我能不能帮忙
+    - 不要听别人的意见
+    - 实在很难做出决定
+    - 他们知道了又怎么样
+    - 让他们知道你的想法
+  questions:
+    - sourceQuestion: Q26
+      text: "[Q26]___"
+      correct: 发生了什么事
+    - sourceQuestion: Q27
+      text: "[Q27]___"
+      correct: 看我能不能帮忙
+    - sourceQuestion: Q28
+      text: "[Q28]___"
+      correct: 实在很难做出决定
+    - sourceQuestion: Q29
+      text: "[Q29]___"
+      correct: 让他们知道你的想法
+- groupId: P6-CH-2026-Raffles-Q26-29
+  subject: Chinese
+  passage:
+    title: 完成对话
+    source: Raffles Primary 6 Chinese Prelim 2026; PDF pages 13; P6_Chinese_Prelim_2026_Raffles_Exam_Papers.pdf
+    text: |-
+      妈妈：丁月，这次露营好玩吗？听说你们要合作准备晚饭呢！
+      丁月：还不错！不过一开始，我点不着火，[Q26]___。
+      妈妈：哎呀，那怎么办？
+      丁月：我试了很多次都不行，后来小光看到了，就教我怎么点火。他还[Q27]___！
+      妈妈：哇，团结就是力量，他真是个好队友！
+      丁月：是啊！还好有他的帮忙。
+      妈妈：[Q28]___？
+      丁月：当然！吃着自己亲手做的蛋炒饭，我感到心满意足。
+      妈妈：太棒了！知道你没有半途而废，妈妈真为你骄傲！
+      丁月：是的，这次露营让我明白，[Q29]___。
+  optionBank:
+    - 心里感到有点慌
+    - 遇到困难不能退缩
+    - 单独行动非常危险
+    - 便替我把晚饭做完呢
+    - 只好请级任老师来帮忙
+    - 那你们最后做出晚饭了吗
+    - 那你们最后做出了什么晚饭
+    - 一步一步地教我和队友们煎蛋呢
+  questions:
+    - sourceQuestion: Q26
+      text: "[Q26]___"
+      correct: 心里感到有点慌
+    - sourceQuestion: Q27
+      text: "[Q27]___"
+      correct: 一步一步地教我和队友们煎蛋呢
+    - sourceQuestion: Q28
+      text: "[Q28]___"
+      correct: 那你们最后做出晚饭了吗
+    - sourceQuestion: Q29
+      text: "[Q29]___"
+      correct: 遇到困难不能退缩
+- groupId: P6-CH-2026-RedSwastika-Q26-29
+  subject: Chinese
+  passage:
+    title: 完成对话
+    source: RedSwastika Primary 6 Chinese Prelim 2026; PDF pages 12; P6_Chinese_Prelim_2026_RedSwastika_Exam_Papers.pdf
+    text: |-
+      爸爸：庆文，你别一大早就对着手机不放，快和我一起去跑步。
+      庆文：爸爸，学校已经有体育课了，[Q26]___？
+      爸爸：当然是要你多运动，保持身体健康。
+      庆文：[Q27]___，还需要去跑步吗？
+      爸爸：当然需要！[Q28]___。
+      庆文：我知道。我们不但可以晒晒太阳、呼吸新鲜空气，还可以看看大自然。
+      爸爸：没错，[Q29]___，别总是看手机。
+      庆文：好吧！您等等我，我马上去换上运动鞋。
+  optionBank:
+    - 我身体很好
+    - 您不是才刚病好
+    - 去跑步有许多好处
+    - 听到树上鸟儿的叫声
+    - 为什么还要和您去跑步
+    - 因为让眼睛休息一会儿
+    - 周末我想在家里打打游戏
+    - 跑步后我们还可以一起去吃个早餐
+  questions:
+    - sourceQuestion: Q26
+      text: "[Q26]___"
+      correct: 为什么还要和您去跑步
+    - sourceQuestion: Q27
+      text: "[Q27]___"
+      correct: 我身体很好
+    - sourceQuestion: Q28
+      text: "[Q28]___"
+      correct: 去跑步有许多好处
+    - sourceQuestion: Q29
+      text: "[Q29]___"
+      correct: 跑步后我们还可以一起去吃个早餐
+- groupId: P6-CH-2026-StNicholas-Q26-29
+  subject: Chinese
+  passage:
+    title: 完成对话
+    source: StNicholas Primary 6 Chinese Prelim 2026; PDF pages 12; P6_Chinese_Prelim_2026_StNicholas_Exam_Papers.pdf
+    text: |-
+      伟明：你有没有看到学校“大手牵小手”献爱心的活动通知？
+      小丽：有啊！[Q26]___。
+      伟明：这次活动主要是为了帮助有需要的儿童收集文具用品。
+      小丽：[Q27]___，我们应该积极参加。你会怎么帮助他们呢？
+      伟明：[Q28]___。
+      小丽：你的想法真不错，这样既不会浪费资源，也能帮助别人。
+      伟明：我真希望有更多同学一起参加这项活动。
+      小丽：你说得对，[Q29]___，就能帮助更多有需要的儿童。
+  optionBank:
+    - 这项活动很有意义
+    - 我也想捐一些旧课本
+    - 我最喜欢收集各种颜色的笔
+    - 我的文具盒刚好需要换新的
+    - 如果大家都愿意献出一份爱心
+    - 我昨天在学校网站上看到活动通知
+    - 我听说学校每年都会举办这项活动
+    - 我打算把家里一些新的文具捐出来
+    - 希望收到文具的同学能好好珍惜这些文具
+  questions:
+    - sourceQuestion: Q26
+      text: "[Q26]___"
+      correct: 我昨天在学校网站上看到活动通知
+    - sourceQuestion: Q27
+      text: "[Q27]___"
+      correct: 这项活动很有意义
+    - sourceQuestion: Q28
+      text: "[Q28]___"
+      correct: 我打算把家里一些新的文具捐出来
+    - sourceQuestion: Q29
+      text: "[Q29]___"
+      correct: 如果大家都愿意献出一份爱心
+- groupId: P6-CH-2026-TaoNan-Q26-29
+  subject: Chinese
+  passage:
+    title: 完成对话
+    source: TaoNan Primary 6 Chinese Prelim 2026; PDF pages 9; P6_Chinese_Prelim_2026_TaoNan_Exam_Papers.pdf
+    text: |-
+      文丽：美芳，你回家后我们短信联系。
+      美芳：回家后我不能给你发短信，[Q26]___，只有晚餐后才能使用一个小时。其它时间我要用手机，需要先得到妈妈的同意。
+      文丽：[Q27]___，这样也太不方便了！我的父母从来不会管我用了多长时间的手机。
+      美芳：还好啊，我已经习惯了。
+      文丽：那你在家不能用手机的时候不会很闷吗？
+      美芳：怎么会呢？[Q28]___。我常常阅读故事书、弹钢琴，还和妹妹一起玩。
+      文丽：那你的父母什么时候才会让你自己保管手机呢？
+      美芳：上中学后吧。我也认为这样比较好，[Q29]___，而且会影响视力。
+      文丽：有道理，看来我也要向你学习，控制一下自己玩手机的时间了。
+  optionBank:
+    - 我很喜欢上网聊天
+    - 我在家过得很充实
+    - 手机是我们的好伙伴
+    - 什么事都要妈妈帮忙
+    - 在家不能随时使用手机
+    - 我的手机必须交给父母保管
+    - 我们都应该控制用手机的时间
+    - 花太多时间在手机上不但容易分心
+  questions:
+    - sourceQuestion: Q26
+      text: "[Q26]___"
+      correct: 我的手机必须交给父母保管
+    - sourceQuestion: Q27
+      text: "[Q27]___"
+      correct: 在家不能随时使用手机
+    - sourceQuestion: Q28
+      text: "[Q28]___"
+      correct: 我在家过得很充实
+    - sourceQuestion: Q29
+      text: "[Q29]___"
+      correct: 花太多时间在手机上不但容易分心

@@ -1,0 +1,187 @@
+- questionID: P6-CH-2026-ACSJ-Q1
+  lessonIds: []
+  question: 外婆__临时__决定今晚不出去吃饭了。（选出画线词语的汉语拼音）
+  options:
+    - lín shí
+    - lín shǐ
+    - líng shí
+    - líng shǐ
+  correct: lín shí
+- questionID: P6-CH-2026-ACSJ-Q2
+  lessonIds: []
+  question: 爷爷会给我们讲故事，也会跟我们分享生活__经验__。（选出画线词语的汉语拼音）
+  options:
+    - qīng yán
+    - qīng yàn
+    - jīng yán
+    - jīng yàn
+  correct: jīng yàn
+- questionID: P6-CH-2026-AiTong-Q1
+  lessonIds: []
+  question: 为了实现自己的梦想，他从不因为困难而__退缩__。（选出画线词语的汉语拼音）
+  options:
+    - tuǐ suō
+    - tuǐ suò
+    - tuì suō
+    - tuì suò
+  correct: tuì suō
+- questionID: P6-CH-2026-AiTong-Q2
+  lessonIds: []
+  question: 小明非常__珍惜__时间，一有空就阅读各种课外书，充实自己。（选出画线词语的汉语拼音）
+  options:
+    - zhēn xī
+    - zhèn xí
+    - zhēng xī
+    - zhèng xí
+  correct: zhēn xī
+- questionID: P6-CH-2026-HenryPark-Q1
+  lessonIds: []
+  question: 大家对他助人为乐的行为连声__称赞__。（选出画线词语的汉语拼音）
+  options:
+    - chēn zān
+    - chēn zàn
+    - chēng zàn
+    - chēng zān
+  correct: chēng zàn
+- questionID: P6-CH-2026-HenryPark-Q2
+  lessonIds:
+    - 6
+  question: 我们不应该__妒忌__别人的才能。（选出画线词语的汉语拼音）
+  options:
+    - dù jì
+    - dù jí
+    - tù jí
+    - tù jì
+  correct: dù jì
+- questionID: P6-CH-2026-NanHua-Q1
+  lessonIds: []
+  question: 我家楼下有一家店是__出租__漫画书的。（选出画线词语的汉语拼音）
+  options:
+    - cū zǔ
+    - cū zhū
+    - chū zū
+    - chū zhǔ
+  correct: chū zū
+- questionID: P6-CH-2026-NanHua-Q2
+  lessonIds:
+    - 3
+    - 11
+  question: 爸爸下班时遇到交通__堵塞__，很晚才回到家。（选出画线词语的汉语拼音）
+  options:
+    - dǔ sè
+    - dǔ sāi
+    - zǔ sè
+    - zǔ sāi
+  correct: dǔ sè
+- questionID: P6-CH-2026-Nanyang-Q1
+  lessonIds: []
+  question: 在这个团队中，我们__彼此__学习，共同进步。（选出画线词语的汉语拼音）
+  options:
+    - bǐ cǐ
+    - pí cǐ
+    - bǐ chǐ
+    - pí chǐ
+  correct: bǐ cǐ
+- questionID: P6-CH-2026-Nanyang-Q2
+  lessonIds:
+    - 12
+  question: 小明知道他错了后，立刻__诚恳__地道歉。（选出画线词语的汉语拼音）
+  options:
+    - chén kěn
+    - chén gěn
+    - chéng kěn
+    - chéng gěn
+  correct: chéng kěn
+- questionID: P6-CH-2026-PLMGS-Q1
+  lessonIds: []
+  question: 这件上衣穿起来真好看，很__适合__你。（选出画线词语的汉语拼音）
+  options:
+    - sì hè
+    - sī hè
+    - shī hé
+    - shì hé
+  correct: shì hé
+- questionID: P6-CH-2026-PLMGS-Q2
+  lessonIds: []
+  question: 我会__加倍__珍惜妈妈亲手给我做的被子。（选出画线词语的汉语拼音）
+  options:
+    - jiá bèi
+    - jiā bèi
+    - jiá péi
+    - jiā péi
+  correct: jiā bèi
+- questionID: P6-CH-2026-Raffles-Q1
+  lessonIds:
+    - 10
+  question: 表哥在大学时，上了很多__翻译__课程。（选出画线词语的汉语拼音）
+  options:
+    - fān yì
+    - fán yí
+    - fǎng yì
+    - fàng yí
+  correct: fān yì
+- questionID: P6-CH-2026-Raffles-Q2
+  lessonIds:
+    - 8
+  question: 上中学的丽丽下课后去做服务员，帮忙__赚钱__养家。（选出画线词语的汉语拼音）
+  options:
+    - zuān qiǎn
+    - zuàn qiǎn
+    - zhuān qián
+    - zhuàn qián
+  correct: zhuàn qián
+- questionID: P6-CH-2026-RedSwastika-Q1
+  lessonIds: []
+  question: 虽然时间已经很晚，同学们__仍然__留下来讨论问题。（选出画线词语的汉语拼音）
+  options:
+    - rēng nán
+    - rēng rán
+    - réng rán
+    - réng lán
+  correct: réng rán
+- questionID: P6-CH-2026-RedSwastika-Q2
+  lessonIds: []
+  question: 我慢慢地__恢复__了自信，回答老师的次数也越来越多了。（选出画线词语的汉语拼音）
+  options:
+    - huī fù
+    - huí fú
+    - huì fèi
+    - huǐ fēi
+  correct: huī fù
+- questionID: P6-CH-2026-StNicholas-Q1
+  lessonIds: []
+  question: 尤金是新加坡__著名__的作家。
+  options:
+    - zù mín
+    - zù míng
+    - zhù mín
+    - zhù míng
+  correct: zhù míng
+- questionID: P6-CH-2026-StNicholas-Q2
+  lessonIds: []
+  question: 每逢过年，牛车水都充满了浓浓的春节__气氛__。
+  options:
+    - cì fēn
+    - cì fèn
+    - qì fēn
+    - qì fèn
+  correct: qì fēn
+- questionID: P6-CH-2026-TaoNan-Q1
+  lessonIds:
+    - 2
+  question: 兔子看见老虎，__迅速__地跑进树林里。
+  options:
+    - xùn sù
+    - xùn shù
+    - shùn sù
+    - shùn shù
+  correct: xùn sù
+- questionID: P6-CH-2026-TaoNan-Q2
+  lessonIds: []
+  question: 小云的舞蹈表演非常__精彩__，同学们看了都拍手叫好。
+  options:
+    - jīn cǎi
+    - jīn chǎi
+    - jīng cǎi
+    - jīng chǎi
+  correct: jīng cǎi

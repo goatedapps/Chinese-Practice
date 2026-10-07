@@ -1,0 +1,290 @@
+- groupId: P6-HC-2026-ACSJ-Q6-10
+  subject: Higher Chinese
+  passage:
+    title: 校园安全
+    source: ACSJ Primary 6 Higher Chinese Prelim 2026; PDF pages 3; P6_HChinese_Prelim_2026_ACSJ_Exam_Papers.pdf
+    text: |-
+      近日，一段有关校园安全的录像引发了人们[Q6]__热情__的讨论。录像中，几名中学生在学校的洗手间里把卫生纸堆在地上，再用打火机点燃。
+
+      火一开始很小，他们便往上面加了更多纸。火越来越大，快失去控制时，他们才着急地去灭火。慌忙中，几人[Q7]（饼）命用脚踩，结果被火烫伤。洗手间明明有水，他们却没有使用。
+
+      录像传出后，大家纷纷[Q8]__批改__这几个学生。有人觉得这样做不但自己遭受痛苦，甚至有可能伤害无辜。也有人指责说这些学生浪费了公共资源，把卫生纸当成了玩具，不懂得[Q9]__珍贵__。
+
+      校方表示会在了解情况后对这几个人作出相应的处罚。学校也希望通过这件事提醒学生，有些事不能拿来开玩笑。在学校玩火不仅[Q10]违（犯）了校规，还可能引发大火，危害到大家的生命安全。
+  questions:
+    - sourceQuestion: Q6
+      marks: 2
+      format: Fill-in
+      text: 把运用不当的词语“热情”改正。
+      accepted:
+        - 热烈
+      displayAnswer: 热烈
+    - sourceQuestion: Q7
+      marks: 2
+      format: Fill-in
+      text: 把“（饼）命”中写错的字改正，只写正确的字。
+      accepted:
+        - 拼
+      displayAnswer: 拼
+    - sourceQuestion: Q8
+      marks: 2
+      format: Fill-in
+      text: 把运用不当的词语“批改”改正。
+      accepted:
+        - 批评
+      displayAnswer: 批评
+    - sourceQuestion: Q9
+      marks: 2
+      format: Fill-in
+      text: 把运用不当的词语“珍贵”改正。
+      accepted:
+        - 珍惜
+      displayAnswer: 珍惜
+    - sourceQuestion: Q10
+      marks: 2
+      format: Fill-in
+      text: 把“违（犯）”中写错的字改正，只写正确的字。
+      accepted:
+        - 反
+      displayAnswer: 反
+- groupId: P6-HC-2026-CHIJOLGC-Q6-10
+  subject: Higher Chinese
+  passage:
+    title: 学修脚踏车
+    source: CHIJOLGC Primary 6 Higher Chinese Prelim 2026; PDF pages 3; P6_HChinese_Prelim_2026_CHIJOLGC_Exam_Papers.pdf
+    text: |-
+      上个周末，爸爸带我去公园骑脚踏车。我一向以自己骑脚踏车的技术为傲。出发前，我一直[Q6]（换）想自己能够像电视里的选手一样骑得飞快，还能做出各种[Q7]（利）害的动作。
+
+      到了公园后，我兴奋地骑来骑去。可是过了没多久，脚踏车突然发出奇怪的声音，车链也掉了下来。我只好停下来，不停地[Q8]__怨气__运气不好。爸爸听了，笑着说：“你还是先想办法解决问题吧！”
+
+      于是，爸爸教我怎样[Q9]__整理__脚踏车。虽然过程有些困难，但我还是认真地跟着做。我费了九牛二虎之力，车链终于装好了。我们便继续骑车，直到傍晚才回家。
+
+      回到家时，我已经[Q10]（竞）疲力尽，双腿酸得快抬不起来了。不过，我的心里却十分高兴，因为这次经历让我明白遇到问题时要勇敢面对，努力解决。
+  questions:
+    - sourceQuestion: Q6
+      marks: 2
+      format: Fill-in
+      text: 把“（换）想”中写错的字改正。
+      accepted:
+        - 幻
+      displayAnswer: 幻
+    - sourceQuestion: Q7
+      marks: 2
+      format: Fill-in
+      text: 把“（利）害”中写错的字改正。
+      accepted:
+        - 厉
+      displayAnswer: 厉
+    - sourceQuestion: Q8
+      marks: 2
+      format: Fill-in
+      text: 把运用不当的词语“怨气”改正。
+      accepted:
+        - 抱怨
+      displayAnswer: 抱怨
+    - sourceQuestion: Q9
+      marks: 2
+      format: Fill-in
+      text: 把运用不当的词语“整理”改正。
+      accepted:
+        - 修理
+      displayAnswer: 修理
+    - sourceQuestion: Q10
+      marks: 2
+      format: Fill-in
+      text: 把“（竞）疲力尽”中写错的字改正。
+      accepted:
+        - 筋
+      displayAnswer: 筋
+- groupId: P6-HC-2026-NanHua-Q6-10
+  subject: Higher Chinese
+  passage:
+    title: 锻炼与休养
+    source: NanHua Primary 6 Higher Chinese Prelim 2026; PDF pages 4; P6_HChinese_Prelim_2026_NanHua_Exam_Papers.pdf
+    text: |-
+      小华自幼体弱多病，为了让自己强壮起来，他打算每天下午到公园锻[Q6]（练）。爸爸告诉他，多跑步对身体有好处。于是，他便决定从跑步这项运动开始。
+
+      起初，他很不习惯，[Q7]（什）至跑不到两百米就累得上气不接下气，但他没有放弃。几个星期后，他已能轻松跑完几圈。有一天，下了一场大雨，路面很[Q8]（温）滑。小华跑步时滑倒，腿部受了重伤。幸好，附近脚车店的店主发现了他，连忙叫来救护车，将他送往医院。医生建议他[Q9]__临时__停止运动，小华只好听从医生的吩咐。由于他之前常常运动，身体底子好，加上听医生的话好好休养，他的腿伤很快就康复了。
+
+      后来，他特意回到脚车店，向当时帮他的店主[Q10]__诚实__地道谢。
+  questions:
+    - sourceQuestion: Q6
+      marks: 2
+      format: Fill-in
+      text: 把“锻（练）”中写错的字改正。
+      accepted:
+        - 炼
+      displayAnswer: 炼
+    - sourceQuestion: Q7
+      marks: 2
+      format: Fill-in
+      text: 把“（什）至”中写错的字改正。
+      accepted:
+        - 甚
+      displayAnswer: 甚
+    - sourceQuestion: Q8
+      marks: 2
+      format: Fill-in
+      text: 把“（温）滑”中写错的字改正。
+      accepted:
+        - 湿
+      displayAnswer: 湿
+    - sourceQuestion: Q9
+      marks: 2
+      format: Fill-in
+      text: 把运用不当的词语“临时”改正。
+      accepted:
+        - 暂时
+      displayAnswer: 暂时
+    - sourceQuestion: Q10
+      marks: 2
+      format: Fill-in
+      text: 把运用不当的词语“诚实”改正。
+      accepted:
+        - 诚恳
+      displayAnswer: 诚恳
+- groupId: P6-HC-2026-Nanyang-Q6-10
+  subject: Higher Chinese
+  passage:
+    title: 中学开放日
+    source: Nanyang Primary 6 Higher Chinese Prelim 2026; PDF pages 7; P6_HChinese_Prelim_2026_Nanyang_Exam_Papers.pdf
+    text: |-
+      上个星期六，我和同学们一起参加了一所中学的开放日体验活动。我们一走进校园，就看到校园里摆放着很多摊位和展板，很多中学学长在热心地向大家[Q6]（借）绍不同的课程和课外活动。
+
+      接着，学长们带我们参观了科学实验室、图书馆，还去不同的地方体验他们的课外活动。学长们详细的[Q7]__了解__让我们听得津津有味。
+
+      来到体育馆后，我们看到篮球队正在进行示范，他们的动作十分流畅，我们看到后非常激动。参观到一半时，我们突然听到“砰砰”的声音，只见体育馆的大门在不停地摇晃着。有些同学以为发生了什么[Q8]（遭）糕的事。后来学长们说只是风太大，大家这才放心。
+
+      活动结束前，学长们还[Q9]__奖励__我们要努力学习，并祝福我们以后在中学里继续成长。经过这次体验，我对[Q10]（卫）来的中学生活充满期待。
+  questions:
+    - sourceQuestion: Q6
+      marks: 2
+      format: Fill-in
+      text: 把“（借）绍”中写错的字改正。
+      accepted:
+        - 介
+      displayAnswer: 介
+    - sourceQuestion: Q7
+      marks: 2
+      format: Fill-in
+      text: 把运用不当的词语“了解”改正。
+      accepted:
+        - 讲解
+      displayAnswer: 讲解
+    - sourceQuestion: Q8
+      marks: 2
+      format: Fill-in
+      text: 把“（遭）糕”中写错的字改正。
+      accepted:
+        - 糟
+      displayAnswer: 糟
+    - sourceQuestion: Q9
+      marks: 2
+      format: Fill-in
+      text: 把运用不当的词语“奖励”改正。
+      accepted:
+        - 鼓励
+      displayAnswer: 鼓励
+    - sourceQuestion: Q10
+      marks: 2
+      format: Fill-in
+      text: 把“（卫）来”中写错的字改正。
+      accepted:
+        - 未
+      displayAnswer: 未
+- groupId: P6-HC-2026-Raffles-Q6-10
+  subject: Higher Chinese
+  passage:
+    title: 新加坡式早餐
+    source: Raffles Primary 6 Higher Chinese Prelim 2026; PDF pages 5; P6_HChinese_Prelim_2026_Raffles_Exam_Papers.pdf
+    text: |-
+      提起新加坡式早餐，你会想到什么？我想应该是咖啡配[Q6]（考）面包吧！
+
+      在咖啡店里，一口咖啡一口面包是好几[Q7]（带）新加坡人最常见的早餐情景。这香味诱人的新加坡式咖啡是怎样制作出来的呢？
+
+      新加坡式咖啡，重点在于咖啡豆。人们经过不断的尝试，才[Q8]__确保__这个炒咖啡豆的方法：在咖啡豆快要被炒熟时，才开始加入糖和牛油。这样，咖啡豆外面就会包着一[Q9]（曾）厚厚的糖，闻起来香味更浓。这才有了新加坡式咖啡的独特口味。
+
+      许多新加坡人心中难忘的记忆与滋味，正是这[Q10]__熟练__的味道。
+  questions:
+    - sourceQuestion: Q6
+      marks: 2
+      format: Fill-in
+      text: 把“（考）面包”中写错的字改正。
+      accepted:
+        - 烤
+      displayAnswer: 烤
+    - sourceQuestion: Q7
+      marks: 2
+      format: Fill-in
+      text: 把“好几（带）”中写错的字改正。
+      accepted:
+        - 代
+      displayAnswer: 代
+    - sourceQuestion: Q8
+      marks: 2
+      format: Fill-in
+      text: 把运用不当的词语“确保”改正（词语中的一个字不恰当）。
+      accepted:
+        - 确定
+      displayAnswer: 确定
+    - sourceQuestion: Q9
+      marks: 2
+      format: Fill-in
+      text: 把“一（曾）厚厚的糖”中写错的字改正。
+      accepted:
+        - 层
+      displayAnswer: 层
+    - sourceQuestion: Q10
+      marks: 2
+      format: Fill-in
+      text: 把运用不当的词语“熟练”改正。
+      accepted:
+        - 熟悉
+      displayAnswer: 熟悉
+- groupId: P6-HC-2026-TaoNan-Q6-10
+  subject: Higher Chinese
+  passage:
+    title: 母语学习
+    source: TaoNan Primary 6 Higher Chinese Prelim 2026; PDF pages 3; P6_HChinese_Prelim_2026_TaoNan_Exam_Papers.pdf
+    text: |-
+      母语学习十分重要，我国政府希望家长积极创造多说母语和学习母语的环境，让孩子在进入小学之前就能打好母语[Q6]（甚）础。
+
+      本地许多年轻家长觉得自己的母语说得不太好，也担心自己教得不正确，因此不太敢用母语和孩子[Q7]__轮流__。对于这些家长，政府还是想鼓励他们[Q8]（治）造机会让孩子多说多用。政府也认为，学母语不一定要追求完美，更重要的是能用母语将华族文化传给孩子们，让孩子[Q9]__测验__到学习母语的快乐和意义。
+
+      教育部也一直在加强华文教育，比如在本地几所幼儿园增加母语课，让孩子有更多时间[Q10]（晨）浸在使用母语的环境中。大家都期待孩子们能更熟练地用母语来表达自己的情感与思想。
+  questions:
+    - sourceQuestion: Q6
+      marks: 2
+      format: Fill-in
+      text: 把“（甚）础”中写错的字改正。
+      accepted:
+        - 基
+      displayAnswer: 基
+    - sourceQuestion: Q7
+      marks: 2
+      format: Fill-in
+      text: 把运用不当的词语“轮流”改正。
+      accepted:
+        - 交流
+      displayAnswer: 交流
+    - sourceQuestion: Q8
+      marks: 2
+      format: Fill-in
+      text: 把“（治）造”中写错的字改正。
+      accepted:
+        - 制
+      displayAnswer: 制
+    - sourceQuestion: Q9
+      marks: 2
+      format: Fill-in
+      text: 把运用不当的词语“测验”改正。
+      accepted:
+        - 体验
+      displayAnswer: 体验
+    - sourceQuestion: Q10
+      marks: 2
+      format: Fill-in
+      text: 把“（晨）浸”中写错的字改正。
+      accepted:
+        - 沉
+      displayAnswer: 沉
