@@ -169,7 +169,7 @@ export function LessonSelect() {
     }
     const id = ids[0];
     const title = state.lessonIndex?.find((e) => e.id === id)?.title ?? "";
-    if (shouldNudgeForLesson(id)) {
+    if (shouldNudgeForLesson("dictation", id)) {
       setNudgeLesson({ id, title });
       return;
     }

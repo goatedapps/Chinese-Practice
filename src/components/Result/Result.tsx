@@ -67,7 +67,7 @@ export function Result() {
       recordTodayPracticeSession({ modeLabel: state.modeLabel || "", groups: state.groups, results: state.results });
     }
     if (state.mode === "lesson") {
-      state.selectedLessons.forEach(recordLessonCompleted);
+      state.selectedLessons.forEach((lessonNum) => recordLessonCompleted("practice", lessonNum));
     }
     if (totalItems > 0) {
       if (pct >= 90) Sound.applause();

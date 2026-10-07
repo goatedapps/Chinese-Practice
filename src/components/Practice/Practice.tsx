@@ -117,7 +117,7 @@ export function Practice() {
     // already a form of variety, so it's never flagged or BP-reduced.
     // Skipped once already acknowledged (reducedBP true means the student
     // clicked "continue anyway" on this same attempt).
-    if (!reducedBP && lessonFiltered && state.selectedLessons.size === 1 && shouldNudgeForLesson([...state.selectedLessons][0])) {
+    if (!reducedBP && lessonFiltered && state.selectedLessons.size === 1 && shouldNudgeForLesson("practice", [...state.selectedLessons][0])) {
       setNudgeLessons([...state.selectedLessons]);
       return;
     }
