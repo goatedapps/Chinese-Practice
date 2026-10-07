@@ -140,9 +140,9 @@ body {
    genuinely narrow (phone) viewports; from tablet width up the app grows
    with the window; grid-based screens (Home/Practice/Shop/Bag/...) reflow
    into more columns on their own via existing auto-fill grid-template-columns
-   rules. Text-heavy single-column screens (Quiz/Result/Story's reading view)
+   rules. Text-heavy single-column screens (Quiz/Result)
    opt back into a comfortable reading width via their own max-width, see
-   ".screen.quiz"/".screen.result"/".story-reading" below. */
+   ".screen.quiz"/".screen.result" below. */
 #root {
   max-width: 1400px;
   margin: 0 auto;
@@ -165,12 +165,8 @@ body {
   padding: 28px 20px 40px;
   box-shadow: 0 14px 34px -12px rgba(20, 20, 60, .3), 0 2px 10px rgba(20, 20, 60, .1);
 }
-/* Text-heavy single-column screens (a quiz's passage/question text, the
-   result screen, a story's reading view) opt back out of #root's wide
-   desktop max-width -- unlike grid-based screens, more width here just
-   means uncomfortably long lines of Chinese text, not more useful content
-   per row. */
-.screen.quiz, .screen.result, .story-reading {
+/* Keep quiz and result text to a comfortable reading width. */
+.screen.quiz, .screen.result {
   max-width: 780px;
   margin-left: auto;
   margin-right: auto;
@@ -1380,7 +1376,13 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 
 /* ---------- Read a Story ---------- */
 .story-screen { text-align: center; }
-.story-page-indicator { font-weight: 700; color: var(--ink-soft); margin-bottom: 14px; }
+.story-reading-tools { display: flex; justify-content: center; align-items: center; gap: 18px; margin: 16px 0 24px; }
+.story-page-indicator { font-weight: 700; color: var(--ink-soft); }
+.story-reading-tools .dictation-btn { margin-left: 0; min-height: 44px; padding: 8px 18px; font-size: 15px; color: var(--garden-navy); border-color: #ded5f2; background: #f4efff; box-shadow: none; }
+.story-reading-tools .dictation-btn:hover { border-color: var(--garden-violet); color: var(--garden-violet); }
+.story-reading-tools .dictation-btn-active { background: var(--garden-violet); border-color: var(--garden-violet); color: white; }
+.story-reading-tools .dictation-btn-active:hover { color: white; }
+.story-reading-tools .dictation-btn:focus-visible { outline: 3px solid var(--garden-violet); outline-offset: 3px; }
 /* Perspective lives on the wrapper, not .story-page itself, so the flipping
    page rotates convincingly in 3D space rather than just squashing flat. */
 .story-page-flipper { perspective: 1400px; margin-bottom: 18px; }
@@ -1388,54 +1390,59 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   position: relative;
   background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
   border: none; border-radius: 24px;
-  padding: 20px 24px 44px; /* extra bottom padding clears the corner curls */
+  padding: 28px 28px 52px; /* extra bottom padding clears the corner curls */
   box-shadow: var(--shadow-1);
   text-align: left;
   backface-visibility: hidden;
 }
-.story-page-head { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+.story-page-copy { min-width: 0; font-size: 32px; }
+.story-page:not(.story-page-illustrated) .story-page-copy { max-width: 28em; margin: 12px auto; }
+.story-page-illustrated { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 36px; }
+.story-illustration { display: block; width: 100%; height: auto; border-radius: 18px; }
 .story-text {
-  font-size: 20px; line-height: 1.95; letter-spacing: .3px;
+  font-size: 32px; line-height: 1.8; letter-spacing: .5px; color: var(--garden-navy);
   font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
 }
-.story-paragraph { margin: 0 0 14px; }
+.story-paragraph { margin: 0 0 24px; }
 .story-paragraph:last-child { margin-bottom: 0; }
-/* Each sentence is its own <button> (tap to hear just that sentence) but
-   reads inline as part of the paragraph, not as a list of separate chunks --
-   full button-chrome reset plus `display: inline` keeps text flowing/
-   wrapping normally across sentence boundaries. */
+/* Authored sentences start on fresh lines and remain individually tappable. */
 .story-sentence {
   background: none; border: none; padding: 0; margin: 0;
-  font: inherit; color: inherit; cursor: pointer; display: inline; text-align: left;
+  font: inherit; color: inherit; cursor: pointer; display: block; text-align: left;
   border-radius: 4px;
 }
 .story-sentence:hover, .story-sentence:focus-visible { background: rgba(var(--ink-rgb), .08); }
+.story-sentence + .story-sentence { margin-top: 10px; }
+.story-sentence:focus-visible { outline: 2px solid var(--garden-violet); outline-offset: 4px; }
+@media (max-width: 1100px) {
+  .story-text, .story-page-copy { font-size: 28px; }
+  .story-page-illustrated { gap: 24px; }
+}
+@media (max-width: 950px) {
+  .story-page-illustrated { grid-template-columns: 1fr; gap: 24px; }
+  .story-illustration { max-width: 620px; margin: 0 auto; }
+  .story-page-copy { width: 100%; max-width: 28em; margin: 0 auto; }
+}
+@media (max-width: 600px) {
+  .story-text, .story-page-copy { font-size: 24px; }
+  .story-page { padding: 16px 16px 48px; }
+  .story-reading-tools { gap: 12px; margin-bottom: 18px; }
+}
 
 .story-finish-row { justify-content: center; margin-top: 24px; }
 
-/* Book-style "page turn" affordance -- a small curled paper corner instead
-   of a plain Next/Prev button. Bottom-right (default) flips forward;
-   .story-page-curl-prev mirrors it to the bottom-left via scaleX(-1) rather
-   than a separate clip-path/gradient, so the fold always reads the same
-   whichever corner it's in. animation duration is supplied inline from
-   Story.tsx's FLIP_MS so the JS timer driving the actual page change and the
-   CSS animation showing it never drift apart. */
+/* Mirror the paper underside for the previous-page corner. */
 .story-page-curl {
   position: absolute; bottom: 0; right: 0;
-  width: 36px; height: 36px;
+  width: 56px; height: 56px;
   border: none; padding: 0; cursor: pointer;
-  clip-path: polygon(100% 0, 100% 100%, 0 100%);
-  /* The folded-back triangle used to be var(--card-hi) -- the same near-
-     white as .story-page's own background, so the fold was invisible except
-     for a faint crease line. --border (a warm peachy tan) reads as a
-     distinct sheet of paper folded back, matching the app's palette instead
-     of introducing a new color. */
-  background: linear-gradient(135deg, transparent 45%, rgba(var(--ink-rgb), .22) 45%, rgba(var(--ink-rgb), .22) 48%, var(--border) 48%);
-  box-shadow: -3px -3px 6px rgba(var(--ink-rgb), .18);
+  background: url("/icons/page-fold.svg") center / 100% 100% no-repeat;
+  border-radius: 0;
   transition: width .15s ease, height .15s ease;
 }
-.story-page-curl:hover { width: 48px; height: 48px; }
-.story-page-curl:disabled { cursor: default; opacity: .4; width: 36px; height: 36px; }
+.story-page-curl:hover { width: 64px; height: 64px; }
+.story-page-curl:focus-visible { outline: 3px solid var(--garden-violet); outline-offset: 3px; border-radius: 8px; }
+.story-page-curl:disabled { cursor: default; width: 56px; height: 56px; }
 .story-page-curl-prev { right: auto; left: 0; transform: scaleX(-1); }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1676,18 +1683,11 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 @media (min-width: 700px) {
   .pet-layout-wide { max-width: 1100px; }
   .pet-layout-info-wide { flex: 1 1 480px; max-width: 640px; }
-  /* Owl-only: the shared .pet-layout rule above sets align-items:flex-start
-     (so Bag.tsx's shorter item-grid column stays top-aligned, not
-     stretched) -- overridden here so Owl's info column instead stretches
-     to match .pet-profile-card's full height, split into three equal
-     thirds: growth bar+label, hunger bar+label, then the action banners.
-     .owl-info wraps both stat rows (via the shared PetStatBars component,
-     see its own comment) so it's given flex:2 (two of the three thirds),
-     with its own contents further split 1:1 so each stat lands on exactly
-     one third; the action-banner row is the plain remaining third. */
+  /* Stretch the stats column to the profile card while keeping actions
+     at their content height. */
   .owl-screen .pet-layout { align-items: stretch; }
   .owl-screen .pet-layout-info { display: flex; flex-direction: column; }
-  .owl-screen .owl-action-banner-row { flex: 1 1 0; margin-top: 0; }
+  .owl-screen .owl-action-banner-row { flex: 0 0 auto; margin-top: 28px; margin-bottom: 24px; }
 }
 .growth-bar, .mood-bar {
   background: var(--card-bg); border: none; border-radius: 999px;
@@ -1735,15 +1735,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 }
 .owl-screen .stat-bar-label { font-size: 18px; gap: 8px; margin-bottom: 14px; }
 .owl-screen .stat-bar-icon { width: 19px; height: 19px; }
-/* Completes the growth/hunger/buttons three-way even split described next
-   to .owl-screen .owl-action-banner-row above: .owl-info (flex:2, two of
-   the three thirds) needs to itself be a flex column so .pet-stat-bars can
-   fill 100% of that; .pet-stat-bars (flex:1 within .owl-info, i.e. the
-   whole two-thirds) then splits 1:1 between its two direct children (the
-   growth block, the hunger block) so each lands on exactly one third of
-   the full column. justify-content:center on each stat block is what
-   turns the bigger label margin above into real breathing room around the
-   bar instead of just pushing the caption below it further down. */
+/* Keep the two stat blocks balanced within the space above the actions. */
 @media (min-width: 700px) {
   .owl-screen .owl-info { flex: 2 1 0; display: flex; flex-direction: column; margin: 0; max-width: none; }
   .owl-screen .pet-stat-bars { flex: 1; display: flex; flex-direction: column; margin: 0; max-width: none; gap: 0; }
@@ -1854,6 +1846,38 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .owl-action-banner-play {
   background-image: linear-gradient(180deg, rgba(255,255,255,.4), rgba(255,255,255,0) 55%), linear-gradient(180deg, var(--garden-gold), var(--garden-gold-deep));
 }
+.owl-screen .owl-action-banner {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 80px;
+  gap: 12px;
+  padding: 12px 18px;
+  border: 1px solid rgba(134,87,240,.18);
+  border-radius: 18px;
+  color: var(--garden-navy);
+  font-size: 16px;
+  text-shadow: none;
+  box-shadow: 0 3px 0 rgba(28,31,77,.08), 0 5px 12px rgba(28,31,77,.06);
+}
+.owl-screen .owl-action-banner-shop { background: var(--garden-violet-pale); }
+.owl-screen .owl-action-banner-play {
+  background: var(--garden-cream-soft);
+  border-color: rgba(224,156,29,.28);
+}
+.owl-screen .owl-action-banner img { flex: 0 0 48px; width: 48px; height: 48px; }
+.owl-screen .owl-action-banner:focus-visible { outline: 3px solid var(--garden-violet); outline-offset: 4px; }
+.owl-screen .owl-action-banner:active {
+  box-shadow: 0 1px 0 rgba(28,31,77,.08), 0 2px 6px rgba(28,31,77,.06);
+}
+.owl-action-banner-count {
+  display: inline-block;
+  margin-left: 7px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(28,31,77,.08);
+  font-size: 12px;
+  vertical-align: middle;
+}
 
 /* Bag's lone empty-state Shop banner (see Bag.tsx) isn't paired in a
    .owl-action-banner-row like Owl.tsx's pair -- .owl-action-banner's normal
@@ -1884,6 +1908,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
     border-radius: 18px;
   }
   .owl-action-banner-row .owl-action-banner img { flex: 0 0 auto; width: 34px; height: 34px; }
+  .owl-screen .owl-action-banner { flex-basis: 0; padding: 12px 8px; gap: 6px; font-size: 14px; }
 }
 
 /* Mobile: the pet's name pill and the growth/hunger bars below it were sized

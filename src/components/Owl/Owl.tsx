@@ -103,7 +103,10 @@ export function Owl() {
               }}
             >
               <img src="/icons/play.png" alt="" />
-              <span className="owl-action-banner-label">喂食／玩耍{bagCount ? ` (${bagCount})` : ""}</span>
+              <span className="owl-action-banner-label">
+                喂食／玩耍
+                {bagCount > 0 && <span className="owl-action-banner-count">{bagCount}</span>}
+              </span>
             </button>
           </div>
         </div>

@@ -200,6 +200,11 @@ function StoryReader({ lesson, segmentIndex, onSegmentChange, onExit, onFinish }
   const [flip, setFlip] = useState<FlipState | null>(null);
   const flipTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  useEffect(() => {
+    const nextImage = lesson.segments[segmentIndex + 1]?.illustration;
+    if (nextImage) new Image().src = nextImage.src;
+  }, [lesson, segmentIndex]);
+
   // The segment-dictation toggle needs resetting on every page flip --
   // StoryReader isn't remounted per page, so a stale "speaking" flag from
   // the previous page would otherwise survive the flip.
@@ -265,50 +270,55 @@ function StoryReader({ lesson, segmentIndex, onSegmentChange, onExit, onFinish }
         <span className="back-btn-label">返回课文列表</span>
       </button>
       <h1>{lesson.title}</h1>
-      <div className="story-page-indicator">{`第 ${segmentIndex + 1} / ${lesson.segments.length} 页`}</div>
+      <div className="story-reading-tools">
+        <div className="story-page-indicator">{`第 ${segmentIndex + 1} / ${lesson.segments.length} 页`}</div>
+        <button
+          type="button"
+          className={"dictation-btn" + (segmentSpeaking ? " dictation-btn-active" : "")}
+          title={segmentSpeaking ? "停止朗读 Stop reading" : "朗读本段 Read this part"}
+          aria-label={segmentSpeaking ? "停止朗读 Stop reading" : "朗读本段 Read this part"}
+          onClick={toggleSegment}
+        >
+          {segmentSpeaking ? "⏹ 停止 Stop" : "🔊 朗读本段"}
+        </button>
+      </div>
 
       <div className="story-page-flipper">
-        <div className={"story-page" + flipClass} style={{ animationDuration: `${FLIP_MS}ms` }}>
-          <div className="story-page-head">
-            <button
-              type="button"
-              className={"dictation-btn" + (segmentSpeaking ? " dictation-btn-active" : "")}
-              title={segmentSpeaking ? "停止朗读 Stop reading" : "朗读本段 Read this part"}
-              aria-label={segmentSpeaking ? "停止朗读 Stop reading" : "朗读本段 Read this part"}
-              onClick={toggleSegment}
-            >
-              {segmentSpeaking ? "⏹ 停止 Stop" : "🔊 朗读本段"}
-            </button>
-          </div>
-          <div className="story-text">
-            {segment.paragraphs.map((paragraph, pi) => (
-              <p key={pi} className="story-paragraph">
-                {paragraph.map((sentence, si) => (
-                  <button
-                    key={si}
-                    type="button"
-                    className="story-sentence"
-                    title="朗读这句 Read this sentence"
-                    onClick={() => readSentence(sentence)}
-                  >
-                    {sentence}
-                  </button>
-                ))}
-              </p>
-            ))}
-          </div>
-
-          {/* Real content's last page offers a "Finish Reading" action (BP
-              award, see Story()'s finishStory()) instead of a next-page
-              curl -- a placeholder "coming soon" stub has nothing to
-              actually finish, so it gets neither. */}
-          {isLast && !lesson.placeholder && (
-            <div className="action-row story-finish-row">
-              <button type="button" className="primary-btn" onClick={onFinish}>
-                🎉 我读完了 Finish Reading
-              </button>
-            </div>
+        <div className={"story-page" + (segment.illustration ? " story-page-illustrated" : "") + flipClass} style={{ animationDuration: `${FLIP_MS}ms` }}>
+          {segment.illustration && (
+            <img className="story-illustration" src={segment.illustration.src} alt={segment.illustration.alt} width={1448} height={1086} />
           )}
+          <div className="story-page-copy">
+            <div className="story-text">
+              {segment.paragraphs.map((paragraph, pi) => (
+                <p key={pi} className="story-paragraph">
+                  {paragraph.map((sentence, si) => (
+                    <button
+                      key={si}
+                      type="button"
+                      className="story-sentence"
+                      title="朗读这句 Read this sentence"
+                      onClick={() => readSentence(sentence)}
+                    >
+                      {sentence}
+                    </button>
+                  ))}
+                </p>
+              ))}
+            </div>
+
+            {/* Real content's last page offers a "Finish Reading" action (BP
+                award, see Story()'s finishStory()) instead of a next-page
+                curl -- a placeholder "coming soon" stub has nothing to
+                actually finish, so it gets neither. */}
+            {isLast && !lesson.placeholder && (
+              <div className="action-row story-finish-row">
+                <button type="button" className="primary-btn" onClick={onFinish}>
+                  🎉 我读完了 Finish Reading
+                </button>
+              </div>
+            )}
+          </div>
 
           {/* Book-style page-turn affordance: a curled corner instead of a
               plain "Next"/"Prev" button. Bottom-right flips forward,

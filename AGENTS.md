@@ -77,6 +77,9 @@ Each top-level screen is its own folder; shared UI is in `components/common/` (`
 Each toy (`ball`/`kite`/`puzzle`) has a `TOY_GAMES` config (`data/pet.ts`) and its own game component. Tapping a toy in the Bag consumes it from inventory immediately (irreversible even if abandoned) and routes to `"play"`; only a reported completion grants the reward (`GameCompletion { perfect, scoreLabel }` — flat reward always, bonus if perfect). **For any new toy game: drive fall/sweep animation with a remounted (`key={attempt}`) CSS keyframe, not `requestAnimationFrame` + React state** — an earlier rAF version silently stalled for real users (likely a StrictMode-double-effect edge case).
 
 ### Read a Story (`src/components/Story/Story.tsx`)
+Each page can optionally include one standalone Markdown image (`![Chinese description](images/<lesson>/page-<n>.webp)`).
+Image paths resolve relative to the lesson's `stories/` folder; `data/stories.ts` keeps image descriptions and paths out of the spoken sentences.
+The reader uses the shared screen width, with illustrations beside the text on desktop and above it on mobile.
 Independent of the Quiz/Result pipeline (no history/achievement hooks) except one: finishing a real (non-placeholder) lesson's last page awards a flat `STORY_COMPLETE_BP_AWARD` once. `StoryReader` is a top-level function, not nested inside `Story()`, so it doesn't remount (and lose its speaking-state) on every parent re-render.
 
 ### Tingxie / 听写 (`src/components/Tingxie/`)
