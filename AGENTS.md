@@ -27,12 +27,11 @@ Standard Vite/npm project — no test suite (verify changes by running the dev s
 Practice content (questions, Tingxie lessons, Read-a-Story passages) lives as human-editable YAML/Markdown under `public/content/<level>/`, fetched at runtime — not bundled, not TS/JSON literals. **Edit files there, not `src/data/*.ts`** — those are thin fetch+cache loaders, not the data itself.
 
 P6 is registered in `src/data/levels.ts`, with 1,477 Paper 2 questions from 16 supplied 2026 PDFs, 29 supplied 2025 SA2 PDFs, and 94 original vocabulary questions, plus 12 tingxie lessons.
-The approved 2025 extraction and review records remain in `public/content/p6/draft-2025/`; the app loads the merged YAML in `public/content/p6/questions/`.
-Original P6 vocabulary questions use `P6-CH-AUTHORED-L<n>-Q<nn>` IDs; `questions/authored-vocabulary.json` maps each to its taught target word.
+Original P6 vocabulary questions use `P6-CH-AUTHORED-L<n>-Q<nn>` IDs; their inline source fields identify the taught target word.
 Practice’s Vocabulary count combines pinyin, vocab, phrase and usage; every P6 lesson currently has at least 20 questions across those four categories.
 P6 has 12 original stories, one per tingxie lesson; each uses at least half of that lesson's vocabulary in context.
-See `public/content/p6/questions/README.md` for review links and source/key discrepancies, and `sources.json` for provenance.
-Keep intentionally wrong words in error-correction passages; source question numbers and PDF page references are needed for checking the scans.
+Keep intentionally wrong words in error-correction passages.
+P6 content directories retain runtime files only; source PDFs, extraction drafts and review documents were removed after approval.
 
 - `meta.yaml` — `label`/`lessonCount` for the level.
 - `questions/<category>.yaml` — one file per category (`CATEGORIES` in `data/questions.ts`), each a list of "groups" (a standalone question, or a passage + every question sharing it, always graded together). `data/questions.ts`'s `parseQuestionCategoryYaml()` is the one function that expands the on-disk shape into the runtime `QuestionGroup`/`Question` shape (`data/types.ts`) — shared by the app's loader and `scripts/build-content-index.ts`, so both validate content identically (a `correct` matching no option throws immediately in either). Two on-disk shapes:
