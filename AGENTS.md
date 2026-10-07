@@ -26,7 +26,10 @@ Standard Vite/npm project — no test suite (verify changes by running the dev s
 ### Content files (`public/content/<level>/`)
 Practice content (questions, Tingxie lessons, Read-a-Story passages) lives as human-editable YAML/Markdown under `public/content/<level>/`, fetched at runtime — not bundled, not TS/JSON literals. **Edit files there, not `src/data/*.ts`** — those are thin fetch+cache loaders, not the data itself.
 
-P6 is registered in `src/data/levels.ts`, with 538 Paper 2 questions from all 16 supplied 2026 Chinese/Higher Chinese PDFs and 12 tingxie lessons.
+P6 is registered in `src/data/levels.ts`, with 1,477 Paper 2 questions from 16 supplied 2026 PDFs, 29 supplied 2025 SA2 PDFs, and 94 original vocabulary questions, plus 12 tingxie lessons.
+The approved 2025 extraction and review records remain in `public/content/p6/draft-2025/`; the app loads the merged YAML in `public/content/p6/questions/`.
+Original P6 vocabulary questions use `P6-CH-AUTHORED-L<n>-Q<nn>` IDs; `questions/authored-vocabulary.json` maps each to its taught target word.
+Practice’s Vocabulary count combines pinyin, vocab, phrase and usage; every P6 lesson currently has at least 20 questions across those four categories.
 P6 has 12 original stories, one per tingxie lesson; each uses at least half of that lesson's vocabulary in context.
 See `public/content/p6/questions/README.md` for review links and source/key discrepancies, and `sources.json` for provenance.
 Keep intentionally wrong words in error-correction passages; source question numbers and PDF page references are needed for checking the scans.

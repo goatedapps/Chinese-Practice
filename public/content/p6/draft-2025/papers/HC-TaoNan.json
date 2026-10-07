@@ -1,0 +1,282 @@
+{
+  "school": "TaoNan",
+  "subject": "Higher Chinese",
+  "stem": "P6_HChinese_2025_SA2_taonan",
+  "keyPages": "9–10",
+  "issues": [
+    "PDF pages 11–12 contain a 慈济学校 2025 year-end Paper 1, rather than Tao Nan Paper 2. These composition pages are excluded from the extraction."
+  ],
+  "groups": [
+    {
+      "category": "cloze",
+      "record": {
+        "groupId": "P6-HC-2025-TaoNan-Q1-5",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "合理使用电脑",
+          "source": "TaoNan Primary 6 Higher Chinese 2025, Paper 2; PDF pages 2; P6_HChinese_2025_SA2_taonan.pdf",
+          "text": "电脑是青少年生活中不可缺少的一部分。它就像一位充满[Q1]___的老师，可以帮助我们迅速获取知识、解答疑问；它又像一个神奇的游乐场，既能训练我们的大脑，又能让我们的心情愉快，减轻学习[Q2]___。\n\n然而长时间使用电脑也会带来一些不良后果，比如视力[Q3]___、影响学习、沉迷网络游戏等。而且，青少年沉迷网络世界，[Q4]___也容易结交不好的朋友，影响和家人之间的关系。\n\n因此，我们应该好好利用电脑，让它帮助我们成长，而不是[Q5]___我们前进。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q1",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q1] 选择正确词语。",
+            "accepted": [
+              "智慧",
+              "5"
+            ],
+            "displayAnswer": "智慧"
+          },
+          {
+            "sourceQuestion": "Q2",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q2] 选择正确词语。",
+            "accepted": [
+              "压力",
+              "4"
+            ],
+            "displayAnswer": "压力"
+          },
+          {
+            "sourceQuestion": "Q3",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q3] 选择正确词语。",
+            "accepted": [
+              "下降",
+              "8"
+            ],
+            "displayAnswer": "下降"
+          },
+          {
+            "sourceQuestion": "Q4",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q4] 选择正确词语。",
+            "accepted": [
+              "甚至",
+              "1"
+            ],
+            "displayAnswer": "甚至"
+          },
+          {
+            "sourceQuestion": "Q5",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q5] 选择正确词语。",
+            "accepted": [
+              "阻拦",
+              "3"
+            ],
+            "displayAnswer": "阻拦"
+          }
+        ],
+        "optionBank": [
+          "甚至",
+          "聪明",
+          "阻拦",
+          "压力",
+          "智慧",
+          "退缩",
+          "大概",
+          "下降"
+        ]
+      }
+    },
+    {
+      "category": "errorcorrect",
+      "record": {
+        "groupId": "P6-HC-2025-TaoNan-Q6-10",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "兄弟俩学飞行",
+          "source": "TaoNan Primary 6 Higher Chinese 2025, Paper 2; PDF pages 3; P6_HChinese_2025_SA2_taonan.pdf",
+          "text": "有一天，一名父亲带着两个儿子到田里去。这时，一群鸟儿从他们头[Q6]（项）飞过。大儿子羡慕地说：“要是我也能像鸟儿那样飞起来，那该多好！”小儿子听了，也点点头。\n\n父亲沉[Q7]（末）了一会儿，然后对两个儿子说：“这个想法不错，你们可以试一试。”两个儿子立刻开始模仿鸟儿的样子，上下摆动着手臂，却没能飞起来。哥哥不服气，更用力地挥动双手；弟弟也没[Q8]【放松】，继续尝试。但不管他们怎么做，最后都失败了。\n\n看到兄弟俩垂头丧气的样子，父亲鼓[Q9]（粒）他们道：“别灰心！也许你们可以考虑利用工具来飞行。”他们听了父亲的话，就开始研究如何[Q10]【创造】能够飞行的工具。\n\n多年后，兄弟俩终于发明了飞机，飞上了天空。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q6",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "头（项）：改正括号里的错字。",
+            "accepted": [
+              "顶"
+            ],
+            "displayAnswer": "顶"
+          },
+          {
+            "sourceQuestion": "Q7",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "沉（末）：改正括号里的错字。",
+            "accepted": [
+              "默"
+            ],
+            "displayAnswer": "默"
+          },
+          {
+            "sourceQuestion": "Q8",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "把“放松”中不恰当的字改正，写出正确词语。",
+            "accepted": [
+              "放弃"
+            ],
+            "displayAnswer": "放弃"
+          },
+          {
+            "sourceQuestion": "Q9",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "鼓（粒）：改正括号里的错字。",
+            "accepted": [
+              "励"
+            ],
+            "displayAnswer": "励"
+          },
+          {
+            "sourceQuestion": "Q10",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "把“创造”中不恰当的字改正，写出正确词语。",
+            "accepted": [
+              "制造"
+            ],
+            "displayAnswer": "制造"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-HC-2025-TaoNan-Q11-16",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "做时间的主人",
+          "source": "TaoNan Primary 6 Higher Chinese 2025, Paper 2; PDF pages 4–5; P6_HChinese_2025_SA2_taonan.pdf",
+          "text": "小林有个坏习惯，每天都会玩游戏玩到三更半夜，因此来不及做功课，第二天上学也总是迟到。老师常常批评他，妈妈也常常劝告他不要花那么多时间玩游戏，他都当成耳边风。见孩子不懂得珍惜时间，妈妈又气又急，却拿他没办法。\n\n一天，上科学课时，老师拿着一个透明的玻璃瓶走进了课室，又拿出大石头、小石子和沙子。同学们兴致勃勃，觉得这个实验很有趣。老师认真地说：“如果先倒沙子，再放石头，瓶子会怎样？”“装不下！”同学们异口同声地回答。“那如果先放大石头呢？”说着，老师先后放入大石头、小石子和沙子，瓶子刚好装满。\n\n“这就像时间。”老师语重心长地说，“如果我们总是先做无关紧要的事，重要的事情就没时间完成了。”他停顿了一下，目光扫过课室，说：“你们现在应该明白合理利用时间有多重要了吧？”同学们若有所思，目光逐渐明亮了。小林听了，脸顿时红了。“我不就是做事拖延，才会使到生活一团糟，犯下各种错误吗？”他下定决心：我要彻底改变。\n\n渐渐地，妈妈注意到小林每天早上按时起床，再也没有迟到过；放学后，他先写作业，才去玩游戏。妈妈为此感到高兴。小林也发现自己不再慌乱，成绩也提升了不少。他终于体会到了：时间就像握在手里的沙子，只有做它的主人，才能真正抓住它！"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q11",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "农夫种地很辛苦，我们应该【爱惜】粮食。从文中找出与画线词语意思相近或相同的词语。",
+            "accepted": [
+              "珍惜"
+            ],
+            "displayAnswer": "珍惜"
+          },
+          {
+            "sourceQuestion": "Q12",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "要不是我提醒，弟弟【完全】忘记了要去图书馆还书。从文中找出与画线词语意思相近或相同的词语。",
+            "accepted": [
+              "彻底"
+            ],
+            "displayAnswer": "彻底"
+          },
+          {
+            "sourceQuestion": "Q13",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "比较小林上那节科学课之前的行为，以及妈妈看到后的感受。",
+            "displayAnswer": "小林每天玩游戏玩到三更半夜，不做功课，上学迟到；妈妈又气又急。"
+          },
+          {
+            "sourceQuestion": "Q14",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "比较小林上那节科学课之后的行为，以及妈妈看到后的感受。",
+            "displayAnswer": "小林每天早上按时起床，放学后先写作业，才去玩游戏；妈妈很高兴。"
+          },
+          {
+            "sourceQuestion": "Q15",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "老师想通过那节科学课让同学们明白什么道理？（2分）同学们明白了吗？从哪里可以看出？（2分）",
+            "displayAnswer": "老师想让同学们明白合理利用时间的重要性：如果先做无关紧要的事，重要的事就没时间完成。同学们明白了，他们若有所思，目光逐渐明亮。"
+          },
+          {
+            "sourceQuestion": "Q16",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "从“做时间的主人”和“有趣的实验”中选一个最适合的题目，并举例说明理由。",
+            "displayAnswer": "选择“做时间的主人”。小林起初不珍惜时间，玩游戏到半夜，来不及做功课且上学迟到。实验让他明白重要的事情应先做，之后他按时起床、先写作业再玩游戏，不再慌乱，成绩也提高。"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-HC-2025-TaoNan-Q17-23",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "陪爷爷说话",
+          "source": "TaoNan Primary 6 Higher Chinese 2025, Paper 2; PDF pages 6–7; P6_HChinese_2025_SA2_taonan.pdf",
+          "text": "小时候，父母忙着工作，我几乎是爷爷带大的，我们总有说不完的话。在我的童年里，身边总有爷爷的身影。\n\n升上中学后，我的生活非常忙碌，一天当中可以与爷爷说话的时间不多。每天的交流也仅限于“吃饱了吗？”“你回来了？”而且都是爷爷主动问我，我累得只能简短地回答“吃了”“是的”。但爷爷并不在意。\n\n后来，爷爷的年纪大了，有时会犯糊涂。有一次，爷爷睡前突然想喝茶，便去厨房煮水。他想起杯子还放在房间里，回到房间时，却又忘了要做什么，便躺在床上睡着了。我晚上进厨房时才看到快被烧干的锅，便立刻把火关掉。\n\n第二天，我出门前嘱咐爷爷要注意安全。爷爷一直道歉，但是他的嘴角带着笑。看着他那副开心的样子，我有点不耐烦，心想：差点儿把家都烧了，他还笑？真的是越来越糊涂了。\n\n那天下午，当我上完课回来后，远远就看到爷爷在楼下和几个邻居聊天。爷爷得意地对他们说：“我孙子每天至少陪我五分钟，今天早上他还和我说了十分钟的话！”看到爷爷的表情充满自豪，我一下子呆住了。我没想到，自己不过是多说了几句话，竟然能让爷爷这么开心。我鼻子一酸，眼泪差点儿流了下来。\n\n我上前跟爷爷说：“爷爷，我们回家吧！”我牵起他的手，他回头看了我一眼，眼神露出一丝惊喜，笑着点点头。我们慢慢走回家，谁也没有说话，但他的手握得很紧。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q17",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "解释“身边总有爷爷的身影”（第一段）在文中的意思。",
+            "displayAnswer": "作者小时候父母忙于工作，所以爷爷总在他身边照顾他。"
+          },
+          {
+            "sourceQuestion": "Q18",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "解释“一丝惊喜”（第六段）在文中的意思。",
+            "displayAnswer": "爷爷看见作者主动叫他回家，还牵起他的手，感到既惊讶又开心。"
+          },
+          {
+            "sourceQuestion": "Q19",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "升上中学后，作者的生活如何？（1分）这对作者和爷爷的关系有什么影响？（3分）",
+            "displayAnswer": "作者的生活非常忙碌。两人的交流很少而且简短，都是爷爷主动和作者说话，关系不再像以前一样亲密。"
+          },
+          {
+            "sourceQuestion": "Q20",
+            "format": "Writing-Constrained",
+            "marks": 4,
+            "text": "请用不超过18个字写出第三段的段落大意。",
+            "displayAnswer": "爷爷糊涂，忘了关火，我立刻关掉火。"
+          },
+          {
+            "sourceQuestion": "Q21",
+            "format": "Long-Answer",
+            "marks": 3,
+            "text": "作者提醒爷爷要注意安全时，爷爷有什么反应？（1分）作者对爷爷的反应有什么看法？（2分）",
+            "displayAnswer": "爷爷一直道歉，嘴角却带着笑。作者觉得爷爷不应该笑，因为他差点把家烧了；认为他笑是因为越来越糊涂。"
+          },
+          {
+            "sourceQuestion": "Q22",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "“我鼻子一酸，眼泪差点儿流了下来”这句话说明了什么？",
+            "displayAnswer": "作者感到惭愧、心酸和后悔。以前他不主动和爷爷说话，回答简短，也不耐烦；没想到自己只多说几句话就让爷爷这么开心，所以后悔以前不关心爷爷。"
+          },
+          {
+            "sourceQuestion": "Q23",
+            "format": "Long-Answer",
+            "marks": 5,
+            "text": "你从这篇短文中明白了什么道理？（2分）举例说明如何应用在生活中。（3分）",
+            "displayAnswer": "示例：平时应多关心爷爷奶奶，让他们开心。我会多陪他们聊天，生病时帮他们拿水喝，用这些小事表达关心。"
+          }
+        ]
+      }
+    }
+  ],
+  "year": 2025,
+  "scope": "Paper 2",
+  "sourcePdf": "../2025 Higher Chinese SA2/P6_HChinese_2025_SA2_taonan.pdf"
+}

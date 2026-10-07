@@ -1,10 +1,12 @@
-# P6 question bank — 2026 papers
+# P6 question bank — 2025 and 2026 papers
 
-All 16 PDFs have their Paper 2 question banks extracted: 400 Chinese questions and 138 Higher Chinese questions, for a total of 538 questions.
-The 15 papers added after the ACS(J) Chinese sample contribute 498 questions.
+The live bank contains 1,571 questions: 1,134 Chinese questions and 437 Higher Chinese questions.
+This includes 1,477 Paper 2 questions from 45 papers and 94 original lesson-based Vocabulary questions.
+The 2026 batch contributes 538 questions from 16 papers.
+The approved 2025 SA2 batch contributes 939 questions from 29 papers, with all review decisions applied.
 P6 is enabled in the app with Chinese and Higher Chinese practice and 12 tingxie lessons.
 
-## Paper reviews
+## 2026 paper reviews
 
 | School | Subject | Questions | Marks | Content |
 | --- | --- | ---: | ---: | --- |
@@ -41,7 +43,7 @@ Lesson tags are exact matches against P6 tingxie vocab[].word, with unmatched it
 Formatting and punctuation are normalized, while passage titles and target labels are editorial aids.
 The transcribed contact details and websites are part of the examination text.
 
-## Resolved review items
+## Resolved 2026 review items
 
 All seven flagged items have been resolved following the user’s review.
 
@@ -54,3 +56,30 @@ All seven flagged items have been resolved following the user’s review.
 - **Raffles (Higher Chinese)**: Q8: changed the accepted and displayed answer from “确信” to “确定”, as instructed by the user.
 
 See [sources.json](sources.json) for the per-paper provenance and question inventory.
+
+## 2025 paper reviews
+
+See the [2025 paper inventory](../draft-2025/README.md) and [approved review decisions](../draft-2025/REVIEW.md).
+All 939 reviewed 2025 questions are included in the category YAML and the live question index.
+
+## Original lesson-based Vocabulary questions
+
+94 original questions supplement lessons below the 20-question minimum.
+These use the existing pinyin, vocabulary choice, word-meaning and correct-usage formats, with four answer options and one correct answer per question.
+Each targets a word taught in its tagged lesson; these are authored practice questions rather than extracted exam questions.
+See [authored-vocabulary.json](authored-vocabulary.json) for the target-word inventory.
+
+| Lesson | Vocabulary questions |
+| --- | ---: |
+| 1 | 20 |
+| 2 | 20 |
+| 3 | 20 |
+| 4 | 20 |
+| 5 | 54 |
+| 6 | 20 |
+| 7 | 20 |
+| 8 | 22 |
+| 9 | 20 |
+| 10 | 20 |
+| 11 | 20 |
+| 12 | 20 |

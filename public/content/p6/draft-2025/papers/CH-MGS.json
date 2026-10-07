@@ -1,0 +1,615 @@
+{
+  "school": "MGS",
+  "subject": "Chinese",
+  "stem": "P6_Chinese_2025_SA2_mgs",
+  "keyPages": "27–28",
+  "issues": [
+    {
+      "question": "短文填空标题",
+      "detail": "题面误印“15题30分”，实际Q16–Q20为5题10分，按实际题数及分值记录。"
+    }
+  ],
+  "groups": [
+    {
+      "category": "pinyin",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q1",
+        "lessonIds": [
+          2,
+          5
+        ],
+        "question": "摊主没发现手里的碗【倾斜】了，面汤都流了出来。请选择画线词语的汉语拼音。",
+        "options": [
+          "qīn xié",
+          "qīn xué",
+          "qīng xié",
+          "qīng xué"
+        ],
+        "correct": "qīng xié",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 6; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "pinyin",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q2",
+        "lessonIds": [
+          3,
+          5
+        ],
+        "question": "每当弟弟【模仿】大人的动作时，总是让人忍不住大笑。请选择画线词语的汉语拼音。",
+        "options": [
+          "mú fāng",
+          "mó fāng",
+          "mú fǎng",
+          "mó fǎng"
+        ],
+        "correct": "mó fǎng",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 6; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "vocab",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q3",
+        "lessonIds": [],
+        "question": "这次的讲故事比赛，参赛者能以不同的形式来___现故事。",
+        "options": [
+          "成",
+          "呈",
+          "承",
+          "盛"
+        ],
+        "correct": "呈",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 6; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "vocab",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q4",
+        "lessonIds": [
+          8
+        ],
+        "question": "六月假期，我和同学___了脚踏车，然后一起骑到东海岸公园。",
+        "options": [
+          "组",
+          "阻",
+          "租",
+          "祖"
+        ],
+        "correct": "租",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 6; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "vocab",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q5",
+        "lessonIds": [],
+        "question": "我给老爷爷让座，乘客们向我投来___的目光。",
+        "options": [
+          "夸奖",
+          "赞许",
+          "称赞",
+          "尊敬"
+        ],
+        "correct": "赞许",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 6; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "vocab",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q6",
+        "lessonIds": [],
+        "question": "火灾发生后，叔叔捐了一万元帮助灾民，真___啊！",
+        "options": [
+          "慷慨",
+          "诚实",
+          "亲切",
+          "幽默"
+        ],
+        "correct": "慷慨",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 7; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "phrase",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q7",
+        "lessonIds": [
+          5
+        ],
+        "question": "我们一家人经常来这间咖啡店吃早餐，对这里的环境很【熟悉】。请选择画线词语的意思。",
+        "options": [
+          "了解事情的起因经过",
+          "介绍的内容非常清楚",
+          "有深入的了解和认识",
+          "对新事物有极大兴趣"
+        ],
+        "correct": "有深入的了解和认识",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 7; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "phrase",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q8",
+        "lessonIds": [
+          5,
+          11
+        ],
+        "question": "王老师刚才还在课室门口，【一眨眼】就不知道去了哪里。请选择画线词语的意思。",
+        "options": [
+          "时间非常短",
+          "时间还很早",
+          "动作非常快",
+          "动作很灵活"
+        ],
+        "correct": "时间非常短",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 7; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "conjunction",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q9",
+        "lessonIds": [],
+        "question": "站在购物中心门口的那位女士，___我的妈妈，___我的阿姨。",
+        "options": [
+          "不但……而且",
+          "虽然……但是",
+          "不管……还是",
+          "不是……而是"
+        ],
+        "correct": "不是……而是",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 7; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "conjunction",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q10",
+        "lessonIds": [],
+        "question": "爸爸喜欢运动，___工作再忙，___会每天坚持跑步。",
+        "options": [
+          "除了……还",
+          "就算……也",
+          "只有……才",
+          "不仅……还"
+        ],
+        "correct": "就算……也",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 7; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "sentence",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q11",
+        "lessonIds": [
+          3
+        ],
+        "question": "他使劲关紧水龙头，___。",
+        "options": [
+          "水就不断地流出来",
+          "大家终于可以解渴",
+          "不让它再继续滴水",
+          "好让弟弟可以洗澡"
+        ],
+        "correct": "不让它再继续滴水",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 7; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "sentence",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q12",
+        "lessonIds": [
+          6
+        ],
+        "question": "___，因此他甘愿受罚。",
+        "options": [
+          "大家证明他没做错",
+          "他并没有犯下错误",
+          "他不是故意这样做",
+          "他没按时完成任务"
+        ],
+        "correct": "他没按时完成任务",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 8; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "usage",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q13",
+        "lessonIds": [],
+        "question": "以下哪一个句子正确使用了“彼此”？",
+        "options": [
+          "妈妈生病了，彼此没有出席今天的晚会活动。",
+          "经过这件事后，我们彼此成为了最好的朋友。",
+          "彼此以后，每次吃东西前我都要把手洗干净。",
+          "哥哥没有想到，我彼此等了他整整两个小时。"
+        ],
+        "correct": "经过这件事后，我们彼此成为了最好的朋友。",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 8; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "usage",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q14",
+        "lessonIds": [
+          5
+        ],
+        "question": "以下哪一个句子正确使用了“讲述”？",
+        "options": [
+          "奶奶和朋友坐在公园的长椅上讲述，谈得很开心。",
+          "每当妈妈周末去市场买菜时，她都会跟摊主讲述。",
+          "小乐把经过讲述一遍后，大家才知道事情的真相。",
+          "她真是一个喜欢讲述的人，常常让我们哈哈大笑。"
+        ],
+        "correct": "小乐把经过讲述一遍后，大家才知道事情的真相。",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 8; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "usage",
+      "record": {
+        "questionID": "P6-CH-2025-MGS-Q15",
+        "lessonIds": [],
+        "question": "以下哪一个句子正确使用了“齐心协力”？",
+        "options": [
+          "小明齐心协力，把课室的桌椅排得整整齐齐。",
+          "只要我们齐心协力，就没有克服不了的困难。",
+          "上课铃声响了，同学们齐心协力地开始考试。",
+          "春天已经来临，公园的花齐心协力地开放了。"
+        ],
+        "correct": "只要我们齐心协力，就没有克服不了的困难。",
+        "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 8; P6_Chinese_2025_SA2_mgs.pdf"
+      }
+    },
+    {
+      "category": "cloze",
+      "record": {
+        "groupId": "P6-CH-2025-MGS-Q16-20",
+        "subject": "Chinese",
+        "passage": {
+          "title": "消除朋友间的误会",
+          "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 9; P6_Chinese_2025_SA2_mgs.pdf",
+          "text": "小丽和小美从一年级开始就是同班同学，她们的感情非常好。最近，小丽总是[Q16]___的，让妈妈觉得很奇怪。原来，小美因为一次误会，开始对小丽不理不睬。小丽有几次想要试着解释，但小美都避开了。小丽曾一度想结束和小美之间的友谊。\n\n妈妈了解事情经过后，语重心长地说：“朋友之间出现误会时，我们不能因为对方的反应就退缩，反而更应该好好地沟通，消除误会。只要是发自内心的关怀和耐心，就能[Q17]___人。”\n\n听了妈妈的话，小丽决定不再退缩，而是[Q18]___想办法。第二天，小丽特意准备了一张小卡片，[Q19]___地写下了她想和小美和好的心愿，然后把卡片放在了小美的桌上。\n\n休息时，小丽一看到小美，就走上前对她说道：“小美，希望我们能谈一谈，如果我哪里做得不对，让你不开心，我一定会改正。”小美听了很感动，最后，她决定和小丽[Q20]___往日的友好关系。\n\n小丽从这件事中明白，面对冲突和误会时，要带着理解去沟通，才能让友谊长久。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q16",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q16] 选择正确词语。",
+            "options": [
+              "火冒三丈",
+              "神色慌张",
+              "闷闷不乐",
+              "恍然大悟"
+            ],
+            "correct": "闷闷不乐"
+          },
+          {
+            "sourceQuestion": "Q17",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q17] 选择正确词语。",
+            "options": [
+              "行动",
+              "打动",
+              "发动",
+              "带动"
+            ],
+            "correct": "打动"
+          },
+          {
+            "sourceQuestion": "Q18",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q18] 选择正确词语。",
+            "options": [
+              "负责",
+              "仔细",
+              "勤奋",
+              "积极"
+            ],
+            "correct": "积极"
+          },
+          {
+            "sourceQuestion": "Q19",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q19] 选择正确词语。",
+            "options": [
+              "诚恳",
+              "尽力",
+              "紧张",
+              "盼望"
+            ],
+            "correct": "诚恳"
+          },
+          {
+            "sourceQuestion": "Q20",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q20] 选择正确词语。",
+            "options": [
+              "保持",
+              "重复",
+              "恢复",
+              "改变"
+            ],
+            "correct": "恢复"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-CH-2025-MGS-Q21-25",
+        "subject": "Chinese",
+        "passage": {
+          "title": "地球的眼泪",
+          "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 11–12; P6_Chinese_2025_SA2_mgs.pdf",
+          "text": "伟文是个热爱画画的男孩。他的房间里到处都是他的作品，有彩色的风景画，也有活泼可爱的动物。每次上美术课，伟文总是班里最认真的一个，他的画也常常得到老师的认可。\n\n最近，美术老师宣布要举办“环保小卫士”画画比赛，主题是宣传环保的重要性。伟文听了非常兴奋，他想借着他的画表达环保的重要性。他去图书馆借了许多关于环保的书籍，还上网查资料，了解什么是垃圾分类，为什么要节约用水、用电等知识。\n\n这次的比赛，伟文决定画一幅《地球的眼泪》。图画中间，地球妈妈的脸上挂着两行泪珠，周围到处都是垃圾和干枯的土地。画面里，一些小小的身影正弯着腰，有的在捡垃圾，有的在努力种下一棵棵小树苗。图画的下方，写着一行字“我们该做些什么？”为了让图画更生动，他还特意去请教了美术老师，请他提供构图和色彩上的建议。\n\n经过一个星期的努力，伟文终于完成了他的画作。他的画引起了不小的反响，班级里出现了环保的热潮。班里不再有人忘记关水龙头，用餐后地上少了垃圾，离开课室前有人会记得关灯、关风扇，厕所的地上少了乱丢的纸巾。伟文没想到自己的画画特长能让更多人思考环保的重要性。他的画就像一颗种子，在同学们的心中发芽。\n\n伟文认为爱护地球，人人有责。这次比赛让他明白，只要用心去做，哪怕是小小的举动，也能产生大大的影响。他决定以后要继续使用画笔，画出更多有意义的作品。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q21",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "“伟文是个热爱画画的男孩”说明了什么？",
+            "options": [
+              "伟文的画画作品非常多。",
+              "伟文的画画技术非常好。",
+              "伟文的兴趣爱好是画画。",
+              "伟文经常参加画画比赛。"
+            ],
+            "correct": "伟文的兴趣爱好是画画。"
+          },
+          {
+            "sourceQuestion": "Q22",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "伟文听到学校要举办画画比赛后，非常兴奋，因为___。",
+            "options": [
+              "他想要得到老师的认可。",
+              "他想通过画画宣传环保。",
+              "他想让地球妈妈再次流泪。",
+              "他想在比赛中获得好成绩。"
+            ],
+            "correct": "他想通过画画宣传环保。"
+          },
+          {
+            "sourceQuestion": "Q23",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "“他的画就像一颗种子，在同学们心中发芽”是什么意思？",
+            "options": [
+              "伟文的画提醒大家多阅读环保的书籍。",
+              "伟文的画让同学们想种下一棵棵树苗。",
+              "同学们都渐渐产生了保护环境的意识。",
+              "同学们希望通过画画为环保尽一份力。"
+            ],
+            "correct": "同学们都渐渐产生了保护环境的意识。"
+          },
+          {
+            "sourceQuestion": "Q24",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "关于伟文的画作带来的影响，哪个说法不正确？",
+            "options": [
+              "保护环境从身边的小事做起。",
+              "同学们开始减少能源的浪费。",
+              "同学们学会了怎么分类垃圾。",
+              "同学开始深入思考如何环保。"
+            ],
+            "correct": "同学们学会了怎么分类垃圾。"
+          },
+          {
+            "sourceQuestion": "Q25",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "这次的画画比赛让伟文明白什么道理？",
+            "options": [
+              "爱护地球是大家的责任。",
+              "小举动也能产生大影响。",
+              "以后要继续使用画笔作画。",
+              "要画出更多有意义的画作。"
+            ],
+            "correct": "小举动也能产生大影响。"
+          }
+        ]
+      }
+    },
+    {
+      "category": "dialogue",
+      "record": {
+        "groupId": "P6-CH-2025-MGS-Q26-29",
+        "subject": "Chinese",
+        "passage": {
+          "title": "AI与学习",
+          "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 14; P6_Chinese_2025_SA2_mgs.pdf",
+          "text": "小芳：妈妈，我发现班上很多同学都在用AI写作业。\n妈妈：是吗？[Q26]___？\n小芳：会啊，主要用来查资料和修改文章，但有些同学直接让AI写整篇作文。\n妈妈：直接让AI写整篇作文可不好。[Q27]___。\n小芳：为什么呢？老师又不知道是AI写的。\n妈妈：孩子，如果不自己练习写作，你的写作能力就很难提升。\n小芳：谢谢您的提醒，以后我会更注意这个问题。\n妈妈：这样就对了。AI可以帮助我们学习，[Q28]___。学习还是需要靠自己努力，你一定要记住这一点。\n小芳：[Q29]___，我会按照您说的去做。\n妈妈：很好，我相信你能做到。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q26",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q26] 选择适当的短语或短句。",
+            "correct": "你在学校会使用AI吗"
+          },
+          {
+            "sourceQuestion": "Q27",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q27] 选择适当的短语或短句。",
+            "correct": "这样的做法让我感到很担心"
+          },
+          {
+            "sourceQuestion": "Q28",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q28] 选择适当的短语或短句。",
+            "correct": "却不能代替我们思考"
+          },
+          {
+            "sourceQuestion": "Q29",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q29] 选择适当的短语或短句。",
+            "correct": "您说的很有道理"
+          }
+        ],
+        "optionBank": [
+          "您说的很有道理",
+          "这种情况会很普遍吗",
+          "却不能代替我们思考",
+          "你在学校会使用AI吗",
+          "用AI做作业确实很方便",
+          "现在的AI技术真的很厉害",
+          "这样的做法让我感到很担心",
+          "我相信大家知道该怎么做了"
+        ]
+      }
+    },
+    {
+      "category": "practical",
+      "record": {
+        "groupId": "P6-CH-2025-MGS-Q30-33",
+        "subject": "Chinese",
+        "passage": {
+          "title": "小六毕业庆祝营",
+          "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 15–16; P6_Chinese_2025_SA2_mgs.pdf",
+          "text": "亲爱的小六毕业生们：\n恭喜你完成小六会考！想和同学们一起庆祝这个特别的时刻吗？欢迎参加“小六毕业庆祝营”！\n在两天一夜的活动中，你将参与团队游戏、才艺表演、烧烤晚会、电影之夜等有趣的活动，还有机会认识新朋友，留下美好回忆。\n\n日期：2025年11月8日（星期六）至11月9日（星期日）\n时间：星期六上午10点至星期日下午4点\n地点：阳光森林度假村\n对象：已完成小六会考的学生\n费用：每人$180（包含住宿、三餐、保险和所有活动用品）\n\n注意事项：\n- 报名时需提交家长签名的同意书。\n- 报名成功后，主办单位会通知付费详情。\n- 无论任何原因，付费后不能退费。\n- 不可将名额转让给他人。\n\n有兴趣参加的小朋友，请上网到www.graduation-camp.sg提交报名表格。如有疑问，请拨打65347890联系林老师。报名截止日期是10月15日，名额有限，只限80人，先到先得。\n我们期待与你共度一个难忘的毕业时光！\n新加坡青少年活动中心\n2025年8月20日"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q30",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "参加这个毕业营必须具备哪些条件？",
+            "options": [
+              "必须在报名时先付清费用，报名才算有效。",
+              "必须愿意参加全部活动，包括烧烤和住宿。",
+              "必须对团队游戏和才艺表演具有浓厚的兴趣。",
+              "必须完成小六会考，并交上家长签名的同意书。"
+            ],
+            "correct": "必须完成小六会考，并交上家长签名的同意书。"
+          },
+          {
+            "sourceQuestion": "Q31",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "根据广告，哪一个是正确的？",
+            "options": [
+              "这个毕业庆祝营的地点设在新加坡青少年活动中心。",
+              "有兴趣参加者，需要通过指定的网站提交报名表格。",
+              "活动从星期六下午四点开始，星期日上午十点结束。",
+              "只要在十月十五日前完成报名，就能够参加毕业营。"
+            ],
+            "correct": "有兴趣参加者，需要通过指定的网站提交报名表格。"
+          },
+          {
+            "sourceQuestion": "Q32",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "举办“小六毕业庆祝营”的主要目的是什么？",
+            "options": [
+              "通过才艺表演展示个人能力。",
+              "借由团队活动提升合作精神。",
+              "通过活动来留下难忘的回忆。",
+              "借由认识新朋友丰富朋友圈。"
+            ],
+            "correct": "通过活动来留下难忘的回忆。"
+          },
+          {
+            "sourceQuestion": "Q33",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "假如你是小安，写便条给爸爸，说出想参加的理由及需要尽早报名的原因，请他帮你报名。",
+            "displayAnswer": "爸爸：我看到“小六毕业庆祝营”的广告，很想参加，因为能和同学一起度过难忘的毕业时光。报名截止日期是10月15日，名额只限80人，先到先得，请您尽早在www.graduation-camp.sg提交报名表格。谢谢。小安，8月20日晚上9点。"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-CH-2025-MGS-Q34-40",
+        "subject": "Chinese",
+        "passage": {
+          "title": "勇敢参选班长",
+          "source": "MGS Primary 6 Chinese 2025, Paper 2; PDF pages 17–18; P6_Chinese_2025_SA2_mgs.pdf",
+          "text": "班上要选班长了，老师告诉大家，可以提名自己觉得合适的同学。小明听了这个消息，心里既兴奋又紧张。他一直渴望为班级服务，希望有同学会提名他，但又担心自己还不够优秀。\n\n第二天，小明走进教室，立刻快步走向布告板。当他在名单上找到自己的名字时，眼睛一亮，嘴角微微上扬。这时，一向深受同学欢迎的大华走了过来，笑着说：“恭喜你也被提名了！看来大家都很信任你。”就在这时，小明看到名单最顶端写着“陈大华”三个字，脸上的笑容一下子消失了。小明低声地说：“我……我觉得自己还不够好。”大华轻拍他的肩膀，说：“你平时做事很认真，常常帮助同学，我相信你可以的。”上课时，老师宣布，所有被提名的同学都要准备一篇演讲稿，明天在班上发表演讲。\n\n晚饭后，小明站在镜子前反复练习演讲，努力让自己看起来充满自信。但他的声音越来越小，手开始发抖，额头冒汗，心跳加快。他坐回椅子上，低头看着演讲稿，心想：大家会不会取笑我？他不禁怀疑自己的能力。于是，小明把演讲稿轻轻折起，塞进书包底层。\n\n爸爸看到小明这样，走过来温和地问：“你想当班长，到底是为了赢，还是因为你真心想帮助同学？”小明认真地思考着，爸爸接着说：“真正的勇敢，不是没有害怕，而是明知道有可能失败，仍然愿意去尝试。”\n\n听了爸爸的话，小明重新拿出演讲稿，一字一句地认真练习。他告诉自己：“就算选不上，也不能半途而废。”\n\n选举结果公布那天，大华当选班长。虽然小明没有当选，但他脸上露出了微笑。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q34",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "文中表示“做事情没有坚持到底就放弃”的词语是：",
+            "accepted": [
+              "半途而废"
+            ],
+            "displayAnswer": "半途而废"
+          },
+          {
+            "sourceQuestion": "Q35",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "文中表示“不相信”的词语是：",
+            "accepted": [
+              "怀疑"
+            ],
+            "displayAnswer": "怀疑"
+          },
+          {
+            "sourceQuestion": "Q36",
+            "format": "Long-Answer",
+            "marks": 3,
+            "text": "小明听到选班长的消息后，有什么感受？为什么？",
+            "displayAnswer": "既兴奋又紧张。他渴望为班级服务，希望同学提名他，又担心自己不够优秀。"
+          },
+          {
+            "sourceQuestion": "Q37",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "当大华走过来恭喜小明时，小明的笑容为什么消失了？",
+            "displayAnswer": "看到名单最顶端写着陈大华。大华深受同学欢迎，小明觉得自己不够好，担心自己不会当选。"
+          },
+          {
+            "sourceQuestion": "Q38",
+            "format": "Long-Answer",
+            "marks": 3,
+            "text": "“把演讲稿轻轻折起，塞进书包底层”说明什么？为什么这样做？",
+            "displayAnswer": "小明不想在班上演讲。练习时声音变小、手发抖、额头冒汗、心跳加快，担心大家取笑他，怀疑自己的能力。"
+          },
+          {
+            "sourceQuestion": "Q39",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "大华有什么值得你学习的地方？从哪里看出？",
+            "displayAnswer": "他很善良。知道小明被提名后去恭喜他，轻拍他的肩膀，肯定他做事认真、常帮助同学，鼓励他相信自己。"
+          },
+          {
+            "sourceQuestion": "Q40",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "小明没当选，为什么仍微笑？生活中尽力却没有理想结果，你会怎么做？",
+            "displayAnswer": "他明白爸爸的话，知道可能失败却仍勇敢尝试。我会继续努力，争取下一次机会，好好练习和表现。"
+          }
+        ]
+      }
+    }
+  ],
+  "year": 2025,
+  "scope": "Paper 2",
+  "sourcePdf": "../2025 Chinese SA2/P6_Chinese_2025_SA2_mgs.pdf"
+}

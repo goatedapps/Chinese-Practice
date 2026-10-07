@@ -1,0 +1,280 @@
+{
+  "school": "NanHua",
+  "subject": "Higher Chinese",
+  "stem": "P6_HChinese_2025_SA2_nanhua",
+  "keyPages": "11–13",
+  "issues": [],
+  "groups": [
+    {
+      "category": "cloze",
+      "record": {
+        "groupId": "P6-HC-2025-NanHua-Q1-5",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "免费的早餐",
+          "source": "NanHua Primary 6 Higher Chinese 2025, Paper 2; PDF pages 5; P6_HChinese_2025_SA2_nanhua.pdf",
+          "text": "清晨，林小丽走在上学的路上，突然下起了一阵急雨。雨点打在林小丽的校服上，她快步跑进“阳光咖啡店”避雨。店里很安静，只有几位顾客在[Q1]___地用餐。她在一旁看着，不自觉地摸摸自己的肚子。\n\n“来份早餐吗？”店主张叔叔笑眯眯地问，“我们为同学们[Q2]___免费的早餐。”他转身打开烤箱，取出面包，“这些都是今早烤的，食材都是最新鲜的。”他[Q3]___地把面包和一瓶牛奶装进袋子，递给她。\n\n林小丽[Q4]___地看着张叔叔，问道：“真的免费吗？”\n\n“当然！”张叔叔解释道，“去年我听说很多学生饿着肚子上学，就想尽一份力。”林小丽接过早餐，觉得这份早餐[Q5]___了温暖和爱心。\n\n“谢谢您！”临走时，小丽微笑着对张叔叔说。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q1",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q1] 选择正确词语。",
+            "accepted": [
+              "津津有味",
+              "5"
+            ],
+            "displayAnswer": "津津有味"
+          },
+          {
+            "sourceQuestion": "Q2",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q2] 选择正确词语。",
+            "accepted": [
+              "提供",
+              "6"
+            ],
+            "displayAnswer": "提供"
+          },
+          {
+            "sourceQuestion": "Q3",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q3] 选择正确词语。",
+            "accepted": [
+              "迅速",
+              "3"
+            ],
+            "displayAnswer": "迅速"
+          },
+          {
+            "sourceQuestion": "Q4",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q4] 选择正确词语。",
+            "accepted": [
+              "怀疑",
+              "2"
+            ],
+            "displayAnswer": "怀疑"
+          },
+          {
+            "sourceQuestion": "Q5",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q5] 选择正确词语。",
+            "accepted": [
+              "充满",
+              "8"
+            ],
+            "displayAnswer": "充满"
+          }
+        ],
+        "optionBank": [
+          "狼吞虎咽",
+          "怀疑",
+          "迅速",
+          "羡慕",
+          "津津有味",
+          "提供",
+          "猛然",
+          "充满"
+        ]
+      }
+    },
+    {
+      "category": "errorcorrect",
+      "record": {
+        "groupId": "P6-HC-2025-NanHua-Q6-10",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "图画书小组任务",
+          "source": "NanHua Primary 6 Higher Chinese 2025, Paper 2; PDF pages 6; P6_HChinese_2025_SA2_nanhua.pdf",
+          "text": "上个星期五，老师给我们留了一个制作图画书的小组任务。我认为自己画得好，期待着能负责画图，可组长却安排我写文字，让张明负责图画。我觉得组长很不公平，也十分妒[Q6]（既）张明。\n\n于是，写字时，我故意把字写得又[Q7]（外）又乱，一边写，还一边不停地抱怨。张明一句话也不说，只是专心地画画，为小组做出了自己的[Q8]【呈献】，让图画书变得越来越漂亮。看着他认真的样子，我渐渐回过神来，明白自己应该以张明为[Q9]（旁）样，不应该这么没有团队精神。\n\n于是，我决定[Q10]【到底】改变。我静下心，重新写故事。最终，我们完成图画书后，获得了老师的表扬。这件事让我明白，做小组任务时，要有团队精神，才能让小组更出色。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q6",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "妒（既）：改正错字。",
+            "accepted": [
+              "忌"
+            ],
+            "displayAnswer": "忌"
+          },
+          {
+            "sourceQuestion": "Q7",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "又（外）又乱：改正错字。",
+            "accepted": [
+              "歪"
+            ],
+            "displayAnswer": "歪"
+          },
+          {
+            "sourceQuestion": "Q8",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "改正“呈献”，写出正确词语。",
+            "accepted": [
+              "贡献"
+            ],
+            "displayAnswer": "贡献"
+          },
+          {
+            "sourceQuestion": "Q9",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "（旁）样：改正错字。",
+            "accepted": [
+              "榜"
+            ],
+            "displayAnswer": "榜"
+          },
+          {
+            "sourceQuestion": "Q10",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "改正“到底”，写出正确词语。",
+            "accepted": [
+              "彻底"
+            ],
+            "displayAnswer": "彻底"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-HC-2025-NanHua-Q11-16",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "让自己变得更好",
+          "source": "NanHua Primary 6 Higher Chinese 2025, Paper 2; PDF pages 7–8; P6_HChinese_2025_SA2_nanhua.pdf",
+          "text": "我从小就很胆小。记得有一次，爸爸妈妈晚上有事要出去，让我一个人在家。我心里非常害怕，但是又不想让他们担心，只好硬着头皮答应了。\n\n爸爸妈妈走后，我赶紧把所有的灯都打开，然后坐在沙发上看电视。突然，我听到了一阵奇怪的声音，仿佛有人在敲门。我吓得浑身发抖，不敢去开门。过了一会儿，我鼓起勇气，走到门口一看，发现是一只小猫在门口玩耍，撞到了门。我松了一口气。\n\n我回到沙发上，继续看电视。可是，没看多久，我又听到了一阵奇怪的声音。这次好像是从厨房传来的，我害怕极了，心想会不会是小偷。后来，我拿起一根棍子，小心翼翼地走进厨房。打开灯一看，原来是风从窗子吹进来，发出“呼呼”的声音。我赶紧把窗子关上，然后回到客厅。我一直等到爸爸妈妈回来，才敢去睡觉。\n\n我知道自己这样胆小不好，我想让自己变得更加大胆些。于是，我把自己的烦恼告诉了老师。老师告诉我，要想变得勇敢，就要多去尝试一些自己害怕的事情，锻炼自己的胆量。在老师的鼓励下，我开始尝试着一个人睡觉，自己搭巴士上学。虽然一开始还是会害怕，但是我会不断地给自己加油打气，告诉自己其实没有什么可害怕的。我发现自己逐渐变得越来越勇敢，不再自己吓自己了。\n\n有缺点其实并不可怕，只要我们勇敢地面对，就一定能够克服它们。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q11",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "他飞快地在操场上奔跑，【好像】一阵风似的。从文中找出画线词语的近义词。",
+            "accepted": [
+              "仿佛"
+            ],
+            "displayAnswer": "仿佛"
+          },
+          {
+            "sourceQuestion": "Q12",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "快下雨了，天空的乌云【慢慢】多了起来。从文中找出画线词语的近义词。",
+            "accepted": [
+              "逐渐"
+            ],
+            "displayAnswer": "逐渐"
+          },
+          {
+            "sourceQuestion": "Q13",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "比较第一次听到奇怪声音后“我”的反应和声音发出的原因。",
+            "displayAnswer": "“我”吓得浑身发抖，不敢开门；原因是一只小猫在门口玩耍，撞到了门。"
+          },
+          {
+            "sourceQuestion": "Q14",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "比较第二次听到奇怪声音后“我”的反应和声音发出的原因。",
+            "displayAnswer": "“我”害怕极了，心想会不会有小偷；原因是风从窗子吹进来，发出“呼呼”声。"
+          },
+          {
+            "sourceQuestion": "Q15",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "和老师交谈后，“我”有了什么改变？举例说明“我”如何改变自己。",
+            "displayAnswer": "“我”原本胆子很小，后来越来越勇敢，不再自己吓自己。“我”尝试一个人睡觉、自己搭巴士上学，并不断为自己加油，告诉自己没什么可害怕的。"
+          },
+          {
+            "sourceQuestion": "Q16",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "从“爸妈不在家的时候”和“让自己变得更好”中选一个最适合的题目，并举例说明理由。",
+            "displayAnswer": "选择“让自己变得更好”。文章主要写作者原本很胆小，独自在家很害怕；后来勇敢面对缺点，努力改变自己，最终更加勇敢。"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-HC-2025-NanHua-Q17-23",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "云吞面与跑步的约定",
+          "source": "NanHua Primary 6 Higher Chinese 2025, Paper 2; PDF pages 9–10; P6_HChinese_2025_SA2_nanhua.pdf",
+          "text": "小时候的我喜欢吃零食，又懒得运动，体重很快达到60公斤。爸爸为了让我的身体更加健康，决定带我去跑步。\n\n第一次跑步时，我还很胖，跑起来像只摇摇晃晃的小企鹅，没几步就气喘如牛，好几次还差点跌倒。爸爸蹲下来，擦掉我的汗水，轻声说：“加油！”为了鼓励我，爸爸设计了一个游戏：“三公里外有家云吞面店，那里的云吞特别美味哦！”我顿时睁大眼睛：“真的吗？”“当然！只要跑到那里就能吃到。”他又学着小企鹅的样子陪我慢慢跑：“左摇摇，右摆摆，小企鹅要追上大企鹅啦！”\n\n为了这碗香喷喷的云吞面，虽然筋疲力尽，但我还是咬着牙坚持下去。一开始，我跑一小段就要停下来休息。爸爸从不催促我，总是耐心地等着我：“慢慢来，爸爸陪着你。”\n\n一眨眼，五年过去了。现在的我成了学校里的“跑步小健将”，不仅能轻松跑到云吞面店，还在学校的运动会上获得了金牌。每天跑步时，我还是会和爸爸玩各种游戏：有时候数路边新开的小花，有时候比赛谁能先发现五片叶子的幸运草。爸爸说这是我们之间的“超人训练”，等我们变得更强壮，就能保护所有我们爱的人。\n\n现在，跑步对我来说已经不只是为了那碗云吞面了。爸爸总说：“跑步就像做事情，重要的不是结果，而是坚持的过程。”这是我们父子之间特别的约定——用脚步感受成长，用汗水记录坚持。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q17",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "解释“摇摇晃晃”（第二段）在文中的意思。",
+            "displayAnswer": "“我”因为身体肥胖，跑步时像小企鹅一样，身体不稳。"
+          },
+          {
+            "sourceQuestion": "Q18",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "解释“咬着牙”（第三段）在文中的意思。",
+            "displayAnswer": "“我”虽然很累，但为了吃到云吞面，仍努力坚持跑步。"
+          },
+          {
+            "sourceQuestion": "Q19",
+            "format": "Long-Answer",
+            "marks": 3,
+            "text": "第二段中的“游戏”指的是什么？（2分）爸爸设计这个游戏的目的是什么？（1分）",
+            "displayAnswer": "只要“我”跑到三公里外的云吞面店，就能吃到美味的云吞。爸爸的目的是鼓励“我”跑完三公里。"
+          },
+          {
+            "sourceQuestion": "Q20",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "“我”最初跑步时遇到什么困难？（2分）后来取得哪些成绩？（2分）",
+            "displayAnswer": "起初身体肥胖，没跑几步就气喘如牛，几次差点跌倒。后来成为学校的跑步小健将，还在运动会上获得金牌。"
+          },
+          {
+            "sourceQuestion": "Q21",
+            "format": "Writing-Constrained",
+            "marks": 4,
+            "text": "用不超过15个字写出第三段的段落大意。",
+            "displayAnswer": "云吞面和爸爸的陪伴让我坚持跑步"
+          },
+          {
+            "sourceQuestion": "Q22",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "爸爸陪“我”跑步时表现出哪两个优点？（2分）分别举例。（2分）",
+            "displayAnswer": "有耐心，从不催促孩子，等他休息；懂得鼓励，想出云吞面游戏，激励孩子坚持跑步。"
+          },
+          {
+            "sourceQuestion": "Q23",
+            "format": "Long-Answer",
+            "marks": 5,
+            "text": "“跑步就像做事情，重要的不是结果，而是坚持的过程”是什么意思？（2分）举生活例子说明。（3分）",
+            "displayAnswer": "做事重要的不只是最终是否成功，还有努力过程中学到和得到的东西。示例：学弹琴时进步慢，但坚持练习会逐渐进步，也能学会不轻易放弃。"
+          }
+        ]
+      }
+    }
+  ],
+  "year": 2025,
+  "scope": "Paper 2",
+  "sourcePdf": "../2025 Higher Chinese SA2/P6_HChinese_2025_SA2_nanhua.pdf"
+}

@@ -1,0 +1,610 @@
+{
+  "school": "RedSwastika",
+  "subject": "Chinese",
+  "stem": "P6_Chinese_2025_SA2_redswastika",
+  "keyPages": "23–24",
+  "issues": [
+    "Q28–Q29: user approved swapping the supplied keys; Q28 now option 7, Q29 now option 6."
+  ],
+  "groups": [
+    {
+      "category": "pinyin",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q1",
+        "lessonIds": [
+          5
+        ],
+        "question": "【建筑】工人每天在工地上工作。请选择画线词语的汉语拼音。",
+        "options": [
+          "jiàn zú",
+          "jiàn zù",
+          "jiàn zhú",
+          "jiàn zhù"
+        ],
+        "correct": "jiàn zhù",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 10; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "pinyin",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q2",
+        "lessonIds": [
+          5
+        ],
+        "question": "我决定要做的事，没有人可以【阻拦】。请选择画线词语的汉语拼音。",
+        "options": [
+          "zú lǎn",
+          "zǔ lán",
+          "zhú lǎn",
+          "zhǔ lán"
+        ],
+        "correct": "zǔ lán",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 10; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "vocab",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q3",
+        "lessonIds": [],
+        "question": "王叔叔真___害，把黄瓜丝切得跟头发一样细。",
+        "options": [
+          "力",
+          "历",
+          "厉",
+          "励"
+        ],
+        "correct": "厉",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 10; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "vocab",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q4",
+        "lessonIds": [],
+        "question": "你能___细地跟我说昨天发生的事吗？",
+        "options": [
+          "祥",
+          "样",
+          "洋",
+          "详"
+        ],
+        "correct": "详",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 10; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "vocab",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q5",
+        "lessonIds": [],
+        "question": "我们一向都___相处，从来没吵过架。",
+        "options": [
+          "温柔",
+          "和谐",
+          "热情",
+          "耐心"
+        ],
+        "correct": "和谐",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 11; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "vocab",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q6",
+        "lessonIds": [
+          2,
+          8
+        ],
+        "question": "爸爸妈妈每天辛苦工作，为家庭做出很大的___。",
+        "options": [
+          "服务",
+          "尝试",
+          "贡献",
+          "努力"
+        ],
+        "correct": "贡献",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 11; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "phrase",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q7",
+        "lessonIds": [
+          1,
+          5
+        ],
+        "question": "姐姐对自己的要求很【严格】，所以妈妈从来不担心她的学业。请选择画线词语的意思。",
+        "options": [
+          "埋头学习，不偷懒",
+          "坚持到底，不放弃",
+          "保持冷静，不紧张",
+          "认真对待，不马虎"
+        ],
+        "correct": "认真对待，不马虎",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 11; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "phrase",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q8",
+        "lessonIds": [
+          5,
+          6
+        ],
+        "question": "小美的听写常常考满分，但我一点也不【妒忌】她。请选择画线词语的意思。",
+        "options": [
+          "讨厌比自己能力强的人",
+          "佩服和自己一样强的人",
+          "嘲笑比自己有才华的人",
+          "欣赏和自己一样强的人"
+        ],
+        "correct": "讨厌比自己能力强的人",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 11; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "conjunction",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q9",
+        "lessonIds": [],
+        "question": "___他再三请求，爸爸也没让他玩电脑游戏。",
+        "options": [
+          "如果",
+          "尽管",
+          "只有",
+          "只要"
+        ],
+        "correct": "尽管",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 12; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "conjunction",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q10",
+        "lessonIds": [],
+        "question": "___你考到全班第一名，___不可以骄傲。",
+        "options": [
+          "既然……就",
+          "就算……还",
+          "即使……也",
+          "由于……才"
+        ],
+        "correct": "即使……也",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 12; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "sentence",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q11",
+        "lessonIds": [],
+        "question": "这件事明明是妹妹做的，___。",
+        "options": [
+          "她竟然说她还没开始",
+          "她赶快溜出去躲起来",
+          "她跟我们解释清楚了",
+          "她却怎么都不肯承认"
+        ],
+        "correct": "她却怎么都不肯承认",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 12; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "sentence",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q12",
+        "lessonIds": [],
+        "question": "___，却会说很多成语。",
+        "options": [
+          "虽然他对西方文化不太了解",
+          "虽然他平时不读华文故事书",
+          "虽然他从小就喜欢学习华文",
+          "虽然他的爸爸妈妈都是华人"
+        ],
+        "correct": "虽然他平时不读华文故事书",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 12; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "usage",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q13",
+        "lessonIds": [],
+        "question": "以下哪一个句子正确使用了“考虑”？",
+        "options": [
+          "欢欢约了明明，要一起考虑华文的功课。",
+          "过马路要考虑清楚，不然可能被车撞伤。",
+          "这道问题很难，我想了很久才考虑答案。",
+          "这件事很重要，你要再三考虑才做决定。"
+        ],
+        "correct": "这件事很重要，你要再三考虑才做决定。",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 13; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "usage",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q14",
+        "lessonIds": [
+          9
+        ],
+        "question": "以下哪一个句子正确使用了“遭受”？",
+        "options": [
+          "小安帮助同学找到了钱包，遭受老师的表扬。",
+          "爷爷回到家乡探望，遭受村民们的热情欢迎。",
+          "他所经历的童年遭受，让他对生活失去信心。",
+          "他生了一场大病，长期遭受着身体上的痛苦。"
+        ],
+        "correct": "他生了一场大病，长期遭受着身体上的痛苦。",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 13; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "usage",
+      "record": {
+        "questionID": "P6-CH-2025-RedSwastika-Q15",
+        "lessonIds": [
+          4
+        ],
+        "question": "以下哪一个句子正确使用了“销售”？",
+        "options": [
+          "这本刚出版的新书非常销售，很快就卖完了。",
+          "这家泡泡茶店销售的饮料大多数含糖量过高。",
+          "为了销售更多顾客，购物中心进行热卖活动。",
+          "王叔叔的收入不多，所以从来都不随便销售。"
+        ],
+        "correct": "这家泡泡茶店销售的饮料大多数含糖量过高。",
+        "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 13; P6_Chinese_2025_SA2_redswastika.pdf"
+      }
+    },
+    {
+      "category": "cloze",
+      "record": {
+        "groupId": "P6-CH-2025-RedSwastika-Q16-20",
+        "subject": "Chinese",
+        "passage": {
+          "title": "笑容的面具",
+          "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 14; P6_Chinese_2025_SA2_redswastika.pdf",
+          "text": "从前有个国王，他很喜欢和官员们讲一些人生道理，但官员们都显得[Q16]___，似乎不爱听国王说道理。为了改变这个情况，国王决定去请教他的老师。\n\n老师听完后，对国王说：“我为您准备了一副[Q17]___的面具，您明天戴上它，也许有意想不到的反应。”\n\n第二天，国王就照着老师的话去做。果然，官员们认真地听他讲话，有些人还不时点头表示赞同。\n\n三个月过去了，官员们都对国王很尊敬。国王又问老师：“难道要我一辈子都戴着面具吗？”老师回答：“您现在可以把面具拿下来了。”可是，国王却感到[Q18]___，他担心官员们会像以前一样。在老师不断[Q19]___下，他才愿意摘下面具去见官员们。出乎意料的是，官员们照样认真地听国王说话。\n\n原来，国王戴的是一副带着笑容的面具，他每天戴好面具后都会照一下镜子，每次都看到一张[Q20]___的脸。不知不觉中，自己也受到了影响，笑容在脸上多了起来。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q16",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q16] 选择正确词语。",
+            "options": [
+              "眉开眼笑",
+              "怒气冲冲",
+              "兴高采烈",
+              "无精打采"
+            ],
+            "correct": "无精打采"
+          },
+          {
+            "sourceQuestion": "Q17",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q17] 选择正确词语。",
+            "options": [
+              "忠诚",
+              "神奇",
+              "普通",
+              "吓人"
+            ],
+            "correct": "神奇"
+          },
+          {
+            "sourceQuestion": "Q18",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q18] 选择正确词语。",
+            "options": [
+              "惭愧",
+              "孤单",
+              "苦恼",
+              "激动"
+            ],
+            "correct": "苦恼"
+          },
+          {
+            "sourceQuestion": "Q19",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q19] 选择正确词语。",
+            "options": [
+              "鼓励",
+              "催促",
+              "责备",
+              "吩咐"
+            ],
+            "correct": "鼓励"
+          },
+          {
+            "sourceQuestion": "Q20",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q20] 选择正确词语。",
+            "options": [
+              "温暖",
+              "悲伤",
+              "慈祥",
+              "苍白"
+            ],
+            "correct": "慈祥"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-CH-2025-RedSwastika-Q21-25",
+        "subject": "Chinese",
+        "passage": {
+          "title": "妈妈的双手",
+          "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 15–16; P6_Chinese_2025_SA2_redswastika.pdf",
+          "text": "我爱妈妈的一切，除了她那双手。妈妈的工作很辛苦，所以手变得又干又粗，看起来很丑。每当那粗粗的手摸我的脸时，我总会不自觉地躲开。\n\n“啊，好痛！”一次，妈妈做完家务后，又用她又干又粗的手摸我的脸，我忍不住大叫。妈妈赶紧把手缩回，不好意思地对我笑了笑。\n\n我拉起妈妈的手说：“妈妈，您为什么会有这样一双手呢？您不能让手变得又白又滑吗？”\n\n妈妈看着我，笑着说：“这双手既是父亲的手，也是母亲的手啊！这双手要做的工作实在太多了，不能变回又细又白的样子了！”\n\n听了妈妈的话，我终于明白了。三岁那年，爸爸就离开了这世界。从那时起，妈妈就一个人把我带大，这双手给了我无限的爱。我看着妈妈那双手，忽然觉得妈妈的手才是这世上最漂亮的手。我默默下定决心：长大以后，我一定要好好照顾妈妈，让她过上舒服的生活。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q21",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "作者平时躲开妈妈的手，主要因为什么？",
+            "options": [
+              "妈妈的手很丑。",
+              "妈妈刚做完家务。",
+              "妈妈一摸就觉得痛。",
+              "他讨厌妈妈那一双手。"
+            ],
+            "correct": "妈妈的手很丑。"
+          },
+          {
+            "sourceQuestion": "Q22",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "妈妈“不好意思地对我笑了笑”说明心情怎样？",
+            "options": [
+              "吃惊。",
+              "失望。",
+              "伤心。",
+              "难为情。"
+            ],
+            "correct": "难为情。"
+          },
+          {
+            "sourceQuestion": "Q23",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "“这双手既是父亲的手，也是母亲的手啊”指什么？",
+            "options": [
+              "妈妈一个人要当爸爸也要当妈妈。",
+              "妈妈既要照顾孩子，还要做家务。",
+              "妈妈的手和爸爸一样，又干又粗。",
+              "妈妈感到很累，因为爸爸去世了。"
+            ],
+            "correct": "妈妈一个人要当爸爸也要当妈妈。"
+          },
+          {
+            "sourceQuestion": "Q24",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "听了妈妈的话，作者有什么新认识？",
+            "options": [
+              "认为妈妈应该保养双手。",
+              "妈妈的双手充满了母爱。",
+              "觉得妈妈应该减少她的工作。",
+              "妈妈的手是因为爸爸才变丑。"
+            ],
+            "correct": "妈妈的双手充满了母爱。"
+          },
+          {
+            "sourceQuestion": "Q25",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "作者“默默下定决心”的原因？",
+            "options": [
+              "作者害怕妈妈会伤心难过。",
+              "作者不爱妈妈，却得接受她。",
+              "作者理解妈妈的辛苦与付出。",
+              "作者想让妈妈的双手变漂亮。"
+            ],
+            "correct": "作者理解妈妈的辛苦与付出。"
+          }
+        ]
+      }
+    },
+    {
+      "category": "dialogue",
+      "record": {
+        "groupId": "P6-CH-2025-RedSwastika-Q26-29",
+        "subject": "Chinese",
+        "passage": {
+          "title": "楼梯口的危险游戏",
+          "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 17; P6_Chinese_2025_SA2_redswastika.pdf",
+          "text": "志成：文安，放学后要到学校附近的草地踢球吗？\n文安：不行，[Q26]___。\n志成：怎么会突然这样？[Q27]___？\n文安：我今早从楼梯上摔了下来的。\n志成：怎么摔伤的？\n文安：当时我和朋友在楼梯口比谁能以最快的速度跳上二楼，想不到我的脚一滑，就跌了下来。\n志成：真是的，老师不是常常告诉我们，不可以在楼梯处玩吗？[Q28]___。\n文安：是啊，这次我真的知道错了！[Q29]___。\n志成：看来你真的得到教训了。那你就好好休息吧，下次再找你踢球。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q26",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q26] 选择适当的短语或短句。",
+            "correct": "我的脚受了伤"
+          },
+          {
+            "sourceQuestion": "Q27",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q27] 选择适当的短语或短句。",
+            "correct": "发生了什么事"
+          },
+          {
+            "sourceQuestion": "Q28",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q28] 选择适当的短语或短句。",
+            "correct": "你肯定是把她的话当成耳边风了"
+          },
+          {
+            "sourceQuestion": "Q29",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q29] 选择适当的短语或短句。",
+            "correct": "我以后不再做危险的事了"
+          }
+        ],
+        "optionBank": [
+          "又要被责骂了",
+          "发生了什么事",
+          "我的脚受了伤",
+          "你不喜欢踢球吗",
+          "我妈妈叫我回家做功课",
+          "我以后不再做危险的事了",
+          "你肯定是把她的话当成耳边风了",
+          "你的妈妈也经常提醒你要专心听课"
+        ]
+      }
+    },
+    {
+      "category": "practical",
+      "record": {
+        "groupId": "P6-CH-2025-RedSwastika-Q30-33",
+        "subject": "Chinese",
+        "passage": {
+          "title": "舞出精彩",
+          "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 18–20; P6_Chinese_2025_SA2_redswastika.pdf",
+          "text": "点亮你心中的舞台！\n在九月假期，新加坡文化中心为中小学生举办“舞出精彩”系列舞蹈课程，希望更多学生认识各种族舞蹈文化，勇敢表现自己。人数有限，赶快报名。\n\n| 课程 | 日期 | 时间 | 地点 | 人数 |\n| --- | --- | --- | --- | --- |\n| 华族舞蹈 | 9月8日 | 上午10点至中午12点 | 文化中心礼堂 | 40人 |\n| 马来族舞蹈 | 9月10日 | 下午3–5点 | 文化中心礼堂 | 50人 |\n| 印度族舞蹈 | 9月12日 | 下午2–4点 | 文化中心广场 | 50人 |\n\n以上课程免费，请到www.sgyszx.com报名，截止9月5日。\n上完课想继续学习，可直接到新加坡文化中心报名付费课程，享60元折扣。首60名报名学生获赠纪念品。\n请拨66339891向陈丽文小姐了解详情。\n新加坡文化中心，2025年8月19日。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q30",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "举办活动主要目的？",
+            "options": [
+              "让国人认识各种族的舞蹈文化。",
+              "鼓励公众参加免费的舞蹈课程。",
+              "吸引学生来报名参加付费课程。",
+              "希望有兴趣的人能获得纪念品。"
+            ],
+            "correct": "让国人认识各种族的舞蹈文化。"
+          },
+          {
+            "sourceQuestion": "Q31",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "想了解课程内容，应该怎么做？",
+            "options": [
+              "在9月5日之前上网。",
+              "打电话和陈小姐联系。",
+              "到新加坡文化中心问。",
+              "先直接去上免费课程。"
+            ],
+            "correct": "打电话和陈小姐联系。"
+          },
+          {
+            "sourceQuestion": "Q32",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "“点亮你心中的舞台”是什么意思？",
+            "options": [
+              "赶快上台表演。",
+              "勇敢表现自己。",
+              "学习各族舞蹈。",
+              "把舞台点亮。"
+            ],
+            "correct": "勇敢表现自己。"
+          },
+          {
+            "sourceQuestion": "Q33",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "你是美心，9月8日有空，留便条请妈妈帮报名，说明课程及方式。",
+            "displayAnswer": "妈妈：我想参加“舞出精彩”的华族舞蹈课，您可以帮我报名吗？请在9月5日前到www.sgyszx.com报名，谢谢！美心，8月20日上午7点。"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-CH-2025-RedSwastika-Q34-40",
+        "subject": "Chinese",
+        "passage": {
+          "title": "换个方式解决问题",
+          "source": "RedSwastika Primary 6 Chinese 2025, Paper 2; PDF pages 21–22; P6_Chinese_2025_SA2_redswastika.pdf",
+          "text": "明飞是个做事很认真的孩子。李老师经常夸他做事很用心，把所有事都做得很好。\n\n一天中午，明飞跟着李老师来到体育馆的一个小房间，里面有很多体育用品。角落里有个架子，李老师要明飞整理一下。\n\n明飞在小房间里忙了很久。他把架子上所有的盒子排得整整齐齐的，还在每个盒子上贴了小纸条，写上里面放了什么东西。看着干净整齐的架子，明飞觉得特别开心。\n\n第二天上体育课时，明飞推开小房间的门后吓了一跳。架子倒在地上，昨天整理好的东西全都从架子上倒了出来，贴的纸条也掉了好几张。原来，较早前有别的班级来拿体育用品，不小心碰倒了架子。看到自己的辛苦白费了，明飞不禁感到难过。\n\n李老师看到后，安慰明飞说：“没关系，我们再整理一次吧。”明飞低着头说：“就算我们重新整理好，下次有人来拿东西，架子还是会倒的。整理了又有什么用呢？我们应该想个更好的办法。”李老师惊讶地看了看明飞。以前，明飞遇到困难就哭，而且又哭又闹，今天有点不一样。\n\n明飞接着说：“能不能不让别的班来这儿拿东西呢？”李老师摇摇头，说：“这房间是大家一起用的地方，我们不能不让别人来啊。既然我们改变不了这个情况，不如换个思考方式来解决问题吧。”\n\n明飞想了想，突然胸有成竹地说：“老师，我有主意！我们可以在墙边装几个架子，把常用的体育用品放在大家容易拿到的地方。盒子再放别的角落。我们还可以在门上贴张图，告诉大家东西放在哪里！您说好不好？”\n\n李老师看着如此兴奋的明飞，微笑着点了点头，开心地说：“你长大了！”"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q34",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "文中形容“问题得到处理，有了结果”的词语是：",
+            "accepted": [
+              "解决"
+            ],
+            "displayAnswer": "解决"
+          },
+          {
+            "sourceQuestion": "Q35",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "文中形容“做事前有全面设想和成功把握”的词语是：",
+            "accepted": [
+              "胸有成竹"
+            ],
+            "displayAnswer": "胸有成竹"
+          },
+          {
+            "sourceQuestion": "Q36",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "老师要整理什么？整理后怎样？",
+            "displayAnswer": "体育馆小房间的架子。盒子排得整齐，每个贴小纸条，写着里面的东西。"
+          },
+          {
+            "sourceQuestion": "Q37",
+            "format": "Long-Answer",
+            "marks": 3,
+            "text": "什么让明飞不开心？",
+            "displayAnswer": "架子倒了，整理好的东西掉出来，纸条掉了好几张，辛苦白费。"
+          },
+          {
+            "sourceQuestion": "Q38",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "“这个情况”是什么？老师有什么建议？",
+            "displayAnswer": "房间供大家共用，不能禁止别人来拿东西。建议换个思考方式解决问题。"
+          },
+          {
+            "sourceQuestion": "Q39",
+            "format": "Long-Answer",
+            "marks": 3,
+            "text": "老师为什么为明飞开心？",
+            "displayAnswer": "以前遇困难又哭又闹，现在长大了，会主动解决问题。"
+          },
+          {
+            "sourceQuestion": "Q40",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "明飞是怎样的孩子？举例说明。",
+            "displayAnswer": "有责任感。发现整理好的东西倒了，会难过并为这事烦恼。"
+          }
+        ]
+      }
+    }
+  ],
+  "year": 2025,
+  "scope": "Paper 2",
+  "sourcePdf": "../2025 Chinese SA2/P6_Chinese_2025_SA2_redswastika.pdf"
+}

@@ -1,0 +1,283 @@
+{
+  "school": "PLMGS",
+  "subject": "Higher Chinese",
+  "stem": "P6_HChinese_2025_SA2_mgspayalebar",
+  "keyPages": "17–18",
+  "issues": [
+    "Q11: user confirmed retaining supplied 浮现.",
+    "Q16: supplied explanation says 立明 fractured his leg “在比赛中”; passage says it happened during training. Reference explanation uses the passage’s training context."
+  ],
+  "groups": [
+    {
+      "category": "cloze",
+      "record": {
+        "groupId": "P6-HC-2025-PLMGS-Q1-5",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "远方爸爸的爱",
+          "source": "PLMGS Primary 6 Higher Chinese 2025, Paper 2; PDF pages 2; P6_HChinese_2025_SA2_mgspayalebar.pdf",
+          "text": "那年，爸爸在外地工作，家里只有我和妈妈。有一天，放学后，外头下着大雪，我[Q1]___地走在雪地上，不让自己滑倒。过了很久才回到家。\n\n我发现厨房里飘来阵阵饭香，跑过去一看，妈妈正在煮我最爱的萝卜排骨汤。“快换衣服，洗手，吃饭！”妈妈边说边给我盛了一大碗汤。我喝了一口，整个人[Q2]___起来。我好奇地问：“妈今天怎么会煮这个？”\n\n妈妈脸上露出[Q3]___的笑容，说：“今天是你的生日呀，爸爸一早打电话来，叫我一定要煮你最爱的菜。”\n\n我听了，鼻子一酸，心里有一股说不出的感动。我马上拿起电话，等待爸爸接听时，我[Q4]___地看着窗外的雪，想起爸爸说过的话：“不管距离多远，心都会在你身边。”\n\n这句话，我以前听不太懂，但现在我[Q5]___明白了，爸爸的爱并没有因为距离而减少。此时，我感到特别幸福。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q1",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q1] 选择正确词语。",
+            "accepted": [
+              "小心翼翼",
+              "4"
+            ],
+            "displayAnswer": "小心翼翼"
+          },
+          {
+            "sourceQuestion": "Q2",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q2] 选择正确词语。",
+            "accepted": [
+              "暖和",
+              "2"
+            ],
+            "displayAnswer": "暖和"
+          },
+          {
+            "sourceQuestion": "Q3",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q3] 选择正确词语。",
+            "accepted": [
+              "慈祥",
+              "5"
+            ],
+            "displayAnswer": "慈祥"
+          },
+          {
+            "sourceQuestion": "Q4",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q4] 选择正确词语。",
+            "accepted": [
+              "若有所思",
+              "8"
+            ],
+            "displayAnswer": "若有所思"
+          },
+          {
+            "sourceQuestion": "Q5",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q5] 选择正确词语。",
+            "accepted": [
+              "终于",
+              "1"
+            ],
+            "displayAnswer": "终于"
+          }
+        ],
+        "optionBank": [
+          "终于",
+          "暖和",
+          "满意",
+          "小心翼翼",
+          "慈祥",
+          "永远",
+          "温和",
+          "若有所思"
+        ]
+      }
+    },
+    {
+      "category": "errorcorrect",
+      "record": {
+        "groupId": "P6-HC-2025-PLMGS-Q6-10",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "无声挑战日",
+          "source": "PLMGS Primary 6 Higher Chinese 2025, Paper 2; PDF pages 3; P6_HChinese_2025_SA2_mgspayalebar.pdf",
+          "text": "有一天，老师一走进课室，神情[Q6]【严厉】地说：“今天是‘无声挑战日’，上课时大家只能用动作、表情或写字来沟通，不可以讲话。”\n\n听了老师的话，教室里出奇地安静。老师又[Q7]（分）咐大家：“请用四支长短不一的铅笔，同时拼出一个正方形和一个三角形。”一看题目，同学们就立刻拼好三角形，再尝试拼出正方形。但怎么试也不成功。有人便开始[Q8]【迟疑】题目是不是出错了，不禁偷偷地议论纷纷。\n\n志华认真地思考。最后，他用三支铅笔拼成一个三角形，并在纸上写下：“资源有[Q9]（线）时，只能正确地完成一个，这比两个都做错好。”老师看了他的答案，说道：“志华冷静思考的行为是你们的[Q10]【模样】。在生活中，一个真正有智慧的人，会时时刻刻冷静思考，不会违反规则。”"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q6",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "改正“严厉”。",
+            "accepted": [
+              "严肃"
+            ],
+            "displayAnswer": "严肃"
+          },
+          {
+            "sourceQuestion": "Q7",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "（分）咐：改正错字。",
+            "accepted": [
+              "吩"
+            ],
+            "displayAnswer": "吩"
+          },
+          {
+            "sourceQuestion": "Q8",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "改正“迟疑”。",
+            "accepted": [
+              "怀疑"
+            ],
+            "displayAnswer": "怀疑"
+          },
+          {
+            "sourceQuestion": "Q9",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "有（线）：改正错字。",
+            "accepted": [
+              "限"
+            ],
+            "displayAnswer": "限"
+          },
+          {
+            "sourceQuestion": "Q10",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "改正“模样”。",
+            "accepted": [
+              "榜样"
+            ],
+            "displayAnswer": "榜样"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-HC-2025-PLMGS-Q11-16",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "跑道以外的坚持",
+          "source": "PLMGS Primary 6 Higher Chinese 2025, Paper 2; PDF pages 4–5; P6_HChinese_2025_SA2_mgspayalebar.pdf",
+          "text": "立明是一个热爱跑步的中学生。他从小就梦想有一天能代表学校参加全国比赛。\n\n可是，距离比赛只剩一个月时，立明在一次训练中，不小心跌倒，右腿骨折。医生告诉他，至少半年不能做剧烈的运动。听了医生的话，立明的眼中渐渐失去了光彩。他感到绝望，把最喜欢的运动服收进了柜子最深处，而且，始终不肯踏进康复治疗室的门。\n\n一天，老师带来一位坐在轮椅上的客人。那是一位穿着篮球国家队队服的男子，只是，他右腿的裤子被卷起，下面空空的。他微笑着，对大家说：“我曾是一名短跑选手，在一次车祸中失去了一条腿。那段日子我也想过放弃，但我明白，我失去的只是跑道，不是对运动的热爱。”接着，他在轮椅上灵活地转动着篮球，那坚定的眼神和自信的笑容，深深地印在立明心里。\n\n那晚，立明在床上翻来覆去。他望着天花板，脑中浮现出那位轮椅运动员的笑容。他握紧拳头：“只要我还想跑，就有希望。”第二天，他第一次主动要求去做康复训练。右腿的每一次弯曲、拉伸都痛得像被火烧，额头上的汗水一滴一滴地落在地板上，但他咬紧牙关坚持下来。\n\n几个月后，立明终于能站起来。第一次重新踏上跑道时，他的眼睛红了：他只是错过了那一年的比赛，但他没有错过成长。他明白了，真正的强者是在困境中仍然怀抱梦想、永不放弃。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q11",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "听了医生的话，叔叔的脸上【流露】出一丝苦笑。从文中找出画线词语的近义词。",
+            "accepted": [
+              "浮现"
+            ],
+            "displayAnswer": "浮现"
+          },
+          {
+            "sourceQuestion": "Q12",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "班长虽然生病了，但【依旧】抱病来上课。从文中找出画线词语的近义词。",
+            "accepted": [
+              "仍然"
+            ],
+            "displayAnswer": "仍然"
+          },
+          {
+            "sourceQuestion": "Q13",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "见到轮椅运动员之前，立明的行为是什么？为什么？",
+            "displayAnswer": "收起运动服，不肯进康复治疗室，因为医生说至少半年不能剧烈运动，无法参加比赛，他感到绝望。"
+          },
+          {
+            "sourceQuestion": "Q14",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "见到轮椅运动员之后，立明的行为是什么？为什么？",
+            "displayAnswer": "翻来覆去、握紧拳头，主动要求康复训练，忍痛坚持，因为他明白只要还想跑就有希望，要在困境中怀抱梦想、永不放弃。"
+          },
+          {
+            "sourceQuestion": "Q15",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "“我失去的只是跑道，不是对运动的热爱”是什么意思？运动员想告诉大家什么？",
+            "displayAnswer": "失去右腿不能短跑，但仍热爱运动，可以打篮球。他告诉大家要怀抱梦想，不轻易放弃，可用其他方式实现梦想。"
+          },
+          {
+            "sourceQuestion": "Q16",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "从“跑道以外的坚持”和“被困难打败了”中选一个最适合的题目，并举例说明理由。",
+            "displayAnswer": "选择“跑道以外的坚持”。立明训练时骨折，起初绝望；轮椅篮球运动员的坚持激励了他，他坚持康复训练，重新跑步，懂得困境中仍要怀抱梦想。"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-HC-2025-PLMGS-Q17-23",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "母亲的隔夜饭",
+          "source": "PLMGS Primary 6 Higher Chinese 2025, Paper 2; PDF pages 6–7; P6_HChinese_2025_SA2_mgspayalebar.pdf",
+          "text": "我从小住在一间政府组屋里，屋子虽小，但整洁温暖。父亲早年去世，母亲一个人在小餐馆里打工养家，我们的生活过得紧紧巴巴的。但是，母亲从不让我觉得缺少了什么。每天回家，桌上总是摆着热气腾腾的米饭和香喷喷的菜。母亲盛好饭，总把满满的一碗递给我，自己却只吃几口饭菜。我天真地以为，母亲真的像她说的那样：“妈妈不饿，所以吃得少。”\n\n直到长大后，我无意中发现了母亲的秘密。那天我提早下班，轻轻推开门，看见母亲正坐在厨房里的角落，拿着一个小碗吃饭。碗里的米饭硬硬的，菜叶也失去了新鲜的颜色。\n\n看到我进来，母亲呆住，然后赶快笑着说：“怎么提早回来了？快坐下，妈妈给你热饭！”她边说边把手里的碗藏到橱柜里，好像害怕我看见她吃剩饭似的。我鼻子一酸，心里像堵了一块大石头。原来，母亲不是不饿，只是把新鲜的饭菜全留给我吃，自己吃着隔夜饭。\n\n从那天起，我开始观察母亲的一举一动。逛街时，她总说自己不缺衣服，可是一看到我喜欢的东西，就想办法给我买；家里有好吃的，她总是先让我吃，自己留下一点就满足了；哪怕晚上加班很晚，她一回到家，就马上给我热饭，说：“趁热吃，不然就凉了。”\n\n有一天晚上，我趁母亲不注意，悄悄为她热了一碗饭，端到她面前。母亲呆住了，随即便笑了，眼角的细纹像花一样盛开。那一刻，我心里升起一种从未有过的温暖。我知道，母亲吃隔夜饭，不是因为喜欢，而是因为心里装着我。母亲只需要一份简单的关心，就会感到满足和快乐。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q17",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "解释“天真地以为”（第一段）在文中的意思。",
+            "displayAnswer": "作者看母亲只吃几口饭菜，单纯地相信她是因为不饿才吃得少。"
+          },
+          {
+            "sourceQuestion": "Q18",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "解释“眼角的细纹像花一样盛开”（第五段）在文中的意思。",
+            "displayAnswer": "作者替母亲热饭，让母亲感到满足快乐，笑得眼角的皱纹舒展开来。"
+          },
+          {
+            "sourceQuestion": "Q19",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "作者一家住在哪里？他的生活是怎样的？",
+            "displayAnswer": "住政府组屋，屋子虽小但整洁温暖。父亲早逝，生活拮据，但母亲把新鲜饭菜留给他，不让他觉得缺少什么，生活温暖。"
+          },
+          {
+            "sourceQuestion": "Q20",
+            "format": "Long-Answer",
+            "marks": 3,
+            "text": "“母亲的秘密”指什么？",
+            "displayAnswer": "把新鲜饭菜留给作者，自己吃隔夜饭，并不想让作者知道。"
+          },
+          {
+            "sourceQuestion": "Q21",
+            "format": "Writing-Constrained",
+            "marks": 4,
+            "text": "用不超过15个字写出第四段的段落大意。",
+            "displayAnswer": "母亲对我的爱都表现在她的行动里。"
+          },
+          {
+            "sourceQuestion": "Q22",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "母亲是怎样的人？从哪两件事可以看出？",
+            "displayAnswer": "全心全意爱孩子的人。把新鲜饭菜留给作者，自己吃隔夜饭；说自己不缺衣服，却想办法买作者喜欢的东西。"
+          },
+          {
+            "sourceQuestion": "Q23",
+            "format": "Long-Answer",
+            "marks": 5,
+            "text": "你同意“母亲只需要一份简单的关心，就会感到满足和快乐”吗？为什么？举例说明。",
+            "displayAnswer": "示例：同意。作者替母亲热一碗饭，她就笑了，说明简单关心也能让她满足快乐。例如去超市帮妈妈提袋子，或见她累了主动洗碗，妈妈也会开心。"
+          }
+        ]
+      }
+    }
+  ],
+  "year": 2025,
+  "scope": "Paper 2",
+  "sourcePdf": "../2025 Higher Chinese SA2/P6_HChinese_2025_SA2_mgspayalebar.pdf"
+}

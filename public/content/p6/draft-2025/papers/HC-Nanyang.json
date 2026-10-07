@@ -1,0 +1,281 @@
+{
+  "school": "Nanyang",
+  "subject": "Higher Chinese",
+  "stem": "P6_HChinese_2025_SA2_nanyang",
+  "keyPages": "21–22",
+  "issues": [],
+  "groups": [
+    {
+      "category": "cloze",
+      "record": {
+        "groupId": "P6-HC-2025-Nanyang-Q1-5",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "坚持绘画",
+          "source": "Nanyang Primary 6 Higher Chinese 2025, Paper 2; PDF pages 6; P6_HChinese_2025_SA2_nanyang.pdf",
+          "text": "小明是个热爱绘画的学生。他报名参加了学校的绘画比赛，但在准备过程中，他总觉得自己的作品不如其他参赛者，心中充满了[Q1]___，担心自己在这次比赛中的表现，脑海中总是浮现出自己失败的画面。他不时想要[Q2]___，放弃这场比赛。\n\n小明的爷爷看出了他的挣扎，[Q3]___地对他说：“每个人都会在不断地怀疑自己及肯定自己的过程中成长，这样才能让我们变得更有[Q4]___。坚持下去，你会看到自己的进步。”\n\n听了爷爷的话，小明决定不再烦恼，继续努力创作。他坚持每天练习，不断尝试新的绘画技巧，逐渐发现自己的绘画水平有了显著的提升。最后，他的作品获得了大家的[Q5]___。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q1",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q1] 选择正确词语。",
+            "accepted": [
+              "忧虑",
+              "6"
+            ],
+            "displayAnswer": "忧虑"
+          },
+          {
+            "sourceQuestion": "Q2",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q2] 选择正确词语。",
+            "accepted": [
+              "半途而废",
+              "8"
+            ],
+            "displayAnswer": "半途而废"
+          },
+          {
+            "sourceQuestion": "Q3",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q3] 选择正确词语。",
+            "accepted": [
+              "语重心长",
+              "4"
+            ],
+            "displayAnswer": "语重心长"
+          },
+          {
+            "sourceQuestion": "Q4",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q4] 选择正确词语。",
+            "accepted": [
+              "智慧",
+              "5"
+            ],
+            "displayAnswer": "智慧"
+          },
+          {
+            "sourceQuestion": "Q5",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q5] 选择正确词语。",
+            "accepted": [
+              "赞赏",
+              "7"
+            ],
+            "displayAnswer": "赞赏"
+          }
+        ],
+        "optionBank": [
+          "态度",
+          "糟糕",
+          "榜样",
+          "语重心长",
+          "智慧",
+          "忧虑",
+          "赞赏",
+          "半途而废"
+        ]
+      }
+    },
+    {
+      "category": "errorcorrect",
+      "record": {
+        "groupId": "P6-HC-2025-Nanyang-Q6-10",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "暴雨后的救助",
+          "source": "Nanyang Primary 6 Higher Chinese 2025, Paper 2; PDF pages 7; P6_HChinese_2025_SA2_nanyang.pdf",
+          "text": "昨日，一场突如其来的暴雨横扫了市区，造成多条道路积水的情况[Q6]【贵重】，给市民出行带来了极大的不便。许多司机被困在路上，焦急地等待救助，有几个车主尝试抢救受困的车辆，结果累得[Q7]（金）疲力尽。\n\n面对这一情况，市政部门迅速展开治理工作，派出排水车和工作人员清理堵[Q8]（色）的排水系统。尽管当局已经尽力处理当前的水灾，但部分受影响的市民还是不断[Q9]【抱歉】，认为市政部门应对危机的能力很差。\n\n与此同时，一些犯罪分子[Q10]（珍）机在混乱中盗窃财物。警方迅速行动，成功抓获多名犯人，确保了市民的财产安全。\n\n经过连夜奋战，市区大部分道路积水已被清除，交通逐渐恢复正常。市政部门表示，将进一步优化城市排水系统，以更好地应对极端天气。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q6",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "改正“贵重”。",
+            "accepted": [
+              "严重"
+            ],
+            "displayAnswer": "严重"
+          },
+          {
+            "sourceQuestion": "Q7",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "（金）疲力尽：改正错字。",
+            "accepted": [
+              "筋",
+              "精"
+            ],
+            "displayAnswer": "筋／精"
+          },
+          {
+            "sourceQuestion": "Q8",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "堵（色）：改正错字。",
+            "accepted": [
+              "塞"
+            ],
+            "displayAnswer": "塞"
+          },
+          {
+            "sourceQuestion": "Q9",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "改正“抱歉”。",
+            "accepted": [
+              "抱怨"
+            ],
+            "displayAnswer": "抱怨"
+          },
+          {
+            "sourceQuestion": "Q10",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "（珍）机：改正错字。",
+            "accepted": [
+              "趁"
+            ],
+            "displayAnswer": "趁"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-HC-2025-Nanyang-Q11-16",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "不一样的服务",
+          "source": "Nanyang Primary 6 Higher Chinese 2025, Paper 2; PDF pages 8–9; P6_HChinese_2025_SA2_nanyang.pdf",
+          "text": "新年前夕，我去家附近的购物中心剪头发。那里有好几家理发店，有些门可罗雀，有些大排长龙。我走了一圈后，发现一家店门口挂了一个小牌子，写着“剪发8元”，可是里面竟然一位客人都没有。我不禁暗自高兴，找到了这家价廉物美的店，还节省了时间。\n\n我推门进去，发现店里只有两个店员，男店员埋头玩手机，对我置之不理，女店员面无表情地看着我。我告诉他们我想剪头发，男店员头也不抬地说：“10元。”我感到很疑惑，说：“门口不是写着8元吗？”他抬起头，不耐烦地对我说：“小朋友，快过年了，当然要涨价了。”我追问道：“可是你们为什么不换价格牌呢？这样等于在欺骗顾客。”女店员满不在乎地回答：“哦，忘记换了。”我铁青着脸，直接推门而出。我终于明白为什么店里一个顾客也没有了。\n\n出来后，我直奔队伍最长的那家店。一踏进店里，收银台前的店员便热情地接待了我。这次我吸取教训，先问价格，他说：“剪发10元。”我印象中他们平时就是这个价格，我有点怀疑，便接着问：“要过年了，你们不加价吗？”店员微笑着解释：“来我们这儿的都是老顾客了，我们店注重服务质量，过年时也不涨价。”我经过再三确认，得到了确切的答复后，才赶紧去排队。只见店员虽然忙碌，但是脸上总是挂着笑容，对待客人也非常有耐心。\n\n终于轮到我了，理发师细心地询问我的要求后才开始给我剪发，而且手法熟练。剪完后，我看着镜子里清爽帅气的自己，也明白了这家店生意火爆的原因，以后我一定会做回头客的。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q11",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "听到这个好消息，我【忍不住】欢呼起来。从文中找出画线词语的近义词。",
+            "accepted": [
+              "不禁"
+            ],
+            "displayAnswer": "不禁"
+          },
+          {
+            "sourceQuestion": "Q12",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "妈妈【反复】提醒我：“路上要注意安全啊！”从文中找出画线词语的近义词。",
+            "accepted": [
+              "再三"
+            ],
+            "displayAnswer": "再三"
+          },
+          {
+            "sourceQuestion": "Q13",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "走进第一家店之前，作者的心情如何？为什么？",
+            "displayAnswer": "高兴，觉得找到了价廉物美的店，还能节省时间。"
+          },
+          {
+            "sourceQuestion": "Q14",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "离开第一家店时，作者的心情如何？为什么？",
+            "displayAnswer": "生气，店员态度差，新年涨价却不换价格牌。"
+          },
+          {
+            "sourceQuestion": "Q15",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "“以后我一定会做回头客的”是什么意思？作者为什么这样决定？",
+            "displayAnswer": "以后还会去这家店剪发。店员微笑解释，忙碌仍有笑容；理发师细心、手法熟练，剪出帅气发型，而且过年不涨价。"
+          },
+          {
+            "sourceQuestion": "Q16",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "从“不一样的服务”和“价格决定好坏”中选一个最适合的题目，并举例说明理由。",
+            "displayAnswer": "选择“不一样的服务”。第一家店态度差，没有顾客；第二家店热情、手法熟练，生意火爆。服务态度影响生意。"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-HC-2025-Nanyang-Q17-23",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "比金钱更宝贵的东西",
+          "source": "Nanyang Primary 6 Higher Chinese 2025, Paper 2; PDF pages 10–11; P6_HChinese_2025_SA2_nanyang.pdf",
+          "text": "又是一个无所事事的长周末，我在家中闷得发慌，突然心血来潮，想去圣淘沙环球影城重拾儿时回忆，便欣然搭上了前往圣淘沙的公共巴士，开始了一场说走就走的“旅行”。巴士缓慢地行驶着，原本无聊的车程被一对刚上车的父子打破了。孩子长得很是可爱，天真烂漫，他牵着父亲的手高兴地与父亲交谈着，很多乘客都被孩子的一举一动所感染，我享受着这对父子之间的温情，脸上的疲累在孩子的笑声中慢慢消失。\n\n这么巧，这对父子和我一样，也是要去环球影城。下车后，大家一同来到入口处，排队购票入内。售票窗口的玻璃上写着“成人100元，12岁以下儿童半价，1米以下幼童免票”。想必这个孩子已经上学了，能够识字，他指着玻璃跟父亲说道：“爸爸，我今年身高已经超过1米了！”父亲听了，先是沉默不语，接着把食指竖在嘴唇前。孩子看到后点了点头，便不再说话了。\n\n队伍慢慢移近售票窗口，只听到孩子的父亲对孩子轻声地说：“知道该怎么做了吧？”孩子说：“爸爸，我当然知道，像刚才上巴士一样是不是？”孩子的父亲微笑着点了点头。\n\n在检查门票前的那一刻，孩子突然把身子“沉”下来，像一只小鸭一般，身子一摇一摆地移进了大门。可能是人太多了，售票员没有发现这个学鸭子走路的孩子，接过那位父亲的那一张成人票，便让他们俩通过了。\n\n孩子进去以后，身子马上恢复了原样，他抬起下巴，挺起胸，大步往前跨。父亲悄悄地跟孩子竖起了大拇指，接着两人有说有笑地消失在人群里。\n\n在那一刻，我的心如同被一块大石头压着，心情沉重极了，为那个孩子，也为孩子的父亲。要知道，孩子蹲下来的不只是身体，还有比金钱更宝贵的东西。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q17",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "解释“一场说走就走的‘旅行’”（第一段）在文中的意思。",
+            "displayAnswer": "作者突然想去环球影城重拾回忆，就搭巴士出发了。"
+          },
+          {
+            "sourceQuestion": "Q18",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "解释“先是沉默不语，接着把食指竖在嘴唇前”（第二段）在文中的意思。",
+            "displayAnswer": "孩子说身高超过一米，父亲先不说话，再用动作阻止他继续说。"
+          },
+          {
+            "sourceQuestion": "Q19",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "作者一开始为什么喜欢这对父子？",
+            "displayAnswer": "孩子可爱、天真烂漫，牵着父亲的手高兴交谈，一举一动感染作者。父子温情让作者不再无聊疲累。"
+          },
+          {
+            "sourceQuestion": "Q20",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "检查门票之前和之后，孩子的行为有什么不同？目的是什么？",
+            "displayAnswer": "之前蹲低身子摇摆着进去；之后恢复原样，挺胸大步走。目的是假装不足一米，不用买儿童票。"
+          },
+          {
+            "sourceQuestion": "Q21",
+            "format": "Writing-Constrained",
+            "marks": 4,
+            "text": "用不超过20个字写出第四段的段落大意。",
+            "displayAnswer": "孩子沉下身子，售票员没发现，父子俩通过大门。"
+          },
+          {
+            "sourceQuestion": "Q22",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "为什么作者的心“如同被一块大石头压着”？",
+            "displayAnswer": "父亲两次教孩子骗人，成功后还称赞，令孩子以为骗人是对的。作者担心他不能明辨是非，感到沉重。"
+          },
+          {
+            "sourceQuestion": "Q23",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "你同意有比金钱更宝贵的东西吗？举一个生活中的例子说明。",
+            "displayAnswer": "示例：同意，诚实比金钱宝贵。买笔时阿姨多找五毛，我把多找的钱还给她，得到诚实的称赞，比多拿五毛更开心。"
+          }
+        ]
+      }
+    }
+  ],
+  "year": 2025,
+  "scope": "Paper 2",
+  "sourcePdf": "../2025 Higher Chinese SA2/P6_HChinese_2025_SA2_nanyang.pdf"
+}

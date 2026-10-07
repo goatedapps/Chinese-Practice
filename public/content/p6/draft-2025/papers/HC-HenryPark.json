@@ -1,0 +1,284 @@
+{
+  "school": "HenryPark",
+  "subject": "Higher Chinese",
+  "stem": "P6_HChinese_2025_SA2_henrypark",
+  "keyPages": "15–16",
+  "issues": [
+    "Q8: user approved 立即, replacing supplied 即时.",
+    "Q22: user approved the passage-based reference answer: the boy lost his left arm in a traffic accident and opponents cannot grab it to counter the move.",
+    "PDF pages 17–18 contain PLMGS Higher Chinese Paper 1, outside this Henry Park Paper 2 extraction."
+  ],
+  "groups": [
+    {
+      "category": "cloze",
+      "record": {
+        "groupId": "P6-HC-2025-HenryPark-Q1-5",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "探索世界与自我",
+          "source": "HenryPark Primary 6 Higher Chinese 2025, Paper 2; PDF pages 8; P6_HChinese_2025_SA2_henrypark.pdf",
+          "text": "我们的世界是那么美丽。它有高高的山，有宽广的海，还有[Q1]___的草原。然而，要探索这些[Q2]___的自然景观，并不一定是轻而易举的，每一次的前行，都可能需要面对挑战。\n\n有一次，我和爸爸一起去爬一座山。爬到半山时，山路难行，我爬得很辛苦，[Q3]___想要放弃。可是，爸爸鼓励我坚持下去，他对我说：“[Q4]___眼前的困难，你会有更大的收获。”于是，我咬紧牙关，一步一步往上爬，终于登上了山顶。站在山顶上，呼吸着新鲜的空气，我心里充满了喜悦和成就感。\n\n这次的经历让我明白，探索的过程不仅让我对世界有了更深的了解，更是对自我的挑战；它不仅让我学会了做事要坚持到底，还[Q5]___了我的成长。只要心怀勇气和梦想，就一定能发现更广阔的天地！"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q1",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q1] 选择正确词语。",
+            "accepted": [
+              "一望无际",
+              "8"
+            ],
+            "displayAnswer": "一望无际"
+          },
+          {
+            "sourceQuestion": "Q2",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q2] 选择正确词语。",
+            "accepted": [
+              "优美",
+              "6"
+            ],
+            "displayAnswer": "优美"
+          },
+          {
+            "sourceQuestion": "Q3",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q3] 选择正确词语。",
+            "accepted": [
+              "甚至",
+              "5"
+            ],
+            "displayAnswer": "甚至"
+          },
+          {
+            "sourceQuestion": "Q4",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q4] 选择正确词语。",
+            "accepted": [
+              "克服",
+              "3"
+            ],
+            "displayAnswer": "克服"
+          },
+          {
+            "sourceQuestion": "Q5",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "[Q5] 选择正确词语。",
+            "accepted": [
+              "促进",
+              "2"
+            ],
+            "displayAnswer": "促进"
+          }
+        ],
+        "optionBank": [
+          "遭受",
+          "促进",
+          "克服",
+          "流连忘返",
+          "甚至",
+          "优美",
+          "总算",
+          "一望无际"
+        ]
+      }
+    },
+    {
+      "category": "errorcorrect",
+      "record": {
+        "groupId": "P6-HC-2025-HenryPark-Q6-10",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "贝朗发明干洗剂",
+          "source": "HenryPark Primary 6 Higher Chinese 2025, Paper 2; PDF pages 9; P6_HChinese_2025_SA2_henrypark.pdf",
+          "text": "贝朗出生于一户贫苦的家庭。他13岁时便[Q6]【独立】外出打工，在一个有钱人家里打杂。他每天都工作到很晚，赚的钱却很有[Q7]（线），但他还是省吃俭用，将钱都存起来。\n\n一天半夜，贝朗被一阵急促的敲门声惊醒。女主人要他[Q8]【即使】起床给自己烫一件白色大衣。因为实在太困了，贝朗不小心将煤油灯打翻，灯里的油滴在了大衣上。女主人见了，十分生气，坚决要求贝朗免费做一年工，以此要他[Q9]（培）钱。贝朗不得不答应，但他也得到了那件衣服。贝朗将那件衣服挂在窗前，提醒自己以后别再犯错了。\n\n一天，他偶然发现那件衣服被煤油浸过的地方不但没脏，[Q10]【而是】比别的地方更加洁白。这个发现令贝朗兴奋极了，经过反复实验，他又尝试在煤油里加了一些其他的化学药品，终于发明了干洗剂。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q6",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "改正“独立”，写出正确词语。",
+            "accepted": [
+              "独自"
+            ],
+            "displayAnswer": "独自"
+          },
+          {
+            "sourceQuestion": "Q7",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "有（线）：改正错字。",
+            "accepted": [
+              "限"
+            ],
+            "displayAnswer": "限"
+          },
+          {
+            "sourceQuestion": "Q8",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "改正“即使”，写出正确词语。",
+            "accepted": [
+              "立即"
+            ],
+            "displayAnswer": "立即"
+          },
+          {
+            "sourceQuestion": "Q9",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "（培）钱：改正错字。",
+            "accepted": [
+              "赔"
+            ],
+            "displayAnswer": "赔"
+          },
+          {
+            "sourceQuestion": "Q10",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "改正“而是”，写出正确词语。",
+            "accepted": [
+              "反而"
+            ],
+            "displayAnswer": "反而"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-HC-2025-HenryPark-Q11-16",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "一堂有意义的音乐课",
+          "source": "HenryPark Primary 6 Higher Chinese 2025, Paper 2; PDF pages 10–11; P6_HChinese_2025_SA2_henrypark.pdf",
+          "text": "今天的音乐课和往常有些不同，王老师带着一本神秘的乐谱走进了教室。她一反平时严肃的神情，笑着对我们说：“今天，我们要来玩一个音乐游戏。”这句话让整个教室顿时热闹起来。\n\n游戏的规则很简单，王老师会弹奏一段音乐，而我们要用自己喜欢的动作或者表情来表现出这段音乐的情感。同学们听了，觉得这个游戏很有趣，但我却不由得紧张起来。我总是担心别人会怎么看我，所以在课堂上从不积极发言，更别提站在全班面前表现自己了。\n\n小丽第一个起来，跳了一小段舞，逗得全班哈哈大笑。接下来是小文，他设计了一个有趣的动作，也赢得了热烈的掌声。我看着他们的表现，心里却更加紧张。\n\n终于轮到我。王老师微笑着看着我，说：“别紧张，跟着音乐走。”这一次的音乐十分柔和，我想了想，决定用手臂模仿出一只小鸟在飞的动作。起初，我的动作有些不灵活，但渐渐地，我放松下来，闭上了眼睛，全情投入音乐中。\n\n当我睁开眼睛时，教室里先是一片寂静，随即响起了热烈的掌声。王老师点点头，说：“很好，你的动作和音乐融为一体了。”听到她的鼓励，我的脸顿时红了。\n\n这堂课让我明白了一个道理：每个人都有自己的方式去表达情感，而音乐正是我们彼此沟通的方式之一。从严肃的开场到轻松的结尾，这节音乐课不仅带来了欢笑，还让我学会了勇敢面对自己。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q11",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "她【过去】总是和爷爷一起去散步。从文中找出画线词语的近义词。",
+            "accepted": [
+              "往常"
+            ],
+            "displayAnswer": "往常"
+          },
+          {
+            "sourceQuestion": "Q12",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "家人之间要【相互】关心，家庭才能更加温暖。从文中找出画线词语的近义词。",
+            "accepted": [
+              "彼此"
+            ],
+            "displayAnswer": "彼此"
+          },
+          {
+            "sourceQuestion": "Q13",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "比较作者游戏前的心情和原因。",
+            "displayAnswer": "作者紧张，因为担心同学会怎么看他。"
+          },
+          {
+            "sourceQuestion": "Q14",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "比较作者游戏中的心情和原因。",
+            "displayAnswer": "作者渐渐放松，闭上眼睛全情投入音乐中，动作做得很好。"
+          },
+          {
+            "sourceQuestion": "Q15",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "听了王老师的话，为什么作者的脸顿时红了？",
+            "displayAnswer": "同学们觉得他的表演精彩，响起了热烈的掌声；作者很少在全班面前表现自己，所以感到难为情、不好意思。"
+          },
+          {
+            "sourceQuestion": "Q16",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "从“勇敢面对自己的失败”和“一堂有意义的音乐课”中选一个最适合的题目，并举例说明理由。",
+            "displayAnswer": "选择“一堂有意义的音乐课”。作者起初十分紧张，后来放松并获得掌声；这堂课让他明白每个人表达情感的方式不同，也学会勇敢面对自己。"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-HC-2025-HenryPark-Q17-23",
+        "subject": "Higher Chinese",
+        "passage": {
+          "title": "柔道男孩的一招",
+          "source": "HenryPark Primary 6 Higher Chinese 2025, Paper 2; PDF pages 12–13; P6_HChinese_2025_SA2_henrypark.pdf",
+          "text": "有一个十岁的男孩在一次车祸中失去了左手臂。他一直很想学柔道，但许多柔道教练都拒绝教他，他们觉得男孩少了左手臂不可能赢过别人。男孩因此感到十分难过。有一天，男孩的母亲带了一个人来见男孩。男孩打开了门，是一位愿意教他的柔道大师。男孩有些意外地望着教练，说出了自己的心里话：“我没有左手臂，怎么能打赢别人呢？”教练微笑着说：“这要看你是如何看待这件事的，它看起来像是一个弱点，但也可以成为你的优势。”\n\n因为少了左手臂，男孩在训练时要付出更多的时间和精力，可是他从不放弃。几个月后，教练看他已掌握了基本功，便开始教他如何进攻，并教会他一个特别的招数。\n\n又过了半年，教练带男孩去参加柔道大赛。尽管是第一次参加比赛，但靠着熟练的基本功，男孩顺利地赢得了初赛。\n\n到了决赛第一场，他碰到的对手很强，不但长得高大强壮，还有着丰富的参赛经验。比赛进行到一半时，男孩被打得节节败退。教练见男孩打得如此吃力，也担心他受伤，就要求暂停。教练拍拍男孩的背，轻声说：“放轻松，找机会用我教你的那一个特别招数。”\n\n比赛继续后，对手已经完全不把男孩放在眼里，连连进攻，但是小男孩一直拼命抵抗着，没有放弃。这时，他的心中响起刚才教练的话，就在最后关头，男孩趁着对手放松了防备，敏捷地使出了那个特别的招数，一下把对手打倒在地，赢得了比赛。\n\n回家的路上，小男孩鼓起勇气问道：“教练，对手那么强大，我为什么只靠那一招就打赢了他？”\n\n教练微微一笑，说：“对方要对付你的这一招只有一个办法，就是要抓住你的左手。”"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q17",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "解释“有些意外地望着教练”（第一段）在文中的意思。",
+            "displayAnswer": "男孩认为自己没有左手臂，不能打赢别人，不明白为什么这位教练愿意教他柔道。"
+          },
+          {
+            "sourceQuestion": "Q18",
+            "format": "Long-Answer",
+            "marks": 2,
+            "text": "解释“心中响起刚才教练的话”（第五段）在文中的意思。",
+            "displayAnswer": "男孩突然想起教练叫他放轻松，找机会用特别招数打败对手。"
+          },
+          {
+            "sourceQuestion": "Q19",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "开始时，男孩为了什么事情而觉得难过？",
+            "displayAnswer": "男孩在车祸中失去左臂，想学柔道，却被许多教练拒绝；他们认为少了左臂不可能赢过别人，因此他很难过。"
+          },
+          {
+            "sourceQuestion": "Q20",
+            "format": "Writing-Constrained",
+            "marks": 4,
+            "text": "用不超过17个字写出第四段的段落大意。",
+            "displayAnswer": "男孩的对手很强，教练暂停比赛。"
+          },
+          {
+            "sourceQuestion": "Q21",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "决赛时，对手为什么完全不把男孩放在眼里？",
+            "displayAnswer": "对手自认更高大强壮，参赛经验丰富，而男孩没有左臂。暂停前他已把男孩打得节节败退，觉得自己能打赢男孩。"
+          },
+          {
+            "sourceQuestion": "Q22",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "“那一个特别招数”如何使男孩反败为胜？",
+            "displayAnswer": "男孩趁对手放松防备时，敏捷地使出特别招数，把对手打倒在地，赢得了比赛。对手要破解这一招，唯一的办法是抓住男孩的左手，但男孩在车祸中失去了左手臂，所以对手无法破解这一招。"
+          },
+          {
+            "sourceQuestion": "Q23",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "男孩是个怎样的人？写出性格特点并举两个例子说明。",
+            "displayAnswer": "男孩遇到困难坚持到底、不放弃。少了左臂，他训练时付出更多时间精力，却不放弃；比赛中对手连连进攻，他仍拼命抵抗。"
+          }
+        ]
+      }
+    }
+  ],
+  "year": 2025,
+  "scope": "Paper 2",
+  "sourcePdf": "../2025 Higher Chinese SA2/P6_HChinese_2025_SA2_henrypark.pdf"
+}

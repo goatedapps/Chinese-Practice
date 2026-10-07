@@ -1,0 +1,610 @@
+{
+  "school": "NanHua",
+  "subject": "Chinese",
+  "stem": "P6_Chinese_2025_SA2_nanhua",
+  "keyPages": "25–26",
+  "issues": [],
+  "groups": [
+    {
+      "category": "pinyin",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q1",
+        "lessonIds": [
+          5
+        ],
+        "question": "李叔叔很【贪财】，捡到别人的东西从来不还。请选择画线词语的汉语拼音。",
+        "options": [
+          "tān cái",
+          "tān chái",
+          "tāng cái",
+          "tāng chái"
+        ],
+        "correct": "tān cái",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 4; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "pinyin",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q2",
+        "lessonIds": [
+          5
+        ],
+        "question": "树上的【枯叶】被风一吹，落了一地。请选择画线词语的汉语拼音。",
+        "options": [
+          "qū yè",
+          "cū yè",
+          "gū yè",
+          "kū yè"
+        ],
+        "correct": "kū yè",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 4; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "vocab",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q3",
+        "lessonIds": [],
+        "question": "妈妈煮菜时放了很多盐，太___了。",
+        "options": [
+          "咸",
+          "减",
+          "喊",
+          "感"
+        ],
+        "correct": "咸",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 4; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "vocab",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q4",
+        "lessonIds": [],
+        "question": "古时候，人们认为飞上天空是一个不可能实现的___想。",
+        "options": [
+          "还",
+          "换",
+          "幻",
+          "欢"
+        ],
+        "correct": "幻",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 5; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "vocab",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q5",
+        "lessonIds": [
+          12
+        ],
+        "question": "他已经___地说了对不起，这次的事情就算了吧。",
+        "options": [
+          "诚恳",
+          "厉害",
+          "慷慨",
+          "幽默"
+        ],
+        "correct": "诚恳",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 5; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "vocab",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q6",
+        "lessonIds": [
+          8
+        ],
+        "question": "军人保卫国家，为大家做出了巨大的___。",
+        "options": [
+          "作用",
+          "贡献",
+          "前途",
+          "意义"
+        ],
+        "correct": "贡献",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 5; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "phrase",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q7",
+        "lessonIds": [
+          1,
+          5
+        ],
+        "question": "我们【克服】了很多困难，才完成学校给的任务。请选择画线词语的意思。",
+        "options": [
+          "经过多次尝试",
+          "通过努力战胜",
+          "完全消失不见",
+          "数量不断下降"
+        ],
+        "correct": "通过努力战胜",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 5; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "phrase",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q8",
+        "lessonIds": [
+          5
+        ],
+        "question": "看到小乐赢了比赛，大家【不约而同】地欢呼起来。请选择画线词语的意思。",
+        "options": [
+          "每一个人都在说同样一句话",
+          "没有办法控制好自己的心情",
+          "把心里所想的东西都做出来",
+          "没事先说好而做一样的事情"
+        ],
+        "correct": "没事先说好而做一样的事情",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 5; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "conjunction",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q9",
+        "lessonIds": [],
+        "question": "___妹妹年纪小，___她很懂事。",
+        "options": [
+          "只要……就",
+          "凡是……都",
+          "虽然……但是",
+          "因为……所以"
+        ],
+        "correct": "虽然……但是",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 6; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "conjunction",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q10",
+        "lessonIds": [],
+        "question": "小安做错了事情，___不认错，___把责任推给别人。",
+        "options": [
+          "即使……也",
+          "不论……都",
+          "不但……还",
+          "只有……才"
+        ],
+        "correct": "不但……还",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 6; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "sentence",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q11",
+        "lessonIds": [],
+        "question": "___，就要去向他道歉。",
+        "options": [
+          "如果你真的做错了",
+          "假如刚才跑得太快",
+          "只要遇到难做的题",
+          "反正你们已经和好"
+        ],
+        "correct": "如果你真的做错了",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 6; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "sentence",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q12",
+        "lessonIds": [
+          3
+        ],
+        "question": "在这场争夺冠军的比赛中，___。",
+        "options": [
+          "他差点摔倒在地上",
+          "每个人会认真准备",
+          "你每年都得第一名",
+          "她再次输给了对手"
+        ],
+        "correct": "她再次输给了对手",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 6; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "usage",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q13",
+        "lessonIds": [],
+        "question": "以下哪一个句子正确使用了“临时”？",
+        "options": [
+          "大雨停了，天空临时出现了一道美丽的彩虹。",
+          "听到这个好消息，弟弟临时兴奋得手舞足蹈。",
+          "小华总是早早做完功课，临时交给老师检查。",
+          "今天爷爷突然不舒服，我们临时决定不出门。"
+        ],
+        "correct": "今天爷爷突然不舒服，我们临时决定不出门。",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 6; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "usage",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q14",
+        "lessonIds": [
+          4
+        ],
+        "question": "以下哪一个句子正确使用了“慈祥”？",
+        "options": [
+          "导游正用慈祥的笑容欢迎每一位游客。",
+          "那只小狗慈祥地望着我手中的肉骨头。",
+          "老师用慈祥的微笑鼓励我们回答问题。",
+          "学长丽丽常常慈祥地帮助低年级同学。"
+        ],
+        "correct": "老师用慈祥的微笑鼓励我们回答问题。",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 7; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "usage",
+      "record": {
+        "questionID": "P6-CH-2025-NanHua-Q15",
+        "lessonIds": [
+          2
+        ],
+        "question": "以下哪一个句子正确使用了“迅速”？",
+        "options": [
+          "他开车的迅速太快，结果发生了车祸。",
+          "时间过得很迅速，一转眼假期又到了。",
+          "情况紧急，我们必须迅速处理这件事。",
+          "他觉得很累，走起路来脚步十分迅速。"
+        ],
+        "correct": "情况紧急，我们必须迅速处理这件事。",
+        "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 7; P6_Chinese_2025_SA2_nanhua.pdf"
+      }
+    },
+    {
+      "category": "cloze",
+      "record": {
+        "groupId": "P6-CH-2025-NanHua-Q16-20",
+        "subject": "Chinese",
+        "passage": {
+          "title": "登山队寻找水源",
+          "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 8; P6_Chinese_2025_SA2_nanhua.pdf",
+          "text": "一支登山队想用三天时间爬上一座危险的山。出发前，队长告诉队员们：“山路难走，但只要[Q16]___计划，我们一定能成功！”\n\n刚出发时，太阳刚刚升起，天还没那么热，队员们爬得很轻松。走到半路时，突然岩石松动，碎石哗哗滚落。队长大喊：“快点躲开！”大家听了，连忙侧着行走，[Q17]___被碎石砸中。\n\n中午时分，烈日当空，山路越来越难走，大家都累得满头大汗。很快，水也喝完了，一路上也没看到水源。队长擦着汗，喊道：“必须坚持下去！只有[Q18]___前进，才能找到水源！”队员们咬牙抓紧绳子，一步步地向前[Q19]___。\n\n就在大家快要支撑不下去的时候，一名队员在石缝中看到了几片绿叶，连忙告诉队长：“石缝中有植物，附近一定有水！”队长听了，便让大家原地休息，他和几个队员去附近寻找。果然，他们在不远处发现了泉水！大家最终喝上了水，[Q20]___很快就消失了。不久，他们就登上了山顶。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q16",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q16] 选择正确词语。",
+            "options": [
+              "发扬",
+              "考虑",
+              "约定",
+              "按照"
+            ],
+            "correct": "按照"
+          },
+          {
+            "sourceQuestion": "Q17",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q17] 选择正确词语。",
+            "options": [
+              "禁止",
+              "避免",
+              "阻拦",
+              "拒绝"
+            ],
+            "correct": "避免"
+          },
+          {
+            "sourceQuestion": "Q18",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q18] 选择正确词语。",
+            "options": [
+              "加倍",
+              "使劲",
+              "继续",
+              "再三"
+            ],
+            "correct": "继续"
+          },
+          {
+            "sourceQuestion": "Q19",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q19] 选择正确词语。",
+            "options": [
+              "移动",
+              "靠近",
+              "摇晃",
+              "探险"
+            ],
+            "correct": "移动"
+          },
+          {
+            "sourceQuestion": "Q20",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q20] 选择正确词语。",
+            "options": [
+              "疲倦",
+              "怒气",
+              "灾害",
+              "悲伤"
+            ],
+            "correct": "疲倦"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-CH-2025-NanHua-Q21-25",
+        "subject": "Chinese",
+        "passage": {
+          "title": "坚持制作动画",
+          "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 10–11; P6_Chinese_2025_SA2_nanhua.pdf",
+          "text": "明华从小就爱看动画片，长大后想要学做动画，但父母希望他长大后当医生。为了不让父母失望，明华考上了大学，毕业后就能成为一名医生。读大学三年级那年，他看到一个动画制作工具，这个工具激起了他对动画的兴趣。从那以后，明华便开始自学制作动画。大学毕业后，他放弃了当医生的机会，全心全意地追求做动画的梦想。\n\n明华的这个决定让所有人感到意外。他不去找工作，每天呆在房间里，靠父母养活他。邻居们都觉得明华有点不正常。那时候他们家里很穷，每天都吃不饱。夏天热得满头大汗，冬天冷得手指动不了，但他还是坚持画画。\n\n三年后，明华完成了第一个动画短片，并获得了30多个奖项，但这些并没有让他的生活变得更好，有人还在背后嘲笑他：“得奖能当饭吃吗？”\n\n七年后，明华终于有机会制作自己的电影。在制作电影期间，他有时为了一个细节，就修改了上百次。又过了四年，他的第一部电影终于在电影院播出，这部电影不仅受到了大家的欢迎，还赚了很多钱。明华的付出终于有了收获。\n\n从被嘲笑的追梦者到动画大师，明华用行动证明：坚持到底的人，才能看到希望。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q21",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "明华为什么放弃了成为医生的机会？",
+            "options": [
+              "他想要自己制作动画。",
+              "他只读到大学三年级。",
+              "明华没有从大学毕业。",
+              "明华有做动画的工具。"
+            ],
+            "correct": "他想要自己制作动画。"
+          },
+          {
+            "sourceQuestion": "Q22",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "邻居认为明华不正常的原因是什么？",
+            "options": [
+              "明华的家里非常贫穷。",
+              "明华从小爱看动画片。",
+              "明华每天都不能吃饱。",
+              "明华靠父母养活自己。"
+            ],
+            "correct": "明华靠父母养活自己。"
+          },
+          {
+            "sourceQuestion": "Q23",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "明华完成第一个动画短片后，发生了什么事？",
+            "options": [
+              "短片可以在电影院播出。",
+              "短片让他赚到了很多钱。",
+              "明华的生活变得更美好。",
+              "明华被人嘲笑得奖没用。"
+            ],
+            "correct": "明华被人嘲笑得奖没用。"
+          },
+          {
+            "sourceQuestion": "Q24",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "明华坚持制作动画电影的目的是什么？",
+            "options": [
+              "他想要赚很多的钱给父母。",
+              "他只想要追求自己的梦想。",
+              "他盼望能获得更多的奖项。",
+              "他希望修改电影里的细节。"
+            ],
+            "correct": "他只想要追求自己的梦想。"
+          },
+          {
+            "sourceQuestion": "Q25",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "这个故事告诉我们什么道理？",
+            "options": [
+              "靠父母养也不要不好意思。",
+              "不要因为别人的话而改变。",
+              "坚持不放弃才能实现梦想。",
+              "父母亲会影响孩子的选择。"
+            ],
+            "correct": "坚持不放弃才能实现梦想。"
+          }
+        ]
+      }
+    },
+    {
+      "category": "dialogue",
+      "record": {
+        "groupId": "P6-CH-2025-NanHua-Q26-29",
+        "subject": "Chinese",
+        "passage": {
+          "title": "适合自己的学习方法",
+          "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 12; P6_Chinese_2025_SA2_nanhua.pdf",
+          "text": "妈妈：你最近学习那么勤奋，我还以为你的成绩会有进步呢。\n康康：是啊，[Q26]___，这段时间我明明已经很用功了。\n妈妈：你觉得你的学习方法对吗？\n康康：[Q27]___，因为班上成绩最好的同学也是用这样的方法学习的。\n妈妈：你这么想就不对了。这个方法对别人有用，[Q28]___。\n康康：我还以为照着成绩好的同学的方法去学习一定没有问题。\n妈妈：不是这样的。只有找到适合你的学习方法，[Q29]___。\n康康：好的，我再想一想，我相信一定会找到的。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q26",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q26] 选择适当的短语或短句。",
+            "correct": "我也不知道是怎么回事"
+          },
+          {
+            "sourceQuestion": "Q27",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q27] 选择适当的短语或短句。",
+            "correct": "我的学习方法应该不会有问题"
+          },
+          {
+            "sourceQuestion": "Q28",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q28] 选择适当的短语或短句。",
+            "correct": "但不一定适合你"
+          },
+          {
+            "sourceQuestion": "Q29",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "[Q29] 选择适当的短语或短句。",
+            "correct": "学习成绩才能取得进步"
+          }
+        ],
+        "optionBank": [
+          "但不一定适合你",
+          "你需要仔细思考",
+          "让他们能够考得更好",
+          "我也不知道是怎么回事",
+          "学习成绩才能取得进步",
+          "我向别人请教了学习方法",
+          "我的学习方法应该不会有问题",
+          "他给我介绍了一些好的学习方法"
+        ]
+      }
+    },
+    {
+      "category": "practical",
+      "record": {
+        "groupId": "P6-CH-2025-NanHua-Q30-33",
+        "subject": "Chinese",
+        "passage": {
+          "title": "“祝福未来”讲故事比赛",
+          "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 13–15; P6_Chinese_2025_SA2_nanhua.pdf",
+          "text": "亲爱的同学们：\n你是否希望能够登上舞台表现自己？现在机会来啦！我校将举办“祝福未来”讲故事比赛，欢迎四至六年级的同学报名参加。\n\n日期：2025年10月22日\n时间：下午2点\n地点：学校礼堂\n\n注意事项：\n- 可使用道具。\n- 讲述时间不超过5分钟。\n- 参赛故事必须是自己写的故事。\n\n感兴趣的同学，请在9月20日前把报名表格交给华文老师，并提交200字以内的故事简介。如有疑问，请到学校办公室找林老师。\n为了更好地帮助同学们准备比赛，学校将举办赛前训练班，邀请著名作家李果来学校教同学们如何写好故事，以及如何把故事讲得更精彩。老师们也会举办一场赛前练习，欢迎同学们参加。\n欢乐小学母语部\n2025年8月20日"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q30",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "通告主要目的是___。",
+            "options": [
+              "介绍比赛的要求",
+              "邀请学生参加比赛",
+              "告诉学生比赛的时间",
+              "给学生表现自己的机会"
+            ],
+            "correct": "邀请学生参加比赛"
+          },
+          {
+            "sourceQuestion": "Q31",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "想报名参赛的同学应该怎么做？",
+            "options": [
+              "制作讲故事时要用的道具",
+              "到学校办公室去找林老师",
+              "去参加学校举办的训练班",
+              "将报名表格交给华文老师"
+            ],
+            "correct": "将报名表格交给华文老师"
+          },
+          {
+            "sourceQuestion": "Q32",
+            "format": "MCQ",
+            "marks": 2,
+            "text": "哪一个说法不正确？",
+            "options": [
+              "比赛讲的故事不能超过5分钟。",
+              "参赛故事必须是自己写的故事。",
+              "低年级学生能参加讲故事比赛。",
+              "所有选手都能够参加赛前练习。"
+            ],
+            "correct": "低年级学生能参加讲故事比赛。"
+          },
+          {
+            "sourceQuestion": "Q33",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "假如你是云云，发短信通知喜欢讲故事的小文比赛详情，告诉他赛前可参加什么活动及原因。",
+            "displayAnswer": "小文，我知道你喜欢讲故事。学校将于2025年10月22日下午2点在礼堂举行“祝福未来”讲故事比赛。你可以参加赛前训练班，著名作家李果会教大家写好故事、把故事讲得更精彩，帮助你准备比赛。期待你的参与！"
+          }
+        ]
+      }
+    },
+    {
+      "category": "comprehension",
+      "record": {
+        "groupId": "P6-CH-2025-NanHua-Q34-40",
+        "subject": "Chinese",
+        "passage": {
+          "title": "归还钱包",
+          "source": "NanHua Primary 6 Chinese 2025, Paper 2; PDF pages 16–17; P6_Chinese_2025_SA2_nanhua.pdf",
+          "text": "放学后，我闷闷不乐地走回家。妈妈的生日快到了，我想给她买个蛋糕，但身上只有一块钱。走着走着，我踢到了一个东西，竟然是个钱包！我捡起来，打开一看，里面有好几张钞票。\n\n这时，我看见明华在我前面走着。我猜钱包是他不小心掉的。我正想追上去，把钱包还给他。但一个想法却冒了出来——这些钱正好可以给妈妈买生日蛋糕。剩下的，也可以帮一帮家里。于是，我把钱包收进了书包。\n\n到家后，我从钱包里抽出一张钞票藏好，然后把剩下的钱交给了妈妈。妈妈惊讶地问我：“你哪来这么多钱？”我把事情的经过说了出来。妈妈听后，脸色沉了下来。糟糕，妈妈生气了。她对我说：“孩子，做人要诚实，不是自己的东西不能要。”我不服气：“明华家那么有钱，他根本不会在乎少了这点钱。可我们家真的很需要啊！”妈妈摇摇头，说：“我们是有困难，但也不能做对不起别人的事情。”\n\n我听了，很惭愧，决定把钱包还给明华。可这件事并不容易。要是他知道我起初想要留着那些钱，会怎么看我？我想假装刚刚捡到钱包随手还给他，但当我站在他面前时，却怎么也说不出口。终于，我鼓起勇气，把事情的经过告诉了他，并请求他的原谅。\n\n明华听了，沉默了一会儿，然后大方地原谅了我，还拍拍我的肩膀说：“没关系，以后你要是遇到什么困难，尽管跟我说，我一定会帮你。”\n\n听了这番话，我心里暖暖的。"
+        },
+        "questions": [
+          {
+            "sourceQuestion": "Q34",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "文中表示“没想到”的词语是：",
+            "accepted": [
+              "竟然"
+            ],
+            "displayAnswer": "竟然"
+          },
+          {
+            "sourceQuestion": "Q35",
+            "format": "Fill-in",
+            "marks": 2,
+            "text": "文中表示“情况很不好”的词语是：",
+            "accepted": [
+              "糟糕"
+            ],
+            "displayAnswer": "糟糕"
+          },
+          {
+            "sourceQuestion": "Q36",
+            "format": "Long-Answer",
+            "marks": 3,
+            "text": "放学回家路上，作者的心情如何？为什么？",
+            "displayAnswer": "闷闷不乐。妈妈生日快到，身上只有一块钱，不够买蛋糕。"
+          },
+          {
+            "sourceQuestion": "Q37",
+            "format": "Long-Answer",
+            "marks": 3,
+            "text": "捡到钱包，一开始作者想怎么做？后来为什么改变想法？",
+            "displayAnswer": "追上明华，把钱包还给他。后来想用钱买妈妈的生日蛋糕，剩下的帮补家用。"
+          },
+          {
+            "sourceQuestion": "Q38",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "为什么归还钱包不容易？",
+            "displayAnswer": "怕明华知道他原想拿走钱包的钱，会对他产生坏印象，又不想谎称刚捡到钱包。"
+          },
+          {
+            "sourceQuestion": "Q39",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "“我心里暖暖的”是什么意思？为什么有这感受？",
+            "displayAnswer": "感动。没想到明华知道他想把钱包占为己有后，仍原谅他，并愿意在他有困难时帮助他。"
+          },
+          {
+            "sourceQuestion": "Q40",
+            "format": "Long-Answer",
+            "marks": 4,
+            "text": "作者是怎样的人？举例说明。",
+            "displayAnswer": "知错能改。原想用捡到的钱买蛋糕、贴补家用，听妈妈教导后知道错了，决定归还钱包。"
+          }
+        ]
+      }
+    }
+  ],
+  "year": 2025,
+  "scope": "Paper 2",
+  "sourcePdf": "../2025 Chinese SA2/P6_Chinese_2025_SA2_nanhua.pdf"
+}
