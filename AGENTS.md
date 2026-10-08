@@ -31,6 +31,7 @@ Original P6 vocabulary questions use `P6-CH-AUTHORED-L<n>-Q<nn>` IDs; their inli
 Practice’s Vocabulary count combines pinyin, vocab, phrase and usage; every P6 lesson currently has at least 20 questions across those four categories.
 P6 has 12 original stories, one per tingxie lesson; each uses at least half of that lesson's vocabulary in context.
 Keep intentionally wrong words in error-correction passages.
+P5 conjunction includes 80 workbook questions transcribed from the supplied temp HEIC photos; IDs use `P5-EPH-IMG<image>-Q<n>`, with empty lesson tags because no lesson mapping is known.
 P6 content directories retain runtime files only; source PDFs, extraction drafts and review documents were removed after approval.
 
 - `meta.yaml` — `label`/`lessonCount` for the level.

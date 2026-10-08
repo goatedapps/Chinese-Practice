@@ -328,3 +328,723 @@
     - 虽然……但是……
     - 与其……不如……
   correct: 不仅……而且……
+- questionID: P5-EPH-IMG8400-Q1
+  lessonIds: []
+  question: 阿姨卖的菜 ___ 新鲜，___ 价钱也很合理。
+  options:
+    - 不但……反而
+    - 不仅……而且
+    - 不管……还是
+    - 不是……而是
+  correct: 不仅……而且
+- questionID: P5-EPH-IMG8400-Q2
+  lessonIds: []
+  question: 那家餐馆的收费 ___ 便宜，___ 味道一般。
+  options:
+    - 虽然……但是
+    - 因为……所以
+    - 如果……就会
+    - 由于……因此
+  correct: 虽然……但是
+- questionID: P5-EPH-IMG8400-Q3
+  lessonIds: []
+  question: ___ 外头下着大雨，我们 ___ 在家里玩游戏。
+  options:
+    - 即使……依然
+    - 凡是……都得
+    - 反正……不如
+    - 尽管……还是
+  correct: 反正……不如
+- questionID: P5-EPH-IMG8400-Q4
+  lessonIds: []
+  question: ___ 时间再晚，爸爸 ___ 等到哥哥到家后才肯去睡。
+  options:
+    - 哪怕……也要
+    - 宁可……也不
+    - 不是……就是
+    - 与其……不如
+  correct: 哪怕……也要
+- questionID: P5-EPH-IMG8400-Q5
+  lessonIds: []
+  question: 挑食的弟弟不爱吃肉 ___ 不爱吃菜，让妈妈很烦恼。
+  options:
+    - 就
+    - 也
+    - 还
+    - 并
+  correct: 也
+- questionID: P5-EPH-IMG8400-Q6
+  lessonIds: []
+  question: ___ 家人的健康，妈妈再累也会为我们准备营养早餐。
+  options:
+    - 关于
+    - 为了
+    - 就是
+    - 除了
+  correct: 为了
+- questionID: P5-EPH-IMG8401-Q1
+  lessonIds: []
+  question: 明华的烧 ___ 没有退，___ 头也越来越疼了。
+  options:
+    - 因为……所以
+    - 不但……而且
+    - 即使……也都
+    - 虽然……但是
+  correct: 不但……而且
+- questionID: P5-EPH-IMG8401-Q2
+  lessonIds: []
+  question: 这里 ___ 下雨，街道 ___ 开始积水。
+  options:
+    - 一旦……就会
+    - 不但……而且
+    - 不是……就是
+    - 也许……因此
+  correct: 一旦……就会
+- questionID: P5-EPH-IMG8401-Q3
+  lessonIds: []
+  question: ___ 你都来到门外了，___ 进来喝杯茶吧！
+  options:
+    - 反正……不如
+    - 尽管……还是
+    - 哪怕……也要
+    - 由于……因此
+  correct: 反正……不如
+- questionID: P5-EPH-IMG8401-Q4
+  lessonIds: []
+  question: 这部手机功能 ___ 好，___ 不值得那个价钱。
+  options:
+    - 既……又
+    - 再……也
+    - 竟……也
+    - 一……就
+  correct: 再……也
+- questionID: P5-EPH-IMG8401-Q5
+  lessonIds: []
+  question: 爸爸妈妈希望我和哥哥能过一个充实 ___ 快乐的假期生活。
+  options:
+    - 就
+    - 也
+    - 却
+    - 而
+  correct: 而
+- questionID: P5-EPH-IMG8401-Q6
+  lessonIds: []
+  question: ___ 公司放假，不然妈妈每天都得去上班。
+  options:
+    - 除非
+    - 假如
+    - 如果
+    - 由于
+  correct: 除非
+- questionID: P5-EPH-IMG8402-Q1
+  lessonIds: []
+  question: 我 ___ 会呆在家，___ 会约朋友吃饭，现在还没决定。
+  options:
+    - 有的……有的
+    - 一边……一边
+    - 可以……可以
+    - 也许……也许
+  correct: 也许……也许
+- questionID: P5-EPH-IMG8402-Q2
+  lessonIds: []
+  question: ___ 通过试音的同学 ___ 能参加这次的比赛，所以你不能参加。
+  options:
+    - 就算……也
+    - 只要……就
+    - 凡是……都
+    - 只有……才
+  correct: 只有……才
+- questionID: P5-EPH-IMG8402-Q3
+  lessonIds: []
+  question: ___ 对方都开口了，我们 ___ 能不帮忙吗？
+  options:
+    - 如果……就
+    - 虽然……却
+    - 既然……还
+    - 只要……就
+  correct: 既然……还
+- questionID: P5-EPH-IMG8402-Q4
+  lessonIds: []
+  question: ___ 事情发生得太突然了，___ 爸爸来不及通知大家。
+  options:
+    - 可能……所以
+    - 虽然……但是
+    - 万一……只能
+    - 除非……不然
+  correct: 可能……所以
+- questionID: P5-EPH-IMG8402-Q5
+  lessonIds: []
+  question: 这场庆祝会的主角都不出席了，我们 ___ 去做什么呢？
+  options:
+    - 更
+    - 也
+    - 还
+    - 并
+  correct: 还
+- questionID: P5-EPH-IMG8403-Q1
+  lessonIds: []
+  question: ___ 今天是你的生日，___ 由你决定要去哪里庆祝吧。
+  options:
+    - 即使……也
+    - 如果……才
+    - 虽然……也
+    - 既然……就
+  correct: 既然……就
+- questionID: P5-EPH-IMG8403-Q2
+  lessonIds: []
+  question: ___ 我们今天是吃不到炸鸡了，___ 就改吃鸡饭好了。
+  options:
+    - 虽然……但是
+    - 因为……所以
+    - 除非……不然
+    - 反正……不如
+  correct: 反正……不如
+- questionID: P5-EPH-IMG8403-Q3
+  lessonIds: []
+  question: ___ 姐姐真的想当社会工作者，家人 ___ 会支持她。
+  options:
+    - 由于……因此
+    - 如果……当然
+    - 假如……就会
+    - 尽管……还是
+  correct: 如果……当然
+- questionID: P5-EPH-IMG8404-Q1
+  lessonIds: []
+  question: 车子 ___ 贵，叔叔为了工作 ___ 得忍痛买一辆。
+  options:
+    - 虽……但是
+    - 既……也是
+    - 连……也是
+    - 再……还是
+  correct: 再……还是
+- questionID: P5-EPH-IMG8404-Q2
+  lessonIds: []
+  question: ___ 我们现在才出门，___ 不一定赶得上七点那班列车。
+  options:
+    - 到底……都
+    - 如果……就
+    - 除非……不然
+    - 由于……因此
+  correct: 如果……就
+- questionID: P5-EPH-IMG8404-Q3
+  lessonIds: []
+  question: ___ 明天下雨，我 ___ 要把这份礼物送到外婆家。
+  options:
+    - 哪怕……也
+    - 如果……就
+    - 除非……不然
+    - 由于……因此
+  correct: 哪怕……也
+- questionID: P5-EPH-IMG8404-Q4
+  lessonIds: []
+  question: 学校放假了，他每天在家里 ___ 吃 ___ 睡。
+  options:
+    - 不但……也会
+    - 不是……就是
+    - 一边……一边
+    - 除了……还有
+  correct: 不是……就是
+- questionID: P5-EPH-IMG8404-Q5
+  lessonIds: []
+  question: 如果你不支持这项计划，我们 ___ 会和你一起投反对票。
+  options:
+    - 还
+    - 也
+    - 却
+    - 并
+  correct: 也
+- questionID: P5-EPH-IMG8404-Q6
+  lessonIds: []
+  question: 我们想好好地在外头玩一天，___ 爸爸一早就说他得加班，真叫人失望。
+  options:
+    - 虽然
+    - 而且
+    - 然而
+    - 反而
+  correct: 然而
+- questionID: P5-EPH-IMG8405-Q1
+  lessonIds: []
+  question: 我们是 ___ 觉得方便 ___ 决定到便利店去买日用品的。
+  options:
+    - 除非……才
+    - 如果……就
+    - 不管……都
+    - 因为……才
+  correct: 因为……才
+- questionID: P5-EPH-IMG8405-Q2
+  lessonIds: []
+  question: ___ 工作忙，妈妈 ___ 选择订外卖而不亲自做饭。
+  options:
+    - 假如……就会
+    - 反正……不如
+    - 即使……也得
+    - 尽管……还是
+  correct: 假如……就会
+- questionID: P5-EPH-IMG8405-Q3
+  lessonIds: []
+  question: 事情的真相我们 ___ 说 ___ 不说，真叫人为难。
+  options:
+    - 是……还是
+    - 不是……而是
+    - 除了……就是
+    - 一旦……就会
+  correct: 是……还是
+- questionID: P5-EPH-IMG8405-Q4
+  lessonIds: []
+  question: 这个塑料花瓶 ___ 不好看，价钱 ___ 不便宜，你就别买了。
+  options:
+    - 虽……但
+    - 既……也
+    - 连……还
+    - 再……都
+  correct: 既……也
+- questionID: P5-EPH-IMG8405-Q5
+  lessonIds: []
+  question: 爸爸是因为得上班才早起床，弟弟 ___ 是为了要看电视而早起床。
+  options:
+    - 而
+    - 则
+    - 也
+    - 就
+  correct: 则
+- questionID: P5-EPH-IMG8405-Q6
+  lessonIds: []
+  question: ___ 那个消息是真的，你也不应该随便告诉其他人。
+  options:
+    - 只有
+    - 就算
+    - 无论
+    - 既然
+  correct: 就算
+- questionID: P5-EPH-IMG8406-Q1
+  lessonIds: []
+  question: 叔叔 ___ 卖掉房子，___ 愿意住在如此偏远的地方。
+  options:
+    - 宁可……也不
+    - 与其……不如
+    - 不是……就是
+    - 不但……也会
+  correct: 宁可……也不
+- questionID: P5-EPH-IMG8406-Q2
+  lessonIds: []
+  question: ___ 你累了，我们 ___ 早点回去吧。
+  options:
+    - 即使……就
+    - 哪怕……也
+    - 如果……也
+    - 反正……就
+  correct: 反正……就
+- questionID: P5-EPH-IMG8406-Q3
+  lessonIds: []
+  question: ___ 姐姐看到自己的偶像上节目，___ 兴奋得大声尖叫。
+  options:
+    - 如果……可以
+    - 每当……都会
+    - 凡是……都会
+    - 自从……就是
+  correct: 每当……都会
+- questionID: P5-EPH-IMG8406-Q4
+  lessonIds: []
+  question: 班上的同学 ___ 喜欢运动，___ 喜欢画画，大家的兴趣都很不一样。
+  options:
+    - 有的……有的
+    - 一面……一面
+    - 有时……有时
+    - 一下……一下
+  correct: 有的……有的
+- questionID: P5-EPH-IMG8406-Q5
+  lessonIds: []
+  question: 他这样做实在太过分了，就 ___ 脾气好的班长也看不下去了。
+  options:
+    - 连
+    - 也
+    - 和
+    - 还
+  correct: 连
+- questionID: P5-EPH-IMG8406-Q6
+  lessonIds: []
+  question: ___ 有了宝宝，陈阿姨就忙得连喘气的机会都没有了。
+  options:
+    - 假如
+    - 因为
+    - 自从
+    - 虽然
+  correct: 自从
+- questionID: P5-EPH-IMG8407-Q1
+  lessonIds: []
+  question: 姐姐 ___ 乱吃东西，身体 ___ 出现过敏的反应。
+  options:
+    - 即使……也会
+    - 既然……那么
+    - 一旦……就会
+    - 凡是……都有
+  correct: 一旦……就会
+- questionID: P5-EPH-IMG8407-Q2
+  lessonIds: []
+  question: 连夜追看电视剧 ___ 影响睡眠，___ 浪费时间，我才不这样做呢！
+  options:
+    - 有时……有时
+    - 首先……接着
+    - 一来……二来
+    - 有的……有的
+  correct: 一来……二来
+- questionID: P5-EPH-IMG8407-Q3
+  lessonIds: []
+  question: 水果蔬菜对健康有益，___ 多吃 ___ 不会有问题。
+  options:
+    - 反正……也
+    - 如果……就
+    - 只有……才
+    - 就算……也
+  correct: 就算……也
+- questionID: P5-EPH-IMG8407-Q4
+  lessonIds: []
+  question: 叔叔 ___ 怎么说 ___ 是你的长辈，你不能对他无礼。
+  options:
+    - 既……又
+    - 再……也
+    - 虽……但
+    - 竟……也
+  correct: 再……也
+- questionID: P5-EPH-IMG8407-Q5
+  lessonIds: []
+  question: 这次的测试如果成功，我们 ___ 能将产品推出市场。
+  options:
+    - 就
+    - 也
+    - 连
+    - 却
+  correct: 就
+- questionID: P5-EPH-IMG8407-Q6
+  lessonIds: []
+  question: 小明不是故意犯错的，更 ___ 他已经认错了，你就原谅他吧！
+  options:
+    - 何况
+    - 况且
+    - 并且
+    - 而且
+  correct: 何况
+- questionID: P5-EPH-IMG8408-Q1
+  lessonIds: []
+  question: ___ 爸爸和妈妈都是夜猫子，___ 哥哥也养成了迟睡的坏习惯。
+  options:
+    - 既然……当然
+    - 反正……正好
+    - 如果……就会
+    - 由于……因此
+  correct: 由于……因此
+- questionID: P5-EPH-IMG8408-Q2
+  lessonIds: []
+  question: 你 ___ 做了决定，___ 不能再改变主意。
+  options:
+    - 一旦……就
+    - 虽然……却
+    - 就算……也
+    - 已经……还
+  correct: 一旦……就
+- questionID: P5-EPH-IMG8408-Q3
+  lessonIds: []
+  question: ___ 我说什么你们都不相信，那我 ___ 不和你们多说了。
+  options:
+    - 反正……就
+    - 除非……才
+    - 只有……才
+    - 就算……也
+  correct: 反正……就
+- questionID: P5-EPH-IMG8408-Q4
+  lessonIds: []
+  question: 阿姨 ___ 是我的长辈 ___ 是我的朋友，我们的感情很好。
+  options:
+    - 虽……却
+    - 既……也
+    - 是……还是
+    - 不是……就是
+  correct: 既……也
+- questionID: P5-EPH-IMG8408-Q5
+  lessonIds: []
+  question: 要不是我苦苦哀求，姐姐 ___ 不肯把那个背包借我用呢！
+  options:
+    - 也
+    - 都
+    - 却
+    - 才
+  correct: 才
+- questionID: P5-EPH-IMG8408-Q6
+  lessonIds: []
+  question: 妈妈买了两份一模一样的礼物，___ 两兄弟争吵。
+  options:
+    - 因为
+    - 以免
+    - 所以
+    - 为了
+  correct: 以免
+- questionID: P5-EPH-IMG8409-Q1
+  lessonIds: []
+  question: 油炸食物 ___ 好吃，你 ___ 不能连续几餐都吃炸鸡啊！
+  options:
+    - 一……就
+    - 虽……但
+    - 既……又
+    - 再……也
+  correct: 再……也
+- questionID: P5-EPH-IMG8409-Q2
+  lessonIds: []
+  question: ___ 弟弟说他不想吃，你 ___ 把他的便当也吃了吧。
+  options:
+    - 就算……也
+    - 凡是……都
+    - 反正……就
+    - 虽然……但
+  correct: 反正……就
+- questionID: P5-EPH-IMG8409-Q3
+  lessonIds: []
+  question: ___ 我们把事情给说出去，大家 ___ 一定会责怪阿顺。
+  options:
+    - 不管……都
+    - 只有……才
+    - 除了……还
+    - 如果……就
+  correct: 如果……就
+- questionID: P5-EPH-IMG8409-Q4
+  lessonIds: []
+  question: 这个款式的手表 ___ 很旧了，___ 价钱不便宜。
+  options:
+    - 虽然……但是
+    - 不但……而且
+    - 尽管……还是
+    - 就算……仍然
+  correct: 不但……而且
+- questionID: P5-EPH-IMG8409-Q5
+  lessonIds: []
+  question: 无论是搭巴士 ___ 搭地铁，你都必须在三点之前到达目的地。
+  options:
+    - 和
+    - 也
+    - 或
+    - 却
+  correct: 或
+- questionID: P5-EPH-IMG8409-Q6
+  lessonIds: []
+  question: 这件事情闹得那么大，你 ___ 没听说吗？
+  options:
+    - 也许
+    - 难道
+    - 结果
+    - 大概
+  correct: 难道
+- questionID: P5-EPH-IMG8410-Q1
+  lessonIds: []
+  question: ___ 你还不赶快换校服和吃早餐，你上学 ___ 迟到。
+  options:
+    - 由于……因此
+    - 如果……就会
+    - 因为……所以
+    - 只因……不然
+  correct: 如果……就会
+- questionID: P5-EPH-IMG8410-Q2
+  lessonIds: []
+  question: ___ 你想买的东西和学习有关，___ 妈妈是不会答应的。
+  options:
+    - 除了……还有
+    - 除非……不然
+    - 因为……所以
+    - 为了……当然
+  correct: 除非……不然
+- questionID: P5-EPH-IMG8410-Q3
+  lessonIds: []
+  question: 你 ___ 自己在家里看电视，___ 跟我们一起去看电影，快做决定吧！
+  options:
+    - 要么……要么
+    - 有时……有时
+    - 一下……一下
+    - 也许……也许
+  correct: 要么……要么
+- questionID: P5-EPH-IMG8410-Q4
+  lessonIds: []
+  question: 这件事情 ___ 传出去，___ 会造成很多不必要的麻烦。
+  options:
+    - 要是……就
+    - 就算……也
+    - 凡是……都
+    - 自从……就
+  correct: 要是……就
+- questionID: P5-EPH-IMG8410-Q5
+  lessonIds: []
+  question: 幸好爷爷及时拉了我一把，___ 我一定会被那辆车撞上。
+  options:
+    - 不然
+    - 果然
+    - 当然
+    - 虽然
+  correct: 不然
+- questionID: P5-EPH-IMG8410-Q6
+  lessonIds: []
+  question: 妈妈在超市买了很多罐头食品，___ 孩子们肚子饿时可以拿来吃。
+  options:
+    - 以免
+    - 免得
+    - 为了
+    - 以便
+  correct: 以便
+- questionID: P5-EPH-IMG8411-Q1
+  lessonIds: []
+  question: ___ 你坚持不肯让步，我们 ___ 请有关当局来处理。
+  options:
+    - 反正……当然
+    - 如果……只好
+    - 即使……也会
+    - 因为……所以
+  correct: 如果……只好
+- questionID: P5-EPH-IMG8411-Q2
+  lessonIds: []
+  question: 睡前玩手机 ___ 影响睡眠，___ 影响身心健康。
+  options:
+    - 除了……还是
+    - 不仅……更会
+    - 不但……反而
+    - 由于……因此
+  correct: 不仅……更会
+- questionID: P5-EPH-IMG8411-Q3
+  lessonIds: []
+  question: 奶奶病得太重了，___ 是再世华佗 ___ 无能为力啊！
+  options:
+    - 哪怕……也
+    - 凡是……都
+    - 要是……就
+    - 虽然……却
+  correct: 哪怕……也
+- questionID: P5-EPH-IMG8411-Q4
+  lessonIds: []
+  question: 哥哥 ___ 能抽空去接弟弟下课，妈妈 ___ 不用特地请假了。
+  options:
+    - 不但……还
+    - 哪怕……也
+    - 要是……就
+    - 尽管……还
+  correct: 要是……就
+- questionID: P5-EPH-IMG8411-Q5
+  lessonIds: []
+  question: 你和同学们说话时要认真一些，这样大家 ___ 会尊重你的意见。
+  options:
+    - 才
+    - 而
+    - 却
+    - 则
+  correct: 才
+- questionID: P5-EPH-IMG8411-Q6
+  lessonIds: []
+  question: 那名千金大小姐 ___ 闹起脾气，身边的人都要闪躲。
+  options:
+    - 无论
+    - 凡是
+    - 就算
+    - 一旦
+  correct: 一旦
+- questionID: P5-EPH-IMG8412-Q1
+  lessonIds: []
+  question: ___ 爸爸提早回家，你 ___ 告诉他晚餐已经准备好了。
+  options:
+    - 要是……就
+    - 每当……都
+    - 哪怕……也
+    - 只因……才
+  correct: 要是……就
+- questionID: P5-EPH-IMG8412-Q2
+  lessonIds: []
+  question: 爸爸非常宠爱妹妹，___ 她想要买的，爸爸 ___ 会立刻帮她付钱。
+  options:
+    - 假如……就
+    - 凡是……都
+    - 就算……也
+    - 为了……便
+  correct: 凡是……都
+- questionID: P5-EPH-IMG8412-Q3
+  lessonIds: []
+  question: 眼前摆满了一桌的美食，哪怕我之前吃得 ___ 多，现在 ___ 吃得下！
+  options:
+    - 既……又
+    - 一……就
+    - 再……也
+    - 连……也
+  correct: 再……也
+- questionID: P5-EPH-IMG8412-Q4
+  lessonIds: []
+  question: 妈妈 ___ 一看到老鼠，___ 害怕得大声尖叫。
+  options:
+    - 只有……才能
+    - 只要……就会
+    - 万一……只好
+    - 即使……也会
+  correct: 只要……就会
+- questionID: P5-EPH-IMG8412-Q5
+  lessonIds: []
+  question: 这次的题目 ___ 没有我想象中的简单，我花了很长时间才完成试卷。
+  options:
+    - 虽
+    - 却
+    - 并
+    - 还
+  correct: 并
+- questionID: P5-EPH-IMG8412-Q6
+  lessonIds: []
+  question: 宝宝好不容易睡着了，___ 这个时候有人来按门铃，又把宝宝给吵醒了。
+  options:
+    - 仅仅
+    - 刚刚
+    - 偏偏
+    - 渐渐
+  correct: 偏偏
+- questionID: P5-EPH-IMG8413-Q1
+  lessonIds: []
+  question: ___ 明天下不下雨，我们 ___ 照原定计划去爬山。
+  options:
+    - 由于……因此
+    - 不管……都会
+    - 因为……所以
+    - 除非……才能
+  correct: 不管……都会
+- questionID: P5-EPH-IMG8413-Q2
+  lessonIds: []
+  question: 妈妈做的菜 ___ 有多难吃，我们 ___ 会吃个精光。
+  options:
+    - 如果……也会
+    - 万一……就得
+    - 不论……还是
+    - 除非……才会
+  correct: 不论……还是
+- questionID: P5-EPH-IMG8413-Q3
+  lessonIds: []
+  question: 这件事情 ___ 我一个人看到了，在这里的每个人 ___ 都看到了。
+  options:
+    - 不但……还
+    - 不光……也
+    - 除了……还
+    - 只有……才
+  correct: 不光……也
+- questionID: P5-EPH-IMG8413-Q4
+  lessonIds: []
+  question: 你做的 ___ 多，她 ___ 不会珍惜你对她的付出，别白费力气了。
+  options:
+    - 既……也
+    - 又……又
+    - 先……还
+    - 再……也
+  correct: 再……也
+- questionID: P5-EPH-IMG8413-Q5
+  lessonIds: []
+  question: 你说了那么多，这句话 ___ 是我想听到的。
+  options:
+    - 虽
+    - 却
+    - 才
+    - 还
+  correct: 才
+- questionID: P5-EPH-IMG8413-Q6
+  lessonIds: []
+  question: 妹妹突然病倒了，___ 妈妈立刻请假到学校去接她。
+  options:
+    - 甚至
+    - 或许
+    - 之后
+    - 于是
+  correct: 于是
