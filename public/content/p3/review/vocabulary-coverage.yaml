@@ -1,0 +1,1309 @@
+level: p3
+status: integrated
+registeredInApp: true
+minimumPerLesson: 20
+countedCategories:
+  - pinyin
+  - vocab
+  - phrase
+  - usage
+authoredQuestionCount: 134
+examVocabularyQuestions: 391
+vocabularyQuestionCount: 525
+overallQuestionCount: 825
+matchingRule: Only the tested target word is matched to taught vocabulary; incidental words and distractors do not assign lessons.
+distinctRule: Category, prompt text and correct answer identify a distinct question, ignoring source IDs and option order.
+lessons:
+  - lessonId: 1
+    title: 第一课 (Lesson 1)
+    paperQuestions: 20
+    authoredQuestions: 0
+    totalQuestions: 20
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 1
+      vocab: 17
+      phrase: 0
+      usage: 2
+    questions:
+      - questionID: P3-CH-2025-WA1-TAONAN-Q7
+        category: pinyin
+        targetWord: 努力
+      - questionID: P3-CH-2025-SA2-NANYANG-Q19
+        category: vocab
+        targetWord: 希望
+      - questionID: P3-CH-2025-SA2-ROSYTH-Q17
+        category: vocab
+        targetWord: 保卫
+      - questionID: P3-CH-2025-WA1-ACSPRIMARY-Q2
+        category: vocab
+        targetWord: 保卫
+      - questionID: P3-CH-2025-WA1-NANYANG-Q5
+        category: vocab
+        targetWord: 复习
+      - questionID: P3-CH-2025-WA1-ROSYTH-Q4
+        category: vocab
+        targetWord: 练习
+      - questionID: P3-CH-2025-WA1-TAONAN-Q1
+        category: vocab
+        targetWord: 希望
+      - questionID: P3-CH-2025-WA1-TAONAN-Q3
+        category: vocab
+        targetWord: 读
+      - questionID: P3-CH-2025-WA1-TAONAN-Q5
+        category: vocab
+        targetWord: 翻到
+      - questionID: P3-CH-2025-WA1-TAONAN-Q13
+        category: vocab
+        targetWord: 成为
+      - questionID: P3-CH-2025-WA2-CATHOLIC-Q10
+        category: vocab
+        targetWord: 翻到
+      - questionID: P3-CH-2025-WA2-CATHOLIC-Q14
+        category: vocab
+        targetWord: 努力
+      - questionID: P3-CH-2025-WA2-MAHABODHI-Q4
+        category: vocab
+        targetWord: 科学
+      - questionID: P3-CH-2025-WA2-MAHABODHI-Q5
+        category: vocab
+        targetWord: 复习
+      - questionID: P3-CH-2025-WA2-MAHABODHI-Q6
+        category: vocab
+        targetWord: 努力
+      - questionID: P3-CH-2025-WA2-METHODIST-Q7
+        category: vocab
+        targetWord: 复习
+      - questionID: P3-CH-2025-WA2-PEIHWA-Q6
+        category: vocab
+        targetWord: 保卫
+      - questionID: P3-CH-2025-WA3-TAONAN-S3-Q16
+        category: vocab
+        targetWord: 努力
+      - questionID: P3-CH-2025-WA1-CHIJ-Q19
+        category: usage
+        targetWord: 希望
+      - questionID: P3-CH-2025-WA1-CHIJ-Q20
+        category: usage
+        targetWord: 练习
+  - lessonId: 2
+    title: 第二课 (Lesson 2)
+    paperQuestions: 11
+    authoredQuestions: 9
+    totalQuestions: 20
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 2
+      vocab: 15
+      phrase: 2
+      usage: 1
+    questions:
+      - questionID: P3-CH-AUTHORED-L2-Q01
+        category: pinyin
+        targetWord: 陈
+      - questionID: P3-CH-AUTHORED-L2-Q02
+        category: pinyin
+        targetWord: 聪明
+      - questionID: P3-CH-2025-SA2-RAFFLES-Q1
+        category: vocab
+        targetWord: 矮
+      - questionID: P3-CH-2025-WA1-ACSPRIMARY-Q6
+        category: vocab
+        targetWord: 相信
+      - questionID: P3-CH-2025-WA1-NANYANG-Q19
+        category: vocab
+        targetWord: 意思
+      - questionID: P3-CH-2025-WA1-ROSYTH-Q1
+        category: vocab
+        targetWord: 胖
+      - questionID: P3-CH-2025-WA1-TAONAN-Q2
+        category: vocab
+        targetWord: 相信
+      - questionID: P3-CH-2025-WA1-TAONAN-Q8
+        category: vocab
+        targetWord: 一定
+      - questionID: P3-CH-2025-WA1-TAONAN-Q9
+        category: vocab
+        targetWord: 帮手
+      - questionID: P3-CH-2025-WA2-HENRYPARK-Q2
+        category: vocab
+        targetWord: 退
+      - questionID: P3-CH-2025-WA2-HENRYPARK-Q6
+        category: vocab
+        targetWord: 相信
+      - questionID: P3-CH-2025-WA2-MAHABODHI-Q7
+        category: vocab
+        targetWord: 相信
+      - questionID: P3-CH-2025-WA2-PEIHWA-Q1
+        category: vocab
+        targetWord: 姓
+      - questionID: P3-CH-AUTHORED-L2-Q03
+        category: vocab
+        targetWord: 双
+      - questionID: P3-CH-AUTHORED-L2-Q04
+        category: vocab
+        targetWord: 语言
+      - questionID: P3-CH-AUTHORED-L2-Q05
+        category: vocab
+        targetWord: 谈天
+      - questionID: P3-CH-AUTHORED-L2-Q06
+        category: vocab
+        targetWord: 瘦
+      - questionID: P3-CH-AUTHORED-L2-Q07
+        category: phrase
+        targetWord: 姑妈
+      - questionID: P3-CH-AUTHORED-L2-Q08
+        category: phrase
+        targetWord: 梦想成真
+      - questionID: P3-CH-AUTHORED-L2-Q09
+        category: usage
+        targetWord: 奇怪
+  - lessonId: 3
+    title: 第三课 (Lesson 3)
+    paperQuestions: 23
+    authoredQuestions: 0
+    totalQuestions: 23
+    distinctQuestions: 22
+    categoryCounts:
+      pinyin: 1
+      vocab: 22
+      phrase: 0
+      usage: 0
+    questions:
+      - questionID: P3-CH-2025-WA2-TAONAN-Q6
+        category: pinyin
+        targetWord: 闹钟
+      - questionID: P3-CH-2025-SA2-ACS-Q2
+        category: vocab
+        targetWord: 吸管
+      - questionID: P3-CH-2025-SA2-ACS-Q18
+        category: vocab
+        targetWord: 改掉
+      - questionID: P3-CH-2025-SA2-AITONG-Q1
+        category: vocab
+        targetWord: 吸管
+      - questionID: P3-CH-2025-SA2-METHODIST-Q14
+        category: vocab
+        targetWord: 准时
+      - questionID: P3-CH-2025-SA2-NORTHLAND-Q18
+        category: vocab
+        targetWord: 盖子
+      - questionID: P3-CH-2025-SA2-RAFFLES-Q18
+        category: vocab
+        targetWord: 准时
+      - questionID: P3-CH-2025-WA1-ACSPRIMARY-Q7
+        category: vocab
+        targetWord: 习惯
+      - questionID: P3-CH-2025-WA1-HENRYPARK-Q6
+        category: vocab
+        targetWord: 改掉
+      - questionID: P3-CH-2025-WA1-HENRYPARK-Q8
+        category: vocab
+        targetWord: 准时
+      - questionID: P3-CH-2025-WA1-NANYANG-Q3
+        category: vocab
+        targetWord: 辆
+      - questionID: P3-CH-2025-WA1-NANYANG-Q17
+        category: vocab
+        targetWord: 伙伴
+      - questionID: P3-CH-2025-WA2-HENRYPARK-Q1
+        category: vocab
+        targetWord: 吸管
+      - questionID: P3-CH-2025-WA2-HENRYPARK-Q5
+        category: vocab
+        targetWord: 伙伴
+      - questionID: P3-CH-2025-WA2-MAHABODHI-Q2
+        category: vocab
+        targetWord: 陪
+      - questionID: P3-CH-2025-WA2-MAHABODHI-Q9
+        category: vocab
+        targetWord: 习惯
+      - questionID: P3-CH-2025-WA2-METHODIST-Q2
+        category: vocab
+        targetWord: 迟到
+      - questionID: P3-CH-2025-WA2-METHODIST-Q3
+        category: vocab
+        targetWord: 闹钟
+      - questionID: P3-CH-2025-WA2-PEIHWA-Q2
+        category: vocab
+        targetWord: 陪
+      - questionID: P3-CH-2025-WA2-PEIHWA-Q5
+        category: vocab
+        targetWord: 习惯
+      - questionID: P3-CH-2025-WA2-TAONAN-Q3
+        category: vocab
+        targetWord: 改掉
+      - questionID: P3-CH-2025-WA2-TAONAN-Q4
+        category: vocab
+        targetWord: 伙伴
+      - questionID: P3-CH-2025-WA2-TAONAN-Q14
+        category: vocab
+        targetWord: 准时
+  - lessonId: 4
+    title: 第四课 (Lesson 4)
+    paperQuestions: 15
+    authoredQuestions: 8
+    totalQuestions: 23
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 2
+      vocab: 19
+      phrase: 1
+      usage: 1
+    questions:
+      - questionID: P3-CH-AUTHORED-L4-Q01
+        category: pinyin
+        targetWord: 绿豆
+      - questionID: P3-CH-AUTHORED-L4-Q02
+        category: pinyin
+        targetWord: 幼苗
+      - questionID: P3-CH-2025-SA2-HENRYPARK-Q18
+        category: vocab
+        targetWord: 变化
+      - questionID: P3-CH-2025-SA2-MAHABODHI-Q14
+        category: vocab
+        targetWord: 摆动
+      - questionID: P3-CH-2025-SA2-METHODIST-Q1
+        category: vocab
+        targetWord: 短
+      - questionID: P3-CH-2025-SA2-NANHUA-Q15
+        category: vocab
+        targetWord: 摆动
+      - questionID: P3-CH-2025-SA2-NORTHLAND-Q4
+        category: vocab
+        targetWord: 喊
+      - questionID: P3-CH-2025-SA2-RAFFLES-Q17
+        category: vocab
+        targetWord: 摆动
+      - questionID: P3-CH-2025-SA2-TAONAN-Q3
+        category: vocab
+        targetWord: 披
+      - questionID: P3-CH-2025-SA2-TAONAN-Q15
+        category: vocab
+        targetWord: 摆动
+      - questionID: P3-CH-2025-WA1-ACSPRIMARY-Q8
+        category: vocab
+        targetWord: 摆动
+      - questionID: P3-CH-2025-WA1-HENRYPARK-Q1
+        category: vocab
+        targetWord: 披
+      - questionID: P3-CH-2025-WA2-HENRYPARK-Q8
+        category: vocab
+        targetWord: 摆动
+      - questionID: P3-CH-2025-WA2-MAHABODHI-Q8
+        category: vocab
+        targetWord: 摆动
+      - questionID: P3-CH-2025-WA2-TAONAN-Q1
+        category: vocab
+        targetWord: 披
+      - questionID: P3-CH-2025-WA2-TAONAN-Q9
+        category: vocab
+        targetWord: 摆动
+      - questionID: P3-CH-2025-WA2-TAONAN-Q15
+        category: vocab
+        targetWord: 变化
+      - questionID: P3-CH-AUTHORED-L4-Q03
+        category: vocab
+        targetWord: 窄
+      - questionID: P3-CH-AUTHORED-L4-Q04
+        category: vocab
+        targetWord: 后腿
+      - questionID: P3-CH-AUTHORED-L4-Q05
+        category: vocab
+        targetWord: 披
+      - questionID: P3-CH-AUTHORED-L4-Q06
+        category: vocab
+        targetWord: 嘴巴
+      - questionID: P3-CH-AUTHORED-L4-Q07
+        category: phrase
+        targetWord: 浅
+      - questionID: P3-CH-AUTHORED-L4-Q08
+        category: usage
+        targetWord: 哪里
+  - lessonId: 5
+    title: 第五课 (Lesson 5)
+    paperQuestions: 13
+    authoredQuestions: 8
+    totalQuestions: 21
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 3
+      vocab: 16
+      phrase: 1
+      usage: 1
+    questions:
+      - questionID: P3-CH-2025-WA3-TAONAN-S3-Q6
+        category: pinyin
+        targetWord: 傍晚
+      - questionID: P3-CH-AUTHORED-L5-Q01
+        category: pinyin
+        targetWord: 杂志
+      - questionID: P3-CH-AUTHORED-L5-Q02
+        category: pinyin
+        targetWord: 报纸
+      - questionID: P3-CH-2025-SA2-ACS-Q8
+        category: vocab
+        targetWord: 准备
+      - questionID: P3-CH-2025-SA2-NORTHLAND-Q7
+        category: vocab
+        targetWord: 准备
+      - questionID: P3-CH-2025-SA2-TAONAN-Q8
+        category: vocab
+        targetWord: 准备
+      - questionID: P3-CH-2025-WA1-HENRYPARK-Q7
+        category: vocab
+        targetWord: 收到
+      - questionID: P3-CH-2025-WA1-NANYANG-Q18
+        category: vocab
+        targetWord: 傍晚
+      - questionID: P3-CH-2025-WA1-ROSYTH-Q3
+        category: vocab
+        targetWord: 准备
+      - questionID: P3-CH-2025-WA2-METHODIST-Q6
+        category: vocab
+        targetWord: 收到
+      - questionID: P3-CH-2025-WA2-NANHUA-Q11
+        category: vocab
+        targetWord: 收到
+      - questionID: P3-CH-2025-WA2-RAFFLES-Q2
+        category: vocab
+        targetWord: 付
+      - questionID: P3-CH-2025-WA2-ROSYTH-Q5
+        category: vocab
+        targetWord: 鲜花
+      - questionID: P3-CH-2025-WA2-ROSYTH-Q8
+        category: vocab
+        targetWord: 准备
+      - questionID: P3-CH-2025-WA3-TAONAN-S3-Q2
+        category: vocab
+        targetWord: 准备
+      - questionID: P3-CH-AUTHORED-L5-Q03
+        category: vocab
+        targetWord: 美食展
+      - questionID: P3-CH-AUTHORED-L5-Q04
+        category: vocab
+        targetWord: 园艺展
+      - questionID: P3-CH-AUTHORED-L5-Q05
+        category: vocab
+        targetWord: 束
+      - questionID: P3-CH-AUTHORED-L5-Q06
+        category: vocab
+        targetWord: 扫地
+      - questionID: P3-CH-AUTHORED-L5-Q07
+        category: phrase
+        targetWord: 刚刚
+      - questionID: P3-CH-AUTHORED-L5-Q08
+        category: usage
+        targetWord: 或者
+  - lessonId: 6
+    title: 第六课 (Lesson 6)
+    paperQuestions: 23
+    authoredQuestions: 0
+    totalQuestions: 23
+    distinctQuestions: 21
+    categoryCounts:
+      pinyin: 1
+      vocab: 21
+      phrase: 0
+      usage: 1
+    questions:
+      - questionID: P3-CH-2025-WA3-TAONAN-S3-Q7
+        category: pinyin
+        targetWord: 跌倒
+      - questionID: P3-CH-2025-SA2-ACS-Q9
+        category: vocab
+        targetWord: 弄破
+      - questionID: P3-CH-2025-SA2-CHIJ-Q7
+        category: vocab
+        targetWord: 突然
+      - questionID: P3-CH-2025-SA2-STHILDAS-Q2
+        category: vocab
+        targetWord: 软
+      - questionID: P3-CH-2025-SA2-STHILDAS-Q21
+        category: vocab
+        targetWord: 跌倒
+      - questionID: P3-CH-2025-SA2-TAONAN-Q12
+        category: vocab
+        targetWord: 原谅
+      - questionID: P3-CH-2025-SA2-TAONAN-Q13
+        category: vocab
+        targetWord: 受伤
+      - questionID: P3-CH-2025-WA1-ACSPRIMARY-Q3
+        category: vocab
+        targetWord: 弄破
+      - questionID: P3-CH-2025-WA1-ACSPRIMARY-Q4
+        category: vocab
+        targetWord: 扶
+      - questionID: P3-CH-2025-WA1-HENRYPARK-Q5
+        category: vocab
+        targetWord: 突然
+      - questionID: P3-CH-2025-WA1-ROSYTH-Q2
+        category: vocab
+        targetWord: 立刻
+      - questionID: P3-CH-2025-WA2-CATHOLIC-Q7
+        category: vocab
+        targetWord: 弄破
+      - questionID: P3-CH-2025-WA2-METHODIST-Q5
+        category: vocab
+        targetWord: 扔
+      - questionID: P3-CH-2025-WA2-METHODIST-Q9
+        category: vocab
+        targetWord: 原谅
+      - questionID: P3-CH-2025-WA2-NANHUA-Q1
+        category: vocab
+        targetWord: 应该
+      - questionID: P3-CH-2025-WA2-NANHUA-Q3
+        category: vocab
+        targetWord: 原谅
+      - questionID: P3-CH-2025-WA2-PEIHWA-Q7
+        category: vocab
+        targetWord: 原谅
+      - questionID: P3-CH-2025-WA2-PEIHWA-Q13
+        category: vocab
+        targetWord: 跌倒
+      - questionID: P3-CH-2025-WA2-ROSYTH-Q2
+        category: vocab
+        targetWord: 跌倒
+      - questionID: P3-CH-2025-WA3-TAONAN-S3-Q5
+        category: vocab
+        targetWord: 不理
+      - questionID: P3-CH-2025-WA3-TAONAN-S3-Q9
+        category: vocab
+        targetWord: 原谅
+      - questionID: P3-CH-2025-WA3-TAONAN-S4-Q14
+        category: vocab
+        targetWord: 受伤
+      - questionID: P3-CH-2025-WA2-CHIJ-Q20
+        category: usage
+        targetWord: 原谅
+  - lessonId: 7
+    title: 第七课 (Lesson 7)
+    paperQuestions: 12
+    authoredQuestions: 8
+    totalQuestions: 20
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 2
+      vocab: 14
+      phrase: 2
+      usage: 2
+    questions:
+      - questionID: P3-CH-AUTHORED-L7-Q01
+        category: pinyin
+        targetWord: 电视
+      - questionID: P3-CH-AUTHORED-L7-Q02
+        category: pinyin
+        targetWord: 地板
+      - questionID: P3-CH-2025-SA2-ACS-Q17
+        category: vocab
+        targetWord: 搬动
+      - questionID: P3-CH-2025-SA2-ACSJUNIOR-Q5
+        category: vocab
+        targetWord: 脱
+      - questionID: P3-CH-2025-SA2-AITONG-Q7
+        category: vocab
+        targetWord: 赔钱
+      - questionID: P3-CH-2025-SA2-METHODIST-Q10
+        category: vocab
+        targetWord: 赔钱
+      - questionID: P3-CH-2025-SA2-RAFFLES-Q3
+        category: vocab
+        targetWord: 便条
+      - questionID: P3-CH-2025-SA2-TAONAN-Q5
+        category: vocab
+        targetWord: 脱
+      - questionID: P3-CH-2025-WA1-ACSPRIMARY-Q5
+        category: vocab
+        targetWord: 赔钱
+      - questionID: P3-CH-2025-WA1-HENRYPARK-Q9
+        category: vocab
+        targetWord: 溜走
+      - questionID: P3-CH-2025-WA2-METHODIST-Q4
+        category: vocab
+        targetWord: 花盆
+      - questionID: P3-CH-2025-WA2-NANHUA-Q2
+        category: vocab
+        targetWord: 休息
+      - questionID: P3-CH-2025-WA3-TAONAN-S4-Q4
+        category: vocab
+        targetWord: 花盆
+      - questionID: P3-CH-AUTHORED-L7-Q03
+        category: vocab
+        targetWord: 打碎
+      - questionID: P3-CH-AUTHORED-L7-Q04
+        category: vocab
+        targetWord: 踩断
+      - questionID: P3-CH-AUTHORED-L7-Q05
+        category: vocab
+        targetWord: 食堂
+      - questionID: P3-CH-AUTHORED-L7-Q06
+        category: phrase
+        targetWord: 轻手轻脚
+      - questionID: P3-CH-AUTHORED-L7-Q07
+        category: phrase
+        targetWord: 灵机一动
+      - questionID: P3-CH-2025-WA2-CHIJ-Q21
+        category: usage
+        targetWord: 休息
+      - questionID: P3-CH-AUTHORED-L7-Q08
+        category: usage
+        targetWord: 道歉
+  - lessonId: 8
+    title: 第八课 (Lesson 8)
+    paperQuestions: 10
+    authoredQuestions: 10
+    totalQuestions: 20
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 2
+      vocab: 15
+      phrase: 2
+      usage: 1
+    questions:
+      - questionID: P3-CH-AUTHORED-L8-Q01
+        category: pinyin
+        targetWord: 灯笼
+      - questionID: P3-CH-AUTHORED-L8-Q02
+        category: pinyin
+        targetWord: 阳台
+      - questionID: P3-CH-2025-SA2-ACSJUNIOR-Q9
+        category: vocab
+        targetWord: 请求
+      - questionID: P3-CH-2025-SA2-AITONG-Q2
+        category: vocab
+        targetWord: 贺卡
+      - questionID: P3-CH-2025-SA2-METHODIST-Q2
+        category: vocab
+        targetWord: 部分
+      - questionID: P3-CH-2025-SA2-NANHUA-Q4
+        category: vocab
+        targetWord: 请求
+      - questionID: P3-CH-2025-SA2-NANYANG-Q16
+        category: vocab
+        targetWord: 请求
+      - questionID: P3-CH-2025-SA2-RAFFLES-Q13
+        category: vocab
+        targetWord: 请求
+      - questionID: P3-CH-2025-WA3-HENRYPARK-Q5
+        category: vocab
+        targetWord: 请求
+      - questionID: P3-CH-2025-WA3-TAONAN-S4-Q1
+        category: vocab
+        targetWord: 涂上
+      - questionID: P3-CH-2025-WA3-TAONAN-S4-Q5
+        category: vocab
+        targetWord: 部分
+      - questionID: P3-CH-2025-WA3-TAONAN-S4-Q15
+        category: vocab
+        targetWord: 需要
+      - questionID: P3-CH-AUTHORED-L8-Q03
+        category: vocab
+        targetWord: 客厅
+      - questionID: P3-CH-AUTHORED-L8-Q04
+        category: vocab
+        targetWord: 挂
+      - questionID: P3-CH-AUTHORED-L8-Q05
+        category: vocab
+        targetWord: 塞
+      - questionID: P3-CH-AUTHORED-L8-Q06
+        category: vocab
+        targetWord: 裙子
+      - questionID: P3-CH-AUTHORED-L8-Q07
+        category: vocab
+        targetWord: 重
+      - questionID: P3-CH-AUTHORED-L8-Q08
+        category: phrase
+        targetWord: 歪
+      - questionID: P3-CH-AUTHORED-L8-Q09
+        category: phrase
+        targetWord: 满头大汗
+      - questionID: P3-CH-AUTHORED-L8-Q10
+        category: usage
+        targetWord: 然后
+  - lessonId: 9
+    title: 第九课 (Lesson 9)
+    paperQuestions: 3
+    authoredQuestions: 17
+    totalQuestions: 20
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 4
+      vocab: 13
+      phrase: 2
+      usage: 1
+    questions:
+      - questionID: P3-CH-AUTHORED-L9-Q01
+        category: pinyin
+        targetWord: 竹竿
+      - questionID: P3-CH-AUTHORED-L9-Q02
+        category: pinyin
+        targetWord: 篮子
+      - questionID: P3-CH-AUTHORED-L9-Q03
+        category: pinyin
+        targetWord: 重量
+      - questionID: P3-CH-AUTHORED-L9-Q04
+        category: pinyin
+        targetWord: 小熊
+      - questionID: P3-CH-2025-SA2-NANYANG-Q5
+        category: vocab
+        targetWord: 像
+      - questionID: P3-CH-2025-SA2-STHILDAS-Q4
+        category: vocab
+        targetWord: 升
+      - questionID: P3-CH-2025-WA1-AITONG-Q3
+        category: vocab
+        targetWord: 升
+      - questionID: P3-CH-AUTHORED-L9-Q05
+        category: vocab
+        targetWord: 倒进
+      - questionID: P3-CH-AUTHORED-L9-Q06
+        category: vocab
+        targetWord: 坑
+      - questionID: P3-CH-AUTHORED-L9-Q07
+        category: vocab
+        targetWord: 鼻子
+      - questionID: P3-CH-AUTHORED-L9-Q08
+        category: vocab
+        targetWord: 河
+      - questionID: P3-CH-AUTHORED-L9-Q09
+        category: vocab
+        targetWord: 救
+      - questionID: P3-CH-AUTHORED-L9-Q10
+        category: vocab
+        targetWord: 满
+      - questionID: P3-CH-AUTHORED-L9-Q11
+        category: vocab
+        targetWord: 喷
+      - questionID: P3-CH-AUTHORED-L9-Q12
+        category: vocab
+        targetWord: 称
+      - questionID: P3-CH-AUTHORED-L9-Q13
+        category: vocab
+        targetWord: 墙
+      - questionID: P3-CH-AUTHORED-L9-Q14
+        category: vocab
+        targetWord: 拉
+      - questionID: P3-CH-AUTHORED-L9-Q15
+        category: phrase
+        targetWord: 下沉
+      - questionID: P3-CH-AUTHORED-L9-Q16
+        category: phrase
+        targetWord: 神童
+      - questionID: P3-CH-AUTHORED-L9-Q17
+        category: usage
+        targetWord: 夸
+  - lessonId: 10
+    title: 第十课 (Lesson 10)
+    paperQuestions: 21
+    authoredQuestions: 0
+    totalQuestions: 21
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 0
+      vocab: 19
+      phrase: 0
+      usage: 2
+    questions:
+      - questionID: P3-CH-2025-SA2-ACSJUNIOR-Q1
+        category: vocab
+        targetWord: 垃圾
+      - questionID: P3-CH-2025-SA2-ACSJUNIOR-Q7
+        category: vocab
+        targetWord: 吃惊
+      - questionID: P3-CH-2025-SA2-AITONG-Q6
+        category: vocab
+        targetWord: 仔细
+      - questionID: P3-CH-2025-SA2-MAHABODHI-Q1
+        category: vocab
+        targetWord: 垃圾
+      - questionID: P3-CH-2025-SA2-MAHABODHI-Q17
+        category: vocab
+        targetWord: 环境
+      - questionID: P3-CH-2025-SA2-METHODIST-Q11
+        category: vocab
+        targetWord: 环境
+      - questionID: P3-CH-2025-SA2-NANHUA-Q7
+        category: vocab
+        targetWord: 吃惊
+      - questionID: P3-CH-2025-SA2-NANYANG-Q15
+        category: vocab
+        targetWord: 仔细
+      - questionID: P3-CH-2025-SA2-NORTHLAND-Q3
+        category: vocab
+        targetWord: 决定
+      - questionID: P3-CH-2025-SA2-NORTHLAND-Q16
+        category: vocab
+        targetWord: 爱护
+      - questionID: P3-CH-2025-SA2-ROSYTH-Q3
+        category: vocab
+        targetWord: 环境
+      - questionID: P3-CH-2025-SA2-STHILDAS-Q7
+        category: vocab
+        targetWord: 仔细
+      - questionID: P3-CH-2025-WA1-NANYANG-Q11
+        category: vocab
+        targetWord: 爱护
+      - questionID: P3-CH-2025-WA2-CATHOLIC-Q2
+        category: vocab
+        targetWord: 环境
+      - questionID: P3-CH-2025-WA2-CATHOLIC-Q8
+        category: vocab
+        targetWord: 决定
+      - questionID: P3-CH-2025-WA2-METHODIST-Q5
+        category: vocab
+        targetWord: 扔
+      - questionID: P3-CH-2025-WA2-RAFFLES-Q1
+        category: vocab
+        targetWord: 吃惊
+      - questionID: P3-CH-2025-WA2-RAFFLES-Q5
+        category: vocab
+        targetWord: 仔细
+      - questionID: P3-CH-2025-WA3-HENRYPARK-Q6
+        category: vocab
+        targetWord: 决定
+      - questionID: P3-CH-2025-WA3-CATHOLIC-S3-Q18
+        category: usage
+        targetWord: 决定
+      - questionID: P3-CH-2025-WA3-CATHOLIC-S3-Q20
+        category: usage
+        targetWord: 吃惊
+  - lessonId: 11
+    title: 第十一课 (Lesson 11)
+    paperQuestions: 14
+    authoredQuestions: 10
+    totalQuestions: 24
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 3
+      vocab: 17
+      phrase: 2
+      usage: 2
+    questions:
+      - questionID: P3-CH-AUTHORED-L11-Q01
+        category: pinyin
+        targetWord: 环保袋
+      - questionID: P3-CH-AUTHORED-L11-Q02
+        category: pinyin
+        targetWord: 海洋
+      - questionID: P3-CH-AUTHORED-L11-Q03
+        category: pinyin
+        targetWord: 责任
+      - questionID: P3-CH-2025-SA2-ACS-Q4
+        category: vocab
+        targetWord: 废物
+      - questionID: P3-CH-2025-SA2-ACS-Q7
+        category: vocab
+        targetWord: 代替
+      - questionID: P3-CH-2025-SA2-ACSJUNIOR-Q6
+        category: vocab
+        targetWord: 如果
+      - questionID: P3-CH-2025-SA2-ACSJUNIOR-Q17
+        category: vocab
+        targetWord: 废物
+      - questionID: P3-CH-2025-SA2-AITONG-Q4
+        category: vocab
+        targetWord: 尽
+      - questionID: P3-CH-2025-SA2-AITONG-Q9
+        category: vocab
+        targetWord: 代替
+      - questionID: P3-CH-2025-SA2-METHODIST-Q16
+        category: vocab
+        targetWord: 废物
+      - questionID: P3-CH-2025-SA2-NANYANG-Q10
+        category: vocab
+        targetWord: 废物
+      - questionID: P3-CH-2025-SA2-RAFFLES-Q4
+        category: vocab
+        targetWord: 代替
+      - questionID: P3-CH-2025-SA2-RAFFLES-Q19
+        category: vocab
+        targetWord: 废物
+      - questionID: P3-CH-2025-SA2-ROSYTH-Q15
+        category: vocab
+        targetWord: 废物
+      - questionID: P3-CH-2025-SA2-STHILDAS-Q5
+        category: vocab
+        targetWord: 尽
+      - questionID: P3-CH-2025-WA1-NANYANG-Q3
+        category: vocab
+        targetWord: 辆
+      - questionID: P3-CH-AUTHORED-L11-Q04
+        category: vocab
+        targetWord: 停车场
+      - questionID: P3-CH-AUTHORED-L11-Q05
+        category: vocab
+        targetWord: 日用品
+      - questionID: P3-CH-AUTHORED-L11-Q06
+        category: vocab
+        targetWord: 纸
+      - questionID: P3-CH-AUTHORED-L11-Q07
+        category: vocab
+        targetWord: 瓶子
+      - questionID: P3-CH-AUTHORED-L11-Q08
+        category: phrase
+        targetWord: 并排
+      - questionID: P3-CH-AUTHORED-L11-Q09
+        category: phrase
+        targetWord: 一直
+      - questionID: P3-CH-2025-WA3-CATHOLIC-S3-Q19
+        category: usage
+        targetWord: 如果
+      - questionID: P3-CH-AUTHORED-L11-Q10
+        category: usage
+        targetWord: 使用
+  - lessonId: 12
+    title: 第十二课 (Lesson 12)
+    paperQuestions: 11
+    authoredQuestions: 9
+    totalQuestions: 20
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 3
+      vocab: 15
+      phrase: 1
+      usage: 1
+    questions:
+      - questionID: P3-CH-AUTHORED-L12-Q01
+        category: pinyin
+        targetWord: 国歌
+      - questionID: P3-CH-AUTHORED-L12-Q02
+        category: pinyin
+        targetWord: 世界
+      - questionID: P3-CH-AUTHORED-L12-Q03
+        category: pinyin
+        targetWord: 文件夹
+      - questionID: P3-CH-2025-SA2-ACSJUNIOR-Q2
+        category: vocab
+        targetWord: 设计
+      - questionID: P3-CH-2025-SA2-MAHABODHI-Q6
+        category: vocab
+        targetWord: 设计
+      - questionID: P3-CH-2025-SA2-NANHUA-Q8
+        category: vocab
+        targetWord: 设计
+      - questionID: P3-CH-2025-SA2-RAFFLES-Q5
+        category: vocab
+        targetWord: 国旗
+      - questionID: P3-CH-2025-SA2-ROSYTH-Q2
+        category: vocab
+        targetWord: 大拇指
+      - questionID: P3-CH-2025-SA2-STHILDAS-Q6
+        category: vocab
+        targetWord: 兴奋
+      - questionID: P3-CH-2025-SA2-TAONAN-Q16
+        category: vocab
+        targetWord: 设计
+      - questionID: P3-CH-2025-WA2-CATHOLIC-Q4
+        category: vocab
+        targetWord: 设计
+      - questionID: P3-CH-2025-WA2-RAFFLES-Q3
+        category: vocab
+        targetWord: 颗
+      - questionID: P3-CH-2025-WA2-RAFFLES-Q6
+        category: vocab
+        targetWord: 谜语
+      - questionID: P3-CH-2025-WA3-HENRYPARK-Q10
+        category: vocab
+        targetWord: 兴奋
+      - questionID: P3-CH-AUTHORED-L12-Q04
+        category: vocab
+        targetWord: 新加坡
+      - questionID: P3-CH-AUTHORED-L12-Q05
+        category: vocab
+        targetWord: 国庆日
+      - questionID: P3-CH-AUTHORED-L12-Q06
+        category: vocab
+        targetWord: 合唱团
+      - questionID: P3-CH-AUTHORED-L12-Q07
+        category: vocab
+        targetWord: 礼物
+      - questionID: P3-CH-AUTHORED-L12-Q08
+        category: phrase
+        targetWord: 亮晶晶
+      - questionID: P3-CH-AUTHORED-L12-Q09
+        category: usage
+        targetWord: 其中
+  - lessonId: 13
+    title: 第十三课 (Lesson 13)
+    paperQuestions: 20
+    authoredQuestions: 2
+    totalQuestions: 22
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 1
+      vocab: 18
+      phrase: 1
+      usage: 2
+    questions:
+      - questionID: P3-CH-AUTHORED-L13-Q01
+        category: pinyin
+        targetWord: 森林
+      - questionID: P3-CH-2025-SA2-ACSJUNIOR-Q3
+        category: vocab
+        targetWord: 任务
+      - questionID: P3-CH-2025-SA2-ACSJUNIOR-Q8
+        category: vocab
+        targetWord: 沿着
+      - questionID: P3-CH-2025-SA2-ACSJUNIOR-Q15
+        category: vocab
+        targetWord: 急忙
+      - questionID: P3-CH-2025-SA2-AITONG-Q3
+        category: vocab
+        targetWord: 狼
+      - questionID: P3-CH-2025-SA2-CHIJ-Q6
+        category: vocab
+        targetWord: 沿着
+      - questionID: P3-CH-2025-SA2-CHIJ-Q8
+        category: vocab
+        targetWord: 必须
+      - questionID: P3-CH-2025-SA2-HENRYPARK-Q16
+        category: vocab
+        targetWord: 仍然
+      - questionID: P3-CH-2025-SA2-MAHABODHI-Q8
+        category: vocab
+        targetWord: 必须
+      - questionID: P3-CH-2025-SA2-METHODIST-Q6
+        category: vocab
+        targetWord: 仍然
+      - questionID: P3-CH-2025-SA2-NANHUA-Q16
+        category: vocab
+        targetWord: 任务
+      - questionID: P3-CH-2025-SA2-NANYANG-Q17
+        category: vocab
+        targetWord: 虽然
+      - questionID: P3-CH-2025-SA2-ROSYTH-Q8
+        category: vocab
+        targetWord: 讨论
+      - questionID: P3-CH-2025-SA2-ROSYTH-Q16
+        category: vocab
+        targetWord: 任务
+      - questionID: P3-CH-2025-SA2-STHILDAS-Q19
+        category: vocab
+        targetWord: 必须
+      - questionID: P3-CH-2025-SA2-TAONAN-Q11
+        category: vocab
+        targetWord: 讨论
+      - questionID: P3-CH-2025-WA2-CATHOLIC-Q3
+        category: vocab
+        targetWord: 讨论
+      - questionID: P3-CH-2025-WA3-HENRYPARK-Q9
+        category: vocab
+        targetWord: 任务
+      - questionID: P3-CH-2025-WA3-TAONAN-S4-Q9
+        category: vocab
+        targetWord: 急忙
+      - questionID: P3-CH-AUTHORED-L13-Q02
+        category: phrase
+        targetWord: 指定
+      - questionID: P3-CH-2025-WA3-CATHOLIC-S4-Q18
+        category: usage
+        targetWord: 虽然
+      - questionID: P3-CH-2025-WA3-CATHOLIC-S4-Q19
+        category: usage
+        targetWord: 必须
+  - lessonId: 14
+    title: 第十四课 (Lesson 14)
+    paperQuestions: 5
+    authoredQuestions: 15
+    totalQuestions: 20
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 6
+      vocab: 11
+      phrase: 2
+      usage: 1
+    questions:
+      - questionID: P3-CH-2025-SA2-CHIJ-Q2
+        category: pinyin
+        targetWord: 散步
+      - questionID: P3-CH-2025-SA2-TAONAN-Q7
+        category: pinyin
+        targetWord: 散步
+      - questionID: P3-CH-AUTHORED-L14-Q01
+        category: pinyin
+        targetWord: 眼睛
+      - questionID: P3-CH-AUTHORED-L14-Q02
+        category: pinyin
+        targetWord: 灰色
+      - questionID: P3-CH-AUTHORED-L14-Q03
+        category: pinyin
+        targetWord: 打滚
+      - questionID: P3-CH-AUTHORED-L14-Q08
+        category: pinyin
+        targetWord: 苦
+      - questionID: P3-CH-2025-SA2-RAFFLES-Q20
+        category: vocab
+        targetWord: 散步
+      - questionID: P3-CH-2025-SA2-STHILDAS-Q20
+        category: vocab
+        targetWord: 咬断
+      - questionID: P3-CH-2025-WA1-ROSYTH-Q5
+        category: vocab
+        targetWord: 尾巴
+      - questionID: P3-CH-AUTHORED-L14-Q04
+        category: vocab
+        targetWord: 饿
+      - questionID: P3-CH-AUTHORED-L14-Q05
+        category: vocab
+        targetWord: 饱
+      - questionID: P3-CH-AUTHORED-L14-Q06
+        category: vocab
+        targetWord: 咸
+      - questionID: P3-CH-AUTHORED-L14-Q07
+        category: vocab
+        targetWord: 淡
+      - questionID: P3-CH-AUTHORED-L14-Q09
+        category: vocab
+        targetWord: 懒
+      - questionID: P3-CH-AUTHORED-L14-Q10
+        category: vocab
+        targetWord: 躺
+      - questionID: P3-CH-AUTHORED-L14-Q11
+        category: vocab
+        targetWord: 吞
+      - questionID: P3-CH-AUTHORED-L14-Q12
+        category: vocab
+        targetWord: 够
+      - questionID: P3-CH-AUTHORED-L14-Q13
+        category: phrase
+        targetWord: 笨重
+      - questionID: P3-CH-AUTHORED-L14-Q14
+        category: phrase
+        targetWord: 假
+      - questionID: P3-CH-AUTHORED-L14-Q15
+        category: usage
+        targetWord: 玩耍
+  - lessonId: 15
+    title: 第十五课 (Lesson 15)
+    paperQuestions: 19
+    authoredQuestions: 7
+    totalQuestions: 26
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 2
+      vocab: 20
+      phrase: 1
+      usage: 3
+    questions:
+      - questionID: P3-CH-AUTHORED-L15-Q01
+        category: pinyin
+        targetWord: 漫画
+      - questionID: P3-CH-AUTHORED-L15-Q02
+        category: pinyin
+        targetWord: 课室
+      - questionID: P3-CH-2025-SA2-ACS-Q15
+        category: vocab
+        targetWord: 发抖
+      - questionID: P3-CH-2025-SA2-ACSJUNIOR-Q14
+        category: vocab
+        targetWord: 发抖
+      - questionID: P3-CH-2025-SA2-HENRYPARK-Q5
+        category: vocab
+        targetWord: 忍不住
+      - questionID: P3-CH-2025-SA2-MAHABODHI-Q4
+        category: vocab
+        targetWord: 简单
+      - questionID: P3-CH-2025-SA2-MAHABODHI-Q5
+        category: vocab
+        targetWord: 钻进
+      - questionID: P3-CH-2025-SA2-METHODIST-Q13
+        category: vocab
+        targetWord: 发抖
+      - questionID: P3-CH-2025-SA2-NANHUA-Q14
+        category: vocab
+        targetWord: 发抖
+      - questionID: P3-CH-2025-SA2-NORTHLAND-Q1
+        category: vocab
+        targetWord: 简单
+      - questionID: P3-CH-2025-SA2-NORTHLAND-Q15
+        category: vocab
+        targetWord: 冒出
+      - questionID: P3-CH-2025-SA2-RAFFLES-Q10
+        category: vocab
+        targetWord: 简单
+      - questionID: P3-CH-2025-SA2-RAFFLES-Q21
+        category: vocab
+        targetWord: 冷汗
+      - questionID: P3-CH-2025-SA2-ROSYTH-Q18
+        category: vocab
+        targetWord: 冷汗
+      - questionID: P3-CH-2025-SA2-STHILDAS-Q3
+        category: vocab
+        targetWord: 忍不住
+      - questionID: P3-CH-2025-SA2-STHILDAS-Q18
+        category: vocab
+        targetWord: 发抖
+      - questionID: P3-CH-2025-SA2-TAONAN-Q14
+        category: vocab
+        targetWord: 简单
+      - questionID: P3-CH-2025-WA1-ROSYTH-Q4
+        category: vocab
+        targetWord: 练习
+      - questionID: P3-CH-2025-WA2-CATHOLIC-Q11
+        category: vocab
+        targetWord: 简单
+      - questionID: P3-CH-AUTHORED-L15-Q03
+        category: vocab
+        targetWord: 怀里
+      - questionID: P3-CH-AUTHORED-L15-Q04
+        category: vocab
+        targetWord: 痛
+      - questionID: P3-CH-AUTHORED-L15-Q05
+        category: vocab
+        targetWord: 哈哈大笑
+      - questionID: P3-CH-AUTHORED-L15-Q06
+        category: phrase
+        targetWord: 逃不掉
+      - questionID: P3-CH-2025-SA2-CHIJ-Q10
+        category: usage
+        targetWord: 简单
+      - questionID: P3-CH-2025-WA1-CHIJ-Q20
+        category: usage
+        targetWord: 练习
+      - questionID: P3-CH-AUTHORED-L15-Q07
+        category: usage
+        targetWord: 不敢
+  - lessonId: 16
+    title: 第十六课 (Lesson 16)
+    paperQuestions: 1
+    authoredQuestions: 19
+    totalQuestions: 20
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 4
+      vocab: 10
+      phrase: 3
+      usage: 3
+    questions:
+      - questionID: P3-CH-AUTHORED-L16-Q01
+        category: pinyin
+        targetWord: 数学
+      - questionID: P3-CH-AUTHORED-L16-Q02
+        category: pinyin
+        targetWord: 勤学
+      - questionID: P3-CH-AUTHORED-L16-Q03
+        category: pinyin
+        targetWord: 滑轮
+      - questionID: P3-CH-AUTHORED-L16-Q04
+        category: pinyin
+        targetWord: 认识
+      - questionID: P3-CH-AUTHORED-L16-Q05
+        category: vocab
+        targetWord: 俩
+      - questionID: P3-CH-AUTHORED-L16-Q06
+        category: vocab
+        targetWord: 泡泡
+      - questionID: P3-CH-AUTHORED-L16-Q07
+        category: vocab
+        targetWord: 钓鱼
+      - questionID: P3-CH-AUTHORED-L16-Q08
+        category: vocab
+        targetWord: 题
+      - questionID: P3-CH-AUTHORED-L16-Q09
+        category: vocab
+        targetWord: 念
+      - questionID: P3-CH-AUTHORED-L16-Q10
+        category: vocab
+        targetWord: 传
+      - questionID: P3-CH-AUTHORED-L16-Q11
+        category: vocab
+        targetWord: 别人
+      - questionID: P3-CH-AUTHORED-L16-Q12
+        category: vocab
+        targetWord: 感到
+      - questionID: P3-CH-AUTHORED-L16-Q13
+        category: vocab
+        targetWord: 低
+      - questionID: P3-CH-AUTHORED-L16-Q14
+        category: vocab
+        targetWord: 抬
+      - questionID: P3-CH-AUTHORED-L16-Q15
+        category: phrase
+        targetWord: 有始无终
+      - questionID: P3-CH-AUTHORED-L16-Q16
+        category: phrase
+        targetWord: 虎头蛇尾
+      - questionID: P3-CH-AUTHORED-L16-Q17
+        category: phrase
+        targetWord: 半途而废
+      - questionID: P3-CH-2025-WA3-CATHOLIC-S4-Q20
+        category: usage
+        targetWord: 结果
+      - questionID: P3-CH-AUTHORED-L16-Q18
+        category: usage
+        targetWord: 却
+      - questionID: P3-CH-AUTHORED-L16-Q19
+        category: usage
+        targetWord: 终于
+  - lessonId: 17
+    title: 第十七课 (Lesson 17)
+    paperQuestions: 8
+    authoredQuestions: 12
+    totalQuestions: 20
+    distinctQuestions: 20
+    categoryCounts:
+      pinyin: 3
+      vocab: 13
+      phrase: 2
+      usage: 2
+    questions:
+      - questionID: P3-CH-AUTHORED-L17-Q01
+        category: pinyin
+        targetWord: 农夫
+      - questionID: P3-CH-AUTHORED-L17-Q02
+        category: pinyin
+        targetWord: 渔夫
+      - questionID: P3-CH-AUTHORED-L17-Q03
+        category: pinyin
+        targetWord: 签名
+      - questionID: P3-CH-2025-SA2-CHIJ-Q4
+        category: vocab
+        targetWord: 检查
+      - questionID: P3-CH-2025-SA2-NANYANG-Q12
+        category: vocab
+        targetWord: 检查
+      - questionID: P3-CH-2025-SA2-NORTHLAND-Q3
+        category: vocab
+        targetWord: 决定
+      - questionID: P3-CH-2025-WA1-ROSYTH-Q2
+        category: vocab
+        targetWord: 立刻
+      - questionID: P3-CH-2025-WA2-CATHOLIC-Q8
+        category: vocab
+        targetWord: 决定
+      - questionID: P3-CH-2025-WA3-HENRYPARK-Q6
+        category: vocab
+        targetWord: 决定
+      - questionID: P3-CH-AUTHORED-L17-Q04
+        category: vocab
+        targetWord: 捞出
+      - questionID: P3-CH-AUTHORED-L17-Q05
+        category: vocab
+        targetWord: 摘下
+      - questionID: P3-CH-AUTHORED-L17-Q06
+        category: vocab
+        targetWord: 铁
+      - questionID: P3-CH-AUTHORED-L17-Q07
+        category: vocab
+        targetWord: 银牌
+      - questionID: P3-CH-AUTHORED-L17-Q08
+        category: vocab
+        targetWord: 等
+      - questionID: P3-CH-AUTHORED-L17-Q09
+        category: vocab
+        targetWord: 减掉
+      - questionID: P3-CH-AUTHORED-L17-Q10
+        category: vocab
+        targetWord: 算
+      - questionID: P3-CH-AUTHORED-L17-Q11
+        category: phrase
+        targetWord: 劳动
+      - questionID: P3-CH-AUTHORED-L17-Q12
+        category: phrase
+        targetWord: 神仙
+      - questionID: P3-CH-2025-WA3-CATHOLIC-S3-Q18
+        category: usage
+        targetWord: 决定
+      - questionID: P3-CH-2025-WA3-CATHOLIC-S4-Q21
+        category: usage
+        targetWord: 检查

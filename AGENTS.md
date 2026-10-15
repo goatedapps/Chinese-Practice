@@ -33,10 +33,19 @@ P6 has 12 original stories, one per tingxie lesson; each uses at least half of t
 Keep intentionally wrong words in error-correction passages.
 P5 conjunction includes 80 workbook questions transcribed from the supplied temp HEIC photos; IDs use `P5-EPH-IMG<image>-Q<n>`, with empty lesson tags because no lesson mapping is known.
 P6 content directories retain runtime files only; source PDFs, extraction drafts and review documents were removed after approval.
+P3 is registered in `src/data/levels.ts`, with 825 questions (691 from all 35 supplied 2025 PDFs and 134 original vocabulary questions), with picture-dependent and unsupported formats excluded and 13 unreadable-scan questions held out.
+See `public/content/p3/review/import-summary.md` for paper reviews and exclusions; `import-manifest.yaml` maps every included question to its PDF.
+P3 flat exam records preserve printed marks/subjects as `sourceMarks`/`sourceSubject` and supply runtime `marks`/`subject` overrides; omitted values retain Chinese and 2-mark defaults for existing content.
+All 17 P3 lessons have at least 20 distinct questions across pinyin/vocab/phrase/usage; `targetWord` identifies the taught word used to verify lesson tags, and `review/vocabulary-coverage.md` records the counts.
+Those lesson totals combine Chinese and Higher Chinese; the subject selector narrows the pool.
+P3 Tingxie lessons are vocabulary-only (`sentences: []`).
+P3 has 17 original stories of 4–6 pages, each using at least half of its lesson’s vocabulary; see `public/content/p3/review/story-coverage.md` for the coverage audit.
+The Catholic WA3 filename contains CHIJ St Nicholas revisions, and both that PDF and Tao Nan WA3 contain two exercises distinguished by S3/S4 IDs.
 
 - `meta.yaml` — `label`/`lessonCount` for the level.
 - `questions/<category>.yaml` — one file per category (`CATEGORIES` in `data/questions.ts`), each a list of "groups" (a standalone question, or a passage + every question sharing it, always graded together). `data/questions.ts`'s `parseQuestionCategoryYaml()` is the one function that expands the on-disk shape into the runtime `QuestionGroup`/`Question` shape (`data/types.ts`) — shared by the app's loader and `scripts/build-content-index.ts`, so both validate content identically (a `correct` matching no option throws immediately in either). Two on-disk shapes:
-  - **Flat categories** (`pinyin`/`vocab`/`phrase`/`usage`/`conjunction`/`sentence`): always one MCQ question, `subject: Chinese` — authored as just `questionID`/`lessonIds`/`question`/`options`/`correct`. `correct` matches an option's **text**, not a position/key, so reordering options by hand can't silently desync the answer.
+  - **Flat categories** (`pinyin`/`vocab`/`phrase`/`usage`/`conjunction`/`sentence`): one MCQ authored as `questionID`/`lessonIds`/`question`/`options`/`correct`, with optional `subject` and `marks` overrides (defaults: Chinese, 2 marks).
+    `correct` matches an option's **text**, not a position/key, so reordering options cannot desync the answer.
   - **Passage categories** (`cloze`/`comprehension`/`dialogue`/`errorcorrect`/`practical`): keep `groupId`/`passage`/`questions[]`; per-category-constant fields (`subject`, `format`, `marks`) default in via `CATEGORY_DEFAULT_SUBJECT`/`CATEGORY_DEFAULT_FORMAT` in `data/questions.ts` instead of being authored, except where a category genuinely mixes values (`cloze`/`comprehension` mix Chinese/Higher Chinese, so `subject` stays required there).
   - `lessonIds` on `pinyin`/`vocab`/`phrase`/`usage` was matched against each lesson's real taught-vocab list (see git history for the method if redoing this for new content) — `conjunction`/`sentence`'s `lessonIds` is just "whichever exam paper this came from," **not** vocab-verified, so don't treat it as reliable for lesson-filtering accuracy.
 - `tingxie/<n>.yaml` — one file per lesson; each `vocab[]` entry carries its own optional `sentenceBank` (Apply's example sentences).

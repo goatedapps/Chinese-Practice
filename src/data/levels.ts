@@ -11,6 +11,7 @@ export interface LevelInfo {
 // Each registered level needs metadata and question, tingxie and story indexes.
 export const LEVELS: LevelInfo[] = [
   { id: "p2", label: "P2", relevantCategories: ["cloze", "comprehension", "pinyin", "vocab", "usage"] },
+  { id: "p3", label: "P3", relevantCategories: ["pinyin", "vocab", "phrase", "usage", "conjunction", "cloze", "errorcorrect", "comprehension", "dialogue", "practical"] },
   { id: "p5", label: "P5" },
   { id: "p6", label: "P6" }
 ];

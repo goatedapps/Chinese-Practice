@@ -1,22 +1,5 @@
-/* =========================================================
-   QUESTION DATABASE for the Chinese Practice app.
-   Content itself lives in public/content/<level>/questions/ (one YAML file
-   per category, plus a lightweight index.yaml) -- see CLAUDE.md's data-layer
-   section for the file format and authoring convention. This module is just
-   the loader: CATEGORIES/SUBJECTS/VOCABULARY_CATEGORY_KEYS are stable app
-   config (not per-level content), and fetchQuestionIndex()/
-   fetchQuestionCategory() fetch+cache the actual question data at runtime,
-   same fetch-on-demand pattern as data/tingxie.ts/data/stories.ts.
-   parseQuestionCategoryYaml() is the pure YAML-text -> QuestionGroup[]
-   parser shared with scripts/build-content-index.ts (Node has no fetch-able
-   public/ URL, so the script reads the file itself and calls this directly)
-   -- keeps the index builder's validation identical to the runtime loader's.
-
-   A "group" is either:
-     - a standalone single question (passage: null), or
-     - a passage plus every question that shares it -- these are
-       always presented together, never split apart.
-   ========================================================= */
+// Runtime YAML loaders and the index builder share answer validation.
+// A group contains one standalone question or all questions for one passage.
 import YAML from "yaml";
 import type { Category, MCQOption, Passage, Question, QuestionGroup, QuestionIndexEntry } from "./types";
 import { getCurrentLevel } from "./levels";
@@ -48,13 +31,8 @@ export const VOCABULARY_CATEGORY_KEYS: string[] = ["pinyin", "vocab", "phrase", 
 
 export const SUBJECTS: string[] = ["Chinese", "Higher Chinese"];
 
-// Categories whose question bank file uses the flat single-question shape
-// (questionID/lessonIds/question/options/correct -- no groupId/subject/
-// category/passage/marks/format) instead of the passage-group shape every
-// other category uses. Every group in these 6 categories was verified to
-// always be subject:Chinese, format:MCQ, marks:2, passage:null, exactly one
-// question -- so those fields are never authored here, just synthesized
-// back on load (see expandFlatRecord()).
+// Flat categories contain one MCQ per record; subject and marks may override
+// the Chinese / 2-mark defaults without requiring a passage-group wrapper.
 const FLAT_CATEGORIES = new Set(["pinyin", "vocab", "phrase", "usage", "conjunction", "sentence"]);
 
 // Passage-group categories where `subject`/`format` is constant across every
@@ -73,11 +51,7 @@ const CATEGORY_DEFAULT_FORMAT: Partial<Record<string, string>> = {
   dialogue: "MCQ",
   errorcorrect: "Fill-in"
 };
-// Every question across every category is marks:2 except a handful of
-// comprehension/practical Long-Answer/Writing-Constrained items -- so marks
-// is always optional in the source YAML, defaulting to 2 when omitted,
-// regardless of category (no per-category table needed, unlike
-// subject/format above).
+// Omitted marks use the common 2-mark value; files override other scoring.
 const DEFAULT_MARKS = 2;
 
 function toOptions(list: string[]): MCQOption[] {
@@ -92,6 +66,8 @@ function findOptionKey(options: MCQOption[], correctText: string, where: string)
 
 interface RawFlatRecord {
   questionID: string;
+  subject?: string;
+  marks?: number;
   lessonIds: number[];
   question: string;
   options: string[];
@@ -103,12 +79,12 @@ function expandFlatRecord(category: string, raw: RawFlatRecord): Omit<QuestionGr
   const correctKey = findOptionKey(options, raw.correct, raw.questionID);
   return {
     groupId: raw.questionID,
-    subject: "Chinese",
+    subject: raw.subject ?? "Chinese",
     category,
     lessonIds: raw.lessonIds,
     passage: null,
     questions: [
-      { qNo: "", marks: DEFAULT_MARKS, format: "MCQ", text: raw.question, options, correctKey } as Question
+      { qNo: "", marks: raw.marks ?? DEFAULT_MARKS, format: "MCQ", text: raw.question, options, correctKey } as Question
     ]
   };
 }
@@ -262,12 +238,7 @@ export function prefetchAllQuestionCategories(): void {
   }
 }
 
-// Which subjects actually have at least one group of a given category --
-// derived from the index (not hand-maintained) so it can never drift out of
-// sync with the real data. Used by Practice.tsx to grey out question types
-// that don't exist for the selected subject (e.g. Higher Chinese has no
-// pinyin/vocab/phrase/usage/conjunction/sentence/dialogue/practical groups --
-// only cloze/errorcorrect/comprehension).
+// Subject/category availability comes from the loaded level's index.
 export function computeCategorySubjects(index: QuestionIndexEntry[]): Record<string, Set<string>> {
   const map: Record<string, Set<string>> = {};
   for (const key of Object.keys(CATEGORIES)) map[key] = new Set();

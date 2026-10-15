@@ -1,0 +1,470 @@
+- questionID: P3-CH-2025-SA2-CHIJ-Q10
+  source: P3_Chinese_2025_SA2_chij.pdf; PDF page 5; answer key supplied in PDF
+  sourceQuestion: Q10
+  sourceSubject: Higher Chinese
+  sourceMarks: 1
+  lessonIds:
+    - 15
+  question: 以下哪个句子是正确的？
+  options:
+    - 今天的功课很__简单__，我一下子就做好了。
+    - 爷爷的生活很__简单__，他常常出国去游玩。
+    - 包粽子很__简单__，不管我怎么包都包不好。
+    - 这双鞋的设计很__简单__，要花很多时间做。
+  correct: 今天的功课很__简单__，我一下子就做好了。
+  targetWord: 简单
+  subject: Higher Chinese
+  marks: 1
+- questionID: P3-CH-2025-SA2-CHIJ-Q11
+  source: P3_Chinese_2025_SA2_chij.pdf; PDF page 5; answer key supplied in PDF
+  sourceQuestion: Q11
+  sourceSubject: Higher Chinese
+  sourceMarks: 1
+  lessonIds: []
+  question: 以下哪个句子是正确的？
+  options:
+    - 弟弟__浪费__一张纸，做了生日卡给爸爸。
+    - 妈妈常常去看奶奶，__浪费__了很多时间。
+    - 我不__浪费__水，洗手后会把水龙头关好。
+    - 这些玩具都已经坏了，丢掉非常__浪费__。
+  correct: 我不__浪费__水，洗手后会把水龙头关好。
+  subject: Higher Chinese
+  marks: 1
+- questionID: P3-CH-2025-SA2-CHIJ-Q12
+  source: P3_Chinese_2025_SA2_chij.pdf; PDF page 5; answer key supplied in PDF
+  sourceQuestion: Q12
+  sourceSubject: Higher Chinese
+  sourceMarks: 1
+  lessonIds: []
+  question: 以下哪个句子是正确的？
+  options:
+    - 我很__强壮__，没有人能让我改掉坏习惯。
+    - 这些树的树干很__强壮__，建房子最合适。
+    - 今天的太阳很__强壮__，我热得满头大汗。
+    - 爷爷虽然九十岁了，但是身体很__强壮__。
+  correct: 爷爷虽然九十岁了，但是身体很__强壮__。
+  subject: Higher Chinese
+  marks: 1
+- questionID: P3-CH-2025-SA2-CHIJ-Q13
+  source: P3_Chinese_2025_SA2_chij.pdf; PDF page 5; answer key supplied in PDF
+  sourceQuestion: Q13
+  sourceSubject: Higher Chinese
+  sourceMarks: 1
+  lessonIds: []
+  question: 以下哪个句子是正确的？
+  options:
+    - 弟弟真__有趣__，常常让爸爸妈妈很生气。
+    - 爸爸的工作很__有趣__，他很晚才能回家。
+    - 老师的游戏__有趣__极了，我们玩了又玩。
+    - 这部戏非常__有趣__，我们都感动得哭了。
+  correct: 老师的游戏__有趣__极了，我们玩了又玩。
+  subject: Higher Chinese
+  marks: 1
+- questionID: P3-CH-2025-WA1-CHIJ-Q19
+  source: P3_Chinese_2025_WA1_chij.pdf; PDF page 3; answer key supplied in PDF
+  sourceQuestion: Q19
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds:
+    - 1
+  question: “希望”用在哪个句子中是正确的？
+  options:
+    - 我__希望__将来能成为一名飞机师。
+    - 我们__希望__很久的假期终于来了。
+    - 同学们都__希望__着儿童节的到来。
+    - 脚踏车是弟弟一直__希望__的礼物。
+  correct: 我__希望__将来能成为一名飞机师。
+  targetWord: 希望
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA1-CHIJ-Q20
+  source: P3_Chinese_2025_WA1_chij.pdf; PDF page 3; answer key supplied in PDF
+  sourceQuestion: Q20
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds:
+    - 1
+    - 15
+  question: “练习”用在哪个句子中是正确的？
+  options:
+    - 老师说只要我经常__练习__课本，就不会忘了新学的字。
+    - 表哥读大学的时候，曾经到美国的一家大工厂__练习__。
+    - 哥哥正在为明天的考试__练习__，因此没空和我玩游戏。
+    - 我每天都__练习__唱歌，这样以后就能够参加歌唱比赛。
+  correct: 我每天都__练习__唱歌，这样以后就能够参加歌唱比赛。
+  targetWord: 练习
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA1-CHIJ-Q21
+  source: P3_Chinese_2025_WA1_chij.pdf; PDF page 4; answer key supplied in PDF
+  sourceQuestion: Q21
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds: []
+  question: “强壮”用在哪个句子中是正确的？
+  options:
+    - 这支笔非常__强壮__，我用了几年都没坏。
+    - 他的数学很__强壮__，考试每次都得满分。
+    - 这阵大风十分__强壮__，把大树都吹倒了。
+    - 哥哥常常跑步和游泳，身体十分__强壮__。
+  correct: 哥哥常常跑步和游泳，身体十分__强壮__。
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA1-CHIJ-Q22
+  source: P3_Chinese_2025_WA1_chij.pdf; PDF page 4; answer key supplied in PDF
+  sourceQuestion: Q22
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds: []
+  question: “陪伴”用在哪个句子中是正确的？
+  options:
+    - 听到喜欢的歌后，妹妹__陪伴__着歌声跳起舞来。
+    - 我家的小狗每天都__陪伴__我，是我最好的朋友。
+    - 下课后，老师让班长拿本子__陪伴__她去办公室。
+    - 我们四个人互相__陪伴__，很快完成了小组作业。
+  correct: 我家的小狗每天都__陪伴__我，是我最好的朋友。
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA2-CHIJ-Q19
+  source: P3_Chinese_2025_WA2_chij.pdf; PDF page 3; answer key supplied in PDF
+  sourceQuestion: Q19
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds: []
+  question: “连忙”用在哪个句子中是正确的？
+  options:
+    - 看见弟弟跌倒了，我__连忙__跑过去把他扶起来。
+    - 我帮妈妈扫地和洗菜，妈妈__连忙__感到很开心。
+    - 门外的小树一天一天__连忙__长高，变成了大树。
+    - 哥哥__连忙__去跑步和游泳，身体变得非常强壮。
+  correct: 看见弟弟跌倒了，我__连忙__跑过去把他扶起来。
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA2-CHIJ-Q20
+  source: P3_Chinese_2025_WA2_chij.pdf; PDF page 3; answer key supplied in PDF
+  sourceQuestion: Q20
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds:
+    - 6
+  question: “原谅”用在哪个句子中是正确的？
+  options:
+    - 爸妈工作十分辛苦，我们应该__原谅__他们。
+    - 哥哥今天身体很不舒服，我们要__原谅__他。
+    - 他只是去帮同学拿书，我们不要__原谅__他。
+    - 虽然妹妹弄坏我的玩具，我还是__原谅__她。
+  correct: 虽然妹妹弄坏我的玩具，我还是__原谅__她。
+  targetWord: 原谅
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA2-CHIJ-Q21
+  source: P3_Chinese_2025_WA2_chij.pdf; PDF page 4; answer key supplied in PDF
+  sourceQuestion: Q21
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds:
+    - 7
+  question: “休息”用在哪个句子中是正确的？
+  options:
+    - 过去的三年里，王奶奶都在国外的老人院__休息__。
+    - 妹妹放学回家后觉得非常累，就躺在床上__休息__。
+    - 爷爷六十岁那年__休息__后，每天都到公园打太极。
+    - 这家在山上的旅馆空气很新鲜，适合人们__休息__。
+  correct: 妹妹放学回家后觉得非常累，就躺在床上__休息__。
+  targetWord: 休息
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA2-CHIJ-Q22
+  source: P3_Chinese_2025_WA2_chij.pdf; PDF page 4; answer key supplied in PDF
+  sourceQuestion: Q22
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds: []
+  question: “整齐”用在哪个句子中是正确的？
+  options:
+    - 图书馆里的书摆放得很__整齐__。
+    - 妈妈气我没有把书包__整齐__好。
+    - 老师喜欢鞋袜都__整齐__的学生。
+    - 妹妹每天自己把房间__整齐__好。
+  correct: 图书馆里的书摆放得很__整齐__。
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA3-CATHOLIC-S3-Q18
+  source: P3_Chinese_2025_WA3_catholic.pdf; PDF page 3; answer key supplied in PDF
+  sourceQuestion: Q18
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds:
+    - 10
+    - 17
+  question: “决定”用在哪个句子中是正确的？
+  options:
+    - 我和妈妈都__决定__这一件衣服十分美丽。
+    - 同学们__决定__班长这次的听写得了高分。
+    - 大家都__决定__老师刚才讲的故事很有趣。
+    - 我和姐姐__决定__每天早上都去公园跑步。
+  correct: 我和姐姐__决定__每天早上都去公园跑步。
+  targetWord: 决定
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA3-CATHOLIC-S3-Q19
+  source: P3_Chinese_2025_WA3_catholic.pdf; PDF page 3; answer key supplied in PDF
+  sourceQuestion: Q19
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds:
+    - 11
+  question: “如果”用在哪个句子中是正确的？
+  options:
+    - __如果__外面下着雨，我还是要去图书馆借书。
+    - __如果__哥哥每天专心听课，就能有好的表现。
+    - __如果__妹妹没有在比赛中得奖，但她很高兴。
+    - __如果__弟弟用心学习，妈妈说他是个好孩子。
+  correct: __如果__哥哥每天专心听课，就能有好的表现。
+  targetWord: 如果
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA3-CATHOLIC-S3-Q20
+  source: P3_Chinese_2025_WA3_catholic.pdf; PDF page 3; answer key supplied in PDF
+  sourceQuestion: Q20
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds:
+    - 10
+  question: “吃惊”用在哪个句子中是正确的？
+  options:
+    - 那个不学习的孩子又迟到了，老师很__吃惊__。
+    - 我的小狗已经病了几个月，我感到很__吃惊__。
+    - 妹妹一直找不到回家的路，心里__吃惊__极了。
+    - 今天早上学校突然停电，我们都十分__吃惊__。
+  correct: 今天早上学校突然停电，我们都十分__吃惊__。
+  targetWord: 吃惊
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA3-CATHOLIC-S3-Q21
+  source: P3_Chinese_2025_WA3_catholic.pdf; PDF page 3; answer key supplied in PDF
+  sourceQuestion: Q21
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds: []
+  question: “利用”用在哪个句子中是正确的？
+  options:
+    - 我__利用__休息的时间，完成了大部分的功课。
+    - 电脑的__利用__十分大，帮助我们做了很多事。
+    - 这台洗衣机是新的，奶奶不知道怎么__利用__。
+    - 这支蓝色的笔用了很久也没坏，十分__利用__。
+  correct: 我__利用__休息的时间，完成了大部分的功课。
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA3-CATHOLIC-S4-Q18
+  source: P3_Chinese_2025_WA3_catholic.pdf; PDF page 9; answer key supplied in PDF
+  sourceQuestion: Q18
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds:
+    - 13
+  question: “虽然”用在哪个句子中是正确的？
+  options:
+    - __虽然__妹妹身体不舒服，我们就不要出去了。
+    - __虽然__老师不在教室，但同学们还是很安静。
+    - __虽然__大家都用环保袋购物，就能保护环境。
+    - __虽然__班长生病了，所以今天没来学校上课。
+  correct: __虽然__老师不在教室，但同学们还是很安静。
+  targetWord: 虽然
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA3-CATHOLIC-S4-Q19
+  source: P3_Chinese_2025_WA3_catholic.pdf; PDF page 9; answer key supplied in PDF
+  sourceQuestion: Q19
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds:
+    - 13
+  question: “必须”用在哪个句子中是正确的？
+  options:
+    - 弟弟__必须__先把功课做完，才可以出去玩。
+    - 公公刚刚跌倒了，请朋友__必须__扶他回家。
+    - 植物生长__必须__充足的阳光、水分和空气。
+    - 妈妈一早到超市，买了__必须__的用品回来。
+  correct: 弟弟__必须__先把功课做完，才可以出去玩。
+  targetWord: 必须
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA3-CATHOLIC-S4-Q20
+  source: P3_Chinese_2025_WA3_catholic.pdf; PDF page 9; answer key supplied in PDF
+  sourceQuestion: Q20
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds:
+    - 16
+  question: “结果”用在哪个句子中是正确的？
+  options:
+    - 哥哥每天只想着玩耍，__结果__听写不及格。
+    - 我先把功课做完，__结果__才和妹妹一起玩。
+    - 老师叫我们回家做功课，__结果__我做对了。
+    - 我们不应该乱扔垃圾，__结果__会引来蚊虫。
+  correct: 哥哥每天只想着玩耍，__结果__听写不及格。
+  targetWord: 结果
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-2025-WA3-CATHOLIC-S4-Q21
+  source: P3_Chinese_2025_WA3_catholic.pdf; PDF page 9; answer key supplied in PDF
+  sourceQuestion: Q21
+  sourceSubject: Higher Chinese
+  sourceMarks: 2
+  lessonIds:
+    - 17
+  question: “检查”用在哪个句子中是正确的？
+  options:
+    - 只要__检查__报纸，就能知道最近发生的事。
+    - 爸爸__检查__了手表，发现时间已经不早了。
+    - 老师要我们__检查__之后，再把作业交给她。
+    - 我们一做错事，妈妈就要我们好好__检查__。
+  correct: 老师要我们__检查__之后，再把作业交给她。
+  targetWord: 检查
+  subject: Higher Chinese
+  marks: 2
+- questionID: P3-CH-AUTHORED-L2-Q09
+  source: "Original authored P3 practice; Lesson 2; taught vocabulary: 奇怪."
+  targetWord: 奇怪
+  lessonIds:
+    - 2
+  question: 以下哪一个句子正确使用了“奇怪”？
+  options:
+    - 抽屉里明明没有东西，却传出声音，真奇怪。
+    - 我用奇怪把纸剪成小花。
+    - 妈妈买了三公斤奇怪回家。
+    - 他把书奇怪到第十页。
+  correct: 抽屉里明明没有东西，却传出声音，真奇怪。
+- questionID: P3-CH-AUTHORED-L4-Q08
+  source: "Original authored P3 practice; Lesson 4; taught vocabulary: 哪里."
+  targetWord: 哪里
+  lessonIds:
+    - 4
+  question: 以下哪一个句子正确使用了“哪里”？
+  options:
+    - 我买了三本哪里放在书包里。
+    - 弟弟把哪里喝得一滴不剩。
+    - 妈妈用哪里把地板擦干净。
+    - 我的橡皮不见了，你知道它在哪里吗？
+  correct: 我的橡皮不见了，你知道它在哪里吗？
+- questionID: P3-CH-AUTHORED-L5-Q08
+  source: "Original authored P3 practice; Lesson 5; taught vocabulary: 或者."
+  targetWord: 或者
+  lessonIds:
+    - 5
+  question: 以下哪一个句子正确使用了“或者”？
+  options:
+    - 妈妈把或者倒进杯子里。
+    - 这个箱子很或者，我搬不动。
+    - 弟弟穿着一条或者的裤子。
+    - 你可以选苹果或者梨，只能拿一个。
+  correct: 你可以选苹果或者梨，只能拿一个。
+- questionID: P3-CH-AUTHORED-L7-Q08
+  source: "Original authored P3 practice; Lesson 7; taught vocabulary: 道歉."
+  targetWord: 道歉
+  lessonIds:
+    - 7
+  question: 以下哪一个句子正确使用了“道歉”？
+  options:
+    - 妈妈到商店道歉了一袋米。
+    - 弟弟把窗户道歉得很干净。
+    - 这碗汤很道歉，我喝了两碗。
+    - 我弄坏了朋友的玩具，便向他道歉。
+  correct: 我弄坏了朋友的玩具，便向他道歉。
+- questionID: P3-CH-AUTHORED-L8-Q10
+  source: "Original authored P3 practice; Lesson 8; taught vocabulary: 然后."
+  targetWord: 然后
+  lessonIds:
+    - 8
+  question: 以下哪一个句子正确使用了“然后”？
+  options:
+    - 妈妈买了一件然后送给我。
+    - 我先把手洗干净，然后才吃面包。
+    - 这只小猫很然后，大家都喜欢它。
+    - 爷爷用然后浇花。
+  correct: 我先把手洗干净，然后才吃面包。
+- questionID: P3-CH-AUTHORED-L9-Q17
+  source: "Original authored P3 practice; Lesson 9; taught vocabulary: 夸."
+  targetWord: 夸
+  lessonIds:
+    - 9
+  question: 以下哪一个句子正确使用了“夸”？
+  options:
+    - 老师夸我的字写得整齐，我听了很开心。
+    - 弟弟把书夸到第三页。
+    - 妈妈用夸把汤盛进碗里。
+    - 这张桌子太夸，我搬不动。
+  correct: 老师夸我的字写得整齐，我听了很开心。
+- questionID: P3-CH-AUTHORED-L11-Q10
+  source: "Original authored P3 practice; Lesson 11; taught vocabulary: 使用."
+  targetWord: 使用
+  lessonIds:
+    - 11
+  question: 以下哪一个句子正确使用了“使用”？
+  options:
+    - 今天的雨使用得很大。
+    - 使用剪刀时，要小心刀口。
+    - 我使用了一碗饭，肚子饱了。
+    - 这件外套的颜色很使用。
+  correct: 使用剪刀时，要小心刀口。
+- questionID: P3-CH-AUTHORED-L12-Q09
+  source: "Original authored P3 practice; Lesson 12; taught vocabulary: 其中."
+  targetWord: 其中
+  lessonIds:
+    - 12
+  question: 以下哪一个句子正确使用了“其中”？
+  options:
+    - 桌上有三本书，其中一本是我的。
+    - 妈妈把衣服其中在阳台上。
+    - 弟弟其中了一杯水。
+    - 这条裙子很其中。
+  correct: 桌上有三本书，其中一本是我的。
+- questionID: P3-CH-AUTHORED-L14-Q15
+  source: "Original authored P3 practice; Lesson 14; taught vocabulary: 玩耍."
+  targetWord: 玩耍
+  lessonIds:
+    - 14
+  question: 以下哪一个句子正确使用了“玩耍”？
+  options:
+    - 妈妈把晚饭玩耍好了。
+    - 这张桌子太玩耍，放不进房间。
+    - 放学后，孩子们在操场上玩耍。
+    - 我穿上一件玩耍出门。
+  correct: 放学后，孩子们在操场上玩耍。
+- questionID: P3-CH-AUTHORED-L15-Q07
+  source: "Original authored P3 practice; Lesson 15; taught vocabulary: 不敢."
+  targetWord: 不敢
+  lessonIds:
+    - 15
+  question: 以下哪一个句子正确使用了“不敢”？
+  options:
+    - 妈妈用不敢扫地。
+    - 这本书有三页不敢。
+    - 水太深了，弟弟害怕，所以不敢下水。
+    - 我把外套不敢在衣架上。
+  correct: 水太深了，弟弟害怕，所以不敢下水。
+- questionID: P3-CH-AUTHORED-L16-Q18
+  source: "Original authored P3 practice; Lesson 16; taught vocabulary: 却."
+  targetWord: 却
+  lessonIds:
+    - 16
+  question: 以下哪一个句子正确使用了“却”？
+  options:
+    - 我买了一件却送给妹妹。
+    - 我想把这件事做好，却不小心弄错了。
+    - 这碗汤却得很好喝。
+    - 弟弟把书却在桌上。
+  correct: 我想把这件事做好，却不小心弄错了。
+- questionID: P3-CH-AUTHORED-L16-Q19
+  source: "Original authored P3 practice; Lesson 16; taught vocabulary: 终于."
+  targetWord: 终于
+  lessonIds:
+    - 16
+  question: 以下哪一个句子正确使用了“终于”？
+  options:
+    - 妈妈终于着一篮青菜回家。
+    - 这块石头很终于，我搬不动。
+    - 练习了很多次，我终于学会了游泳。
+    - 我把课本终于到第十页。
+  correct: 练习了很多次，我终于学会了游泳。
