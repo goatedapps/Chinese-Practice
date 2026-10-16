@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import { useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { usePet, computeCurrentMood, moodBucket, getAge, getStage } from "../../state/PetContext";
@@ -37,7 +38,7 @@ export function Owl() {
       </button>
       <h1 className="page-header">
         <Icon name="sparkle" className="page-header-spark" />
-        <img className="page-header-icon" src="/icons/pet.png" alt="" />
+        <img className="page-header-icon" src={assetUrl("/icons/pet.webp")} alt="" />
         我的宠物 My Pet
         <Icon name="sparkle" className="page-header-spark" />
       </h1>
@@ -93,7 +94,7 @@ export function Owl() {
                 dispatch({ type: "GO_TO_SCREEN", screen: "shop" });
               }}
             >
-              <img src="/icons/shop.png" alt="" />
+              <img src={assetUrl("/icons/shop.webp")} alt="" />
               <span className="owl-action-banner-label"><BilingualLabel zh="商店" en="Shop" /></span>
             </button>
             <button
@@ -103,7 +104,7 @@ export function Owl() {
                 dispatch({ type: "GO_TO_SCREEN", screen: "bag" });
               }}
             >
-              <img src="/icons/play.png" alt="" />
+              <img src={assetUrl("/icons/play.webp")} alt="" />
               <span className="owl-action-banner-label">
                 <BilingualLabel zh="喂食／玩耍" en="Feed / Play" />
                 {bagCount > 0 && <span className="owl-action-banner-count">{bagCount}</span>}

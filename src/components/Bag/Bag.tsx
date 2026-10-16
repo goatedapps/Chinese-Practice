@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import { useRef, useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { usePet, computeCurrentMood, moodBucket, getStage } from "../../state/PetContext";
@@ -58,7 +59,7 @@ export function Bag() {
                     dispatch({ type: "GO_TO_SCREEN", screen: "shop" });
                   }}
                 >
-                  <img src="/icons/shop.png" alt="" />
+                  <img src={assetUrl("/icons/shop.webp")} alt="" />
                   <span className="owl-action-banner-label">商店</span>
                 </button>
               </div>

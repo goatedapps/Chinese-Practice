@@ -1,3 +1,4 @@
+import { assetUrl, optionalAssetUrl } from "../lib/assets";
 /* =========================================================
    PET / BP CONFIG for the Chinese Practice app's gamification
    layer. Read only by state/PetContext.tsx (PET_STAGES,
@@ -6,7 +7,7 @@
    here -- this file only holds tunable config, never per-user
    state.
 
-   Owl art is 24 fully-illustrated PNGs or MP4 (6 growth stages x 4 mood) 
+   Owl art is 24 fully-illustrated WebP images or MP4 (6 growth stages x 4 mood)
    ========================================================= */
 import type { PetState, PetStage, ShopItem, MoodBucket } from "./types";
 
@@ -141,29 +142,26 @@ export function shopItemName(item: ShopItem): string {
   return name ?? item.label;
 }
 
-// public/icons/ file for each SHOP_ITEMS id -- "puzzle"'s icon is
-// "memory.png" (not "puzzle.png") since the toy's game changed to a
-// memory-match but its id stayed "puzzle" for backward-compatible inventory
-// keys (see TOY_GAMES's comment above); every other id matches its filename.
+// Inventory keys stay stable even when a toy uses a different illustrated icon.
 const SHOP_ITEM_ICON_FILES: Record<string, string> = {
-  seed: "seeds.png",
-  worm: "worm.png",
-  fish: "fish.png",
-  ball: "ball.png",
-  kite: "kite.png",
-  puzzle: "memory.png"
+  seed: "seeds.webp",
+  worm: "worm.webp",
+  fish: "fish.webp",
+  ball: "ball.webp",
+  kite: "kite.webp",
+  puzzle: "memory.webp"
 };
 
 export function shopItemIconPath(item: ShopItem): string {
-  return `/icons/${SHOP_ITEM_ICON_FILES[item.id]}`;
+  return assetUrl(`/icons/${SHOP_ITEM_ICON_FILES[item.id]}`);
 }
 
 // Icons for the Growth/Hunger pet stats -- shown next to the growth/mood
 // bars on PetHeroCard (Home), PetStatBars (Owl/Bag), and each Shop/Bag food
 // item's stat line, so the same two icons mean "growth"/"hunger" everywhere
 // they appear rather than each screen picking its own emoji.
-export const GROWTH_ICON = "/icons/heart.png";
-export const HUNGER_ICON = "/icons/rice.png";
+export const GROWTH_ICON = assetUrl("/icons/heart.webp");
+export const HUNGER_ICON = assetUrl("/icons/rice.webp");
 
 // One minigame per toy ShopItem (keyed by ShopItem.id, `id` kept as "puzzle"
 // even after the game itself changed from a leaf-picking guess to a memory
@@ -227,7 +225,7 @@ export const TOY_GAMES: Record<string, ToyGameConfig> = {
 // completion hooks in PetContext.tsx/PlayGame.tsx/Result.tsx) pays bonusBP on
 // top of whatever BP the underlying activity already earns. `icon` is either
 // an emoji (vocab100/comprehension1, which have no matching SHOP_ITEMS/stat
-// icon) or an existing /icons/*.png path reused from SHOP_ITEM_ICON_FILES/
+// icon) or an existing icon asset reused from SHOP_ITEM_ICON_FILES/
 // HUNGER_ICON so the quest card matches the icon already used for that same
 // item/stat elsewhere in the app.
 export interface SpecialQuestConfig {
@@ -238,15 +236,15 @@ export interface SpecialQuestConfig {
 }
 
 export const SPECIAL_QUEST_TYPES: SpecialQuestConfig[] = [
-  { id: "vocab100", label: "词语测验满分 Get 100% on a Vocab Quiz", icon: "/icons/practice.png", bonusBP: 100 },
-  { id: "ballPlay", label: "玩一次小球游戏 Play the Ball Game", icon: "/icons/ball.png", bonusBP: 40 },
-  { id: "petFull", label: "把宠物喂到饱食度 100% Fill Your Pet's Hunger to 100%", icon: "/icons/rice.png", bonusBP: 80 },
-  { id: "memoryFast", label: "20 秒内完成记忆卡牌 Beat the Memory Game in 20s", icon: "/icons/memory.png", bonusBP: 40 },
-  { id: "comprehension1", label: "完成一篇阅读理解 Complete One Comprehension Passage", icon: "/icons/read.png", bonusBP: 200 },
+  { id: "vocab100", label: "词语测验满分 Get 100% on a Vocab Quiz", icon: assetUrl("/icons/practice.webp"), bonusBP: 100 },
+  { id: "ballPlay", label: "玩一次小球游戏 Play the Ball Game", icon: assetUrl("/icons/ball.webp"), bonusBP: 40 },
+  { id: "petFull", label: "把宠物喂到饱食度 100% Fill Your Pet's Hunger to 100%", icon: assetUrl("/icons/rice.webp"), bonusBP: 80 },
+  { id: "memoryFast", label: "20 秒内完成记忆卡牌 Beat the Memory Game in 20s", icon: assetUrl("/icons/memory.webp"), bonusBP: 40 },
+  { id: "comprehension1", label: "完成一篇阅读理解 Complete One Comprehension Passage", icon: assetUrl("/icons/read.webp"), bonusBP: 200 },
   // Requires actually crossing the kite minigame's own bonusThreshold (7/8
   // catches, see TOY_GAMES.kite) -- i.e. completion.perfect, not just any
   // finish -- unlike ballPlay above, which pays out on any outcome.
-  { id: "kitePlay", label: "接住 7 个以上羽毛 Catch 7+ Feathers in the Kite Game", icon: "/icons/kite.png", bonusBP: 120 }
+  { id: "kitePlay", label: "接住 7 个以上羽毛 Catch 7+ Feathers in the Kite Game", icon: assetUrl("/icons/kite.webp"), bonusBP: 120 }
 ];
 
 export function specialQuestConfig(id: string): SpecialQuestConfig | undefined {
@@ -264,21 +262,10 @@ export const PET_DEFAULT_STATE: PetState = {
   questionsLifetime: 0
 };
 
-// e.g. owlSpritePath("baby", "happy") -> "/owl/owl-baby-happy.png"
 export function owlSpritePath(stageKey: string, mood: MoodBucket): string {
-  return `/owl/owl-${stageKey}-${mood}.png`;
+  return assetUrl(`/owl/owl-${stageKey}-${mood}.webp`);
 }
 
-// Some stage x mood combos have a hand-animated video (with its sound effect
-// muxed in as the video's own audio track) instead of just a static PNG --
-// which combos do isn't tracked here as a hardcoded list any more. OwlArt.tsx
-// always tries the .mp4 first and falls back to the .png only if the video
-// fails to load (404/decode error) -- see that component. Source art is
-// authored as GIF but shipped as MP4 (H.264+AAC) -- far smaller than GIF at
-// the same visual quality, and plays natively via <video playsInline>. A
-// variant with only a video and no PNG fallback (its source PNG removed when
-// the video replaced it) works fine too, since the fallback `<img>` is only
-// ever rendered after a genuine video load failure.
-export function owlAnimatedSpritePath(stageKey: string, mood: MoodBucket): string {
-  return `/owl/owl-${stageKey}-${mood}.mp4`;
+export function owlAnimatedSpritePath(stageKey: string, mood: MoodBucket): string | undefined {
+  return optionalAssetUrl(`/owl/owl-${stageKey}-${mood}.mp4`);
 }

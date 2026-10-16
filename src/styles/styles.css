@@ -1,17 +1,3 @@
-/* Smiley Sans (得意黑) -- self-hosted (public/fonts/, not a Google Fonts/CDN
-   link) so the app's "works fully offline once built" guarantee still
-   holds. Its normal weight is genuinely named "Oblique" upstream (a slight
-   built-in slant is the typeface's whole design signature, not a separate
-   italic cut) -- font-style stays "normal" here since that's still its
-   normal/only style, not an actual oblique variant of some other weight. */
-@font-face {
-  font-family: "Smiley Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/SmileySans-Oblique.woff2") format("woff2");
-}
-
 /* Claymorphism palette -- vivid candy colors + a puffy double-shadow recipe
    (soft outer lift + inset highlight), consumed by every shared class
    below via these custom properties. Autumn re-theme: harvest-table hues
@@ -102,7 +88,7 @@
 
 * { box-sizing: border-box; }
 
-/* The illustrated garden scene (public/icons/homepage.png) is the whole
+/* The illustrated garden scene (src/assets/icons/homepage.webp) is the whole
    app's background now, not just Home's -- every screen's own .screen
    panel (see below) sits on top of it, cream instead of the old peach
    gradient, so this one shared scene shows at its edges everywhere. Painted
@@ -114,7 +100,7 @@
    follow, rather than `cover`, which would crop/zoom unpredictably against
    each screen's own variable content height.
    Below that image's own bottom edge, a second, lower background layer
-   (public/icons/garden-tile.png, a stone-path-through-flowers crop) tiles
+   (src/assets/icons/garden-tile.webp, a stone-path-through-flowers crop) tiles
    to fill however much further a page taller than one screen's worth of
    content scrolls -- CSS paints comma-separated background layers in
    listed order (first = frontmost), so the no-repeat hero simply has
@@ -127,7 +113,7 @@ body {
   overflow-x: hidden;
   font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
   background-color: #5fae4a;
-  background-image: url("/icons/homepage.png"), url("/icons/garden-tile.png");
+  background-image: url("../assets/icons/homepage.webp"), url("../assets/icons/garden-tile.webp");
   background-repeat: no-repeat, repeat;
   background-position: top center, top center;
   background-size: 100% auto, 280px 420px;
@@ -702,11 +688,11 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
    rotate->translate->counter-content trick and rotate along with the dial
    itself (matching a real prize wheel, where labels are always radial). */
 /* Overrides .dash-card's plain cream gradient with the illustrated
-   public/icons/quest-bg.png, stretched to exactly fill the card (its own
+   src/assets/icons/quest-bg.webp, stretched to exactly fill the card (its own
    colors shown as-is, no tint/overlay). */
 .special-quest {
   display: flex; flex-direction: column; text-align: center;
-  background: url("/icons/quest-bg.png") center / 100% 100% no-repeat;
+  background: url("../assets/icons/quest-bg.webp") center / 100% 100% no-repeat;
 }
 /* .section-heading is itself a flex row (icon + text), so the card's own
    text-align:center has no effect on it -- centered here explicitly,
@@ -715,12 +701,12 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .quest-heading { justify-content: center; }
 .quest-heading-star { width: 17px; height: 17px; object-fit: contain; color: var(--garden-gold); flex: none; }
 .quest-wheel-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; }
-/* Uses the real illustrated wheel graphic (public/icons/spinwheel.png, a
+/* Uses the real illustrated wheel graphic (src/assets/icons/spinwheel.webp, a
    plain circular dial, 738x734) as the whole wheel face, instead of a CSS
    conic-gradient dial with separately-drawn pointer/segment-icon overlays
    -- the pointer/per-segment icon overlay elements are hidden (see below)
    rather than removed from SpecialQuest.tsx, since the image already draws
-   the pointer. A separate public/icons/wheel-base.png (a wooden stand,
+   the pointer. A separate src/assets/icons/wheel-base.webp (a wooden stand,
    752x345) sits behind the dial (.quest-wheel-base below), centered on the
    dial's own bottom edge so half its height is hidden behind the circular
    dial and half peeks out below it, like the wheel resting on a stand.
@@ -743,7 +729,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 @media (min-width: 700px) {
   .quest-wheel-frame { --wheel-size: min(340px, calc(100vw - 124px)); }
 }
-/* The pointer is baked into spinwheel.png (see the comment above), so that
+/* The pointer is baked into spinwheel.webp (see the comment above), so that
    overlay stays hidden -- but the per-segment icons are real content
    (SPECIAL_QUEST_TYPES' own icon, different per quest), so they're drawn
    for real here, one per colored wedge of the 6-wedge dial graphic. */
@@ -752,13 +738,13 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .quest-wheel-base {
   position: absolute; left: 50%; top: var(--wheel-size); transform: translate(-50%, -50%);
   width: 92%; aspect-ratio: 752 / 345;
-  background: url("/icons/wheel-base.png") center / contain no-repeat;
+  background: url("../assets/icons/wheel-base.webp") center / contain no-repeat;
   z-index: 0;
 }
 .quest-wheel-dial {
   position: absolute; top: 0; left: 0; width: 100%; aspect-ratio: 1;
   z-index: 1;
-  background: url("/icons/spinwheel.png") center / contain no-repeat;
+  background: url("../assets/icons/spinwheel.webp") center / contain no-repeat;
   /* How far out from the hub each segment's icon sits -- .quest-wheel-slot's
      inline transform (see SpecialQuest.tsx) reads this. ~32% of the dial's
      own width lands roughly in the middle of a wedge's colored area,
@@ -1400,7 +1386,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   position: absolute; bottom: 0; right: 0;
   width: 56px; height: 56px;
   pointer-events: none;
-  background: url("/icons/page-fold.svg") center / 100% 100% no-repeat;
+  background: url("../assets/icons/page-fold.svg") center / 100% 100% no-repeat;
   border-radius: 0;
 }
 .story-page-curl-prev { right: auto; left: 0; transform: scaleX(-1); }
@@ -1508,8 +1494,8 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .self-btn.self-wrong.self-chosen { background: var(--incorrect); border-color: var(--incorrect); color: #fff; }
 
 /* ---------- Pet / BP ---------- */
-/* Owl art is one complete illustrated PNG per stage+mood (see
-   public/owl/), not a composited body+face SVG pair, so each .owl-art
+/* Owl art is one complete illustrated image per stage+mood (see
+   src/assets/owl/), not a composited body+face SVG pair, so each .owl-art
    just wraps a single <img>. */
 .owl-art {
   position: relative; flex-shrink: 0;
@@ -1770,7 +1756,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 @media (min-width: 700px) {
   .owl-large-xl-wrap { width: min(420px, 36vw); height: min(420px, 36vw); }
 }
-/* Two wide banner buttons (real shop.png/play.png icons, not emoji) below
+/* Two wide banner buttons (real shop.webp/play.webp icons, not emoji) below
    the pet/stats row, replacing the old small pill action-row -- own
    violet/gold colors rather than .primary-btn/.secondary-btn since these
    are big tappable banners, not the app's generic action-button shape. */
@@ -2749,7 +2735,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .auth-field { display: flex; flex-direction: column; gap: 6px; }
 .auth-field-label { display: flex; align-items: baseline; gap: 8px; font-size: 15px; font-weight: 700; color: var(--garden-ink); }
 .auth-field-label > span { font-size: 12px; font-weight: 500; color: var(--garden-ink-soft); }
-/* Leading icon inside the field (login-username.png/login-password.png)
+/* Leading icon inside the field (login-username.webp/login-password.webp)
    replaces the old plain "Username"/"Password" label -- the input's own
    placeholder ("Your username here"/"Your password here") now carries
    that labeling job instead. */

@@ -91,7 +91,7 @@ export function Play() {
   // Loads the distractor word pool (every lesson's vocab, see the file
   // comment above) and the first sentence, then starts the round -- the
   // fetch usually resolves near-instantly since LessonSelect.tsx already
-  // prefetches every lesson in the background, but this still waits on it
+  // shares lesson requests already started by other dictation activities, and waits
   // rather than starting the timer against a possibly-empty distractor pool.
   useEffect(() => {
     if (!hasBankEntries) return;

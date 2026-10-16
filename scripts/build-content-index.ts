@@ -5,7 +5,8 @@
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import YAML from "yaml";
-import { parseQuestionCategoryYaml } from "../src/data/questions";
+import { parseQuestionCategoryYaml } from "../src/data/questionSchema";
+import { parseStoryMarkdown } from "../src/data/stories";
 
 const YAML_OPTS = { lineWidth: 0 };
 
@@ -50,7 +51,11 @@ function buildTingxieIndex(dir: string): void {
 function buildStoriesIndex(dir: string): void {
   const files = readdirSync(dir).filter((f) => f.endsWith(".md"));
   const written = files.map((f) => Number(f.replace(/\.md$/, ""))).sort((a, b) => a - b);
-  writeFileSync(join(dir, "index.yaml"), YAML.stringify({ written }, YAML_OPTS));
+  const lessons = written.map((id) => {
+    const story = parseStoryMarkdown(id, readFileSync(join(dir, `${id}.md`), "utf8"));
+    return { id, title: story.title, pageCount: story.segments.length };
+  });
+  writeFileSync(join(dir, "index.yaml"), YAML.stringify({ written, lessons }, YAML_OPTS));
 }
 
 const isMain = process.argv[1] && process.argv[1].replace(/\\/g, "/").endsWith("scripts/build-content-index.ts");

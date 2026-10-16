@@ -5,7 +5,8 @@
 // parsed with the `yaml` package -- see CLAUDE.md's data-layer section for why
 // (structured data with per-word example-sentence lists doesn't fit Markdown
 // cleanly, unlike Read a Story's prose).
-import YAML from "yaml";
+import { parse as parseYaml } from "yaml";
+import { createContentCache } from "../lib/contentCache";
 import type {
   TingxieLesson,
   TingxieLessonIndexEntry,
@@ -19,42 +20,30 @@ function lessonsBase(): string {
   return `${import.meta.env.BASE_URL}content/${getCurrentLevel()}/tingxie`;
 }
 
-// Keyed by level (not just "index"/lesson id) so switching levels via the
-// level switcher never serves a cached lesson from the previously-active
-// level -- see data/levels.ts and data/questions.ts's identical pattern.
-const indexCache = new Map<string, TingxieLessonIndexEntry[]>();
-const lessonCache = new Map<string, TingxieLesson>();
+const cacheIndex = createContentCache<TingxieLessonIndexEntry[]>();
+const cacheLesson = createContentCache<TingxieLesson>();
 
-export async function fetchTingxieLessonIndex(): Promise<TingxieLessonIndexEntry[]> {
+export function fetchTingxieLessonIndex(): Promise<TingxieLessonIndexEntry[]> {
   const level = getCurrentLevel();
-  const cached = indexCache.get(level);
-  if (cached) return cached;
-  const res = await fetch(`${lessonsBase()}/index.yaml`);
-  if (!res.ok) throw new Error(`加载课程列表失败 Failed to load lesson index (${res.status})`);
-  const data = YAML.parse(await res.text()) as TingxieLessonIndexEntry[];
-  indexCache.set(level, data);
-  return data;
+  const base = lessonsBase();
+  return cacheIndex(level, async () => {
+    const res = await fetch(`${base}/index.yaml`);
+    if (!res.ok) throw new Error(`加载课程列表失败 Failed to load lesson index (${res.status})`);
+    return parseYaml(await res.text()) as TingxieLessonIndexEntry[];
+  });
 }
 
-export async function fetchTingxieLesson(id: number): Promise<TingxieLesson> {
+export function fetchTingxieLesson(id: number): Promise<TingxieLesson> {
   const level = getCurrentLevel();
-  const cacheKey = `${level}:${id}`;
-  const cached = lessonCache.get(cacheKey);
-  if (cached) return cached;
-  const res = await fetch(`${lessonsBase()}/${id}.yaml`);
-  if (!res.ok) throw new Error(`加载课程失败 Failed to load lesson ${id} (${res.status})`);
-  const data = YAML.parse(await res.text()) as TingxieLesson;
-  lessonCache.set(cacheKey, data);
-  return data;
+  const base = lessonsBase();
+  return cacheLesson(`${level}:${id}`, async () => {
+    const res = await fetch(`${base}/${id}.yaml`);
+    if (!res.ok) throw new Error(`加载课程失败 Failed to load lesson ${id} (${res.status})`);
+    return parseYaml(await res.text()) as TingxieLesson;
+  });
 }
 
-// The Play minigame's distractor pool (see components/Tingxie/Play.tsx) --
-// deliberately every lesson's vocabulary, not just the lesson being played,
-// per the feature request ("different random vocab from any lesson"). Reuses
-// fetchTingxieLesson()'s own cache, so this resolves near-instantly once
-// prefetchTingxieLessons() (or a previous call to this function) has already
-// warmed it -- only a fresh app session with a lesson jumped straight into
-// Play before the background prefetch finishes pays a real network cost.
+// Play needs every lesson for its distractors; ordinary dictation loads selected lessons only.
 export async function fetchAllTingxieVocabWords(): Promise<string[]> {
   const index = await fetchTingxieLessonIndex();
   const lessons = await Promise.all(index.map((entry) => fetchTingxieLesson(entry.id)));
@@ -63,23 +52,6 @@ export async function fetchAllTingxieVocabWords(): Promise<string[]> {
     for (const v of lesson.vocab) words.add(v.word);
   }
   return Array.from(words);
-}
-
-// Fire-and-forget warmup: once the lesson index is on screen, quietly fetch
-// every lesson's content in the background so a real tap on a lesson number
-// resolves from lessonCache instantly instead of waiting on a fresh network
-// round trip. Hosted on a real network (unlike the Vite dev server, where
-// every one of these fetches is sub-10ms on localhost), each lesson fetch
-// can otherwise take a second or more -- this is what closes that gap.
-// Errors are swallowed since a failed prefetch just means the eventual real
-// click falls back to its own fetch/error handling, same as before this
-// existed.
-export function prefetchTingxieLessons(index: TingxieLessonIndexEntry[]): void {
-  const level = getCurrentLevel();
-  for (const entry of index) {
-    if (lessonCache.has(`${level}:${entry.id}`)) continue;
-    fetchTingxieLesson(entry.id).catch(() => {});
-  }
 }
 
 // Punctuation tokens that show up as their own entries in TingxieSentence.segments

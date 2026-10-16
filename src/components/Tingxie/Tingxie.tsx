@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { stopSpeaking } from "../../lib/speech";
@@ -11,10 +12,10 @@ import { Play } from "./Play";
 import { Practice } from "./Practice";
 
 const MODES: { view: Exclude<TingxieView, "select">; icon: string; zh: string; en: string }[] = [
-  { view: "learn", icon: "/icons/dictation-learn.png", zh: "学习", en: "Learn" },
-  { view: "apply", icon: "/icons/dictation-apply.png", zh: "应用", en: "Apply" },
-  { view: "play", icon: "/icons/dictation-play.png", zh: "游戏", en: "Play" },
-  { view: "practice", icon: "/icons/dictation-test.png", zh: "测试", en: "Test" }
+  { view: "learn", icon: assetUrl("/icons/dictation-learn.webp"), zh: "学习", en: "Learn" },
+  { view: "apply", icon: assetUrl("/icons/dictation-apply.webp"), zh: "应用", en: "Apply" },
+  { view: "play", icon: assetUrl("/icons/dictation-play.webp"), zh: "游戏", en: "Play" },
+  { view: "practice", icon: assetUrl("/icons/dictation-test.webp"), zh: "测试", en: "Test" }
 ];
 
 function TingxieShell() {
@@ -72,7 +73,7 @@ function TingxieShell() {
         <div className="tingxie-activity-content">
           <div className="tingxie-activity-header">
             <div className="tingxie-activity-title">
-              <img src="/icons/dictatation-mission.png" alt="" />
+              <img src={assetUrl("/icons/dictatation-mission.webp")} alt="" />
               <span className="tingxie-activity-title-text">{state.activeContent.title}</span>
               <CurrentLevel />
             </div>

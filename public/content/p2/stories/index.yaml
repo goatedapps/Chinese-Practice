@@ -18,3 +18,61 @@ written:
   - 17
   - 18
   - 19
+lessons:
+  - id: 1
+    title: 谁折得最美？
+    pageCount: 6
+  - id: 2
+    title: 新年到外婆家
+    pageCount: 6
+  - id: 3
+    title: 特别的客人
+    pageCount: 6
+  - id: 4
+    title: 图画课上的树林
+    pageCount: 6
+  - id: 5
+    title: 奶奶迷路记
+    pageCount: 6
+  - id: 6
+    title: 上学的路上
+    pageCount: 6
+  - id: 7
+    title: 星期六的早餐
+    pageCount: 6
+  - id: 8
+    title: 长大以后要做什么？
+    pageCount: 6
+  - id: 9
+    title: 忘记带雨伞
+    pageCount: 6
+  - id: 10
+    title: 花园里的好朋友
+    pageCount: 6
+  - id: 11
+    title: 老鹰捉小鸡
+    pageCount: 6
+  - id: 12
+    title: 爷爷的生日惊喜
+    pageCount: 6
+  - id: 13
+    title: 梦见宠物岛
+    pageCount: 6
+  - id: 14
+    title: 彩虹蜡笔
+    pageCount: 6
+  - id: 15
+    title: 伯伯的菜园
+    pageCount: 6
+  - id: 16
+    title: 图书馆的故事时间
+    pageCount: 6
+  - id: 17
+    title: 热闹的夜市
+    pageCount: 6
+  - id: 18
+    title: 新加坡一日游
+    pageCount: 6
+  - id: 19
+    title: 外婆教我惜水
+    pageCount: 6

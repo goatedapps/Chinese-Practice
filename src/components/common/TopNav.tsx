@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import { useAppDispatch, useAppState, type Screen } from "../../state/AppStateContext";
 import { Icon } from "./Icons";
 import { ConfirmModal } from "./Modal";
@@ -14,12 +15,12 @@ import { useQuizLeaveGuard } from "../../lib/useQuizLeaveGuard";
 // the same icons already used elsewhere for these activities).
 const NAV_ITEMS: { key: string; label: string; screens: Screen[]; icon: string; isImage?: boolean }[] = [
   { key: "home", label: "主页", screens: ["home"], icon: "home" },
-  { key: "tingxie", label: "听写", screens: ["tingxie"], icon: "/icons/dictation.png", isImage: true },
-  { key: "practice", label: "练习", screens: ["practice"], icon: "/icons/practice.png", isImage: true },
-  { key: "story", label: "故事", screens: ["story"], icon: "/icons/read.png", isImage: true },
+  { key: "tingxie", label: "听写", screens: ["tingxie"], icon: assetUrl("/icons/dictation.webp"), isImage: true },
+  { key: "practice", label: "练习", screens: ["practice"], icon: assetUrl("/icons/practice.webp"), isImage: true },
+  { key: "story", label: "故事", screens: ["story"], icon: assetUrl("/icons/read.webp"), isImage: true },
   // Shop/Bag/Play are reached from the Owl screen and conceptually part of
   // the same "pet" flow, so this stays highlighted on all four.
-  { key: "owl", label: "宠物", screens: ["owl", "shop", "bag", "play"], icon: "/icons/pet.png", isImage: true }
+  { key: "owl", label: "宠物", screens: ["owl", "shop", "bag", "play"], icon: assetUrl("/icons/pet.webp"), isImage: true }
 ];
 
 export function TopNav() {
@@ -54,7 +55,7 @@ export function TopNav() {
     <>
       <div className="top-nav-row">
         <button type="button" className="top-nav-brand" onClick={() => go("home")}>
-          <div className="top-nav-brand-badge"><img src="/icons/pet.png" alt="" /></div>
+          <div className="top-nav-brand-badge"><img src={assetUrl("/icons/pet.webp")} alt="" /></div>
           <div className="top-nav-brand-text">
             <div className="top-nav-brand-title">华文练习</div>
           </div>

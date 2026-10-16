@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { useAuth } from "../../state/AuthContext";
@@ -60,7 +61,7 @@ export function AccountBar() {
   return (
     <div className="account-bar">
       <div className="top-nav-stat font-num">
-        <img className="top-nav-stat-coin" src="/icons/coin.png" alt="" />
+        <img className="top-nav-stat-coin" src={assetUrl("/icons/coin.webp")} alt="" />
         {pet.bp.toLocaleString()} BP
         {bpBoostActive && <span className="top-nav-stat-boost" title="双倍 BP 日 Double BP Day">×2</span>}
       </div>

@@ -1,6 +1,7 @@
+import { assetUrl } from "../../lib/assets";
 import { useEffect, useState } from "react";
 import type { TingxieSentence, TingxieVocabItem } from "../../data/types";
-import { fetchTingxieLessonIndex, fetchTingxieLesson, prefetchTingxieLessons, pooledTingxieReview } from "../../data/tingxie";
+import { fetchTingxieLessonIndex, fetchTingxieLesson, pooledTingxieReview } from "../../data/tingxie";
 import { isTingxieMissionComplete } from "../../lib/stats";
 import { shouldNudgeForLesson } from "../../state/lessonFrequency";
 import { loadMyVocab } from "../../state/myVocab";
@@ -80,7 +81,6 @@ export function LessonSelect() {
     fetchTingxieLessonIndex()
       .then((index) => {
         dispatch({ type: "LOAD_INDEX_SUCCESS", index });
-        prefetchTingxieLessons(index);
       })
       .catch((err: Error) => dispatch({ type: "LOAD_INDEX_ERROR", error: err.message }));
   }
@@ -182,7 +182,7 @@ export function LessonSelect() {
     <div className="tingxie-select">
       <h1 className="tingxie-select-title">
         <Icon name="sparkle" className="tingxie-select-title-spark" />
-        <img className="tingxie-select-title-icon" src="/icons/dictatation-mission.png" alt="" />
+        <img className="tingxie-select-title-icon" src={assetUrl("/icons/dictatation-mission.webp")} alt="" />
         <BilingualLabel zh="听写练习" en="Dictation Practice" />
         <CurrentLevel />
         <Icon name="sparkle" className="tingxie-select-title-spark" />
@@ -190,7 +190,7 @@ export function LessonSelect() {
 
       {!dictationMissionDone && (
         <div className="mission-hint-box">
-          <img className="mission-hint-icon" src="/icons/todays-mission.png" alt="" />
+          <img className="mission-hint-icon" src={assetUrl("/icons/todays-mission.webp")} alt="" />
           <span>To complete today's "Dictation Lesson" mission: pick any lesson and finish one activity (Learn / Apply / Test).</span>
         </div>
       )}
@@ -217,7 +217,10 @@ export function LessonSelect() {
               <button
                 key={entry.id}
                 className={"lesson-btn" + (state.pickerSelectedIds.includes(entry.id) ? " lesson-btn-active" : "")}
-                onClick={() => dispatch({ type: "TOGGLE_PICKER_LESSON", id: entry.id })}
+                onClick={() => {
+                  fetchTingxieLesson(entry.id).catch(() => {});
+                  dispatch({ type: "TOGGLE_PICKER_LESSON", id: entry.id });
+                }}
                 aria-pressed={state.pickerSelectedIds.includes(entry.id)}
               >
                 <div className="lesson-btn-num">{`第 ${entry.id} 课`}</div>

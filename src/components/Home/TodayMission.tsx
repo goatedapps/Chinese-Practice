@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import { useState } from "react";
 import { useAppDispatch, useAppState } from "../../state/AppStateContext";
 import { CATEGORIES, VOCABULARY_CATEGORY_KEYS, fetchQuestionCategory } from "../../data/questions";
@@ -12,7 +13,7 @@ import { BpAmount, BoostedNumber } from "../common/BpAmount";
 
 export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
   const dispatch = useAppDispatch();
-  const { level, questionIndex } = useAppState();
+  const { level, questionIndex, questionIndexLoaded } = useAppState();
   const [starting, setStarting] = useState(false);
   const lessonDone = isLessonMissionComplete(hist);
   const readingDone = getReadingMissionCount(hist) >= 1;
@@ -104,7 +105,7 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
 
   return (
     <div className="dash-card today-mission">
-      <h2 className="section-heading"><img className="section-heading-icon" src="/icons/todays-mission.png" alt="" />学习任务 Today's Mission</h2>
+      <h2 className="section-heading"><img className="section-heading-icon" src={assetUrl("/icons/todays-mission.webp")} alt="" />学习任务 Today's Mission</h2>
       <p className="mission-subhead">Complete all missions to earn <BoostedNumber value={MISSION_COMPLETE_BONUS_BP} /> BP</p>
       <div className="mission-list">
         <div className={"mission-row p1" + (dictationDone ? " mission-row-done" : "")}>
@@ -114,7 +115,7 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
             <span className="mission-status">Dictation Practice</span>
           </span>
           <span className="mission-right">
-            <span className="mission-icon-box"><img src="/icons/dictatation-mission.png" alt="" /></span>
+            <span className="mission-icon-box"><img src={assetUrl("/icons/dictatation-mission.webp")} alt="" /></span>
             {dictationDone ? (
               <span className="mission-done">✓ 已完成</span>
             ) : (
@@ -131,11 +132,11 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
             <span className="mission-status">Vocabulary Review</span>
           </span>
           <span className="mission-right">
-            <span className="mission-icon-box"><img src="/icons/practice-mission.png" alt="" /></span>
+            <span className="mission-icon-box"><img src={assetUrl("/icons/practice-mission.webp")} alt="" /></span>
             {lessonDone ? (
               <span className="mission-done">✓ 已完成</span>
             ) : (
-              <button className="mission-go" onClick={startLessonMission}>
+              <button className="mission-go" disabled={!questionIndexLoaded} onClick={startLessonMission}>
                 去完成
               </button>
             )}
@@ -148,7 +149,7 @@ export function TodayMission({ hist }: { hist: HistoryEntry[] }) {
             <span className="mission-status">Reading Comprehension</span>
           </span>
           <span className="mission-right">
-            <span className="mission-icon-box"><img src="/icons/read-mission.png" alt="" /></span>
+            <span className="mission-icon-box"><img src={assetUrl("/icons/read-mission.webp")} alt="" /></span>
             {readingDone ? (
               <span className="mission-done">✓ 已完成</span>
             ) : (

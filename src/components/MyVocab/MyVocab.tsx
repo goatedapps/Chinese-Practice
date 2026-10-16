@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import { useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import type { MyVocabEntry } from "../../data/types";
@@ -56,7 +57,7 @@ export function MyVocab() {
       </button>
       <h1 className="page-header">
         <Icon name="sparkle" className="page-header-spark" />
-        <img className="page-header-icon" src="/icons/dictation-learn.png" alt="" />
+        <img className="page-header-icon" src={assetUrl("/icons/dictation-learn.webp")} alt="" />
         我的词库 My Vocab
         <Icon name="sparkle" className="page-header-spark" />
       </h1>

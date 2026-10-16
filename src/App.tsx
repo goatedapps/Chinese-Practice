@@ -1,27 +1,29 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import { AppStateProvider, useAppState, useAppDispatch } from "./state/AppStateContext";
 import { PetProvider } from "./state/PetContext";
 import { AuthProvider, useAuth } from "./state/AuthContext";
 import { SyncBootstrap } from "./state/SyncBootstrap";
-import { fetchQuestionMeta, fetchQuestionIndex, computeCategorySubjects, prefetchAllQuestionCategories } from "./data/questions";
+import { fetchQuestionMeta, fetchQuestionIndex, computeCategorySubjects } from "./data/questions";
 import { getCurrentLevel } from "./data/levels";
 import { Sound } from "./lib/sound";
 import { Home } from "./components/Home/Home";
-import { Practice } from "./components/Practice/Practice";
-import { Quiz } from "./components/Quiz/Quiz";
-import { Result } from "./components/Result/Result";
-import { Owl } from "./components/Owl/Owl";
-import { Shop } from "./components/Shop/Shop";
-import { Bag } from "./components/Bag/Bag";
-import { PlayGame } from "./components/Play/PlayGame";
-import { Tingxie } from "./components/Tingxie/Tingxie";
-import { Story } from "./components/Story/Story";
 import { Auth } from "./components/Auth/Auth";
-import { MyVocab } from "./components/MyVocab/MyVocab";
 import { TopNav } from "./components/common/TopNav";
 import { AccountBar } from "./components/common/AccountBar";
 import { CursorGlow } from "./components/common/CursorGlow";
 import { IconSprite } from "./components/common/Icons";
+import { ScreenBoundary } from "./components/common/ScreenBoundary";
+
+const Practice = lazy(() => import("./components/Practice/Practice").then((module) => ({ default: module.Practice })));
+const Quiz = lazy(() => import("./components/Quiz/Quiz").then((module) => ({ default: module.Quiz })));
+const Result = lazy(() => import("./components/Result/Result").then((module) => ({ default: module.Result })));
+const Owl = lazy(() => import("./components/Owl/Owl").then((module) => ({ default: module.Owl })));
+const Shop = lazy(() => import("./components/Shop/Shop").then((module) => ({ default: module.Shop })));
+const Bag = lazy(() => import("./components/Bag/Bag").then((module) => ({ default: module.Bag })));
+const PlayGame = lazy(() => import("./components/Play/PlayGame").then((module) => ({ default: module.PlayGame })));
+const Tingxie = lazy(() => import("./components/Tingxie/Tingxie").then((module) => ({ default: module.Tingxie })));
+const Story = lazy(() => import("./components/Story/Story").then((module) => ({ default: module.Story })));
+const MyVocab = lazy(() => import("./components/MyVocab/MyVocab").then((module) => ({ default: module.MyVocab })));
 
 function ScreenRouter() {
   const state = useAppState();
@@ -42,34 +44,27 @@ function ScreenRouter() {
       .then(([meta, index]) => {
         if (getCurrentLevel() !== requestedLevel) return;
         dispatch({ type: "SET_QUESTION_INDEX", index, categorySubjects: computeCategorySubjects(index), lessonCount: meta.lessonCount });
-        // Non-blocking: warms every category's full content in the
-        // background so Practice.tsx's "Start Practice" doesn't have to pay
-        // a fresh network round trip per category later, on a real hosted
-        // connection where that's a noticeable delay (unlike localhost).
-        prefetchAllQuestionCategories();
       })
-      .catch((err: Error) => setBootError(err.message));
+      .catch((err: Error) => {
+        if (getCurrentLevel() === requestedLevel) setBootError(err.message);
+      });
   }
 
-  // Runs once at app start (RESET_TO_HOME preserves questionIndexLoaded, so
-  // this never refires just from navigating home) -- gates the whole screen
-  // render below until the question-bank index is in state, since
-  // AppStateContext's SELECT_SUBJECT reducer case needs categorySubjects
-  // synchronously and reducers can't await a fetch themselves.
+  // Home and Auth render immediately; Practice waits for the lightweight index.
   useEffect(() => {
-    if (state.questionIndexLoaded) return;
+    if (state.questionIndexLoaded || status === "loading" || (status !== "signedIn" && !isGuest)) return;
     loadQuestionIndex();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.questionIndexLoaded]);
+  }, [state.questionIndexLoaded, state.level, status, isGuest]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [state.screen]);
 
-  // Also waits on auth `status` leaving "loading" (not just the question
-  // index) -- otherwise a signed-in student would flash the forced login
-  // gate below for an instant before their session is confirmed.
-  if (!state.questionIndexLoaded || status === "loading") {
+  // Resolve the saved login before choosing between Auth and the local dashboard.
+  const needsAuthGate = status !== "signedIn" && !isGuest;
+  const needsQuestionIndex = state.screen === "practice" && !needsAuthGate;
+  if ((needsQuestionIndex && !state.questionIndexLoaded) || status === "loading") {
     return (
       <div className="screen">
         {bootError ? (
@@ -86,27 +81,7 @@ function ScreenRouter() {
     );
   }
 
-  // Forced login gate: a student who isn't signed in and hasn't explicitly
-  // chosen to continue as a guest (Auth.tsx's "Continue as Guest", which
-  // persists via AuthContext's isGuest) always lands on the login page
-  // first, instead of state.screen's normal destination. This is a pure
-  // computed check, not a dispatched navigation -- it can't be bypassed by a
-  // stale screen value, and clears itself the instant continueAsGuest()/a
-  // real sign-in resolves with no extra dispatch needed.
-  const needsAuthGate = status !== "signedIn" && !isGuest;
-
-  // Shown mid-quiz too now (TopNav/AccountBar's own useQuizLeaveGuard asks
-  // "progress will be lost?" before actually navigating away) -- this is
-  // Quiz's only way home now, since its own top-bar Home button/BP badge
-  // were removed once the shared top bar started covering both. Still
-  // hidden on the result screen -- history's already saved by
-  // the time Result mounts, so there's nothing to lose there, but Result
-  // has its own "Back to Home" affordance and doesn't need a second one.
-  // Shown even while the login gate is forcing the Auth screen (brand + nav
-  // pill above the login card), even though its nav items are inert there --
-  // needsAuthGate keeps forcing Auth back onto screen regardless of what a
-  // nav click sets state.screen to, so a click there just does nothing
-  // visible rather than breaking anything.
+  // Mid-quiz navigation uses the shared leave guard; completed results have their own Home action.
   const showTopNav = state.screen !== "result";
   // The Login/Sign out affordance lives here, not as a TopNav item -- paired
   // with TopNav's own visibility, but also hidden on the Auth screen itself
@@ -166,20 +141,17 @@ function ScreenRouter() {
 
   return (
     <>
-      {/* One merged navy bar (TopNav's nav pills + AccountBar's BP stat and
-          profile menu) -- each stays its own component/hook boundary, but
-          visually reads as a single top bar (see .top-bar in styles.css).
-          The P2/P5 level toggle now lives inside AccountBar's profile
-          dropdown (LevelBar.tsx itself, just rendered as a nested pullout
-          there instead of its own bar item) -- see AccountBar.tsx.
-          AccountBar still conditionally omits itself on the Auth screen. */}
       {showTopNav && (
         <div className="top-bar">
           <TopNav />
           {showAccountBar && <AccountBar />}
         </div>
       )}
-      {screen}
+      <ScreenBoundary key={state.screen}>
+        <Suspense fallback={<div className="screen"><p className="tingxie-loading">加载中... Loading...</p></div>}>
+          {screen}
+        </Suspense>
+      </ScreenBoundary>
     </>
   );
 }

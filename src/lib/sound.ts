@@ -1,10 +1,5 @@
-// Most effects are synthesized with the Web Audio API, so the app needs no
-// external sound files for them -- gift() stays a pure code-generated
-// waveform. Everything else plays real MP3 files dropped into public/sounds/
-// (see SOUND_FILES below) -- button presses, correct/wrong answers, a
-// good/sub-par session score, shop/bag entry, shop purchases, and owl
-// level-ups, i.e. the moments a human-recorded/produced sound adds more
-// character than a synthesized one.
+import { assetUrl } from "./assets";
+// Sound effects reuse bounded audio pools; asset hashes keep repeated visits cacheable.
 let ctx: AudioContext | null = null;
 
 function ensureCtx(): AudioContext | null {
@@ -39,29 +34,20 @@ function sparkleGlide(startTime: number): void {
   osc.stop(t0 + 0.32);
 }
 
-// MP3 files live in public/sounds/ -- drop replacements in with these exact
-// filenames and they're picked up automatically, no code change needed.
 const SOUND_FILES = {
-  button: "/sounds/button.mp3", // any button press, app-wide (see App.tsx's global click listener)
-  correct: "/sounds/correct.mp3", // a correct answer (Quiz MCQ/Fill-in/self-check, Tingxie self-grade/sentence-order)
-  wrong: "/sounds/wrong-answer.mp3", // a wrong answer (Quiz MCQ/Fill-in/self-check, Tingxie self-grade/sentence-order)
-  goodResult: "/sounds/good-result.mp3", // a quiz/practice session scoring 90% or higher
-  needImprovement: "/sounds/need-improvement.mp3", // a quiz/practice session scoring below 90%
-  purchase: "/sounds/purchase.mp3", // buying an item in the Shop
-  levelUp: "/sounds/level-up.mp3", // the owl evolves to a new growth stage
-  enterShop: "/sounds/enter-shop.mp3", // opening the Shop screen
-  bagOpen: "/sounds/bag-open.mp3", // opening the Bag/Feed screen
-  wheelSpin: "/sounds/wheelspin.mp3", // spinning the Home dashboard's Special Quest wheel
-  ticker: "/sounds/ticker.mp3", // looping countdown tick during Tingxie's Play round
-  background: "/sounds/background.mp3" // looping background music, started once on the app's first click
+  button: assetUrl("/sounds/button.mp3"), // any button press, app-wide (see App.tsx's global click listener)
+  correct: assetUrl("/sounds/correct.mp3"), // a correct answer (Quiz MCQ/Fill-in/self-check, Tingxie self-grade/sentence-order)
+  wrong: assetUrl("/sounds/wrong-answer.mp3"), // a wrong answer (Quiz MCQ/Fill-in/self-check, Tingxie self-grade/sentence-order)
+  goodResult: assetUrl("/sounds/good-result.mp3"), // a quiz/practice session scoring 90% or higher
+  needImprovement: assetUrl("/sounds/need-improvement.mp3"), // a quiz/practice session scoring below 90%
+  purchase: assetUrl("/sounds/purchase.mp3"), // buying an item in the Shop
+  levelUp: assetUrl("/sounds/level-up.mp3"), // the owl evolves to a new growth stage
+  enterShop: assetUrl("/sounds/enter-shop.mp3"), // opening the Shop screen
+  bagOpen: assetUrl("/sounds/bag-open.mp3"), // opening the Bag/Feed screen
+  wheelSpin: assetUrl("/sounds/wheelspin.mp3"), // spinning the Home dashboard's Special Quest wheel
+  ticker: assetUrl("/sounds/ticker.mp3"), // looping countdown tick during Tingxie's Play round
+  background: assetUrl("/sounds/background.mp3") // looping background music, started once on the app's first click
 };
-
-// Computed once per page load, appended to every sound file URL as a query
-// param. Without this, a browser that already cached a stale response for a
-// given filename (e.g. the pre-launch 404, or a since-replaced MP3) keeps
-// serving that stale response even after the file on disk changes, since the
-// URL itself never changes -- a fresh page load always busts it.
-const CACHE_BUST = Date.now();
 
 // Small per-sound pool of reusable <audio> elements, instead of a fresh
 // `new Audio()` on every single play. This used to allocate a brand-new
@@ -88,7 +74,7 @@ function getPooledAudio(path: string): HTMLAudioElement {
   const idle = pool.find((a) => a.paused || a.ended);
   if (idle) return idle;
   if (pool.length < MAX_POOL_PER_SOUND) {
-    const audio = new Audio(`${path}?v=${CACHE_BUST}`);
+    const audio = new Audio(path);
     pool.push(audio);
     return audio;
   }
@@ -97,7 +83,7 @@ function getPooledAudio(path: string): HTMLAudioElement {
   return pool[0];
 }
 
-// Plays an MP3 from public/sounds/, reusing a pooled <audio> element for
+// Plays a bundled MP3, reusing a pooled <audio> element for
 // that sound rather than allocating a new one every call (see the pool
 // comment above).
 function playFile(path: string, delaySec: number = 0): void {
@@ -131,7 +117,7 @@ let bgMusic: HTMLAudioElement | null = null;
 let bgMusicExplicitlyPaused = false;
 
 function newBgMusicElement(): HTMLAudioElement {
-  const el = new Audio(`${SOUND_FILES.background}?v=${CACHE_BUST}`);
+  const el = new Audio(SOUND_FILES.background);
   el.loop = true;
   el.volume = 0.35;
   // Something outside our control can pause this element without ever
@@ -183,7 +169,7 @@ let tickerAudio: HTMLAudioElement | null = null;
 
 function ensureTickerElement(): HTMLAudioElement {
   if (!tickerAudio) {
-    tickerAudio = new Audio(`${SOUND_FILES.ticker}?v=${CACHE_BUST}`);
+    tickerAudio = new Audio(SOUND_FILES.ticker);
     tickerAudio.loop = true;
     tickerAudio.volume = 0.5;
   }
@@ -262,7 +248,7 @@ export const Sound = {
   // Starts (from the beginning) Tingxie Play's looping countdown-tick track
   // for the round (see components/Tingxie/Play.tsx) -- a missing/404
   // ticker.mp3 fails silently like every other sound file here, so Play
-  // works fine before the file is actually dropped into public/sounds/.
+  // works fine before the file is available.
   startTicker(): void {
     try {
       const audio = ensureTickerElement();

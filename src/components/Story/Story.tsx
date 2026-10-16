@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { fetchStoryIndex, fetchStoryLesson, segmentSentences, type StoryIndex, type StoryLesson } from "../../data/stories";
@@ -34,20 +35,8 @@ export function Story() {
   const [lesson, setLesson] = useState<StoryLesson | null>(null);
   const [lessonLoading, setLessonLoading] = useState(false);
   const [lessonError, setLessonError] = useState<string | null>(null);
-  const [storySummaries, setStorySummaries] = useState<Record<number, StoryLesson>>({});
   const finishedRef = useRef(false);
-
-  useEffect(() => {
-    if (!storyIndex) return;
-    let cancelled = false;
-    Promise.allSettled(storyIndex.written.map((id) => fetchStoryLesson(id))).then((results) => {
-      if (cancelled) return;
-      const summaries: Record<number, StoryLesson> = {};
-      for (const result of results) if (result.status === "fulfilled") summaries[result.value.id] = result.value;
-      setStorySummaries(summaries);
-    });
-    return () => { cancelled = true; };
-  }, [storyIndex]);
+  const storySummaries = new Map(storyIndex?.lessons?.map((summary) => [summary.id, summary]));
 
   useEffect(() => { window.scrollTo(0, 0); }, [view, segmentIndex]);
 
@@ -153,7 +142,7 @@ export function Story() {
       </button>
       <h1 className="page-header">
         <Icon name="sparkle" className="page-header-spark" />
-        <img className="page-header-icon" src="/icons/read.png" alt="" />
+        <img className="page-header-icon" src={assetUrl("/icons/read.webp")} alt="" />
         <BilingualLabel zh="读故事" en="Read a Story" />
         <CurrentLevel />
         <Icon name="sparkle" className="page-header-spark" />
@@ -181,8 +170,8 @@ export function Story() {
             return (
               <button key={id} className="lesson-btn" disabled={lessonLoading} onClick={() => openLesson(id)}>
                 <div className="lesson-btn-num">{`第 ${id} 课`}</div>
-                {!isPlaceholder && <div className="story-card-title">{storySummaries[id]?.title ?? "课文故事"}</div>}
-                {storySummaries[id] && <div className="lesson-btn-count">{storySummaries[id].segments.length} 页</div>}
+                {!isPlaceholder && <div className="story-card-title">{storySummaries.get(id)?.title ?? "课文故事"}</div>}
+                {storySummaries.has(id) && <div className="lesson-btn-count">{storySummaries.get(id)!.pageCount} 页</div>}
                 {isPlaceholder && <div className="lesson-btn-count">敬请期待 Coming soon</div>}
               </button>
             );
@@ -308,7 +297,7 @@ function StoryReader({ lesson, segmentIndex, onSegmentChange, onExit, onFinish }
       <div className="story-page-flipper">
         <div className={"story-page" + (segment.illustration ? " story-page-illustrated" : "") + flipClass} style={{ animationDuration: `${FLIP_MS}ms` }}>
           {segment.illustration && (
-            <img className="story-illustration" src={segment.illustration.src} alt={segment.illustration.alt} width={1448} height={1086} />
+            <img className="story-illustration" src={segment.illustration.src} alt={segment.illustration.alt} width={1448} height={1086} decoding="async" />
           )}
           <div className="story-page-copy">
             <div className="story-text">

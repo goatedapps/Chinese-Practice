@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import { useRef } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { usePet } from "../../state/PetContext";
@@ -18,7 +19,7 @@ export function Shop() {
       </button>
       <h1 className="page-header">
         <Icon name="sparkle" className="page-header-spark" />
-        <img className="page-header-icon" src="/icons/shop.png" alt="" />
+        <img className="page-header-icon" src={assetUrl("/icons/shop.webp")} alt="" />
         商店 Shop
         <Icon name="sparkle" className="page-header-spark" />
       </h1>
@@ -66,7 +67,7 @@ function ShopItemCard({ item }: { item: ShopItem }) {
         </span>
       </div>
       <button className="primary-btn shop-item-buy" disabled={!affordable} onClick={handleBuy}>
-        <img className="shop-item-buy-coin" src="/icons/coin.png" alt="" />
+        <img className="shop-item-buy-coin" src={assetUrl("/icons/coin.webp")} alt="" />
         {item.cost} BP
       </button>
       <span className="shop-item-availability">{affordable ? "可以购买 Ready to buy" : "BP 不足 · 练习来赚取 Earn BP to buy"}</span>

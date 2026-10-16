@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import { useState } from "react";
 import { useAppDispatch, useAppState } from "../../state/AppStateContext";
 import { usePet } from "../../state/PetContext";
@@ -113,9 +114,9 @@ export function SpecialQuest() {
   return (
     <div className="dash-card special-quest">
       <h2 className="section-heading quest-heading">
-        <img className="quest-heading-star" src="/icons/star.png" alt="" />
+        <img className="quest-heading-star" src={assetUrl("/icons/star.webp")} alt="" />
         特别任务 Special Quest
-        <img className="quest-heading-star" src="/icons/star.png" alt="" />
+        <img className="quest-heading-star" src={assetUrl("/icons/star.webp")} alt="" />
       </h2>
       <p className="mission-subhead">Spin the wheel once a day for a bonus-BP quest!</p>
 

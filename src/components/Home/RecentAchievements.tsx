@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import { formatRelativeTime } from "../../lib/stats";
 import { specialQuestConfig } from "../../data/pet";
 import { parseTingxieCompletedDetail } from "../../state/achievements";
@@ -11,9 +12,9 @@ import type { Achievement, HistoryEntry } from "../../data/types";
 const TYPE_ICON: Record<Achievement["type"], string> = {
   missionComplete: "target",
   questionsMilestone: "trophy",
-  storyCompleted: "/icons/read.png",
+  storyCompleted: assetUrl("/icons/read.webp"),
   specialQuestComplete: "wheel",
-  tingxieCompleted: "/icons/dictation.png"
+  tingxieCompleted: assetUrl("/icons/dictation.webp")
 };
 
 function AchievementIcon({ icon }: { icon: string }) {
@@ -89,7 +90,7 @@ export function RecentAchievements({
   return (
     <div className="dash-card recent-achievements">
       <div className="history-head">
-        <h2 className="section-heading"><img className="section-heading-icon" src="/icons/recent-achievements.png" alt="" />最近成就 Recent Achievements</h2>
+        <h2 className="section-heading"><img className="section-heading-icon" src={assetUrl("/icons/recent-achievements.webp")} alt="" />最近成就 Recent Achievements</h2>
       </div>
       <div className="achievement-list">
         {rows.map((row) =>
@@ -104,7 +105,7 @@ export function RecentAchievements({
             </div>
           ) : (
             <div className="achievement-row" key={`s-${row.id}`}>
-              <span className="achievement-icon"><img src="/icons/practice.png" alt="" /></span>
+              <span className="achievement-icon"><img src={assetUrl("/icons/practice.webp")} alt="" /></span>
               <span className="achievement-text">
                 {row.modeLabel}
                 <span className="en">

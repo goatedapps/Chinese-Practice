@@ -16,3 +16,55 @@ written:
   - 15
   - 16
   - 17
+lessons:
+  - id: 1
+    title: 纸马也要练习
+    pageCount: 5
+  - id: 2
+    title: 谁是“虎先生”？
+    pageCount: 5
+  - id: 3
+    title: 我不叫“再睡五分钟”
+    pageCount: 5
+  - id: 4
+    title: 我的尾巴去哪里了？
+    pageCount: 6
+  - id: 5
+    title: 面包味的鲜花
+    pageCount: 5
+  - id: 6
+    title: 刺猬的专座
+    pageCount: 5
+  - id: 7
+    title: 猫爪印的便条
+    pageCount: 5
+  - id: 8
+    title: 巨人的小灯笼
+    pageCount: 6
+  - id: 9
+    title: 坑里的大鼻子
+    pageCount: 5
+  - id: 10
+    title: 乌鸦旅店的一号房
+    pageCount: 5
+  - id: 11
+    title: 大鲸鱼卡在门口
+    pageCount: 6
+  - id: 12
+    title: 向后闪的第五颗星
+    pageCount: 5
+  - id: 13
+    title: 狐狸邮差绕远路
+    pageCount: 6
+  - id: 14
+    title: 小猪的大勺子
+    pageCount: 4
+  - id: 15
+    title: 肚子也想当演员
+    pageCount: 5
+  - id: 16
+    title: 小鸭子的最后一页
+    pageCount: 5
+  - id: 17
+    title: 神仙的第一盘青菜
+    pageCount: 5

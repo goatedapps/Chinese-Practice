@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import { useEffect, useState } from "react";
 import { loadHistory, deleteHistoryEntry } from "../../state/history";
 import { loadAchievements } from "../../state/achievements";
@@ -73,7 +74,7 @@ export function Home() {
               <Icon name="sparkle" className="boost-day-banner-sparkle boost-day-banner-sparkle-2" />
               <Icon name="sparkle" className="boost-day-banner-sparkle boost-day-banner-sparkle-3" />
               <span className="boost-day-banner-icon-wrap">
-                <img className="boost-day-banner-icon" src="/icons/bonus-day.png" alt="" />
+                <img className="boost-day-banner-icon" src={assetUrl("/icons/bonus-day.webp")} alt="" />
               </span>
               <span className="boost-day-banner-text">
                 <span className="boost-day-banner-title">双倍 BP 日！</span>
@@ -105,13 +106,13 @@ export function Home() {
             <Reveal delay={260}>
               <div className="dash-card today-summary-card">
                 <div className="today-summary-left">
-                  <h2 className="section-heading"><img className="section-heading-icon" src="/icons/todays-summary.png" alt="" />今日学习总结 Today's Session Summary</h2>
+                  <h2 className="section-heading"><img className="section-heading-icon" src={assetUrl("/icons/todays-summary.webp")} alt="" />今日学习总结 Today's Session Summary</h2>
                   <p className="picker-hint">
                     <span className="en">Print this to show your parents what you have learnt today!</span>
                   </p>
                 </div>
                 <div className="today-summary-right">
-                  <img src="/icons/printer.png" alt="" />
+                  <img src={assetUrl("/icons/printer.webp")} alt="" />
                   <button className="secondary-btn today-summary-print-btn" onClick={() => exportTodaySummaryToPdf(hist)}>
                     打印为 PDF
                   </button>

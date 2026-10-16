@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import { useState, type FormEvent } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
 import { useAuth } from "../../state/AuthContext";
@@ -19,10 +20,10 @@ import { Icon } from "../common/Icons";
 // wording stays consistent between "what the app does" (here) and "what
 // this button does" (there).
 const AUTH_FEATURES = [
-  { icon: "/icons/dictation-learn.png", title: "Learn", desc: "认识词语，打好基础" },
-  { icon: "/icons/dictation-apply.png", title: "Practice", desc: "学以致用，巩固记忆" },
-  { icon: "/icons/dictation-play.png", title: "Play", desc: "趣味挑战，快乐学习" },
-  { icon: "/icons/dictation-test.png", title: "Test", desc: "检验成果，查漏补缺" }
+  { icon: assetUrl("/icons/dictation-learn.webp"), title: "Learn", desc: "认识词语，打好基础" },
+  { icon: assetUrl("/icons/dictation-apply.webp"), title: "Practice", desc: "学以致用，巩固记忆" },
+  { icon: assetUrl("/icons/dictation-play.webp"), title: "Play", desc: "趣味挑战，快乐学习" },
+  { icon: assetUrl("/icons/dictation-test.webp"), title: "Test", desc: "检验成果，查漏补缺" }
 ];
 
 // The "auth" screen -- reached via AccountBar's Login button, GO_TO_SCREEN
@@ -108,7 +109,7 @@ export function Auth({ gated = false }: { gated?: boolean }) {
           background, not inside .auth-screen's own card -- see that
           class's own comment in styles.css. */}
       <div className="auth-hero">
-        <img className="auth-hero-logo" src="/icons/logo.png" alt="" />
+        <img className="auth-hero-logo" src={assetUrl("/icons/logo.webp")} alt="" />
         <div className="auth-hero-text">
           <h1 className="auth-hero-title">华文练习</h1>
           <p className="auth-hero-subtitle">快乐学习每一天</p>
@@ -132,7 +133,7 @@ export function Auth({ gated = false }: { gated?: boolean }) {
               <label className="auth-field">
                 <span className="auth-field-label">用户名 <span lang="en">Username</span></span>
                 <div className="auth-input-wrap">
-                  <img className="auth-input-icon" src="/icons/login-username.png" alt="" />
+                  <img className="auth-input-icon" src={assetUrl("/icons/login-username.webp")} alt="" />
                   <input
                     className="auth-input"
                     type="text"
@@ -150,7 +151,7 @@ export function Auth({ gated = false }: { gated?: boolean }) {
               <label className="auth-field">
                 <span className="auth-field-label">密码 <span lang="en">Password</span></span>
                 <div className="auth-input-wrap">
-                  <img className="auth-input-icon" src="/icons/login-password.png" alt="" />
+                  <img className="auth-input-icon" src={assetUrl("/icons/login-password.webp")} alt="" />
                   <input
                     className="auth-input"
                     type="password"
@@ -183,7 +184,7 @@ export function Auth({ gated = false }: { gated?: boolean }) {
           </div>
 
           <div className="auth-panel-side">
-            <img className="auth-owl-img" src="/icons/login-owl.png" alt="" />
+            <img className="auth-owl-img" src={assetUrl("/icons/login-owl.webp")} alt="" />
             <div className="auth-feature-list">
               {AUTH_FEATURES.map((feature) => (
                 <div className="auth-feature-row" key={feature.title}>

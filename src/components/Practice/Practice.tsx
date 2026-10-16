@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import { useMemo, useState } from "react";
 import { useAppDispatch, useAppState } from "../../state/AppStateContext";
 import { CATEGORIES, SUBJECTS, VOCABULARY_CATEGORY_KEYS, fetchQuestionCategory } from "../../data/questions";
@@ -192,7 +193,7 @@ export function Practice() {
       </button>
       <h1 className="page-header">
         <Icon name="sparkle" className="page-header-spark" />
-        <img className="page-header-icon" src="/icons/practice.png" alt="" />
+        <img className="page-header-icon" src={assetUrl("/icons/practice.webp")} alt="" />
         <BilingualLabel zh="练习" en="Practice" />
         <CurrentLevel />
         <Icon name="sparkle" className="page-header-spark" />
@@ -200,7 +201,7 @@ export function Practice() {
 
       {!lessonMissionDone && (
         <div className="mission-hint-box">
-          <img className="mission-hint-icon" src="/icons/todays-mission.png" alt="" />
+          <img className="mission-hint-icon" src={assetUrl("/icons/todays-mission.webp")} alt="" />
           <span>To complete today's "Revise a Lesson" mission: select "Vocabulary", pick at least one lesson, then start practice.</span>
         </div>
       )}
@@ -226,7 +227,10 @@ export function Practice() {
               className={"category-btn" + (active ? " category-active" : "") + (!applicable ? " category-disabled" : "")}
               disabled={!applicable}
               aria-pressed={active}
-              onClick={() => dispatch({ type: "TOGGLE_CATEGORY_GROUP", keys: categories })}
+              onClick={() => {
+                if (!active) for (const category of categories) fetchQuestionCategory(category).catch(() => {});
+                dispatch({ type: "TOGGLE_CATEGORY_GROUP", keys: categories });
+              }}
             >
               <BilingualLabel zh={label.slice(0, label.indexOf(" "))} en={label.slice(label.indexOf(" ") + 1)} />
             </button>

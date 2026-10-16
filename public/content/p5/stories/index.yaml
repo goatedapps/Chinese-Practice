@@ -16,3 +16,55 @@ written:
   - 15
   - 16
   - 17
+lessons:
+  - id: 1
+    title: 消失的“宝物”
+    pageCount: 6
+  - id: 2
+    title: 《爸爸“看不见”了》
+    pageCount: 6
+  - id: 3
+    title: 《最特别的生日礼物》
+    pageCount: 6
+  - id: 4
+    title: 《神秘的捐赠者》
+    pageCount: 6
+  - id: 5
+    title: 《森林里的珍宝》
+    pageCount: 6
+  - id: 6
+    title: 《诚实的早餐》
+    pageCount: 6
+  - id: 7
+    title: 《小鲸鱼回家了》
+    pageCount: 6
+  - id: 8
+    title: 《来自未来的机器人》
+    pageCount: 6
+  - id: 9
+    title: 花木兰的新传奇
+    pageCount: 4
+  - id: 10
+    title: 《真正重要的东西》
+    pageCount: 6
+  - id: 11
+    title: 《一场误会》
+    pageCount: 6
+  - id: 12
+    title: 《难忘的国庆夜》
+    pageCount: 6
+  - id: 13
+    title: 《神秘的甲骨文》
+    pageCount: 6
+  - id: 14
+    title: 《最好的队友》
+    pageCount: 6
+  - id: 15
+    title: 《森林里的神奇大树》
+    pageCount: 6
+  - id: 16
+    title: 《博物馆里的春天》
+    pageCount: 6
+  - id: 17
+    title: 《神奇的树屋》
+    pageCount: 6

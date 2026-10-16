@@ -1,3 +1,4 @@
+import { assetUrl } from "../../lib/assets";
 import type { ReactNode } from "react";
 import { BpAmount } from "./BpAmount";
 
@@ -15,11 +16,11 @@ interface CompleteScreenProps {
 export function CompleteScreen({ title, bpAmount, children }: CompleteScreenProps) {
   return (
     <div className="complete-screen">
-      <img className="complete-emoji" src="/icons/congratulations.png" alt="" />
+      <img className="complete-emoji" src={assetUrl("/icons/congratulations.webp")} alt="" />
       <h2>{title}</h2>
       {bpAmount != null && (
         <p className="bp-pop">
-          <img className="bp-pop-coin" src="/icons/coin.png" alt="" />
+          <img className="bp-pop-coin" src={assetUrl("/icons/coin.webp")} alt="" />
           <BpAmount value={bpAmount} />
         </p>
       )}

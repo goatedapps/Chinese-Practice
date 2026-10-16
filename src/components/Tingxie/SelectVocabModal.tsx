@@ -11,10 +11,6 @@ import { useTingxieState, useTingxieDispatch } from "./tingxieState";
 const RANDOM_SAMPLE_SIZES = [5, 10] as const;
 
 interface SelectVocabModalProps {
-  // The lessons currently selected in LessonSelect's picker -- fetched here
-  // (already warmed by prefetchTingxieLessons(), so this resolves from cache
-  // near-instantly) rather than passed down, since this is the only place
-  // that needs each lesson's full vocab/sentence lists.
   lessonIds: number[];
   onClose: () => void;
 }

@@ -11,3 +11,40 @@ written:
   - 10
   - 11
   - 12
+lessons:
+  - id: 1
+    title: 不肯放假的豆子
+    pageCount: 4
+  - id: 2
+    title: 爷爷的导航员
+    pageCount: 4
+  - id: 3
+    title: 爸爸的脆豆腐
+    pageCount: 4
+  - id: 4
+    title: 奶奶的珍珠项链
+    pageCount: 4
+  - id: 5
+    title: 不肯下台的狐狸
+    pageCount: 4
+  - id: 6
+    title: 三十支“箭”的难题
+    pageCount: 4
+  - id: 7
+    title: 阳台上的避暑胜地
+    pageCount: 4
+  - id: 8
+    title: 被冤枉的竹篮
+    pageCount: 4
+  - id: 9
+    title: 龙王的辞职信
+    pageCount: 4
+  - id: 10
+    title: 图书馆里的妖怪声
+    pageCount: 4
+  - id: 11
+    title: 消失的饼干罐
+    pageCount: 4
+  - id: 12
+    title: 毕业典礼上的神秘嘉宾
+    pageCount: 4
