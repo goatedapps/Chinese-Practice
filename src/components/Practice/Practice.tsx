@@ -10,6 +10,8 @@ import { isLessonMissionComplete } from "../../lib/stats";
 import { shouldNudgeForLesson } from "../../state/lessonFrequency";
 import { ConfirmModal } from "../common/Modal";
 import { Icon } from "../common/Icons";
+import { CurrentLevel } from "../common/CurrentLevel";
+import { BilingualLabel } from "../common/BilingualLabel";
 
 // Picker-level grouping of the underlying data categories (CATEGORIES in
 // questions.ts) into the buttons shown on this screen -- Hanyu Pinyin,
@@ -80,6 +82,7 @@ export function Practice() {
   }
 
   const vocabularySelected = vocabularyCategoryKeys.length > 0 && vocabularyCategoryKeys.every((k) => state.selectedCategories.has(k));
+  const selectedTypeCount = typePickerGroups.filter((entry) => entry.categories.every((key) => state.selectedCategories.has(key))).length;
 
   // How many Vocabulary-category questions exist per lesson under the
   // current subject filter -- lets the lesson grid grey out a lesson with no
@@ -190,7 +193,8 @@ export function Practice() {
       <h1 className="page-header">
         <Icon name="sparkle" className="page-header-spark" />
         <img className="page-header-icon" src="/icons/practice.png" alt="" />
-        练习 Practice
+        <BilingualLabel zh="练习" en="Practice" />
+        <CurrentLevel />
         <Icon name="sparkle" className="page-header-spark" />
       </h1>
 
@@ -221,19 +225,18 @@ export function Practice() {
               key={key}
               className={"category-btn" + (active ? " category-active" : "") + (!applicable ? " category-disabled" : "")}
               disabled={!applicable}
+              aria-pressed={active}
               onClick={() => dispatch({ type: "TOGGLE_CATEGORY_GROUP", keys: categories })}
             >
-              {label}
+              <BilingualLabel zh={label.slice(0, label.indexOf(" "))} en={label.slice(label.indexOf(" ") + 1)} />
             </button>
           );
         })}
       </div>
 
+      {vocabularySelected && <>
       <p className="subtitle">
         选择课文 Select Lesson(s)
-        {!vocabularySelected && (
-          <span className="picker-hint"> — 先选择「词语运用 Vocabulary」 Select "Vocabulary" first</span>
-        )}
       </p>
       <div className={"lesson-grid" + (!vocabularySelected ? " lesson-grid-disabled" : "")}>
         <button
@@ -261,11 +264,16 @@ export function Practice() {
           );
         })}
       </div>
+      </>}
 
       {loadError && <p className="tingxie-error-inline">{loadError}</p>}
 
-      <div className="action-row">
-        <button className="primary-btn" disabled={starting} onClick={() => startPractice()}>
+      <div className="selection-action-bar">
+        <div className="selection-summary" aria-live="polite">
+          <strong>{selectedTypeCount ? `已选 ${selectedTypeCount} 种题型` : "请选择题型"}</strong>
+          <span>{vocabularySelected ? state.selectedLessons.size ? `第 ${[...state.selectedLessons].sort((a, b) => a - b).join("、")} 课` : "全部课文 All lessons" : "Choose your practice"}</span>
+        </div>
+        <button className="primary-btn" disabled={starting || selectedTypeCount === 0} onClick={() => startPractice()}>
           {starting ? "加载中... Loading..." : "开始练习"}
         </button>
       </div>

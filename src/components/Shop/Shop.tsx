@@ -7,9 +7,6 @@ import { flyItemTo } from "../../lib/throwAnimation";
 import { Icon } from "../common/Icons";
 import type { ShopItem } from "../../data/types";
 
-// Standard page-chrome (back-btn + page-header, see CLAUDE.md's Styling
-// section) -- no subtitle/BP line of its own any more, since the top nav's
-// AccountBar pill already shows current BP everywhere.
 export function Shop() {
   const dispatch = useAppDispatch();
 
@@ -25,6 +22,7 @@ export function Shop() {
         商店 Shop
         <Icon name="sparkle" className="page-header-spark" />
       </h1>
+      <p className="shop-hint">完成练习来赚取 BP，再为宠物挑选礼物。<span lang="en">Earn BP by learning, then choose a treat for your pet.</span></p>
 
       <div className="shop-grid">
         {SHOP_ITEMS.map((item) => (
@@ -35,10 +33,7 @@ export function Shop() {
   );
 }
 
-// Each card flies its own purchased icon from itself to its own top-right
-// "already own" badge (rather than to some page-level bag indicator, which
-// no longer exists here) -- a self-contained animation that also visibly
-// explains what the badge's count just changed to.
+// The purchase animation lands at the inventory count that changes.
 function ShopItemCard({ item }: { item: ShopItem }) {
   const { pet, buyItem } = usePet();
   const cardRef = useRef<HTMLDivElement>(null);
@@ -74,6 +69,7 @@ function ShopItemCard({ item }: { item: ShopItem }) {
         <img className="shop-item-buy-coin" src="/icons/coin.png" alt="" />
         {item.cost} BP
       </button>
+      <span className="shop-item-availability">{affordable ? "可以购买 Ready to buy" : "BP 不足 · 练习来赚取 Earn BP to buy"}</span>
     </div>
   );
 }

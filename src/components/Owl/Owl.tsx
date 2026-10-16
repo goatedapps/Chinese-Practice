@@ -5,6 +5,7 @@ import { OwlArt } from "../common/OwlArt";
 import { PetStatBars } from "../common/PetStatBars";
 import { Icon } from "../common/Icons";
 import { Sound } from "../../lib/sound";
+import { BilingualLabel } from "../common/BilingualLabel";
 
 export function Owl() {
   const dispatch = useAppDispatch();
@@ -93,7 +94,7 @@ export function Owl() {
               }}
             >
               <img src="/icons/shop.png" alt="" />
-              <span className="owl-action-banner-label">商店</span>
+              <span className="owl-action-banner-label"><BilingualLabel zh="商店" en="Shop" /></span>
             </button>
             <button
               className="owl-action-banner owl-action-banner-play"
@@ -104,7 +105,7 @@ export function Owl() {
             >
               <img src="/icons/play.png" alt="" />
               <span className="owl-action-banner-label">
-                喂食／玩耍
+                <BilingualLabel zh="喂食／玩耍" en="Feed / Play" />
                 {bagCount > 0 && <span className="owl-action-banner-count">{bagCount}</span>}
               </span>
             </button>

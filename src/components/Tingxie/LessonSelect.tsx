@@ -6,6 +6,8 @@ import { shouldNudgeForLesson } from "../../state/lessonFrequency";
 import { loadMyVocab } from "../../state/myVocab";
 import { ConfirmModal } from "../common/Modal";
 import { Icon } from "../common/Icons";
+import { CurrentLevel } from "../common/CurrentLevel";
+import { BilingualLabel } from "../common/BilingualLabel";
 import { useTingxieState, useTingxieDispatch, type TingxieVocabFilterMode } from "./tingxieState";
 import { SelectVocabModal } from "./SelectVocabModal";
 
@@ -181,7 +183,8 @@ export function LessonSelect() {
       <h1 className="tingxie-select-title">
         <Icon name="sparkle" className="tingxie-select-title-spark" />
         <img className="tingxie-select-title-icon" src="/icons/dictatation-mission.png" alt="" />
-        听写练习 Dictation Practice
+        <BilingualLabel zh="听写练习" en="Dictation Practice" />
+        <CurrentLevel />
         <Icon name="sparkle" className="tingxie-select-title-spark" />
       </h1>
 
@@ -215,6 +218,7 @@ export function LessonSelect() {
                 key={entry.id}
                 className={"lesson-btn" + (state.pickerSelectedIds.includes(entry.id) ? " lesson-btn-active" : "")}
                 onClick={() => dispatch({ type: "TOGGLE_PICKER_LESSON", id: entry.id })}
+                aria-pressed={state.pickerSelectedIds.includes(entry.id)}
               >
                 <div className="lesson-btn-num">{`第 ${entry.id} 课`}</div>
               </button>
@@ -250,7 +254,11 @@ export function LessonSelect() {
             )}
           </div>
 
-          <div className="action-row">
+          <div className="selection-action-bar">
+            <div className="selection-summary" aria-live="polite">
+              <strong>{state.pickerSelectedIds.length ? `已选 ${state.pickerSelectedIds.length} 课` : "请选择课文"}</strong>
+              <span>{state.vocabFilterMode === "selected" ? `已选 ${state.selectedVocabWords.size + state.selectedVocabSentences.size} 项` : "Dictation practice"}</span>
+            </div>
             <button
               className="primary-btn"
               disabled={

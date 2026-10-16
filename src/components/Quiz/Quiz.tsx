@@ -8,6 +8,7 @@ import { Sound } from "../../lib/sound";
 import { speakText, stopSpeaking } from "../../lib/speech";
 import { gradeGroup, correctOptionFor, isSelfCheckFormat } from "../../lib/grading";
 import { BpAmount } from "../common/BpAmount";
+import { CurrentLevel } from "../common/CurrentLevel";
 import type { AnswerMap } from "../../lib/grading";
 import { gradeSelfCheckWithAI } from "../../lib/aiGrading";
 import type { Question, QuestionGroup, GroupResultItem, Passage, SelfCheckQuestion } from "../../data/types";
@@ -20,6 +21,8 @@ export function Quiz() {
   const [answers, setAnswers] = useState<AnswerMap>({});
   const [autoAdvancing, setAutoAdvancing] = useState(false);
   const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const passageRef = useRef<HTMLDivElement>(null);
+  const questionsRef = useRef<HTMLDivElement>(null);
 
   const group = state.groups[state.groupIndex];
   const bpMultiplier = state.reducedBP ? 0.5 : 1;
@@ -39,6 +42,9 @@ export function Quiz() {
   useEffect(() => {
     setAnswers({});
     clearAutoAdvance();
+    passageRef.current?.scrollTo(0, 0);
+    questionsRef.current?.scrollTo(0, 0);
+    window.scrollTo(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.groupIndex]);
 
@@ -61,6 +67,7 @@ export function Quiz() {
   }, [group, dispatch]);
 
   if (!group) return null;
+  const isReading = group.category === "comprehension" && !!group.passage;
 
   const currentRecord = state.submitted ? state.results[state.groupIndex] : null;
   const hasPendingAi = currentRecord?.items.some((it) => it.aiGrading === "pending") ?? false;
@@ -171,67 +178,73 @@ export function Quiz() {
   }
 
   return (
-    <div className="screen quiz">
+    <div className={"screen quiz" + (isReading ? " quiz-reading" : "")}>
       <div className="quiz-topbar">
         <div className="quiz-progress">{`第 ${state.groupIndex + 1} / ${state.groups.length} 组`}</div>
+        <CurrentLevel />
       </div>
 
-      {group.passage && <PassageBox key={group.groupId} passage={group.passage} />}
+      <div className="quiz-layout">
+        {group.passage && (
+          <div ref={passageRef} className="quiz-passage-pane" tabIndex={isReading ? 0 : undefined} aria-label={isReading ? "阅读短文 Reading passage" : undefined}>
+            <PassageBox key={group.groupId} passage={group.passage} />
+          </div>
+        )}
 
-      {group.optionBank && (
-        <div className="option-bank-box">
-          <div className="option-bank-title">词语库 Word Bank</div>
-          <div className="option-bank-list">
-            {group.optionBank.map((opt) => (
-              <div key={opt.key} className="option-bank-item">{`${opt.key}. ${opt.text}`}</div>
-            ))}
+        <div ref={questionsRef} className="quiz-questions-pane">
+          {group.optionBank && (
+            <div className="option-bank-box">
+              <div className="option-bank-title">词语库 Word Bank</div>
+              <div className="option-bank-list">
+                {group.optionBank.map((opt) => (
+                  <div key={opt.key} className="option-bank-item">{`${opt.key}. ${opt.text}`}</div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {group.questions.map((q, idx) => (
+            <QuestionCard
+              key={q.qNo}
+              q={q}
+              idx={idx}
+              // Position in the whole session, not the question's own qNo (e.g.
+              // "Q16") -- that raw number depends on which paper it came from
+              // and is meaningless to the student once groups are shuffled.
+              displayNo={priorQuestionCount + idx + 1}
+              group={group}
+              answer={answers[q.qNo]}
+              onAnswerChange={(v) => setAnswer(q.qNo, v)}
+              item={currentRecord?.items[idx]}
+              onSelfCheck={(correct) => handleSelfCheck(q.qNo, q.format, correct)}
+            />
+          ))}
+
+          <div className="action-row quiz-question-actions">
+            {isReading && <button className="secondary-btn quiz-return-passage" onClick={() => passageRef.current?.scrollIntoView({ block: "start" })}>返回短文 Passage</button>}
+            {!state.submitted ? (
+              <button className="primary-btn" onClick={handleSubmit}>
+                提交本组 Submit This Set
+              </button>
+            ) : (
+              <button className="secondary-btn" onClick={goNext} disabled={hasPendingAi}>
+                {hasPendingAi
+                  ? "🤖 AI 批改中... AI grading in progress..."
+                  : autoAdvancing
+                    ? "✓ 全部正确，自动进入下一组... All correct — moving on..."
+                    : state.groupIndex + 1 < state.groups.length
+                      ? "下一组 Next Set"
+                      : "查看结果 See Results"}
+              </button>
+            )}
           </div>
         </div>
-      )}
-
-      {group.questions.map((q, idx) => (
-        <QuestionCard
-          key={q.qNo}
-          q={q}
-          idx={idx}
-          // Position in the whole session, not the question's own qNo (e.g.
-          // "Q16") -- that raw number depends on which paper it came from
-          // and is meaningless to the student once groups are shuffled.
-          displayNo={priorQuestionCount + idx + 1}
-          group={group}
-          answer={answers[q.qNo]}
-          onAnswerChange={(v) => setAnswer(q.qNo, v)}
-          item={currentRecord?.items[idx]}
-          onSelfCheck={(correct) => handleSelfCheck(q.qNo, q.format, correct)}
-        />
-      ))}
-
-      <div className="action-row">
-        {!state.submitted ? (
-          <button className="primary-btn" onClick={handleSubmit}>
-            提交本组 Submit This Set
-          </button>
-        ) : (
-          <button className="secondary-btn" onClick={goNext} disabled={hasPendingAi}>
-            {hasPendingAi
-              ? "🤖 AI 批改中... AI grading in progress..."
-              : autoAdvancing
-                ? "✓ 全部正确，自动进入下一组... All correct — moving on..."
-                : state.groupIndex + 1 < state.groups.length
-                  ? "下一组 Next Set"
-                  : "查看结果 See Results"}
-          </button>
-        )}
       </div>
     </div>
   );
 }
 
-// Passages can run long, so unlike a question's dictation button (which just
-// fires and forgets), this one toggles into a "⏹ Stop" button while reading
-// so the student can cut it off mid-passage. `key={group.groupId}` on the
-// call site remounts this fresh per group, so `speaking` never needs a
-// manual reset when the student moves to a new passage.
+// The group key resets playback state when the passage changes.
 function PassageBox({ passage }: { passage: Passage }) {
   const [speaking, setSpeaking] = useState(false);
 
@@ -241,10 +254,7 @@ function PassageBox({ passage }: { passage: Passage }) {
       setSpeaking(false);
     } else {
       setSpeaking(true);
-      // onDone fires whether the reading finishes on its own or gets
-      // interrupted (stopSpeaking() above, Quiz's own stopSpeaking() on
-      // submit/group-change, a question's dictation button starting a new
-      // reading) -- either way this button's state stays in sync.
+      // Completion and interruption both reset the reading indicator.
       speakText(passage.text, () => setSpeaking(false));
     }
   }
@@ -254,7 +264,6 @@ function PassageBox({ passage }: { passage: Passage }) {
       <div className="passage-head">
         <div className="passage-heading">
           <div className="passage-title">{passage.title}</div>
-          {passage.source && <div className="passage-source">{passage.source}</div>}
         </div>
         <button
           type="button"

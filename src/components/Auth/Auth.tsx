@@ -130,6 +130,7 @@ export function Auth({ gated = false }: { gated?: boolean }) {
 
             <form className="auth-form" onSubmit={handleSubmit}>
               <label className="auth-field">
+                <span className="auth-field-label">用户名 <span lang="en">Username</span></span>
                 <div className="auth-input-wrap">
                   <img className="auth-input-icon" src="/icons/login-username.png" alt="" />
                   <input
@@ -147,6 +148,7 @@ export function Auth({ gated = false }: { gated?: boolean }) {
                 </div>
               </label>
               <label className="auth-field">
+                <span className="auth-field-label">密码 <span lang="en">Password</span></span>
                 <div className="auth-input-wrap">
                   <img className="auth-input-icon" src="/icons/login-password.png" alt="" />
                   <input

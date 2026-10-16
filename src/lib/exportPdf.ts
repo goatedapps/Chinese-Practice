@@ -70,10 +70,7 @@ function renderQuestion(
   `;
 }
 
-// Shared by both exportSessionToPdf (one session) and exportTodaySummaryToPdf
-// (every session completed today) -- renders passage/word-bank/questions for
-// one QuestionGroup[]+GroupResult[] pair. Question numbers restart from 1
-// within each call (each session gets its own Q1, Q2, ... run).
+// Both exports share this renderer; question numbering restarts per session.
 function renderGroupsHtml(groups: QuestionGroup[], results: GroupResult[]): string {
   let priorQuestionCount = 0;
   return groups
@@ -84,7 +81,6 @@ function renderGroupsHtml(groups: QuestionGroup[], results: GroupResult[]): stri
       const passageHtml = group.passage
         ? `<div class="passage">
              <div class="passage-title">${escapeHtml(group.passage.title)}</div>
-             ${group.passage.source ? `<div class="passage-source">${escapeHtml(group.passage.source)}</div>` : ""}
              <div class="passage-text">${escapeHtml(group.passage.text)}</div>
            </div>`
         : "";
@@ -118,8 +114,7 @@ const PRINT_STYLES = `
   .session-label { font-size: 13px; font-weight: bold; color: #555; margin: 16px 0 6px; }
   .group { margin-bottom: 20px; }
   .passage { background: #f7f7f7; border-radius: 8px; padding: 10px 14px; margin-bottom: 10px; }
-  .passage-title { font-weight: bold; }
-  .passage-source { font-size: 12px; color: #666; margin-bottom: 6px; }
+  .passage-title { font-weight: bold; margin-bottom: 6px; }
   .passage-text { white-space: pre-wrap; font-size: 13px; }
   .option-bank { margin-bottom: 10px; font-size: 13px; }
   .option-bank-title { font-weight: bold; margin-bottom: 4px; }

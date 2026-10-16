@@ -12,6 +12,9 @@ import { VOCABULARY_CATEGORY_KEYS } from "../../data/questions";
 import { Sound } from "../../lib/sound";
 import { exportSessionToPdf } from "../../lib/exportPdf";
 import { BpAmount } from "../common/BpAmount";
+import { CurrentLevel } from "../common/CurrentLevel";
+import { BilingualLabel } from "../common/BilingualLabel";
+import { ResultReview } from "./ResultReview";
 
 export function Result() {
   const state = useAppState();
@@ -21,6 +24,11 @@ export function Result() {
   // stale/batched value back out of context in the same effect.
   const beforeQuestions = pet.questionsLifetime;
   const [questBonusBP, setQuestBonusBP] = useState<number | null>(null);
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const reviewRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (reviewOpen) reviewRef.current?.scrollIntoView({ block: "start" });
+  }, [reviewOpen]);
 
   let totalItems = 0;
   let correctItems = 0;
@@ -109,7 +117,7 @@ export function Result() {
 
   return (
     <div className="screen result">
-      <h1>练习结果 Practice Results</h1>
+      <h1 className="page-header"><BilingualLabel zh="练习结果" en="Practice results" /><CurrentLevel /></h1>
       <div className="score-circle">{pct}%</div>
       <p className="score-detail">
         {`答对 ${correctItems} / ${totalItems} 题${skippedItems ? `（${skippedItems} 题未作答或未自评）` : ""}`}
@@ -120,6 +128,8 @@ export function Result() {
         </p>
       )}
       <div className="action-row">
+        {correctItems < totalItems && <button className="primary-btn" aria-expanded={reviewOpen} aria-controls="result-review" onClick={() => setReviewOpen((open) => !open)}>{reviewOpen ? "收起回顾 Close review" : "回顾错题 Review mistakes"}</button>}
+        <button className={correctItems < totalItems ? "secondary-btn" : "primary-btn"} onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "practice" })}>选择练习 Choose practice</button>
         {state.mode === "type" && (
           <button
             className="secondary-btn"
@@ -136,10 +146,11 @@ export function Result() {
             🖨️ 存为 PDF Print as PDF
           </button>
         )}
-        <button className="primary-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>
+        <button className="secondary-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>
           返回主页
         </button>
       </div>
+      {reviewOpen && <div id="result-review" ref={reviewRef}><ResultReview groups={state.groups} results={state.results} /></div>}
     </div>
   );
 }

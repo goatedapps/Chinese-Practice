@@ -21,7 +21,6 @@ import { MyVocab } from "./components/MyVocab/MyVocab";
 import { TopNav } from "./components/common/TopNav";
 import { AccountBar } from "./components/common/AccountBar";
 import { CursorGlow } from "./components/common/CursorGlow";
-import { OwlFlyover } from "./components/common/OwlFlyover";
 import { IconSprite } from "./components/common/Icons";
 
 function ScreenRouter() {
@@ -230,7 +229,6 @@ export default function App() {
           <SyncBootstrap />
           <IconSprite />
           <CursorGlow />
-          <OwlFlyover />
           <ScreenRouter />
         </PetProvider>
       </AppStateProvider>

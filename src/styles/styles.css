@@ -911,96 +911,6 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   100% { transform: scale(1.25); opacity: 0; }
 }
 
-/* -- owl flyover --
-   flying-owl.png flies in from off-screen left, then perches mid-right and
-   idles (bob + breathing shadow) -- see common/OwlFlyover.tsx (mounted once
-   in App.tsx, not per screen; its setTimeout duration must match
-   owl-fly-in's below). `right` (not transform:translateX) is what's
-   animated for the flight's horizontal travel, same reasoning as
-   .cursor-glow using left/top instead of transform: the resting position is
-   itself expressed as `right: 28px`, so animating that same property in is
-   simpler than reconciling a transform-based flight path with a
-   right-anchored rest state. Vertical centering (top:50% + translateY(-50%))
-   lives on the wrapper and stays constant across both phases, leaving the
-   sprite's own transform free for the flap wave (flying) / gentle bob
-   (landed) -- so the two never fight over one transform. z-index sits above
-   ordinary page content but well under .modal-overlay (1000) so a confirm
-   dialog always wins. */
-.owl-flyover {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 60;
-  pointer-events: none;
-  width: 104px;
-  touch-action: none;
-  user-select: none;
-}
-.owl-flyover-sprite { position: relative; width: 100%; display: block; -webkit-user-drag: none; user-select: none; }
-.owl-flyover-shadow {
-  position: absolute;
-  left: 50%; bottom: -4px;
-  width: 68%; height: 18px;
-  margin-left: -34%;
-  background: radial-gradient(ellipse, rgba(var(--ink-rgb), .55) 0%, rgba(var(--ink-rgb), .25) 45%, rgba(var(--ink-rgb), 0) 75%);
-  border-radius: 50%;
-}
-.owl-flyover-landed { right: 28px; cursor: grab; }
-.owl-flyover-dragging { cursor: grabbing; }
-.owl-flyover-dragging .owl-flyover-sprite,
-.owl-flyover-dragging .owl-flyover-shadow { animation: none; }
-/* Only rendered while landed (OwlFlyover.tsx) -- the wrapper only gets
-   pointer-events:auto at that point too, so this is never a dead click
-   target during the fly-in. Sits slightly outside the sprite's own top-right
-   corner rather than clipped inside it, same "half on, half off" treatment
-   as e.g. .lesson-btn-active's checkmark badge. */
-.owl-flyover-close {
-  position: absolute;
-  top: -6px; right: -2px;
-  width: 22px; height: 22px;
-  display: flex; align-items: center; justify-content: center;
-  background: #fff;
-  border: none; border-radius: 50%;
-  color: var(--ink-soft);
-  font-size: 12px; line-height: 1;
-  cursor: pointer;
-  box-shadow: var(--shadow-1);
-  transition: transform .12s ease, color .12s ease;
-}
-.owl-flyover-close:hover { color: var(--incorrect); transform: scale(1.1); }
-.owl-flyover-close:active { transform: scale(.92); }
-@media (prefers-reduced-motion: no-preference) {
-  /* Both timed to the same 2.8s so the flap cycle (4 flaps) fills exactly
-     the horizontal glide -- a lazier, longer glide than the original 1.3s
-     linear dash, with real up/down flap + tilt instead of a rigid straight
-     line. */
-  .owl-flyover-flying { animation: owl-fly-in 2.8s ease-in-out forwards; }
-  .owl-flyover-flying .owl-flyover-sprite { animation: owl-flap 2.8s ease-in-out; }
-  .owl-flyover-landed .owl-flyover-sprite { animation: owl-bob 2.6s ease-in-out infinite; }
-  .owl-flyover-landed .owl-flyover-shadow { animation: owl-shadow-breathe 2.6s ease-in-out infinite; }
-}
-/* Reduced motion: OwlFlyover.tsx itself skips the "flying" phase and jumps
-   straight to "landed" with no animation classes active here, so this
-   media query being the only place owl-fly-in/owl-flap/owl-bob/
-   owl-shadow-breathe are ever applied is enough -- the owl just appears
-   already perched, static shadow included. */
-@keyframes owl-fly-in {
-  0%   { right: 100vw; }
-  100% { right: 28px; }
-}
-@keyframes owl-flap {
-  0%, 25%, 50%, 75%, 100% { transform: translateY(0) rotate(0deg); }
-  12.5%, 37.5%, 62.5%, 87.5% { transform: translateY(-16px) rotate(-6deg); }
-}
-@keyframes owl-bob {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-10px); }
-}
-@keyframes owl-shadow-breathe {
-  0%, 100% { transform: scaleX(1); opacity: .9; }
-  50%      { transform: scaleX(.78); opacity: .55; }
-}
-
 .history-head { margin-bottom: 14px; }
 .history-head .section-heading { margin: 0; }
 .history-row-delete {
@@ -1038,6 +948,14 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 }
 .back-btn-arrow { color: var(--garden-violet); font-weight: 800; font-size: 16px; line-height: 1; }
 .back-btn-label { color: var(--garden-ink); font-weight: 700; }
+.bilingual-label { display: inline-flex; flex-direction: column; gap: 3px; line-height: 1.25; }
+.bilingual-label-en { font-family: "Noto Sans SC", "Segoe UI", sans-serif; font-size: .65em; font-weight: 500; line-height: 1.3; }
+.current-level { display: inline-flex; align-items: center; justify-content: center; flex: none; min-width: 38px; padding: 5px 9px; border-radius: 10px; background: var(--garden-violet-pale); color: var(--garden-violet-deep); font: 800 13px/1.3 "Segoe UI", sans-serif; vertical-align: middle; }
+button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 3px solid var(--garden-violet); outline-offset: 3px; }
+.primary-btn, .secondary-btn, .back-btn, .chip, .dictation-btn { min-height: 44px; }
+.empty-state { padding: 28px 12px 36px; text-align: center; }
+.empty-state p { font-size: 17px; line-height: 1.8; color: var(--garden-ink); margin-bottom: 20px; }
+.empty-state [lang="en"] { font-size: 14px; color: var(--garden-ink-soft); }
 
 /* Icon + bilingual title, centered -- the standardized "top middle" header
    (see LessonSelect.tsx's original version of this pattern, now shared). */
@@ -1113,7 +1031,7 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
 .lesson-btn.disabled { opacity: .45; cursor: not-allowed; box-shadow: none; transform: none; }
 .lesson-btn-active {
   background: linear-gradient(180deg, #fff, var(--garden-violet-pale));
-  border-color: var(--lesson-color, var(--garden-violet));
+  border-color: var(--garden-violet);
   font-weight: 700;
 }
 .lesson-btn-active::before {
@@ -1126,9 +1044,15 @@ h2 { font-size: 19px; margin: 24px 0 10px; }
   font-size: 12px; font-weight: 800;
   box-shadow: var(--shadow-1);
 }
-.lesson-btn-num { font-size: 24px; font-weight: 700; color: var(--lesson-color, var(--garden-navy)); }
+.lesson-btn-num { font-size: 24px; font-weight: 700; color: var(--garden-navy); }
+.lesson-btn { box-shadow: 0 4px 14px rgba(28,31,77,.08); }
 .lesson-btn-count { font-size: 15px; color: var(--garden-ink-soft); margin-top: 4px; }
 .lesson-grid-disabled { opacity: .55; }
+@media (min-width: 701px) and (max-width: 1100px) {
+  .lesson-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .lesson-btn { padding: 18px 12px; }
+  .lesson-btn-num { font-size: 20px; }
+}
 .picker-hint { font-size: 13px; font-weight: 400; color: var(--ink-soft); }
 
 /* Mobile: auto-fill's 220px floor only ever fits 1 column on a phone-width
@@ -1200,8 +1124,8 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   position: relative;
   background: #fff; border: 2px solid transparent; border-radius: 22px;
   padding: 20px 22px; font-size: 18px; font-weight: 700; text-align: left; cursor: pointer;
-  color: var(--lesson-color, var(--garden-navy));
-  box-shadow: var(--shadow-1);
+  color: var(--garden-navy);
+  box-shadow: 0 4px 14px rgba(28,31,77,.07);
   transition: transform .12s ease, box-shadow .12s ease;
 }
 .category-btn:nth-child(6n+1) { --lesson-color: var(--garden-violet); }
@@ -1226,7 +1150,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .category-btn:hover { transform: translateY(-2px) scale(1.015); box-shadow: var(--shadow-2); }
 .category-active {
   background: linear-gradient(180deg, #fff, var(--garden-violet-pale));
-  border-color: var(--lesson-color, var(--garden-violet)); font-weight: 800;
+  border-color: var(--garden-violet); font-weight: 800;
 }
 .category-disabled {
   opacity: .45; cursor: not-allowed; box-shadow: none; color: var(--garden-ink-soft) !important;
@@ -1277,6 +1201,14 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .secondary-btn:hover { transform: translateY(-2px); filter: brightness(1.02); }
 .secondary-btn:active { transform: translateY(1px); box-shadow: none; }
 .action-row { margin-top: 20px; display: flex; gap: 12px; }
+.selection-action-bar { position: sticky; bottom: 12px; z-index: 8; display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 24px; padding: 14px 18px; border-radius: 20px; background: var(--garden-cream); border: 1px solid #ddd4ef; box-shadow: 0 -3px 18px rgba(28,31,77,.07), 0 5px 14px rgba(28,31,77,.06); }
+.selection-summary { display: flex; flex: 1; flex-direction: column; min-width: 0; gap: 4px; text-align: left; color: var(--garden-ink); font-size: 15px; }
+.selection-summary > span { color: var(--garden-ink-soft); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.selection-action-bar > button { flex: none; min-height: 48px; }
+@media (max-width: 700px) {
+  .selection-action-bar { bottom: calc(72px + env(safe-area-inset-bottom, 0px)); padding: 12px; gap: 10px; }
+  .selection-action-bar > button { padding: 10px 20px; }
+}
 .picker .action-row, .tingxie-select .action-row { justify-content: flex-end; }
 .hidden { display: none !important; }
 
@@ -1286,7 +1218,27 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
    quiz, so .quiz-topbar is just the group-progress counter. Its own
    .action-row (Submit/Next) sits bottom-right (.quiz .action-row below),
    not the shared default left alignment. */
-.quiz-topbar { display: flex; align-items: center; margin-bottom: 14px; }
+.quiz-topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.quiz-passage-pane { min-width: 0; scroll-margin-top: 100px; }
+.quiz-questions-pane { min-width: 0; }
+.quiz-reading .quiz-question-actions { position: sticky; bottom: 12px; z-index: 4; padding: 12px; background: var(--garden-cream); border-radius: 18px; border: 1px solid #e6def0; flex-wrap: wrap; }
+.quiz-return-passage { margin-right: auto; }
+@media (min-width: 1000px) and (orientation: landscape) {
+  #root:has(.quiz-reading) { height: 100vh; height: 100dvh; display: flex; flex-direction: column; padding-bottom: max(16px, env(safe-area-inset-bottom, 0px)); }
+  #root:has(.quiz-reading) > .top-bar { flex: none; }
+  .screen.quiz-reading { display: flex; flex-direction: column; flex: 1; min-height: 0; max-width: none; padding: 20px; }
+  .quiz-reading .quiz-topbar { flex: none; }
+  .quiz-reading .quiz-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; flex: 1; min-height: 0; }
+  .quiz-reading .quiz-passage-pane, .quiz-reading .quiz-questions-pane { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 4px 8px 8px 4px; }
+  .quiz-reading .passage-box { padding: 18px; margin-bottom: 0; }
+  .quiz-reading .passage-text { line-height: 1.8; }
+  .quiz-reading .quiz-question-actions { bottom: 0; margin-top: 0; }
+  .quiz-reading .quiz-return-passage { display: none; }
+}
+@media (max-width: 700px) {
+  .quiz-reading .quiz-question-actions { bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+  .quiz-question-actions > button { flex: 1; padding: 10px 14px; font-size: 14px; }
+}
 .quiz-progress {
   display: flex; flex-direction: column; gap: 2px;
   font-size: 15px; color: var(--ink-soft);
@@ -1336,10 +1288,9 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   margin-bottom: 22px;
   box-shadow: var(--shadow-1);
 }
-.passage-head { display: flex; align-items: flex-start; gap: 10px; }
+.passage-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
 .passage-heading { flex: 1; min-width: 0; }
 .passage-title { font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
-.passage-source { font-size: 14px; color: var(--ink-soft); margin-bottom: 14px; }
 .passage-text {
   font-size: 20px;
   line-height: 1.95;
@@ -1359,6 +1310,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   font-size: 18px; font-weight: 700; margin-bottom: 8px;
   display: flex; align-items: center; gap: 10px;
 }
+.question-box, .passage-box, .option-bank-box { box-shadow: 0 4px 14px rgba(28,31,77,.07); color: var(--garden-ink); }
 .dictation-btn {
   margin-left: auto;
   background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
@@ -1378,6 +1330,20 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .story-screen { text-align: center; }
 .story-reading-tools { display: flex; justify-content: center; align-items: center; gap: 18px; margin: 16px 0 24px; }
 .story-page-indicator { font-weight: 700; color: var(--ink-soft); }
+.story-reading-title { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.story-card-title { color: var(--garden-ink); font-size: 19px; font-weight: 700; line-height: 1.5; margin-top: 8px; }
+.story-picker .lesson-btn { text-align: left; padding: 20px; }
+.story-picker .lesson-btn-num { font-size: 14px; color: var(--garden-ink-soft); }
+.story-picker .lesson-grid { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+.story-pagination { display: flex; align-items: center; justify-content: space-between; gap: 12px; position: sticky; bottom: 12px; z-index: 3; padding: 12px; background: var(--garden-cream); border-radius: 18px; border: 1px solid #e6def0; }
+.story-pagination > span { flex: none; color: var(--garden-ink-soft); font-size: 14px; }
+@media (max-width: 700px) {
+  .story-picker .lesson-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .story-picker .lesson-btn { padding: 16px 12px; }
+  .story-card-title { font-size: 16px; }
+  .story-pagination { bottom: calc(72px + env(safe-area-inset-bottom, 0px)); gap: 8px; }
+  .story-pagination > button { padding: 10px 12px; font-size: 13px; }
+}
 .story-reading-tools .dictation-btn { margin-left: 0; min-height: 44px; padding: 8px 18px; font-size: 15px; color: var(--garden-navy); border-color: #ded5f2; background: #f4efff; box-shadow: none; }
 .story-reading-tools .dictation-btn:hover { border-color: var(--garden-violet); color: var(--garden-violet); }
 .story-reading-tools .dictation-btn-active { background: var(--garden-violet); border-color: var(--garden-violet); color: white; }
@@ -1401,7 +1367,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .story-illustration { display: block; width: 100%; height: auto; border-radius: 18px; }
 .story-text {
   font-size: 32px; line-height: 1.8; letter-spacing: .5px; color: var(--garden-navy);
-  font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 .story-paragraph { margin: 0 0 24px; }
 .story-paragraph:last-child { margin-bottom: 0; }
@@ -1429,20 +1395,14 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   .story-reading-tools { gap: 12px; margin-bottom: 18px; }
 }
 
-.story-finish-row { justify-content: center; margin-top: 24px; }
-
 /* Mirror the paper underside for the previous-page corner. */
 .story-page-curl {
   position: absolute; bottom: 0; right: 0;
   width: 56px; height: 56px;
-  border: none; padding: 0; cursor: pointer;
+  pointer-events: none;
   background: url("/icons/page-fold.svg") center / 100% 100% no-repeat;
   border-radius: 0;
-  transition: width .15s ease, height .15s ease;
 }
-.story-page-curl:hover { width: 64px; height: 64px; }
-.story-page-curl:focus-visible { outline: 3px solid var(--garden-violet); outline-offset: 3px; border-radius: 8px; }
-.story-page-curl:disabled { cursor: default; width: 56px; height: 56px; }
 .story-page-curl-prev { right: auto; left: 0; transform: scaleX(-1); }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1522,6 +1482,8 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .feedback { margin-top: 12px; font-size: 16px; font-weight: 600; }
 .feedback.correct { color: var(--correct); }
 .feedback.incorrect { color: var(--incorrect); }
+.quiz .feedback.correct { color: #236c49; }
+.quiz .feedback.incorrect { color: #b4233c; }
 .feedback.skipped { color: var(--skipped); }
 .feedback.ai-pending { color: var(--ink-soft); }
 
@@ -1878,6 +1840,16 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   font-size: 12px;
   vertical-align: middle;
 }
+.owl-screen .owl-action-banner-label { min-width: 0; white-space: nowrap; }
+.owl-screen .owl-action-banner .bilingual-label { gap: 5px; }
+.owl-screen .owl-action-banner .bilingual-label-en { font-size: 13px; }
+@media (min-width: 700px) {
+  .owl-screen .owl-action-banner-row { display: grid; grid-template-columns: 1fr; gap: 12px; width: 100%; }
+  .owl-screen .owl-action-banner { min-height: 76px; justify-content: flex-start; }
+}
+@media (min-width: 1200px) {
+  .owl-screen .owl-action-banner-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 
 /* Bag's lone empty-state Shop banner (see Bag.tsx) isn't paired in a
    .owl-action-banner-row like Owl.tsx's pair -- .owl-action-banner's normal
@@ -1932,31 +1904,13 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   .owl-screen .growth-caption { font-size: 13px; }
 }
 
-/* Exactly 3 columns so the 6 SHOP_ITEMS always land in exactly 2 rows (per
-   the design brief) rather than reflowing at odd widths like the old
-   auto-fill grid did. Desktop additionally pins the whole page to the
-   viewport height (see .shop-screen below) so those 2 rows never need a
-   page scrollbar -- .shop-grid itself is the flex:1 piece that fills
-   whatever's left under the header, with the grid rows (and each card
-   inside them) stretching to fill that evenly. */
+/* Product rows size to their content so purchase controls stay inside cards. */
 .shop-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px; margin-top: 20px;
 }
-@media (min-width: 900px) {
-  .screen.shop-screen { height: calc(100vh - 160px); display: flex; flex-direction: column; overflow: hidden; }
-  /* minmax(0, 1fr), not a bare 1fr -- a bare fr track's automatic minimum
-     size is content-based (auto), so without this the two rows would just
-     grow to fit each card's natural content height (as this actually did
-     the first time around) instead of splitting the grid's own fixed
-     height evenly, defeating the whole fixed-height page. */
-  .screen.shop-screen .shop-grid { flex: 1; min-height: 0; grid-template-rows: repeat(2, minmax(0, 1fr)); overflow-y: auto; }
-}
-/* Icon claims ~50% of the card's own height (see .shop-item-icon's
-   flex-basis) with the label/stats/buy-button splitting the rest, per the
-   design brief -- .shop-item-owned is the "how many you already have"
-   badge in the top-right corner (always shown, even at ×0, so its position
-   never shifts around as a purchase changes the count). */
+.shop-hint { margin: 0 auto 16px; text-align: center; color: var(--garden-ink-soft); font-size: 14px; }
+.shop-hint span { display: block; font-size: 12px; margin-top: 3px; }
 .shop-item-card {
   position: relative; min-height: 0;
   background: linear-gradient(180deg, var(--card-hi), var(--card-bg));
@@ -1968,7 +1922,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   transition: transform .18s ease, box-shadow .18s ease;
 }
 .shop-item-card:hover { transform: translateY(-3px) scale(1.02); box-shadow: var(--shadow-2); }
-.shop-item-disabled { opacity: .5; }
+.shop-item-disabled { opacity: 1; }
 .shop-item-disabled:hover { transform: none; box-shadow: var(--shadow-1); }
 .shop-item-owned {
   position: absolute; top: 12px; right: 14px;
@@ -1976,7 +1930,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   font-size: 12px; font-weight: 800; line-height: 1;
   padding: 4px 9px; border-radius: 999px;
 }
-.shop-item-icon { flex: 0 0 50%; min-height: 0; width: auto; max-width: 70%; object-fit: contain; margin-top: 6px; }
+.shop-item-icon { flex: 0 0 auto; width: min(140px, 70%); height: clamp(80px, 12vw, 140px); object-fit: contain; margin-top: 6px; }
 .shop-item-label { font-size: 15px; font-weight: 800; color: var(--ink); }
 .shop-item-stats { font-size: 12.5px; color: var(--ink-soft); display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
 .shop-item-buy {
@@ -1984,7 +1938,15 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   width: 100%; margin-top: auto;
 }
 .shop-item-buy-coin { width: 16px; height: 16px; object-fit: contain; flex: none; }
-.shop-item-buy:disabled { cursor: not-allowed; opacity: .6; filter: none; box-shadow: none; }
+.primary-btn.shop-item-buy:disabled { cursor: not-allowed; opacity: 1; background: #ece8f3; color: #625a78; filter: none; box-shadow: none; text-shadow: none; }
+.shop-item-availability { min-height: 20px; font-size: 11px; color: var(--garden-ink-soft); line-height: 1.4; }
+.shop-item-buy { flex: none; min-height: 44px; }
+.shop-item-card { min-width: 0; box-shadow: 0 4px 16px rgba(28,31,77,.08); }
+@media (min-width: 900px) and (max-height: 760px) {
+  .shop-item-icon { height: 72px; }
+  .shop-item-card { padding: 12px; }
+}
+
 
 .bag-screen { text-align: center; }
 .bag-screen .action-row { justify-content: center; }
@@ -2008,27 +1970,10 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 @media (max-width: 699px) {
   .shop-grid, .bag-grid { grid-template-columns: repeat(2, 1fr); }
 }
-/* Same WebKit percentage-flex-basis bug the max-width:699px block below
-   documents in full, but this closes the gap between it and the
-   min-width:900px fixed-height grid (see .screen.shop-screen above) --
-   .shop-item-card has no fixed height in 700-899px either (e.g. an iPad in
-   a narrower split-view), so the same blown-up-icon bug could still hit
-   Safari there even outside the phone-sized compact styling below. */
-@media (max-width: 899px) {
-  .shop-item-icon { flex: 0 0 auto; }
-}
-/* Mobile: .shop-item-card's icon claiming ~70% of the card's width (see its
-   own comment above) plus the full desktop padding/button size left every
-   card roughly twice as tall as it needed to be at a 2-column phone width --
-   shrunk on every axis (icon, padding, gaps, type scale, the buy button's
-   own padding) rather than just one, since no single change gets it close
-   to half on its own. Shared by Bag.tsx too (same .shop-item-card base). */
+/* Shared compact cards keep Shop and Bag usable in two phone columns. */
 @media (max-width: 699px) {
   .shop-item-card { padding: 7px; gap: 2px; border-radius: 16px; }
-  /* flex:0 0 auto already applied by the max-width:899px block above (this
-     narrower block only needs to tighten max-width further for the phone
-     type scale) -- see that block for why the flex override exists. */
-  .shop-item-icon { max-width: 27%; margin-top: 2px; }
+  .shop-item-icon { max-width: 55%; height: 76px; margin-top: 2px; }
   .shop-item-label { font-size: 12px; }
   .shop-item-stats { font-size: 10px; gap: 6px; }
   .shop-item-owned { top: 6px; right: 8px; padding: 3px 7px; font-size: 10px; }
@@ -2179,6 +2124,18 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 
 /* ---------- Result ---------- */
 .result { text-align: center; }
+.result .action-row { flex-wrap: wrap; }
+.result-review { margin-top: 28px; text-align: left; color: var(--garden-ink); }
+.result-review > h2 { font-size: 22px; }
+.result-review > h2 span { display: block; font-size: 14px; font-family: "Segoe UI", sans-serif; font-weight: 500; margin-top: 4px; }
+.result-review-group { margin: 20px 0; border: 1px solid #e4dfee; border-radius: 18px; padding: 18px; background: #fff; }
+.result-review-passage summary { cursor: pointer; font-weight: 700; padding: 10px 0; }
+.result-review-passage p { white-space: pre-wrap; line-height: 1.8; }
+.result-review-question + .result-review-question { border-top: 1px solid #e9e5ef; margin-top: 20px; padding-top: 8px; }
+.result-review-question h3 { font: 700 17px/1.4 "Segoe UI", sans-serif; }
+.result-review-answer { white-space: pre-wrap; line-height: 1.7; padding: 12px; border-radius: 12px; background: #faf6f6; }
+.result-review-answer > span { display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+.result-review-correct { background: #eef8f1; color: #236c49; }
 .score-circle {
   width: 160px; height: 160px; border-radius: 50%;
   background: linear-gradient(155deg, var(--primary-hi), var(--primary) 60%, var(--primary-dark));
@@ -2229,186 +2186,68 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
    instead (see the in-activity two-column layout below), so there's no
    title to show back here any more. */
 
-/* ---------- Tingxie in-activity layout (mode sidebar + content) ----------
-   Once a lesson (or custom-review pool) is picked, the old horizontal
-   .tingxie-tabs row is replaced by this two-column layout: a left sidebar
-   of colored mode cards (Learn/Apply/Play/Test), and the actual activity
-   content on the right. Desktop: side by side, sidebar always visible.
-   Mobile: the sidebar is an off-canvas drawer (see its own media query
-   below), toggled via .tingxie-mode-toggle-btn in the content header. */
-/* align-items:stretch (not flex-start) so the sidebar matches the content
-   column's height -- .tingxie-mode-list below is what actually grows to
-   fill that height (the back button/heading above it stay their own
-   natural size), and each mode card gets an equal share of it in turn, so
-   the last one (Test) ends up bottom-aligned with the flashcard. Mobile's
-   sidebar is `position:fixed` with its own top/bottom:0 (see its own media
-   query below), so this has no effect there -- fixed positioning already
-   overrides flex sizing once applied. */
-/* Pin the whole in-activity card to exactly fill the viewport (no page
-   scrollbar), and keep that height constant across every mode -- Play's
-   own fixed-height cloud-sky used to leave the card looking shorter than
-   Learn/Apply/Test since height was otherwise just whatever the active
-   mode's content needed. Without this, .tingxie-activity-layout's
-   align-items:stretch (see its own comment) instead stretches the sidebar
-   to match whichever mode's content happens to be showing -- switching
-   from Learn's tall flip-card to Play's shorter cloud-sky visibly shrank
-   the sidebar (Learn's own card worst of all, being flex:2) rather than
-   leaving it alone, since nothing was pinning the row's own height. 160px
-   = the sticky .top-bar's own rendered height (80px) + its margin-bottom
-   (20px) + #root's own padding-bottom (60px), i.e. the fixed chrome above
-   and below this card; only holds while .top-bar stays a single row and
-   the sidebar is inline rather than an off-canvas drawer -- both true from
-   this breakpoint up (measured empirically: the top bar doesn't wrap to a
-   second row until well below this, and .tingxie-mode-sidebar's own
-   min-width:780px is where it stops being position:fixed), matching
-   .tingxie-mode-sidebar's own breakpoint so there's no gap width where the
-   sidebar is inline but not yet height-stabilized. */
-@media (min-width: 780px) {
+/* The activity shares the visible viewport with the actual nav height.
+   Dynamic viewport units account for tablet browser bars and rotation. */
+@media (min-width: 701px) {
+  #root:has(.tingxie-screen-activity) {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  }
+  #root:has(.tingxie-screen-activity) > .top-bar { flex: none; }
   .screen.tingxie-screen-activity {
-    height: calc(100vh - 160px);
+    flex: 1;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     overflow: hidden;
   }
   .tingxie-screen-activity .tingxie-activity-layout { flex: 1; min-height: 0; }
-  .tingxie-screen-activity .tingxie-activity-content {
-    display: flex; flex-direction: column; min-height: 0;
-    overflow-y: auto;
-  }
+  .tingxie-screen-activity .tingxie-activity-content { display: flex; flex-direction: column; min-height: 0; overflow-y: auto; }
 }
-.tingxie-activity-layout { display: flex; align-items: stretch; gap: 22px; position: relative; }
-.tingxie-mode-sidebar {
-  flex: 0 0 260px;
-  display: flex; flex-direction: column; gap: 14px;
-  background: linear-gradient(180deg, var(--garden-cream), #fff9ec);
-  border-radius: 24px; padding: 20px;
-  box-shadow: 0 14px 30px -12px rgba(20,20,60,.2), 0 2px 10px rgba(20,20,60,.08);
-}
-.tingxie-mode-sidebar .back-btn { margin-bottom: 0; }
-.tingxie-mode-heading {
-  margin: 0; text-align: center;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
-  font-size: 17px; color: var(--garden-navy);
-}
-.tingxie-mode-heading-spark { width: 15px; height: 15px; color: var(--garden-gold); flex: none; }
-.tingxie-mode-list { flex: 1; display: flex; flex-direction: column; gap: 12px; }
-/* Equal flex-basis:0 for every card, so the flex-grow factor alone decides
-   height -- .tingxie-mode-card-tall (Learn) overrides its own grow factor
-   to 2 below, making it exactly double any one of these three. */
-.tingxie-mode-list > * { flex: 1 1 0; }
+/* Mode navigation is a compact strip, becoming a rail on wide landscape screens. */
+.tingxie-activity-layout { display: flex; flex-direction: column; align-items: stretch; gap: 16px; min-height: 0; }
+.tingxie-mode-sidebar { display: flex; align-items: center; gap: 14px; flex: none; min-width: 0; }
+.tingxie-mode-sidebar .back-btn { margin: 0; flex: none; }
+.tingxie-mode-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; flex: 1; min-width: 0; }
+.tingxie-mode-list:has(> :nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .tingxie-mode-card {
-  display: flex; align-items: center; gap: 12px;
-  border: none; border-radius: 18px; padding: 14px 16px;
-  color: #fff; text-align: left; cursor: pointer;
-  opacity: .82;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 6px 14px -8px rgba(20,20,60,.4);
-  transition: transform .12s ease, opacity .12s ease, box-shadow .12s ease;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  min-width: 0; min-height: 64px; padding: 8px 10px;
+  border: 2px solid transparent; border-radius: 16px; background: #fff;
+  color: var(--garden-ink); cursor: pointer; text-align: left;
+  box-shadow: 0 2px 8px rgba(28,31,77,.05);
 }
-.tingxie-mode-card:hover { transform: translateY(-2px); opacity: 1; }
-.tingxie-mode-card-active { opacity: 1; box-shadow: inset 0 0 0 3px rgba(255,255,255,.7), 0 6px 14px -8px rgba(20,20,60,.4); }
-/* No more white badge behind the icon -- it sits directly on the card's own
-   color, sized off the card's own width (not a fixed px) so it keeps
-   occupying roughly a third of the button regardless of sidebar width. */
-.tingxie-mode-icon {
-  flex: 0 0 33%; width: 33%; aspect-ratio: 1;
-  display: flex; align-items: center; justify-content: center;
+.tingxie-mode-card-active { background: var(--garden-violet-pale); border-color: var(--garden-violet); }
+.tingxie-mode-icon { width: 34px; height: 34px; flex: none; object-fit: contain; }
+.tingxie-mode-card .bilingual-label { font-size: 16px; font-weight: 800; }
+.tingxie-mode-card .bilingual-label-en { font-size: 12px; }
+.tingxie-activity-content { flex: 1; min-width: 0; min-height: 0; }
+.tingxie-activity-header { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; flex: none; }
+.tingxie-activity-title { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; font-family: "Smiley Sans", sans-serif; font-size: 18px; color: var(--garden-navy); }
+.tingxie-activity-title img { width: 24px; height: 24px; object-fit: contain; flex: none; }
+.tingxie-activity-title-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tingxie-learn-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 10px; flex: none; }
+.tingxie-learn-tabs [aria-pressed="true"] { background: var(--garden-violet-pale); border-color: var(--garden-violet); color: var(--garden-violet-deep); }
+@media (min-width: 1000px) and (orientation: landscape) {
+  .tingxie-screen-activity .tingxie-activity-layout { flex-direction: row; gap: 20px; }
+  .tingxie-mode-sidebar { flex: 0 0 168px; flex-direction: column; align-items: stretch; }
+  .tingxie-mode-sidebar .back-btn { align-self: flex-start; }
+  .tingxie-mode-list { display: flex; flex-direction: column; flex: none; gap: 10px; }
+  .tingxie-mode-card { justify-content: flex-start; min-height: 72px; }
 }
-.tingxie-mode-icon img { width: 100%; height: 100%; object-fit: contain; }
-.tingxie-mode-text { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
-.tingxie-mode-title { font-weight: 800; font-size: 18px; }
-.tingxie-mode-chevron { width: 14px; height: 14px; color: rgba(255,255,255,.85); flex: none; align-self: center; transform: rotate(-90deg); }
-.tingxie-mode-learn { background: linear-gradient(180deg, var(--garden-violet), var(--garden-violet-deep)); }
-.tingxie-mode-apply { background: linear-gradient(180deg, var(--garden-green), #2f8f57); }
-.tingxie-mode-play { background: linear-gradient(180deg, var(--garden-gold), var(--garden-gold-deep)); }
-.tingxie-mode-test { background: linear-gradient(180deg, var(--garden-blue), #2f8fc7); }
-/* Learn's tall card: .tingxie-mode-card-tall zeroes out the base card's own
-   padding (the header row and the sub-tab row below need their own,
-   different, padding) and doubles its flex-grow share (2 vs the other
-   three cards' 1 each, see .tingxie-mode-list > *) so it's always exactly
-   double their height, not just whatever its two stacked rows happen to
-   need. Only the header half (.tingxie-mode-card-main) carries the violet
-   color now -- the card's own background is cleared so the sub-tab half
-   shows the sidebar's own cream tone through it instead, with
-   overflow:hidden clipping both halves to the card's rounded corners. */
-.tingxie-mode-card-tall { flex: 2 1 0; flex-direction: column; align-items: stretch; justify-content: center; gap: 8px; padding: 0; cursor: default; overflow: hidden; }
-.tingxie-mode-card-tall.tingxie-mode-learn { background: none; }
-.tingxie-mode-card-main {
-  display: flex; align-items: center; gap: 12px; width: 100%;
-  background: linear-gradient(180deg, var(--garden-violet), var(--garden-violet-deep));
-  border: none; color: #fff; text-align: left; cursor: pointer;
-  padding: 14px 16px;
+@media (min-width: 701px) and (max-height: 800px) {
+  .screen.tingxie-screen-activity { padding: 16px 20px; }
 }
-.tingxie-mode-card-subtabs {
-  display: flex; gap: 8px; padding: 14px;
-  background: linear-gradient(180deg, var(--garden-cream), #fff9ec);
-}
-.tingxie-mode-card-subtab {
-  flex: 1;
-  background: rgba(124,58,183,.12); border: none; border-radius: 999px;
-  padding: 7px 8px; font-size: 12px; font-weight: 800; color: var(--garden-violet-deep);
-  cursor: pointer; transition: background .12s ease, color .12s ease;
-}
-.tingxie-mode-card-subtab:hover { background: rgba(124,58,183,.22); }
-.tingxie-mode-card-subtab-active { background: var(--garden-violet); color: #fff; }
-
-.tingxie-activity-content { flex: 1; min-width: 0; }
-.tingxie-activity-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-.tingxie-activity-title {
-  flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px;
-  font-family: "Smiley Sans", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
-  font-size: 17px; font-weight: 700; color: var(--garden-navy);
-}
-.tingxie-activity-title img { width: 22px; height: 22px; object-fit: contain; flex: none; }
-/* The lesson title text is the one part of this row allowed to truncate --
-   previously white-space/overflow/ellipsis lived on .tingxie-activity-title
-   itself, but a flex container doesn't ellipsis its children as a unit (only
-   its own direct text content would), so the vocab-scope badge just kept
-   its full natural width and got laid out past the row's right edge instead
-   of shrinking -- min-width:0 is what actually lets this span shrink below
-   its content size inside the flex row (see the badge's own flex:none,
-   which is what keeps it from ever being the thing that shrinks/overflows). */
-.tingxie-activity-title-text {
-  flex: 1 1 auto; min-width: 0;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-/* Hidden on desktop -- the sidebar sits inline there, always visible, so
-   there's nothing to toggle. */
-.tingxie-mode-toggle-btn { display: none; }
-.tingxie-sidebar-backdrop { display: none; }
-
-@media (max-width: 780px) {
-  .tingxie-activity-layout { display: block; }
-  /* z-index above .owl-flyover's own 60 (see styles.css's own comment on
-     that class) -- the decorative flying-owl mascot is position:fixed
-     app-wide and can be parked (by default, or a student's earlier drag)
-     anywhere on screen, including right over this drawer's cards; once
-     open, this off-canvas panel is real interactive UI, not page content,
-     so it needs to win that stack the same way an actual modal would
-     (this still sits comfortably under .modal-overlay's 1000). Without
-     this, the mode list -- Learn included -- could silently render behind
-     the owl and look like a button had disappeared. */
-  .tingxie-mode-sidebar {
-    position: fixed; top: 0; bottom: 0; left: 0; z-index: 70;
-    width: min(300px, 84vw); flex: none;
-    border-radius: 0 24px 24px 0;
-    transform: translateX(-100%);
-    transition: transform .2s ease;
-    overflow-y: auto;
-  }
-  .tingxie-mode-sidebar-open { transform: translateX(0); }
-  .tingxie-sidebar-backdrop {
-    display: block;
-    position: fixed; inset: 0; z-index: 69;
-    background: rgba(20, 20, 60, .45);
-  }
-  .tingxie-mode-toggle-btn {
-    display: flex; align-items: center; gap: 6px; flex: none;
-    background: var(--garden-cream-soft); color: var(--garden-navy);
-    border: none; border-radius: 999px; padding: 8px 14px;
-    font-size: 13px; font-weight: 800; cursor: pointer;
-  }
-  .tingxie-mode-toggle-icon { width: 12px; height: 12px; transform: rotate(90deg); }
+@media (max-width: 700px) {
+  .tingxie-mode-sidebar { align-items: stretch; flex-direction: column; gap: 10px; }
+  .tingxie-mode-sidebar .back-btn { align-self: flex-start; }
+  .tingxie-mode-card { flex-direction: column; gap: 4px; padding: 8px 4px; text-align: center; }
+  .tingxie-mode-icon { width: 26px; height: 26px; }
+  .tingxie-mode-card .bilingual-label { font-size: 14px; }
+  .tingxie-mode-card .bilingual-label-en { font-size: 11px; }
 }
 
 .tingxie-select { text-align: left; }
@@ -2418,39 +2257,15 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 
 .tingxie-learn { text-align: center; }
 .tingxie-carousel, .tingxie-sentence-game { text-align: center; }
-/* Inside the fixed-height activity card (see .tingxie-screen-activity near
-   .tingxie-activity-layout above): let the flashcard/game area flex to
-   fill whatever vertical room is left after the header, rather than the
-   purely width-driven aspect ratio .tingxie-flip-card otherwise uses, which
-   could run taller than that room and force this content pane to scroll. */
-@media (min-width: 780px) {
+/* Allow cards to shrink within the space left by the activity controls. */
+@media (min-width: 701px) {
   .tingxie-screen-activity .tingxie-learn { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   .tingxie-screen-activity .tingxie-carousel,
   .tingxie-screen-activity .tingxie-sentence-game {
     flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 0;
   }
 }
-/* Mobile, Learn mode only (Tingxie.tsx adds .tingxie-screen-activity-learn
-   only while state.view === "learn" -- Apply/Play/Test are unaffected and
-   keep scrolling normally): same fixed-height/flex-fill technique as the
-   min-width:900px block above, so the flip-card/sentence-builder page never
-   needs the whole page to scroll on a phone. 180px = the mobile .top-bar's
-   own shrunk height (~55px, see its own max-width:700px rule) + its
-   margin-bottom (12px) + #root's mobile padding-bottom (112px, already
-   reserves room for the fixed .bottom-nav).
-   .tingxie-activity-layout needs an explicit display:flex here to win over
-   its own max-width:780px rule below (display:block, for the off-canvas
-   sidebar) -- same specificity, but that rule's plain .tingxie-activity-layout
-   selector loses to this file's later two-class selector regardless of
-   source order, so without restating display here the flex-basis/min-height
-   props below would silently do nothing (verified empirically: the whole
-   fixed-height cascade stops dead at a `display:block` ancestor). The
-   sidebar itself is unaffected either way -- it's position:fixed at this
-   width, already out of normal flow. flip-stage/outer/card get the same
-   explicit width/height overrides as the min-width:900px block for the same
-   reason documented on .tingxie-flip-stage below: a descendant's aspect-ratio
-   otherwise pins the stage to a content-based (here: collapsed to 0) size
-   instead of stretching into the flex-allotted space. */
+/* Phone Learn mode reserves space for the top bar and fixed bottom nav. */
 @media (max-width: 700px) {
   .tingxie-screen-activity-learn {
     height: calc(100vh - 180px);
@@ -2476,6 +2291,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   .tingxie-screen-activity-learn .tingxie-flip-card { height: 100%; max-height: 460px; max-width: calc(100% - 56px); }
 }
 .tingxie-progress { color: var(--ink-soft); font-size: 14px; margin-bottom: 12px; }
+.tingxie-screen-activity .tingxie-carousel { width: 100%; max-height: 720px; margin: auto 0; }
 
 .tingxie-difficulty-toggle { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 14px; }
 .tingxie-difficulty-label { font-size: 13px; font-weight: 600; color: var(--ink-soft); transition: color .15s ease; }
@@ -2524,7 +2340,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .vocab-picker-title { font-size: 19px; font-weight: 800; color: var(--ink); margin: 0; }
 .vocab-picker-close {
   display: flex; align-items: center; justify-content: center;
-  width: 30px; height: 30px; border-radius: 50%; border: none;
+  width: 44px; height: 44px; border-radius: 50%; border: none;
   background: var(--card-bg); color: var(--ink-soft); cursor: pointer; flex: none;
 }
 .vocab-picker-close svg { width: 14px; height: 14px; }
@@ -2541,7 +2357,13 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   display: flex; align-items: center; gap: 6px;
   font-size: 14px; color: var(--ink); cursor: pointer;
 }
-.vocab-picker-item input { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; flex: none; }
+.vocab-picker-item input { width: 20px; height: 20px; accent-color: var(--primary); cursor: pointer; flex: none; }
+.vocab-picker-item { min-height: 48px; padding: 10px; gap: 9px; border: 1px solid #e2dcea; border-radius: 12px; background: #fff; color: var(--garden-ink); font-size: 16px; }
+.vocab-picker-item:has(input:checked) { border-color: var(--garden-violet); background: var(--garden-violet-pale); }
+.vocab-picker-item input { accent-color: var(--garden-violet); }
+.vocab-picker-body { min-height: 0; }
+.vocab-picker-footer { flex: none; }
+.tingxie-vocab-scope-option { min-height: 44px; padding: 8px 6px; }
 .vocab-picker-sentence-heading { font-size: 13px; font-weight: 700; color: var(--ink-soft); margin: 12px 0 6px; }
 .vocab-picker-sentence-list { display: flex; flex-direction: column; gap: 6px; }
 .vocab-picker-sentence-item { align-items: flex-start; }
@@ -2558,16 +2380,11 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 }
 
 /* -- 3D flip card shell (Learn/vocab, Apply, Practice) -- */
-.tingxie-flip-outer { perspective: 1200px; }
+.tingxie-flip-outer { perspective: 1200px; display: flex; align-items: center; justify-content: center; }
 .tingxie-flip-card {
   width: 100%; aspect-ratio: 4 / 5; max-width: 380px; margin: 0 auto;
   position: relative; cursor: pointer;
 }
-/* Wider once the mode sidebar (see .tingxie-mode-sidebar) is inline rather
-   than an off-canvas drawer -- it already claims its own width at that
-   point, so the remaining content column has more room than the
-   mobile-sized 380px card was using, leaving a lot of dead space beside
-   it otherwise. Matches .tingxie-mode-sidebar's own breakpoint. */
 @media (min-width: 780px) {
   .tingxie-flip-card { max-width: 560px; }
 }
@@ -2582,6 +2399,7 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
   border-radius: 28px; border: 3px solid var(--garden-violet-pale);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 26px; padding: 32px; box-shadow: var(--shadow-2); text-align: center;
+  overflow-y: auto; justify-content: safe center;
 }
 .tingxie-flip-front { background: linear-gradient(180deg, var(--card-hi), var(--card-bg)); }
 .tingxie-flip-back {
@@ -2620,33 +2438,25 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .tingxie-flip-stage { position: relative; max-width: 432px; margin: 0 auto; }
 @media (min-width: 780px) {
   .tingxie-flip-stage { max-width: 612px; }
-  /* Inside the fixed-height activity card (see .tingxie-screen-activity near
-     .tingxie-activity-layout), the flashcard fills the wide empty content
-     column instead of staying phone-card-sized: the stage gets an explicit
-     width:100% (its own max-width opens up a lot too, just still capped so
-     the edge buttons below never bump the sidebar/viewport edge) --
-     `align-items:stretch` alone does NOT stretch it here despite being the
-     flex default (verified empirically: .tingxie-carousel's column-flex
-     cross-axis stretch never kicks in for this item, apparently because a
-     descendant's aspect-ratio -- .tingxie-flip-card's, still 4/5 for every
-     non-activity use of this shell -- pins the stage to a content-based
-     width instead; don't remove this explicit width assuming stretch has
-     you covered). .tingxie-flip-outer/.tingxie-flip-card then fill that
-     width via ordinary block auto-sizing (.tingxie-flip-card's own base
-     width:100% rule, untouched here), just capped a button-diameter
-     narrower so the edge buttons still land half-on/half-off the card
-     exactly as before. flex:1 gives the stage a definite height in turn,
-     which .tingxie-flip-outer/.tingxie-flip-card fill via height:100% --
-     both axes end up independently sized, so the card's aspect-ratio no
-     longer applies here. */
+}
+/* Explicit dimensions prevent the card's aspect ratio from sizing the
+   flex stage; the outer flex box centres height-capped cards and edge buttons. */
+@media (min-width: 701px) {
   .tingxie-screen-activity .tingxie-flip-stage { flex: 1; min-height: 0; width: 100%; max-width: 1040px; }
   .tingxie-screen-activity .tingxie-flip-outer { width: 100%; height: 100%; }
-  .tingxie-screen-activity .tingxie-flip-card { height: 100%; max-height: 520px; max-width: calc(100% - 64px); }
+  .tingxie-screen-activity .tingxie-flip-card { height: 100%; min-height: 0; aspect-ratio: auto; max-height: 520px; max-width: calc(100% - 64px); }
 }
 /* Used by Learn/Apply/Practice's per-word "Add to My Vocab" button. Styled
    like the secondary-btn family (pale violet outline pill) but its own
    class since it needs the circular "+"/"✓" badge secondary-btn doesn't
    have. */
+@media (min-width: 701px) and (max-height: 740px) {
+  .tingxie-flip-face { padding: 20px; }
+  .tingxie-vocab-pinyin { font-size: 21px; }
+  .tingxie-vocab-meaning { font-size: 24px; }
+  .tingxie-vocab-example { font-size: 20px; line-height: 1.6; }
+  .tingxie-flip-back .tingxie-speak-btn { margin-top: 16px; }
+}
 .tingxie-add-vocab-btn {
   display: flex; align-items: center; gap: 8px;
   margin: 18px auto 0; width: fit-content;
@@ -2778,12 +2588,8 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .tingxie-play { text-align: center; }
 .tingxie-play .tingxie-apply-sentence { margin: 4px 0 2px; }
 .tingxie-play .tingxie-apply-english { margin-bottom: 14px; }
-/* Inside the fixed-height activity card (see .tingxie-screen-activity near
-   .tingxie-activity-layout): let the cloud-sky box grow to fill whatever
-   vertical room is left after the timer/sentence, instead of its own fixed
-   320px height leaving empty space below it now that the card's overall
-   height no longer shrinks to fit Play's shorter content. */
-@media (min-width: 780px) {
+/* The play area fills the same bounded activity pane as the flashcards. */
+@media (min-width: 701px) {
   .tingxie-screen-activity .tingxie-play { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   .tingxie-screen-activity .tingxie-play-timer { align-self: center; }
   .tingxie-screen-activity .tingxie-cloud-sky { flex: 1; width: 100%; height: auto; min-height: 0; }
@@ -2875,10 +2681,8 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
    two ordinary rounded cards.
    Desktop (min-width:900px) additionally pins the whole page -- hero +
    screen together -- to exactly the viewport height so it never needs a
-   page scrollbar, the same fixed-height technique Tingxie's in-activity
-   layout uses (see .tingxie-screen-activity's own comment for the 160px
-   derivation: sticky .top-bar's height + margin + #root's own
-   padding-bottom). */
+   page scrollbar; 160px reserves the single-row top bar, its margin,
+   and the root's bottom padding. */
 .auth-screen { max-width: 1080px; margin: 0 auto; }
 @media (min-width: 900px) {
   .auth-page { height: calc(100vh - 160px); display: flex; flex-direction: column; overflow: hidden; }
@@ -2943,6 +2747,8 @@ img.mission-hint-icon { width: 24px; height: 24px; object-fit: contain; }
 .auth-subtitle { color: var(--ink-soft); font-size: 13.5px; margin: 0 0 16px; }
 .auth-form { display: flex; flex-direction: column; gap: 14px; text-align: left; }
 .auth-field { display: flex; flex-direction: column; gap: 6px; }
+.auth-field-label { display: flex; align-items: baseline; gap: 8px; font-size: 15px; font-weight: 700; color: var(--garden-ink); }
+.auth-field-label > span { font-size: 12px; font-weight: 500; color: var(--garden-ink-soft); }
 /* Leading icon inside the field (login-username.png/login-password.png)
    replaces the old plain "Username"/"Password" label -- the input's own
    placeholder ("Your username here"/"Your password here") now carries

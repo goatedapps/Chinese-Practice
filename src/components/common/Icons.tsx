@@ -1,7 +1,7 @@
 // Shared inline-SVG icon set for the "garden" redesign -- only for glyphs
 // with no matching illustrated PNG asset under public/icons/ (those are
 // used directly as <img> instead, see TopNav.tsx/TodayMission.tsx/etc.).
-// Mounted once in App.tsx, same pattern as CursorGlow/OwlFlyover; every
+// Mounted once in App.tsx, same pattern as CursorGlow; every
 // consumer just renders <svg><use href="#i-name"/></svg>.
 export function IconSprite() {
   return (

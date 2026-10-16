@@ -75,7 +75,12 @@ export function MyVocab() {
       )}
 
       {entries.length === 0 ? (
-        <p className="tingxie-empty">还没有加入任何词语。No words saved yet -- add some from Dictation's Learn/Apply/Test screens.</p>
+        <div className="empty-state">
+          <p>还没有加入任何词语。<br /><span lang="en">Save words from Dictation to build your own vocabulary list.</span></p>
+          <button className="primary-btn" onClick={() => dispatch({ type: "GO_TO_SCREEN", screen: "tingxie" })}>
+            去听写 Go to Dictation
+          </button>
+        </div>
       ) : (
         <div className="my-vocab-groups">
           {groups.map((group) => (

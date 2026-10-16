@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch } from "../../state/AppStateContext";
-import { fetchStoryIndex, fetchStoryLesson, prefetchStoryLessons, segmentSentences, type StoryIndex, type StoryLesson } from "../../data/stories";
+import { fetchStoryIndex, fetchStoryLesson, segmentSentences, type StoryIndex, type StoryLesson } from "../../data/stories";
 import { speakText, stopSpeaking } from "../../lib/speech";
 import { usePet } from "../../state/PetContext";
 import { STORY_COMPLETE_BP_AWARD } from "../../data/pet";
@@ -9,6 +9,8 @@ import { CompleteScreen } from "../common/CompleteScreen";
 import { Icon } from "../common/Icons";
 import { logAchievement } from "../../state/achievements";
 import { recordTodayStoryRead } from "../../state/todaySummary";
+import { CurrentLevel } from "../common/CurrentLevel";
+import { BilingualLabel } from "../common/BilingualLabel";
 
 type StoryView = "picker" | "reading" | "complete";
 
@@ -32,6 +34,22 @@ export function Story() {
   const [lesson, setLesson] = useState<StoryLesson | null>(null);
   const [lessonLoading, setLessonLoading] = useState(false);
   const [lessonError, setLessonError] = useState<string | null>(null);
+  const [storySummaries, setStorySummaries] = useState<Record<number, StoryLesson>>({});
+  const finishedRef = useRef(false);
+
+  useEffect(() => {
+    if (!storyIndex) return;
+    let cancelled = false;
+    Promise.allSettled(storyIndex.written.map((id) => fetchStoryLesson(id))).then((results) => {
+      if (cancelled) return;
+      const summaries: Record<number, StoryLesson> = {};
+      for (const result of results) if (result.status === "fulfilled") summaries[result.value.id] = result.value;
+      setStorySummaries(summaries);
+    });
+    return () => { cancelled = true; };
+  }, [storyIndex]);
+
+  useEffect(() => { window.scrollTo(0, 0); }, [view, segmentIndex]);
 
   // Stop any in-progress read-aloud whenever the student changes lesson,
   // segment, or leaves this screen entirely -- same lingering-speech fix as
@@ -48,7 +66,6 @@ export function Story() {
       .then((index) => {
         setStoryIndex(index);
         setIndexLoading(false);
-        prefetchStoryLessons(index);
       })
       .catch((err: Error) => {
         setIndexError(err.message);
@@ -64,6 +81,7 @@ export function Story() {
   }, []);
 
   function openLesson(id: number) {
+    finishedRef.current = false;
     setSegmentIndex(0);
     setLessonError(null);
     setLessonLoading(true);
@@ -92,7 +110,8 @@ export function Story() {
   // Today's Session Summary" PDF (see state/todaySummary.ts), on top of its
   // BP award.
   function finishStory() {
-    if (lesson === null) return;
+    if (lesson === null || lesson.placeholder || finishedRef.current) return;
+    finishedRef.current = true;
     awardBP(STORY_COMPLETE_BP_AWARD);
     logAchievement({ type: "storyCompleted", detail: String(lesson.id) });
     recordTodayStoryRead(lesson.id);
@@ -127,7 +146,7 @@ export function Story() {
   }
 
   return (
-    <div className="screen story-screen">
+    <div className="screen story-screen story-picker">
       <button className="back-btn" onClick={() => dispatch({ type: "RESET_TO_HOME" })}>
         <span className="back-btn-arrow">←</span>
         <span className="back-btn-label">返回</span>
@@ -135,7 +154,8 @@ export function Story() {
       <h1 className="page-header">
         <Icon name="sparkle" className="page-header-spark" />
         <img className="page-header-icon" src="/icons/read.png" alt="" />
-        读故事 Read a Story
+        <BilingualLabel zh="读故事" en="Read a Story" />
+        <CurrentLevel />
         <Icon name="sparkle" className="page-header-spark" />
       </h1>
       <p className="picker-hint">
@@ -161,6 +181,8 @@ export function Story() {
             return (
               <button key={id} className="lesson-btn" disabled={lessonLoading} onClick={() => openLesson(id)}>
                 <div className="lesson-btn-num">{`第 ${id} 课`}</div>
+                {!isPlaceholder && <div className="story-card-title">{storySummaries[id]?.title ?? "课文故事"}</div>}
+                {storySummaries[id] && <div className="lesson-btn-count">{storySummaries[id].segments.length} 页</div>}
                 {isPlaceholder && <div className="lesson-btn-count">敬请期待 Coming soon</div>}
               </button>
             );
@@ -269,7 +291,7 @@ function StoryReader({ lesson, segmentIndex, onSegmentChange, onExit, onFinish }
         <span className="back-btn-arrow">←</span>
         <span className="back-btn-label">返回课文列表</span>
       </button>
-      <h1>{lesson.title}</h1>
+      <h1 className="story-reading-title">{lesson.title} <CurrentLevel /></h1>
       <div className="story-reading-tools">
         <div className="story-page-indicator">{`第 ${segmentIndex + 1} / ${lesson.segments.length} 页`}</div>
         <button
@@ -307,44 +329,18 @@ function StoryReader({ lesson, segmentIndex, onSegmentChange, onExit, onFinish }
               ))}
             </div>
 
-            {/* Real content's last page offers a "Finish Reading" action (BP
-                award, see Story()'s finishStory()) instead of a next-page
-                curl -- a placeholder "coming soon" stub has nothing to
-                actually finish, so it gets neither. */}
-            {isLast && !lesson.placeholder && (
-              <div className="action-row story-finish-row">
-                <button type="button" className="primary-btn" onClick={onFinish}>
-                  🎉 我读完了 Finish Reading
-                </button>
-              </div>
-            )}
           </div>
 
-          {/* Book-style page-turn affordance: a curled corner instead of a
-              plain "Next"/"Prev" button. Bottom-right flips forward,
-              bottom-left flips back -- each only rendered when that
-              direction actually goes somewhere (no wraparound). */}
-          {!isLast && (
-            <button
-              type="button"
-              className="story-page-curl story-page-curl-next"
-              title="下一页 Next page"
-              aria-label="下一页 Next page"
-              disabled={flip !== null}
-              onClick={() => flipTo("next")}
-            />
-          )}
-          {!isFirst && (
-            <button
-              type="button"
-              className="story-page-curl story-page-curl-prev"
-              title="上一页 Previous page"
-              aria-label="上一页 Previous page"
-              disabled={flip !== null}
-              onClick={() => flipTo("prev")}
-            />
-          )}
+          {!isLast && <span className="story-page-curl story-page-curl-next" aria-hidden="true" />}
+          {!isFirst && <span className="story-page-curl story-page-curl-prev" aria-hidden="true" />}
         </div>
+      </div>
+      <div className="story-pagination">
+        <button className="secondary-btn" disabled={isFirst || flip !== null} onClick={() => flipTo("prev")}>上一页 Previous</button>
+        <span>{segmentIndex + 1} / {lesson.segments.length}</span>
+        <button className="primary-btn" disabled={flip !== null} onClick={() => isLast ? lesson.placeholder ? onExit() : onFinish() : flipTo("next")}>
+          {isLast ? lesson.placeholder ? "返回列表 Back to stories" : "我读完了 Finish reading" : "下一页 Next"}
+        </button>
       </div>
     </div>
   );
